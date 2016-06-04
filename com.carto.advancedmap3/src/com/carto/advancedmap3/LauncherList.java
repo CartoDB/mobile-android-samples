@@ -42,7 +42,7 @@ public class LauncherList extends ListActivity{
             {CartoDBUTFGridActivity.class,null},
             {CartoDBTorqueActivity.class, null},
             {CartoDBVectorTileActivity.class, null},
-            {CartoDBRasterActivity.class, null},
+            {CartoDBRasterTileActivity.class, null},
             {CaptureActivity.class, null}
     };
 
