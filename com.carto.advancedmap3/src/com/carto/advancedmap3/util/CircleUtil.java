@@ -1,4 +1,4 @@
-package com.carto.hellomap3.util;
+package com.carto.advancedmap3.util;
 
 import android.location.Location;
 
