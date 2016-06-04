@@ -47,6 +47,7 @@ import com.carto.advancedmap3.R;
  * to check if a selected file is valid before its path is returned. By default all files are
  * considered as valid and can be selected by the user.
  */
+@SuppressWarnings("deprecation")
 public class FilePicker extends Activity implements AdapterView.OnItemClickListener {
 	private static final String DEFAULT_DIRECTORY = "/";
 	private static final int DIALOG_FILE_INVALID = 0;

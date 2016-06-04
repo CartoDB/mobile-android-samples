@@ -1,20 +1,13 @@
 package com.carto.advancedmap3.datasource;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.carto.core.MapTile;
 import com.carto.core.TileData;
 import com.carto.datasources.HTTPTileDataSource;
-import com.carto.utils.BitmapUtils;
 import com.carto.utils.Log;
 import com.carto.core.BinaryData;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 
 import org.apache.http.util.ByteArrayBuffer;

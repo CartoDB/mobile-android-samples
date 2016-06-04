@@ -1,14 +1,10 @@
 package com.carto.advancedmap3.datasource;
 
-import android.net.Uri;
 import android.util.Log;
 
 import com.carto.advancedmap3.Const;
-import com.carto.core.MapBounds;
 import com.carto.core.MapEnvelope;
 import com.carto.core.MapPos;
-import com.carto.core.MapTile;
-import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.VectorDataSource;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.Geometry;
@@ -17,14 +13,11 @@ import com.carto.geometry.PointGeometry;
 import com.carto.geometry.PolygonGeometry;
 import com.carto.projections.Projection;
 import com.carto.renderers.components.CullState;
-import com.carto.styles.BalloonPopupStyle;
-import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.LineStyle;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PolygonStyle;
 import com.carto.styles.Style;
-import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.Point;
@@ -144,8 +137,8 @@ public class CartoDBSQLDataSource extends VectorDataSource {
                 }
 
                 // add all properties as MetaData, so you can use it with click handling
-                for (Iterator<String> j = properties.keys(); j.hasNext();){
-                    String key = j.next();
+                for (Iterator<?> j = properties.keys(); j.hasNext();){
+                    String key = (String)j.next();
                     String val = properties.getString(key);
                     element.setMetaDataElement(key,val);
                 }

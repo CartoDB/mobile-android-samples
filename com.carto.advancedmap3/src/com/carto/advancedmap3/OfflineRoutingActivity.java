@@ -336,10 +336,10 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                         Log.d(Const.LOG_TAG,"first instruction");
                         // set car to first instruction position
                         first = false;
-                        MapPos firstInstructionPos = result.getPoints().get(instruction.getPointIndex());
+//                        MapPos firstInstructionPos = result.getPoints().get(instruction.getPointIndex());
 
                         // rotate car based on first instruction leg azimuth
-                        float azimuth =  (float) instruction.getAzimuth();
+//                        float azimuth =  (float) instruction.getAzimuth();
 
                         // zoom and move map to the first position, to make it navigation-like
 //                        mapView.setFocusPos(firstInstructionPos, 1);
