@@ -12,14 +12,12 @@ import com.carto.advancedmap3.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.Layer;
 import com.carto.layers.VectorLayer;
 import com.carto.renderers.RendererCaptureListener;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.Marker;
-import com.carto.vectorelements.VectorElement;
 
 /**
  * A sample demonstrating how to capture rendered MapView as a bitmap.
