@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.carto.advancedmap3"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".LauncherList"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PinMapActivity" />
+        <activity android:name=".PackageManagerActivity" />
+        <activity android:name=".PackagedMapActivity" />
+        <activity android:name=".Overlays2DActivity" />
+        <activity android:name=".MapListenerActivity" />
+        <activity android:name=".Overlays3DActivity" />
+        <activity android:name=".OfflineVectorMapActivity" />
+        <activity android:name=".GroundOverlayActivity" />
+        <activity android:name=".AnimatedRasterMapActivity" />
+        <activity android:name=".RasterOverlayActivity" />
+        <activity android:name=".AerialMapActivity" />
+        <activity android:name=".CustomRasterDataSourceActivity" />
+        <activity android:name=".CustomPopupActivity" />
+        <activity android:name=".MbtilesActivity" />
+        <activity android:name=".WmsMapActivity" />
+        <activity android:name=".ClusteredRandomPointsActivity" />
+        <activity android:name=".ClusteredGeoJsonActivity" />
+        <activity android:name=".MyLocationActivity" />
+        <activity android:name=".OfflineRoutingActivity" />
+        <activity android:name=".CartoDBSQLActivity" />
+        <activity android:name=".CartoDBUTFGridActivity" />
+        <activity android:name=".CartoDBTorqueActivity" />
+        <activity android:name=".CartoDBVectorTileActivity" />
+        <activity android:name=".CartoDBRasterActivity" />
+        <activity android:name=".MapZenActivity" />
+        <activity android:name=".CaptureActivity" />
+
+        <activity android:name="com.carto.filepicker.FilePicker" />
+    </application>
+
+</manifest>

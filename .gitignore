@@ -1,2 +1,8 @@
 com.carto.advancedmap3/bin
 com.carto.advancedmap3/libs
+com.carto.advancedmap3/build
+.gradle
+*.iml
+.idea
+local.properties
+build

@@ -1,11 +1,3 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
-    }
-}
 
 apply plugin: 'com.android.application'
 
@@ -16,19 +8,8 @@ android {
     defaultConfig {
         versionName project.version
     }
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-        }
-        instrumentTest.setRoot('tests')
-        lintOptions {
-            abortOnError false
-        }
+    lintOptions {
+        abortOnError false
     }
 
     buildTypes {
@@ -43,28 +24,18 @@ android {
         abi {
             enable true
             reset()
-      //      include 'x86', 'armeabi-v7a', 'armeabi'
-            include 'armeabi-v7a'
+      //      include 'x86', 'armeabi-v7a', 'armeabi','arm64-v8a'
+            include 'arm64-v8a'
             universalApk false
         }
     }
 
 }
 
-
-tasks.create(name: 'exportLibs', type: Copy) {
-    dependsOn configurations.compile
-    from configurations.compile
-    include '*.jar'
-    into "build/exportedLibs"
-}
-
-
-
 dependencies {
     // use bundled files
-    compile files('libs/carto-mobile-sdk.jar')
-
+    //compile files('libs/carto-mobile-sdk.aar')
+    compile(name:'carto-mobile-sdk', ext:'aar')
     // or use online repository - make sure it has latest version (there can be several updates per day)
     //compile ('com.nutiteq:nutiteq-sdk:snapshot@aar'){
     //    changing true

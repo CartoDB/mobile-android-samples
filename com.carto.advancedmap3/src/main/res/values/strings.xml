@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Carto Mobile SDK Samples</string>
+    <string name="action_settings">Actions</string>
+    <string name="layer_group_id_error">Sorry but I can\'t get layerGroupID.</string>
+
+</resources>
