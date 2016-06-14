@@ -4,15 +4,9 @@ import android.util.Log;
 
 import com.carto.advancedmap3.Const;
 import com.carto.layers.VectorElementEventListener;
-import com.carto.core.MapPos;
-import com.carto.core.ScreenPos;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.UTFGridRasterTileLayer;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
-import com.carto.ui.ClickType;
-import com.carto.ui.MapClickInfo;
-import com.carto.ui.MapEventListener;
 import com.carto.ui.MapView;
 import com.carto.ui.VectorElementClickInfo;
 import com.carto.vectorelements.BalloonPopup;
@@ -21,8 +15,8 @@ import com.carto.vectorelements.VectorElement;
 import com.carto.core.StringMap;
 
 public class MyVectorElementEventListener extends VectorElementEventListener {
-	private MapView mapView;
-	private LocalVectorDataSource vectorDataSource;
+	protected MapView mapView;
+	protected LocalVectorDataSource vectorDataSource;
 	
 	private BalloonPopup oldClickLabel;
 

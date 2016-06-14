@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.carto.core.MapTile;
-import com.carto.core.TileData;
 import com.carto.datasources.HTTPTileDataSource;
+import com.carto.datasources.components.TileData;
 import com.carto.utils.BitmapUtils;
 import com.carto.utils.Log;
 

@@ -8,12 +8,12 @@ import android.util.Log;
 import com.carto.advancedmap3.listener.MyMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
-import com.carto.datasources.NMLModelLODTreeDataSource;
-import com.carto.datasources.SqliteNMLModelLODTreeDataSource;
+//import com.carto.datasources.NMLModelLODTreeDataSource;
+//import com.carto.datasources.SqliteNMLModelLODTreeDataSource;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.advancedmap3.util.AssetCopy;
-import com.carto.layers.NMLModelLODTreeLayer;
+//import com.carto.layers.NMLModelLODTreeLayer;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.Polygon3DStyleBuilder;
 import com.carto.utils.AssetUtils;
@@ -75,6 +75,7 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
         
         // 4. Add 3D city (NMLDB), this is own separate layer
         
+        /*
         // The NMLDB file must be copied to sdcard first. 3D city files can be very big and 
         // there's no way to open files from the bundle without fully extracting them to memory.
         String fileName = "saku_ios_4bpp.nmldb"; 
@@ -91,6 +92,7 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
         } catch (IOException e) {
             Log.e(Const.LOG_TAG, "Failed to copy asset file: " + fileName, e);
         }
+        */
         
         // 4. add also maplistener to detect click on model
         mapView.setMapEventListener(new MyMapEventListener(mapView, vectorDataSource));

@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
+import com.carto.layers.LayerVector;
 import com.carto.services.CartoMapsService;
+import com.carto.vectortiles.MBVectorTileDecoder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,7 +89,10 @@ public class CartoDBVectorTileActivity extends VectorMapSampleBaseActivity {
 				CartoMapsService mapsService = new CartoMapsService();
 				mapsService.setUsername("nutiteq");
 				mapsService.setDefaultVectorLayerMode(true); // use vector layers
-				mapsService.buildMap(mapView.getLayers(), Variant.fromString(config));
+				LayerVector layers = mapsService.buildMap(Variant.fromString(config));
+				for (int i = 0; i < layers.size(); i++) {
+					mapView.getLayers().add(layers.get(i));
+				}
 			}
 		});
 		serviceThread.start();

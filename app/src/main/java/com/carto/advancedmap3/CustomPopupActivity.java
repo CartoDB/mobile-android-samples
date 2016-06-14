@@ -5,13 +5,16 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.carto.advancedmap3.R;
-import com.carto.advancedmap3.vectorelements.CustomPopup;
+import com.carto.advancedmap3.vectorelements.MyCustomPopupHandler;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
+import com.carto.styles.PopupStyle;
+import com.carto.styles.PopupStyleBuilder;
 import com.carto.utils.BitmapUtils;
+import com.carto.vectorelements.CustomPopup;
 import com.carto.vectorelements.Marker;
 
 /**
@@ -50,7 +53,14 @@ public class CustomPopupActivity extends VectorMapSampleBaseActivity {
         vectorDataSource1.add(marker1);
         
         // 5. Add popup
-        CustomPopup popup1 = new CustomPopup(marker1, "custom popup");
+    	PopupStyleBuilder popupStyleBuilder = new PopupStyleBuilder();
+    	popupStyleBuilder.setAttachAnchorPoint(0.5f, 0);
+    	PopupStyle popupStyle = popupStyleBuilder.buildStyle();
+
+    	MyCustomPopupHandler popupHandler = new MyCustomPopupHandler("custom popup");
+
+        CustomPopup popup1 = new CustomPopup(marker1, popupStyle, popupHandler);
+        popup1.setAnchorPoint(-1, 0);
         vectorDataSource1.add(popup1);
         
         // finally animate map to the marker

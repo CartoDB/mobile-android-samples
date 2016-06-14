@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.carto.core.MapTile;
 import com.carto.datasources.TileDataSource;
-import com.carto.core.TileData;
+import com.carto.datasources.components.TileData;
 
 /**
  * A custom tile source that takes a list of tile data sources and uses tile frame number

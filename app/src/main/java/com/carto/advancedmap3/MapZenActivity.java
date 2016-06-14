@@ -2,11 +2,8 @@ package com.carto.advancedmap3;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap3.datasource.MyHttpTileDataSource;
-import com.carto.advancedmap3.datasource.MyVectorHttpTileDataSource;
 import com.carto.core.MapRange;
 import com.carto.datasources.HTTPTileDataSource;
-import com.carto.datasources.CartoOnlineTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.VectorTileLayer;
 import com.carto.utils.AssetUtils;

@@ -7,7 +7,7 @@ import android.graphics.Rect;
 
 import com.carto.core.MapTile;
 import com.carto.datasources.TileDataSource;
-import com.carto.core.TileData;
+import com.carto.datasources.components.TileData;
 import com.carto.utils.BitmapUtils;
 
 /**

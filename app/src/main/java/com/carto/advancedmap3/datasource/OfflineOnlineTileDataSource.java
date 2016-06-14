@@ -1,9 +1,8 @@
 package com.carto.advancedmap3.datasource;
 
-
 import com.carto.core.MapTile;
-import com.carto.core.TileData;
 import com.carto.datasources.TileDataSource;
+import com.carto.datasources.components.TileData;
 
 /**
  * A custom raster tile data source that loads tiles from two sources: uses second one if tile does not exist in first.

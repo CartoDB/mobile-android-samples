@@ -9,19 +9,20 @@ import android.graphics.Typeface;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.Log;
 
-import com.carto.core.ScreenPos;
+import com.carto.advancedmap3.Const;
 import com.carto.graphics.Bitmap;
 import com.carto.styles.PopupStyle;
-import com.carto.styles.PopupStyleBuilder;
+import com.carto.ui.PopupClickInfo;
+import com.carto.ui.PopupDrawInfo;
 import com.carto.utils.BitmapUtils;
-import com.carto.vectorelements.Billboard;
-import com.carto.vectorelements.Popup;
+import com.carto.vectorelements.CustomPopupHandler;
 
 /**
  * Simple text-based popup.
  */
-public class CustomPopup extends Popup {
+public class MyCustomPopupHandler extends CustomPopupHandler {
 	static final int SCREEN_PADDING = 10;
 	static final int POPUP_PADDING = 10;
 	static final int FONT_SIZE = 15;
@@ -30,18 +31,10 @@ public class CustomPopup extends Popup {
 	static final int TEXT_COLOR = android.graphics.Color.BLACK;
 	static final int STROKE_COLOR = android.graphics.Color.BLACK;
 	static final int BACKGROUND_COLOR = android.graphics.Color.WHITE;
-	static final PopupStyle STYLE;
-	static {
-		// Create custom style, set attachment anchor point a bit to the right from the center
-		PopupStyleBuilder styleBuilder = new PopupStyleBuilder();
-		styleBuilder.setAttachAnchorPoint(0.5f, 0);
-		STYLE = styleBuilder.buildStyle();
-	}
     
 	private String text;
 
-	public CustomPopup(Billboard baseBillboard, String text) {
-		super(baseBillboard, STYLE);
+	public MyCustomPopupHandler(String text) {
 		this.text = text;
 	}
 	
@@ -49,25 +42,25 @@ public class CustomPopup extends Popup {
 		return text;
 	}
 	
-	public void setText(String text) {
-		synchronized (this) {
-			this.text = text;
-		}
-    	notifyElementChanged();
+	public synchronized void setText(String text) {
+		this.text = text;
     }
     
 	@Override
-	public Bitmap drawBitmap(ScreenPos anchorScreenPos, float screenWidth, float screenHeight, float dpToPX) {
+	public Bitmap onDrawPopup(PopupDrawInfo drawInfo) {
+		PopupStyle style = drawInfo.getPopup().getStyle();
+
 		// Calculate scaled dimensions
+		float dpToPX = drawInfo.getDPToPX();
 		float pxToDP = 1 / dpToPX;
-	    if (STYLE.isScaleWithDPI()) {
+	    if (style.isScaleWithDPI()) {
 	        dpToPX = 1;
 	    } else {
 	        pxToDP = 1;
 	    }
 	    
-	    screenWidth *= pxToDP;
-	    screenHeight *= pxToDP;
+	    float screenWidth = drawInfo.getScreenBounds().getWidth() * pxToDP;
+	    float screenHeight = drawInfo.getScreenBounds().getHeight() * pxToDP;
 	    
 	    int fontSize = (int) (FONT_SIZE * dpToPX);	    
 	    
@@ -122,7 +115,6 @@ public class CustomPopup extends Popup {
 	    // Calculate anchor point and triangle position
 	    int triangleOffsetX = 0;
 	    int triangleOffsetY = (popupHeight - triangleHeight) / 2;
-		setAnchorPoint(-1, 0);
 
 	    // Stroke background
 	    paint.setStyle(Style.STROKE);
@@ -160,5 +152,11 @@ public class CustomPopup extends Popup {
 	    }
 	    
 		return BitmapUtils.createBitmapFromAndroidBitmap(bitmap);
+	}
+	
+	@Override
+	public boolean onPopupClicked(PopupClickInfo clickInfo) {
+		Log.d(Const.LOG_TAG, "Popup clicked: " + clickInfo.getElementClickPos());
+		return true;
 	}
 }

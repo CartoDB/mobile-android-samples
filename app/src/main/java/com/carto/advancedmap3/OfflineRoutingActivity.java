@@ -52,81 +52,78 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
 
     // add packages what you want to download
-    private static String[] PACKAGE_IDS = new String[]{"EE-routing",
-            "LT-routing"};
+    private static String[] PACKAGE_IDS = new String[]{"EE-routing", "LT-routing"};
 
     private static String ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
     private static String ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
 
 
     /**
-	 * This MapListener waits for two clicks on map - first to set routing start point, and then
-	 * second to mark end point and start routing service.
-	 */
-	public class RouteMapEventListener extends MapEventListener {
-	    private MapPos startPos;
-	    private MapPos stopPos;
+     * This MapListener waits for two clicks on map - first to set routing start point, and then
+     * second to mark end point and start routing service.
+     */
+    public class RouteMapEventListener extends MapEventListener {
+        private MapPos startPos;
+        private MapPos stopPos;
 
-		// Map View manipulation handlers
-		@Override
-		public void onMapClicked(MapClickInfo mapClickInfo) {
-			MapPos clickPos = mapClickInfo.getClickPos();
-			MapPos wgs84Clickpos = mapView.getOptions().getBaseProjection().toWgs84(clickPos);
-			Log.d(Const.LOG_TAG,"onMapClicked " + wgs84Clickpos + " " + mapClickInfo.getClickType());
-
-			if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
-				if (startPos == null) {
-					// set start, or start again
-					startPos = clickPos;
-					setStartMarker(clickPos);
-				} else if (stopPos == null) {
-					// set stop and calculate
-					stopPos = clickPos;
-					setStopMarker(clickPos);
-					showRoute(startPos, stopPos);
-
-					// restart to force new route next time
-					startPos = null;
-					stopPos = null;
-				}
-			}			
-		}
-
-		@Override
-		public void onMapMoved() {
-		}
-	}
-
-	/**
-	 * Listener for package manager events. Contains only empty methods.
-	 */
-	class PackageListener extends PackageManagerListener {
+    	// Map View manipulation handlers
     	@Override
-    	public void onPackageListUpdated() {
-			Log.d(Const.LOG_TAG, "Package list updated");
+    	public void onMapClicked(MapClickInfo mapClickInfo) {
+            MapPos clickPos = mapClickInfo.getClickPos();
+            MapPos wgs84Clickpos = mapView.getOptions().getBaseProjection().toWgs84(clickPos);
+            Log.d(Const.LOG_TAG,"onMapClicked " + wgs84Clickpos + " " + mapClickInfo.getClickType());
 
-            int downloadedPackages = 0;
-            for(int i=0; i<PACKAGE_IDS.length;i++){
-                boolean alreadyDownloaded = getPackageIfNotExists(PACKAGE_IDS[i]);
-                if(alreadyDownloaded){
-                    downloadedPackages ++;
+            if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
+                if (startPos == null) {
+                    // set start, or start again
+                    startPos = clickPos;
+                    setStartMarker(clickPos);
+                } else if (stopPos == null) {
+                    // set stop and calculate
+                    stopPos = clickPos;
+                    setStopMarker(clickPos);
+                    showRoute(startPos, stopPos);
+
+                    // restart to force new route next time
+                    startPos = null;
+                    stopPos = null;
                 }
-            }
-
-            // if all downloaded, can start with offline routing
-            if(downloadedPackages == PACKAGE_IDS.length){
-                offlinePackageReady = true;
-            }
- 
-
+            }			
     	}
+
+    	@Override
+    	public void onMapMoved() {
+        }
+    }
+
+   /**
+    * Listener for package manager events. Contains only empty methods.
+    */
+   class PackageListener extends PackageManagerListener {
+       @Override
+       public void onPackageListUpdated() {
+   	   Log.d(Const.LOG_TAG, "Package list updated");
+
+           int downloadedPackages = 0;
+           for(int i=0; i<PACKAGE_IDS.length;i++){
+               boolean alreadyDownloaded = getPackageIfNotExists(PACKAGE_IDS[i]);
+               if(alreadyDownloaded){
+                   downloadedPackages ++;
+               }
+           }
+
+           // if all downloaded, can start with offline routing
+           if(downloadedPackages == PACKAGE_IDS.length){
+               offlinePackageReady = true;
+           }
+        }
 
         private boolean getPackageIfNotExists(String packageId) {
             PackageStatus status = packageManager.getLocalPackageStatus(packageId, -1);
             if (status == null) {
                 packageManager.startPackageDownload(packageId);
                 return false;
-            }else if(status.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY){
+            } else if(status.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY){
                 Log.d(Const.LOG_TAG, packageId + " is downloaded and ready");
                 return true;
             }
@@ -135,32 +132,33 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         }
 
         @Override
-		public void onPackageListFailed() {
-			Log.e(Const.LOG_TAG, "Package list update failed");
-		}
+        public void onPackageListFailed() {
+            Log.e(Const.LOG_TAG, "Package list update failed");
+        }
 
-		@Override
-		public void onPackageStatusChanged(String id, int version, PackageStatus status) {
-		}
+        @Override
+        public void onPackageStatusChanged(String id, int version, PackageStatus status) {
+        }
 
-		@Override
-		public void onPackageCancelled(String id, int version) {
-		}
+        @Override
+        public void onPackageCancelled(String id, int version) {
+        }
 
-    	@Override
-    	public void onPackageUpdated(String id, int version) {
-			Log.d(Const.LOG_TAG, "Offline package updated: " + id);
+        @Override
+        public void onPackageUpdated(String id, int version) {
+            Log.d(Const.LOG_TAG, "Offline package updated: " + id);
+
             // if last downloaded
-    		if (id.equals(PACKAGE_IDS[PACKAGE_IDS.length-1])) {
-    			offlinePackageReady = true;        			
-    		}
-    	}
+            if (id.equals(PACKAGE_IDS[PACKAGE_IDS.length-1])) {
+           	offlinePackageReady = true;        			
+            }
+        }
 
-		@Override
-		public void onPackageFailed(String id, int version, PackageErrorType errorType) {
-			Log.e(Const.LOG_TAG, "Offline package update failed: " + id);
-		}
-	}
+        @Override
+        public void onPackageFailed(String id, int version, PackageErrorType errorType) {
+            Log.e(Const.LOG_TAG, "Offline package update failed: " + id);
+        }
+    }
 
 
     private RoutingService onlineRoutingService;
@@ -271,6 +269,15 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         Toast.makeText(getApplicationContext(), "Long-press on map to set route start and finish", Toast.LENGTH_LONG).show();
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        packageManager.stop(false);
+        packageManager.setPackageManagerListener(null);
+        packageManager = null;
+
+        super.onDestroy();
     }
 
     public void showRoute(final MapPos startPos, final MapPos stopPos) {

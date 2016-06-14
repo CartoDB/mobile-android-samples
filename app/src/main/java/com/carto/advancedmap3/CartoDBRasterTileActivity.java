@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
+import com.carto.layers.LayerVector;
 import com.carto.services.CartoMapsService;
 
 import org.json.JSONArray;
@@ -61,7 +62,10 @@ public class CartoDBRasterTileActivity extends VectorMapSampleBaseActivity {
 				CartoMapsService mapsService = new CartoMapsService();
 				mapsService.setUsername("nutiteq");
 				mapsService.setDefaultVectorLayerMode(false); // use raster layers, not vector layers
-				mapsService.buildMap(mapView.getLayers(), Variant.fromString(config));
+				LayerVector layers = mapsService.buildMap(Variant.fromString(config));
+				for (int i = 0; i < layers.size(); i++) {
+					mapView.getLayers().add(layers.get(i));
+				}
 			}
 		});
 		serviceThread.start();
