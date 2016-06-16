@@ -320,7 +320,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                         routeText
                         , Toast.LENGTH_LONG).show();
 
-                routeDataSource.removeAll();
+                routeDataSource.clear();
 
                 startMarker.setVisible(false);
 
@@ -450,7 +450,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
     }
 
     public void setStartMarker(MapPos startPos) {
-        routeDataSource.removeAll();
+        routeDataSource.clear();
         stopMarker.setVisible(false);
         startMarker.setPos(startPos);
 

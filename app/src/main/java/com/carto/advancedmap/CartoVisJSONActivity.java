@@ -75,7 +75,7 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
             LocalVectorDataSource vectorDataSource = (LocalVectorDataSource) vectorLayer.getDataSource();
 
             // Clear previous popups
-            vectorDataSource.removeAll();
+            vectorDataSource.clear();
 
             // Multiple vector elements can be clicked at the same time, we only care about the one
             // Check the type of vector element
