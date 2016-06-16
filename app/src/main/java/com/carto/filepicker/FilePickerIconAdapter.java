@@ -14,8 +14,6 @@
  */
 package com.carto.filepicker;
 
-import java.io.File;
-
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
@@ -23,7 +21,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.carto.advancedmap3.R;
+import com.carto.advancedmap.R;
+
+import java.io.File;
 
 /**
  * An adapter for the FilePicker GridView.

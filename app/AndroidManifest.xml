@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.carto.advancedmap3"
+    package="com.carto.advancedmap"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -44,11 +44,11 @@
         <activity android:name=".ClusteredGeoJsonActivity" />
         <activity android:name=".MyLocationActivity" />
         <activity android:name=".OfflineRoutingActivity" />
-        <activity android:name=".CartoDBSQLActivity" />
-        <activity android:name=".CartoDBUTFGridActivity" />
-        <activity android:name=".CartoDBTorqueActivity" />
-        <activity android:name=".CartoDBVectorTileActivity" />
-        <activity android:name=".CartoDBRasterTileActivity" />
+        <activity android:name=".CartoSQLActivity" />
+        <activity android:name=".CartoUTFGridActivity" />
+        <activity android:name=".CartoTorqueActivity" />
+        <activity android:name=".CartoVectorTileActivity" />
+        <activity android:name=".CartoRasterTileActivity" />
         <activity android:name=".MapZenActivity" />
         <activity android:name=".CaptureActivity" />
 

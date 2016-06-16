@@ -14,11 +14,6 @@
  */
 package com.carto.filepicker;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.util.Arrays;
-import java.util.Comparator;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,7 +27,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.carto.advancedmap3.R;
+import com.carto.advancedmap.R;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * A FilePicker displays the contents of directories. The user can navigate within the file
