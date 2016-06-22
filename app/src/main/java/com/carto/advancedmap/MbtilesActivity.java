@@ -14,12 +14,12 @@ import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.filepicker.FilePickerActivity;
 import com.carto.layers.RasterTileLayer;
 import com.carto.layers.VectorTileLayer;
-import com.carto.utils.AssetUtils;
-import com.carto.utils.Log;
-import com.carto.vectortiles.CompiledStyleSet;
+import com.carto.styles.CompiledStyleSet;
 import com.carto.vectortiles.MBVectorTileDecoder;
 import com.carto.vectortiles.VectorTileDecoder;
-import com.carto.vectortiles.ZippedAssetPackage;
+import com.carto.utils.AssetUtils;
+import com.carto.utils.ZippedAssetPackage;
+import com.carto.utils.Log;
 
 import java.io.File;
 import java.io.FileFilter;

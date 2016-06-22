@@ -2,15 +2,15 @@ package com.carto.advancedmap;
 
 import android.os.Bundle;
 
+import com.carto.core.BinaryData;
 import com.carto.core.MapRange;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.VectorTileLayer;
-import com.carto.utils.AssetUtils;
+import com.carto.styles.CompiledStyleSet;
 import com.carto.vectortiles.MBVectorTileDecoder;
-import com.carto.vectortiles.CompiledStyleSet;
-import com.carto.vectortiles.ZippedAssetPackage;
-import com.carto.core.BinaryData;
+import com.carto.utils.AssetUtils;
+import com.carto.utils.ZippedAssetPackage;
 
 /**
  * Use Mapzen vector tiles from https://mapzen.com/projects/vector-tiles/

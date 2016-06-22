@@ -7,7 +7,7 @@ import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.TorqueTileLayer;
-import com.carto.vectortiles.CartoCSSStyleSet;
+import com.carto.styles.CartoCSSStyleSet;
 import com.carto.vectortiles.TorqueTileDecoder;
 
 import java.io.UnsupportedEncodingException;

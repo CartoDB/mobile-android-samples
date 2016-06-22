@@ -14,8 +14,8 @@ import com.carto.datasources.TileDataSource;
 import com.carto.layers.VectorTileLayer;
 import com.carto.utils.AssetUtils;
 import com.carto.vectortiles.MBVectorTileDecoder;
-import com.carto.vectortiles.CompiledStyleSet;
-import com.carto.vectortiles.ZippedAssetPackage;
+import com.carto.styles.CompiledStyleSet;
+import com.carto.utils.ZippedAssetPackage;
 import com.carto.core.BinaryData;
 
 /**
