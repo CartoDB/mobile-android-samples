@@ -5,6 +5,7 @@ import android.util.Log;
 import com.carto.advancedmap.Const;
 import com.carto.core.MapEnvelope;
 import com.carto.core.MapPos;
+import com.carto.core.Variant;
 import com.carto.datasources.VectorDataSource;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.Geometry;
@@ -140,7 +141,7 @@ public class CartoDBSQLDataSource extends VectorDataSource {
                 for (Iterator<?> j = properties.keys(); j.hasNext();){
                     String key = (String)j.next();
                     String val = properties.getString(key);
-                    element.setMetaDataElement(key,val);
+                    element.setMetaDataElement(key, new Variant(val));
                 }
 
                 elements.add(element);

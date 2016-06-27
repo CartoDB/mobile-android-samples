@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.Geometry;
@@ -105,7 +106,7 @@ public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
                 for (Iterator<?> j = properties.keys(); j.hasNext();){
                     String key = (String)j.next();
                     String val = properties.getString(key);
-                    popup.setMetaDataElement(key,val);
+                    popup.setMetaDataElement(key, new Variant(val));
                 }
 
                 vectorDataSource1.add(popup);

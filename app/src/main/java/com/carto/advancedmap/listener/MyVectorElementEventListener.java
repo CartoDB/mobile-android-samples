@@ -3,8 +3,9 @@ package com.carto.advancedmap.listener;
 import android.util.Log;
 
 import com.carto.advancedmap.Const;
-import com.carto.layers.VectorElementEventListener;
+import com.carto.core.StringVariantMap;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.layers.VectorElementEventListener;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.ui.MapView;
@@ -12,7 +13,6 @@ import com.carto.ui.VectorElementClickInfo;
 import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Billboard;
 import com.carto.vectorelements.VectorElement;
-import com.carto.core.StringMap;
 
 public class MyVectorElementEventListener extends VectorElementEventListener {
 	protected MapView mapView;
@@ -46,10 +46,10 @@ public class MyVectorElementEventListener extends VectorElementEventListener {
 	    styleBuilder.setPlacementPriority(10);
 
 		VectorElement vectorElement = clickInfo.getVectorElement();
-		String clickText = vectorElement.getMetaDataElement("ClickText");
+		String clickText = vectorElement.getMetaDataElement("ClickText").getString();
 
 		// show all metadata elements
-		StringMap stringMap = vectorElement.getMetaData();
+		StringVariantMap stringMap = vectorElement.getMetaData();
 		StringBuilder msgBuilder = new StringBuilder();
 		if (stringMap.size() > 0) {
 			for (int i = 0; i < stringMap.size(); i++) {
@@ -69,20 +69,16 @@ public class MyVectorElementEventListener extends VectorElementEventListener {
 			Billboard billboard = (Billboard) vectorElement;
 			clickPopup = new BalloonPopup(billboard, 
 										  styleBuilder.buildStyle(),
-		                    			  clickText, 
-		                    			  desc);
+		                    			  clickText, desc);
 		} else {
 			// for lines and polygons set label to click location
 			clickPopup = new BalloonPopup(clickInfo.getElementClickPos(),
 										  styleBuilder.buildStyle(),
-		                   				  clickText,
-					desc);
+		                   				  clickText, desc);
 		}
 		vectorDataSource.add(clickPopup);
 		oldClickLabel = clickPopup;
 		return true;
 	}
-
-	
 
 }

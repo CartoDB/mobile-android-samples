@@ -7,6 +7,7 @@ import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapPosVectorVector;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
@@ -41,11 +42,16 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
 
         
         //2. Add a single 3D model to the vector layer
-        MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939));
-        NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset("milktruck.nml"));
-        model.setScale(20);
-        model.setMetaDataElement("ClickText", "Single model");
-        vectorDataSource.add(model);
+        String[] models = new String[] { "milktruck.nml" };
+        int counter = 0;
+        for (String modelName : models) {
+            double dx = (counter++) * 0.001;
+            MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939 + dx));
+            NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
+            model.setScale(20);
+            model.setMetaDataElement("ClickText", new Variant("Single model"));
+            vectorDataSource.add(model);
+        }
       
         // 3. Add one 3D polygon (with hole)
         // Create 3d polygon style and poses
@@ -67,7 +73,7 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
         polygon3DHoles.add(polygon3DHolePoses);
         // Add to datasource
         Polygon3D polygon3D = new Polygon3D(polygon3DPoses, polygon3DHoles, polygon3DStyleBuilder.buildStyle(), 150);
-        polygon3D.setMetaDataElement("ClickText", "3D Polygon");
+        polygon3D.setMetaDataElement("ClickText", new Variant("Polygon 3D"));
         vectorDataSource.add(polygon3D);
         
         // 4. Add 3D city (NMLDB), this is own separate layer
@@ -95,7 +101,8 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
         mapView.setMapEventListener(new MyMapEventListener(mapView, vectorDataSource));
         
         // finally animate map to the marker
-        mapView.setFocusPos(modelPos, 1);
+        MapPos modelPosC = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939));
+        mapView.setFocusPos(modelPosC, 1);
         mapView.setZoom(14, 2);
         mapView.setTilt(50, 1);
     }

@@ -8,6 +8,7 @@ import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapPosVectorVector;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
@@ -69,14 +70,14 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         pointStyleBuilder.setColor(new Color(0xFF00FF00));
         pointStyleBuilder.setSize(16);
         Point point1 = new Point(proj.fromWgs84(new MapPos(24.651488, 59.423581)), pointStyleBuilder.buildStyle());
-        point1.setMetaDataElement("ClickText", "Point nr 1");
+        point1.setMetaDataElement("ClickText", new Variant("Point nr 1"));
         vectorDataSource1.add(point1);
 
         // Second point
         pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(0xFF0000FF));
         Point point2 = new Point(proj.fromWgs84(new MapPos(24.655994, 59.422716)), pointStyleBuilder.buildStyle());
-        point2.setMetaDataElement("ClickText", "Point nr 2");
+        point2.setMetaDataElement("ClickText", new Variant("Point nr 2"));
         vectorDataSource1.add(point2);
         
         // Add lines
@@ -92,7 +93,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         linePoses.add(proj.fromWgs84(new MapPos(24.650887, 59.422707)));
         // Add first line
         Line line1 = new Line(linePoses, lineStyleBuilder.buildStyle());
-        line1.setMetaDataElement("ClickText", "Line nr 1");
+        line1.setMetaDataElement("ClickText", new Variant("Line nr 1"));
         vectorDataSource2.add(line1);
         
         // Create another line style, use the same lines poses
@@ -101,7 +102,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         lineStyleBuilder.setWidth(12);
         // Add second line to the second layer.
         Line line2 = new Line(linePoses, lineStyleBuilder.buildStyle());
-        line2.setMetaDataElement("ClickText", "Line nr 2");
+        line2.setMetaDataElement("ClickText", new Variant("Line nr 2"));
         vectorDataSource1.add(line2);
         
         // Create polygon style and poses
@@ -137,7 +138,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         polygonHoles.add(holePoses2);
         // Add polygon
         Polygon polygon = new Polygon(polygonPoses, polygonHoles, polygonStyleBuilder.buildStyle());
-        polygon.setMetaDataElement("ClickText", "Polygon");
+        polygon.setMetaDataElement("ClickText", new Variant("Polygon"));
         vectorDataSource1.add(polygon);
 
         // Create text style
@@ -150,7 +151,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         Text textpopup1 = new Text(proj.fromWgs84(new MapPos(24.653302, 59.422269)),
                                                       textStyleBuilder.buildStyle(),
                                                       "Face camera text");
-        textpopup1.setMetaDataElement("ClickText", "Text nr 1");
+        textpopup1.setMetaDataElement("ClickText", new Variant("Text nr 1"));
         vectorDataSource1.add(textpopup1);
         // Add text
         textStyleBuilder = new TextStyleBuilder();
@@ -158,7 +159,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         Text textpopup2 = new Text(proj.fromWgs84(new MapPos(24.633216, 59.426869)),
                                                       textStyleBuilder.buildStyle(),
                                                       "Face camera ground text");
-        textpopup2.setMetaDataElement("ClickText", "Text nr 2");
+        textpopup2.setMetaDataElement("ClickText", new Variant("Text nr 2"));
         vectorDataSource1.add(textpopup2);
         // Add text
         textStyleBuilder = new TextStyleBuilder();
@@ -167,7 +168,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         Text textpopup3 = new Text(proj.fromWgs84(new MapPos(24.646457, 59.420839)),
                                                       textStyleBuilder.buildStyle(),
                                                       "Ground text");
-        textpopup3.setMetaDataElement("ClickText", "Text nr 3");
+        textpopup3.setMetaDataElement("ClickText", new Variant("Text nr 3"));
         vectorDataSource1.add(textpopup3);
         
         // Load bitmaps for custom markers
@@ -182,11 +183,11 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         MarkerStyle sharedMarkerStyle = markerStyleBuilder.buildStyle();
         // Add marker
         Marker marker1 = new Marker(proj.fromWgs84(new MapPos(24.646469, 59.426939)), sharedMarkerStyle);
-        marker1.setMetaDataElement("ClickText", "Marker nr 1");
+        marker1.setMetaDataElement("ClickText", new Variant("Marker nr 1"));
         vectorDataSource1.add(marker1);
         // Add marker
         Marker marker2 = new Marker(proj.fromWgs84(new MapPos(24.666469, 59.422939)), sharedMarkerStyle);
-        marker2.setMetaDataElement("ClickText", "Marker nr 2");
+        marker2.setMetaDataElement("ClickText", new Variant("Marker nr 2"));
         vectorDataSource1.add(marker2);
         
         // Load bitmaps to show on the label
@@ -205,7 +206,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
                                                balloonPopupStyleBuilder.buildStyle(),
                                                "Popup with pos",
                                                "Images, round");
-        popup1.setMetaDataElement("ClickText", "popupcaption nr 1");
+        popup1.setMetaDataElement("ClickText", new Variant("Popup nr 1"));
         vectorDataSource1.add(popup1);
         // Add popup, but instead of giving it a position attach it to a marker
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
@@ -220,7 +221,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         balloonPopupStyleBuilder.setPlacementPriority(1);
         BalloonPopup popup2 = new BalloonPopup(marker1, balloonPopupStyleBuilder.buildStyle(),
                                                "Popup attached to marker", "Black, rectangle.");
-        popup2.setMetaDataElement("ClickText", "Popupcaption nr 2");
+        popup2.setMetaDataElement("ClickText", new Variant("Popup nr 2"));
         vectorDataSource1.add(popup2);
         // Add popup
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
@@ -230,7 +231,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
                                                balloonPopupStyleBuilder.buildStyle(),
                                                "This title will be wrapped if there's not enough space on the screen.",
                                                "Description is set to be truncated with three dots, unless the screen is really really big.");
-        popup3.setMetaDataElement("ClickText", "Popupcaption nr 3");
+        popup3.setMetaDataElement("ClickText", new Variant("Popup nr 3"));
         vectorDataSource1.add(popup3);
 
         // finally animate map to Tallinn where the objects are

@@ -25,18 +25,18 @@ public class MapSampleBaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        com.carto.utils.Log.setShowDebug(true);
-        com.carto.utils.Log.setShowInfo(true);
 
         // 0. The initial step: register your license. This must be done before using MapView!
         // You can get your free/commercial license from: http://developer.carto.com
         // The license string used here is intended only for Carto Mobile SDK demos and WILL NOT WORK with other apps!
-        MapView.registerLicense("XTUN3Q0ZIK3hCODNaUitKRTZyK0FFb3ptVk9IWHU1aFVBaFJqT1hmaEZIMHNNcms5NkljMkwrQk9iUW44N2c9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZHZhbmNlZG1hcDMKd2F0ZXJtYXJrPW51dGl0ZXEKb25saW5lTGljZW5zZT0xCnVzZXJLZXk9Y2ZmMjMyNTdmYjUwYmFhZjA2ODQyNWNjZDZjMGM5ODIK", getApplicationContext());
+        MapView.registerLicense("XTUN3Q0ZDUmFWcm9pWEUycVN3LzlGeVhEZWZuVnp3RkJBaFE3dHpTSTlDaEFVeW9aWUNQdmcwNDdwNitEWEE9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZHZhbmNlZG1hcAp3YXRlcm1hcms9bnV0aXRlcQpvbmxpbmVMaWNlbnNlPTEKdXNlcktleT1jZmYyMzI1N2ZiNTBiYWFmMDY4NDI1Y2NkNmMwYzk4Mgo=", getApplicationContext());
+
+        com.carto.utils.Log.setShowDebug(true);
+        com.carto.utils.Log.setShowInfo(true);
 
         // 1. Basic map setup
         // Create map view 
+        setContentView(R.layout.activity_main);
         mapView = (MapView) this.findViewById(R.id.map_view);
         
         // Set the base projection, that will be used for most MapView, MapEventListener and Options methods
