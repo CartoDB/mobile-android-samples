@@ -30,7 +30,6 @@ import com.carto.routing.RoutingResult;
 import com.carto.routing.RoutingService;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
-import com.carto.styles.LineJointType;
 import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -442,8 +441,6 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new com.carto.graphics.Color(Color.DKGRAY));
-        lineStyleBuilder.setLineJointType(LineJointType.LINE_JOINT_TYPE_ROUND);
-        lineStyleBuilder.setStretchFactor(2);
         lineStyleBuilder.setWidth(12);
 
         return new Line(result.getPoints(), lineStyleBuilder.buildStyle());

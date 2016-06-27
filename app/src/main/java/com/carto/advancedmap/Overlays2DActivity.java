@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.carto.core.MapPos;
+import com.carto.core.MapPosVector;
+import com.carto.core.MapPosVectorVector;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
@@ -13,7 +15,6 @@ import com.carto.projections.Projection;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.BillboardOrientation;
-import com.carto.styles.LineJointType;
 import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -27,8 +28,6 @@ import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.Text;
-import com.carto.core.MapPosVector;
-import com.carto.core.MapPosVectorVector;
 
 /**
  * A sample demonstrating how to add basic 2D objects to the map:
@@ -84,8 +83,6 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Create line style, and line poses
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(0xFFFFFFFF));
-        lineStyleBuilder.setLineJointType(LineJointType.LINE_JOINT_TYPE_ROUND);
-        lineStyleBuilder.setStretchFactor(2);
         lineStyleBuilder.setWidth(8);
         MapPosVector linePoses = new MapPosVector();
         linePoses.add(proj.fromWgs84(new MapPos(24.645565, 59.422074)));
