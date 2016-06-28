@@ -5,7 +5,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.carto.core.MapPos;
-import com.carto.core.StringMap;
 import com.carto.core.Variant;
 import com.carto.core.VariantType;
 import com.carto.datasources.LocalVectorDataSource;
@@ -87,16 +86,8 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
             // Make sure this label is shown on top all other labels
             styleBuilder.setPlacementPriority(10);
 
-            // show all metadata elements
-            StringMap stringMap = utfGridClickInfo.getElementInfo();
-            StringBuilder msgBuilder = new StringBuilder();
-            for (int i = 0; i < stringMap.size(); i++) {
-                msgBuilder.append(stringMap.get_key(i));
-                msgBuilder.append("=");
-                msgBuilder.append(stringMap.get(stringMap.get_key(i)));
-                msgBuilder.append("\n");
-            }
-            String desc = msgBuilder.toString().trim();
+            // Show clicked element variant as JSON string
+            String desc = utfGridClickInfo.getElementInfo().toString();
 
             clickPopup = new BalloonPopup(utfGridClickInfo.getClickPos(),
                     styleBuilder.buildStyle(),
