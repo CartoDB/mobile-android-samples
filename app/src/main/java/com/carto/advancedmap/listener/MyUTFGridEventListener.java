@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.carto.advancedmap.Const;
 import com.carto.core.MapPos;
-import com.carto.core.StringMap;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.layers.UTFGridEventListener;
 import com.carto.styles.BalloonPopupStyleBuilder;
@@ -58,11 +57,7 @@ public class MyUTFGridEventListener extends UTFGridEventListener {
 		MapPos clickPos = clickInfo.getClickPos();
 
 
-		String msg = "";
-		StringMap utfData = clickInfo.getElementInfo();
-		for (int i=0; i<utfData.size();i++){
-			msg += utfData.get_key(i)+ ": "+utfData.get(utfData.get_key(i))+ "\n";
-		}
+		String msg = clickInfo.getElementInfo().toString();
 
 		// finally show click coordinates also
 		MapPos wgs84Clickpos = mapView.getOptions().getBaseProjection().toWgs84(clickPos);
