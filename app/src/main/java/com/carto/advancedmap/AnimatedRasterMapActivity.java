@@ -3,7 +3,7 @@ package com.carto.advancedmap;
 import android.os.Bundle;
 
 import com.carto.advancedmap.datasource.MyAnimatedTileDataSource;
-import com.carto.datasources.CompressedCacheTileDataSource;
+import com.carto.datasources.MemoryCacheTileDataSource;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.RasterTileLayer;
@@ -36,7 +36,7 @@ public class AnimatedRasterMapActivity extends VectorMapSampleBaseActivity {
         final int[] hours = new int[]{5, 7, 9, 11, 15, 19, 23, 27};
         ArrayList<TileDataSource> animatedRasterTileDataSources = new ArrayList<TileDataSource>();
         for (int hour : hours) {
-            CompressedCacheTileDataSource dataSource = new CompressedCacheTileDataSource( 
+            MemoryCacheTileDataSource dataSource = new MemoryCacheTileDataSource(
                     new HTTPTileDataSource(4, 7, "http://www.openportguide.org/tiles/actual/wind_vector/" + hour + "/{zoom}/{x}/{y}.png"));
             // Reduce the size a bit (default is 6 mb)
             dataSource.setCapacity((long) (0.5f * 1024 * 1024));

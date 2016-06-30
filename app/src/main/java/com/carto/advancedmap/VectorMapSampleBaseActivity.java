@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 
 import com.carto.core.MapRange;
-import com.carto.datasources.CompressedCacheTileDataSource;
+import com.carto.datasources.MemoryCacheTileDataSource;
 import com.carto.datasources.CartoOnlineTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -160,7 +160,7 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
         	Log.i(Const.LOG_TAG,"cacheFile = "+cacheFile);
         	cacheDataSource = new PersistentCacheTileDataSource(vectorTileDataSource, cacheFile);
         } else {
-        	cacheDataSource = new CompressedCacheTileDataSource(vectorTileDataSource);
+        	cacheDataSource = new MemoryCacheTileDataSource(vectorTileDataSource);
         }
     	return cacheDataSource;
     }
