@@ -1,6 +1,7 @@
 package com.carto.advancedmap;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -10,6 +11,8 @@ import com.carto.services.CartoMapsService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 /**
  * A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer
@@ -62,10 +65,15 @@ public class CartoRasterTileActivity extends VectorMapSampleBaseActivity {
 				CartoMapsService mapsService = new CartoMapsService();
 				mapsService.setUsername("nutiteq");
 				mapsService.setDefaultVectorLayerMode(false); // use raster layers, not vector layers
-				LayerVector layers = mapsService.buildMap(Variant.fromString(config));
-				for (int i = 0; i < layers.size(); i++) {
-					mapView.getLayers().add(layers.get(i));
-				}
+                try {
+                    LayerVector layers = mapsService.buildMap(Variant.fromString(config));
+                    for (int i = 0; i < layers.size(); i++) {
+                        mapView.getLayers().add(layers.get(i));
+                    }
+                }
+                catch (IOException e) {
+                    Log.e(Const.LOG_TAG, "Exception: " + e);
+                }
 			}
 		});
 		serviceThread.start();

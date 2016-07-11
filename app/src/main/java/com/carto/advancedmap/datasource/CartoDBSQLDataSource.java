@@ -7,6 +7,7 @@ import com.carto.core.MapEnvelope;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.datasources.VectorDataSource;
+import com.carto.datasources.components.VectorData;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.Geometry;
 import com.carto.geometry.LineGeometry;
@@ -61,7 +62,7 @@ public class CartoDBSQLDataSource extends VectorDataSource {
 
 
     @Override
-    public VectorElementVector loadElements(CullState cullState) {
+    public VectorData loadElements(CullState cullState) {
         VectorElementVector elements = new VectorElementVector();
 
         MapEnvelope mapViewBounds = cullState.getProjectionEnvelope(this.getProjection());
@@ -71,7 +72,7 @@ public class CartoDBSQLDataSource extends VectorDataSource {
         //run query here
         loadData(elements, min,max,cullState.getViewState().getZoom());
 
-        return elements;
+        return new VectorData(elements);
 
     }
 

@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
+import com.carto.core.StringVector;
 import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.geometry.Feature;
+import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.GeoJSONGeometryReader;
-import com.carto.geometry.Geometry;
 import com.carto.layers.ClusterElementBuilder;
 import com.carto.layers.ClusteredVectorLayer;
 import com.carto.layers.VectorLayer;
@@ -17,13 +19,8 @@ import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.VectorElement;
 import com.carto.vectorelements.VectorElementVector;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 
 /**
  * A sample demonstrating how to read data from GeoJSON and add clustered Markers to map.
@@ -74,46 +71,31 @@ public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
         // Set visible zoom range for the vector layer
         vectorLayer1.setVisibleZoomRange(new MapRange(0, 18));
 
+        // Style for popups
+        BalloonPopupStyle balloonPopupStyle = new BalloonPopupStyleBuilder().buildStyle();
 
-        // read GeoJSON
-        // parse it as normal JSON, then use SDK parser for GeoJSON geometries
+        // read GeoJSON, parse it using SDK GeoJSON parser
+        GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
+        FeatureCollection features = geoJsonParser.readFeatureCollection(loadJSONFromAsset());
+        for (int i = 0; i < features.getFeatureCount(); i++) {
+            Feature feature = features.getFeature(i);
 
-        try {
-            String jsonStr = loadJSONFromAsset();
-            JSONObject json = new JSONObject(jsonStr);
+            // create popup for each object
+            BalloonPopup popup = new BalloonPopup(
+                    feature.getGeometry(),
+                    balloonPopupStyle,
+                    feature.getProperties().getObjectElement("Capital").getString(),
+                    feature.getProperties().getObjectElement("Country").getString());
 
-            GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
-            BalloonPopupStyle balloonPopupStyle = new BalloonPopupStyleBuilder().buildStyle();
-
-            JSONArray features = json.getJSONArray("features");
-            for (int i = 0; i < features.length(); i++) {
-                JSONObject feature = (JSONObject) features.get(i);
-                JSONObject geometry = feature.getJSONObject("geometry");
-
-                // use SDK GeoJSON parser
-                Geometry ntGeom = geoJsonParser.readGeometry(geometry.toString());
-
-                JSONObject properties = feature.getJSONObject("properties");
-
-                // create popup for each object
-                BalloonPopup popup = new BalloonPopup(
-					ntGeom,
-					balloonPopupStyle,
-                    properties.getString("Capital"),
-                    properties.getString("Country"));
-
-                // add all properties as MetaData, so you can use it with click handling
-                for (Iterator<?> j = properties.keys(); j.hasNext();){
-                    String key = (String)j.next();
-                    String val = properties.getString(key);
-                    popup.setMetaDataElement(key, new Variant(val));
-                }
-
-                vectorDataSource1.add(popup);
+            // add all properties as MetaData, so you can use it with click handling
+            StringVector keys = feature.getProperties().getObjectKeys();
+            for (int j = 0; j < keys.size(); j++) {
+                String key = keys.get(j);
+                Variant val = feature.getProperties().getObjectElement(key);
+                popup.setMetaDataElement(key, val);
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            vectorDataSource1.add(popup);
         }
 
     }

@@ -1,6 +1,7 @@
 package com.carto.advancedmap;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,6 +20,8 @@ import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.ui.UTFGridClickInfo;
 import com.carto.vectorelements.BalloonPopup;
+
+import java.io.IOException;
 
 /**
  * A sample demonstrating how to use high level Carto VisJSON API to display interactive maps.
@@ -156,7 +159,12 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
                 CartoVisLoader loader = new CartoVisLoader();
                 loader.setDefaultVectorLayerMode(true);
                 MyCartoVisBuilder visBuilder = new MyCartoVisBuilder(vectorLayer);
-                loader.loadVis(visBuilder, visJSONURL);
+                try {
+                    loader.loadVis(visBuilder, visJSONURL);
+                }
+                catch (IOException e) {
+                    Log.e(Const.LOG_TAG, "Exception: " + e);
+                }
 
                 // Add the created popup overlay layer on top of all visJSON layers
                 mapView.getLayers().add(vectorLayer);

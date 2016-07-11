@@ -1,6 +1,7 @@
 package com.carto.advancedmap;
 
 import java.io.File;
+import java.io.IOException;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -105,7 +106,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 			Log.d(Const.LOG_TAG, "Package list updated");
 
             int downloadedPackages = 0;
-            for(int i=0; i<PACKAGE_IDS.length;i++){
+            for (int i=0; i<PACKAGE_IDS.length;i++) {
                 boolean alreadyDownloaded = getPackageIfNotExists(PACKAGE_IDS[i]);
                 if(alreadyDownloaded){
                     downloadedPackages ++;
@@ -113,11 +114,9 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
             }
 
             // if all downloaded, can start with offline routing
-            if(downloadedPackages == PACKAGE_IDS.length){
+            if (downloadedPackages == PACKAGE_IDS.length) {
                 offlinePackageReady = true;
             }
- 
-
     	}
 
         private boolean getPackageIfNotExists(String packageId) {
@@ -185,7 +184,14 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
         	Log.e(Const.LOG_TAG, "Could not create package folder!");
         }
-        packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, packageFolder.getAbsolutePath());
+        try {
+            packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, packageFolder.getAbsolutePath());
+        }
+        catch (IOException e) {
+            Log.e(Const.LOG_TAG, "Exception: " + e);
+            finish();
+        }
+
         packageManager.setPackageManagerListener(new PackageListener());
         packageManager.start();
 

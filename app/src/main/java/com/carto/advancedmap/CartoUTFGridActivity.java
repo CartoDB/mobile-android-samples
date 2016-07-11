@@ -1,6 +1,7 @@
 package com.carto.advancedmap;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.carto.advancedmap.listener.MyUTFGridEventListener;
 import com.carto.core.MapPos;
@@ -16,6 +17,8 @@ import com.carto.services.CartoMapsService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 /**
  * A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid
@@ -92,18 +95,23 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 				CartoMapsService mapsService = new CartoMapsService();
 				mapsService.setUsername("nutiteq");
 				mapsService.setDefaultVectorLayerMode(true); // use vector layers
-				LayerVector layers = mapsService.buildMap(Variant.fromString(config));
+                try {
+                    LayerVector layers = mapsService.buildMap(Variant.fromString(config));
 
-				LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
-				VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
-				for (int i = 0; i < layers.size(); i++) {
-					TileLayer layer = (TileLayer) layers.get(i);
-					TileDataSource ds = layer.getUTFGridDataSource();
-		            MyUTFGridEventListener mapListener = new MyUTFGridEventListener(mapView, vectorDataSource);
-		            layer.setUTFGridEventListener(mapListener);
-					mapView.getLayers().add(layer);
-				}				
-				mapView.getLayers().add(vectorLayer);
+                    LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
+                    VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
+                    for (int i = 0; i < layers.size(); i++) {
+                        TileLayer layer = (TileLayer) layers.get(i);
+                        TileDataSource ds = layer.getUTFGridDataSource();
+                        MyUTFGridEventListener mapListener = new MyUTFGridEventListener(mapView, vectorDataSource);
+                        layer.setUTFGridEventListener(mapListener);
+                        mapView.getLayers().add(layer);
+                    }
+                    mapView.getLayers().add(vectorLayer);
+                }
+                catch (IOException e) {
+                    Log.e(Const.LOG_TAG, "Exception: " + e);
+                }
 			}
 		});
 		serviceThread.start();

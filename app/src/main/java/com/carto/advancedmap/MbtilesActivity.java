@@ -23,6 +23,7 @@ import com.carto.utils.Log;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 
 /**
  * A sample that uses a specified MBTiles file for the base layer.
@@ -39,7 +40,14 @@ public class MbtilesActivity extends MapSampleBaseActivity implements
         String filePath = b.getString("selectedFile");
 
         // Create tile data source. Min/max zoom will be automatically detected.
-        MBTilesTileDataSource tileDataSource = new MBTilesTileDataSource(filePath);
+        MBTilesTileDataSource tileDataSource = null;
+        try {
+            tileDataSource = new MBTilesTileDataSource(filePath);
+        }
+        catch (IOException e) {
+            android.util.Log.e(Const.LOG_TAG, "Exception: " + e);
+            finish();
+        }
         
         // Now check if we need to use vector layer or raster layer, based on mbtiles metadata
         StringMap metaData = tileDataSource.getMetaData();

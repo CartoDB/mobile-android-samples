@@ -32,6 +32,7 @@ import com.carto.packagemanager.PackageStatus;
 import com.carto.ui.MapView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -253,9 +254,16 @@ public class PackageManagerActivity extends ListActivity {
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
         	Log.e(Const.LOG_TAG, "Could not create package folder!");
         }
-        packageManager = new CartoPackageManager("nutiteq.osm", packageFolder.getAbsolutePath());
-        packageManager.setPackageManagerListener(new PackageListener());
-    	packageManager.startPackageListDownload();
+		try {
+			packageManager = new CartoPackageManager("nutiteq.osm", packageFolder.getAbsolutePath());
+		}
+		catch (IOException e) {
+			Log.e(Const.LOG_TAG, "Exception: " + e);
+			finish();
+		}
+
+		packageManager.setPackageManagerListener(new PackageListener());
+		packageManager.startPackageListDownload();
 
         // Initialize list view
         setContentView(R.layout.list);
