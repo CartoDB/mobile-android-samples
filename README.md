@@ -5,8 +5,14 @@ This project shows API and features of Carto Mobile SDK 1.0.
 
 [![Build Status](https://travis-ci.org/nutiteq/hellomap3d-android.svg?branch=master)](https://travis-ci.org/nutiteq/hellomap3d-android)
 
-## Download and documentation
-  * Download - get libs/ folder from any sample project
+## Get started
+  1. After downloading/cloning project you need to get SDK itself
+  1. Get SDK package latest dev build: [sdk4-android-snapshot-latest.zip](https://nutifront.s3.amazonaws.com/sdk_snapshots/sdk4-android-snapshot-latest.zip)
+  1. Unzip it and copy *carto-mobile-sdk.aar* file to app/libs/ folder.
+  1. Open project in Android Studio, wait for some time (update everything) and then try to run on your USB-connected phone
+
+## SDK documentation
+  * See **javadoc** folder in SDK download zip file
 
 ## Samples
 ### com.carto.advancedmap3
