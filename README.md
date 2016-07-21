@@ -14,6 +14,11 @@ This project shows API and features of Carto Mobile SDK 1.0.
 ## SDK documentation
   * See **javadoc** folder in SDK download zip file
 
+## Use in your own app
+  * You need license code based on your app ID from carto.com account, see **API Keys > Mobile Apps** section in user profile. 
+  * Enabling Mobile Apps currently requires feature flag definition by superadmin!
+
+
 ## Samples
 ### com.carto.advancedmap3
 The project contains several samples demonstrating various APIs of the SDK
