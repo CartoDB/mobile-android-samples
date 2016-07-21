@@ -1,7 +1,7 @@
-# Android sample app with Carto Mobile SDK 1.0
+# Android sample app with CARTO Mobile SDK 4.0.0
 
 
-This project shows API and features of Carto Mobile SDK 1.0.
+This project shows API and features of CARTO Mobile SDK 4.0.0
 
 [![Build Status](https://travis-ci.org/nutiteq/hellomap3d-android.svg?branch=master)](https://travis-ci.org/nutiteq/hellomap3d-android)
 
