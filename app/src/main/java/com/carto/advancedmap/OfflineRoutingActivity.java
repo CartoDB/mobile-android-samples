@@ -300,18 +300,26 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                 MapPosVector poses = new MapPosVector();
                 poses.add(startPos);
                 poses.add(stopPos);
+
                 RoutingRequest request = new RoutingRequest(mapView.getOptions().getBaseProjection(), poses);
                 RoutingResult result;
-                if (offlinePackageReady) {
-            		result = offlineRoutingService.calculateRoute(request);
-            	} else {
-            		result = onlineRoutingService.calculateRoute(request);
-            	}
+
+                try {
+                    if (offlinePackageReady) {
+                        result = offlineRoutingService.calculateRoute(request);
+                    } else {
+                        result = onlineRoutingService.calculateRoute(request);
+                    }
+                } catch (Exception e) {
+                    result = null;
+                }
+
                 return result;
             }
 
             protected void onPostExecute(RoutingResult result) {
-            	if (result == null) {
+
+                if (result == null) {
                     Toast.makeText(getApplicationContext(), "Routing failed", Toast.LENGTH_LONG).show();
                     shortestPathRunning = false;
                     return;

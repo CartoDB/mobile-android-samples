@@ -6,3 +6,6 @@ com.carto.advancedmap3/build
 .idea
 local.properties
 build
+
+*DS_Store
+app/libs/
