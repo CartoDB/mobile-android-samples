@@ -125,8 +125,8 @@ public class HelloMapActivity extends Activity {
 
         MarkerStyleBuilder builder = new MarkerStyleBuilder();
         builder.setSize(30);
-        Color green = new Color(0xaa00ff00);
-        builder.setColor(green);
+
+        builder.setColor(new Color(android.graphics.Color.GREEN));
 
         // Set marker position and style
         MapPos position = projection.fromWgs84(wgsPosition);
