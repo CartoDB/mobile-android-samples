@@ -2,7 +2,7 @@ package com.carto.advancedmap.datasource;
 
 import android.util.Log;
 
-import com.carto.advancedmap.Const;
+import com.carto.advancedmap.util.Const;
 import com.carto.core.MapEnvelope;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;

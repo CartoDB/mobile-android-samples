@@ -3,8 +3,6 @@ package com.carto.advancedmap.util;
 import android.content.res.AssetManager;
 import android.util.Log;
 
-import com.carto.advancedmap.Const;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

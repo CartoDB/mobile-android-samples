@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".LauncherList"
+            android:name=".map_list.LauncherListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,33 +25,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PinMapActivity" />
-        <activity android:name=".PackageManagerActivity" />
-        <activity android:name=".PackagedMapActivity" />
-        <activity android:name=".Overlays2DActivity" />
-        <activity android:name=".MapListenerActivity" />
-        <activity android:name=".Overlays3DActivity" />
-        <activity android:name=".OfflineVectorMapActivity" />
-        <activity android:name=".GroundOverlayActivity" />
-        <activity android:name=".AnimatedRasterMapActivity" />
-        <activity android:name=".RasterOverlayActivity" />
-        <activity android:name=".AerialMapActivity" />
-        <activity android:name=".CustomRasterDataSourceActivity" />
-        <activity android:name=".CustomPopupActivity" />
-        <activity android:name=".MbtilesActivity" />
-        <activity android:name=".WmsMapActivity" />
-        <activity android:name=".ClusteredRandomPointsActivity" />
-        <activity android:name=".ClusteredGeoJsonActivity" />
-        <activity android:name=".MyLocationActivity" />
-        <activity android:name=".OfflineRoutingActivity" />
-        <activity android:name=".CartoSQLActivity" />
-        <activity android:name=".CartoUTFGridActivity" />
-        <activity android:name=".CartoTorqueActivity" />
-        <activity android:name=".CartoVectorTileActivity" />
-        <activity android:name=".CartoRasterTileActivity" />
-        <activity android:name=".CartoVisJSONActivity" />
-        <activity android:name=".MapZenActivity" />
-        <activity android:name=".CaptureActivity" />
+
+        <activity android:name=".map.PinMapActivity" />
+        <activity android:name=".map.PackagedMapActivity" />
+        <activity android:name=".map.Overlays2DActivity" />
+        <activity android:name=".map.MapListenerActivity" />
+        <activity android:name=".map.Overlays3DActivity" />
+        <activity android:name=".map.OfflineVectorMapActivity" />
+        <activity android:name=".map.GroundOverlayActivity" />
+        <activity android:name=".map.AnimatedRasterMapActivity" />
+        <activity android:name=".map.RasterOverlayActivity" />
+        <activity android:name=".map.AerialMapActivity" />
+        <activity android:name=".map.CustomRasterDataSourceActivity" />
+        <activity android:name=".map.CustomPopupActivity" />
+        <activity android:name=".map.MbtilesActivity" />
+        <activity android:name=".map.WmsMapActivity" />
+        <activity android:name=".map.ClusteredRandomPointsActivity" />
+        <activity android:name=".map.ClusteredGeoJsonActivity" />
+        <activity android:name=".map.MyLocationActivity" />
+        <activity android:name=".map.OfflineRoutingActivity" />
+        <activity android:name=".map.MapZenActivity" />
+        <activity android:name=".map.CaptureActivity" />
+
+        <activity android:name=".map_carto.CartoSQLActivity" />
+        <activity android:name=".map_carto.CartoUTFGridActivity" />
+        <activity android:name=".map_carto.CartoTorqueActivity" />
+        <activity android:name=".map_carto.CartoVectorTileActivity" />
+        <activity android:name=".map_carto.CartoRasterTileActivity" />
+        <activity android:name=".map_carto.CartoVisJSONActivity" />
+
+        <activity android:name=".map_list.PackageManagerActivity" />
 
         <activity android:name="com.carto.filepicker.FilePicker" />
     </application>

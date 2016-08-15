@@ -2,7 +2,7 @@ package com.carto.advancedmap.listener;
 
 import android.util.Log;
 
-import com.carto.advancedmap.Const;
+import com.carto.advancedmap.util.Const;
 import com.carto.core.StringVariantMap;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.layers.VectorElementEventListener;

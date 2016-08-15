@@ -11,7 +11,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.Log;
 
-import com.carto.advancedmap.Const;
+import com.carto.advancedmap.util.Const;
 import com.carto.graphics.Bitmap;
 import com.carto.styles.PopupStyle;
 import com.carto.ui.PopupClickInfo;
@@ -23,6 +23,7 @@ import com.carto.vectorelements.CustomPopupHandler;
  * Simple text-based popup.
  */
 public class MyCustomPopupHandler extends CustomPopupHandler {
+
 	static final int SCREEN_PADDING = 10;
 	static final int POPUP_PADDING = 10;
 	static final int FONT_SIZE = 15;
@@ -53,7 +54,8 @@ public class MyCustomPopupHandler extends CustomPopupHandler {
 		// Calculate scaled dimensions
 		float dpToPX = drawInfo.getDPToPX();
 		float pxToDP = 1 / dpToPX;
-	    if (style.isScaleWithDPI()) {
+
+		if (style.isScaleWithDPI()) {
 	        dpToPX = 1;
 	    } else {
 	        pxToDP = 1;
@@ -90,7 +92,8 @@ public class MyCustomPopupHandler extends CustomPopupHandler {
 	    textPaint.setTypeface(font);
 	    android.graphics.Point textSize = new  android.graphics.Point(0, 0);
 	    StaticLayout textLayout = null;
-	    if (text != "") {
+
+		if (text != "") {
 	    	textLayout = new StaticLayout(text, textPaint, maxTextWidth, Alignment.ALIGN_NORMAL, 1, 0, false);
 	        textSize.set((int) Math.min(textPaint.measureText(text), textLayout.getWidth()), textLayout.getHeight());
 	    }
@@ -102,7 +105,8 @@ public class MyCustomPopupHandler extends CustomPopupHandler {
 	    popupHeight += 2 * POPUP_PADDING + strokeWidth;
 	    
 	    // Create bitmap and canvas
-	    android.graphics.Bitmap bitmap = android.graphics.Bitmap.createBitmap(popupWidth, popupHeight, android.graphics.Bitmap.Config.ARGB_8888);
+	    android.graphics.Bitmap bitmap = android.graphics.Bitmap.createBitmap(
+				popupWidth, popupHeight, android.graphics.Bitmap.Config.ARGB_8888);
 	    Canvas canvas = new Canvas(bitmap);
 	    
 	    // Prepare triangle path
