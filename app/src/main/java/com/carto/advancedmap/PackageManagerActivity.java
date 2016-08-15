@@ -247,9 +247,12 @@ public class PackageManagerActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		// Register license
-        MapView.registerLicense("XTUN3Q0ZBd2NtcmFxbUJtT1h4QnlIZ2F2ZXR0Mi9TY2JBaFJoZDNtTjUvSjJLay9aNUdSVjdnMnJwVXduQnc9PQoKcHJvZHVjdHM9c2RrLWlvcy0zLiosc2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5udXRpdGVxLioKYnVuZGxlSWRlbnRpZmllcj1jb20ubnV0aXRlcS4qCndhdGVybWFyaz1ldmFsdWF0aW9uCnVzZXJLZXk9MTVjZDkxMzEwNzJkNmRmNjhiOGE1NGZlZGE1YjA0OTYK", getApplicationContext());
-		
-        // Create package manager
+		MapView.registerLicense("XTUN3Q0ZDUmFWcm9pWEUycVN3LzlGeVhEZWZuVnp3RkJBaFE3dHpTSTlDaEFVeW9aWUNQdmc" +
+				"wNDdwNitEWEE9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZ" +
+				"HZhbmNlZG1hcAp3YXRlcm1hcms9bnV0aXRlcQpvbmxpbmVMaWNlbnNlPTEKdXNlcktleT1jZmYyMzI1N2ZiN" +
+				"TBiYWFmMDY4NDI1Y2NkNmMwYzk4Mgo=", getApplicationContext());
+
+		// Create package manager
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
         	Log.e(Const.LOG_TAG, "Could not create package folder!");

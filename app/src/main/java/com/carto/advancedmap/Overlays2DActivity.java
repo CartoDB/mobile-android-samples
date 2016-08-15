@@ -112,6 +112,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         lineStyleBuilder.setColor(new Color(0xFF000000));
         lineStyleBuilder.setWidth(1.0f);
         polygonStyleBuilder.setLineStyle(lineStyleBuilder.buildStyle());
+
         MapPosVector polygonPoses = new MapPosVector();
         polygonPoses.add(proj.fromWgs84(new MapPos(24.650930, 59.421659)));
         polygonPoses.add(proj.fromWgs84(new MapPos(24.657453, 59.416354)));

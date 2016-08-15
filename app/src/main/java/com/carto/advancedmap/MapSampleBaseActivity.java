@@ -29,7 +29,10 @@ public class MapSampleBaseActivity extends Activity {
         // 0. The initial step: register your license. This must be done before using MapView!
         // You can get your free/commercial license from: http://developer.carto.com
         // The license string used here is intended only for Carto Mobile SDK demos and WILL NOT WORK with other apps!
-        MapView.registerLicense("XTUN3Q0ZDUmFWcm9pWEUycVN3LzlGeVhEZWZuVnp3RkJBaFE3dHpTSTlDaEFVeW9aWUNQdmcwNDdwNitEWEE9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZHZhbmNlZG1hcAp3YXRlcm1hcms9bnV0aXRlcQpvbmxpbmVMaWNlbnNlPTEKdXNlcktleT1jZmYyMzI1N2ZiNTBiYWFmMDY4NDI1Y2NkNmMwYzk4Mgo=", getApplicationContext());
+        MapView.registerLicense("XTUN3Q0ZDUmFWcm9pWEUycVN3LzlGeVhEZWZuVnp3RkJBaFE3dHpTSTlDaEFVeW9aWUNQdmc" +
+                "wNDdwNitEWEE9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZ" +
+                "HZhbmNlZG1hcAp3YXRlcm1hcms9bnV0aXRlcQpvbmxpbmVMaWNlbnNlPTEKdXNlcktleT1jZmYyMzI1N2ZiN" +
+                "TBiYWFmMDY4NDI1Y2NkNmMwYzk4Mgo=", getApplicationContext());
 
         com.carto.utils.Log.setShowDebug(true);
         com.carto.utils.Log.setShowInfo(true);

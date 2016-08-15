@@ -73,22 +73,19 @@ public class LauncherList extends ListActivity{
 
             try {
 
-                Intent myIntent = new Intent(LauncherList.this,
-                        (Class<?>) samples[position][1]);
+                Intent myIntent = new Intent(LauncherList.this, (Class<?>) samples[position][1]);
 
                 Class<?> activityToRun = (Class<?>) samples[position][0];
-                FilePickerActivity activityInstance = (FilePickerActivity) activityToRun
-                        .newInstance();
+                FilePickerActivity activityInstance = (FilePickerActivity) activityToRun.newInstance();
 
-                FilePicker.setFileSelectMessage(activityInstance
-                        .getFileSelectMessage());
-                FilePicker.setFileDisplayFilter(activityInstance
-                        .getFileFilter());
+                FilePicker.setFileSelectMessage(activityInstance.getFileSelectMessage());
+                FilePicker.setFileDisplayFilter(activityInstance.getFileFilter());
 
                 Bundle b = new Bundle();
                 b.putString("class", ((Class<?>) samples[position][0]).getName());
                 myIntent.putExtras(b);
                 startActivityForResult(myIntent, 1);
+
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
