@@ -1,18 +1,12 @@
-package com.carto.cartomap.android;
+package com.carto.cartomap.android.map;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
-import com.carto.cartomap.android.map_listener.MyUTFGridEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
-import com.carto.datasources.LocalVectorDataSource;
-import com.carto.datasources.TileDataSource;
-import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
-import com.carto.layers.TileLayer;
-import com.carto.layers.VectorLayer;
 import com.carto.services.CartoMapsService;
 
 import org.json.JSONArray;
@@ -22,23 +16,25 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
- * A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid
+ * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
-public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
+public class CartoVectorTileActivity extends VectorMapSampleBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        String cartoCss = "";
 
         // define server config
         JSONObject configJson = new JSONObject();
         try {
-            // change these according to your DB
+            // you need to change these according to your DB
             String sql = "select * from stations_1";
             String statTag = "3c6f224a-c6ad-11e5-b17e-0e98b61680bf";
-            String[] columns = new String[]{"name", "field_9", "slot"};
-            String cartoCss =
+            String[] columns = new String[]{"name", "status", "slot"};
+            cartoCss =
                     "#stations_1{marker-fill-opacity:0.9;marker-line-color:#FFF;marker-line-width:2;marker-line-opacity:1;marker-placement:point;marker-type:ellipse;marker-width:10;marker-allow-overlap:true;}\n" +
                             "#stations_1[status = 'In Service']{marker-fill:#0F3B82;}\n" +
                             "#stations_1[status = 'Not In Service']{marker-fill:#aaaaaa;}\n" +
@@ -55,6 +51,7 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
                             "#stations_1[field_9 <= 4]{marker-width:5.0;}";
 
             // you probably do not need to change much of below
+
             configJson.put("version", "1.0.1");
             configJson.put("stat_tag", statTag);
 
@@ -84,7 +81,6 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
         } catch (JSONException e) {
         }
 
-
         final String config = configJson.toString();
 
         // Use the Maps service to configure layers. Note that this must be done
@@ -98,17 +94,9 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 				mapsService.setDefaultVectorLayerMode(true); // use vector layers
                 try {
                     LayerVector layers = mapsService.buildMap(Variant.fromString(config));
-
-                    LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
-                    VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
                     for (int i = 0; i < layers.size(); i++) {
-                        TileLayer layer = (TileLayer) layers.get(i);
-                        TileDataSource ds = layer.getUTFGridDataSource();
-                        MyUTFGridEventListener mapListener = new MyUTFGridEventListener(mapView, vectorDataSource);
-                        layer.setUTFGridEventListener(mapListener);
-                        mapView.getLayers().add(layer);
+                        mapView.getLayers().add(layers.get(i));
                     }
-                    mapView.getLayers().add(vectorLayer);
                 }
                 catch (IOException e) {
                     Log.e("EXCEPTION", "Exception: " + e);
@@ -116,21 +104,9 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 			}
 		});
 		serviceThread.start();
-
+		
         // finally animate map to the content area
         mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-74.0059, 40.7127)), 1); // NYC
         mapView.setZoom(15, 1);
-    }
-
-    @Override
-    protected void onDestroy() {
-        for (int i = 0; i < mapView.getLayers().count(); i++) {
-            Layer layer = mapView.getLayers().get(i);
-            if (layer instanceof TileLayer) {
-                ((TileLayer) layer).setUTFGridEventListener(null);
-            }
-        }
-
-        super.onDestroy();
     }
 }

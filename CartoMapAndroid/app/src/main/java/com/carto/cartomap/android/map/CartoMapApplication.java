@@ -1,4 +1,4 @@
-package com.carto.cartomap.android;
+package com.carto.cartomap.android.map;
 
 import android.app.Application;
 

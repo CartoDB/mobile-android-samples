@@ -2,11 +2,17 @@ package com.carto.cartomap.android;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.carto.cartomap.android.map.CartoRasterTileActivity;
+import com.carto.cartomap.android.map.CartoSQLActivity;
+import com.carto.cartomap.android.map.CartoTorqueActivity;
+import com.carto.cartomap.android.map.CartoUTFGridActivity;
+import com.carto.cartomap.android.map.CartoVectorTileActivity;
+import com.carto.cartomap.android.map.CartoVisJSONActivity;
 
 public class LauncherListActivity extends ListActivity {
 
