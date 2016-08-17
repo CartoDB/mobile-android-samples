@@ -32,17 +32,18 @@ import com.carto.vectorelements.Marker;
 import java.io.IOException;
 
 /**
- * Created by aareundo on 16/08/16.
+ * Basic Hello Map application with vis.json parsing
  */
 
 public class HelloMapActivity extends Activity {
 
-    static final String LICENSE = "XTUMwQ0ZRQ1NTeXRJSnIrUFNUUXpsSk45OTh0bVpKZy9QUUlVR0pDbk5wTGVGZUdSMW92Sk82Vi80UERNUHRNPQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21hcC5hbmRyb2lkCndhdGVybWFyaz1kZXZlbG9wbWVudAp2YWxpZFVudGlsPTIwMTYtMDktMTUKb25saW5lTGljZW5zZT0xCg==";
+    static final String LICENSE = "XTUMwQ0ZRQ1NTeXRJSnIrUFNUUXpsSk45OTh0bVpKZy9QUUlVR0pDbk5wTGVGZUdSMW92" +
+            "Sk82Vi80UERNUHRNPQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21" +
+            "hcC5hbmRyb2lkCndhdGVybWFyaz1kZXZlbG9wbWVudAp2YWxpZFVudGlsPTIwMTYtMDktMTUKb25saW5lTGljZW5zZT0xCg==";
 
     private String url = "http://documentation.carto.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
 
     private MapView mapView;
-    private Projection baseProjection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,12 @@ public class HelloMapActivity extends Activity {
         setContentView(R.layout.activity_hello_map);
         mapView = (MapView) this.findViewById(R.id.map_view);
 
-        baseProjection = new EPSG3857();
-
         // 2. Add base map
         CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
         mapView.getLayers().add(baseLayer);
 
         // 3. Set default location and zoom
-        MapPos berlin = baseProjection.fromWgs84(new MapPos(13.38933, 52.51704));
+        MapPos berlin = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(13.38933, 52.51704));
         mapView.setFocusPos(berlin, 0);
         mapView.setZoom(10, 0);
 
@@ -69,6 +68,7 @@ public class HelloMapActivity extends Activity {
     }
 
     protected void updateVis(final String url) {
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +102,7 @@ public class HelloMapActivity extends Activity {
 
         thread.start(); // TODO: should serialize execution
     }
+
     private void addMarkerToPosition(MapView map, MapPos wgsPosition)
     {
         // Create a new layer
@@ -160,6 +161,7 @@ public class HelloMapActivity extends Activity {
     }
 
     private static class MyUTFGridEventListener extends UTFGridEventListener {
+
         private VectorLayer vectorLayer;
 
         public MyUTFGridEventListener(VectorLayer vectorLayer) {
@@ -168,6 +170,7 @@ public class HelloMapActivity extends Activity {
 
         @Override
         public boolean onUTFGridClicked(UTFGridClickInfo utfGridClickInfo) {
+
             LocalVectorDataSource vectorDataSource = (LocalVectorDataSource) vectorLayer.getDataSource();
 
             // Clear previous popups
