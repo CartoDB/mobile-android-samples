@@ -4,10 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
+    android:minWidth="25dp"
+    android:minHeight="25dp">
     <com.carto.ui.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>
+
+
