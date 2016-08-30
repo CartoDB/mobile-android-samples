@@ -41,7 +41,13 @@ public class LauncherListActivity extends ListActivity {
         String[] sampleNames = new String[samples.length];
 
         for(int i=0; i < samples.length; i++) {
-            sampleNames[i] = ((Class<?>) samples[i][0]).getSimpleName();
+
+            Integer counter = i + 1;
+
+            String name = ((Class<?>) samples[i][0]).getSimpleName();
+            name = name.replace("Carto", "").replace("Activity", "");
+
+            sampleNames[i] = counter + ". " + name;
         }
 
         return sampleNames;

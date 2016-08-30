@@ -87,6 +87,7 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 
         final String config = configJson.toString();
 
+        System.out.println(config);
         // Use the Maps service to configure layers. Note that this must be done
         // in a separate thread on Android, as Maps API requires connecting to server
         // which is not allowed in main thread.
