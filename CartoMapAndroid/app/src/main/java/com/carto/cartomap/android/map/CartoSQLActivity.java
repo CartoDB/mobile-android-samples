@@ -25,7 +25,8 @@ public class CartoSQLActivity extends VectorMapSampleBaseActivity {
         // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-        // define style for vector objects. Note that all objects must have same style here, which can be big limitation
+        // Define style for vector objects.
+        // Note that all objects must have same style here, which can be big limitation
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(0x800000ff)); // blue
         pointStyleBuilder.setSize(10);

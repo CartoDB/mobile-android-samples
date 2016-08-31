@@ -18,6 +18,7 @@ import java.util.Locale;
  * A custom map event listener that displays information about map events and creates pop-ups.
  */
 public class MyMapEventListener extends MapEventListener {
+
 	private MapView mapView;
 	private LocalVectorDataSource vectorDataSource;
 	
@@ -34,7 +35,6 @@ public class MyMapEventListener extends MapEventListener {
         final MapPos topLeft = mapView.screenToMap(new ScreenPos(0, 0));
         final MapPos bottomRight = mapView.screenToMap(new ScreenPos(mapView.getWidth(), mapView.getHeight()));
 
-
 		MapPos mapPos = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(0, 0));
 		ScreenPos screenPos = mapView.mapToScreen(mapPos);
 
@@ -42,8 +42,6 @@ public class MyMapEventListener extends MapEventListener {
                 + " " + mapView.getOptions().getBaseProjection().toWgs84(bottomRight));
 
 		Log.d("LOG", "screen for 0,0 : " + screenPos.getX()+ " "+screenPos.getY());
-
-
 	}
 
 	@Override
@@ -76,6 +74,7 @@ public class MyMapEventListener extends MapEventListener {
 
 		// finally show click coordinates also
 		MapPos wgs84Clickpos = mapView.getOptions().getBaseProjection().toWgs84(clickPos);
+
 		String msg = String.format(Locale.US, "%.4f, %.4f", wgs84Clickpos.getY(), wgs84Clickpos.getX());
 
 		BalloonPopup clickPopup = new BalloonPopup(mapClickInfo.getClickPos(),
