@@ -1,4 +1,4 @@
-package com.carto.advancedmap.map_base;
+package com.carto.advancedmap.mapbase;
 
 import android.app.Activity;
 import android.os.Bundle;

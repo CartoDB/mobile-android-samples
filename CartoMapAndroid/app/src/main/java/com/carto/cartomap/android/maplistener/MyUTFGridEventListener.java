@@ -1,4 +1,4 @@
-package com.carto.cartomap.android.map_listener;
+package com.carto.cartomap.android.maplistener;
 
 import android.util.Log;
 

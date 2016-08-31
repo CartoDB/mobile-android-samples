@@ -3,9 +3,9 @@ package com.carto.cartomap.android.map;
 import android.os.Bundle;
 
 import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
-import com.carto.cartomap.android.map_datasource.CartoDBSQLDataSource;
-import com.carto.cartomap.android.map_listener.MyMapEventListener;
+import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.mapdatasource.CartoDBSQLDataSource;
+import com.carto.cartomap.android.maplistener.MyMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;

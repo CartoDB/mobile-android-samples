@@ -3,7 +3,7 @@ package com.carto.advancedmap.map;
 import android.os.Bundle;
 
 import com.carto.advancedmap.Description;
-import com.carto.advancedmap.map_base.MapSampleBaseActivity;
+import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
 import com.carto.core.BinaryData;
 import com.carto.core.MapRange;
 import com.carto.datasources.HTTPTileDataSource;

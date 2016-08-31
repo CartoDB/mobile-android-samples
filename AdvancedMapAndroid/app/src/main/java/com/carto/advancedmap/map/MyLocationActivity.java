@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.carto.advancedmap.Description;
-import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;

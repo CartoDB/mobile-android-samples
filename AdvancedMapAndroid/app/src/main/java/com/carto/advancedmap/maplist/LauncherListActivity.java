@@ -1,13 +1,10 @@
-package com.carto.advancedmap.map_list;
+package com.carto.advancedmap.maplist;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.Annotation;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.carto.advancedmap.Description;

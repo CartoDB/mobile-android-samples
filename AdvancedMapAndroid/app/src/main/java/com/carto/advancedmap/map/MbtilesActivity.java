@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 import com.carto.advancedmap.Description;
-import com.carto.advancedmap.map_base.MapSampleBaseActivity;
+import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
 import com.carto.advancedmap.util.Const;
 import com.carto.core.BinaryData;
 import com.carto.core.MapBounds;

@@ -1,4 +1,4 @@
-package com.carto.cartomap.android.map_base;
+package com.carto.cartomap.android.mapbase;
 
 import android.os.Bundle;
 

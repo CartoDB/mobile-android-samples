@@ -1,4 +1,4 @@
-package com.carto.cartomap.android.map_datasource;
+package com.carto.cartomap.android.mapdatasource;
 
 import android.util.Log;
 

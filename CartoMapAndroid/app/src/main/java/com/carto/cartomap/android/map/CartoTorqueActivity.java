@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
