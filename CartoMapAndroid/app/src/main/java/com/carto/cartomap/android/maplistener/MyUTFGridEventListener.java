@@ -88,8 +88,6 @@ public class MyUTFGridEventListener extends UTFGridEventListener {
 	public boolean onUTFGridClicked(UTFGridClickInfo utfGridClickInfo) {
 		LocalVectorDataSource vectorDataSource = (LocalVectorDataSource) vectorLayer.getDataSource();
 
-		System.out.println("UtfGridClicked");
-
 		// Clear previous popups
 		vectorDataSource.clear();
 

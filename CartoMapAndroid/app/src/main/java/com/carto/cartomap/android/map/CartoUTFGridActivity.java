@@ -126,7 +126,7 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 
                 }
                 catch (IOException e) {
-                    Log.e("EXCEPTION", "Exception: " + e);
+                    Log.e("EXCEPTION", "Exception adding layers: " + e);
                 }
 			}
 		});
