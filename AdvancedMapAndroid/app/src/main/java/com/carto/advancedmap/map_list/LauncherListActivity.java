@@ -2,6 +2,7 @@ package com.carto.advancedmap.map_list;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Annotation;
@@ -72,25 +73,8 @@ public class LauncherListActivity extends ListActivity {
         setContentView(R.layout.list);
 
         ListView lv = this.getListView();
-        //lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getStringArray()));
+        lv.setBackgroundColor(Color.BLACK);
         lv.setAdapter(new TwoLineArrayAdapter(this, android.R.layout.two_line_list_item, getListItems()));
-
-    }
-    
-    private String[] getStringArray() {
-        String[] sampleNames = new String[samples.length];
-
-        for(int i=0; i < samples.length; i++) {
-
-            Integer counter = i + 1;
-
-            String name = ((Class<?>) samples[i][0]).getSimpleName();
-            name = name.replace("Activity", "");
-
-            sampleNames[i] = counter + ". " + name;
-        }
-
-        return sampleNames;
     }
 
     private MapListItem[] getListItems()
