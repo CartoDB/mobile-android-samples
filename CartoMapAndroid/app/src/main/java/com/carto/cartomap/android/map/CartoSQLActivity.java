@@ -11,6 +11,7 @@ import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
+import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
 
 /**
@@ -25,22 +26,20 @@ public class CartoSQLActivity extends VectorMapSampleBaseActivity {
         // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
+        String baseUrl = "https://nutiteq.cartodb.com/api/v2/sql";
+        String query = "SELECT cartodb_id,the_geom_webmercator AS the_geom,name,address,bikes,slot," +
+                "field_8,field_9,field_16,field_17,field_18 FROM stations_1 WHERE !bbox!";
+
         // Define style for vector objects.
         // Note that all objects must have same style here, which can be big limitation
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(0x800000ff)); // blue
         pointStyleBuilder.setSize(10);
 
-        String query = "SELECT cartodb_id,the_geom_webmercator AS the_geom,name,address,bikes,slot," +
-                "field_8,field_9,field_16,field_17,field_18 FROM stations_1 WHERE !bbox!";
+        PointStyle style = pointStyleBuilder.buildStyle();
 
         // Initialize a local vector data source
-        CartoDBSQLDataSource vectorDataSource1 = new CartoDBSQLDataSource(
-                baseProjection,
-                "https://nutiteq.cartodb.com/api/v2/sql",
-                query,
-                pointStyleBuilder.buildStyle()
-        );
+        CartoDBSQLDataSource vectorDataSource1 = new CartoDBSQLDataSource(baseProjection, baseUrl, query, style);
 
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
@@ -51,9 +50,6 @@ public class CartoSQLActivity extends VectorMapSampleBaseActivity {
         // Set visible zoom range for the vector layer
         vectorLayer1.setVisibleZoomRange(new MapRange(14, 23));
 
-
-        // set listener to get point click popups
-
         // Initialize a local vector data source and layer for click Balloons
         LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
 
@@ -63,10 +59,10 @@ public class CartoSQLActivity extends VectorMapSampleBaseActivity {
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer);
 
+        // Set listener to get point click popups
         mapView.setMapEventListener(new MyMapEventListener(mapView, vectorDataSource));
 
-
-        // finally animate map to the marker
+        // Animate map to the marker
         mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-74.0059, 40.7127)), 1);
         mapView.setZoom(15, 1);
     }

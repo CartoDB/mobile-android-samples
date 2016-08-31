@@ -34,13 +34,13 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
         // MapSampleBaseActivity creates and configures mapView  
         super.onCreate(savedInstanceState);
 
-        // define server config
+        // Define server config
         JSONObject configJson = new JSONObject();
         try {
-            // change these according to your DB
+            // Change these according to your DB
             String sql = "select * from stations_1";
             String statTag = "3c6f224a-c6ad-11e5-b17e-0e98b61680bf";
-            String[] columns = new String[]{"name", "field_9", "slot"};
+            String[] columns = new String[]{"name", "field_9", "slot", "cartodb_id"};
             String cartoCss =
                     "#stations_1{marker-fill-opacity:0.9;marker-line-color:#FFF;" +
                             "marker-line-width:2;marker-line-opacity:1;marker-placement:point;" +
@@ -60,7 +60,7 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
                     "#stations_1[field_9 <= 8]{marker-width:7.2;}\n" +
                     "#stations_1[field_9 <= 4]{marker-width:5.0;}";
 
-            // you probably do not need to change much of below
+            // You probably do not need to change much of below
             configJson.put("version", "1.0.1");
             configJson.put("stat_tag", statTag);
 
@@ -93,7 +93,6 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 
         }
 
-
         final String config = configJson.toString();
 
         // Use the Maps service to configure layers. Note that this must be done
@@ -104,8 +103,9 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 			public void run() {
 
                 CartoMapsService mapsService = new CartoMapsService();
-				mapsService.setUsername("nutiteq");
-				mapsService.setDefaultVectorLayerMode(true); // use vector layers
+                mapsService.setUsername("nutiteq");
+                mapsService.setDefaultVectorLayerMode(true); // use vector layers
+                mapsService.setInteractive(true); // turn on utfgrid loading
 
                 try {
                     LayerVector layers = mapsService.buildMap(Variant.fromString(config));
@@ -113,25 +113,27 @@ public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
                     LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
                     VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
 
-                    mapView.getLayers().add(vectorLayer);
-
                     for (int i = 0; i < layers.size(); i++) {
 
+                        // Add layer from map configuration
                         TileLayer layer = (TileLayer) layers.get(i);
+                        System.out.println("SOURCE: " + layer.getUTFGridDataSource());
                         mapView.getLayers().add(layer);
 
                         MyUTFGridEventListener mapListener = new MyUTFGridEventListener(vectorLayer);
                         layer.setUTFGridEventListener(mapListener);
                     }
 
-                }
-                catch (IOException e) {
+                    // Add layer for balloons
+                    mapView.getLayers().add(vectorLayer);
+
+                } catch (IOException e) {
                     Log.e("EXCEPTION", "Exception adding layers: " + e);
                 }
-			}
-		});
-
+            }
+        });
 		serviceThread.start();
+
 
         // finally animate map to the content area
         mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-74.0059, 40.7127)), 1); // NYC
