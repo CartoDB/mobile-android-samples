@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -36,6 +37,7 @@ import java.util.Map;
  * The sample also uses a custom map listener that expands cluster elements that are clicked on, if
  * the number of elements in the cluster is less than or equal to 5.
  */
+@Description(value = "How to use marker clustering on the map")
 public class ClusteredRandomPointsActivity extends VectorMapSampleBaseActivity {
 
 	private static class MyClusterElementBuilder extends ClusterElementBuilder {

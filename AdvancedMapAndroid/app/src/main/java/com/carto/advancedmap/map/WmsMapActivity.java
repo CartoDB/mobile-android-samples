@@ -2,15 +2,16 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.datasource.HttpWmsTileDataSource;
 import com.carto.core.MapPos;
 import com.carto.layers.RasterTileLayer;
 
 /**
- * A sample demonstrating how to use WMS service raster on top of
- * the vector base map
+ * A sample demonstrating how to use WMS service raster on top of the vector base map
  */
+@Description(value = "How to use WMS service raster on top of the vector base map")
 public class WmsMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

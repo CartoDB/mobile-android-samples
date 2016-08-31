@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -25,6 +26,7 @@ import java.io.IOException;
  * The sample saves MapView screenshot on the sdcard of the phone.
  * The image is saved only after map has become stable (no tiles are missing).
  */
+@Description(value = "How to capture rendered MapView as a bitmap")
 public class CaptureActivity extends VectorMapSampleBaseActivity {
 	
 	private class RenderListener extends RendererCaptureListener {

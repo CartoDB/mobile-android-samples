@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.datasource.MyAnimatedTileDataSource;
 import com.carto.datasources.MemoryCacheTileDataSource;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  * The sample uses custom tile data source for downloading different tiles for different
  * animation frames and shows how to use TileLoadListener.
  */
+@Description(value = "How to add animated raster overlay on top of vector base map")
 public class AnimatedRasterMapActivity extends VectorMapSampleBaseActivity {
 
     private RasterTileLayer animatedRasterTileLayer;

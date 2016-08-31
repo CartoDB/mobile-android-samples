@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.listener.MyMapEventListener;
 import com.carto.core.MapPos;
@@ -22,9 +23,9 @@ import com.carto.vectorelements.Polygon3D;
 //import com.carto.layers.NMLModelLODTreeLayer;
 
 /**
- * A sample demonstrating how to use 3D vector elements:
- * 3D polygon, 3D model (NML) and 3D city (NMLDB)
+ * A sample demonstrating how to use 3D vector elements: 3D polygon, 3D model (NML) and 3D city (NMLDB)
  */
+@Description(value = "How to use 3D vector elements: 3D polygon, 3D model (NML) and 3D city (NMLDB)")
 public class Overlays3DActivity extends VectorMapSampleBaseActivity {
 
     @Override

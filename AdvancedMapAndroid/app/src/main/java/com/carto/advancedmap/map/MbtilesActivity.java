@@ -3,6 +3,7 @@ package com.carto.advancedmap.map;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.MapSampleBaseActivity;
 import com.carto.advancedmap.util.Const;
 import com.carto.core.BinaryData;
@@ -31,6 +32,7 @@ import java.io.IOException;
  * A sample that uses a specified MBTiles file for the base layer.
  * The sample assumes that the file name is specified using the Intent "selectedFile" extra field.
  */
+@Description(value = "How to use a specified MBTiles file for the base layer")
 public class MbtilesActivity extends MapSampleBaseActivity implements
         FilePickerActivity {
 

@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.listener.MyMapEventListener;
 import com.carto.advancedmap.listener.MyVectorElementEventListener;
 import com.carto.core.MapRange;
@@ -10,10 +11,10 @@ import com.carto.layers.Layer;
 import com.carto.layers.VectorLayer;
 
 /**
- * A sample displaying how to set custom MapListener
- * to detect clicks on map and on map vector elements.
+ * A sample displaying how to set custom MapListener to detect clicks on map and on map vector elements.
  * Actual vector elements are added in Overlays2DActivity, as this class extends it.
  */
+@Description(value = "How to set custom MapListener to detect clicks on map and on map vector elements")
 public class MapListenerActivity extends Overlays2DActivity {
 
     @Override

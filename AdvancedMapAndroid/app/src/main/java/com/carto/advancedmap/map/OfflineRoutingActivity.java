@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.util.Const;
@@ -51,6 +52,7 @@ import com.carto.vectorelements.Marker;
  * online routing service is used as a fallback. Once the package is available, routing
  * works offline.
  */
+@Description(value = "How to use Carto Mobile SDK routing engine to calculate offline routes")
 public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
 

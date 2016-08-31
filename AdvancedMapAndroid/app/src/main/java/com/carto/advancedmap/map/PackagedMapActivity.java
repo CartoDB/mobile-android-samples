@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_list.PackageManagerActivity;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.datasources.TileDataSource;
@@ -9,6 +10,7 @@ import com.carto.datasources.TileDataSource;
 /**
  * A uses PackageManagerActivity datasource. This has maps which are downloaded offline using PackageManager
  */
+@Description(value = "This has maps which are downloaded offline using PackageManager")
 public class PackagedMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

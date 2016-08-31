@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -21,6 +22,7 @@ import com.carto.vectorelements.Marker;
  * marker bitmaps, creating style for the marker and finally adding the marker to the data source.
  * For multiple markers, the same data source, layer and style should be reused if possible.
  */
+@Description(value = "How to use markers on the map")
 public class PinMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -33,9 +34,9 @@ import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.Text;
 
 /**
- * A sample demonstrating how to add basic 2D objects to the map:
- * lines, points, polygon with hole, texts and pop-ups.
+ * A sample demonstrating how to add basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups.
  */
+@Description(value = "How to add basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups")
 public class Overlays2DActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.MapSampleBaseActivity;
 import com.carto.core.BinaryData;
 import com.carto.core.MapRange;
@@ -19,6 +20,7 @@ import com.carto.utils.ZippedAssetPackage;
  * Special style is needed, as the vector data structure is different. We use style inside same .zip package
  *
  */
+@Description(value = "How to use Mapzen vector tiles from https://mapzen.com/projects/vector-tiles/")
 public class MapZenActivity extends MapSampleBaseActivity {
 
     @Override

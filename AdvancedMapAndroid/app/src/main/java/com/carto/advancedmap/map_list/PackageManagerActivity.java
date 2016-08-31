@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.map.PackagedMapActivity;
 import com.carto.advancedmap.util.Const;
@@ -52,6 +53,7 @@ import java.util.HashMap;
  * share this instance between activities. 
  * 
  */
+@Description(value = "How to use offline package manager of the Carto Mobile SDK")
 public class PackageManagerActivity extends ListActivity {
 
 	/**

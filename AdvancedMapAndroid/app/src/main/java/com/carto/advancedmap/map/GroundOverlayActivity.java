@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
@@ -21,6 +22,7 @@ import com.carto.core.ScreenPosVector;
  * GDAL-based raster tile data source. This data source is not part of the standard SDK, it
  * is an extra feature provided using GIS-extensions package.
  */
+@Description(value = "How to add ground level raster overlay")
 public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -2,6 +2,7 @@ package com.carto.advancedmap.map;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.Description;
 import com.carto.advancedmap.map_base.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.util.Const;
 import com.carto.core.MapPos;
@@ -10,9 +11,9 @@ import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.layers.RasterTileLayer;
 
 /**
- * A sample demonstrating how to use raster layer on top of
- * the vector base map to provide height information.
+ * A sample demonstrating how to use raster layer on top of the vector base map to provide height information.
  */
+@Description(value = "How to use raster layer on top of the vector base map to provide height information")
 public class RasterOverlayActivity extends VectorMapSampleBaseActivity {
 
     @Override

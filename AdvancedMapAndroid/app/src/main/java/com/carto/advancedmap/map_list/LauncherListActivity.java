@@ -3,10 +3,15 @@ package com.carto.advancedmap.map_list;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.text.Annotation;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.carto.advancedmap.Description;
+import com.carto.advancedmap.MapListItem;
+import com.carto.advancedmap.TwoLineArrayAdapter;
 import com.carto.advancedmap.map.AerialMapActivity;
 import com.carto.advancedmap.map.AnimatedRasterMapActivity;
 import com.carto.advancedmap.map.CaptureActivity;
@@ -33,7 +38,8 @@ import com.carto.filepicker.FilePickerActivity;
  * Shows list of demo Activities. Enables to open pre-launch activity for file picking.
  * This is the "main" of samples
  */
-public class LauncherListActivity extends ListActivity{
+
+public class LauncherListActivity extends ListActivity {
 
     // list of demos: MapActivity, ParameterSelectorActivity (can be null)
     // if parameter selector is given, then this is launched first to get a parameter (file path)
@@ -66,7 +72,9 @@ public class LauncherListActivity extends ListActivity{
         setContentView(R.layout.list);
 
         ListView lv = this.getListView();
-        lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getStringArray()));
+        //lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getStringArray()));
+        lv.setAdapter(new TwoLineArrayAdapter(this, android.R.layout.two_line_list_item, getListItems()));
+
     }
     
     private String[] getStringArray() {
@@ -83,6 +91,33 @@ public class LauncherListActivity extends ListActivity{
         }
 
         return sampleNames;
+    }
+
+    private MapListItem[] getListItems()
+    {
+        MapListItem[] items = new MapListItem[samples.length];
+
+        for(int i = 0; i < samples.length; i++) {
+
+            Integer counter = i + 1;
+
+            String name = ((Class<?>) samples[i][0]).getSimpleName().replace("Activity", "");
+            String description = "none";
+
+            java.lang.annotation.Annotation[] annotations = ((Class<?>) samples[i][0]).getAnnotations();
+
+            if (annotations.length > 0 && annotations[0] instanceof Description) {
+                description = ((Description) annotations[0]).value();
+            }
+
+            MapListItem item = new MapListItem() {};
+            item.name = counter + ". " + name;
+            item.description = description;
+
+            items[i] = item;
+        }
+
+        return  items;
     }
 
     public void onListItemClick(ListView parent, View v, int position, long id) {
@@ -120,12 +155,15 @@ public class LauncherListActivity extends ListActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (data == null){
             return;
         }
+
         String fileName = data.getStringExtra("selectedFile");
         String className = data.getStringExtra("class");
-        if(fileName != null && className != null){
+
+        if (fileName != null && className != null) {
             try {
                 Intent myIntent = new Intent(LauncherListActivity.this,
                             Class.forName(className));
