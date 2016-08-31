@@ -53,11 +53,13 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
 
         @Override
         public void addLayer(Layer layer, Variant attributes) {
+
             // Add the layer to the map view
             mapView.getLayers().add(layer);
 
             // Check if the layer has info window. In that case will add a custom UTF grid event listener to the layer.
             Variant infoWindow = attributes.getObjectElement("infowindow");
+
             if (infoWindow.getType() == VariantType.VARIANT_TYPE_OBJECT) {
                 MyUTFGridEventListener myEventListener = new MyUTFGridEventListener(vectorLayer, infoWindow);
                 TileLayer tileLayer = (TileLayer) layer;
@@ -86,25 +88,29 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
             // Check the type of vector element
             BalloonPopup clickPopup = null;
             BalloonPopupStyleBuilder styleBuilder = new BalloonPopupStyleBuilder();
+
             // Configure style
             styleBuilder.setLeftMargins(new BalloonPopupMargins(0, 0, 0, 0));
             styleBuilder.setTitleMargins(new BalloonPopupMargins(6, 3, 6, 3));
+
             // Make sure this label is shown on top all other labels
             styleBuilder.setPlacementPriority(10);
 
             // Show clicked element variant as JSON string
             String desc = utfGridClickInfo.getElementInfo().toString();
 
-            clickPopup = new BalloonPopup(utfGridClickInfo.getClickPos(),
-                    styleBuilder.buildStyle(),
-                    "Clicked",
-                    desc);
+            clickPopup = new BalloonPopup(utfGridClickInfo.getClickPos(), styleBuilder.buildStyle(), "Clicked", desc);
             vectorDataSource.add(clickPopup);
             return true;
         }
     }
 
-    private String visJSONURL = "http://documentation.cartodb.com/api/v2/viz/836e37ca-085a-11e4-8834-0edbca4b5057/viz.json";
+    static final String circleUrl = "http://documentation.cartodb.com/api/v2/viz/836e37ca-085a-11e4-8834-0edbca4b5057/viz.json";
+    static final String testUrl = "http://documentation.cartodb.com/api/v2/viz/3ec995a8-b6ae-11e4-849e-0e4fddd5de28/viz.json";
+    static final String countriesUrl = "http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
+    static final String dotsUrl = "https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json";
+
+    private String visJSONURL = dotsUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +123,10 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        addVisJSONMenuOption(menu, "circle", "http://documentation.cartodb.com/api/v2/viz/836e37ca-085a-11e4-8834-0edbca4b5057/viz.json");
-        addVisJSONMenuOption(menu, "test", "http://documentation.cartodb.com/api/v2/viz/3ec995a8-b6ae-11e4-849e-0e4fddd5de28/viz.json");
-        addVisJSONMenuOption(menu, "countries", "http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
-        addVisJSONMenuOption(menu, "dots", "https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json");
+        addVisJSONMenuOption(menu, "circle", circleUrl);
+        addVisJSONMenuOption(menu, "test", testUrl);
+        addVisJSONMenuOption(menu, "countries", countriesUrl);
+        addVisJSONMenuOption(menu, "dots", dotsUrl);
 
         return true;
     }
@@ -142,12 +148,14 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
                 return true;
             }
         });
+
         if (visJSONURL.equals(value)) {
             menuItem.setIcon(android.R.drawable.checkbox_on_background);
         }
     }
 
     protected void updateVis() {
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -173,6 +181,7 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
                 mapView.getLayers().add(vectorLayer);
             }
         });
+
         thread.start(); // TODO: should serialize execution
     }
 }
