@@ -2,6 +2,7 @@ package com.carto.cartomap.android.map;
 
 import android.os.Bundle;
 
+import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
 import com.carto.cartomap.android.map_datasource.CartoDBSQLDataSource;
 import com.carto.cartomap.android.map_listener.MyMapEventListener;
@@ -13,9 +14,9 @@ import com.carto.layers.VectorLayer;
 import com.carto.styles.PointStyleBuilder;
 
 /**
- * A sample demonstrating how to use Carto SQL API to get data
- * and how to create custom VectorDataSource
+ * A sample demonstrating how to use Carto SQL API to get data and how to create custom VectorDataSource
  */
+@Description(value = "How to use Carto SQL API to get data and how to create custom VectorDataSource")
 public class CartoSQLActivity extends VectorMapSampleBaseActivity {
 
     @Override

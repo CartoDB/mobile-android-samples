@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.map_base.MapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -30,6 +31,7 @@ import java.io.IOException;
  * CartoVisLoader class is used to load and configure all corresponding layers.
  * Items on overlay layers are clickable, this is implemented using custom UTFGridEventListener.
  */
+@Description(value = "How to use high level Carto VisJSON API to display interactive maps")
 public class CartoVisJSONActivity extends MapSampleBaseActivity {
 
     private class MyCartoVisBuilder extends CartoVisBuilder {

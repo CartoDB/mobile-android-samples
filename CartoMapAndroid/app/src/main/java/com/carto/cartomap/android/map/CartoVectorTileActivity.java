@@ -3,6 +3,7 @@ package com.carto.cartomap.android.map;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -18,6 +19,7 @@ import java.io.IOException;
 /**
  * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
+@Description(value = "How to use Carto Vector Tiles, using CartoCSS styling")
 public class CartoVectorTileActivity extends VectorMapSampleBaseActivity {
 
     @Override

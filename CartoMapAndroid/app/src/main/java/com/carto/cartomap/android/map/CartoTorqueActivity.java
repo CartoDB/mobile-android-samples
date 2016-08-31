@@ -3,6 +3,7 @@ package com.carto.cartomap.android.map;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
+@Description(value = "How to use Carto Torque tiles with CartoCSS styling")
 public class CartoTorqueActivity extends VectorMapSampleBaseActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();

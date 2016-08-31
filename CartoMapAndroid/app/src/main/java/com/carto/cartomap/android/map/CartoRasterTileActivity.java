@@ -3,6 +3,7 @@ package com.carto.cartomap.android.map;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.map_base.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -19,6 +20,7 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer
  * Inspired by web sample http://bl.ocks.org/jorgeas80/4c7169c9b6356858f3cc
  */
+@Description(value = "How to use Carto PostGIS Raster data, as tiled raster layer")
 public class CartoRasterTileActivity extends VectorMapSampleBaseActivity {
 
     @Override
