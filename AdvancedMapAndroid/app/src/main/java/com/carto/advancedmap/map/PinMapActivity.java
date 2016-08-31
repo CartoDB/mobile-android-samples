@@ -22,7 +22,7 @@ import com.carto.vectorelements.Marker;
  * marker bitmaps, creating style for the marker and finally adding the marker to the data source.
  * For multiple markers, the same data source, layer and style should be reused if possible.
  */
-@Description(value = "How to use markers on the map")
+@Description(value = "Base map with Marker pins")
 public class PinMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

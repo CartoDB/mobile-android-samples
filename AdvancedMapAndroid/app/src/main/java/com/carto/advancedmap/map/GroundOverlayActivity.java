@@ -22,7 +22,7 @@ import com.carto.core.ScreenPosVector;
  * GDAL-based raster tile data source. This data source is not part of the standard SDK, it
  * is an extra feature provided using GIS-extensions package.
  */
-@Description(value = "How to add ground level raster overlay")
+@Description(value = "Show not tiled Bitmap on ground")
 public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -52,7 +52,7 @@ import com.carto.vectorelements.Marker;
  * online routing service is used as a fallback. Once the package is available, routing
  * works offline.
  */
-@Description(value = "How to use Carto Mobile SDK routing engine to calculate offline routes")
+@Description(value = "Offline routing with OpenStreetMap data packages")
 public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
 

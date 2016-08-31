@@ -13,7 +13,7 @@ import com.carto.layers.RasterTileLayer;
 /**
  * A sample demonstrating how to use raster layer on top of the vector base map to provide height information.
  */
-@Description(value = "How to use raster layer on top of the vector base map to provide height information")
+@Description(value = "Exteral raster layer on top of the vector base map")
 public class RasterOverlayActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -20,7 +20,7 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer
  * Inspired by web sample http://bl.ocks.org/jorgeas80/4c7169c9b6356858f3cc
  */
-@Description(value = "How to use Carto PostGIS Raster data, as tiled raster layer")
+@Description(value = "Use map from CARTO PostGIS Raster")
 public class CartoRasterTileActivity extends VectorMapSampleBaseActivity {
 
     @Override

@@ -25,7 +25,7 @@ import com.carto.core.MapPosVector;
  * Shows user GPS location on map.
  * Make sure your app has location permission in Manifest file
  */
-@Description(value = "Shows user location on the map")
+@Description(value = "Shows user GPS location on the map")
 public class MyLocationActivity extends VectorMapSampleBaseActivity {
 	
 	private LocationManager locationManager;

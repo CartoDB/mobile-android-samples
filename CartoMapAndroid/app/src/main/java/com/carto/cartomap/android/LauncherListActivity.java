@@ -20,12 +20,12 @@ public class LauncherListActivity extends ListActivity {
     // list of demos: MapActivity, ParameterSelectorActivity (can be null)
     // if parameter selector is given, then this is launched first to get a parameter (file path)
     private Object[][] samples = {
+        { CartoVisJSONActivity.class, null },
         { CartoRasterTileActivity.class, null },
         { CartoSQLActivity.class, null },
         { CartoTorqueActivity.class, null },
         { CartoUTFGridActivity.class, null },
-        { CartoVectorTileActivity.class, null },
-        { CartoVisJSONActivity.class, null },
+        { CartoVectorTileActivity.class, null }
     };
 
     @Override

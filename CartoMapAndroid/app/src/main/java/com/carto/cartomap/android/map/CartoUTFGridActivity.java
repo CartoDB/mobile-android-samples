@@ -25,7 +25,7 @@ import java.io.IOException;
 /**
  * A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid
  */
-@Description(value = "How to use Carto Maps API with Raster tiles and UTFGrid")
+@Description(value = "CARTO Maps API with Raster tiles and UTFGrid interactions")
 public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
 
     @Override

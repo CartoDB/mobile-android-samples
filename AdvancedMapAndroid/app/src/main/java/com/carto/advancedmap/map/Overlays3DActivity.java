@@ -25,7 +25,7 @@ import com.carto.vectorelements.Polygon3D;
 /**
  * A sample demonstrating how to use 3D vector elements: 3D polygon, 3D model (NML) and 3D city (NMLDB)
  */
-@Description(value = "How to use 3D vector elements: 3D polygon, 3D model (NML) and 3D city (NMLDB)")
+@Description(value = "3D vector elements: 3D polygon, 3D model (NML) and 3D city (NMLDB)")
 public class Overlays3DActivity extends VectorMapSampleBaseActivity {
 
     @Override

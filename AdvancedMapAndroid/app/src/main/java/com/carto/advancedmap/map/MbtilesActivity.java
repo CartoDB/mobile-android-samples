@@ -32,7 +32,7 @@ import java.io.IOException;
  * A sample that uses a specified MBTiles file for the base layer.
  * The sample assumes that the file name is specified using the Intent "selectedFile" extra field.
  */
-@Description(value = "How to use a specified MBTiles file for the base layer")
+@Description(value = "MBTiles offline data - raster or vector")
 public class MbtilesActivity extends MapSampleBaseActivity implements
         FilePickerActivity {
 

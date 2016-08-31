@@ -16,7 +16,7 @@ import com.carto.styles.PointStyleBuilder;
 /**
  * A sample demonstrating how to use Carto SQL API to get data and how to create custom VectorDataSource
  */
-@Description(value = "How to use Carto SQL API to get data and how to create custom VectorDataSource")
+@Description(value = "CARTO SQL API to get data in custom VectorDataSource")
 public class CartoSQLActivity extends VectorMapSampleBaseActivity {
 
     @Override

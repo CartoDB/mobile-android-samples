@@ -14,7 +14,7 @@ import com.carto.layers.VectorLayer;
  * A sample displaying how to set custom MapListener to detect clicks on map and on map vector elements.
  * Actual vector elements are added in Overlays2DActivity, as this class extends it.
  */
-@Description(value = "How to set custom MapListener to detect clicks on map and on map vector elements")
+@Description(value = "Events for clicks on map and Vector elements")
 public class MapListenerActivity extends Overlays2DActivity {
 
     @Override

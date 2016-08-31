@@ -26,7 +26,7 @@ import java.io.IOException;
  * The sample saves MapView screenshot on the sdcard of the phone.
  * The image is saved only after map has become stable (no tiles are missing).
  */
-@Description(value = "How to capture rendered MapView as a bitmap")
+@Description(value = "Capture rendered MapView as a Bitmap")
 public class CaptureActivity extends VectorMapSampleBaseActivity {
 	
 	private class RenderListener extends RendererCaptureListener {

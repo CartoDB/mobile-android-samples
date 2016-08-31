@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * The sample uses custom tile data source for downloading different tiles for different
  * animation frames and shows how to use TileLoadListener.
  */
-@Description(value = "How to add animated raster overlay on top of vector base map")
+@Description(value = "Animated raster tile overlay")
 public class AnimatedRasterMapActivity extends VectorMapSampleBaseActivity {
 
     private RasterTileLayer animatedRasterTileLayer;

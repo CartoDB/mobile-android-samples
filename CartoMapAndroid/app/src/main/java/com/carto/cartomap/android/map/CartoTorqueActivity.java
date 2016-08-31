@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
-@Description(value = "How to use Carto Torque tiles with CartoCSS styling")
+@Description(value = "CARTO Torque tiles with CartoCSS styling as animated data")
 public class CartoTorqueActivity extends VectorMapSampleBaseActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();

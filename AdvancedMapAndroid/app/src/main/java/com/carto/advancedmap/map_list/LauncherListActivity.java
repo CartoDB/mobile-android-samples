@@ -45,6 +45,13 @@ public class LauncherListActivity extends ListActivity {
     // list of demos: MapActivity, ParameterSelectorActivity (can be null)
     // if parameter selector is given, then this is launched first to get a parameter (file path)
     private Object[][] samples = {
+            { PinMapActivity.class, null },
+            { Overlays2DActivity.class, null },
+            { MapListenerActivity.class, null },
+            { MyLocationActivity.class, null },
+            { PackageManagerActivity.class, null },
+            { Overlays3DActivity.class, null },
+            { OfflineRoutingActivity.class, null },
             { AerialMapActivity.class, null },
             { AnimatedRasterMapActivity.class, null },
             { CaptureActivity.class, null },
@@ -53,16 +60,9 @@ public class LauncherListActivity extends ListActivity {
             { CustomRasterDataSourceActivity.class, null },
             { CustomPopupActivity.class, null },
             { GroundOverlayActivity.class, null },
-            { MapListenerActivity.class, null },
             { MbtilesActivity.class, FilePicker.class },
-            { MyLocationActivity.class, null },
-            { PackageManagerActivity.class, null },
-            { OfflineRoutingActivity.class, null },
             { OfflineVectorMapActivity.class, null },
-            { Overlays2DActivity.class, null },
-            { Overlays3DActivity.class, null },
             { RasterOverlayActivity.class, null },
-            { PinMapActivity.class, null },
             { WmsMapActivity.class, null }
     };
 

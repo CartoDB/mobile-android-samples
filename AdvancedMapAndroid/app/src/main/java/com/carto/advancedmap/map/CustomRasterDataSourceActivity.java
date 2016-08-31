@@ -20,7 +20,7 @@ import com.carto.layers.RasterTileLayer;
  * Compare with RasterOverlayActivity which shows same rasters as separate layers
  * 
  */
-@Description(value = "How to create and use custom raster tile data source")
+@Description(value = "Customized raster tile data source")
 public class CustomRasterDataSourceActivity extends MapSampleBaseActivity {
 
     @Override

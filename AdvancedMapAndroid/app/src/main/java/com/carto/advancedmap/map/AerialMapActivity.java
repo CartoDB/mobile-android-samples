@@ -13,7 +13,7 @@ import com.carto.layers.RasterTileLayer;
  * tile data sources.
  */
 
-@Description(value = "How to use raster layers with external tile data sources")
+@Description(value = "External raster tile data source")
 public class AerialMapActivity extends MapSampleBaseActivity {
 
 	@Override

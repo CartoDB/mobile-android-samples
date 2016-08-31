@@ -36,7 +36,7 @@ import com.carto.vectorelements.Text;
 /**
  * A sample demonstrating how to add basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups.
  */
-@Description(value = "How to add basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups")
+@Description(value = "2D objects: lines, points, polygon with hole, texts and pop-ups")
 public class Overlays2DActivity extends VectorMapSampleBaseActivity {
 
     @Override

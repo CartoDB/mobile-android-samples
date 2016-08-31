@@ -31,7 +31,7 @@ import java.io.IOException;
  * CartoVisLoader class is used to load and configure all corresponding layers.
  * Items on overlay layers are clickable, this is implemented using custom UTFGridEventListener.
  */
-@Description(value = "How to use high level Carto VisJSON API to display interactive maps")
+@Description(value = "Use CARTO VisJSON API to display interactive maps")
 public class CartoVisJSONActivity extends MapSampleBaseActivity {
 
     private class MyCartoVisBuilder extends CartoVisBuilder {

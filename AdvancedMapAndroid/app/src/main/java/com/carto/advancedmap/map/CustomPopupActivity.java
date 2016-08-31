@@ -25,7 +25,7 @@ import com.carto.vectorelements.Marker;
  * uniform functionality and look across different platforms. But In some cases
  * more customization is needed and Popup subclassing can be used in that case.
  */
-@Description(value = "How to create and use custom popups")
+@Description(value = "Create custom popups")
 public class CustomPopupActivity extends VectorMapSampleBaseActivity {
 
     @Override

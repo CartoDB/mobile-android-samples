@@ -18,7 +18,7 @@ import java.io.IOException;
  * As MBTilesDataSource can be used only with files residing in file system,
  * the assets needs to be copied first to the SDCard.
  */
-@Description(value = "How to use a bundled asset for your offline base map")
+@Description(value = "Bundle MBTiles file for offline base map")
 public class OfflineVectorMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

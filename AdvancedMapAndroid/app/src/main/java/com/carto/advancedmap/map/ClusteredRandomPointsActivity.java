@@ -37,7 +37,7 @@ import java.util.Map;
  * The sample also uses a custom map listener that expands cluster elements that are clicked on, if
  * the number of elements in the cluster is less than or equal to 5.
  */
-@Description(value = "How to use marker clustering on the map")
+@Description(value = "Automatic Marker clusters")
 public class ClusteredRandomPointsActivity extends VectorMapSampleBaseActivity {
 
 	private static class MyClusterElementBuilder extends ClusterElementBuilder {

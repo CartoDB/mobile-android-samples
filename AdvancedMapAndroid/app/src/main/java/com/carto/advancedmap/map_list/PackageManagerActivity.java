@@ -53,7 +53,7 @@ import java.util.HashMap;
  * share this instance between activities. 
  * 
  */
-@Description(value = "How to use offline package manager of the Carto Mobile SDK")
+@Description(value = "Download offline map packages with OSM")
 public class PackageManagerActivity extends ListActivity {
 
 	/**

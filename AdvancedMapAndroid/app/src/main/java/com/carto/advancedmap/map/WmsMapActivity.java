@@ -11,7 +11,7 @@ import com.carto.layers.RasterTileLayer;
 /**
  * A sample demonstrating how to use WMS service raster on top of the vector base map
  */
-@Description(value = "How to use WMS service raster on top of the vector base map")
+@Description(value = "Use external WMS service for raster tile overlay")
 public class WmsMapActivity extends VectorMapSampleBaseActivity {
 
     @Override
