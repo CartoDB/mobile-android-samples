@@ -1,0 +1,17 @@
+
+branches:
+  only:
+    - cleanup
+
+language: android
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-24.0.1
+    - android-24
+
+script:
+   - ./gradlew build connectedCheck
+
+before_install: cd AdvancedMapAndroid
