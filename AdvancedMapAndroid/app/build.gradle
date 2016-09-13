@@ -6,6 +6,10 @@ android {
     buildToolsVersion "24.0.1"
     useLibrary  'org.apache.http.legacy'
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.carto.hellomap.android"
         minSdkVersion 15
