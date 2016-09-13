@@ -26,6 +26,7 @@ public class CircleUtil {
         double centerLon = location.getLongitude();
 
         MapPosVector points = new MapPosVector();
+        
         for (int i = 0; i <= N; i++) {
             double angle = Math.PI * 2 * (i % N) / N;
             double dx = radius * Math.cos(angle);
@@ -34,6 +35,7 @@ public class CircleUtil {
             double lon = centerLon + (180 / Math.PI) * (dx / EARTH_RADIUS) / Math.cos(centerLat * Math.PI / 180);
             points.add(proj.fromWgs84(new MapPos(lon, lat)));
         }
+
         return points;
     }
 }
