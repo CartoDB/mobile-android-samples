@@ -12,7 +12,10 @@ android:
     - build-tools-24.0.1
     - android-24
 
+env:
+   - TEST_DIR=HelloMapAndroid
+   - TEST_DIR=AdvancedMapAndroid
+   - TEST_DIR=CartoMapAndroid
+
 script:
    - ./gradlew build connectedCheck
-
-before_install: cd AdvancedMapAndroid
