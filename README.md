@@ -3,7 +3,7 @@
 
 This project shows API and features of CARTO Mobile SDK 4.x
 
-[![Build Status](https://travis-ci.org/cartodb/mobile-android-samples.svg?branch=master)](https://travis-ci.org/cartodb/mobile-android-samples)
+[![Build Status](https://travis-ci.org/CartoDB/mobile-android-samples.svg?branch=master)](https://travis-ci.org/CartoDB/mobile-android-samples)
 
 ## IMPORTANT - Get started
   1. After downloading/cloning project you need to get SDK itself
