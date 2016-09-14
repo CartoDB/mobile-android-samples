@@ -17,14 +17,16 @@ env:
    - TEST_DIR=AdvancedMapAndroid
    - TEST_DIR=CartoMapAndroid
 
-script:
-   - cd HelloMapAndroid
-   - ./gradlew build connectedCheck
-   - cd ..
+script: cd $TEST_DIR && ./gradlew build connectedCheck
 
-   - cd AdvancedMapAndroid
-   - ./gradlew build connectedCheck
+# script:
+#    - cd HelloMapAndroid
+#    - ./gradlew build connectedCheck
+#    - cd ..
 
-   - cd ..
-   - cd CartoMapAndroid
-   - ./gradlew build connectedCheck
+#    - cd AdvancedMapAndroid
+#    - ./gradlew build connectedCheck
+#    - cd ..
+
+#    - cd CartoMapAndroid
+#    - ./gradlew build connectedCheck
