@@ -18,4 +18,13 @@ env:
    - TEST_DIR=CartoMapAndroid
 
 script:
+   - cd HelloMapAndroid
+   - ./gradlew build connectedCheck
+   - cd ..
+
+   - cd AdvancedMapAndroid
+   - ./gradlew build connectedCheck
+
+   - cd ..
+   - cd CartoMapAndroid
    - ./gradlew build connectedCheck
