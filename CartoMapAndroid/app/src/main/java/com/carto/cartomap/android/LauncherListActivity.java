@@ -56,7 +56,8 @@ public class LauncherListActivity extends ListActivity {
                 description = ((Description) annotations[0]).value();
             }
 
-            MapListItem item = new MapListItem() {};
+            MapListItem item = new MapListItem();
+
             item.name = counter + ". " + name;
             item.description = description;
 
