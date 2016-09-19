@@ -109,7 +109,7 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
     	}    	
     }
     
-    private void updateBaseLayer() {
+    protected void updateBaseLayer() {
     	String styleAssetName = vectorStyleName + ".zip";
     	boolean styleBuildings3D = false;
     	if (vectorStyleName.equals("nutibright3d")) {

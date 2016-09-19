@@ -18,6 +18,7 @@ import com.carto.advancedmap.map.ClusteredRandomPointsActivity;
 import com.carto.advancedmap.map.CustomPopupActivity;
 import com.carto.advancedmap.map.CustomRasterDataSourceActivity;
 import com.carto.advancedmap.map.GroundOverlayActivity;
+import com.carto.advancedmap.map.InteractivityMapActivity;
 import com.carto.advancedmap.map.MapListenerActivity;
 import com.carto.advancedmap.map.MbtilesActivity;
 import com.carto.advancedmap.map.MyLocationActivity;
@@ -48,6 +49,7 @@ public class LauncherListActivity extends ListActivity {
             { MyLocationActivity.class, null },
             { PackageManagerActivity.class, null },
             { Overlays3DActivity.class, null },
+            { InteractivityMapActivity.class, null },
             { OfflineRoutingActivity.class, null },
             { AerialMapActivity.class, null },
             { AnimatedRasterMapActivity.class, null },
