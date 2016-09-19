@@ -44,6 +44,7 @@
         <activity android:name=".map.ClusteredRandomPointsActivity" />
         <activity android:name=".map.ClusteredGeoJsonActivity" />
         <activity android:name=".map.MyLocationActivity" />
+        <activity android:name=".map.InteractivityMapActivity" />
         <activity android:name=".map.OfflineRoutingActivity" />
         <activity android:name=".map.MapZenActivity" />
         <activity android:name=".map.CaptureActivity" />
