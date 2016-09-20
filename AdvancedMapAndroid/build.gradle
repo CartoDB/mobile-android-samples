@@ -13,11 +13,15 @@ buildscript {
 
 apply plugin: 'maven'
 
+
 allprojects {
     repositories {
         jcenter()
-        flatDir {
-            dirs 'libs'
+        maven {
+            url "http://repository-nutiteq.forge.cloudbees.com/release/"
+        }
+        maven {
+            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
         }
     }
 }

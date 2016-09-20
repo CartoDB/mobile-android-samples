@@ -34,10 +34,10 @@ android {
 dependencies {
     // use bundled files
     //compile files('libs/carto-mobile-sdk.aar')
-    compile(name:'carto-mobile-sdk', ext:'aar')
+    //compile(name:'carto-mobile-sdk', ext:'aar')
     // or use online repository - make sure it has latest version (there can be several updates per day)
-    //compile ('com.nutiteq:nutiteq-sdk:snapshot@aar'){
-    //    changing true
-    //}
+    compile ('com.carto:carto-mobile-sdk:snapshot@aar'){
+        changing true
+    }
 
 }
