@@ -1,10 +1,14 @@
 package com.carto.advancedmap.map;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.carto.advancedmap.Description;
@@ -31,20 +35,50 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
 	private LocationManager locationManager;
 	private LocationListener locationListener;
 
+    Projection proj;
+    LocalVectorDataSource vectorDataSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-        final Projection proj = super.baseProjection;
+        proj = super.baseProjection;
 
         // Initialize an local vector data source where to put my location circle
-        LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(proj);
+        vectorDataSource = new LocalVectorDataSource(proj);
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer);
+
+        final int MARSHMALLOW = 23;
+        if (Build.VERSION.SDK_INT >= MARSHMALLOW) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+        } else {
+            onPermissionGranted();
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    onPermissionGranted();
+                } else {
+                    finish();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    void onPermissionGranted() {
 
         // style for GPS My Location circle
         PolygonStyleBuilder polygonStyleBuilder = new PolygonStyleBuilder();
@@ -55,8 +89,6 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
         final Polygon locationCircle = new Polygon(gpsCirclePoses, gpsStyle);
         // initially empty and invisible
         locationCircle.setVisible(false);
-
-        vectorDataSource.add(locationCircle);
 
         locationListener = new LocationListener() {
 
@@ -93,11 +125,16 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
             Log.debug("adding location provider " + provider);
             locationManager.requestLocationUpdates(provider, 1000, 50, locationListener);
         }
+
+        vectorDataSource.add(locationCircle);
+
     }
     
     @Override
     public void onDestroy() {
-    	locationManager.removeUpdates(locationListener);
+        if (locationManager != null) {
+            locationManager.removeUpdates(locationListener);
+        }
     	super.onDestroy();
     }
 }
