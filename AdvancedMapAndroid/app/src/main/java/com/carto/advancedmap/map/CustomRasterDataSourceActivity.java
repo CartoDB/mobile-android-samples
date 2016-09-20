@@ -28,7 +28,7 @@ public class CustomRasterDataSourceActivity extends MapSampleBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Initialize base and hillshade data sources
-        TileDataSource baseTileDataSource = new HTTPTileDataSource(0, 24, Const.MAPBOX_RASTER_URL);
+        TileDataSource baseTileDataSource = new HTTPTileDataSource(0, 24, Const.TILED_RASTER_URL);
         TileDataSource hillshadeTileDataSource = new HTTPTileDataSource(0, 24, Const.HILLSHADE_RASTER_URL);
         
         // Create merged raster data source
