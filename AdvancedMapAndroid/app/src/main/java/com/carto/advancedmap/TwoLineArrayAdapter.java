@@ -1,6 +1,7 @@
 package com.carto.advancedmap;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,10 @@ public class TwoLineArrayAdapter extends ArrayAdapter<MapListItem> {
         // The ListItemLayout must use the standard text item IDs.
         TextView lineOneView = (TextView)listItemView.findViewById(android.R.id.text1);
         TextView lineTwoView = (TextView)listItemView.findViewById(android.R.id.text2);
+
+        // Default color changed in android 7.0, need to set it to white for newer versions.
+        lineOneView.setTextColor(Color.WHITE);
+        lineTwoView.setTextColor(Color.WHITE);
 
         MapListItem item = getItem(position);
 
