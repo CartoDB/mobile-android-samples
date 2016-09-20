@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.widget.Toast;
 
 import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
@@ -41,7 +42,7 @@ public class CaptureActivity extends VectorMapSampleBaseActivity {
 
 				num++;
 				String path = Environment.getExternalStorageDirectory().toString();
-				String filename = path + "/screen" + num + ".png";
+				final String filename = path + "/screen" + num + ".png";
 
 				FileOutputStream out = null;
 				try {
@@ -57,6 +58,11 @@ public class CaptureActivity extends VectorMapSampleBaseActivity {
 				    } catch (IOException e) {
 				        e.printStackTrace();
 				    }
+					CaptureActivity.this.runOnUiThread(new Runnable() {
+						public void run() {
+							Toast.makeText(CaptureActivity.this, "Screen saved to " + filename, Toast.LENGTH_LONG).show();
+						}
+					});
 				}			
 			}
 			//mapView.getMapRenderer().captureRendering(this, true);
