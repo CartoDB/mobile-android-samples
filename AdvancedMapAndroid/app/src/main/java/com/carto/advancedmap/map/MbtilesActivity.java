@@ -61,7 +61,7 @@ public class MbtilesActivity extends MapSampleBaseActivity implements
         }
         
         if ("pbf".equals(format) || "ntvt".equals(format)) {
-            BinaryData styleBytes = AssetUtils.loadAsset("nutibright-v2a.zip");
+            BinaryData styleBytes = AssetUtils.loadAsset(Const.VECTOR_STYLE_PACKAGE);
             CompiledStyleSet vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
             VectorTileDecoder vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
         	baseLayer = new VectorTileLayer(tileDataSource, vectorTileDecoder);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.Description;
 import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
+import com.carto.advancedmap.util.Const;
 import com.carto.core.BinaryData;
 import com.carto.core.MapRange;
 import com.carto.datasources.HTTPTileDataSource;
@@ -32,8 +33,7 @@ public class MapZenActivity extends MapSampleBaseActivity {
 
         // Configure to Mapzen tiles, we load all layers to have rich map
         TileDataSource baseRasterTileDataSource = new HTTPTileDataSource(1, 16, "http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key="+mapZenKey);
-        String styleAssetName = "nutibright-v3.zip";
-        BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
+        BinaryData styleBytes = AssetUtils.loadAsset(Const.VECTOR_STYLE_PACKAGE);
         // Create style set
         CompiledStyleSet vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes), "mapzen");
 
