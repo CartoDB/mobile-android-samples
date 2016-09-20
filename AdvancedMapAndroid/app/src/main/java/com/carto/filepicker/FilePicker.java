@@ -14,12 +14,14 @@
  */
 package com.carto.filepicker;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -29,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.mapbase.BaseActivity;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -49,7 +52,7 @@ import java.util.Comparator;
  * considered as valid and can be selected by the user.
  */
 @SuppressWarnings("deprecation")
-public class FilePicker extends Activity implements AdapterView.OnItemClickListener {
+public class FilePicker extends BaseActivity implements AdapterView.OnItemClickListener {
 
 	private static final String DEFAULT_DIRECTORY = "/";
 	private static final String PREFERENCES_FILE = "FilePicker";
@@ -68,12 +71,42 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 	private File[] filesWithParentFolder;
 	private String viewerClassName;
 
+	Bundle savedInstanceState;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
+		this.savedInstanceState = savedInstanceState;
+
 		setContentView(R.layout.activity_file_picker);
+
+		if (isMarshmallow()) {
+			requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+		} else {
+			onPermissionGranted();
+		}
+	}
+
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case 1: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					onPermissionGranted();
+				} else {
+					finish();
+				}
+				return;
+			}
+
+			// other 'case' lines to check for other
+			// permissions this app might request
+		}
+	}
+
+	void onPermissionGranted() {
 
 		Bundle b = getIntent().getExtras();
 		this.viewerClassName = b.getString("class");
@@ -87,26 +120,33 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 			// Start of this instance
 			showDialog(DIALOG_FILE_SELECT);
 		}
+
+		resumeBrowsing();
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
 
-		// Save the current directory
-		Editor editor = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE).edit();
-		editor.clear();
-
-		if (this.currentDirectory != null) {
-			editor.putString("currentDirectory", this.currentDirectory.getAbsolutePath());
+		try {
+			pauseBrowsing();
+		} catch (NullPointerException e) {
+			System.out.println("Filepicker onResume: " + e.getMessage());
 		}
-
-		editor.commit();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		try {
+			resumeBrowsing();
+		} catch (NullPointerException e) {
+			System.out.println("Filepicker onResume: " + e.getMessage());
+		}
+	}
+
+	void resumeBrowsing() {
 
 		// Check if the full screen mode should be activated
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("fullscreen", false)) {
@@ -126,6 +166,19 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 		}
 
 		browseToCurrentDirectory();
+	}
+
+	void pauseBrowsing() {
+
+		// Save the current directory
+		Editor editor = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE).edit();
+		editor.clear();
+
+		if (this.currentDirectory != null) {
+			editor.putString("currentDirectory", this.currentDirectory.getAbsolutePath());
+		}
+
+		editor.commit();
 	}
 
 	/**

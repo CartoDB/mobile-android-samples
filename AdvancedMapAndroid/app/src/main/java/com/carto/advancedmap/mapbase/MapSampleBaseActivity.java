@@ -21,17 +21,7 @@ import com.carto.ui.MapView;
 /**
  * Base activity for map samples. Includes simple lifecycle management
  */
-public class MapSampleBaseActivity extends Activity {
-
-    protected static final int MARSHMALLOW = 23;
-
-    protected  boolean isMarshmallow() {
-        return Build.VERSION.SDK_INT >= MARSHMALLOW;
-    }
-
-    protected void requestPermission(String permission) {
-        ActivityCompat.requestPermissions(this, new String[]{ permission }, 1);
-    }
+public class MapSampleBaseActivity extends BaseActivity {
 
     protected MapView mapView;
     protected Projection baseProjection;
