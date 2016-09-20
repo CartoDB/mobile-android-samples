@@ -49,14 +49,83 @@ import java.util.Comparator;
  */
 @SuppressWarnings("deprecation")
 public class FilePicker extends Activity implements AdapterView.OnItemClickListener {
+
 	private static final String DEFAULT_DIRECTORY = "/";
+	private static final String PREFERENCES_FILE = "FilePicker";
+
 	private static final int DIALOG_FILE_INVALID = 0;
 	private static final int DIALOG_FILE_SELECT = 1;
+
 	private static Comparator<File> fileComparator = getDefaultFileComparator();
 	private static FileFilter fileDisplayFilter;
 	private static FileFilter fileSelectFilter;
     private static String msg;
-	private static final String PREFERENCES_FILE = "FilePicker";
+
+	private File currentDirectory;
+	private FilePickerIconAdapter filePickerIconAdapter;
+	private File[] files;
+	private File[] filesWithParentFolder;
+	private String viewerClassName;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_file_picker);
+
+		Bundle b = getIntent().getExtras();
+		this.viewerClassName = b.getString("class");
+
+		this.filePickerIconAdapter = new FilePickerIconAdapter(this);
+		GridView gridView = (GridView) findViewById(R.id.filePickerView);
+		gridView.setOnItemClickListener(this);
+		gridView.setAdapter(this.filePickerIconAdapter);
+
+		if (savedInstanceState == null && msg != null) {
+			// Start of this instance
+			showDialog(DIALOG_FILE_SELECT);
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+
+		// Save the current directory
+		Editor editor = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE).edit();
+		editor.clear();
+
+		if (this.currentDirectory != null) {
+			editor.putString("currentDirectory", this.currentDirectory.getAbsolutePath());
+		}
+
+		editor.commit();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// Check if the full screen mode should be activated
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("fullscreen", false)) {
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+		} else {
+			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+		}
+
+		// Restore the current directory
+		SharedPreferences preferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE);
+		this.currentDirectory = new File(preferences.getString("currentDirectory", DEFAULT_DIRECTORY));
+
+		if (!this.currentDirectory.exists() || !this.currentDirectory.canRead()) {
+			this.currentDirectory = new File(DEFAULT_DIRECTORY);
+		}
+
+		browseToCurrentDirectory();
+	}
 
 	/**
 	 * Sets the file comparator which is used to order the contents of all directories before
@@ -101,7 +170,7 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 	 * @return the default file comparator.
 	 */
 	private static Comparator<File> getDefaultFileComparator() {
-		// order all files by type and alphabetically by name
+		// Order all files by type and alphabetically by name
 		return new Comparator<File>() {
 			@Override
 			public int compare(File file1, File file2) {
@@ -116,15 +185,11 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 		};
 	}
 
-	private File currentDirectory;
-	private FilePickerIconAdapter filePickerIconAdapter;
-	private File[] files;
-	private File[] filesWithParentFolder;
-    private String viewerClassName;
-
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 		File selectedFile = this.files[(int) id];
+
 		if (selectedFile.isDirectory()) {
 			this.currentDirectory = selectedFile;
 			browseToCurrentDirectory();
@@ -141,13 +206,11 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 		}
 	}
 
-	/**
-	 * Browses to the current directory.
-	 */
 	private void browseToCurrentDirectory() {
+
 		setTitle(this.currentDirectory.getAbsolutePath());
 
-		// read the subfolders and files from the current directory
+		// Read the subfolders and files from the current directory
 		if (fileDisplayFilter == null) {
 			this.files = this.currentDirectory.listFiles();
 		} else {
@@ -161,7 +224,7 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 			Arrays.sort(this.files, fileComparator);
 		}
 
-		// if a parent directory exists, add it at the first position
+		// If a parent directory exists, add it at the first position
 		if (this.currentDirectory.getParentFile() != null) {
 			this.filesWithParentFolder = new File[this.files.length + 1];
 			this.filesWithParentFolder[0] = this.currentDirectory.getParentFile();
@@ -171,31 +234,15 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 		} else {
 			this.filePickerIconAdapter.setFiles(this.files, false);
 		}
+
 		this.filePickerIconAdapter.notifyDataSetChanged();
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_file_picker);
-
-        Bundle b = getIntent().getExtras();
-	    this.viewerClassName = b.getString("class");
-
-		this.filePickerIconAdapter = new FilePickerIconAdapter(this);
-		GridView gridView = (GridView) findViewById(R.id.filePickerView);
-		gridView.setOnItemClickListener(this);
-		gridView.setAdapter(this.filePickerIconAdapter);
-
-		if (savedInstanceState == null && msg != null) {
-			// first start of this instance
-			showDialog(DIALOG_FILE_SELECT);
-		}
-	}
-
-	@Override
 	protected Dialog onCreateDialog(int id) {
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
 		switch (id) {
 			case DIALOG_FILE_INVALID:
 				builder.setIcon(android.R.drawable.ic_menu_info_details);
@@ -211,39 +258,5 @@ public class FilePicker extends Activity implements AdapterView.OnItemClickListe
 				// do dialog will be created
 				return null;
 		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		// save the current directory
-		Editor editor = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE).edit();
-		editor.clear();
-		if (this.currentDirectory != null) {
-			editor.putString("currentDirectory", this.currentDirectory.getAbsolutePath());
-		}
-		editor.commit();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// check if the full screen mode should be activated
-		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("fullscreen", false)) {
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-		} else {
-			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-		}
-
-		// restore the current directory
-		SharedPreferences preferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE);
-		this.currentDirectory = new File(preferences.getString("currentDirectory",
-				DEFAULT_DIRECTORY));
-		if (!this.currentDirectory.exists() || !this.currentDirectory.canRead()) {
-			this.currentDirectory = new File(DEFAULT_DIRECTORY);
-		}
-		browseToCurrentDirectory();
 	}
 }
