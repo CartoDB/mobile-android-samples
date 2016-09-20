@@ -86,6 +86,8 @@ public class InteractivityMapActivity extends VectorMapSampleBaseActivity {
 
             LocalVectorDataSource source = (LocalVectorDataSource)layer.getDataSource();
 
+            source.clear();
+
             Color color = new Color((short)0, (short)100, (short)200, (short)150);
 
             Feature feature = clickInfo.getFeature();
