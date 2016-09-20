@@ -1,7 +1,10 @@
 package com.carto.advancedmap.mapbase;
 
+import android.Manifest;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ZoomControls;
@@ -19,6 +22,16 @@ import com.carto.ui.MapView;
  * Base activity for map samples. Includes simple lifecycle management
  */
 public class MapSampleBaseActivity extends Activity {
+
+    protected static final int MARSHMALLOW = 23;
+
+    protected  boolean isMarshmallow() {
+        return Build.VERSION.SDK_INT >= MARSHMALLOW;
+    }
+
+    protected void requestPermission(String permission) {
+        ActivityCompat.requestPermissions(this, new String[]{ permission }, 1);
+    }
 
     protected MapView mapView;
     protected Projection baseProjection;

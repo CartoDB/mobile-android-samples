@@ -53,9 +53,8 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer);
 
-        final int MARSHMALLOW = 23;
-        if (Build.VERSION.SDK_INT >= MARSHMALLOW) {
-            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+        if (isMarshmallow()) {
+            requestPermission(Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             onPermissionGranted();
         }
