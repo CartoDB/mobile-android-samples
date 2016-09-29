@@ -19,7 +19,7 @@ import com.carto.vectorelements.NMLModel;
 import com.carto.vectorelements.Polygon3D;
 
 //import com.carto.datasources.NMLModelLODTreeDataSource;
-//import com.carto.datasources.SqliteNMLModelLODTreeDataSource;
+//import com.carto.datasources.OfflineNMLModelLODTreeDataSource;
 //import com.carto.layers.NMLModelLODTreeLayer;
 
 /**
@@ -89,7 +89,7 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
             AssetCopy.copyAssetToSDCard(getAssets(), fileName, dir);
             Log.i(Const.LOG_TAG,"copy done to " + dir + "/"
                     + fileName);
-            NMLModelLODTreeDataSource nmlDataSource = new SqliteNMLModelLODTreeDataSource(baseProjection, dir + "/" + fileName);
+            NMLModelLODTreeDataSource nmlDataSource = new OfflineNMLModelLODTreeDataSource(baseProjection, dir + "/" + fileName);
             NMLModelLODTreeLayer nmlLayer = new NMLModelLODTreeLayer(nmlDataSource);
             nmlLayer.setVisibleZoomRange(new MapRange(12.0f, 25.0f));
             mapView.getLayers().add(nmlLayer);
