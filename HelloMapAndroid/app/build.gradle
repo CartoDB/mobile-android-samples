@@ -24,18 +24,7 @@ android {
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-        maven {
-            url "http://repository-nutiteq.forge.cloudbees.com/release/"
-        }
-        maven {
-            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
-        }
-    }
-}
-
 dependencies {
+    compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.carto:carto-mobile-sdk:snapshot@aar'
 }
