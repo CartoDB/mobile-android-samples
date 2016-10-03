@@ -5,6 +5,7 @@ branches:
 
 language: android
 jdk: oraclejdk8
+
 android:
   components:
     - tools
@@ -16,8 +17,5 @@ env:
    - TEST_DIR=HelloMapAndroid
    - TEST_DIR=AdvancedMapAndroid
    - TEST_DIR=CartoMapAndroid
-
-before_install:
-   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
 
 script: cd $TEST_DIR && ./gradlew build connectedCheck
