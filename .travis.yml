@@ -14,6 +14,10 @@ android:
     - build-tools-24.0.2
     - android-24
 
+before_install:
+    - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
+    - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
+
 env:
    - TEST_DIR=HelloMapAndroid
    - TEST_DIR=AdvancedMapAndroid
