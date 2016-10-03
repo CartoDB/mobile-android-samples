@@ -24,6 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    adbOptions {
+        timeOutInMs 10 * 60 * 1000  // 10 minutes
+        installOptions "-d","-t"
+    }
 }
 
 allprojects {
@@ -46,3 +50,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 }
+
+task instrumentTest(dependsOn: connectedCheck)
