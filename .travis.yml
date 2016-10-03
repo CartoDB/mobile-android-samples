@@ -11,6 +11,7 @@ android:
     - tools
     - platform-tools
     - build-tools-24.0.1
+    - build-tools-24.0.2
     - android-24
 
 env:
