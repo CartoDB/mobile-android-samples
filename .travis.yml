@@ -17,4 +17,7 @@ env:
    - TEST_DIR=AdvancedMapAndroid
    - TEST_DIR=CartoMapAndroid
 
+before_install:
+   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
+
 script: cd $TEST_DIR && ./gradlew build connectedCheck

@@ -27,16 +27,20 @@ public class PinMapActivity extends VectorMapSampleBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+
+        // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
-        
+
         // Add a pin marker to map
         // 1. Initialize a local vector data source
         LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);
+
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
+
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer1);
+
         // Set visible zoom range for the vector layer
         vectorLayer1.setVisibleZoomRange(new MapRange(0, 18));
         
