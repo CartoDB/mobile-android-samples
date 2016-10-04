@@ -16,7 +16,7 @@ android:
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-22
 
     - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
 
