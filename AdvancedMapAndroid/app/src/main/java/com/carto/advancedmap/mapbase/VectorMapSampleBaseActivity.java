@@ -47,7 +47,9 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
     	Menu langMenu = menu.addSubMenu("Language");
+
     	addLanguageMenuOption(langMenu, "English", "en");
     	addLanguageMenuOption(langMenu, "German",  "de");
         addLanguageMenuOption(langMenu, "Spanish",  "es");
@@ -57,9 +59,12 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
     	addLanguageMenuOption(langMenu, "Chinese", "zh");
    	
     	Menu styleMenu = menu.addSubMenu("Style");
+
     	addStyleMenuOption(styleMenu, "Basic", "basic");
-    	addStyleMenuOption(styleMenu, "NutiBright 2D", MAIN_STYLE);
-    	addStyleMenuOption(styleMenu, "NutiBright 3D", "nutibright3d");
+    	addStyleMenuOption(styleMenu, "NutiBright 2D", MAIN_STYLE + ":default");
+		addStyleMenuOption(styleMenu, "Nutiteq Dark", MAIN_STYLE + ":nutiteq_dark");
+		addStyleMenuOption(styleMenu, "Nutiteq Grey", MAIN_STYLE + ":nutiteq_grey");
+		addStyleMenuOption(styleMenu, "NutiBright 3D", "nutibright3d");
     	addStyleMenuOption(styleMenu, "Loose Leaf", "looseleaf");
 
     	return true;
@@ -110,43 +115,61 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
     }
     
     protected void updateBaseLayer() {
-    	String styleAssetName = vectorStyleName + ".zip";
+
     	boolean styleBuildings3D = false;
-    	if (vectorStyleName.equals("nutibright3d")) {
-    		styleAssetName = MAIN_STYLE_FILE;
-    		styleBuildings3D = true;
-    	}
-        BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
 
-        if (styleBytes != null){
-        	// Create style set
-            CompiledStyleSet vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-            vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
-            
-            // Set language, language-specific texts from vector tiles will be used
-            vectorTileDecoder.setStyleParameter("lang", vectorStyleLang);
-            
-            // OSM Bright style set supports choosing between 2d/3d buildings. Set corresponding parameter.
-            if (styleAssetName.equals(MAIN_STYLE_FILE)) {
-            	vectorTileDecoder.setStyleParameter("buildings3d", styleBuildings3D ? "1": "0");
-            	vectorTileDecoder.setStyleParameter("markers3d",styleBuildings3D ? "1" : "0");
-            	vectorTileDecoder.setStyleParameter("texts3d",styleBuildings3D ? "1" : "0");
-            }
-            
-            // Create tile data source for vector tiles
-            if (vectorTileDataSource == null) {
-            	vectorTileDataSource = createTileDataSource();
-            }
+		CompiledStyleSet vectorTileStyleSet;
 
-            // Remove old base layer, create new base layer
-            if (baseLayer != null) {
-            	mapView.getLayers().remove(baseLayer);
-            }
-            baseLayer = new VectorTileLayer(vectorTileDataSource, vectorTileDecoder);
-            mapView.getLayers().insert(0, baseLayer);
-        } else {
-            Log.e(Const.LOG_TAG, "map style file must be in project assets: "+vectorStyleName);
-        }
+		if (vectorStyleName.contains(":")) {
+
+
+			String[] split = vectorStyleName.split(":");
+			String fileName = split[0];
+			String styleName = split[1];
+
+			String styleAssetName = fileName + ".zip";
+			BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
+
+			// Create style set
+			vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes), styleName);
+
+		} else {
+
+			if (vectorStyleName.equals("nutibright3d")) {
+				vectorStyleName = MAIN_STYLE;
+				styleBuildings3D = true;
+			}
+
+			String styleAssetName = vectorStyleName + ".zip";
+			BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
+
+			// Create style set
+			vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
+		}
+
+		vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
+
+		// Set language, language-specific texts from vector tiles will be used
+		vectorTileDecoder.setStyleParameter("lang", vectorStyleLang);
+
+		// OSM Bright style set supports choosing between 2d/3d buildings. Set corresponding parameter.
+
+		vectorTileDecoder.setStyleParameter("buildings3d", styleBuildings3D ? "1": "0");
+		vectorTileDecoder.setStyleParameter("markers3d",styleBuildings3D ? "1" : "0");
+		vectorTileDecoder.setStyleParameter("texts3d",styleBuildings3D ? "1" : "0");
+
+		// Create tile data source for vector tiles
+		if (vectorTileDataSource == null) {
+			vectorTileDataSource = createTileDataSource();
+		}
+
+		// Remove old base layer, create new base layer
+		if (baseLayer != null) {
+			mapView.getLayers().remove(baseLayer);
+		}
+
+		baseLayer = new VectorTileLayer(vectorTileDataSource, vectorTileDecoder);
+		mapView.getLayers().insert(0, baseLayer);
     }
     
     protected TileDataSource createTileDataSource() {
