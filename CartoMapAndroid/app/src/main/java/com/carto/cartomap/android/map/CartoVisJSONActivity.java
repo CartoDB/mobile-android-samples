@@ -9,12 +9,15 @@ import com.carto.cartomap.android.Description;
 import com.carto.cartomap.android.builder.MyCartoVisBuilder;
 import com.carto.cartomap.android.mapbase.MapSampleBaseActivity;
 
+import com.carto.core.BinaryData;
 import com.carto.datasources.LocalVectorDataSource;
 
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 
 import com.carto.services.CartoVisLoader;
+import com.carto.utils.AssetUtils;
+import com.carto.utils.ZippedAssetPackage;
 
 import java.io.IOException;
 
@@ -31,6 +34,7 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
     static final String testUrl = "http://documentation.cartodb.com/api/v2/viz/3ec995a8-b6ae-11e4-849e-0e4fddd5de28/viz.json";
     static final String countriesUrl = "http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
     static final String dotsUrl = "https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json";
+    static final String fontsUrl = "https://cartomobile-team.carto.com/u/nutiteq/api/v2/viz/13332848-27da-11e6-8801-0e5db1731f59/viz.json";
 
     private String visJSONURL = dotsUrl;
 
@@ -93,6 +97,10 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
                 // Create VIS loader
                 CartoVisLoader loader = new CartoVisLoader();
                 loader.setDefaultVectorLayerMode(true);
+
+                BinaryData fontData = AssetUtils.loadAsset("carto-fonts.zip");
+                loader.setVectorTileAssetPackage(new ZippedAssetPackage(fontData));
+
                 MyCartoVisBuilder visBuilder = new MyCartoVisBuilder(mapView, vectorLayer);
 
                 try {

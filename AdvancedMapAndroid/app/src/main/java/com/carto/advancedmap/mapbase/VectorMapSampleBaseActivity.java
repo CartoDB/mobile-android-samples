@@ -122,7 +122,6 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
 
 		if (vectorStyleName.contains(":")) {
 
-
 			String[] split = vectorStyleName.split(":");
 			String fileName = split[0];
 			String styleName = split[1];
