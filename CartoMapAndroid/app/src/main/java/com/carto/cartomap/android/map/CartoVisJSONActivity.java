@@ -52,6 +52,7 @@ public class CartoVisJSONActivity extends MapSampleBaseActivity {
         addVisJSONMenuOption(menu, "test", testUrl);
         addVisJSONMenuOption(menu, "countries", countriesUrl);
         addVisJSONMenuOption(menu, "dots", dotsUrl);
+        addVisJSONMenuOption(menu, "fonts", fontsUrl);
 
         return true;
     }
