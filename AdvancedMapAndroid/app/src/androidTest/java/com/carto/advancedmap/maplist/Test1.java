@@ -32,34 +32,14 @@ public class Test1 {
 
     @Test
     public void test1() {
-        ViewInteraction linearLayout = onView(
-                allOf(childAtPosition(
-                        allOf(withId(android.R.id.list),
-                                withParent(withId(android.R.id.content))),
-                        2),
-                        isDisplayed()));
-        linearLayout.perform(click());
 
-        pressBack();
+        int mapCount = 21;
 
-        ViewInteraction linearLayout2 = onView(
-                allOf(childAtPosition(
-                        allOf(withId(android.R.id.list),
-                                withParent(withId(android.R.id.content))),
-                        1),
-                        isDisplayed()));
-        linearLayout2.perform(click());
-
-        pressBack();
-
-        ViewInteraction linearLayout3 = onView(
-                allOf(childAtPosition(
-                        allOf(withId(android.R.id.list),
-                                withParent(withId(android.R.id.content))),
-                        7),
-                        isDisplayed()));
-        linearLayout3.perform(click());
-
+        for (Integer i = 0; i < mapCount; i++) {
+            ViewInteraction linearLayout = onView(getMatcher(i));
+            linearLayout.perform(click());
+            pressBack();
+        }
     }
 
     private static Matcher<View> childAtPosition(
@@ -79,5 +59,9 @@ public class Test1 {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
+    }
+
+    static Matcher<View> getMatcher(Integer i) {
+        return allOf(childAtPosition(allOf(withId(android.R.id.list), withParent(withId(android.R.id.content))), i), isDisplayed());
     }
 }
