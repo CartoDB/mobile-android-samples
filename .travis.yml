@@ -12,8 +12,10 @@ android:
     - platform-tools
     - build-tools-24.0.1
     - build-tools-24.0.2
-    - android-24
 
+    - android-22
+    - extra
+    - addon
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-22
@@ -26,9 +28,10 @@ before_install:
 
 # Emulator Management: Create, Start and Wait
 before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
   # Unlock screen
   - adb shell input keyevent 82
