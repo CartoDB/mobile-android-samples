@@ -78,7 +78,8 @@ public class CartoDBSQLDataSource extends VectorDataSource {
     private void loadData(VectorElementVector elements, MapPos min, MapPos max, float zoom) {
 
         // load and parse JSON
-        String bbox = String.format(Locale.US, "ST_SetSRID(ST_MakeEnvelope(%f,%f,%f,%f),3857) && the_geom_webmercator", min.getX(), min.getY(), max.getX(), max.getY());
+        String base = "ST_SetSRID(ST_MakeEnvelope(%f,%f,%f,%f),3857) && the_geom_webmercator";
+        String bbox = String.format(Locale.US, base, min.getX(), min.getY(), max.getX(), max.getY());
 
         String unencodedQuery = query.replace("!bbox!", bbox);
 
