@@ -44,7 +44,7 @@ env:
    - TEST_DIR=AdvancedMapAndroid
    - TEST_DIR=CartoMapAndroid
 
-script: cd $TEST_DIR && ./gradlew build connectedCheck connectedAndroidTest
+script: cd $TEST_DIR && ./gradlew build connectedCheck
 
 
 
