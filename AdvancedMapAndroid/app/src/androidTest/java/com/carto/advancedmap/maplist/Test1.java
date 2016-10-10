@@ -70,9 +70,9 @@ public class Test1 {
                 Collection<Activity> activities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
                 if (activities.size() > 0) {
                     list = (LauncherListActivity)activities.toArray()[0];
+                    list.unlockScreen();
                 }
             }
         });
     }
-
 }

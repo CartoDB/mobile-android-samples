@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.Description;
@@ -74,6 +75,10 @@ public class LauncherListActivity extends ListActivity {
         }
 
         return  -1;
+    }
+
+    public void unlockScreen() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
     @Override
