@@ -52,7 +52,7 @@ public class TwoLineArrayAdapter extends ArrayAdapter<MapListItem> {
 
         lineOneView.setText(item.name);
         lineTwoView.setText(item.description);
-        
+
         return listItemView;
     }
 }

@@ -1,15 +1,18 @@
 package com.carto.advancedmap.maplist;
 
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.matcher.BoundedMatcher;
+import android.app.Activity;
+import android.support.test.espresso.DataInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import com.carto.advancedmap.MapListItem;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -18,13 +21,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Map;
+import java.util.Collection;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.assertion.ViewAssertions.*;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
@@ -39,42 +42,37 @@ public class Test1 {
     @Rule
     public ActivityTestRule<LauncherListActivity> mActivityTestRule = new ActivityTestRule<>(LauncherListActivity.class);
 
+    static LauncherListActivity list;
+
     @Test
     public void test1() {
 
-        int mapCount = 21;
+        setActivity();
 
-        for (Integer i = 0; i < mapCount; i++) {
+        int filePickerIndex = list.indexOfFilePicker();
 
-            // TODO Check if !visible -> scroll to visible
-            try {
-                onView(getMatcher(i)).perform(click());
+        for (Integer i = 0; i < list.samples.length; i++) {
+
+            if (i != filePickerIndex) {
+                DataInteraction interaction = onData(allOf(is(instanceOf(MapListItem.class))));
+                interaction.atPosition(i).perform(click());
+
                 pressBack();
-            } catch (Exception e) {
-                return;
             }
+
         }
     }
 
-    static Matcher<View> getMatcher(Integer i) {
-        return allOf(childAtPosition(allOf(withId(android.R.id.list), withParent(withId(android.R.id.content))), i), isDisplayed());
+    static void setActivity() {
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                Collection<Activity> activities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
+                if (activities.size() > 0) {
+                    list = (LauncherListActivity)activities.toArray()[0];
+                }
+            }
+        });
     }
 
-    private static Matcher<View> childAtPosition(final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 }

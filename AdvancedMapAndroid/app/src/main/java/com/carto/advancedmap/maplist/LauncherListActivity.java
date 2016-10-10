@@ -42,7 +42,7 @@ public class LauncherListActivity extends ListActivity {
 
     // list of demos: MapActivity, ParameterSelectorActivity (can be null)
     // if parameter selector is given, then this is launched first to get a parameter (file path)
-    private Object[][] samples = {
+    public Object[][] samples = {
             { PinMapActivity.class, null },
             { Overlays2DActivity.class, null },
             { MapListenerActivity.class, null },
@@ -64,6 +64,17 @@ public class LauncherListActivity extends ListActivity {
             { RasterOverlayActivity.class, null },
             { WmsMapActivity.class, null }
     };
+
+    public int indexOfFilePicker() {
+
+        for (int i = 0; i < samples.length; i++) {
+            if (samples[i][1] == FilePicker.class) {
+                return i;
+            }
+        }
+
+        return  -1;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
