@@ -1,4 +1,4 @@
-package com.carto.advancedmap.maplist;
+package com.carto.advancedmap.otheractivities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.carto.advancedmap.Description;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.map.PackagedMapActivity;
+import com.carto.advancedmap.mapsamples.PackagedMapActivity;
 import com.carto.advancedmap.util.Const;
 import com.carto.core.StringVector;
 import com.carto.datasources.PackageManagerTileDataSource;

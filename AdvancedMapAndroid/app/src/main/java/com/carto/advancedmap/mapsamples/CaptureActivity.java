@@ -1,4 +1,4 @@
-package com.carto.advancedmap.map;
+package com.carto.advancedmap.mapsamples;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

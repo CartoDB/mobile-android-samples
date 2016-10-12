@@ -1,4 +1,4 @@
-package com.carto.advancedmap.map;
+package com.carto.advancedmap.mapsamples;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;

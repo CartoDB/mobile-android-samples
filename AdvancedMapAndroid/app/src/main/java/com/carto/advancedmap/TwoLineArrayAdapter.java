@@ -17,12 +17,6 @@ public class TwoLineArrayAdapter extends ArrayAdapter<MapListItem> {
 
     MapListItem[] items;
 
-    public TwoLineArrayAdapter(Context context, MapListItem[] items) {
-        this(context, android.R.layout.two_line_list_item, items);
-
-        this.items = items;
-    }
-
     public TwoLineArrayAdapter(Context context, int listItemLayoutResourceId, MapListItem[] ts) {
         super(context, listItemLayoutResourceId, ts);
 

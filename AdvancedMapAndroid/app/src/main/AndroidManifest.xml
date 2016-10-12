@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:name=".AdvancedMapApplication">
         <activity
-            android:name=".maplist.LauncherListActivity"
+            android:name=".otheractivities.LauncherListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,29 +30,29 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".map.PinMapActivity" />
-        <activity android:name=".map.PackagedMapActivity" />
-        <activity android:name=".map.Overlays2DActivity" />
-        <activity android:name=".map.MapListenerActivity" />
-        <activity android:name=".map.Overlays3DActivity" />
-        <activity android:name=".map.OfflineVectorMapActivity" />
-        <activity android:name=".map.GroundOverlayActivity" />
-        <activity android:name=".map.AnimatedRasterMapActivity" />
-        <activity android:name=".map.RasterOverlayActivity" />
-        <activity android:name=".map.AerialMapActivity" />
-        <activity android:name=".map.CustomRasterDataSourceActivity" />
-        <activity android:name=".map.CustomPopupActivity" />
-        <activity android:name=".map.MbtilesActivity" />
-        <activity android:name=".map.WmsMapActivity" />
-        <activity android:name=".map.ClusteredRandomPointsActivity" />
-        <activity android:name=".map.ClusteredGeoJsonActivity" />
-        <activity android:name=".map.MyLocationActivity" />
-        <activity android:name=".map.InteractivityMapActivity" />
-        <activity android:name=".map.OfflineRoutingActivity" />
-        <activity android:name=".map.MapZenActivity" />
-        <activity android:name=".map.CaptureActivity" />
+        <activity android:name=".mapsamples.PinMapActivity" />
+        <activity android:name=".mapsamples.PackagedMapActivity" />
+        <activity android:name=".mapsamples.Overlays2DActivity" />
+        <activity android:name=".mapsamples.MapListenerActivity" />
+        <activity android:name=".mapsamples.Overlays3DActivity" />
+        <activity android:name=".mapsamples.OfflineVectorMapActivity" />
+        <activity android:name=".mapsamples.GroundOverlayActivity" />
+        <activity android:name=".mapsamples.AnimatedRasterMapActivity" />
+        <activity android:name=".mapsamples.RasterOverlayActivity" />
+        <activity android:name=".mapsamples.AerialMapActivity" />
+        <activity android:name=".mapsamples.CustomRasterDataSourceActivity" />
+        <activity android:name=".mapsamples.CustomPopupActivity" />
+        <activity android:name=".mapsamples.MbtilesActivity" />
+        <activity android:name=".mapsamples.WmsMapActivity" />
+        <activity android:name=".mapsamples.ClusteredRandomPointsActivity" />
+        <activity android:name=".mapsamples.ClusteredGeoJsonActivity" />
+        <activity android:name=".mapsamples.MyLocationActivity" />
+        <activity android:name=".mapsamples.InteractivityMapActivity" />
+        <activity android:name=".mapsamples.OfflineRoutingActivity" />
+        <activity android:name=".mapsamples.MapZenActivity" />
+        <activity android:name=".mapsamples.CaptureActivity" />
 
-        <activity android:name=".maplist.PackageManagerActivity" />
+        <activity android:name=".otheractivities.PackageManagerActivity" />
 
         <activity android:name="com.carto.filepicker.FilePicker" />
 

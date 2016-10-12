@@ -24,7 +24,6 @@ public class AdvancedMapApplication extends Application {
         // The license used here is intended only for CARTO Mobile SDK demos and WILL NOT work with other apps!
         MapView.registerLicense(LICENSE, getApplicationContext());
 
-        com.carto.utils.Log.setShowDebug(true);
         com.carto.utils.Log.setShowInfo(true);
 
     }
