@@ -40,44 +40,6 @@ import java.util.Map;
 @Description(value = "Automatic Marker clusters")
 public class ClusteredRandomPointsActivity extends VectorMapSampleBaseActivity {
 
-	private static class MyClusterElementBuilder extends ClusterElementBuilder {
-		@SuppressLint("UseSparseArrays")
-		private Map<Integer, MarkerStyle> markerStyles = new HashMap<Integer, MarkerStyle>();
-		private android.graphics.Bitmap markerBitmap;
-		
-		MyClusterElementBuilder(Application context) {
-			markerBitmap = android.graphics.Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.marker_black));
-		}
-
-		@Override
-		public VectorElement buildClusterElement(MapPos pos, VectorElementVector elements) {
-			// Try to reuse existing marker styles
-			MarkerStyle style = markerStyles.get((int) elements.size());
-			if (elements.size() == 1) {
-				style = ((Marker) elements.get(0)).getStyle();
-			}
-			if (style == null) {
-				android.graphics.Bitmap canvasBitmap = markerBitmap.copy(android.graphics.Bitmap.Config.ARGB_8888, true);
-				android.graphics.Canvas canvas = new android.graphics.Canvas(canvasBitmap); 
-				android.graphics.Paint paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
-				paint.setTextAlign(Align.CENTER);
-				paint.setTextSize(12);
-				paint.setColor(android.graphics.Color.argb(255, 0, 0, 0));
-				canvas.drawText(Integer.toString((int) elements.size()), markerBitmap.getWidth() / 2, markerBitmap.getHeight() / 2 - 5, paint);
-				MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
-				styleBuilder.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(canvasBitmap));
-				styleBuilder.setSize(30);
-		        styleBuilder.setPlacementPriority((int)-elements.size());
-				style = styleBuilder.buildStyle();
-				markerStyles.put((int) elements.size(), style);
-			}
-
-			// Create marker for the cluster
-			Marker marker = new Marker(pos, style);
-			return marker;
-		}
-	}
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // MapSampleBaseActivity creates and configures mapView  
@@ -104,15 +66,73 @@ public class ClusteredRandomPointsActivity extends VectorMapSampleBaseActivity {
         for (int i = 0; i < 1000; i++) {
             double x = Math.random();
             double y = Math.random();
-            MapPos pos = baseProjection.fromWgs84(new MapPos(24.646469 + x, 59.426939 + y)); // Tallinn
+
+			MapPos pos = baseProjection.fromWgs84(new MapPos(24.646469 + x, 59.426939 + y)); // Tallinn
             Marker marker = new Marker(pos, sharedMarkerStyle);
-            vectorDataSource1.add(marker);
+
+			vectorDataSource1.add(marker);
         }
         
         // Initialize a vector layer with the previous data source
-        VectorLayer vectorLayer1 = new ClusteredVectorLayer(vectorDataSource1, new MyClusterElementBuilder(this.getApplication()));
+		MyClusterElementBuilder clusterBuilder = new MyClusterElementBuilder(this.getApplication());
+        VectorLayer vectorLayer1 = new ClusteredVectorLayer(vectorDataSource1, clusterBuilder);
 
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer1);
     }
+
+
+	private static class MyClusterElementBuilder extends ClusterElementBuilder {
+
+		@SuppressLint("UseSparseArrays")
+		private Map<Integer, MarkerStyle> markerStyles = new HashMap<Integer, MarkerStyle>();
+		private android.graphics.Bitmap markerBitmap;
+
+		MyClusterElementBuilder(Application context) {
+
+			markerBitmap = android.graphics.Bitmap.createBitmap(
+					BitmapFactory.decodeResource(context.getResources(), R.drawable.marker_black)
+			);
+		}
+
+		@Override
+		public VectorElement buildClusterElement(MapPos pos, VectorElementVector elements) {
+
+			// Try to reuse existing marker styles
+			MarkerStyle style = markerStyles.get((int) elements.size());
+
+			if (elements.size() == 1) {
+				style = ((Marker) elements.get(0)).getStyle();
+			}
+
+			if (style == null) {
+
+				android.graphics.Bitmap canvasBitmap = markerBitmap.copy(android.graphics.Bitmap.Config.ARGB_8888, true);
+				android.graphics.Canvas canvas = new android.graphics.Canvas(canvasBitmap);
+				android.graphics.Paint paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+
+				paint.setTextAlign(Align.CENTER);
+				paint.setTextSize(12);
+				paint.setColor(android.graphics.Color.argb(255, 0, 0, 0));
+
+				float x = markerBitmap.getWidth() / 2;
+				float y = markerBitmap.getHeight() / 2 - 5;
+
+				canvas.drawText(Integer.toString((int) elements.size()), x, y, paint);
+
+				MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
+				styleBuilder.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(canvasBitmap));
+				styleBuilder.setSize(30);
+				styleBuilder.setPlacementPriority((int)-elements.size());
+
+				style = styleBuilder.buildStyle();
+
+				markerStyles.put((int) elements.size(), style);
+			}
+
+			// Create marker for the cluster
+			Marker marker = new Marker(pos, style);
+			return marker;
+		}
+	}
 }

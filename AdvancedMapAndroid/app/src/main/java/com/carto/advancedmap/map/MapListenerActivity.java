@@ -25,10 +25,13 @@ public class MapListenerActivity extends Overlays2DActivity {
         
         // 1. Initialize a local vector data source and layer for click Balloons
         LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(baseProjection);
+
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
+
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer);
+
         // Set visible zoom range for the vector layer
         vectorLayer.setVisibleZoomRange(new MapRange(10, 24));
         
@@ -38,6 +41,7 @@ public class MapListenerActivity extends Overlays2DActivity {
         mapView.setMapEventListener(mapEventListener);
         
         MyVectorElementEventListener vectorElementEventListener = new MyVectorElementEventListener(mapView, vectorDataSource);
+
         for (int i = 0; i < mapView.getLayers().count(); i++) {
         	Layer layer = mapView.getLayers().get(i);
         	if (layer instanceof VectorLayer) {
@@ -48,13 +52,16 @@ public class MapListenerActivity extends Overlays2DActivity {
     
     @Override
     public void onDestroy() {
+
         for (int i = 0; i < mapView.getLayers().count(); i++) {
         	Layer layer = mapView.getLayers().get(i);
         	if (layer instanceof VectorLayer) {
         		((VectorLayer) layer).setVectorElementEventListener(null);
         	}
         }
+
     	mapView.setMapEventListener(null);
+
     	super.onDestroy();
     }
 }

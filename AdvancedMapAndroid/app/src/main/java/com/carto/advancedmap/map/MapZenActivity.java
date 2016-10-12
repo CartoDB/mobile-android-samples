@@ -30,20 +30,22 @@ public class MapZenActivity extends MapSampleBaseActivity {
         super.onCreate(savedInstanceState);
 
         String mapZenKey = "vector-tiles-F2ETj3g";
+        String url = "http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=" + mapZenKey;
 
         // Configure to Mapzen tiles, we load all layers to have rich map
-        TileDataSource baseRasterTileDataSource = new HTTPTileDataSource(1, 16, "http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key="+mapZenKey);
+        TileDataSource baseRasterTileDataSource = new HTTPTileDataSource(1, 16, url);
         BinaryData styleBytes = AssetUtils.loadAsset(Const.VECTOR_STYLE_PACKAGE);
+
         // Create style set
         CompiledStyleSet vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes), "mapzen");
 
-        // we must use special style file for mapzen, as this has different data structure
+        // We must use special style file for mapzen, as this has different data structure
         MBVectorTileDecoder vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
 
-        // use "name:en" to get English names where available, "name" is for generic local names
+        // Use "name:en" to get English names where available, "name" is for generic local names
         vectorTileDecoder.setStyleParameter("name", "name:en");
 
-        // try to set client-side buffer, as mapzen does not have it in tiles
+        // Try to set client-side buffer, as mapzen does not have it in tiles
         vectorTileDecoder.setBuffering(1.0f/64.0f);
 
         // Create vector layer

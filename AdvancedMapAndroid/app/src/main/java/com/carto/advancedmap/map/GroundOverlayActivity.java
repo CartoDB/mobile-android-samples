@@ -55,7 +55,10 @@ public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
         bitmapPoses.add(new ScreenPos(overlayBitmap.getWidth(), 0));
         
         // Create bitmap overlay raster tile data source
-        BitmapOverlayRasterTileDataSource rasterDataSource = new BitmapOverlayRasterTileDataSource(0, 20, overlayBitmap, proj, mapPoses, bitmapPoses);
+        BitmapOverlayRasterTileDataSource rasterDataSource = new BitmapOverlayRasterTileDataSource(
+                0, 20, overlayBitmap, proj, mapPoses, bitmapPoses
+        );
+
         RasterTileLayer rasterLayer = new RasterTileLayer(rasterDataSource);
         mapView.getLayers().add(rasterLayer);
         
@@ -63,6 +66,7 @@ public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
         // By default, bitmaps are upsampled on high-DPI screens.
         // We will correct this by applying appropriate bias
         float zoomLevelBias = (float) (Math.log(mapView.getOptions().getDPI() / 160.0f) / Math.log(2));
+
         rasterLayer.setZoomLevelBias(zoomLevelBias * 0.75f);
         rasterLayer.setTileSubstitutionPolicy(TileSubstitutionPolicy.TILE_SUBSTITUTION_POLICY_VISIBLE);
         

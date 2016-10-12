@@ -36,62 +36,42 @@ import java.io.InputStream;
 @Description(value = "Read data from GeoJSON and show as clusters")
 public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
 
-    static class MyClusterElementBuilder extends ClusterElementBuilder {
-        BalloonPopupStyle balloonPopupStyle;
-
-        public MyClusterElementBuilder(){
-        	balloonPopupStyle = new BalloonPopupStyleBuilder().buildStyle();
-        }
-        
-        @Override
-        public VectorElement buildClusterElement(MapPos pos, VectorElementVector elements) {
-
-            // Cluster popup has just a number of cluster elements, and default style
-            // You can create here also Marker, Point etc. Point is suggested for big number of objects
-            // Note: pos has center of the cluster coordinates
-
-            BalloonPopup popup = new BalloonPopup(
-                    pos,
-                    balloonPopupStyle,
-                    Long.toString(elements.size()), "");
-            return popup;
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+
+        // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-
-        // 1. Initialize a local vector data source
+        // Initialize a local vector data source
         LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);
+
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer1 = new ClusteredVectorLayer(vectorDataSource1, new MyClusterElementBuilder());
+
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer1);
+
         // Set visible zoom range for the vector layer
         vectorLayer1.setVisibleZoomRange(new MapRange(0, 18));
 
         // Style for popups
         BalloonPopupStyle balloonPopupStyle = new BalloonPopupStyleBuilder().buildStyle();
 
-        // read GeoJSON, parse it using SDK GeoJSON parser
+        // Read GeoJSON, parse it using SDK GeoJSON parser
         GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
         FeatureCollection features = geoJsonParser.readFeatureCollection(loadJSONFromAsset());
+
         for (int i = 0; i < features.getFeatureCount(); i++) {
             Feature feature = features.getFeature(i);
 
-            // create popup for each object
-            BalloonPopup popup = new BalloonPopup(
-                    feature.getGeometry(),
-                    balloonPopupStyle,
-                    feature.getProperties().getObjectElement("Capital").getString(),
-                    feature.getProperties().getObjectElement("Country").getString());
+            // Create popup for each object
+            String capital = feature.getProperties().getObjectElement("Capital").getString();
+            String country = feature.getProperties().getObjectElement("Country").getString();
+            BalloonPopup popup = new BalloonPopup(feature.getGeometry(), balloonPopupStyle, capital, country);
 
-            // add all properties as MetaData, so you can use it with click handling
+            // Add all properties as MetaData, so you can use it with click handling
             StringVector keys = feature.getProperties().getObjectKeys();
+
             for (int j = 0; j < keys.size(); j++) {
                 String key = keys.get(j);
                 Variant val = feature.getProperties().getObjectElement(key);
@@ -100,11 +80,12 @@ public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
 
             vectorDataSource1.add(popup);
         }
-
     }
 
     public String loadJSONFromAsset() {
-        String json = null;
+
+        String json;
+
         try {
             InputStream is = getAssets().open("capitals_3857.geojson");
             int size = is.available();
@@ -112,11 +93,35 @@ public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
             is.read(buffer);
             is.close();
             json = new String(buffer, "UTF-8");
-
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
         }
+
         return json;
     }
+
+
+    static class MyClusterElementBuilder extends ClusterElementBuilder {
+
+        BalloonPopupStyle style;
+
+        public MyClusterElementBuilder() {
+            style = new BalloonPopupStyleBuilder().buildStyle();
+        }
+
+        @Override
+        public VectorElement buildClusterElement(MapPos pos, VectorElementVector elements) {
+
+            // Cluster popup has just a number of cluster elements, and default style
+            // You can create here also Marker, Point etc. Point is suggested for big number of objects
+            // Note: pos has center of the cluster coordinates
+
+            BalloonPopup popup = new BalloonPopup(pos, style, Long.toString(elements.size()), "");
+
+            return popup;
+        }
+    }
+
+
 }

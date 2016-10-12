@@ -28,57 +28,39 @@ public class AnimatedRasterMapActivity extends VectorMapSampleBaseActivity {
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final int ANIMATION_FRAME_TIME_MS = 300;
 
+    final int[] hours = new int[] { 5, 7, 9, 11, 15, 19, 23, 27 };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+
+        // MapSampleBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
-        
+
+        // Zoom in
         mapView.setZoom(6, 0);
-        
-        // Animated raster tile datasource
-        final int[] hours = new int[]{5, 7, 9, 11, 15, 19, 23, 27};
-        ArrayList<TileDataSource> animatedRasterTileDataSources = new ArrayList<TileDataSource>();
+
+        // Animated raster tile datasources
+        ArrayList<TileDataSource> dataSources = new ArrayList<TileDataSource>();
+
         for (int hour : hours) {
-            MemoryCacheTileDataSource dataSource = new MemoryCacheTileDataSource(
-                    new HTTPTileDataSource(4, 7, "http://www.openportguide.org/tiles/actual/wind_vector/" + hour + "/{zoom}/{x}/{y}.png"));
+
+            String url = "http://www.openportguide.org/tiles/actual/wind_vector/" + hour + "/{zoom}/{x}/{y}.png";
+            MemoryCacheTileDataSource dataSource = new MemoryCacheTileDataSource(new HTTPTileDataSource(4, 7, url));
+
             // Reduce the size a bit (default is 6 mb)
             dataSource.setCapacity((long) (0.5f * 1024 * 1024));
-            animatedRasterTileDataSources.add(dataSource);
+            dataSources.add(dataSource);
         }
-        MyAnimatedTileDataSource animatedRasterTileDataSource = new MyAnimatedTileDataSource(0, 24, animatedRasterTileDataSources);
+
+        MyAnimatedTileDataSource animatedRasterTileDataSource = new MyAnimatedTileDataSource(0, 24, dataSources);
         
         // Initialize an animated raster layer
         animatedRasterTileLayer = new RasterTileLayer( animatedRasterTileDataSource);
         animatedRasterTileLayer.setSynchronizedRefresh(true);
         animatedRasterTileLayer.setPreloading(false);
+
         // Set the tile load listener, which will be used to change the animation frames
-        animatedRasterTileLayer.setTileLoadListener(new TileLoadListener() {
-            private boolean inProgress;
-            
-            @Override
-            public void onVisibleTilesLoaded() {
-                // All visible tiles have been loaded, change the frame 
-                Runnable task = new Runnable() {
-                    public void run() {
-                        synchronized (worker) {
-                            inProgress = false;
-                            animatedRasterTileLayer.setFrameNr((animatedRasterTileLayer.getFrameNr() + 1) % hours.length);
-                        }
-                    }
-                };
-                synchronized (worker) {
-                    if (!inProgress) {
-                        inProgress = true;
-                        worker.schedule(task, ANIMATION_FRAME_TIME_MS, TimeUnit.MILLISECONDS);
-                    }
-                }
-            }
-            
-            @Override
-            public void onPreloadingTilesLoaded() {
-            	
-            }
-        });
+        animatedRasterTileLayer.setTileLoadListener(new MyTileLoadListener());
 
         // Add the previous raster layer to the map
         mapView.getLayers().add(animatedRasterTileLayer);
@@ -88,5 +70,34 @@ public class AnimatedRasterMapActivity extends VectorMapSampleBaseActivity {
     public void onDestroy() {
     	animatedRasterTileLayer.setTileLoadListener(null);
     	super.onDestroy();
+    }
+
+    private class MyTileLoadListener extends TileLoadListener {
+
+        boolean inProgress;
+
+        @Override
+        public void onVisibleTilesLoaded() {
+            // All visible tiles have been loaded, change the frame
+            Runnable task = new Runnable() {
+                public void run() {
+                    synchronized (worker) {
+                        inProgress = false;
+                        animatedRasterTileLayer.setFrameNr((animatedRasterTileLayer.getFrameNr() + 1) % hours.length);
+                    }
+                }
+            };
+            synchronized (worker) {
+                if (!inProgress) {
+                    inProgress = true;
+                    worker.schedule(task, ANIMATION_FRAME_TIME_MS, TimeUnit.MILLISECONDS);
+                }
+            }
+        }
+
+        @Override
+        public void onPreloadingTilesLoaded() {
+
+        }
     }
 }

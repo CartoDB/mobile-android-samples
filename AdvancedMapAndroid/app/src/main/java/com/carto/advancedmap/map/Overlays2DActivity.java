@@ -72,6 +72,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(0xFF00FF00));
         pointStyleBuilder.setSize(16);
+
         Point point1 = new Point(proj.fromWgs84(new MapPos(24.651488, 59.423581)), pointStyleBuilder.buildStyle());
         point1.setMetaDataElement("ClickText", new Variant("Point nr 1"));
         vectorDataSource1.add(point1);
@@ -79,6 +80,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Second point
         pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(0xFF0000FF));
+
         Point point2 = new Point(proj.fromWgs84(new MapPos(24.655994, 59.422716)), pointStyleBuilder.buildStyle());
         point2.setMetaDataElement("ClickText", new Variant("Point nr 2"));
         vectorDataSource1.add(point2);
@@ -88,12 +90,15 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(0xFFFFFFFF));
         lineStyleBuilder.setWidth(8);
+
         MapPosVector linePoses = new MapPosVector();
+
         linePoses.add(proj.fromWgs84(new MapPos(24.645565, 59.422074)));
         linePoses.add(proj.fromWgs84(new MapPos(24.643076, 59.420502)));
         linePoses.add(proj.fromWgs84(new MapPos(24.645351, 59.419149)));
         linePoses.add(proj.fromWgs84(new MapPos(24.648956, 59.420393)));
         linePoses.add(proj.fromWgs84(new MapPos(24.650887, 59.422707)));
+
         // Add first line
         Line line1 = new Line(linePoses, lineStyleBuilder.buildStyle());
         line1.setMetaDataElement("ClickText", new Variant("Line nr 1"));
@@ -103,6 +108,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(0xFFCC0F00));
         lineStyleBuilder.setWidth(12);
+
         // Add second line to the second layer.
         Line line2 = new Line(linePoses, lineStyleBuilder.buildStyle());
         line2.setMetaDataElement("ClickText", new Variant("Line nr 2"));
@@ -126,6 +132,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         polygonPoses.add(proj.fromWgs84(new MapPos(24.660199, 59.420677)));
         polygonPoses.add(proj.fromWgs84(new MapPos(24.656552, 59.420175)));
         polygonPoses.add(proj.fromWgs84(new MapPos(24.654010, 59.421472)));
+
         // Create 2 polygon holes
         MapPosVector holePoses1 = new MapPosVector();
         holePoses1.add(proj.fromWgs84(new MapPos(24.658409, 59.420522)));
@@ -133,13 +140,16 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         holePoses1.add(proj.fromWgs84(new MapPos(24.662207, 59.417411)));
         holePoses1.add(proj.fromWgs84(new MapPos(24.659524, 59.417171)));
         holePoses1.add(proj.fromWgs84(new MapPos(24.657615, 59.419834)));
+
         MapPosVector holePoses2 = new MapPosVector();
         holePoses2.add(proj.fromWgs84(new MapPos(24.665640, 59.421243)));
         holePoses2.add(proj.fromWgs84(new MapPos(24.668923, 59.419463)));
         holePoses2.add(proj.fromWgs84(new MapPos(24.662893, 59.419365)));
+
         MapPosVectorVector polygonHoles = new MapPosVectorVector();
         polygonHoles.add(holePoses1);
         polygonHoles.add(holePoses2);
+
         // Add polygon
         Polygon polygon = new Polygon(polygonPoses, polygonHoles, polygonStyleBuilder.buildStyle());
         polygon.setMetaDataElement("ClickText", new Variant("Polygon"));
@@ -149,14 +159,18 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         TextStyleBuilder textStyleBuilder = new TextStyleBuilder();
         textStyleBuilder.setColor(new Color(0xFFFF0000));
         textStyleBuilder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_FACE_CAMERA);
+
         // This enables higher resolution texts for retina devices, but consumes more memory and is slower
         textStyleBuilder.setScaleWithDPI(false);
+
         // Add text
         Text textpopup1 = new Text(proj.fromWgs84(new MapPos(24.653302, 59.422269)),
                                                       textStyleBuilder.buildStyle(),
                                                       "Face camera text");
+
         textpopup1.setMetaDataElement("ClickText", new Variant("Text nr 1"));
         vectorDataSource1.add(textpopup1);
+
         // Add text
         textStyleBuilder = new TextStyleBuilder();
         textStyleBuilder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_FACE_CAMERA_GROUND);
@@ -165,10 +179,12 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
                                                       "Face camera ground text");
         textpopup2.setMetaDataElement("ClickText", new Variant("Text nr 2"));
         vectorDataSource1.add(textpopup2);
+
         // Add text
         textStyleBuilder = new TextStyleBuilder();
         textStyleBuilder.setFontSize(22);
         textStyleBuilder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_GROUND);
+
         Text textpopup3 = new Text(proj.fromWgs84(new MapPos(24.646457, 59.420839)),
                                                       textStyleBuilder.buildStyle(),
                                                       "Ground text");
@@ -182,13 +198,15 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Create marker style
         MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
         markerStyleBuilder.setBitmap(markerBitmap);
-        //markerStyleBuilder.setHideIfOverlapped(false);
         markerStyleBuilder.setSize(30);
+
         MarkerStyle sharedMarkerStyle = markerStyleBuilder.buildStyle();
+
         // Add marker
         Marker marker1 = new Marker(proj.fromWgs84(new MapPos(24.646469, 59.426939)), sharedMarkerStyle);
         marker1.setMetaDataElement("ClickText", new Variant("Marker nr 1"));
         vectorDataSource1.add(marker1);
+
         // Add marker
         Marker marker2 = new Marker(proj.fromWgs84(new MapPos(24.666469, 59.422939)), sharedMarkerStyle);
         marker2.setMetaDataElement("ClickText", new Variant("Marker nr 2"));
@@ -210,8 +228,10 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
                                                balloonPopupStyleBuilder.buildStyle(),
                                                "Popup with pos",
                                                "Images, round");
+
         popup1.setMetaDataElement("ClickText", new Variant("Popup nr 1"));
         vectorDataSource1.add(popup1);
+
         // Add popup, but instead of giving it a position attach it to a marker
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
         balloonPopupStyleBuilder.setColor(new Color(0xFF000000));
@@ -225,22 +245,26 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         balloonPopupStyleBuilder.setPlacementPriority(1);
         BalloonPopup popup2 = new BalloonPopup(marker1, balloonPopupStyleBuilder.buildStyle(),
                                                "Popup attached to marker", "Black, rectangle.");
+
         popup2.setMetaDataElement("ClickText", new Variant("Popup nr 2"));
         vectorDataSource1.add(popup2);
+
         // Add popup
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
         balloonPopupStyleBuilder.setDescriptionWrap(false);
         balloonPopupStyleBuilder.setPlacementPriority(1);
+
         BalloonPopup popup3 = new BalloonPopup(proj.fromWgs84(new MapPos(24.658662, 59.432521)),
                                                balloonPopupStyleBuilder.buildStyle(),
                                                "This title will be wrapped if there's not enough space on the screen.",
                                                "Description is set to be truncated with three dots, unless the screen is really really big.");
+
         popup3.setMetaDataElement("ClickText", new Variant("Popup nr 3"));
+
         vectorDataSource1.add(popup3);
 
-        // finally animate map to Tallinn where the objects are
+        // Animate map to Tallinn where the objects are
         mapView.setFocusPos(proj.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
         mapView.setZoom(12, 1);
-        
     }
 }

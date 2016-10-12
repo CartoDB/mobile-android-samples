@@ -33,21 +33,25 @@ public class OfflineVectorMapActivity extends VectorMapSampleBaseActivity {
     
     @Override
     protected TileDataSource createTileDataSource() {
-        // offline map data source
+
+        // Offline map data source
         String mbTileFile = "world_zoom5.mbtiles";
 
         try {
             String localDir = getExternalFilesDir(null).toString();
             AssetCopy.copyAssetToSDCard(getAssets(), mbTileFile, localDir);
-            Log.i(Const.LOG_TAG,"copy done to " + localDir + "/"
-                    + mbTileFile);
-            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 4, localDir + "/"
-                    + mbTileFile);
-            return vectorTileDataSource;            
+
+            String path = localDir + "/" + mbTileFile;
+            Log.i(Const.LOG_TAG,"copy done to " + path);
+            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 4, path);
+
+            return vectorTileDataSource;
+
         } catch (IOException e) {
             Log.e(Const.LOG_TAG, "mbTileFile cannot be copied: "+mbTileFile);
             Log.e(Const.LOG_TAG, e.getLocalizedMessage());
         }
+
     	return null;
     }
 }

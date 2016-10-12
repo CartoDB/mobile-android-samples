@@ -33,18 +33,19 @@ import java.io.IOException;
  * The sample assumes that the file name is specified using the Intent "selectedFile" extra field.
  */
 @Description(value = "MBTiles offline data - raster or vector")
-public class MbtilesActivity extends MapSampleBaseActivity implements
-        FilePickerActivity {
+public class MbtilesActivity extends MapSampleBaseActivity implements FilePickerActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // read filename from extras
+
+        // Read filename from extras
         Bundle b = getIntent().getExtras();
         String filePath = b.getString("selectedFile");
 
         // Create tile data source. Min/max zoom will be automatically detected.
         MBTilesTileDataSource tileDataSource = null;
+
         try {
             tileDataSource = new MBTilesTileDataSource(filePath);
         }
@@ -56,7 +57,8 @@ public class MbtilesActivity extends MapSampleBaseActivity implements
         // Now check if we need to use vector layer or raster layer, based on mbtiles metadata
         StringMap metaData = tileDataSource.getMetaData();
         String format = "png";// default;
-        if(metaData.has_key("format")){
+
+        if (metaData.has_key("format")) {
             format = tileDataSource.getMetaData().get("format");    
         }
         
@@ -68,36 +70,42 @@ public class MbtilesActivity extends MapSampleBaseActivity implements
         } else {
         	baseLayer = new RasterTileLayer(tileDataSource);
         }
-        mapView.getLayers().add(baseLayer);
 
+        mapView.getLayers().add(baseLayer);
         mapView.getOptions().setZoomRange(new MapRange(0, 23));
                 
         // Fit to bounds
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
+
         if (metaData.has_key("bounds")) {
             String[] bounds = tileDataSource.getMetaData().get("bounds").split(",");
+
             if (bounds.length == 4) {
+
                 float minLon = Float.parseFloat(bounds[0]);
                 float minLat = Float.parseFloat(bounds[1]);
                 float maxLon = Float.parseFloat(bounds[2]);
                 float maxLat = Float.parseFloat(bounds[3]);
-                
-                MapBounds dataBounds = new MapBounds(baseProjection.fromWgs84(new MapPos(minLon, minLat)),
-                        baseProjection.fromWgs84(new MapPos(maxLon, maxLat)));
-                
-                mapView.moveToFitBounds(dataBounds,
-                        new ScreenBounds(new ScreenPos(0, 0), new ScreenPos(width, height)),
-                        false, 0.0f);
+
+                MapPos minimum = baseProjection.fromWgs84(new MapPos(minLon, minLat));
+                MapPos maximum = baseProjection.fromWgs84(new MapPos(maxLon, maxLat));
+                MapBounds dataBounds = new MapBounds(minimum, maximum);
+
+                ScreenBounds screenBounds = new ScreenBounds(new ScreenPos(0, 0), new ScreenPos(width, height));
+                mapView.moveToFitBounds(dataBounds, screenBounds, false, 0.0f);
+
                 Log.debug("moved to metadata bounds " + dataBounds);
             }
         } else {
+
             MapBounds dataBounds = tileDataSource.getDataExtent();
-            mapView.moveToFitBounds(dataBounds,
-            		new ScreenBounds(new ScreenPos(0, 0), new ScreenPos(width, height)),
-            		false, 0.0f);
+            ScreenBounds screenBounds = new ScreenBounds(new ScreenPos(0, 0), new ScreenPos(width, height));
+            mapView.moveToFitBounds(dataBounds, screenBounds, false, 0.0f);
+
             Log.debug("No bounds found from metadata, detected bounds" + dataBounds);
         }        
     }
