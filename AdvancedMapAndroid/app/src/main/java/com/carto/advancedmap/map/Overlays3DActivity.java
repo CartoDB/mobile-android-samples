@@ -47,23 +47,17 @@ public class Overlays3DActivity extends VectorMapSampleBaseActivity {
         vectorLayer.setVisibleZoomRange(new MapRange(10, 24));
 
         
-        //2. Add a single 3D model to the vector layer
-        String[] models = new String[] { "milktruck.nml" };
-        int counter = 0;
+        // Add a single 3D model to the vector layer
+        String modelName = "milktruck.nml";
 
-        for (String modelName : models) {
+        MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939));
+        NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
 
-            double dx = (counter++) * 0.001;
+        model.setScale(20);
+        model.setMetaDataElement("ClickText", new Variant("Single model"));
 
-            MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939 + dx));
-            NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
+        vectorDataSource.add(model);
 
-            model.setScale(20);
-            model.setMetaDataElement("ClickText", new Variant("Single model"));
-
-            vectorDataSource.add(model);
-        }
-      
         // 3. Add one 3D polygon (with hole)
         // Create 3d polygon style and poses
         Polygon3DStyleBuilder polygon3DStyleBuilder = new Polygon3DStyleBuilder();
