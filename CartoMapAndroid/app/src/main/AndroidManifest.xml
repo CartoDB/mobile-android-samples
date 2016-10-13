@@ -25,12 +25,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".sections.cartojsapi.CountriesVisActivity" />
+        <activity android:name=".sections.cartojsapi.DotsVisActivity" />
+        <activity android:name=".sections.cartojsapi.FontsVisActivity" />
+
         <activity android:name=".sections.sqlapi.CartoSQLActivity" />
         <activity android:name=".sections.importapi.CartoUTFGridActivity" />
         <activity android:name=".sections.torqueapi.CartoTorqueActivity" />
         <activity android:name=".sections.mapsapi.CartoVectorTileActivity" />
         <activity android:name=".sections.importapi.CartoRasterTileActivity" />
-        <activity android:name=".sections.cartojsapi.CartoVisJSONActivity" />
 
     </application>
 

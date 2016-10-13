@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.carto.cartomap.android.R;
+import com.carto.cartomap.android.sections.cartojsapi.CountriesVisActivity;
+import com.carto.cartomap.android.sections.cartojsapi.DotsVisActivity;
+import com.carto.cartomap.android.sections.cartojsapi.FontsVisActivity;
 import com.carto.cartomap.android.sections.header.CartoJSHeader;
 import com.carto.cartomap.android.sections.header.ImportHeader;
 import com.carto.cartomap.android.sections.header.MapsHeader;
@@ -18,17 +21,16 @@ import com.carto.cartomap.android.sections.sqlapi.CartoSQLActivity;
 import com.carto.cartomap.android.sections.torqueapi.CartoTorqueActivity;
 import com.carto.cartomap.android.sections.importapi.CartoUTFGridActivity;
 import com.carto.cartomap.android.sections.mapsapi.CartoVectorTileActivity;
-import com.carto.cartomap.android.sections.cartojsapi.CartoVisJSONActivity;
 import com.carto.cartomap.android.util.Description;
 
 public class LauncherListActivity extends ListActivity {
 
-    // list of demos: MapActivity, ParameterSelectorActivity (can be null)
-    // if parameter selector is given, then this is launched first to get a parameter (file path)
     private Class[] samples = {
 
             CartoJSHeader.class,
-            CartoVisJSONActivity.class,
+            CountriesVisActivity.class,
+            DotsVisActivity.class,
+            FontsVisActivity.class,
 
             ImportHeader.class,
             CartoRasterTileActivity.class,
