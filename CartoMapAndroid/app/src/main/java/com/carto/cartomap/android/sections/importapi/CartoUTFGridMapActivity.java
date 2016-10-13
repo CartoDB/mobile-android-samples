@@ -3,8 +3,8 @@ package com.carto.cartomap.android.sections.importapi;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
-import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.cartomap.android.listener.MyUTFGridEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -25,12 +25,12 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid
  */
 @Description(value = "CARTO Maps API with Raster tiles and UTFGrid interactions")
-public class CartoUTFGridActivity extends VectorMapSampleBaseActivity {
+public class CartoUTFGridMapActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // MapSampleBaseActivity creates and configures mapView  
+        // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         // Define server config

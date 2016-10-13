@@ -3,8 +3,8 @@ package com.carto.cartomap.android.sections.torqueapi;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
-import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -12,8 +12,6 @@ import com.carto.layers.TorqueTileLayer;
 import com.carto.styles.CartoCSSStyleSet;
 import com.carto.vectortiles.TorqueTileDecoder;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
 @Description(value = "Torque showing shop movement during WWII")
-public class TorqueShipsActivity extends VectorMapSampleBaseActivity {
+public class TorqueShipActivity extends BaseMapActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final long FRAME_TIME_MS = 100;
@@ -55,7 +53,7 @@ public class TorqueShipsActivity extends VectorMapSampleBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // MapSampleBaseActivity creates and configures mapView  
+        // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         String encodedQuery =

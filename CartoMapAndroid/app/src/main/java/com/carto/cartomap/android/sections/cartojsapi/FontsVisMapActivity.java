@@ -7,13 +7,13 @@ import com.carto.cartomap.android.util.Description;
 /**
  * Created by aareundo on 13/10/16.
  */
-@Description(value = "Vis showing dots on the map")
-public class DotsVisActivity extends VisJsonBaseActivity {
+@Description(value = "Vis displaying text on the map")
+public class FontsVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        updateVis("https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json");
+        updateVis("https://cartomobile-team.carto.com/u/nutiteq/api/v2/viz/13332848-27da-11e6-8801-0e5db1731f59/viz.json");
     }
 }

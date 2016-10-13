@@ -1,4 +1,4 @@
-package com.carto.cartomap.android.basemap;
+package com.carto.cartomap.android.sections;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,10 +17,9 @@ import com.carto.ui.MapView;
 /**
  * Base activity for map samples. Includes simple lifecycle management
  */
-public class MapSampleBaseActivity extends Activity {
+public class BaseMapActivity extends Activity {
 
     protected MapView mapView;
-    protected TileLayer baseLayer;
     protected Projection baseProjection;
 
     @Override

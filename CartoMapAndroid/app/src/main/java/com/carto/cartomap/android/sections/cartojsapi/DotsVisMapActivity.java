@@ -7,13 +7,13 @@ import com.carto.cartomap.android.util.Description;
 /**
  * Created by aareundo on 13/10/16.
  */
-@Description(value = "Vis displaying countries in different colors")
-public class CountriesVisActivity extends VisJsonBaseActivity {
+@Description(value = "Vis showing dots on the map")
+public class DotsVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        updateVis("http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
+        updateVis("https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json");
     }
 }

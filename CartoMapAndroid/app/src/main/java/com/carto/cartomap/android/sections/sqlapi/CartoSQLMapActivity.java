@@ -2,8 +2,8 @@ package com.carto.cartomap.android.sections.sqlapi;
 
 import android.os.Bundle;
 
+import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
-import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.cartomap.android.datasource.CartoDBSQLDataSource;
 import com.carto.cartomap.android.listener.MyMapEventListener;
 import com.carto.core.MapPos;
@@ -18,12 +18,12 @@ import com.carto.styles.PointStyleBuilder;
  * A sample demonstrating how to use Carto SQL API to get data and how to create custom VectorDataSource
  */
 @Description(value = "CARTO SQL API to get data in custom VectorDataSource")
-public class CartoSQLActivity extends VectorMapSampleBaseActivity {
+public class CartoSQLMapActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // MapSampleBaseActivity creates and configures mapView
+        // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         String baseUrl = "https://nutiteq.cartodb.com/api/v2/sql";

@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.carto.cartomap.android.R;
-import com.carto.cartomap.android.sections.cartojsapi.CountriesVisActivity;
-import com.carto.cartomap.android.sections.cartojsapi.DotsVisActivity;
-import com.carto.cartomap.android.sections.cartojsapi.FontsVisActivity;
+import com.carto.cartomap.android.sections.cartojsapi.CountriesVisMapActivity;
+import com.carto.cartomap.android.sections.cartojsapi.DotsVisMapActivity;
+import com.carto.cartomap.android.sections.cartojsapi.FontsVisMapActivity;
 import com.carto.cartomap.android.sections.header.CartoJSHeader;
 import com.carto.cartomap.android.sections.header.ImportHeader;
 import com.carto.cartomap.android.sections.header.MapsHeader;
 import com.carto.cartomap.android.sections.header.SQLHeader;
 import com.carto.cartomap.android.sections.header.TorqueHeader;
-import com.carto.cartomap.android.sections.importapi.CartoRasterTileActivity;
-import com.carto.cartomap.android.sections.sqlapi.CartoSQLActivity;
-import com.carto.cartomap.android.sections.torqueapi.TorqueShipsActivity;
-import com.carto.cartomap.android.sections.importapi.CartoUTFGridActivity;
-import com.carto.cartomap.android.sections.mapsapi.CartoVectorTileActivity;
+import com.carto.cartomap.android.sections.importapi.CartoRasterTileMapActivity;
+import com.carto.cartomap.android.sections.mapsapi.CartoVectorTileMapActivity;
+import com.carto.cartomap.android.sections.sqlapi.CartoSQLMapActivity;
+import com.carto.cartomap.android.sections.torqueapi.TorqueShipActivity;
+import com.carto.cartomap.android.sections.importapi.CartoUTFGridMapActivity;
 import com.carto.cartomap.android.util.Description;
 
 public class LauncherListActivity extends ListActivity {
@@ -28,22 +28,22 @@ public class LauncherListActivity extends ListActivity {
     private Class[] samples = {
 
             CartoJSHeader.class,
-            CountriesVisActivity.class,
-            DotsVisActivity.class,
-            FontsVisActivity.class,
+            CountriesVisMapActivity.class,
+            DotsVisMapActivity.class,
+            FontsVisMapActivity.class,
 
             ImportHeader.class,
-            CartoRasterTileActivity.class,
-            CartoUTFGridActivity.class,
+            CartoRasterTileMapActivity.class,
+            CartoUTFGridMapActivity.class,
 
             MapsHeader.class,
-            CartoVectorTileActivity.class,
+            CartoVectorTileMapActivity.class,
 
             SQLHeader.class,
-            CartoSQLActivity.class,
+            CartoSQLMapActivity.class,
 
             TorqueHeader.class,
-            TorqueShipsActivity.class,
+            TorqueShipActivity.class,
     };
 
     @Override

@@ -3,8 +3,8 @@ package com.carto.cartomap.android.sections.mapsapi;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
-import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.layers.LayerVector;
@@ -20,11 +20,11 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
 @Description(value = "CARTO data as Vector Tiles, using CartoCSS styling")
-public class CartoVectorTileActivity extends VectorMapSampleBaseActivity {
+public class CartoVectorTileMapActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView
+        // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         String cartoCss = "";

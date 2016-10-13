@@ -3,8 +3,8 @@ package com.carto.cartomap.android.sections.importapi;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
-import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.layers.LayerVector;
@@ -21,11 +21,11 @@ import java.io.IOException;
  * Inspired by web sample http://bl.ocks.org/jorgeas80/4c7169c9b6356858f3cc
  */
 @Description(value = "Use map from CARTO PostGIS Raster")
-public class CartoRasterTileActivity extends VectorMapSampleBaseActivity {
+public class CartoRasterTileMapActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         // Define server config
