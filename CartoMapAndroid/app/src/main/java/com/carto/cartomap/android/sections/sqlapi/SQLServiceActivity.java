@@ -16,7 +16,7 @@ import java.io.IOException;
 @Description(value = "Displays cities on the map via SQL query")
 public class SQLServiceActivity extends BaseMapActivity {
 
-    static final String query = "SELECT cartodb_id,the_geom_webmercator AS the_geom,name,address,bikes,slot,field_8,field_9,field_16,field_17,field_18 FROM stations_1";
+    static final String query = "SELECT * FROM stations_1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
