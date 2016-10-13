@@ -53,7 +53,6 @@ public class MapListRow extends LinearLayout {
         if (item.isHeader) {
             background = new ColorDrawable(Color.WHITE);
             params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 3);
-//            params.setMargins(10, 10, 10, 10);
             topBorder.setLayoutParams(params);
             lineTwo.setText("");
         } else {
