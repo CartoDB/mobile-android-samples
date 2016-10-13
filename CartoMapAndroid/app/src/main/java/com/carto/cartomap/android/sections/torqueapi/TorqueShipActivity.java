@@ -113,7 +113,7 @@ public class TorqueShipActivity extends BaseMapActivity {
 
                 torqueTileLayer.setFrameNr(frameNr);
 
-                Log.d("LOG", "torque frame " + torqueTileLayer.getFrameNr()+ " of "+frameCount);
+//                Log.d("LOG", "torque frame " + torqueTileLayer.getFrameNr()+ " of "+frameCount);
 
                 if (!stopped) {
                     worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);

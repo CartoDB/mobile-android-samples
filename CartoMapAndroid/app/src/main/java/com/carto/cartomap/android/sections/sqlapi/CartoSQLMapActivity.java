@@ -8,11 +8,15 @@ import com.carto.cartomap.android.datasource.CartoDBSQLDataSource;
 import com.carto.cartomap.android.listener.MyMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
+import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
+
+import java.io.IOException;
 
 /**
  * A sample demonstrating how to use Carto SQL API to get data and how to create custom VectorDataSource
@@ -74,3 +78,4 @@ public class CartoSQLMapActivity extends BaseMapActivity {
         super.onDestroy();
     }
 }
+

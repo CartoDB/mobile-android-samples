@@ -29,6 +29,8 @@
         <activity android:name=".sections.cartojsapi.DotsVisMapActivity" />
         <activity android:name=".sections.cartojsapi.FontsVisMapActivity" />
 
+        <activity android:name=".sections.sqlapi.SQLServiceActivity"/>
+
         <activity android:name=".sections.sqlapi.CartoSQLMapActivity" />
         <activity android:name=".sections.importapi.CartoUTFGridMapActivity" />
         <activity android:name=".sections.torqueapi.TorqueShipActivity" />

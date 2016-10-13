@@ -9,6 +9,8 @@ import android.widget.ZoomControls;
 import com.carto.cartomap.android.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
+import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.TileLayer;
 import com.carto.projections.EPSG3857;
 import com.carto.projections.Projection;
@@ -32,17 +34,8 @@ public class BaseMapActivity extends Activity {
 
         baseProjection = mapView.getOptions().getBaseProjection();
 
-        // Review following and change if needed
-        mapView.getOptions().setRotatable(true);
-        mapView.getOptions().setZoomRange(new MapRange(0, 18));
-
-        Log.d("EXCEPTION", "autoconfigured DPI=" + mapView.getOptions().getDPI());
-
-        // Set default location
-        Projection projection = mapView.getOptions().getBaseProjection();
-        MapPos berlin = projection.fromWgs84(new MapPos(13.38933, 52.51704));
-        mapView.setFocusPos(berlin, 0);
-        mapView.setZoom(2, 0);
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        mapView.getLayers().add(layer);
 
         // Add listeners to zoom controls
         ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoom_controls);
