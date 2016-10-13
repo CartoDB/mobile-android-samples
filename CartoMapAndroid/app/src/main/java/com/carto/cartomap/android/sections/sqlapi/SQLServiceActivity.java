@@ -6,6 +6,7 @@ import com.carto.cartomap.android.sections.BaseMapActivity;
 import com.carto.cartomap.android.util.Description;
 import com.carto.core.Variant;
 import com.carto.services.CartoSQLService;
+import com.carto.utils.Log;
 
 import java.io.IOException;
 
@@ -16,27 +17,35 @@ import java.io.IOException;
 @Description(value = "Displays cities on the map via SQL query")
 public class SQLServiceActivity extends BaseMapActivity {
 
-    static final String query = "SELECT * FROM stations_1";
+    static final String query = "SELECT * FROM cities15000 WHERE population > 100000";
+    Variant result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CartoSQLService service = new CartoSQLService();
+        final CartoSQLService service = new CartoSQLService();
 
         // Sample url:
         // https://cartomobile-team.carto.com/u/nutiteq/viz/f1407ed4-84b8-11e6-96bc-0ee66e2c9693/public_map
 
-        service.setUsername("nutiteq");
+//        service.setUsername("nutiteq");
+        service.setAPITemplate("https://nutiteq.cartodb.com");
 
-        Variant result = null;
+        // Be sure to make network queries on another thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    result = service.queryData(query);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-        try {
-            result = service.queryData(query);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                System.out.println(result);
+            }
+        });
 
-        System.out.println(result);
+        thread.start();
     }
 }
