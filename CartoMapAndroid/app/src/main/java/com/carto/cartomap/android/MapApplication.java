@@ -9,7 +9,7 @@ import com.carto.ui.MapView;
  * One-time actions, such as registering ids, licenses, starting services etc.
  * should be initialized here
  */
-public class CartoMapApplication extends Application {
+public class MapApplication extends Application {
 
     static final String LICENSE = "XTUN3Q0ZIN1RZdVJNanhFbWxpTlg5TDNxZFZmZGZSanpBaFFEVFVza0UycWxUZlNrL3Fi" +
             "TU4zVmFwOGk2cmc9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5jYXJ0b21" +
@@ -24,7 +24,6 @@ public class CartoMapApplication extends Application {
         // The license used here is intended only for CARTO Mobile SDK demos and WILL NOT work with other apps!
         MapView.registerLicense(LICENSE, getApplicationContext());
 
-        com.carto.utils.Log.setShowDebug(true);
         com.carto.utils.Log.setShowInfo(true);
     }
 }

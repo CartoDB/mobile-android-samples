@@ -1,20 +1,12 @@
-package com.carto.cartomap.android.maplistener;
+package com.carto.cartomap.android.listener;
 
-import android.util.Log;
-
-import com.carto.core.MapPos;
-import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.layers.UTFGridEventListener;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyleBuilder;
-import com.carto.ui.ClickType;
-import com.carto.ui.MapView;
 import com.carto.ui.UTFGridClickInfo;
 import com.carto.vectorelements.BalloonPopup;
-
-import java.util.Locale;
 
 /**
  * A custom map event listener that displays information about map events and creates pop-ups.

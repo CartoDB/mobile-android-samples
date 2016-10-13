@@ -1,6 +1,6 @@
 package com.carto.cartomap.android.builder;
 
-import com.carto.cartomap.android.maplistener.MyUTFGridEventListener;
+import com.carto.cartomap.android.listener.MyUTFGridEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.core.VariantType;

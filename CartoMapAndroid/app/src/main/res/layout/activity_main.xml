@@ -6,7 +6,7 @@
     android:paddingLeft="3dp"
     android:paddingRight="3dp"
     android:paddingTop="3dp"
-    tools:context="com.carto.cartomap.android.mapbase.MapSampleBaseActivity" >
+    tools:context="com.carto.cartomap.android.basemap.MapSampleBaseActivity" >
 
     <com.carto.ui.MapView android:id="@+id/map_view"
         android:layout_width="match_parent"

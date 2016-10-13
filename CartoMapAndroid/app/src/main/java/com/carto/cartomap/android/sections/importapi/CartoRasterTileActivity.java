@@ -1,10 +1,10 @@
-package com.carto.cartomap.android.map;
+package com.carto.cartomap.android.sections.importapi;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.util.Description;
+import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.layers.LayerVector;
@@ -28,10 +28,10 @@ public class CartoRasterTileActivity extends VectorMapSampleBaseActivity {
         // MapSampleBaseActivity creates and configures mapView  
         super.onCreate(savedInstanceState);
 
-        // define server config
+        // Define server config
         JSONObject configJson = new JSONObject();
-        try {
 
+        try {
             // you need to change these according to your DB
             String sql = "select * from table_46g";
             String cartoCss =

@@ -1,11 +1,11 @@
-package com.carto.cartomap.android.map;
+package com.carto.cartomap.android.sections.sqlapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
-import com.carto.cartomap.android.mapdatasource.CartoDBSQLDataSource;
-import com.carto.cartomap.android.maplistener.MyMapEventListener;
+import com.carto.cartomap.android.util.Description;
+import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.datasource.CartoDBSQLDataSource;
+import com.carto.cartomap.android.listener.MyMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;

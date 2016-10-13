@@ -1,15 +1,14 @@
-package com.carto.cartomap.android.map;
+package com.carto.cartomap.android.sections.importapi;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
-import com.carto.cartomap.android.maplistener.MyUTFGridEventListener;
+import com.carto.cartomap.android.util.Description;
+import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.listener.MyUTFGridEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.datasources.TileDataSource;
 import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
 import com.carto.layers.TileLayer;

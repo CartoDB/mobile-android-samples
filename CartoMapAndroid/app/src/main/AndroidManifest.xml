@@ -15,9 +15,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".CartoMapApplication">
+        android:name=".MapApplication">
 
-        <activity android:name=".LauncherListActivity">
+        <activity android:name=".list.LauncherListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".map.CartoSQLActivity" />
-        <activity android:name=".map.CartoUTFGridActivity" />
-        <activity android:name=".map.CartoTorqueActivity" />
-        <activity android:name=".map.CartoVectorTileActivity" />
-        <activity android:name=".map.CartoRasterTileActivity" />
-        <activity android:name=".map.CartoVisJSONActivity" />
+        <activity android:name=".sections.sqlapi.CartoSQLActivity" />
+        <activity android:name=".sections.importapi.CartoUTFGridActivity" />
+        <activity android:name=".sections.torqueapi.CartoTorqueActivity" />
+        <activity android:name=".sections.mapsapi.CartoVectorTileActivity" />
+        <activity android:name=".sections.importapi.CartoRasterTileActivity" />
+        <activity android:name=".sections.cartojsapi.CartoVisJSONActivity" />
 
     </application>
 

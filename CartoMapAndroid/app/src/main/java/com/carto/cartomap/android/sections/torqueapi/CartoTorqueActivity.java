@@ -1,10 +1,10 @@
-package com.carto.cartomap.android.map;
+package com.carto.cartomap.android.sections.torqueapi;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.android.Description;
-import com.carto.cartomap.android.mapbase.VectorMapSampleBaseActivity;
+import com.carto.cartomap.android.util.Description;
+import com.carto.cartomap.android.basemap.VectorMapSampleBaseActivity;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -26,11 +26,13 @@ public class CartoTorqueActivity extends VectorMapSampleBaseActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final long TORQUE_FRAMETIME_MS = 100;
+
     private TorqueTileLayer torqueTileLayer;
     private boolean stopped;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         // MapSampleBaseActivity creates and configures mapView  
         super.onCreate(savedInstanceState);
 
@@ -82,13 +84,26 @@ public class CartoTorqueActivity extends VectorMapSampleBaseActivity {
                 "GROUP BY x__uint8,\n" +
                 " y__uint8 ";
 
-        String encodedQuery = null;
+        String encodedQuery;
+
         try {
             encodedQuery = URLEncoder.encode(query.replace("\n",""), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        encodedQuery = "WITH%20par%20AS%20(%20%20SELECT%20CDB_XYZ_Resolution({zoom})*1%20as%20res%2C%20%20256%2F1%20as%20tile_size%2C%20CDB_XYZ_Extent({x}%2C%20{y}%2C%20{zoom})%20as%20ext%20)%2Ccte%20AS%20(%20%20%20SELECT%20ST_SnapToGrid(i.the_geom_webmercator%2C%20p.res)%20g%2C%20count(cartodb_id)%20c%2C%20floor((date_part(%27epoch%27%2C%20date)%20-%20-1796072400)%2F476536.5)%20d%20%20FROM%20(select%20*%20from%20ow)%20i%2C%20par%20p%20%20%20WHERE%20i.the_geom_webmercator%20%26%26%20p.ext%20%20%20GROUP%20BY%20g%2C%20d)%20SELECT%20(st_x(g)-st_xmin(p.ext))%2Fp.res%20x__uint8%2C%20%20%20%20%20%20%20%20(st_y(g)-st_ymin(p.ext))%2Fp.res%20y__uint8%2C%20array_agg(c)%20vals__uint8%2C%20array_agg(d)%20dates__uint16%20FROM%20cte%2C%20par%20p%20where%20(st_y(g)-st_ymin(p.ext))%2Fp.res%20%3C%20tile_size%20and%20(st_x(g)-st_xmin(p.ext))%2Fp.res%20%3C%20tile_size%20GROUP%20BY%20x__uint8%2C%20y__uint8&last_updated=1970-01-01T00%3A00%3A00.000Z";
+
+        encodedQuery = "WITH%20par%20AS%20(%20%20SELECT%20CDB_XYZ_Resolution({zoom})*1%20as%20res%2" +
+                "C%20%20256%2F1%20as%20tile_size%2C%20CDB_XYZ_Extent({x}%2C%20{y}%2C%20{zoom})%20as" +
+                "%20ext%20)%2Ccte%20AS%20(%20%20%20SELECT%20ST_SnapToGrid(i.the_geom_webmercator%2C" +
+                "%20p.res)%20g%2C%20count(cartodb_id)%20c%2C%20floor((date_part(%27epoch%27%2C%20da" +
+                "te)%20-%20-1796072400)%2F476536.5)%20d%20%20FROM%20(select%20*%20from%20ow)%20i%2C" +
+                "%20par%20p%20%20%20WHERE%20i.the_geom_webmercator%20%26%26%20p.ext%20%20%20GROUP%2" +
+                "0BY%20g%2C%20d)%20SELECT%20(st_x(g)-st_xmin(p.ext))%2Fp.res%20x__uint8%2C%20%20%20" +
+                "%20%20%20%20%20(st_y(g)-st_ymin(p.ext))%2Fp.res%20y__uint8%2C%20array_agg(c)%20val" +
+                "s__uint8%2C%20array_agg(d)%20dates__uint16%20FROM%20cte%2C%20par%20p%20where%20(st" +
+                "_y(g)-st_ymin(p.ext))%2Fp.res%20%3C%20tile_size%20and%20(st_x(g)-st_xmin(p.ext))%2" +
+                "Fp.res%20%3C%20tile_size%20GROUP%20BY%20x__uint8%2C%20y__uint8&last_updated=1970-0" +
+                "1-01T00%3A00%3A00.000Z";
 
         // define datasource with the query
         HTTPTileDataSource torqueDataSource = new HTTPTileDataSource(0, 14,
@@ -127,10 +142,14 @@ public class CartoTorqueActivity extends VectorMapSampleBaseActivity {
     private Runnable task = new Runnable() {
         public void run() {
             synchronized (worker) {
-            	int frameCount = ((TorqueTileDecoder)torqueTileLayer.getTileDecoder()).getFrameCount();
+
+                int frameCount = ((TorqueTileDecoder)torqueTileLayer.getTileDecoder()).getFrameCount();
                 int frameNr = (torqueTileLayer.getFrameNr()+1) % frameCount;
+
                 torqueTileLayer.setFrameNr(frameNr);
+
                 Log.d("LOG", "torque frame " + torqueTileLayer.getFrameNr()+ " of "+frameCount);
+
                 if (!stopped) {
                     worker.schedule(task, TORQUE_FRAMETIME_MS, TimeUnit.MILLISECONDS);
                 }

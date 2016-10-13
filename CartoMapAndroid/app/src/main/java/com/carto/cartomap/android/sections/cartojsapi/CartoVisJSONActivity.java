@@ -1,13 +1,13 @@
-package com.carto.cartomap.android.map;
+package com.carto.cartomap.android.sections.cartojsapi;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.carto.cartomap.android.Description;
+import com.carto.cartomap.android.util.Description;
 import com.carto.cartomap.android.builder.MyCartoVisBuilder;
-import com.carto.cartomap.android.mapbase.MapSampleBaseActivity;
+import com.carto.cartomap.android.basemap.MapSampleBaseActivity;
 
 import com.carto.core.BinaryData;
 import com.carto.datasources.LocalVectorDataSource;
