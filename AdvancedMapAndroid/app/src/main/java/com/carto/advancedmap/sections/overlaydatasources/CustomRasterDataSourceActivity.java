@@ -1,8 +1,8 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
 import com.carto.advancedmap.datasource.MyMergedRasterTileDataSource;
 import com.carto.advancedmap.util.Const;

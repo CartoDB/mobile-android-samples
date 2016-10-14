@@ -1,8 +1,8 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.other;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;

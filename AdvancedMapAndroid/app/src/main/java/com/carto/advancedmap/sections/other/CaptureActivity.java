@@ -1,4 +1,4 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.other;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;

@@ -1,9 +1,8 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.offlinemap.packagemanager;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
-import com.carto.advancedmap.list.PackageManagerActivity;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.datasources.TileDataSource;
 

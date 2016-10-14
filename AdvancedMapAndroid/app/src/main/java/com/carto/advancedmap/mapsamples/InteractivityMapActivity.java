@@ -2,7 +2,7 @@ package com.carto.advancedmap.mapsamples;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;

@@ -9,7 +9,7 @@ import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.carto.advancedmap.MapListItem;
+import com.carto.advancedmap.list.MapListItem;
 import com.carto.advancedmap.list.LauncherListActivity;
 
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.other;
 
 import android.Manifest;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;

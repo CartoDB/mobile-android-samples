@@ -8,27 +8,28 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
-import com.carto.advancedmap.Description;
-import com.carto.advancedmap.MapListItem;
-import com.carto.advancedmap.TwoLineArrayAdapter;
-import com.carto.advancedmap.mapsamples.AerialMapActivity;
-import com.carto.advancedmap.mapsamples.AnimatedRasterMapActivity;
-import com.carto.advancedmap.mapsamples.CaptureActivity;
-import com.carto.advancedmap.mapsamples.ClusteredGeoJsonActivity;
-import com.carto.advancedmap.mapsamples.ClusteredRandomPointsActivity;
-import com.carto.advancedmap.mapsamples.CustomPopupActivity;
-import com.carto.advancedmap.mapsamples.CustomRasterDataSourceActivity;
-import com.carto.advancedmap.mapsamples.GroundOverlayActivity;
+import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
+import com.carto.advancedmap.sections.header.BaseMapHeader;
+import com.carto.advancedmap.sections.header.OfflineMapHeader;
+import com.carto.advancedmap.sections.header.OtherMapHeader;
+import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
+import com.carto.advancedmap.sections.header.VectorObjectsHeader;
+import com.carto.advancedmap.sections.offlinemap.packagemanager.PackageManagerActivity;
+import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.sections.other.CaptureActivity;
+import com.carto.advancedmap.sections.other.ClusteredGeoJsonActivity;
+import com.carto.advancedmap.sections.other.ClusteredRandomPointsActivity;
+import com.carto.advancedmap.sections.other.CustomPopupActivity;
+import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
+import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.mapsamples.InteractivityMapActivity;
 import com.carto.advancedmap.mapsamples.MapListenerActivity;
-import com.carto.advancedmap.mapsamples.MyLocationActivity;
-import com.carto.advancedmap.mapsamples.OfflineRoutingActivity;
-import com.carto.advancedmap.mapsamples.OfflineVectorMapActivity;
-import com.carto.advancedmap.mapsamples.Overlays2DActivity;
-import com.carto.advancedmap.mapsamples.Overlays3DActivity;
-import com.carto.advancedmap.mapsamples.PinMapActivity;
-import com.carto.advancedmap.mapsamples.RasterOverlayActivity;
-import com.carto.advancedmap.mapsamples.WmsMapActivity;
+import com.carto.advancedmap.sections.other.MyLocationActivity;
+import com.carto.advancedmap.sections.other.OfflineRoutingActivity;
+import com.carto.advancedmap.sections.offlinemap.BundledMBTilesActivity;
+import com.carto.advancedmap.sections.vectorobjects.Overlays2DActivity;
+import com.carto.advancedmap.sections.vectorobjects.Overlays3DActivity;
+import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
 import com.carto.advancedmap.R;
 
 /**
@@ -39,25 +40,29 @@ import com.carto.advancedmap.R;
 public class LauncherListActivity extends ListActivity {
 
     public Class[] samples = {
-            PinMapActivity.class,
-            Overlays2DActivity.class,
-            MapListenerActivity.class,
-            MyLocationActivity.class,
+
+            BaseMapHeader.class,
+            BaseMapsActivity.class,
+
+            OfflineMapHeader.class,
             PackageManagerActivity.class,
-            Overlays3DActivity.class,
-            InteractivityMapActivity.class,
-            OfflineRoutingActivity.class,
-            AerialMapActivity.class,
-            AnimatedRasterMapActivity.class,
-            CaptureActivity.class,
-            ClusteredRandomPointsActivity.class,
-            ClusteredGeoJsonActivity.class,
+            BundledMBTilesActivity.class,
+
+            OverlayDataSourcesHeader.class,
             CustomRasterDataSourceActivity.class,
-            CustomPopupActivity.class,
             GroundOverlayActivity.class,
-            OfflineVectorMapActivity.class,
-            RasterOverlayActivity.class,
             WmsMapActivity.class,
+
+            VectorObjectsHeader.class,
+            Overlays2DActivity.class,
+            Overlays3DActivity.class,
+
+            OtherMapHeader.class,
+            CaptureActivity.class,
+            ClusteredGeoJsonActivity.class,
+            CustomPopupActivity.class,
+            MyLocationActivity.class,
+            OfflineRoutingActivity.class
     };
 
     public void unlockScreen() {
@@ -72,7 +77,7 @@ public class LauncherListActivity extends ListActivity {
 
         ListView lv = this.getListView();
         lv.setBackgroundColor(Color.BLACK);
-        lv.setAdapter(new TwoLineArrayAdapter(this, android.R.layout.two_line_list_item, getListItems()));
+        lv.setAdapter(new MapListAdapter(this, android.R.layout.two_line_list_item, getListItems()));
     }
 
     private MapListItem[] getListItems()
@@ -80,8 +85,6 @@ public class LauncherListActivity extends ListActivity {
         MapListItem[] items = new MapListItem[samples.length];
 
         for(int i = 0; i < samples.length; i++) {
-
-            Integer counter = i + 1;
 
             String name = samples[i].getSimpleName().replace("Activity", "");
             String description = "none";
@@ -92,9 +95,15 @@ public class LauncherListActivity extends ListActivity {
                 description = ((Description) annotations[0]).value();
             }
 
-            MapListItem item = new MapListItem() {};
-            item.name = counter + ". " + name;
-            item.description = description;
+            MapListItem item = new MapListItem();
+
+            if (name.contains("Header")) {
+                item.name = description;
+                item.isHeader = true;
+            } else {
+                item.name = name;
+                item.description = description;
+            }
 
             items[i] = item;
         }
@@ -104,7 +113,13 @@ public class LauncherListActivity extends ListActivity {
 
     public void onListItemClick(ListView parent, View v, int position, long id) {
 
-        Intent myIntent = new Intent(LauncherListActivity.this, samples[position]);
+        Class sample = samples[position];
+
+        if (sample.getSimpleName().contains("Header")) {
+            return;
+        }
+
+        Intent myIntent = new Intent(LauncherListActivity.this, sample);
         this.startActivity(myIntent);
     }
     

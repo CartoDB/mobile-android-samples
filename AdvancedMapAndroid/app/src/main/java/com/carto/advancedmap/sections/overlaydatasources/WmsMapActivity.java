@@ -1,8 +1,8 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.datasource.HttpWmsTileDataSource;
 import com.carto.core.MapPos;

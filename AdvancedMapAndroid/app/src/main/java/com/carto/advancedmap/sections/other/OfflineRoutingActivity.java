@@ -1,4 +1,4 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.other;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.util.Const;

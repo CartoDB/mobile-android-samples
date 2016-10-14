@@ -2,7 +2,8 @@ package com.carto.advancedmap.mapsamples;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.sections.vectorobjects.Overlays2DActivity;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.listener.MyMapEventListener;
 import com.carto.advancedmap.listener.MyVectorElementEventListener;
 import com.carto.core.MapRange;

@@ -1,9 +1,9 @@
-package com.carto.advancedmap.mapsamples;
+package com.carto.advancedmap.sections.offlinemap;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.advancedmap.Description;
+import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.advancedmap.util.AssetCopy;
 import com.carto.advancedmap.util.Const;
@@ -19,7 +19,7 @@ import java.io.IOException;
  * the assets needs to be copied first to the SDCard.
  */
 @Description(value = "Bundle MBTiles file for offline base map")
-public class OfflineVectorMapActivity extends VectorMapSampleBaseActivity {
+public class BundledMBTilesActivity extends VectorMapSampleBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
