@@ -68,14 +68,11 @@ public class LauncherListActivity extends ListActivity {
             String name = samples[i].getSimpleName().replace("Activity", "");
             String description = "none";
 
-            System.out.println("Name: " + name);
             java.lang.annotation.Annotation[] annotations = samples[i].getAnnotations();
 
             if (annotations.length > 0 && annotations[0] instanceof Description) {
                 description = ((Description) annotations[0]).value();
             }
-
-            System.out.println("Description: " + description);
 
             MapListItem item = new MapListItem();
 

@@ -42,7 +42,13 @@ public class SQLServiceActivity extends BaseMapActivity {
                     e.printStackTrace();
                 }
 
-                System.out.println(result);
+                Variant rows = result.getObjectElement("rows");
+
+                for (int i = 0; i < rows.getArraySize(); i++) {
+
+                    Variant row = rows.getArrayElement(i);
+                    System.out.println("Geom: " + row.getObjectElement("the_geom"));
+                }
             }
         });
 
