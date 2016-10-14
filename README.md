@@ -1,7 +1,7 @@
 # mobile-android-samples
 Android sample for CARTO Mobile SDK
 
-See https://github.com/CartoDB/mobile-android-samples/wiki for developer getting started guides
+* Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
 Samples include:
 
