@@ -62,7 +62,7 @@ public class HelloMapActivity extends Activity {
 
         // Build Marker style
         MarkerStyleBuilder builder = new MarkerStyleBuilder();
-        builder.setSize(15);
+        builder.setSize(20);
 
         // CARTO has its own Color class. Do not mix up with android.graphics.Color
         builder.setColor(new com.carto.graphics.Color(Color.WHITE));
@@ -98,10 +98,11 @@ public class HelloMapActivity extends Activity {
 
             MarkerStyleBuilder builder = new MarkerStyleBuilder();
 
-            // Keep original size
-            builder.setSize(marker.getStyle().getSize());
+            // Set random size (within reasonable limits)
+            int size = getRandomInt(15, 50);
+            builder.setSize(size);
 
-            // Get a random color from our list
+            // Set random color from our list
             int color = colors[getRandomInt(0, colors.length)];
             builder.setColor(new com.carto.graphics.Color(color));
 
