@@ -1,4 +1,4 @@
-package com.carto.advancedmap.otheractivities;
+package com.carto.advancedmap.list;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

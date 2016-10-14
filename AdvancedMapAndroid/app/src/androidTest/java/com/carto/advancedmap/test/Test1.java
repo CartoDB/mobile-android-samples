@@ -1,4 +1,4 @@
-package com.carto.advancedmap.otheractivities;
+package com.carto.advancedmap.test;
 
 
 import android.app.Activity;
@@ -10,10 +10,8 @@ import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.carto.advancedmap.MapListItem;
+import com.carto.advancedmap.list.LauncherListActivity;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +26,6 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
-import static org.hamcrest.core.IsEqual.equalTo;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -44,17 +41,10 @@ public class Test1 {
 
         setActivity();
 
-        int filePickerIndex = list.indexOfFilePicker();
-
         for (Integer i = 0; i < list.samples.length; i++) {
-
-            if (i != filePickerIndex) {
-                DataInteraction interaction = onData(allOf(is(instanceOf(MapListItem.class))));
-                interaction.atPosition(i).perform(click());
-
-                pressBack();
-            }
-
+            DataInteraction interaction = onData(allOf(is(instanceOf(MapListItem.class))));
+            interaction.atPosition(i).perform(click());
+            pressBack();
         }
     }
 

@@ -3,7 +3,7 @@ package com.carto.advancedmap.mapsamples;
 import android.os.Bundle;
 
 import com.carto.advancedmap.Description;
-import com.carto.advancedmap.otheractivities.PackageManagerActivity;
+import com.carto.advancedmap.list.PackageManagerActivity;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
 import com.carto.datasources.TileDataSource;
 

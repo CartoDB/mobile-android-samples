@@ -111,8 +111,7 @@ public class HelloMapActivity extends Activity {
         }
 
         private int getRandomInt(int min, int max) {
-            int randomNum = random.nextInt(max - min) + min;
-            return randomNum;
+            return random.nextInt(max - min) + min;
         }
     }
 }

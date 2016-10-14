@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:name=".AdvancedMapApplication">
         <activity
-            android:name=".otheractivities.LauncherListActivity"
+            android:name=".list.LauncherListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,6 @@
         <activity android:name=".mapsamples.AerialMapActivity" />
         <activity android:name=".mapsamples.CustomRasterDataSourceActivity" />
         <activity android:name=".mapsamples.CustomPopupActivity" />
-        <activity android:name=".mapsamples.MbtilesActivity" />
         <activity android:name=".mapsamples.WmsMapActivity" />
         <activity android:name=".mapsamples.ClusteredRandomPointsActivity" />
         <activity android:name=".mapsamples.ClusteredGeoJsonActivity" />
@@ -52,7 +51,7 @@
         <activity android:name=".mapsamples.MapZenActivity" />
         <activity android:name=".mapsamples.CaptureActivity" />
 
-        <activity android:name=".otheractivities.PackageManagerActivity" />
+        <activity android:name=".list.PackageManagerActivity" />
 
         <activity android:name="com.carto.filepicker.FilePicker" />
 
