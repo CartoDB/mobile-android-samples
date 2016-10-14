@@ -12,12 +12,16 @@ buildscript {
     }
 }
 
+apply plugin: 'maven'
+
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url "http://repository-nutiteq.forge.cloudbees.com/release/"
+        }
+        maven {
+            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
+        }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

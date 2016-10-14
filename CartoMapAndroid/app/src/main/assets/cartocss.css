@@ -1,0 +1,112 @@
+/** category visualization */
+
+#geonames {
+    marker-fill-opacity: 0.5;
+    marker-line-color: #FFF;
+    marker-line-width: 4;
+    marker-line-opacity: 1;
+    marker-placement: point;
+    marker-type: ellipse;
+    marker-width: 10;
+    marker-allow-overlap: false;
+
+}
+
+#geonames[featurecode="CH"] {
+    marker-fill: #A6CEE3;
+}
+#geonames[featurecode="FRM"] {
+    marker-fill: #1F78B4;
+}
+#geonames[featurecode="HLL"] {
+    marker-fill: #B2DF8A;
+}
+#geonames[featurecode="HTL"] {
+    marker-fill: #33A02C;
+}
+#geonames[featurecode="LK"] {
+    marker-fill: #FB9A99;
+}
+#geonames[featurecode="MT"] {
+    marker-fill: #E31A1C;
+}
+#geonames[featurecode="PPL"] {
+    marker-fill: #FDBF6F;
+}
+#geonames[featurecode="SCH"] {
+    marker-fill: #FF7F00;
+}
+#geonames[featurecode="STM"] {
+    marker-fill: #CAB2D6;
+}
+#geonames[featurecode="STMI"] {
+    marker-fill: #6A3D9A;
+}
+#geonames {
+    marker-fill: #FD8D3C;
+}
+
+#geonames [ _feature_count <= 10000] {
+    marker-width: 50;
+}
+#geonames [ _feature_count <= 7000] {
+    marker-width: 40;
+}
+#geonames [ _feature_count <= 5000] {
+    marker-width: 35;
+}
+#geonames [ _feature_count <= 1000] {
+    marker-width: 30;
+}
+#geonames [ _feature_count <= 512] {
+    marker-width: 25;
+}
+
+#geonames [ _feature_count <= 256] {
+    marker-width: 23.3;
+}
+#geonames [ _feature_count <= 128] {
+    marker-width: 21.7;
+}
+#geonames [ _feature_count <= 64] {
+    marker-width: 20.0;
+}
+#geonames [ _feature_count <= 32] {
+    marker-width: 18.3;
+}
+#geonames [ _feature_count <= 16] {
+    marker-width: 16.7;
+}
+#geonames [ _feature_count <= 8] {
+    marker-width: 15.0;
+}
+#geonames [ _feature_count <= 4] {
+    marker-width: 13.3;
+}
+#geonames [ _feature_count <= 2] {
+    marker-width: 11.7;
+}
+#geonames [ _feature_count <= 1] {
+    marker-width: 11.0;
+    marker-line-width: 4;
+}
+
+#geonames [ _feature_count = 1] {
+    marker-line-width: 1;
+}
+/*
+#geonames::labels {
+    text-size: 10;
+    text-fill: #000;
+    text-opacity: 0.8;
+    text-name: [_feature_count];
+    text-face-name: 'DejaVu Sans Book';
+    text-halo-fill: #FFF;
+    text-halo-radius: 0;
+    
+    text-allow-overlap: true;
+    
+    [zoom>11]{ text-size: 16; }
+    [_feature_count = 1]{ text-size: 0; }
+}
+*/

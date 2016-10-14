@@ -34,7 +34,7 @@
         <activity android:name=".sections.sqlapi.CartoSQLMapActivity" />
         <activity android:name=".sections.importapi.CartoUTFGridMapActivity" />
         <activity android:name=".sections.torqueapi.TorqueShipActivity" />
-        <activity android:name=".sections.mapsapi.CartoVectorTileMapActivity" />
+        <activity android:name=".sections.mapsapi.AnonymousMapActivity" />
         <activity android:name=".sections.importapi.CartoRasterTileMapActivity" />
 
     </application>

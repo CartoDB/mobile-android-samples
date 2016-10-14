@@ -17,7 +17,7 @@ import com.carto.cartomap.android.sections.header.MapsHeader;
 import com.carto.cartomap.android.sections.header.SQLHeader;
 import com.carto.cartomap.android.sections.header.TorqueHeader;
 import com.carto.cartomap.android.sections.importapi.CartoRasterTileMapActivity;
-import com.carto.cartomap.android.sections.mapsapi.CartoVectorTileMapActivity;
+import com.carto.cartomap.android.sections.mapsapi.AnonymousMapActivity;
 import com.carto.cartomap.android.sections.sqlapi.CartoSQLMapActivity;
 import com.carto.cartomap.android.sections.sqlapi.SQLServiceActivity;
 import com.carto.cartomap.android.sections.torqueapi.TorqueShipActivity;
@@ -38,7 +38,7 @@ public class LauncherListActivity extends ListActivity {
             CartoUTFGridMapActivity.class,
 
             MapsHeader.class,
-            CartoVectorTileMapActivity.class,
+            AnonymousMapActivity.class,
 
             SQLHeader.class,
             SQLServiceActivity.class,
