@@ -16,12 +16,12 @@ import com.carto.cartomap.android.sections.header.ImportHeader;
 import com.carto.cartomap.android.sections.header.MapsHeader;
 import com.carto.cartomap.android.sections.header.SQLHeader;
 import com.carto.cartomap.android.sections.header.TorqueHeader;
-import com.carto.cartomap.android.sections.importapi.CartoRasterTileMapActivity;
+import com.carto.cartomap.android.sections.importapi.TilePackagerActivity;
 import com.carto.cartomap.android.sections.mapsapi.AnonymousMapActivity;
-import com.carto.cartomap.android.sections.sqlapi.CartoSQLMapActivity;
+import com.carto.cartomap.android.sections.mapsapi.NamedMapActivity;
+import com.carto.cartomap.android.sections.mapsapi.RasterMapActivity;
 import com.carto.cartomap.android.sections.sqlapi.SQLServiceActivity;
 import com.carto.cartomap.android.sections.torqueapi.TorqueShipActivity;
-import com.carto.cartomap.android.sections.importapi.CartoUTFGridMapActivity;
 import com.carto.cartomap.android.util.Description;
 
 public class LauncherListActivity extends ListActivity {
@@ -34,15 +34,15 @@ public class LauncherListActivity extends ListActivity {
             FontsVisMapActivity.class,
 
             ImportHeader.class,
-            CartoRasterTileMapActivity.class,
-            CartoUTFGridMapActivity.class,
+            TilePackagerActivity.class,
 
             MapsHeader.class,
             AnonymousMapActivity.class,
+            NamedMapActivity.class,
+            RasterMapActivity.class,
 
             SQLHeader.class,
             SQLServiceActivity.class,
-            CartoSQLMapActivity.class,
 
             TorqueHeader.class,
             TorqueShipActivity.class,

@@ -3,7 +3,7 @@ package com.carto.cartomap.android.sections.cartojsapi;
 import android.util.Log;
 
 import com.carto.cartomap.android.sections.BaseMapActivity;
-import com.carto.cartomap.android.listener.MyUTFGridEventListener;
+import com.carto.cartomap.android._old.listener.MyUTFGridEventListener;
 import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;

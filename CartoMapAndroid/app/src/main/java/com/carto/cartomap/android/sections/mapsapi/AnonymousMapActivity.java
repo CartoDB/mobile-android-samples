@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
-@Description(value = "CARTO data as Vector Tiles, using CartoCSS styling")
+@Description(value = "Data as Vector Tiles, using CartoCSS styling")
 public class AnonymousMapActivity extends BaseMapActivity {
 
     @Override
