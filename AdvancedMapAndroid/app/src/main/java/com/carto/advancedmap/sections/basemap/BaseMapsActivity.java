@@ -9,4 +9,5 @@ import com.carto.advancedmap.util.Description;
 
 @Description(value = "Choice between different base maps, styles, languages")
 public class BaseMapsActivity extends VectorMapSampleBaseActivity {
+
 }
