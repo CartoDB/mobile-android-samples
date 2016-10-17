@@ -59,7 +59,6 @@ public class CartoDBSQLDataSource extends VectorDataSource {
         this.query = query;
 	}
 
-
     @Override
     public VectorData loadElements(CullState cullState) {
         VectorElementVector elements = new VectorElementVector();
@@ -68,7 +67,7 @@ public class CartoDBSQLDataSource extends VectorDataSource {
         MapPos min = mapViewBounds.getBounds().getMin();
         MapPos max = mapViewBounds.getBounds().getMax();
 
-        //run query here
+        // Run query here
         loadData(elements, min,max,cullState.getViewState().getZoom());
 
         return new VectorData(elements);
@@ -106,34 +105,36 @@ public class CartoDBSQLDataSource extends VectorDataSource {
             StringBuilder responseStrBuilder = new StringBuilder();
 
             String inputStr;
-            while ((inputStr = streamReader.readLine()) != null)
+            while ((inputStr = streamReader.readLine()) != null) {
                 responseStrBuilder.append(inputStr);
+            }
 
             JSONObject json = new JSONObject(responseStrBuilder.toString());
 
             GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
 
             JSONArray features = json.getJSONArray("features");
+
             for (int i = 0; i < features.length(); i++) {
                 JSONObject feature = (JSONObject) features.get(i);
                 JSONObject geometry = feature.getJSONObject("geometry");
 
-                // use SDK GeoJSON parser
+                // Use SDK GeoJSON parser
                 Geometry ntGeom = geoJsonParser.readGeometry(geometry.toString());
 
                 JSONObject properties = feature.getJSONObject("properties");
                 VectorElement element;
 
-                // create object based on given style
-                if(style instanceof PointStyle){
+                // Create object based on given style
+                if (style instanceof PointStyle){
                     element = new Point((PointGeometry) ntGeom,(PointStyle) style);
-                }else if(style instanceof MarkerStyle){
+                } else if (style instanceof MarkerStyle) {
                     element = new Marker(ntGeom, (MarkerStyle) style);
-                }else if(style instanceof LineStyle) {
+                } else if (style instanceof LineStyle) {
                     element = new Line((LineGeometry) ntGeom, (LineStyle) style);
-                }else if(style instanceof PolygonStyle) {
+                } else if (style instanceof PolygonStyle) {
                     element = new Polygon((PolygonGeometry) ntGeom, (PolygonStyle) style);
-                }else{
+                } else {
                     Log.e("LOG", "Object creation not implemented yet for style: " + style.swigGetClassName());
                     break;
                 }

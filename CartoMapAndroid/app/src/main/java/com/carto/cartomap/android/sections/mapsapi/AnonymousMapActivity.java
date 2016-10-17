@@ -28,34 +28,68 @@ public class AnonymousMapActivity extends BaseMapActivity {
         // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-        String cartoCSS = "";
+        final String config = getConfigJson();
+
+        // Use the Maps service to configure layers.
+        // Note that this must be done in a separate thread on Android,
+        // as Maps API requires connecting to server, which is not allowed in main thread.
+		Thread serviceThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+
+                CartoMapsService mapsService = new CartoMapsService();
+				mapsService.setUsername("nutiteq");
+				mapsService.setDefaultVectorLayerMode(true); // use vector layers
+
+                try {
+                    LayerVector layers = mapsService.buildMap(Variant.fromString(config));
+                    for (int i = 0; i < layers.size(); i++) {
+                        mapView.getLayers().add(layers.get(i));
+                    }
+                }
+                catch (IOException e) {
+                    Log.e("EXCEPTION", "Exception: " + e);
+                }
+			}
+		});
+
+		serviceThread.start();
+		
+        // Animate map to the content area
+        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-74.0059, 40.7127)), 1); // NYC
+        mapView.setZoom(15, 1);
+    }
+
+    private String getConfigJson() {
+
+//        String cartoCSS;
 
         // Define server config
         JSONObject configJson = new JSONObject();
+
         try {
             // You need to change these according to your DB
             String sql = "select * from stations_1";
             String statTag = "3c6f224a-c6ad-11e5-b17e-0e98b61680bf";
             String[] columns = new String[] { "name", "status", "slot" };
-            cartoCSS =
-                    "#stations_1{" +
-                            "marker-fill-opacity:0.9;marker-line-color:#FFF;" +
-                            "marker-line-width:2;marker-line-opacity:1;marker-placement:point;" +
-                            "marker-type:ellipse;marker-width:10;marker-allow-overlap:true;}\n" +
-                            "" +
-                            "#stations_1[status = 'In Service']{marker-fill:#0F3B82;}\n" +
-                            "#stations_1[status = 'Not In Service']{marker-fill:#aaaaaa;}\n" +
-                            "#stations_1[field_9 = 200]{marker-width:80.0;}\n" +
-                            "#stations_1[field_9 <= 49]{marker-width:25.0;}\n" +
-                            "#stations_1[field_9 <= 38]{marker-width:22.8;}\n" +
-                            "#stations_1[field_9 <= 34]{marker-width:20.6;}\n" +
-                            "#stations_1[field_9 <= 29]{marker-width:18.3;}\n" +
-                            "#stations_1[field_9 <= 25]{marker-width:16.1;}\n" +
-                            "#stations_1[field_9 <= 20.5]{marker-width:13.9;}\n" +
-                            "#stations_1[field_9 <= 16]{marker-width:11.7;}\n" +
-                            "#stations_1[field_9 <= 12]{marker-width:9.4;}\n" +
-                            "#stations_1[field_9 <= 8]{marker-width:7.2;}\n" +
-                            "#stations_1[field_9 <= 4]{marker-width:5.0;}";
+            String cartoCSS = "#stations_1{" +
+                    "marker-fill-opacity:0.9;marker-line-color:#FFF;" +
+                    "marker-line-width:2;marker-line-opacity:1;marker-placement:point;" +
+                    "marker-type:ellipse;marker-width:10;marker-allow-overlap:true;}\n" +
+                    "" +
+                    "#stations_1[status = 'In Service']{marker-fill:#0F3B82;}\n" +
+                    "#stations_1[status = 'Not In Service']{marker-fill:#aaaaaa;}\n" +
+                    "#stations_1[field_9 = 200]{marker-width:80.0;}\n" +
+                    "#stations_1[field_9 <= 49]{marker-width:25.0;}\n" +
+                    "#stations_1[field_9 <= 38]{marker-width:22.8;}\n" +
+                    "#stations_1[field_9 <= 34]{marker-width:20.6;}\n" +
+                    "#stations_1[field_9 <= 29]{marker-width:18.3;}\n" +
+                    "#stations_1[field_9 <= 25]{marker-width:16.1;}\n" +
+                    "#stations_1[field_9 <= 20.5]{marker-width:13.9;}\n" +
+                    "#stations_1[field_9 <= 16]{marker-width:11.7;}\n" +
+                    "#stations_1[field_9 <= 12]{marker-width:9.4;}\n" +
+                    "#stations_1[field_9 <= 8]{marker-width:7.2;}\n" +
+                    "#stations_1[field_9 <= 4]{marker-width:5.0;}";
 
             // You probably do not need to change much of below
             configJson.put("version", "1.0.1");
@@ -89,38 +123,11 @@ public class AnonymousMapActivity extends BaseMapActivity {
             layersJson.put("options", optionsJson);
             layersArrayJson.put(layersJson);
             configJson.put("layers", layersArrayJson);
+
         } catch (JSONException e) {
+            return  null;
         }
 
-        final String config = configJson.toString();
-
-        // Use the Maps service to configure layers.
-        // Note that this must be done in a separate thread on Android,
-        // as Maps API requires connecting to server, which is not allowed in main thread.
-		Thread serviceThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-
-                CartoMapsService mapsService = new CartoMapsService();
-				mapsService.setUsername("nutiteq");
-				mapsService.setDefaultVectorLayerMode(true); // use vector layers
-
-                try {
-                    LayerVector layers = mapsService.buildMap(Variant.fromString(config));
-                    for (int i = 0; i < layers.size(); i++) {
-                        mapView.getLayers().add(layers.get(i));
-                    }
-                }
-                catch (IOException e) {
-                    Log.e("EXCEPTION", "Exception: " + e);
-                }
-			}
-		});
-
-		serviceThread.start();
-		
-        // Animate map to the content area
-        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-74.0059, 40.7127)), 1); // NYC
-        mapView.setZoom(15, 1);
+        return configJson.toString();
     }
 }

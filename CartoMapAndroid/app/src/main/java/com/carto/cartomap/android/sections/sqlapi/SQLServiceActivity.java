@@ -17,7 +17,9 @@ import java.io.IOException;
 @Description(value = "Displays cities on the map via SQL query")
 public class SQLServiceActivity extends BaseMapActivity {
 
-    static final String query = "SELECT * FROM cities15000 WHERE population > 100000";
+//    static final String query = "SELECT * FROM cities15000 WHERE population > 100000";
+    static final String query = "SELECT * FROM cities15000";
+
     Variant result = null;
 
     @Override
@@ -29,8 +31,7 @@ public class SQLServiceActivity extends BaseMapActivity {
         // Sample url:
         // https://cartomobile-team.carto.com/u/nutiteq/viz/f1407ed4-84b8-11e6-96bc-0ee66e2c9693/public_map
 
-//        service.setUsername("nutiteq");
-        service.setAPITemplate("https://nutiteq.cartodb.com");
+        service.setUsername("nutiteq");
 
         // Be sure to make network queries on another thread
         Thread thread = new Thread(new Runnable() {
@@ -47,7 +48,7 @@ public class SQLServiceActivity extends BaseMapActivity {
                 for (int i = 0; i < rows.getArraySize(); i++) {
 
                     Variant row = rows.getArrayElement(i);
-                    System.out.println("Geom: " + row.getObjectElement("the_geom"));
+//                    System.out.println("Geom: " + row.getObjectElement("the_geom"));
                 }
             }
         });
