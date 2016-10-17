@@ -101,6 +101,7 @@ public class LauncherListActivity extends ListActivity {
                 item.name = description;
                 item.isHeader = true;
             } else {
+                item = new MapListMap();
                 item.name = name;
                 item.description = description;
             }
@@ -122,5 +123,10 @@ public class LauncherListActivity extends ListActivity {
         Intent myIntent = new Intent(LauncherListActivity.this, sample);
         this.startActivity(myIntent);
     }
-    
+
+    // Filler class to differentiate between clickable Map and Header for Espresso tests
+    public class MapListMap extends MapListItem {
+
+    }
+
 }
