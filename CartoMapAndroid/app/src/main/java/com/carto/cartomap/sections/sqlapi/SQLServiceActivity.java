@@ -13,6 +13,7 @@ import com.carto.projections.Projection;
 import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
+import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.Point;
 
 import java.io.IOException;
@@ -54,9 +55,7 @@ public class SQLServiceActivity extends BaseMapActivity {
                         // however, it can also be LineGeometry or PolygonGeometry
 
                         PointGeometry geometry = (PointGeometry)features.getFeature(i).getGeometry();
-                        System.out.println(geometry.getCenterPos().getX() + " - " + geometry.getCenterPos().getY());
                         source.add(new Point(geometry, getPointStyle()));
-                        System.out.println("Element: " + geometry);
                     }
 
                     System.out.println("Total: " + features.getFeatureCount());
@@ -74,7 +73,7 @@ public class SQLServiceActivity extends BaseMapActivity {
 
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(android.graphics.Color.RED));
-        pointStyleBuilder.setSize(10);
+        pointStyleBuilder.setSize(1);
 
         return pointStyleBuilder.buildStyle();
     }
