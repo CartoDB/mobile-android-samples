@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.carto.advancedmap.listener.MyMapEventListener;
 import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
@@ -23,23 +24,29 @@ import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
 import com.carto.styles.PointStyleBuilder;
+import com.carto.styles.Polygon3DStyleBuilder;
 import com.carto.styles.PolygonStyleBuilder;
 import com.carto.styles.TextStyleBuilder;
+import com.carto.utils.AssetUtils;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
+import com.carto.vectorelements.NMLModel;
 import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
+import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
 
 /**
- * A sample demonstrating how to add basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups.
+ * A sample demonstrating how to add basic 2D and 3D objects to the map:
+ * lines, points, polygon with hole, texts and pop-ups.
  */
-@Description(value = "2D objects: lines, points, polygon with hole, texts and pop-ups")
-public class Overlays2DActivity extends VectorMapSampleBaseActivity {
+@Description(value = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
+public class OverlaysActivity extends VectorMapSampleBaseActivity {
 
     Projection projection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // MapSampleBaseActivity creates and configures mapView  
@@ -48,42 +55,71 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         this.projection = baseProjection;
 
         // Initialize an local vector data source
-        LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(projection);
+        LocalVectorDataSource source = new LocalVectorDataSource(projection);
 
         // Initialize a vector layer with the previous data source
-        VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
+        VectorLayer vectorLayer = new VectorLayer(source);
 
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer1);
+        mapView.getLayers().add(vectorLayer);
 
         // Set visible zoom range for the vector layer
-        vectorLayer1.setVisibleZoomRange(new MapRange(10, 24));
-        
+        vectorLayer.setVisibleZoomRange(new MapRange(10, 24));
+
+        // Add a bunch of vector elements
+        addPoint1(source);
+        addPoint2(source);
+
+        addOverlyingLines(source);
+
+        addPolygon(source);
+
+        addText1(source);
+        addText2(source);
+        addText3(source);
+
+        addBalloonPopup1(source);
+        addBalloonPopup2(source);
+        addBalloonPopup3(source);
+
+        add3DCar(source);
+        add3DPolygon(source);
+
+        // Animate map to Tallinn where the objects are
+        mapView.setFocusPos(projection.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
+        mapView.setZoom(12, 1);
+
+        // Add maplistener to detect click on model
+        mapView.setMapEventListener(new MyMapEventListener(mapView, source));
+    }
+
+    void addPoint1(LocalVectorDataSource source) {
+
+        Point point1 = getPoint(new MapPos(24.651488, 59.423581), 0xFF00FF00);
+        point1.setMetaDataElement("ClickText", new Variant("Point nr 1"));
+        source.add(point1);
+    }
+
+    void addPoint2(LocalVectorDataSource source) {
+
+        Point point2 = getPoint(new MapPos(24.655994, 59.422716), 0xFF0000FF);
+        point2.setMetaDataElement("ClickText", new Variant("Point nr 2"));
+        source.add(point2);
+    }
+
+    void addOverlyingLines(LocalVectorDataSource source) {
+
         // Initialize a second vector data source and vector layer
         // This secondary vector layer will be used for drawing borders for
         // line elements (by drawing the same line twice, with different widths)
         // Drawing order withing a layer is currently undefined
         // Using multiple layers is the only way to guarantee
         // that point, line and polygon elements are drawn in a specific order
-        LocalVectorDataSource vectorDataSource2 = new LocalVectorDataSource(projection);
-        VectorLayer vectorLayer2 = new VectorLayer(vectorDataSource2);
+        LocalVectorDataSource source2 = new LocalVectorDataSource(projection);
+        VectorLayer vectorLayer2 = new VectorLayer(source2);
         mapView.getLayers().add(vectorLayer2);
         vectorLayer2.setVisibleZoomRange(new MapRange(10, 24));
-        
-        // Vector elements
-        // Add points
 
-        // First point
-        Point point1 = getPoint(new MapPos(24.651488, 59.423581), 0xFF00FF00);
-        point1.setMetaDataElement("ClickText", new Variant("Point nr 1"));
-        vectorDataSource1.add(point1);
-
-        // Second point
-        Point point2 = getPoint(new MapPos(24.655994, 59.422716), 0xFF0000FF);
-        point2.setMetaDataElement("ClickText", new Variant("Point nr 2"));
-        vectorDataSource1.add(point2);
-        
-        // Add lines
         // Create line style, and line poses
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(0xFFFFFFFF));
@@ -100,8 +136,8 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Add first line
         Line line1 = new Line(linePoses, lineStyleBuilder.buildStyle());
         line1.setMetaDataElement("ClickText", new Variant("Line nr 1"));
-//        vectorDataSource2.add(line1);
-        
+        source2.add(line1);
+
         // Create another line style, use the same lines poses
         lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(0xFFCC0F00));
@@ -110,21 +146,7 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Add second line to the second layer.
         Line line2 = new Line(linePoses, lineStyleBuilder.buildStyle());
         line2.setMetaDataElement("ClickText", new Variant("Line nr 2"));
-        vectorDataSource1.add(line2);
-
-        addPolygon(vectorDataSource1);
-
-        addText1(vectorDataSource1);
-        addText2(vectorDataSource1);
-        addText3(vectorDataSource1);
-
-        addBalloonPopup1(vectorDataSource1);
-        addBalloonPopup2(vectorDataSource1);
-        addBalloonPopup3(vectorDataSource1);
-
-        // Animate map to Tallinn where the objects are
-        mapView.setFocusPos(projection.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
-        mapView.setZoom(12, 1);
+        source.add(line2);
     }
 
     void addText1(LocalVectorDataSource source) {
@@ -147,7 +169,6 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
 
     void addText2(LocalVectorDataSource source) {
 
-        // Add text
         TextStyleBuilder builder = new TextStyleBuilder();
         builder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_FACE_CAMERA_GROUND);
 
@@ -160,7 +181,6 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
 
     void addText3(LocalVectorDataSource source) {
 
-        // Add text
         TextStyleBuilder builder = new TextStyleBuilder();
         builder.setFontSize(22);
         builder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_GROUND);
@@ -290,6 +310,47 @@ public class Overlays2DActivity extends VectorMapSampleBaseActivity {
         // Add polygon
         Polygon polygon = new Polygon(polygonPoses, polygonHoles, polygonBuilder.buildStyle());
         polygon.setMetaDataElement("ClickText", new Variant("Polygon"));
+        source.add(polygon);
+    }
+
+    void add3DCar(LocalVectorDataSource source) {
+        // Add a single 3D model to the vector layer
+        String modelName = "milktruck.nml";
+
+        MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939));
+        NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
+
+        model.setScale(20);
+        model.setMetaDataElement("ClickText", new Variant("Single model"));
+
+        source.add(model);
+    }
+
+    void add3DPolygon(LocalVectorDataSource source) {
+
+        // Create 3d polygon style and poses
+        Polygon3DStyleBuilder polygon3DStyleBuilder = new Polygon3DStyleBuilder();
+        polygon3DStyleBuilder.setColor(new Color(0xFF3333FF));
+
+        MapPosVector polygon3DPoses = new MapPosVector();
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.635930, 59.416659)));
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.642453, 59.411354)));
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.646187, 59.409607)));
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.652667, 59.413123)));
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.650736, 59.416703)));
+        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.646444, 59.416245)));
+
+        // Create 3d polygon holes poses
+        MapPosVector holePositions = new MapPosVector();
+        holePositions.add(baseProjection.fromWgs84(new MapPos(24.643409, 59.411922)));
+        holePositions.add(baseProjection.fromWgs84(new MapPos(24.651207, 59.412896)));
+        holePositions.add(baseProjection.fromWgs84(new MapPos(24.643207, 59.414411)));
+        MapPosVectorVector holes = new MapPosVectorVector();
+        holes.add(holePositions);
+
+        // Add to datasource
+        Polygon3D polygon = new Polygon3D(polygon3DPoses, holes, polygon3DStyleBuilder.buildStyle(), 150);
+        polygon.setMetaDataElement("ClickText", new Variant("Polygon 3D"));
         source.add(polygon);
     }
 

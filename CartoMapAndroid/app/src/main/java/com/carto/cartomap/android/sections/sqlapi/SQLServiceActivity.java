@@ -58,6 +58,7 @@ public class SQLServiceActivity extends BaseMapActivity {
                         // however, it can also be LineGeometry or PolygonGeometry
 
                         PointGeometry geometry = (PointGeometry)features.getFeature(i).getGeometry();
+                        System.out.println(geometry.getCenterPos().getX() + " - " + geometry.getCenterPos().getY());
                         source.add(new Point(geometry, getPointStyle()));
                         System.out.println("Element: " + geometry);
                     }
@@ -76,7 +77,7 @@ public class SQLServiceActivity extends BaseMapActivity {
     PointStyle getPointStyle() {
 
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
-        pointStyleBuilder.setColor(new Color(android.graphics.Color.CYAN));
+        pointStyleBuilder.setColor(new Color(android.graphics.Color.RED));
         pointStyleBuilder.setSize(10);
 
         return pointStyleBuilder.buildStyle();

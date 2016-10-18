@@ -39,10 +39,12 @@ public class MyVectorElementEventListener extends VectorElementEventListener {
 		// Check the type of vector element
 		BalloonPopup clickPopup = null;
 		BalloonPopupStyleBuilder styleBuilder = new BalloonPopupStyleBuilder();
-	    // Configure style
+
+		// Configure style
 	    styleBuilder.setLeftMargins(new BalloonPopupMargins(0, 0, 0, 0));
 	    styleBuilder.setTitleMargins(new BalloonPopupMargins(6, 3, 6, 3));
-	    // Make sure this label is shown on top all other labels
+
+		// Make sure this label is shown on top all other labels
 	    styleBuilder.setPlacementPriority(10);
 
 		VectorElement vectorElement = clickInfo.getVectorElement();
@@ -51,9 +53,11 @@ public class MyVectorElementEventListener extends VectorElementEventListener {
 		// show all metadata elements
 		StringVariantMap stringMap = vectorElement.getMetaData();
 		StringBuilder msgBuilder = new StringBuilder();
+
 		if (stringMap.size() > 0) {
 			for (int i = 0; i < stringMap.size(); i++) {
 				Log.d(Const.LOG_TAG, "" + stringMap.get_key(i) + " = " + stringMap.get(stringMap.get_key(i)));
+
 				if(!stringMap.get_key(i).equals("ClickText")){
 					msgBuilder.append(stringMap.get_key(i));
 					msgBuilder.append("=");
@@ -62,22 +66,23 @@ public class MyVectorElementEventListener extends VectorElementEventListener {
 				}
 			}
 		}
+
 		String desc = msgBuilder.toString().trim();
 
 		if (vectorElement instanceof Billboard) {
 			// If the element is billboard, attach the click label to the billboard element
 			Billboard billboard = (Billboard) vectorElement;
-			clickPopup = new BalloonPopup(billboard, 
-										  styleBuilder.buildStyle(),
-		                    			  clickText, desc);
+			clickPopup = new BalloonPopup(billboard, styleBuilder.buildStyle(), clickText, desc);
 		} else {
 			// for lines and polygons set label to click location
-			clickPopup = new BalloonPopup(clickInfo.getElementClickPos(),
-										  styleBuilder.buildStyle(),
-		                   				  clickText, desc);
+			clickPopup = new BalloonPopup(clickInfo.getElementClickPos(), styleBuilder.buildStyle(), clickText, desc);
 		}
+
 		vectorDataSource.add(clickPopup);
 		oldClickLabel = clickPopup;
+
+		// Return true if you want to register just one event,
+		// false if you wish to "click on" all the elements on the click position
 		return true;
 	}
 

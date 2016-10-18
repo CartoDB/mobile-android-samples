@@ -2,7 +2,7 @@ package com.carto.advancedmap.mapsamples;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.sections.vectorobjects.Overlays2DActivity;
+import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.listener.MyMapEventListener;
 import com.carto.advancedmap.listener.MyVectorElementEventListener;
@@ -13,15 +13,15 @@ import com.carto.layers.VectorLayer;
 
 /**
  * A sample displaying how to set custom MapListener to detect clicks on map and on map vector elements.
- * Actual vector elements are added in Overlays2DActivity, as this class extends it.
+ * Actual vector elements are added in OverlaysActivity, as this class extends it.
  */
 @Description(value = "Events for clicks on map and Vector elements")
-public class MapListenerActivity extends Overlays2DActivity {
+public class MapListenerActivity extends OverlaysActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
-        // Overlays2DActivity adds 2D vector elements to map  
+        // OverlaysActivity adds 2D vector elements to map
         super.onCreate(savedInstanceState);
         
         // 1. Initialize a local vector data source and layer for click Balloons

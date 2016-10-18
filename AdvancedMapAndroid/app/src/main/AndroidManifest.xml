@@ -39,8 +39,7 @@
         <activity android:name=".sections.offlinemap.BundledMBTilesActivity" />
 
         <!--Section 3-->
-        <activity android:name=".sections.vectorobjects.Overlays2DActivity" />
-        <activity android:name=".sections.vectorobjects.Overlays3DActivity" />
+        <activity android:name=".sections.vectorobjects.OverlaysActivity" />
 
         <!--Section 4-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />

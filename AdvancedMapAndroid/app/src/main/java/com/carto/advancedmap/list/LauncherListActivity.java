@@ -18,17 +18,13 @@ import com.carto.advancedmap.sections.offlinemap.packagemanager.PackageManagerAc
 import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.sections.other.CaptureActivity;
 import com.carto.advancedmap.sections.other.ClusteredGeoJsonActivity;
-import com.carto.advancedmap.sections.other.ClusteredRandomPointsActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;
 import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
-import com.carto.advancedmap.mapsamples.InteractivityMapActivity;
-import com.carto.advancedmap.mapsamples.MapListenerActivity;
 import com.carto.advancedmap.sections.other.MyLocationActivity;
 import com.carto.advancedmap.sections.other.OfflineRoutingActivity;
 import com.carto.advancedmap.sections.offlinemap.BundledMBTilesActivity;
-import com.carto.advancedmap.sections.vectorobjects.Overlays2DActivity;
-import com.carto.advancedmap.sections.vectorobjects.Overlays3DActivity;
+import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
 import com.carto.advancedmap.R;
 
@@ -54,8 +50,7 @@ public class LauncherListActivity extends ListActivity {
             WmsMapActivity.class,
 
             VectorObjectsHeader.class,
-            Overlays2DActivity.class,
-            Overlays3DActivity.class,
+            OverlaysActivity.class,
 
             OtherMapHeader.class,
             CaptureActivity.class,
