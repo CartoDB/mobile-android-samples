@@ -9,6 +9,7 @@ import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.PointGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
+import com.carto.projections.Projection;
 import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
@@ -39,12 +40,13 @@ public class SQLServiceActivity extends BaseMapActivity {
         final CartoSQLService service = new CartoSQLService();
         service.setUsername("nutiteq");
 
+
         // Be sure to make network queries on another thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    features = service.queryFeatures(query);
+                    features = service.queryFeatures(query, new com.carto.services.SWIGTYPE_p_std__shared_ptrT_carto__Projection_t(Projection.getCPtr(mapView.getOptions().getBaseProjection()), true));
 
                     for (int i = 0; i < features.getFeatureCount(); i++) {
 
