@@ -48,7 +48,6 @@
 
         <!--Section 5-->
         <activity android:name=".sections.other.CaptureActivity" />
-        <activity android:name=".sections.other.ClusteredRandomPointsActivity" />
         <activity android:name=".sections.other.ClusteredGeoJsonActivity" />
         <activity android:name=".sections.other.CustomPopupActivity" />
         <activity android:name=".sections.other.MyLocationActivity" />

@@ -124,9 +124,7 @@ public class MyCustomPopupHandler extends CustomPopupHandler {
 	    paint.setStyle(Style.STROKE);
 	    paint.setStrokeWidth(strokeWidth);
 		paint.setColor(STROKE_COLOR);
-		RectF backgroundRect = new RectF(
-				triangleWidth, halfStrokeWidth,
-				popupWidth - strokeWidth, popupHeight - strokeWidth);
+		RectF backgroundRect = new RectF(triangleWidth, halfStrokeWidth, popupWidth - strokeWidth, popupHeight - strokeWidth);
 		canvas.drawRect(backgroundRect, paint);
 		
 		// Stroke triangle
@@ -149,8 +147,7 @@ public class MyCustomPopupHandler extends CustomPopupHandler {
 	    if (textLayout != null) {
 	    	// Draw text
 	    	canvas.save();
-	    	canvas.translate(halfStrokeWidth + triangleWidth + POPUP_PADDING,
-	                     	 halfStrokeWidth + POPUP_PADDING);
+	    	canvas.translate(halfStrokeWidth + triangleWidth + POPUP_PADDING, halfStrokeWidth + POPUP_PADDING);
 	    	textLayout.draw(canvas);
 	    	canvas.restore();
 	    }
