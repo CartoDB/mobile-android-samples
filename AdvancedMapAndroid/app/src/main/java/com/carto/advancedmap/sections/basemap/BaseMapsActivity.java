@@ -6,8 +6,16 @@ import android.view.MenuItem;
 
 import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
 import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.util.Urls;
 import com.carto.core.BinaryData;
 import com.carto.datasources.CartoOnlineTileDataSource;
+import com.carto.datasources.HTTPTileDataSource;
+import com.carto.datasources.TileDataSource;
+import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOnlineVectorTileLayer;
+import com.carto.layers.CartoVectorTileLayer;
+import com.carto.layers.RasterTileLayer;
+import com.carto.layers.TileLayer;
 import com.carto.layers.VectorTileLayer;
 import com.carto.styles.CompiledStyleSet;
 import com.carto.utils.AssetUtils;
@@ -50,7 +58,7 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
     Map<String, String> nutiteqStyleMap = new HashMap<String, String>() { {
         put("Default", "nutibright-v3:default");
         put("Dark", "nutibright-v3:nutiteq_dark");
-        put("Gray", "nutibright-v3:nutiteq_grey");
+        put("Gray", "nutibright-v3:nutiteq_gray");
     }};
 
     Map<String, String> mapzenStyleMap = new HashMap<String, String>() {{
@@ -106,82 +114,76 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
 
     private void updateBaseLayer() {
 
-        boolean styleBuildings3D = false;
+        mapView.getLayers().clear();
 
-        CompiledStyleSet vectorTileStyleSet;
+        TileLayer layer;
 
-        if (currentStyle.contains(":")) {
+        if (currentTileType.equals("raster")) {
+            String url;
 
-            String[] split = currentStyle.split(":");
-            String fileName = split[0];
-            String styleName = split[1];
+            if (currentStyle.equals("positron")) {
+                url = Urls.Positron;
+            } else {
+                url = Urls.DarkMatter;
+            }
 
-            String styleAssetName = fileName + ".zip";
-            BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
-
-            // Create style set
-            vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes), styleName);
-
+            TileDataSource source = new HTTPTileDataSource(1, 19, url);
+            layer = new RasterTileLayer(source);
         } else {
 
-            if (currentStyle.equals("nutibright3d")) {
-                currentStyle = getBaseStyle();
-                styleBuildings3D = true;
+            if (currentOSM == "nutiteq.osm") {
+
+                if (!isCurrentStyleNutiteq()) {
+                    currentStyle = nutiteqStyleMap.entrySet().iterator().next().getValue();
+                }
+
+                // Use one of CARTO SDK's built-in styles
+                if (currentStyle.split(":")[1].equals("default")) {
+                    layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+                } else if (currentStyle.split(":")[1].equals("nutiteq_gray")) {
+                    layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+                } else {
+                    layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
+                }
+
+                // When using built-in styles, the decoder and datasource are automatically created,
+                // so we just need to access them in order to change the language
+                MBVectorTileDecoder decoder = (MBVectorTileDecoder)((VectorTileLayer)layer).getTileDecoder();
+                decoder.setStyleParameter("lang", currentLanguage);
+
+            } else {
+
+                if (isCurrentStyleNutiteq()) {
+                    currentStyle = mapzenStyleMap.entrySet().iterator().next().getValue();
+                }
+
+                // Be sure you have mapzen styles (dark_matter.zip, positron.zip) in your asset folder
+                BinaryData bytes = AssetUtils.loadAsset(currentStyle + ".zip");
+                CompiledStyleSet styleSet = new CompiledStyleSet(new ZippedAssetPackage(bytes));
+
+                MBVectorTileDecoder decoder = new MBVectorTileDecoder(styleSet);
+                decoder.setStyleParameter("lang", currentLanguage);
+
+                CartoOnlineTileDataSource source = new CartoOnlineTileDataSource(currentOSM);
+
+                layer = new VectorTileLayer(source, decoder);
             }
-
-            String styleAssetName = currentStyle + ".zip";
-            BinaryData styleBytes = AssetUtils.loadAsset(styleAssetName);
-
-            // Create style set
-            vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
         }
 
-        MBVectorTileDecoder vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
-
-        // Set language, language-specific texts from vector tiles will be used
-        vectorTileDecoder.setStyleParameter("lang", currentLanguage);
-
-        // OSM Bright style set supports choosing between 2d/3d buildings. Set corresponding parameter.
-
-        vectorTileDecoder.setStyleParameter("buildings3d", styleBuildings3D ? "1": "0");
-        vectorTileDecoder.setStyleParameter("markers3d",styleBuildings3D ? "1" : "0");
-        vectorTileDecoder.setStyleParameter("texts3d",styleBuildings3D ? "1" : "0");
-
-        // Create tile data source for vector tiles
-        CartoOnlineTileDataSource vectorTileDataSource = new CartoOnlineTileDataSource(currentOSM);
-
-        // Remove old base layer, create new base layer
-        if (baseLayer != null) {
-            mapView.getLayers().remove(baseLayer);
-        }
-
-        baseLayer = new VectorTileLayer(vectorTileDataSource, vectorTileDecoder);
-        mapView.getLayers().insert(0, baseLayer);
+        mapView.getLayers().add(layer);
     }
 
+    private boolean isCurrentStyleNutiteq() {
+
+        for (Map.Entry item : nutiteqStyleMap.entrySet()) {
+            if (item.getValue() == currentStyle) {
+                return  true;
+            }
+        }
+        return false;
+    }
     private String getBaseStyle() {
         return findStyleMap().entrySet().iterator().next().getValue();
-    }
-
-    /*************
-     * LISTENERS *
-     *************/
-
-    private class ListenerBase {
-
-        protected Menu menu;
-
-        private ListenerBase(Menu menu) {
-            this.menu = menu;
-        }
-
-        void setIconToItem(MenuItem item) {
-            for (int i = 0; i < menu.size(); i++) {
-                menu.getItem(i).setIcon(null);
-            }
-
-            item.setIcon(android.R.drawable.checkbox_on_background);
-        }
     }
 
     private Map<String, String> findStyleMap() {
@@ -203,7 +205,12 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
 
         return null;
     }
-    private class MenuListener extends ListenerBase implements MenuItem.OnMenuItemClickListener {
+
+    /*************
+     * LISTENER *
+     *************/
+
+    private class MenuListener implements MenuItem.OnMenuItemClickListener {
 
         static final int OSM_ID = 0;
         static final int LANGUAGE_ID = 1;
@@ -212,8 +219,10 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
 
         public int id;
 
+        protected Menu menu;
+
         private MenuListener(Menu menu) {
-            super(menu);
+            this.menu = menu;
         }
 
         @Override
@@ -233,8 +242,23 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
                 currentStyle = findValueInMap(findStyleMap(), title);
             }
 
+            updateStyleMenu();
             updateBaseLayer();
+
             return true;
+        }
+
+        void setIconToItem(MenuItem item) {
+            for (int i = 0; i < menu.size(); i++) {
+                menu.getItem(i).setIcon(null);
+            }
+
+            item.setIcon(android.R.drawable.checkbox_on_background);
+        }
+
+        private void updateStyleMenu() {
+            styleMenu.clear();
+            setMenuItem(findStyleMap(), styleMenu, MenuListener.STYLE_ID);
         }
     }
 }

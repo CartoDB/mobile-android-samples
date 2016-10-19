@@ -13,6 +13,7 @@ import com.carto.projections.Projection;
 import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
+import com.carto.utils.Log;
 import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.Point;
 
@@ -34,6 +35,9 @@ public class SQLServiceActivity extends BaseMapActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.setShowDebug(true);
+        Log.setShowInfo(true);
+
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
         final VectorLayer layer = new VectorLayer(source);
         mapView.getLayers().add(layer);
@@ -41,7 +45,7 @@ public class SQLServiceActivity extends BaseMapActivity {
         final CartoSQLService service = new CartoSQLService();
         service.setUsername("nutiteq");
 
-
+        //https://cartomobile-team.carto.com/u/nutiteq/viz/f1407ed4-84b8-11e6-96bc-0ee66e2c9693/map
         // Be sure to make network queries on another thread
         Thread thread = new Thread(new Runnable() {
             @Override
