@@ -51,7 +51,7 @@ public class SQLServiceActivity extends BaseMapActivity {
             @Override
             public void run() {
                 try {
-                    features = service.queryFeatures(query, new com.carto.services.SWIGTYPE_p_std__shared_ptrT_carto__Projection_t(Projection.getCPtr(mapView.getOptions().getBaseProjection()), true));
+                    features = service.queryFeatures(query, baseProjection);
 
                     for (int i = 0; i < features.getFeatureCount(); i++) {
 

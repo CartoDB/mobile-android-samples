@@ -182,6 +182,7 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
         }
         return false;
     }
+
     private String getBaseStyle() {
         return findStyleMap().entrySet().iterator().next().getValue();
     }
@@ -221,9 +222,7 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
 
         protected Menu menu;
 
-        private MenuListener(Menu menu) {
-            this.menu = menu;
-        }
+        private MenuListener(Menu menu) { this.menu = menu; }
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {

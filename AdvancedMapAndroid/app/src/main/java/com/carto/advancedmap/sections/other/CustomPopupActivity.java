@@ -21,9 +21,9 @@ import com.carto.vectorelements.Marker;
 
 /**
  * A sample demonstrating how to create and use custom popups.
- * Note that Carto Mobile SDK has built-in customizable BalloonPopup class that provides
- * uniform functionality and look across different platforms. But In some cases
- * more customization is needed and Popup subclassing can be used in that case.
+ * Note that Carto Mobile SDK has built-in customizable BalloonPopup class
+ * that provides uniform functionality and look across different platforms.
+ * But In some cases more customization is needed and Popup subclassing can be used.
  */
 @Description(value = "Create custom popups")
 public class CustomPopupActivity extends VectorMapSampleBaseActivity {
@@ -42,7 +42,7 @@ public class CustomPopupActivity extends VectorMapSampleBaseActivity {
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer1);
         
-        // 2. Create marker style
+        // Create marker style
         Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
         com.carto.graphics.Bitmap markerBitmap = BitmapUtils.createBitmapFromAndroidBitmap(androidMarkerBitmap);
         

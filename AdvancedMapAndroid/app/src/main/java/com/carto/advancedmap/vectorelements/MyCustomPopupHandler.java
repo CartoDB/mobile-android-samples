@@ -24,14 +24,14 @@ import com.carto.vectorelements.CustomPopupHandler;
  */
 public class MyCustomPopupHandler extends CustomPopupHandler {
 
-	static final int SCREEN_PADDING = 10;
-	static final int POPUP_PADDING = 10;
-	static final int FONT_SIZE = 15;
-	static final int STROKE_WIDTH = 2;
-	static final int TRIANGLE_SIZE = 10;
-	static final int TEXT_COLOR = android.graphics.Color.BLACK;
-	static final int STROKE_COLOR = android.graphics.Color.BLACK;
-	static final int BACKGROUND_COLOR = android.graphics.Color.WHITE;
+	private static final int SCREEN_PADDING = 10;
+	private static final int POPUP_PADDING = 10;
+	private static final int FONT_SIZE = 15;
+	private static final int STROKE_WIDTH = 2;
+	private static final int TRIANGLE_SIZE = 10;
+	private static final int TEXT_COLOR = android.graphics.Color.BLACK;
+	private static final int STROKE_COLOR = android.graphics.Color.BLACK;
+	private static final int BACKGROUND_COLOR = android.graphics.Color.WHITE;
     
 	private String text;
 
