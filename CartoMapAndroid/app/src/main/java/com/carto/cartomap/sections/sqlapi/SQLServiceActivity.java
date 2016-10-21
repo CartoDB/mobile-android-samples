@@ -35,7 +35,6 @@ public class SQLServiceActivity extends BaseMapActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.setShowDebug(true);
         Log.setShowInfo(true);
 
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);

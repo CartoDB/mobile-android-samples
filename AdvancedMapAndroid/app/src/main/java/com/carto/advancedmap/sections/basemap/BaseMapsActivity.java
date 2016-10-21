@@ -241,7 +241,9 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
                 currentStyle = findValueInMap(findStyleMap(), title);
             }
 
-            updateStyleMenu();
+            if (id == OSM_ID) {
+                updateStyleMenu();
+            }
             updateBaseLayer();
 
             return true;

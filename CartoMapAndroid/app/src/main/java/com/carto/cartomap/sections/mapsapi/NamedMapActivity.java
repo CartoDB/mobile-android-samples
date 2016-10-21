@@ -70,8 +70,8 @@ public class NamedMapActivity extends BaseMapActivity {
             @Override
             public void run() {
                 try {
-                    String string = "tpl_708edf80_8bf0_11e6_806c_0e2b00211e61";
-                    LayerVector layers = service.buildNamedMap(string, new StringVariantMap());
+                    String name = "tpl_708edf80_8bf0_11e6_806c_0e2b00211e61";
+                    LayerVector layers = service.buildNamedMap(name, new StringVariantMap());
 
                     for (int i = 0; i < layers.size(); i++) {
                         Layer layer = layers.get(i);
@@ -166,7 +166,7 @@ public class NamedMapActivity extends BaseMapActivity {
 
             BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
 
-            /// Set a higher placement priority so it would always be visible
+            // Set a higher placement priority so it would always be visible
             builder.setPlacementPriority(10);
 
             String message = feature.getProperties().toString();
