@@ -9,7 +9,9 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
+import com.carto.advancedmap.sections.gis.BasicEditableOverlayActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
+import com.carto.advancedmap.sections.header.GISHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;
 import com.carto.advancedmap.sections.header.OtherMapHeader;
 import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
@@ -48,6 +50,9 @@ public class LauncherListActivity extends ListActivity {
             CustomRasterDataSourceActivity.class,
             GroundOverlayActivity.class,
             WmsMapActivity.class,
+
+            GISHeader.class,
+            BasicEditableOverlayActivity.class,
 
             VectorObjectsHeader.class,
             OverlaysActivity.class,
