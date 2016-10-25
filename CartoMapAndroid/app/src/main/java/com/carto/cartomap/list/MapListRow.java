@@ -13,12 +13,11 @@ import android.widget.TextView;
  * Created by aareundo on 13/10/16.
  */
 
-
 public class MapListRow extends LinearLayout {
 
     TextView topBorder;
-    TextView lineOne;
-    TextView lineTwo;
+    TextView title;
+    TextView description;
 
     public MapListRow(Context context, MapListItem item) {
         super(context);
@@ -28,14 +27,14 @@ public class MapListRow extends LinearLayout {
         topBorder = new TextView(context);
         addView(topBorder);
 
-        lineOne = new TextView(context);
-        lineOne.setTextColor(Color.WHITE);
-        lineOne.setTypeface(null, Typeface.BOLD);
-        addView(lineOne);
+        title = new TextView(context);
+        title.setTextColor(Color.BLACK);
+        title.setTypeface(null, Typeface.BOLD);
+        addView(title);
 
-        lineTwo = new TextView(context);
-        lineTwo.setTextColor(Color.WHITE);
-        addView(lineTwo);
+        description = new TextView(context);
+        description.setTextColor(Color.DKGRAY);
+        addView(description);
 
         update(item);
     }
@@ -45,27 +44,30 @@ public class MapListRow extends LinearLayout {
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
         params.setMargins(10, 10, 10, 10);
 
-        lineOne.setText(item.name);
-        lineOne.setLayoutParams(params);
+        title.setText(item.name);
+        title.setLayoutParams(params);
 
         ColorDrawable background;
 
         if (item.isHeader) {
-            background = new ColorDrawable(Color.WHITE);
-            params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 3);
+            background = new ColorDrawable(Color.BLACK);
+            params = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 15);
             topBorder.setLayoutParams(params);
-            lineTwo.setText("");
+
+            description.setText("");
+            description.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+
+            setBackgroundColor(Color.argb(255, 200, 200, 200));
         } else {
             background = null;
             topBorder.setLayoutParams(new LayoutParams(0, 0));
-            lineTwo.setText(item.description);
+            description.setText(item.description);
+            description.setLayoutParams(params);
+            setBackgroundColor(Color.argb(255, 240, 240, 240));
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             topBorder.setBackground(background);
-            lineTwo.setBackground(background);
         }
-
-        lineTwo.setLayoutParams(params);
     }
 }
