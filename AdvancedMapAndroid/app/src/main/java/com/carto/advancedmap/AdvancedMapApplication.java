@@ -11,7 +11,7 @@ import com.carto.ui.MapView;
  */
 public class AdvancedMapApplication extends Application {
 
-    static final String LICENSE = "XTUN3Q0ZHZDZLQm9KU3krYmVVTTVEdDhCbWtWUmt1L1NBaFI4RW9oMW03aWpvSXhoZURmSXZqUG1XM1pwQ2c9PQoKYXBwVG9rZW49YjhhODBlM2QtODZhZS00ZDcyLWI5NDktZTZiMTYyYTJlMjk1CnZhbGlkVW50aWw9MjAxNi0xMC0xNQp3YXRlcm1hcms9Y3VzdG9tCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZHZhbmNlZG1hcApvbmxpbmVMaWNlbnNlPTEKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCg==";
+    static final String LICENSE = "XTUM0Q0ZRQ3lnck9iNmN3ZUV3SStZS2lvcVdTMUtQVk9WZ0lWQUpwUG1vbEoxNFU3SVBERnJ4SkFmbnZwZ0FsOQoKYXBwVG9rZW49YjhhODBlM2QtODZhZS00ZDcyLWI5NDktZTZiMTYyYTJlMjk1CnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZHZhbmNlZG1hcApvbmxpbmVMaWNlbnNlPTEKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCndhdGVybWFyaz1jdXN0b20K";
 
     @Override
     public void onCreate() {

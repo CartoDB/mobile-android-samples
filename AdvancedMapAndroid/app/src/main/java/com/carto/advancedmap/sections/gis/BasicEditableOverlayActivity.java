@@ -30,11 +30,7 @@ import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.VectorElement;
 
-/**
- * Created by aareundo on 25/10/16.
- */
-
-@Description(value = "Bundle MBTiles file for offline base map")
+@Description(value = "Shows usage of an editable vector layer")
 public class BasicEditableOverlayActivity extends MapSampleBaseActivity {
 
     LocalVectorDataSource source;
@@ -111,7 +107,7 @@ public class BasicEditableOverlayActivity extends MapSampleBaseActivity {
     {
         EditableVectorLayer vectorLayer;
 
-        public VectorElementSelectEventListener(EditableVectorLayer vectorLayer)
+        VectorElementSelectEventListener(EditableVectorLayer vectorLayer)
         {
             this.vectorLayer = vectorLayer;
         }
@@ -132,7 +128,7 @@ public class BasicEditableOverlayActivity extends MapSampleBaseActivity {
     {
         EditableVectorLayer vectorLayer;
 
-        public VectorElementDeselectEventListener(EditableVectorLayer vectorLayer)
+        VectorElementDeselectEventListener(EditableVectorLayer vectorLayer)
         {
             this.vectorLayer = vectorLayer;
         }
