@@ -2,8 +2,8 @@ package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.util.Description;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
 import com.carto.datasources.BitmapOverlayRasterTileDataSource;

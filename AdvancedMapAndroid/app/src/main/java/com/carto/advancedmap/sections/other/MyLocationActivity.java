@@ -9,12 +9,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.carto.advancedmap.util.Description;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
-import com.carto.advancedmap.util.CircleUtil;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.styles.PolygonStyle;
@@ -93,7 +92,7 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
             public void onLocationChanged(Location location) {
                 Log.debug("GPS onLocationChanged " + location);
                 if (locationCircle != null) {
-                    locationCircle.setPoses(CircleUtil.createLocationCircle(location, proj));
+                    locationCircle.setPoses(createLocationCircle(location, proj));
                     locationCircle.setVisible(true);
                     mapView.setFocusPos(proj.fromWgs84(new MapPos(location.getLongitude(), location.getLatitude())), 0.5f);
                     mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
@@ -108,6 +107,37 @@ public class MyLocationActivity extends VectorMapSampleBaseActivity {
 
             @Override
             public void onProviderDisabled(String s) {}
+
+            /**
+             * Calculates points for location circle, useful for "My Location" feature
+             *
+             * @param location from Android Location API
+             * @param proj     map projection, usually EPSG3857
+             * @return MapPosVector to construct Polygon object, and add it to DataSource and Layer
+             */
+            private MapPosVector createLocationCircle(Location location, Projection proj) {
+
+                // number of points of circle
+                int N = 50;
+                int EARTH_RADIUS = 6378137;
+
+                float radius = location.getAccuracy();
+                double centerLat = location.getLatitude();
+                double centerLon = location.getLongitude();
+
+                MapPosVector points = new MapPosVector();
+
+                for (int i = 0; i <= N; i++) {
+                    double angle = Math.PI * 2 * (i % N) / N;
+                    double dx = radius * Math.cos(angle);
+                    double dy = radius * Math.sin(angle);
+                    double lat = centerLat + (180 / Math.PI) * (dy / EARTH_RADIUS);
+                    double lon = centerLon + (180 / Math.PI) * (dx / EARTH_RADIUS) / Math.cos(centerLat * Math.PI / 180);
+                    points.add(proj.fromWgs84(new MapPos(lon, lat)));
+                }
+
+                return points;
+            }
         };
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);

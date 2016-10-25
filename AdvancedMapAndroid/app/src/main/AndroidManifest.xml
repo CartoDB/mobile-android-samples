@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".AdvancedMapApplication">
+        android:name=".MapApplication">
         <activity
             android:name=".list.LauncherListActivity"
             android:label="@string/app_name" >
@@ -55,10 +55,6 @@
         <activity android:name=".sections.other.CustomPopupActivity" />
         <activity android:name=".sections.other.MyLocationActivity" />
         <activity android:name=".sections.other.OfflineRoutingActivity" />
-
-        <activity android:name=".mapsamples.MapZenActivity" />
-        <activity android:name=".mapsamples.InteractivityMapActivity" />
-        <activity android:name=".mapsamples.MapListenerActivity" />
 
     </application>
 

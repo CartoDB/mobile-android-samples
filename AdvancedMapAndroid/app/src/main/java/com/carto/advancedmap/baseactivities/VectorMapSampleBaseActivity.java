@@ -1,4 +1,4 @@
-package com.carto.advancedmap.mapbase;
+package com.carto.advancedmap.baseactivities;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -6,14 +6,36 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 
-import com.carto.advancedmap.util.Const;
+import com.carto.advancedmap.MapApplication;
 import com.carto.core.MapRange;
+import com.carto.datasources.LocalVectorDataSource;
 import com.carto.datasources.MemoryCacheTileDataSource;
 import com.carto.datasources.CartoOnlineTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
+import com.carto.geometry.Feature;
+import com.carto.geometry.Geometry;
+import com.carto.geometry.LineGeometry;
+import com.carto.geometry.MultiGeometry;
+import com.carto.geometry.PointGeometry;
+import com.carto.geometry.PolygonGeometry;
+import com.carto.graphics.Color;
+import com.carto.layers.Layer;
+import com.carto.layers.VectorLayer;
+import com.carto.layers.VectorTileEventListener;
 import com.carto.layers.VectorTileLayer;
+import com.carto.styles.BalloonPopupStyleBuilder;
+import com.carto.styles.GeometryCollectionStyleBuilder;
+import com.carto.styles.LineStyleBuilder;
+import com.carto.styles.PointStyleBuilder;
+import com.carto.styles.PolygonStyleBuilder;
+import com.carto.ui.VectorTileClickInfo;
 import com.carto.utils.AssetUtils;
+import com.carto.vectorelements.BalloonPopup;
+import com.carto.vectorelements.GeometryCollection;
+import com.carto.vectorelements.Line;
+import com.carto.vectorelements.Point;
+import com.carto.vectorelements.Polygon;
 import com.carto.vectortiles.MBVectorTileDecoder;
 import com.carto.styles.CompiledStyleSet;
 import com.carto.utils.ZippedAssetPackage;
@@ -25,7 +47,7 @@ import com.carto.core.BinaryData;
 public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
 
 	public static final String MAIN_STYLE = "nutibright-v3";
-	public static final String MAIN_STYLE_FILE = MAIN_STYLE + ".zip";
+
 	protected TileDataSource vectorTileDataSource;
     protected MBVectorTileDecoder vectorTileDecoder;
     protected boolean persistentTileCache = false;
@@ -43,6 +65,8 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
         
         // Set default base map - online vector with persistent caching
         updateBaseLayer();
+
+		initializeVectorTileListener();
     }
 
 	@Override
@@ -180,11 +204,96 @@ public class VectorMapSampleBaseActivity extends MapSampleBaseActivity {
         TileDataSource cacheDataSource = vectorTileDataSource;
         if (persistentTileCache) {
         	String cacheFile = getExternalFilesDir(null)+"/mapcache.db";
-        	Log.i(Const.LOG_TAG,"cacheFile = "+cacheFile);
+        	Log.i(MapApplication.LOG_TAG,"cacheFile = "+cacheFile);
         	cacheDataSource = new PersistentCacheTileDataSource(vectorTileDataSource, cacheFile);
         } else {
         	cacheDataSource = new MemoryCacheTileDataSource(vectorTileDataSource);
         }
     	return cacheDataSource;
     }
+
+	VectorLayer vectorLayer;
+
+	void initializeVectorTileListener()
+	{
+		if (vectorLayer == null)
+		{
+			LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
+			vectorLayer = new VectorLayer(source);
+			mapView.getLayers().add(vectorLayer);
+		}
+
+		Layer layer = mapView.getLayers().get(0);
+
+		if (layer instanceof VectorTileLayer)
+		{
+			((VectorTileLayer)layer).setVectorTileEventListener(new VectorTileListener(vectorLayer));
+		}
+	}
+
+	private class VectorTileListener extends VectorTileEventListener {
+		VectorLayer layer;
+
+		public VectorTileListener(VectorLayer layer)
+		{
+			this.layer = layer;
+		}
+
+		@Override
+		public boolean onVectorTileClicked(VectorTileClickInfo clickInfo) {
+
+			LocalVectorDataSource source = (LocalVectorDataSource)layer.getDataSource();
+
+			source.clear();
+
+			Color color = new Color((short)0, (short)100, (short)200, (short)150);
+
+			Feature feature = clickInfo.getFeature();
+			Geometry geometry = feature.getGeometry();
+
+			PointStyleBuilder pointBuilder = new PointStyleBuilder();
+			pointBuilder.setColor(color);
+
+			LineStyleBuilder lineBuilder = new LineStyleBuilder();
+			lineBuilder.setColor(color);
+
+			PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
+			polygonBuilder.setColor(color);
+
+			if (geometry instanceof PointGeometry)
+			{
+				source.add(new Point((PointGeometry)geometry, pointBuilder.buildStyle()));
+			}
+			else if (geometry instanceof LineGeometry)
+			{
+				source.add(new Line((LineGeometry)geometry, lineBuilder.buildStyle()));
+			}
+			else if (geometry instanceof PolygonGeometry)
+			{
+				source.add(new Polygon((PolygonGeometry)geometry, polygonBuilder.buildStyle()));
+			}
+			else if (geometry instanceof MultiGeometry)
+			{
+				GeometryCollectionStyleBuilder collectionBuilder = new GeometryCollectionStyleBuilder();
+				collectionBuilder.setPointStyle(pointBuilder.buildStyle());
+				collectionBuilder.setLineStyle(lineBuilder.buildStyle());
+				collectionBuilder.setPolygonStyle(polygonBuilder.buildStyle());
+
+				source.add(new GeometryCollection((MultiGeometry)geometry, collectionBuilder.buildStyle()));
+			}
+
+			BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
+
+			/// Set a higher placement priority so it would always be visible
+			builder.setPlacementPriority(10);
+
+			String message = feature.getProperties().toString();
+
+			BalloonPopup popup = new BalloonPopup(clickInfo.getClickPos(), builder.buildStyle(), "Click", message);
+
+			source.add(popup);
+
+			return true;
+		}
+	}
 }

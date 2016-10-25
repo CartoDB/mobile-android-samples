@@ -2,8 +2,8 @@ package com.carto.advancedmap.sections.gis;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
-import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
+import com.carto.advancedmap.list.Description;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.datasources.LocalVectorDataSource;

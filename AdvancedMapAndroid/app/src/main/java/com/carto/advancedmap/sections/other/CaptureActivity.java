@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.list.Description;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;

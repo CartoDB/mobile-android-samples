@@ -1,4 +1,4 @@
-package com.carto.advancedmap.util;
+package com.carto.advancedmap.list;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

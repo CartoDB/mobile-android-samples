@@ -4,10 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import com.carto.advancedmap.listener.MyMapEventListener;
-import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.list.Description;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapPosVectorVector;
@@ -88,9 +87,6 @@ public class OverlaysActivity extends VectorMapSampleBaseActivity {
         // Animate map to Tallinn where the objects are
         mapView.setFocusPos(projection.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
         mapView.setZoom(12, 1);
-
-        // Add maplistener to detect click on model
-        mapView.setMapEventListener(new MyMapEventListener(mapView, source));
     }
 
     void addPoint1(LocalVectorDataSource source) {

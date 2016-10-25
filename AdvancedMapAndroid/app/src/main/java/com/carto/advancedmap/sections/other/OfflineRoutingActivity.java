@@ -3,6 +3,7 @@ package com.carto.advancedmap.sections.other;
 import java.io.File;
 import java.io.IOException;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -10,10 +11,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.list.Description;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
-import com.carto.advancedmap.util.Const;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;
@@ -77,7 +78,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 		public void onMapClicked(MapClickInfo mapClickInfo) {
 			MapPos clickPos = mapClickInfo.getClickPos();
 			MapPos wgs84Clickpos = mapView.getOptions().getBaseProjection().toWgs84(clickPos);
-			Log.d(Const.LOG_TAG,"onMapClicked " + wgs84Clickpos + " " + mapClickInfo.getClickType());
+			Log.d(MapApplication.LOG_TAG,"onMapClicked " + wgs84Clickpos + " " + mapClickInfo.getClickType());
 
 			if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
 				if (startPos == null) {
@@ -103,12 +104,12 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 	}
 
 	/**
-	 * Listener for package manager events. Contains only empty methods.
+	 * Listener for package manager events.
 	 */
 	class PackageListener extends PackageManagerListener {
     	@Override
     	public void onPackageListUpdated() {
-			Log.d(Const.LOG_TAG, "Package list updated");
+			Log.d(MapApplication.LOG_TAG, "Package list updated");
 
             int downloadedPackages = 0;
             for (int i=0; i<PACKAGE_IDS.length;i++) {
@@ -130,7 +131,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                 packageManager.startPackageDownload(packageId);
                 return false;
             }else if(status.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY){
-                Log.d(Const.LOG_TAG, packageId + " is downloaded and ready");
+                Log.d(MapApplication.LOG_TAG, packageId + " is downloaded and ready");
                 return true;
             }
 
@@ -139,7 +140,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
         @Override
 		public void onPackageListFailed() {
-			Log.e(Const.LOG_TAG, "Package list update failed");
+			Log.e(MapApplication.LOG_TAG, "Package list update failed");
 		}
 
 		@Override
@@ -152,7 +153,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
     	@Override
     	public void onPackageUpdated(String id, int version) {
-			Log.d(Const.LOG_TAG, "Offline package updated: " + id);
+			Log.d(MapApplication.LOG_TAG, "Offline package updated: " + id);
             // if last downloaded
     		if (id.equals(PACKAGE_IDS[PACKAGE_IDS.length-1])) {
     			offlinePackageReady = true;        			
@@ -161,7 +162,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
 		@Override
 		public void onPackageFailed(String id, int version, PackageErrorType errorType) {
-			Log.e(Const.LOG_TAG, "Offline package update failed: " + id);
+			Log.e(MapApplication.LOG_TAG, "Offline package update failed: " + id);
 		}
 	}
 
@@ -184,56 +185,58 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // create PackageManager instance for dealing with offline packages
+        // Create PackageManager instance for dealing with offline packages
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "routingpackages");
+
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
-        	Log.e(Const.LOG_TAG, "Could not create package folder!");
+        	Log.e(MapApplication.LOG_TAG, "Could not create package folder!");
         }
         try {
             packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, packageFolder.getAbsolutePath());
         }
         catch (IOException e) {
-            Log.e(Const.LOG_TAG, "Exception: " + e);
+            Log.e(MapApplication.LOG_TAG, "Exception: " + e);
             finish();
         }
 
         packageManager.setPackageManagerListener(new PackageListener());
         packageManager.start();
 
-        // fetch list of available packages from server. Note that this is asynchronous operation and listener will be notified via onPackageListUpdated when this succeeds.        
+        // fetch list of available packages from server.
+        // This is asynchronous and listener will be notified via onPackageListUpdated when this succeeds.
         packageManager.startPackageListDownload();
         
-        // create offline routing service connected to package manager
+        // Create offline routing service connected to package manager
         offlineRoutingService = new PackageManagerRoutingService(packageManager);
         
-        // create additional online routing service that will be used when offline package is not yet downloaded or offline routing fails
+        // Create additional online routing service that will be used when offline package
+        // is not yet downloaded or offline routing fails
         onlineRoutingService = new CartoOnlineRoutingService(ROUTING_SERVICE_SOURCE);
 
-        // define layer and datasource for route line and instructions
+        // Define layer and datasource for route line and instructions
         routeDataSource = new LocalVectorDataSource(baseProjection);
         VectorLayer routeLayer = new VectorLayer(routeDataSource);
         mapView.getLayers().add(routeLayer);
 
-
-        // define layer and datasource for route start and stop markers
+        // Define layer and datasource for route start and stop markers
         routeStartStopDataSource = new LocalVectorDataSource(baseProjection);
+
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);
+
         // Add the previous vector layer to the map
         mapView.getLayers().add(vectorLayer);
+
         // Set visible zoom range for the vector layer
         vectorLayer.setVisibleZoomRange(new MapRange(0, 22));
 
-
-        // set route listener
+        // Set route listener
         RouteMapEventListener mapListener = new RouteMapEventListener();
         mapView.setMapEventListener(mapListener);
 
-        // create markers for start & end, and a layer for them
+        // Create markers for start & end, and a layer for them
         MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
-        markerStyleBuilder.setBitmap(BitmapUtils
-                .createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.olmarker)));
+        markerStyleBuilder.setBitmap(getBitmapFromResource(R.drawable.olmarker));
         markerStyleBuilder.setHideIfOverlapped(false);
         markerStyleBuilder.setSize(30);
 
@@ -248,61 +251,60 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         stopMarker = new Marker(new MapPos(0, 0), markerStyleBuilder.buildStyle());
         stopMarker.setVisible(false);
 
-
-
         routeStartStopDataSource.add(startMarker);
         routeStartStopDataSource.add(stopMarker);
 
         markerStyleBuilder.setColor(new com.carto.graphics.Color(Color.WHITE));
-        markerStyleBuilder.setBitmap(BitmapUtils
-                .createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.direction_up)));
+        markerStyleBuilder.setBitmap(getBitmapFromResource(R.drawable.direction_up));
         instructionUp = markerStyleBuilder.buildStyle();
 
-        markerStyleBuilder.setBitmap(BitmapUtils
-                .createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.direction_upthenleft)));
+        markerStyleBuilder.setBitmap(getBitmapFromResource(R.drawable.direction_upthenleft));
         instructionLeft = markerStyleBuilder.buildStyle();
 
-        markerStyleBuilder.setBitmap(BitmapUtils
-                .createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.direction_upthenright)));
+        markerStyleBuilder.setBitmap(getBitmapFromResource(R.drawable.direction_upthenright));
 
         instructionRight = markerStyleBuilder.buildStyle();
         
-        // style for instruction balloons
+        // Style for instruction balloons
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
         balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4,4,4,4));
         
-        // finally animate map to Estonia
+        // Animate map to Estonia
         mapView.setFocusPos(mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(25.662893, 58.919365)), 0);
         mapView.setZoom(7, 0);
 
-        Toast.makeText(getApplicationContext(), "Long-press on map to set route start and finish", Toast.LENGTH_LONG).show();
+        String message = "Long-press on map to set route start and finish";
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
 
-
+    com.carto.graphics.Bitmap getBitmapFromResource(int resource) {
+        Bitmap androidBitmap = BitmapFactory.decodeResource(getResources(), resource);
+        return BitmapUtils.createBitmapFromAndroidBitmap(androidBitmap);
     }
 
     public void showRoute(final MapPos startPos, final MapPos stopPos) {
     	
-        Log.d(Const.LOG_TAG, "calculating path " + startPos + " to " + stopPos);
+        Log.d(MapApplication.LOG_TAG, "calculating path " + startPos + " to " + stopPos);
 
         if (!offlinePackageReady) {
         	runOnUiThread(new Runnable() {
         		@Override
         		public void run() {
-        			Toast.makeText(getApplicationContext(), "Offline package is not ready, using online routing", Toast.LENGTH_SHORT).show();
+                    String message = "Offline package is not ready, using online routing";
+        			Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         		}
         	});
         }
 
         AsyncTask<Void, Void, RoutingResult> task = new AsyncTask<Void, Void, RoutingResult>() {
 
-            public long timeStart;
+            long timeStart;
 
             protected RoutingResult doInBackground(Void... v) {
+
                 timeStart = System.currentTimeMillis();
                 MapPosVector poses = new MapPosVector();
+
                 poses.add(startPos);
                 poses.add(stopPos);
 
@@ -333,42 +335,28 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                 String routeText = "The route is " + (int) (result.getTotalDistance() / 100) / 10f
                         + "km (" + secondsToHours((int) result.getTotalTime())
                         + ") calculation: " + (System.currentTimeMillis() - timeStart) + " ms";
-                Log.i(Const.LOG_TAG,routeText);
-                Toast.makeText(getApplicationContext(),
-                        routeText
-                        , Toast.LENGTH_LONG).show();
+                Log.i(MapApplication.LOG_TAG,routeText);
+                Toast.makeText(getApplicationContext(), routeText, Toast.LENGTH_LONG).show();
 
                 routeDataSource.clear();
 
                 startMarker.setVisible(false);
 
-                routeDataSource.add(createPolyline(startMarker.getGeometry()
-                        .getCenterPos(), stopMarker.getGeometry().getCenterPos(), result));
+                routeDataSource.add(createPolyline(result));
 
-                // add instruction markers
+                // Add instruction markers
                 RoutingInstructionVector instructions = result.getInstructions();
                 boolean first = true;
+
                 for (int i = 0; i < instructions.size(); i++) {
                 	RoutingInstruction instruction = instructions.get(i);
                     if (first) {
-                        Log.d(Const.LOG_TAG,"first instruction");
-                        // set car to first instruction position
+                        Log.d(MapApplication.LOG_TAG,"first instruction");
+                        // Set car to first instruction position
                         first = false;
-//                        MapPos firstInstructionPos = result.getPoints().get(instruction.getPointIndex());
-
-                        // rotate car based on first instruction leg azimuth
-//                        float azimuth =  (float) instruction.getAzimuth();
-
-                        // zoom and move map to the first position, to make it navigation-like
-//                        mapView.setFocusPos(firstInstructionPos, 1);
-//                        mapView.setZoom(18, 1);
-//                        mapView.setMapRotation(360 - azimuth, firstInstructionPos, 1);
-//                        mapView.setTilt(30, 1);
-
                     } else {
-                       // Log.d(Const.LOG_TAG, instruction.toString());
-                        createRoutePoint(result.getPoints().get(instruction.getPointIndex()), instruction.getStreetName(),
-                                instruction.getTime(), instruction.getDistance(), instruction.getAction(), routeDataSource);
+                        MapPos position = result.getPoints().get(instruction.getPointIndex());
+                        createRoutePoint(position, instruction.getAction(), routeDataSource);
                     }
 
                 }
@@ -383,7 +371,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         }
     }
 
-    protected String secondsToHours(int sec){
+    protected String secondsToHours(int sec) {
         int hours = sec / 3600,
                 remainder = sec % 3600,
                 minutes = remainder / 60,
@@ -394,8 +382,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
                 + "m" + (seconds< 10 ? "0" : "") + seconds+"s" );
     }
 
-    protected void createRoutePoint(MapPos pos, String name,
-            double time, double distance, RoutingAction action, LocalVectorDataSource ds) {
+    protected void createRoutePoint(MapPos pos, RoutingAction action, LocalVectorDataSource ds) {
 
         MarkerStyle style = instructionUp;
         String str = "";
@@ -420,8 +407,7 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 			break;
 		case ROUTING_ACTION_NO_TURN:
         case ROUTING_ACTION_GO_STRAIGHT:
-//            style = instructionUp;
-//            str = "continue";
+            // Do nothing
             break;
         case ROUTING_ACTION_REACH_VIA_LOCATION:
             style = instructionUp;
@@ -455,8 +441,8 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         }
     }
 
-    // creates line from GraphHopper response
-    protected Line createPolyline(MapPos start, MapPos end, RoutingResult result) {
+    // Creates line from GraphHopper response
+    protected Line createPolyline(RoutingResult result) {
 
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new com.carto.graphics.Color(Color.DKGRAY));
@@ -469,8 +455,6 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
         routeDataSource.clear();
         stopMarker.setVisible(false);
         startMarker.setPos(startPos);
-
-        //carModel.setPos(startPos);
 
         startMarker.setVisible(true);
     }

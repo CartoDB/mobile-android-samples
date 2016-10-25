@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.carto.advancedmap.mapbase.MapSampleBaseActivity;
-import com.carto.advancedmap.util.Description;
-import com.carto.advancedmap.util.Urls;
+import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
+import com.carto.advancedmap.list.Description;
 import com.carto.core.BinaryData;
 import com.carto.datasources.CartoOnlineTileDataSource;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
-import com.carto.layers.CartoVectorTileLayer;
 import com.carto.layers.RasterTileLayer;
 import com.carto.layers.TileLayer;
 import com.carto.layers.VectorTileLayer;
@@ -31,6 +29,9 @@ import java.util.Map;
 
 @Description(value = "Choice between different base maps, styles, languages")
 public class BaseMapsActivity extends MapSampleBaseActivity {
+
+    public static final String POSITRON_URL = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+    public static final String DARKMATTER_URL = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
 
     Menu OSMMenu, languageMenu, tileTypeMenu, styleMenu;
     String currentOSM, currentLanguage, currentTileType, currentStyle;
@@ -122,9 +123,9 @@ public class BaseMapsActivity extends MapSampleBaseActivity {
             String url;
 
             if (currentStyle.equals("positron")) {
-                url = Urls.Positron;
+                url = POSITRON_URL;
             } else {
-                url = Urls.DarkMatter;
+                url = DARKMATTER_URL;
             }
 
             TileDataSource source = new HTTPTileDataSource(1, 19, url);

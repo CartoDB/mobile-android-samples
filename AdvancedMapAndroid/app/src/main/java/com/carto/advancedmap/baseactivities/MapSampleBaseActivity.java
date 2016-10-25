@@ -1,18 +1,12 @@
-package com.carto.advancedmap.mapbase;
+package com.carto.advancedmap.baseactivities;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ZoomControls;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.util.Const;
 import com.carto.core.MapPos;
-import com.carto.core.MapRange;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.TileLayer;
-import com.carto.projections.EPSG3857;
 import com.carto.projections.Projection;
 import com.carto.ui.MapView;
 

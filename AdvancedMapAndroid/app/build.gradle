@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.carto.advancedmap.android"
+        applicationId "com.carto.advancedmap"
         minSdkVersion 18
         targetSdkVersion 24
         versionCode 1

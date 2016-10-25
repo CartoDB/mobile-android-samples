@@ -20,9 +20,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carto.advancedmap.util.Description;
+import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.list.Description;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.util.Const;
 import com.carto.core.StringVector;
 import com.carto.datasources.PackageManagerTileDataSource;
 import com.carto.packagemanager.CartoPackageManager;
@@ -259,13 +259,13 @@ public class PackageManagerActivity extends ListActivity {
 		// Create package manager
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
-        	Log.e(Const.LOG_TAG, "Could not create package folder!");
+        	Log.e(MapApplication.LOG_TAG, "Could not create package folder!");
         }
 		try {
 			packageManager = new CartoPackageManager("nutiteq.osm", packageFolder.getAbsolutePath());
 		}
 		catch (IOException e) {
-			Log.e(Const.LOG_TAG, "Exception: " + e);
+			Log.e(MapApplication.LOG_TAG, "Exception: " + e);
 			finish();
 		}
 

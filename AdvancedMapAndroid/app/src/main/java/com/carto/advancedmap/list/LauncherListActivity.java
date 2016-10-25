@@ -17,7 +17,6 @@ import com.carto.advancedmap.sections.header.OtherMapHeader;
 import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
 import com.carto.advancedmap.sections.header.VectorObjectsHeader;
 import com.carto.advancedmap.sections.offlinemap.packagemanager.PackageManagerActivity;
-import com.carto.advancedmap.util.Description;
 import com.carto.advancedmap.sections.other.CaptureActivity;
 import com.carto.advancedmap.sections.other.ClusteredGeoJsonActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;

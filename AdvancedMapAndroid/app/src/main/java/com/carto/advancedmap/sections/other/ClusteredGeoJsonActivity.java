@@ -1,7 +1,6 @@
 package com.carto.advancedmap.sections.other;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
@@ -9,41 +8,25 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.mapsamples.InteractivityMapActivity;
-import com.carto.advancedmap.util.Description;
-import com.carto.advancedmap.mapbase.VectorMapSampleBaseActivity;
+import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
-import com.carto.core.MapRange;
-import com.carto.core.StringVector;
-import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.geometry.Feature;
 import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.PointGeometry;
-import com.carto.graphics.Color;
 import com.carto.layers.ClusterElementBuilder;
 import com.carto.layers.ClusteredVectorLayer;
 import com.carto.layers.VectorLayer;
-import com.carto.styles.BalloonPopupStyle;
-import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
-import com.carto.styles.PointStyle;
-import com.carto.styles.PointStyleBuilder;
 import com.carto.utils.BitmapUtils;
-import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Marker;
-import com.carto.vectorelements.Point;
 import com.carto.vectorelements.VectorElement;
 import com.carto.vectorelements.VectorElementVector;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
