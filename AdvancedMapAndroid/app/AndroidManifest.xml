@@ -41,7 +41,7 @@
         <activity android:name=".mapsamples.MbtilesActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
         <activity android:name=".sections.other.ClusteredRandomPointsActivity" />
-        <activity android:name=".sections.other.ClusteredMarkersActivity" />
+        <activity android:name=".sections.vectorobjects.OverlaysActivity$ClusteredMarkersActivity" />
         <activity android:name=".sections.other.GPSLocationActivity" />
         <activity android:name=".sections.other.OfflineRoutingActivity" />
         <activity android:name=".map_carto.CartoSQLActivity" />

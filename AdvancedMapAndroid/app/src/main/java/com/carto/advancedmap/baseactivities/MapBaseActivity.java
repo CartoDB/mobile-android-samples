@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.carto.advancedmap.R;
-import com.carto.core.MapPos;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.TileLayer;
@@ -14,7 +13,7 @@ import com.carto.ui.MapView;
 /**
  * Base activity for map samples. Includes simple lifecycle management
  */
-public class MapSampleBaseActivity extends BaseActivity {
+public class MapBaseActivity extends BaseActivity {
 
     protected MapView mapView;
     protected Projection baseProjection;
@@ -59,5 +58,11 @@ public class MapSampleBaseActivity extends BaseActivity {
     public void onResume() {
     	super.onResume();
     	mapView.onResume();
+    }
+
+    protected void addBaseLayer(CartoBaseMapStyle style)
+    {
+        CartoOnlineVectorTileLayer base = new CartoOnlineVectorTileLayer(style);
+        mapView.getLayers().add(base);
     }
 }

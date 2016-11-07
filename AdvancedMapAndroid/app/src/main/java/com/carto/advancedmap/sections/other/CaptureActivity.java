@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.renderers.RendererCaptureListener;
 import com.carto.styles.MarkerStyle;
@@ -23,15 +24,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @ActivityData(name = "Screencapture", description = "Capture rendered MapView as a Bitmap")
-public class CaptureActivity extends VectorMapSampleBaseActivity {
+public class CaptureActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-		// MapSampleBaseActivity creates and configures mapView
+		// MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
-        
-        // Add a pin marker to map
+
+		// Add default base layer
+		addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+
+		// Add a pin marker to map
         // 1. Initialize a local vector data source
         LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);
 

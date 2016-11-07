@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.BinaryData;
 import com.carto.datasources.CartoOnlineTileDataSource;
@@ -28,7 +28,7 @@ import java.util.Map;
  */
 
 @ActivityData(name = "Base Maps", description = "Choice between different base maps, styles, languages")
-public class BaseMapsActivity extends MapSampleBaseActivity {
+public class BaseMapsActivity extends MapBaseActivity {
 
     public static final String POSITRON_URL = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
     public static final String DARKMATTER_URL = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";

@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
+import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;
@@ -17,7 +18,6 @@ import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
 import com.carto.advancedmap.sections.header.VectorObjectsHeader;
 import com.carto.advancedmap.sections.offlinemap.packagemanager.PackageManagerActivity;
 import com.carto.advancedmap.sections.other.CaptureActivity;
-import com.carto.advancedmap.sections.other.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;
 import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;

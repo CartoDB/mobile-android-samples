@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
+import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.VectorTileLayer;
+import com.carto.vectortiles.MBVectorTileDecoder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,20 +21,33 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 @ActivityData(name = "Bundled Map", description = "Bundle MBTiles file for offline base map")
-public class BundledMapActivity extends VectorMapSampleBaseActivity {
+public class BundledMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+
+        TileDataSource source = createTileDataSource();
+
+        // Get decoder from current layer,
+        // so we wouldn't need a style asset to create a decoder from scratch
+        MBVectorTileDecoder decoder = (MBVectorTileDecoder)((VectorTileLayer)mapView.getLayers().get(0)).getTileDecoder();
+
+        // Remove default baselayer
+        mapView.getLayers().clear();
+
+        // Add our new layer
+        VectorTileLayer layer = new VectorTileLayer(source, decoder);
+        mapView.getLayers().insert(0, layer);
         // Zoom to the correct location
         MapPos rome = baseProjection.fromWgs84(new MapPos(12.4807, 41.8962));
         mapView.setFocusPos(rome, 0);
         mapView.setZoom(13, 0);
     }
-    
-    @Override
+
     protected TileDataSource createTileDataSource() {
 
         // Offline map data source

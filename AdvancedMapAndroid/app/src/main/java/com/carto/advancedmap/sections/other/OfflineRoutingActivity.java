@@ -12,13 +12,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageAction;
@@ -48,7 +49,7 @@ import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
 
 @ActivityData(name = "Offline Routing", description = "Routing with OpenStreetMap data packages")
-public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
+public class OfflineRoutingActivity extends MapBaseActivity {
 
 
     // add packages what you want to download
@@ -178,7 +179,10 @@ public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+
         // Create PackageManager instance for dealing with offline packages
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "routingpackages");
 

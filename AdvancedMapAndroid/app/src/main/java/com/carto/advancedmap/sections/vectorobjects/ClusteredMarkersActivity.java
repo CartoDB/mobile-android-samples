@@ -1,20 +1,22 @@
-package com.carto.advancedmap.sections.other;
+package com.carto.advancedmap.sections.vectorobjects;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.GeoJSONGeometryReader;
 import com.carto.geometry.PointGeometry;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.ClusterElementBuilder;
 import com.carto.layers.ClusteredVectorLayer;
 import com.carto.layers.VectorLayer;
@@ -30,14 +32,22 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by aareundo on 07/11/16.
+ */
+
+
 @ActivityData(name = "Clustered Markers", description = "Read data from .geojson and show as clusters")
-public class ClusteredMarkersActivity extends VectorMapSampleBaseActivity {
+public class ClusteredMarkersActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // MapSampleBaseActivity creates and configures mapView
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         // Initialize a local vector data source
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
@@ -118,7 +128,7 @@ public class ClusteredMarkersActivity extends VectorMapSampleBaseActivity {
 
         @SuppressLint("UseSparseArrays")
         private Map<Integer, MarkerStyle> markerStyles = new HashMap<>();
-        private android.graphics.Bitmap markerBitmap;
+        private Bitmap markerBitmap;
 
         MyClusterElementBuilder(Context context) {
             markerBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.marker_black);
@@ -136,7 +146,7 @@ public class ClusteredMarkersActivity extends VectorMapSampleBaseActivity {
 
             if (style == null) {
 
-                android.graphics.Bitmap canvasBitmap = markerBitmap.copy(android.graphics.Bitmap.Config.ARGB_8888, true);
+                Bitmap canvasBitmap = markerBitmap.copy(Bitmap.Config.ARGB_8888, true);
                 android.graphics.Canvas canvas = new android.graphics.Canvas(canvasBitmap);
 
                 android.graphics.Paint paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);

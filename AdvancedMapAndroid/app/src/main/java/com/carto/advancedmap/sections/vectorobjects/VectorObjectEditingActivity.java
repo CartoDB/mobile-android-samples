@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.vectorobjects;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
@@ -12,6 +12,7 @@ import com.carto.geometry.LineGeometry;
 import com.carto.geometry.PointGeometry;
 import com.carto.geometry.PolygonGeometry;
 import com.carto.graphics.Color;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.EditableVectorLayer;
 import com.carto.layers.VectorEditEventListener;
 import com.carto.layers.VectorElementDragPointStyle;
@@ -31,13 +32,16 @@ import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.VectorElement;
 
 @ActivityData(name = "Vector Object Editing", description = "Shows usage of an editable vector layer")
-public class VectorObjectEditingActivity extends MapSampleBaseActivity {
+public class VectorObjectEditingActivity extends MapBaseActivity {
 
     LocalVectorDataSource source;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         source = new LocalVectorDataSource(mapView.getOptions().getBaseProjection());
 

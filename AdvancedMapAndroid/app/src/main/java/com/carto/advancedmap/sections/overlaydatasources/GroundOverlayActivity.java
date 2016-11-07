@@ -2,12 +2,13 @@ package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
 import com.carto.datasources.BitmapOverlayRasterTileDataSource;
 import com.carto.graphics.Bitmap;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.RasterTileLayer;
 import com.carto.layers.TileSubstitutionPolicy;
 import com.carto.projections.Projection;
@@ -16,12 +17,15 @@ import com.carto.core.MapPosVector;
 import com.carto.core.ScreenPosVector;
 
 @ActivityData(name = "Ground Overlays", description = "Show non-tiled Bitmap on ground")
-public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
+public class GroundOverlayActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         Projection proj = mapView.getOptions().getBaseProjection();
         

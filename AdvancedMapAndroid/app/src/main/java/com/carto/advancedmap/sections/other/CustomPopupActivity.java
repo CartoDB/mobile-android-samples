@@ -14,11 +14,12 @@ import android.text.TextPaint;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -32,12 +33,15 @@ import com.carto.vectorelements.CustomPopupHandler;
 import com.carto.vectorelements.Marker;
 
 @ActivityData(name = "Custom Popup", description = "Create custom popups")
-public class CustomPopupActivity extends VectorMapSampleBaseActivity {
+public class CustomPopupActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
 
         // Initialize a local vector data source
         LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);

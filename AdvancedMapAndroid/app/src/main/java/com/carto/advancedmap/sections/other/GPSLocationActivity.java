@@ -9,11 +9,12 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.styles.PolygonStyle;
@@ -23,7 +24,7 @@ import com.carto.vectorelements.Polygon;
 import com.carto.core.MapPosVector;
 
 @ActivityData(name = "GPS Location", description = "Shows user GPS location on the map")
-public class GPSLocationActivity extends VectorMapSampleBaseActivity {
+public class GPSLocationActivity extends MapBaseActivity {
 	
 	private LocationManager locationManager;
 	private LocationListener locationListener;
@@ -34,8 +35,11 @@ public class GPSLocationActivity extends VectorMapSampleBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // MapSampleBaseActivity creates and configures mapView
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
 
         proj = super.baseProjection;
 

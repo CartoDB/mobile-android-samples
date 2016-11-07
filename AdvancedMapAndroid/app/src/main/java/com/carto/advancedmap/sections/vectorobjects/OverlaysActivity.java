@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapPosVectorVector;
@@ -14,6 +14,7 @@ import com.carto.core.MapRange;
 import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.styles.BalloonPopupMargins;
@@ -38,14 +39,17 @@ import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
 
 @ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
-public class OverlaysActivity extends VectorMapSampleBaseActivity {
+public class OverlaysActivity extends MapBaseActivity {
 
     Projection projection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
+
+        // Add default base layer
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         this.projection = baseProjection;
 

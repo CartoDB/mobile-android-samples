@@ -3,8 +3,8 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
 import com.carto.core.MapTile;
@@ -13,11 +13,11 @@ import com.carto.layers.RasterTileLayer;
 import com.carto.projections.Projection;
 
 @ActivityData(name = "WMS Map", description = "Use external WMS service for raster tile overlay")
-public class WmsMapActivity extends VectorMapSampleBaseActivity {
+public class WmsMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // MapSampleBaseActivity creates and configures mapView  
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
 
