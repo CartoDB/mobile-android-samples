@@ -30,15 +30,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A sample demonstrating how to read data from GeoJSON and add clustered Markers to map.
- * Both points from GeoJSON, and cluster markers are shown as Bitmaps
- *
- * NB! If you have a lot of points (tens or hundreds of thousands) and clusters:
- * 1. Use Point geometry instead of Balloon or Marker
- * 2. Instead of Balloon with text generate dynamically Point bitmap with cluster numbers
- * 3. Make sure you reuse cluster style bitmaps. Creating new bitmap in rendering has technical cost
- */
 @ActivityData(name = "Clustered Markers", description = "Read data from .geojson and show as clusters")
 public class ClusteredMarkersActivity extends VectorMapSampleBaseActivity {
 

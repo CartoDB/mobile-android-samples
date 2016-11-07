@@ -37,10 +37,6 @@ import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
 
-/**
- * A sample demonstrating how to add basic 2D and 3D objects to the map:
- * lines, points, polygon with hole, texts and pop-ups.
- */
 @ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
 public class OverlaysActivity extends VectorMapSampleBaseActivity {
 

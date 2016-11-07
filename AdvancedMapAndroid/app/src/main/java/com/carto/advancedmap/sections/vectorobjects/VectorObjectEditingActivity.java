@@ -1,4 +1,4 @@
-package com.carto.advancedmap.sections.gis;
+package com.carto.advancedmap.sections.vectorobjects;
 
 import android.os.Bundle;
 

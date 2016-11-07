@@ -31,12 +31,6 @@ import com.carto.vectorelements.CustomPopup;
 import com.carto.vectorelements.CustomPopupHandler;
 import com.carto.vectorelements.Marker;
 
-/**
- * A sample demonstrating how to create and use custom popups.
- * Note that Carto Mobile SDK has built-in customizable BalloonPopup class
- * that provides uniform functionality and look across different platforms.
- * But In some cases more customization is needed and Popup subclassing can be used.
- */
 @ActivityData(name = "Custom Popup", description = "Create custom popups")
 public class CustomPopupActivity extends VectorMapSampleBaseActivity {
 

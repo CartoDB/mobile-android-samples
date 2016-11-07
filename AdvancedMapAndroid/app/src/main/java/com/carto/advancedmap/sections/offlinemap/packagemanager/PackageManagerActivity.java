@@ -39,19 +39,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * A sample demonstrating how to use offline package manager of the Carto Mobile SDK.
- * 
- * The sample downloads the latest package list from Carto online service,
- * displays this list and allows user to manage offline packages (download, update, delete them).
- * 
- * Note that the sample does not include MapView, but using download packages
- * is actually very similar to using other tile sources - SDK contains PackageManagerTileDataSource
- * that will automatically display all imported or downloaded packages. PackageManagerTileDataSource
- * needs PackageManager instance, so it is best to create a PackageManager instance at application level
- * share this instance between activities. 
- * 
- */
 @ActivityData(name = "Package Manager", description = "Download offline map packages with OSM")
 public class PackageManagerActivity extends ListActivity {
 
@@ -270,8 +257,31 @@ public class PackageManagerActivity extends ListActivity {
         setContentView(R.layout.list);
         packageAdapter = new PackageAdapter(this, com.carto.advancedmap.R.layout.package_item_row, packageArray);
         getListView().setAdapter(packageAdapter);
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+		String title = getIntent().getStringExtra("title");
+		String description = getIntent().getStringExtra("description");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		if (description != null) {
+			getActionBar().setSubtitle(description);
+		}
 	}
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		if (item.getItemId() == android.R.id.home) {
+			onBackPressed();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	@Override
 	public void onStart() {
 		super.onStart();

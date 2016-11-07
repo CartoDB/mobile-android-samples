@@ -22,11 +22,6 @@ import com.carto.vectorelements.Marker;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * A sample demonstrating how to capture rendered MapView as a bitmap.
- * The sample saves MapView screenshot on the sdcard of the phone.
- * The image is saved only after map has become stable (no tiles are missing).
- */
 @ActivityData(name = "Screencapture", description = "Capture rendered MapView as a Bitmap")
 public class CaptureActivity extends VectorMapSampleBaseActivity {
 

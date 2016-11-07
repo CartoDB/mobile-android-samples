@@ -17,11 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * A sample that uses bundled asset for offline base map.
- * As MBTilesDataSource can be used only with files residing in file system,
- * the assets needs to be copied first to the SDCard.
- */
 @ActivityData(name = "Bundled Map", description = "Bundle MBTiles file for offline base map")
 public class BundledMapActivity extends VectorMapSampleBaseActivity {
 

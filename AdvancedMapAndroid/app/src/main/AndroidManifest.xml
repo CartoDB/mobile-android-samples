@@ -43,7 +43,7 @@
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
 
         <!--Section 4-->
-        <activity android:name=".sections.gis.VectorObjectEditingActivity" />
+        <activity android:name=".sections.vectorobjects.VectorObjectEditingActivity" />
 
         <!--Section 5-->
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />

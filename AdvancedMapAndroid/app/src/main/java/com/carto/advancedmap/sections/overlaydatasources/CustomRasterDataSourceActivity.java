@@ -16,15 +16,6 @@ import com.carto.datasources.components.TileData;
 import com.carto.layers.RasterTileLayer;
 import com.carto.utils.BitmapUtils;
 
-/**
- * A sample demonstrating how to create and use custom raster tile data source.
- * MyMergedRasterTileDataSource uses two input tile data sources to
- * create blended tile bitmaps. This can be faster than using two separate raster layers
- * and takes less memory.
- * 
- * Compare with RasterOverlayActivity which shows same rasters as separate layers
- * 
- */
 @ActivityData(name = "Custom Raster Data Source", description = "Customized raster tile data source")
 public class CustomRasterDataSourceActivity extends MapSampleBaseActivity {
 

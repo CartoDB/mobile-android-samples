@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
-import com.carto.advancedmap.sections.gis.VectorObjectEditingActivity;
+import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;
 import com.carto.advancedmap.sections.header.OtherMapHeader;
@@ -29,8 +29,7 @@ import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
 import com.carto.advancedmap.R;
 
 /**
- * Shows list of demo Activities. Enables to open pre-launch activity for file picking.
- * This is the "main" of samples
+ * Shows list of demo Activities. This is the "main" of samples
  */
 
 public class LauncherListActivity extends ListActivity {

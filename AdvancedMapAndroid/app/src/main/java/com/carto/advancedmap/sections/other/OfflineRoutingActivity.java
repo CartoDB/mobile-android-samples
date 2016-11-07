@@ -47,12 +47,6 @@ import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
 
-/**
- * A sample demonstrating how to use Carto Mobile SDK routing engine to calculate offline routes.
- * First a package is downloaded asynchronously. Until the package is fully downloaded,
- * online routing service is used as a fallback. Once the package is available, routing
- * works offline.
- */
 @ActivityData(name = "Offline Routing", description = "Routing with OpenStreetMap data packages")
 public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 

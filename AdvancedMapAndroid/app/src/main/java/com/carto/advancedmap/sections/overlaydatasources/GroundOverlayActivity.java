@@ -15,13 +15,6 @@ import com.carto.utils.BitmapUtils;
 import com.carto.core.MapPosVector;
 import com.carto.core.ScreenPosVector;
 
-/*
- * A sample demonstrating how to add ground level raster overlay. This samples
- * adds additional raster layer on top of base layer, using NTBitmapOverlayRasterTileDataSource.
- * Note: for really big overlays (containing 10000 pixels or more), Carto Mobile SDK provides
- * GDAL-based raster tile data source. This data source is not part of the standard SDK, it
- * is an extra feature provided using GIS-extensions package.
- */
 @ActivityData(name = "Ground Overlays", description = "Show non-tiled Bitmap on ground")
 public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
 
@@ -33,8 +26,6 @@ public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
         Projection proj = mapView.getOptions().getBaseProjection();
         
         // Load ground overlay bitmap
-        //Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jefferson);
-        //com.carto.graphics.Bitmap overlayBitmap = BitmapUtils.createBitmapFromAndroidBitmap(androidMarkerBitmap);
         Bitmap overlayBitmap = BitmapUtils.loadBitmapFromAssets("jefferson-building-ground-floor.jpg");
         
         // Create two vectors containing geographical positions and corresponding raster image pixel coordinates.
