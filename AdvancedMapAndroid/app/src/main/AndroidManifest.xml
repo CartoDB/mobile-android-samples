@@ -17,12 +17,11 @@
     
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/icon_180"
+        android:label="Advanced.Java"
         android:name=".MapApplication">
         <activity
-            android:name=".list.LauncherListActivity"
-            android:label="@string/app_name" >
+            android:name=".list.LauncherListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

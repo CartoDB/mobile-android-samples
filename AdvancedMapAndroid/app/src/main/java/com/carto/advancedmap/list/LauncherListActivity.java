@@ -77,6 +77,8 @@ public class LauncherListActivity extends ListActivity {
         ListView lv = this.getListView();
         lv.setBackgroundColor(Color.BLACK);
         lv.setAdapter(new MapListAdapter(this, android.R.layout.two_line_list_item, getListItems()));
+
+        setTitle("Advanced Mobile Samples");
     }
 
     private MapListItem[] getListItems()
