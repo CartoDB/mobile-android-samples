@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.gis;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.datasources.LocalVectorDataSource;
@@ -30,8 +30,8 @@ import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.VectorElement;
 
-@Description(value = "Shows usage of an editable vector layer")
-public class BasicEditableOverlayActivity extends MapSampleBaseActivity {
+@ActivityData(name = "Vector Object Editing", description = "Shows usage of an editable vector layer")
+public class VectorObjectEditingActivity extends MapSampleBaseActivity {
 
     LocalVectorDataSource source;
 

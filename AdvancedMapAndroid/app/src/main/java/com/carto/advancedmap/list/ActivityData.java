@@ -12,7 +12,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 
-public @interface Description {
-    String value();
+public @interface ActivityData {
+
+    String name();
+
+    String description();
 }
 

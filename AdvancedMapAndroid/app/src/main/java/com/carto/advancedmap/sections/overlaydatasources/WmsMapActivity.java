@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
@@ -15,7 +15,7 @@ import com.carto.projections.Projection;
 /**
  * A sample demonstrating how to use WMS service raster on top of the vector base map
  */
-@Description(value = "Use external WMS service for raster tile overlay")
+@ActivityData(name = "WMS Map", description = "Use external WMS service for raster tile overlay")
 public class WmsMapActivity extends VectorMapSampleBaseActivity {
 
     @Override

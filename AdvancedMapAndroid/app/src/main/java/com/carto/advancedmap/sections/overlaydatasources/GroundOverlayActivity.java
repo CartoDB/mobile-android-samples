@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
@@ -22,7 +22,7 @@ import com.carto.core.ScreenPosVector;
  * GDAL-based raster tile data source. This data source is not part of the standard SDK, it
  * is an extra feature provided using GIS-extensions package.
  */
-@Description(value = "Show not tiled Bitmap on ground")
+@ActivityData(name = "Ground Overlays", description = "Show non-tiled Bitmap on ground")
 public class GroundOverlayActivity extends VectorMapSampleBaseActivity {
 
     @Override

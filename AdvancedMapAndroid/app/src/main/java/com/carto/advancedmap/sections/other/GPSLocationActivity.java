@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
@@ -26,8 +26,8 @@ import com.carto.core.MapPosVector;
  * Shows user GPS location on map.
  * Make sure your app has location permission in Manifest file
  */
-@Description(value = "Shows user GPS location on the map")
-public class MyLocationActivity extends VectorMapSampleBaseActivity {
+@ActivityData(name = "GPS Location", description = "Shows user GPS location on the map")
+public class GPSLocationActivity extends VectorMapSampleBaseActivity {
 	
 	private LocationManager locationManager;
 	private LocationListener locationListener;

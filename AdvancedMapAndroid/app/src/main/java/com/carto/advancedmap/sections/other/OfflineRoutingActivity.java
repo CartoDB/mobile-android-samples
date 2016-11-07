@@ -12,7 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -53,7 +53,7 @@ import com.carto.vectorelements.Marker;
  * online routing service is used as a fallback. Once the package is available, routing
  * works offline.
  */
-@Description(value = "Offline routing with OpenStreetMap data packages")
+@ActivityData(name = "Offline Routing", description = "Routing with OpenStreetMap data packages")
 public class OfflineRoutingActivity extends VectorMapSampleBaseActivity {
 
 

@@ -1,6 +1,7 @@
 package com.carto.advancedmap.baseactivities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
@@ -26,19 +27,28 @@ public class MapSampleBaseActivity extends BaseActivity {
         // Create map view 
         setContentView(R.layout.activity_main);
         mapView = (MapView) this.findViewById(R.id.map_view);
+        // Set projection
         baseProjection = mapView.getOptions().getBaseProjection();
 
-        // Set default location and some other options
-        MapPos berlin = baseProjection.fromWgs84(new MapPos(13.38933, 52.51704));
-        mapView.setFocusPos(berlin, 0);
-        mapView.setZoom(2, 0);
-        mapView.setMapRotation(0, 0);
-        mapView.setTilt(90, 0);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
-        mapView.getLayers().add(baseLayer);
+        String title = getIntent().getStringExtra("title");
+        String description = getIntent().getStringExtra("description");
+
+        setTitle(title);
+        getActionBar().setSubtitle(description);
     }
-    
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onPause() {
     	mapView.onPause(); 

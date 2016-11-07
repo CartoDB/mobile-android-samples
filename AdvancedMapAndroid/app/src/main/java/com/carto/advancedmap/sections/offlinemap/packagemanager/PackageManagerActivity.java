@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.StringVector;
 import com.carto.datasources.PackageManagerTileDataSource;
@@ -52,7 +52,7 @@ import java.util.HashMap;
  * share this instance between activities. 
  * 
  */
-@Description(value = "Download offline map packages with OSM")
+@ActivityData(name = "Package Manager", description = "Download offline map packages with OSM")
 public class PackageManagerActivity extends ListActivity {
 
 	/**
@@ -249,12 +249,6 @@ public class PackageManagerActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		// Register license
-		MapView.registerLicense("XTUN3Q0ZDUmFWcm9pWEUycVN3LzlGeVhEZWZuVnp3RkJBaFE3dHpTSTlDaEFVeW9aWUNQdmc" +
-				"wNDdwNitEWEE9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5hZ" +
-				"HZhbmNlZG1hcAp3YXRlcm1hcms9bnV0aXRlcQpvbmxpbmVMaWNlbnNlPTEKdXNlcktleT1jZmYyMzI1N2ZiN" +
-				"TBiYWFmMDY4NDI1Y2NkNmMwYzk4Mgo=", getApplicationContext());
 
 		// Create package manager
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");

@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
-import com.carto.core.MapRange;
 import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
 
@@ -23,8 +22,8 @@ import java.io.OutputStream;
  * As MBTilesDataSource can be used only with files residing in file system,
  * the assets needs to be copied first to the SDCard.
  */
-@Description(value = "Bundle MBTiles file for offline base map")
-public class BundledMBTilesActivity extends VectorMapSampleBaseActivity {
+@ActivityData(name = "Bundled Map", description = "Bundle MBTiles file for offline base map")
+public class BundledMapActivity extends VectorMapSampleBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class BundledMBTilesActivity extends VectorMapSampleBaseActivity {
 
             String path = localDir + "/" + mbTileFile;
             Log.i(MapApplication.LOG_TAG,"copy done to " + path);
-            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 4, path);
+            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 19, path);
 
             return vectorTileDataSource;
 

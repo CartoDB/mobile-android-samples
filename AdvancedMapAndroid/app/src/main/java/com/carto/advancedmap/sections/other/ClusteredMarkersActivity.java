@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
@@ -39,8 +39,8 @@ import java.util.Map;
  * 2. Instead of Balloon with text generate dynamically Point bitmap with cluster numbers
  * 3. Make sure you reuse cluster style bitmaps. Creating new bitmap in rendering has technical cost
  */
-@Description(value = "Read data from .geojson and show as clusters")
-public class ClusteredGeoJsonActivity extends VectorMapSampleBaseActivity {
+@ActivityData(name = "Clustered Markers", description = "Read data from .geojson and show as clusters")
+public class ClusteredMarkersActivity extends VectorMapSampleBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

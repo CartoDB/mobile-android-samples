@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.baseactivities.MapSampleBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapTile;
@@ -25,7 +25,7 @@ import com.carto.utils.BitmapUtils;
  * Compare with RasterOverlayActivity which shows same rasters as separate layers
  * 
  */
-@Description(value = "Customized raster tile data source")
+@ActivityData(name = "Custom Raster Data Source", description = "Customized raster tile data source")
 public class CustomRasterDataSourceActivity extends MapSampleBaseActivity {
 
     public static final String TILED_RASTER_URL = "http://{s}.basemaps.cartocdn.com/light_all/{zoom}/{x}/{y}.png";

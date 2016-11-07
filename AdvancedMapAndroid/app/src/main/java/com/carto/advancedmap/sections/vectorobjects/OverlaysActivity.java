@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -41,7 +41,7 @@ import com.carto.vectorelements.Text;
  * A sample demonstrating how to add basic 2D and 3D objects to the map:
  * lines, points, polygon with hole, texts and pop-ups.
  */
-@Description(value = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
+@ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
 public class OverlaysActivity extends VectorMapSampleBaseActivity {
 
     Projection projection;
@@ -255,7 +255,7 @@ public class OverlaysActivity extends VectorMapSampleBaseActivity {
 
         MapPos position = projection.fromWgs84(new MapPos(24.658662, 59.432521));
         String title = "This title will be wrapped if there's not enough space on the screen.";
-        String description = "Description is set to be truncated with three dots, unless the screen is really really big.";
+        String description = "ActivityData is set to be truncated with three dots, unless the screen is really really big.";
 
         BalloonPopup popup = new BalloonPopup(position, builder.buildStyle(), title, description);
 

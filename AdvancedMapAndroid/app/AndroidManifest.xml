@@ -31,7 +31,7 @@
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".mapsamples.MapListenerActivity" />
         <activity android:name=".sections.vectorobjects.Overlays3DActivity" />
-        <activity android:name=".sections.offlinemap.BundledMBTilesActivity" />
+        <activity android:name=".sections.offlinemap.BundledMapActivity" />
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
         <activity android:name=".mapsamples.AnimatedRasterMapActivity" />
         <activity android:name=".mapsamples.RasterOverlayActivity" />
@@ -41,8 +41,8 @@
         <activity android:name=".mapsamples.MbtilesActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
         <activity android:name=".sections.other.ClusteredRandomPointsActivity" />
-        <activity android:name=".sections.other.ClusteredGeoJsonActivity" />
-        <activity android:name=".sections.other.MyLocationActivity" />
+        <activity android:name=".sections.other.ClusteredMarkersActivity" />
+        <activity android:name=".sections.other.GPSLocationActivity" />
         <activity android:name=".sections.other.OfflineRoutingActivity" />
         <activity android:name=".map_carto.CartoSQLActivity" />
         <activity android:name=".map_carto.CartoUTFGridActivity" />

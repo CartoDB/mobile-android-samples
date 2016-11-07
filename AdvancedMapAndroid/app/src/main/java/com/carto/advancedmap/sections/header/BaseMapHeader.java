@@ -2,12 +2,12 @@ package com.carto.advancedmap.sections.header;
 
 import android.app.Activity;
 
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 
 /**
  * Created by aareundo on 14/10/16.
  */
 
-@Description(value = "Base Maps")
+@ActivityData(name = "Base Maps", description = "")
 public class BaseMapHeader extends Activity {
 }

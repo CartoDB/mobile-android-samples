@@ -14,7 +14,7 @@ import android.text.TextPaint;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.list.Description;
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
 import com.carto.core.MapPos;
@@ -37,7 +37,7 @@ import com.carto.vectorelements.Marker;
  * that provides uniform functionality and look across different platforms.
  * But In some cases more customization is needed and Popup subclassing can be used.
  */
-@Description(value = "Create custom popups")
+@ActivityData(name = "Custom Popup", description = "Create custom popups")
 public class CustomPopupActivity extends VectorMapSampleBaseActivity {
 
     @Override

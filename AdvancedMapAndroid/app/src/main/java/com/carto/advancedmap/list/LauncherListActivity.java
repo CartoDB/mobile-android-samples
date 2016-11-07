@@ -9,22 +9,21 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
-import com.carto.advancedmap.sections.gis.BasicEditableOverlayActivity;
+import com.carto.advancedmap.sections.gis.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
-import com.carto.advancedmap.sections.header.GISHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;
 import com.carto.advancedmap.sections.header.OtherMapHeader;
 import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
 import com.carto.advancedmap.sections.header.VectorObjectsHeader;
 import com.carto.advancedmap.sections.offlinemap.packagemanager.PackageManagerActivity;
 import com.carto.advancedmap.sections.other.CaptureActivity;
-import com.carto.advancedmap.sections.other.ClusteredGeoJsonActivity;
+import com.carto.advancedmap.sections.other.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;
 import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
-import com.carto.advancedmap.sections.other.MyLocationActivity;
+import com.carto.advancedmap.sections.other.GPSLocationActivity;
 import com.carto.advancedmap.sections.other.OfflineRoutingActivity;
-import com.carto.advancedmap.sections.offlinemap.BundledMBTilesActivity;
+import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
 import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
 import com.carto.advancedmap.R;
@@ -43,24 +42,22 @@ public class LauncherListActivity extends ListActivity {
 
             OfflineMapHeader.class,
             PackageManagerActivity.class,
-            BundledMBTilesActivity.class,
+            BundledMapActivity.class,
 
             OverlayDataSourcesHeader.class,
             CustomRasterDataSourceActivity.class,
             GroundOverlayActivity.class,
             WmsMapActivity.class,
 
-            GISHeader.class,
-            BasicEditableOverlayActivity.class,
-
             VectorObjectsHeader.class,
+            ClusteredMarkersActivity.class,
             OverlaysActivity.class,
+            VectorObjectEditingActivity.class,
 
             OtherMapHeader.class,
             CaptureActivity.class,
-            ClusteredGeoJsonActivity.class,
             CustomPopupActivity.class,
-            MyLocationActivity.class,
+            GPSLocationActivity.class,
             OfflineRoutingActivity.class
     };
 
@@ -87,19 +84,21 @@ public class LauncherListActivity extends ListActivity {
 
         for(int i = 0; i < samples.length; i++) {
 
-            String name = samples[i].getSimpleName().replace("Activity", "");
-            String description = "none";
+            String name = "";
+            String description = "";
 
             java.lang.annotation.Annotation[] annotations = samples[i].getAnnotations();
 
-            if (annotations.length > 0 && annotations[0] instanceof Description) {
-                description = ((Description) annotations[0]).value();
+            if (annotations.length > 0 && annotations[0] instanceof ActivityData) {
+                name = ((ActivityData) annotations[0]).name();
+                description = ((ActivityData) annotations[0]).description();
             }
 
             MapListItem item = new MapListItem();
 
-            if (name.contains("Header")) {
-                item.name = description;
+
+            if (description.equals("")) {
+                item.name = name;
                 item.isHeader = true;
             } else {
                 item = new MapListMap();
@@ -117,12 +116,21 @@ public class LauncherListActivity extends ListActivity {
 
         Class sample = samples[position];
 
-        if (sample.getSimpleName().contains("Header")) {
+        ActivityData data = ((ActivityData) sample.getAnnotations()[0]);
+        String name = data.name();
+        String description = data.description();
+
+        if (description.equals("")) {
+            // Headers don't have descriptions and aren't clickable
             return;
         }
 
-        Intent myIntent = new Intent(LauncherListActivity.this, sample);
-        this.startActivity(myIntent);
+        Intent intent = new Intent(LauncherListActivity.this, sample);
+
+        intent.putExtra("title", name);
+        intent.putExtra("description", description);
+
+        this.startActivity(intent);
     }
 
     // Filler class to differentiate between clickable Map and Header for Espresso tests
