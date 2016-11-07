@@ -2,6 +2,7 @@ package com.carto.cartomap.sections;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ZoomControls;
 
@@ -29,23 +30,23 @@ public class BaseMapActivity extends Activity {
 
         baseProjection = mapView.getOptions().getBaseProjection();
 
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
-        mapView.getLayers().add(layer);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Add listeners to zoom controls
-        ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoom_controls);
-        zoomControls.setOnZoomInClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapView.zoom(1.0f, 0.3f); // zoom in exactly one level, duration 0.3 secs
-            }
-        });
-        zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapView.zoom(-1.0f, 0.3f); // zoom out exactly one level, duration 0.3 secs
-            }
-        });
+        String title = getIntent().getStringExtra("title");
+        String description = getIntent().getStringExtra("description");
+
+        setTitle(title);
+        getActionBar().setSubtitle(description);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -58,5 +59,11 @@ public class BaseMapActivity extends Activity {
     public void onResume() {
         super.onResume();
         mapView.onResume();
+    }
+
+    protected void addBaseLayer(CartoBaseMapStyle style)
+    {
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(style);
+        mapView.getLayers().add(layer);
     }
 }

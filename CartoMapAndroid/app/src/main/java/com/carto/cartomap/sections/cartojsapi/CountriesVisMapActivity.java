@@ -7,6 +7,7 @@ import com.carto.cartomap.util.Description;
 /**
  * Created by aareundo on 13/10/16.
  */
+
 @Description(value = "Vis displaying countries in different colors")
 public class CountriesVisMapActivity extends VisJsonBaseMapActivity {
 

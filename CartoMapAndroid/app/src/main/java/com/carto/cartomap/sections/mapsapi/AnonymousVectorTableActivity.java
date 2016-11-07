@@ -7,6 +7,7 @@ import com.carto.cartomap.sections.BaseMapActivity;
 import com.carto.cartomap.util.Description;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.LayerVector;
 import com.carto.services.CartoMapsService;
 
@@ -25,8 +26,10 @@ public class AnonymousVectorTableActivity extends BaseMapActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and configures mapView
+        // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
+
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         final String config = getConfigJson();
 

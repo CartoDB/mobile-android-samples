@@ -7,6 +7,7 @@ import android.util.Log;
 import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.list.Description;
 import com.carto.advancedmap.baseactivities.VectorMapSampleBaseActivity;
+import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -29,17 +30,18 @@ public class BundledMBTilesActivity extends VectorMapSampleBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // MapSampleBaseActivity creates and configures mapView  
         super.onCreate(savedInstanceState);
-        
-        // Limit zoom range, as we have tiles only up to level 5
-        mapView.getOptions().setZoomRange(new MapRange(0,6));
-        mapView.setZoom(3, 0);
+
+        // Zoom to the correct location
+        MapPos rome = baseProjection.fromWgs84(new MapPos(12.4807, 41.8962));
+        mapView.setFocusPos(rome, 0);
+        mapView.setZoom(13, 0);
     }
     
     @Override
     protected TileDataSource createTileDataSource() {
 
         // Offline map data source
-        String mbTileFile = "world_zoom5.mbtiles";
+        String mbTileFile = "rome_ntvt.mbtiles";
 
         try {
             String localDir = getExternalFilesDir(null).toString();

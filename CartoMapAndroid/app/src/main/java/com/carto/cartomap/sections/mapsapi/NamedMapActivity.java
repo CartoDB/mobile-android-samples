@@ -45,63 +45,38 @@ import java.io.IOException;
  * Created by aareundo on 13/10/16.
  */
 
-@Description(value = "CARTO data as Vector Tiles, using CartoCSS styling")
+@Description(value = "CARTO data as Vector Tiles from a named map")
 public class NamedMapActivity extends BaseMapActivity {
-
-    static final String baseUrl = "http://192.168.1.31/user/demo-admin/api/v1/map/";
-    static final String api = "demo-admin@05be0b35@d299d92a84985240af8767694f134620:1476098385738/1/{z}/{x}/{y}.mvt";
-
-    VectorLayer vectorLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         final CartoMapsService service = new CartoMapsService();
-        service.setAPITemplate("demo-admin");
+
         // Use raster layers, not vector
         service.setDefaultVectorLayerMode(true);
 
-        final Projection projection = mapView.getOptions().getBaseProjection();
-        final MapPos hiiumaa = projection.fromWgs84(new MapPos(22.7478235498916, 58.8330577553785));
+        service.setUsername("nutiteq");
+
+        final String name = "tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59";
 
         // Be sure to make network queries on another thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String name = "tpl_708edf80_8bf0_11e6_806c_0e2b00211e61";
+
                     LayerVector layers = service.buildNamedMap(name, new StringVariantMap());
 
                     for (int i = 0; i < layers.size(); i++) {
+
                         Layer layer = layers.get(i);
+
+                        mapView.getLayers().add(layer);
                     }
-
-                    HTTPTileDataSource sourceOver = new HTTPTileDataSource(0, 13, baseUrl + api);
-
-                    // Load fonts
-                    BinaryData fontData = AssetUtils.loadAsset("carto-fonts.zip");
-                    ZippedAssetPackage fontPackage = new ZippedAssetPackage(fontData);
-
-                    // Load CSS
-                    String css = "";
-                    CartoCSSStyleSet styleSheet = new CartoCSSStyleSet(css, fontPackage);
-
-                    MBVectorTileDecoder decoder = new MBVectorTileDecoder(styleSheet);
-
-                    VectorTileLayer overLayer = new VectorTileLayer(sourceOver, decoder);
-                    mapView.getLayers().add(overLayer);
-
-                    mapView.setFocusPos(hiiumaa, 0);
-                    mapView.setZoom(5, 1);
-
-                    LocalVectorDataSource dataSource = new LocalVectorDataSource(projection);
-
-                    vectorLayer = new VectorLayer(dataSource);
-                    mapView.getLayers().add(vectorLayer);
-
-                    VectorTileListener listener = new VectorTileListener(vectorLayer);
-                    overLayer.setVectorTileEventListener(listener);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -110,72 +85,10 @@ public class NamedMapActivity extends BaseMapActivity {
         });
 
         thread.start();
-    }
 
-    private class VectorTileListener extends VectorTileEventListener {
 
-        VectorLayer layer;
-
-        public VectorTileListener(VectorLayer layer)
-        {
-            this.layer = layer;
-        }
-
-        @Override
-        public boolean onVectorTileClicked(VectorTileClickInfo clickInfo) {
-
-            LocalVectorDataSource source = (LocalVectorDataSource)layer.getDataSource();
-
-            source.clear();
-
-            Color color = new Color((short)0, (short)100, (short)200, (short)150);
-
-            Feature feature = clickInfo.getFeature();
-            Geometry geometry = feature.getGeometry();
-
-            PointStyleBuilder pointBuilder = new PointStyleBuilder();
-            pointBuilder.setColor(color);
-
-            LineStyleBuilder lineBuilder = new LineStyleBuilder();
-            lineBuilder.setColor(color);
-
-            PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
-            polygonBuilder.setColor(color);
-
-            if (geometry instanceof PointGeometry)
-            {
-                source.add(new Point((PointGeometry)geometry, pointBuilder.buildStyle()));
-            }
-            else if (geometry instanceof LineGeometry)
-            {
-                source.add(new Line((LineGeometry)geometry, lineBuilder.buildStyle()));
-            }
-            else if (geometry instanceof PolygonGeometry)
-            {
-                source.add(new Polygon((PolygonGeometry)geometry, polygonBuilder.buildStyle()));
-            }
-            else if (geometry instanceof MultiGeometry)
-            {
-                GeometryCollectionStyleBuilder collectionBuilder = new GeometryCollectionStyleBuilder();
-                collectionBuilder.setPointStyle(pointBuilder.buildStyle());
-                collectionBuilder.setLineStyle(lineBuilder.buildStyle());
-                collectionBuilder.setPolygonStyle(polygonBuilder.buildStyle());
-
-                source.add(new GeometryCollection((MultiGeometry)geometry, collectionBuilder.buildStyle()));
-            }
-
-            BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
-
-            // Set a higher placement priority so it would always be visible
-            builder.setPlacementPriority(10);
-
-            String message = feature.getProperties().toString();
-
-            BalloonPopup popup = new BalloonPopup(clickInfo.getClickPos(), builder.buildStyle(), "Click", message);
-
-            source.add(popup);
-
-            return true;
-        }
+        MapPos position = baseProjection.fromLatLong(37.32549682016584, -121.94595158100128);
+        mapView.setFocusPos(position, 0);
+        mapView.setZoom(19, 1);
     }
 }

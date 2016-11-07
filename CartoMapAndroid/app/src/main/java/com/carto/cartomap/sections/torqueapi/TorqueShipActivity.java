@@ -8,6 +8,7 @@ import com.carto.cartomap.util.Description;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.TorqueTileLayer;
 import com.carto.styles.CartoCSSStyleSet;
 import com.carto.vectortiles.TorqueTileDecoder;
@@ -53,8 +54,10 @@ public class TorqueShipActivity extends BaseMapActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and configures mapView
+        // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
+
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         String encodedQuery =
                 "WITH%20par%20AS%20(%20%20SELECT%20CDB_XYZ_Resolution({zoom})*1%20as%20res%2" +

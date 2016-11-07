@@ -33,13 +33,13 @@ public class LauncherListActivity extends ListActivity {
             DotsVisMapActivity.class,
             FontsVisMapActivity.class,
 
-            ImportHeader.class,
-            TilePackagerActivity.class,
+//            ImportHeader.class,
+//            TilePackagerActivity.class,
 
             MapsHeader.class,
+            AnonymousRasterTableActivity.class,
             AnonymousVectorTableActivity.class,
             NamedMapActivity.class,
-            AnonymousRasterTableActivity.class,
 
             SQLHeader.class,
             SQLServiceActivity.class,
@@ -53,10 +53,11 @@ public class LauncherListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher_list);
 
-
         ListView lv = this.getListView();
         lv.setBackgroundColor(Color.BLACK);
         lv.setAdapter(new MapListAdapter(this, android.R.layout.two_line_list_item, getListItems()));
+
+        setTitle("CARTO Mobile Samples");
     }
 
     private MapListItem[] getListItems()
@@ -92,7 +93,22 @@ public class LauncherListActivity extends ListActivity {
 
     public void onListItemClick(ListView parent, View v, int position, long id) {
 
-        Intent myIntent = new Intent(LauncherListActivity.this, samples[position]);
-        this.startActivity(myIntent);
+        Class sample = samples[position];
+        String name = sample.getSimpleName().replace("Activity", "");
+
+        if (name.contains("Header")) {
+            // Headers aren't clickable
+            return;
+        }
+
+        java.lang.annotation.Annotation[] annotations = sample.getAnnotations();
+        String description = ((Description) annotations[0]).value();
+
+        Intent intent = new Intent(LauncherListActivity.this, sample);
+
+        intent.putExtra("title", name);
+        intent.putExtra("description", description);
+
+        this.startActivity(intent);
     }
 }

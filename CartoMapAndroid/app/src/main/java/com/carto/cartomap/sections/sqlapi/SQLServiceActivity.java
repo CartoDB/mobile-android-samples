@@ -8,6 +8,7 @@ import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.PointGeometry;
 import com.carto.graphics.Color;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.services.CartoSQLService;
@@ -33,9 +34,11 @@ public class SQLServiceActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
-        Log.setShowInfo(true);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
 
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
         final VectorLayer layer = new VectorLayer(source);

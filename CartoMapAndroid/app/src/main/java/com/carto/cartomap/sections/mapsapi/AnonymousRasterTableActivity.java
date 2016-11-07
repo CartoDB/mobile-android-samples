@@ -7,6 +7,7 @@ import com.carto.cartomap.sections.BaseMapActivity;
 import com.carto.cartomap.util.Description;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.LayerVector;
 import com.carto.services.CartoMapsService;
 
@@ -25,8 +26,11 @@ public class AnonymousRasterTableActivity extends BaseMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
         // Define server config
         JSONObject configJson = new JSONObject();
