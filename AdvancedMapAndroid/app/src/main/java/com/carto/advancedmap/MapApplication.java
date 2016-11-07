@@ -25,6 +25,5 @@ public class MapApplication extends Application {
         MapView.registerLicense(LICENSE, getApplicationContext());
 
         com.carto.utils.Log.setShowInfo(true);
-
     }
 }

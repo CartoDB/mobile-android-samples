@@ -50,6 +50,8 @@ public class HelloMapActivity extends Activity {
         Marker marker = addMarkerToPosition(berlin);
 
         mapView.setMapEventListener(new MyMapEventListener(marker));
+
+        setTitle("Hello Map");
     }
 
     private Marker addMarkerToPosition(MapPos position)
