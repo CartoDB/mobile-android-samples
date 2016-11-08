@@ -1,11 +1,11 @@
-# mobile-android-samples
+## mobile-android-samples
 Android sample for CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
 Samples include:
 
-1. Hello Map
+1. **Hello Map**
     * Basic sample of how to initialize a map, set a market on the map, listen to map clicks and change the color and size of that marker.
 2. Advanced Map
     * Base Maps
