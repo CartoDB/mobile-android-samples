@@ -3,11 +3,11 @@ Android sample for CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
-Samples include:
+### Samples include:
 
 1. **Hello Map**
     * Basic sample of how to initialize a map, set a market on the map, listen to map clicks and change the color and size of that marker.
-2. Advanced Map
+2. **Advanced Map**
     * Base Maps
     * Base Maps - choice of different base maps, styles, tile type and language
     * Overlay Data Sources
@@ -26,7 +26,7 @@ Samples include:
         *  Custom Popup - Creating and using custom popups
         *  GPS Location - Shows user GPS location on the map
         *  Offline Routing - Offline routing with OpenStreetMap data packages
-3. Carto Map
+3. **Carto Map**
     * CARTO.js API
         * Countries Vis - Dislaying countries in different colors from a viz.json
         * Dots Vis - Showing specific dots on the map from a viz.json
