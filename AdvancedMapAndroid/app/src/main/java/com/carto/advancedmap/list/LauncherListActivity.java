@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
-import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
 import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
@@ -38,7 +37,6 @@ public class LauncherListActivity extends ListActivity {
     public Class[] samples = {
 
             BaseMapHeader.class,
-            BaseMapsActivity.class,
             BaseMapActivity.class,
 
             OfflineMapHeader.class,

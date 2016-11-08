@@ -2,15 +2,15 @@ package com.carto.advancedmap.sections.offlinemap.packagemanager;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
 import com.carto.datasources.TileDataSource;
 
 /**
  * A uses PackageManagerActivity datasource. This has maps which are downloaded offline using PackageManager
  */
 @ActivityData(name = "", description = "This has maps which are downloaded offline using PackageManager")
-public class PackagedMapActivity extends BaseMapsActivity {
+public class PackagedMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

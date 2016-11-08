@@ -30,7 +30,6 @@
         </activity>
 
         <!--Section 1-->
-        <activity android:name=".sections.basemap.BaseMapsActivity"/>
         <activity android:name=".sections.basemap.BaseMapActivity"/>
 
         <!--Section 2-->

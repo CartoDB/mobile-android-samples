@@ -82,33 +82,23 @@ public class BaseMapActivity extends BaseActivity {
 
     public void updateBaseLayer(Section section, String selection)
     {
-        if (section.getType() != SectionType.LANGUAGE)
-        {
+        if (section.getType() != SectionType.LANGUAGE) {
             currentOSM = section.getOSM().getValue();
             currentSelection = selection;
         }
 
-        if (section.getType() == SectionType.VECTOR)
-        {
+        if (section.getType() == SectionType.VECTOR) {
 
-            if (currentOSM == "nutiteq.osm")
-            {
+            if (currentOSM == "nutiteq.osm") {
                 // Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-                if (currentSelection == "default")
-                {
+                if (currentSelection == "default") {
                     currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
-                }
-                else if (currentSelection == "gray")
-                {
+                } else if (currentSelection == "gray") {
                     currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
-                }
-                else
-                {
+                } else {
                     currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
                 }
-            }
-            else if (currentOSM == "mapzen.osm")
-            {
+            } else if (currentOSM == "mapzen.osm") {
                 // Mapzen styles are all bundled in one .zip file.
                 // Selection contains both the style name and file name (cf. Sections.cs in Shared)
                 String fileName = currentSelection.split(":")[0];
@@ -125,9 +115,11 @@ public class BaseMapActivity extends BaseActivity {
 
                 currentLayer = new VectorTileLayer(source, decoder);
             }
-        }
-        else if (section.getType() == SectionType.RASTER)
-        {
+
+            contentView.menu.setInitialItem(Sections.getLanguage());
+            updateLanguage(Sections.getBaseLanguageCode());
+
+        } else if (section.getType() == SectionType.RASTER) {
             // We know that the value of raster will be Positron or Darkmatter,
             // as Nutiteq and Mapzen use vector tiles
 
@@ -136,11 +128,8 @@ public class BaseMapActivity extends BaseActivity {
 
             TileDataSource source = new HTTPTileDataSource(1, 19, url);
             currentLayer = new RasterTileLayer(source);
-        }
-        else if (section.getType() == SectionType.LANGUAGE)
-        {
-            if (currentLayer instanceof RasterTileLayer)
-            {
+        } else if (section.getType() == SectionType.LANGUAGE) {
+            if (currentLayer instanceof RasterTileLayer) {
                 // Raster tile language chance is not supported
                 return;
             }
