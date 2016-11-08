@@ -39,7 +39,7 @@
     *  Torque API
         *  CARTO Torque Map - Shows Torque tiels of WWII ship movement
 
-** Other Samples
+## Other Samples
 
 * C# (iOS, Android and Windows Phone): https://github.com/CartoDB/mobile-dotnet-samples
 * iOS (Objective-C and Swift): https://github.com/CartoDB/mobile-ios-samples
