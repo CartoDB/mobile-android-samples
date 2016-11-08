@@ -8,7 +8,7 @@
     * Basic sample of how to initialize a map, set a market on the map, listen to map clicks and change the color and size of that marker.
 2. **Advanced Map**
     * Base Maps
-    * Base Maps - choice of different base maps, styles, tile type and language
+    	* Base Maps - choice of different base maps, styles, tile type and language
     * Overlay Data Sources
         * Custom Raster Data Source - creating and using custom (merged) raster tile data source
         * Ground Overlay - Addoung ground-level raster overlay
