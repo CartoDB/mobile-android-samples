@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
+import com.carto.advancedmap.sections.basemap.BaseMapActivity;
 import com.carto.advancedmap.sections.basemap.BaseMapsActivity;
 import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
@@ -38,6 +39,7 @@ public class LauncherListActivity extends ListActivity {
 
             BaseMapHeader.class,
             BaseMapsActivity.class,
+            BaseMapActivity.class,
 
             OfflineMapHeader.class,
             PackageManagerActivity.class,

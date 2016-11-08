@@ -110,17 +110,6 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
         }
     }
 
-    private void alert(final String message) {
-
-        final Context context = this;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     /**
      *  CLUSTER BUILDER
      **/
