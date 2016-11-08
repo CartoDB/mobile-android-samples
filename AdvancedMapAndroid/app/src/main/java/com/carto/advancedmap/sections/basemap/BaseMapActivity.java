@@ -13,12 +13,16 @@ import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.datasources.CartoOnlineTileDataSource;
 import com.carto.datasources.HTTPTileDataSource;
+import com.carto.datasources.LocalVectorDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
+import com.carto.layers.Layer;
 import com.carto.layers.RasterTileLayer;
 import com.carto.layers.TileLayer;
+import com.carto.layers.VectorLayer;
 import com.carto.layers.VectorTileLayer;
+import com.carto.projections.Projection;
 import com.carto.styles.CompiledStyleSet;
 import com.carto.utils.AssetUtils;
 import com.carto.utils.ZippedAssetPackage;
@@ -156,6 +160,17 @@ public class BaseMapActivity extends BaseActivity {
 
     void initializeVectorTileListener()
     {
+        Projection projection = contentView.mapView.getOptions().getBaseProjection();
+        LocalVectorDataSource source = new LocalVectorDataSource(projection);
 
+        VectorLayer vectorLayer = new VectorLayer(source);
+        contentView.mapView.getLayers().add(vectorLayer);
+
+        Layer layer = contentView.mapView.getLayers().get(0);
+
+        if (layer instanceof VectorTileLayer)
+        {
+            ((VectorTileLayer)layer).setVectorTileEventListener(new VectorTileListener(vectorLayer));
+        }
     }
 }
