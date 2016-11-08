@@ -1,4 +1,4 @@
-## Android sample of CARTO Mobile SDK
+## Android samples of CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
