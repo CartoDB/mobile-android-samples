@@ -1,6 +1,7 @@
 ## Android samples of CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
+* Reference: http://cartodb.github.io/mobile-android-samples/
 
 ## Sample structure
 
