@@ -1,9 +1,8 @@
-## mobile-android-samples
-Android sample for CARTO Mobile SDK
+## Android sample of CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
-### Samples include:
+## Sample structure
 
 1. **Hello Map**
     * Basic sample of how to initialize a map, set a market on the map, listen to map clicks and change the color and size of that marker.
