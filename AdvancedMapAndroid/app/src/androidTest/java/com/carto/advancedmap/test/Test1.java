@@ -18,6 +18,7 @@ import android.support.test.uiautomator.UiSelector;
 import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.MapListItem;
 import com.carto.advancedmap.list.LauncherListActivity;
 
@@ -25,6 +26,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
@@ -49,8 +51,25 @@ public class Test1 {
 
         setActivity();
 
+        ArrayList<Class> maps = new ArrayList<>();
+
         for (Integer i = 0; i < list.samples.length; i++) {
-            DataInteraction interaction = onData(allOf(is(instanceOf(LauncherListActivity.MapListMap.class))));
+
+            Class sample = list.samples[i];
+
+            java.lang.annotation.Annotation[] annotations = sample.getAnnotations();
+            String description = ((ActivityData) annotations[0]).description();
+
+            if (!description.equals("")) {
+                // Headers have no description
+                maps.add(sample);
+            }
+        }
+
+        DataInteraction interaction = onData(allOf(is(instanceOf(LauncherListActivity.MapListMap.class))));
+
+        for (Integer i = 0; i < maps.size(); i++) {
+
             interaction.atPosition(i).perform(click());
             new PermissionGranter().allowPermissionsIfNeeded();
             pressBack();
