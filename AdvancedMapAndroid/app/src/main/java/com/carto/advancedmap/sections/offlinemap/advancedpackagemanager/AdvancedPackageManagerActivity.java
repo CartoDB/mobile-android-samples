@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carto.advancedmap.Colors;
 import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
@@ -235,6 +237,9 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		ColorDrawable background = new ColorDrawable(Colors.ACTION_BAR);
+		getActionBar().setBackgroundDrawable(background);
 
 		// Create package manager
         File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");

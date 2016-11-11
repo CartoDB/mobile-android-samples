@@ -3,11 +3,13 @@ package com.carto.cartomap.list;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
 import com.carto.cartomap.R;
+import com.carto.cartomap.sections.BaseMapActivity;
 import com.carto.cartomap.sections.cartojsapi.CountriesVisMapActivity;
 import com.carto.cartomap.sections.cartojsapi.DotsVisMapActivity;
 import com.carto.cartomap.sections.cartojsapi.FontsVisMapActivity;
@@ -49,6 +51,10 @@ public class LauncherListActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ColorDrawable background = new ColorDrawable(BaseMapActivity.BACKGROUND_COLOR);
+        getActionBar().setBackgroundDrawable(background);
+
         setContentView(R.layout.activity_launcher_list);
 
         ListView lv = this.getListView();

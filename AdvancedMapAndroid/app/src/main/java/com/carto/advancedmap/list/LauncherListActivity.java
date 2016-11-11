@@ -3,11 +3,13 @@ package com.carto.advancedmap.list;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
+import com.carto.advancedmap.Colors;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
 import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
 import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
@@ -69,7 +71,10 @@ public class LauncherListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        ColorDrawable background = new ColorDrawable(Colors.ACTION_BAR);
+        getActionBar().setBackgroundDrawable(background);
+
         setContentView(R.layout.list);
 
         ListView lv = this.getListView();

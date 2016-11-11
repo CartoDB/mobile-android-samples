@@ -35,11 +35,9 @@ public class MapListRow extends LinearLayout {
         description = new TextView(context);
         description.setTextColor(Color.DKGRAY);
         addView(description);
-
-        update(item);
     }
 
-    public void update(MapListItem item) {
+    public void update(MapListItem item, int position) {
 
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
         params.setMargins(10, 10, 10, 10);
@@ -51,8 +49,13 @@ public class MapListRow extends LinearLayout {
 
         if (item.isHeader) {
             background = new ColorDrawable(Color.BLACK);
-            params = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 15);
-            topBorder.setLayoutParams(params);
+
+            if (position == 0) {
+                topBorder.setLayoutParams(new LayoutParams(0, 0));
+            } else {
+                params = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 15);
+                topBorder.setLayoutParams(params);
+            }
 
             description.setText("");
             description.setLayoutParams(new LinearLayout.LayoutParams(0, 0));

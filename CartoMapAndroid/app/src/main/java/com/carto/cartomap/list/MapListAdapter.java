@@ -26,9 +26,9 @@ public class MapListAdapter extends ArrayAdapter<MapListItem> {
 
         if (row == null) {
             row = new MapListRow(context, item);
-        } else {
-            row.update(item);
         }
+
+        row.update(item, position);
 
         return row;
     }

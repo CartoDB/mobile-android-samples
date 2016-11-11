@@ -1,6 +1,8 @@
 package com.carto.cartomap.sections;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +19,17 @@ import com.carto.ui.MapView;
  */
 public class BaseMapActivity extends Activity {
 
+    public static int BACKGROUND_COLOR = Color.argb(255, 215, 82, 75);
+
     protected MapView mapView;
     protected Projection baseProjection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ColorDrawable background = new ColorDrawable(BACKGROUND_COLOR);
+        getActionBar().setBackgroundDrawable(background);
 
         // Create map view
         setContentView(R.layout.activity_main);
