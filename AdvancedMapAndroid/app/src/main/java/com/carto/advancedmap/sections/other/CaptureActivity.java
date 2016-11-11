@@ -23,7 +23,7 @@ import com.carto.vectorelements.Marker;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@ActivityData(name = "Screencapture", description = "Capture rendered MapView as a Bitmap")
+@ActivityData(name = "Screencapture", description = "Capture rendered mapView as a Bitmap")
 public class CaptureActivity extends MapBaseActivity {
 
     @Override

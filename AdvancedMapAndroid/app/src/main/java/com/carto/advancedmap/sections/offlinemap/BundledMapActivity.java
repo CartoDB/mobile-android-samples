@@ -64,7 +64,7 @@ public class BundledMapActivity extends MapBaseActivity {
             return vectorTileDataSource;
 
         } catch (IOException e) {
-            Log.e(MapApplication.LOG_TAG, "mbTileFile cannot be copied: "+mbTileFile);
+            Log.e(MapApplication.LOG_TAG, "mbTileFile cannot be copied: " + mbTileFile);
             Log.e(MapApplication.LOG_TAG, e.getLocalizedMessage());
         }
 

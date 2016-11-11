@@ -19,7 +19,7 @@ public class MapApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // The initial step: register your license (this must be done before using MapView).
+        // The initial step: register your license (this must be done before using mapView).
         // You can get your free/commercial license from: http://developer.carto.com
         // The license used here is intended only for CARTO Mobile SDK demos and WILL NOT work with other apps!
         MapView.registerLicense(LICENSE, getApplicationContext());

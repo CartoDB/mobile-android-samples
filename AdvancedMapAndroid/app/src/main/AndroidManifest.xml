@@ -33,8 +33,9 @@
         <activity android:name=".sections.basemap.BaseMapActivity"/>
 
         <!--Section 2-->
-        <activity android:name=".sections.offlinemap.packagemanager.PackageManagerActivity" />
-        <activity android:name=".sections.offlinemap.packagemanager.PackagedMapActivity" />
+        <activity android:name=".sections.offlinemap.BasicPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.PackagedMapActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
 
         <!--Section 3-->
