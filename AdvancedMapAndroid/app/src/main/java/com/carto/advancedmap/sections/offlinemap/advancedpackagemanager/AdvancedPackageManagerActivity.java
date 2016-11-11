@@ -406,10 +406,9 @@ public class AdvancedPackageManagerActivity extends ListActivity {
             public boolean onMenuItemClick (MenuItem item){
                
                 // Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-                AdvancedPackageManagerActivity.dataSource = new PackageManagerTileDataSource(AdvancedPackageManagerActivity.this.packageManager);
+                dataSource = new PackageManagerTileDataSource(AdvancedPackageManagerActivity.this.packageManager);
                 
-                Intent myIntent = new Intent(AdvancedPackageManagerActivity.this,
-                        PackagedMapActivity.class);
+                Intent myIntent = new Intent(AdvancedPackageManagerActivity.this, PackagedMapActivity.class);
                 AdvancedPackageManagerActivity.this.startActivity(myIntent);
                 
                 return true;
