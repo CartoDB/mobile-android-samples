@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.cartomap.sections.BaseMapActivity;
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
-@Description(value = "Torque showing shop movement during WWII")
+@ActivityData(name = "Torque Ships", description = "Torque showing ship movement during WWII")
 public class TorqueShipActivity extends BaseMapActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
@@ -34,12 +34,12 @@ public class TorqueShipActivity extends BaseMapActivity {
             "  marker-type:ellipse;\n"+
             "  marker-width: 10;\n"+
             "  marker-fill: #FEE391;\n"+
-            "  [value > 2] { marker-fill: #FEC44F; }\n"+
-            "  [value > 3] { marker-fill: #FE9929; }\n"+
-            "  [value > 4] { marker-fill: #EC7014; }\n"+
-            "  [value > 5] { marker-fill: #CC4C02; }\n"+
-            "  [value > 6] { marker-fill: #993404; }\n"+
-            "  [value > 7] { marker-fill: #662506; }\n"+
+            "  [description > 2] { marker-fill: #FEC44F; }\n"+
+            "  [description > 3] { marker-fill: #FE9929; }\n"+
+            "  [description > 4] { marker-fill: #EC7014; }\n"+
+            "  [description > 5] { marker-fill: #CC4C02; }\n"+
+            "  [description > 6] { marker-fill: #993404; }\n"+
+            "  [description > 7] { marker-fill: #662506; }\n"+
             "\n"+
             "  [frame-offset = 1] {\n"+
             "    marker-width: 20;\n"+
@@ -115,8 +115,6 @@ public class TorqueShipActivity extends BaseMapActivity {
                 int frameNr = (torqueTileLayer.getFrameNr()+1) % frameCount;
 
                 torqueTileLayer.setFrameNr(frameNr);
-
-//                Log.d("LOG", "torque frame " + torqueTileLayer.getFrameNr()+ " of "+frameCount);
 
                 if (!stopped) {
                     worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);

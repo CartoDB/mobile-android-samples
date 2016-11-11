@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 
 /**
  * Created by aareundo on 14/10/16.
  */
 
-@Description(value = "Packaging tiles (?)")
+@ActivityData(name = "", description = "Packaging tiles (?)")
 public class TilePackagerActivity extends Activity {
 
     @Override

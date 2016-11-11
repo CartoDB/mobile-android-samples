@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.cartomap.sections.BaseMapActivity;
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.layers.CartoBaseMapStyle;
@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
-@Description(value = "Data as Vector Tiles, using CartoCSS styling")
+@ActivityData(name = "Anonymous Vector Table", description = "Data as Vector Tiles, using CartoCSS styling")
 public class AnonymousVectorTableActivity extends BaseMapActivity {
 
     @Override

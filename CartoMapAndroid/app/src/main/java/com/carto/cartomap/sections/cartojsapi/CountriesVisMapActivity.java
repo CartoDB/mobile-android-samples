@@ -2,13 +2,13 @@ package com.carto.cartomap.sections.cartojsapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 
 /**
  * Created by aareundo on 13/10/16.
  */
 
-@Description(value = "Vis displaying countries in different colors")
+@ActivityData(name = "Countries Viz", description = "Vis displaying countries in different colors")
 public class CountriesVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override

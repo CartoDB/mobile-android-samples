@@ -2,12 +2,12 @@ package com.carto.cartomap.sections.cartojsapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 
 /**
  * Created by aareundo on 13/10/16.
  */
-@Description(value = "Vis showing dots on the map")
+@ActivityData(name = "Dots Viz", description = "Vis showing dots on the map")
 public class DotsVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override

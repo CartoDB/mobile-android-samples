@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.cartomap.sections.BaseMapActivity;
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.layers.CartoBaseMapStyle;
@@ -21,7 +21,7 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer
  * Inspired by web sample http://bl.ocks.org/jorgeas80/4c7169c9b6356858f3cc
  */
-@Description(value = "Use map from CARTO PostGIS Raster")
+@ActivityData(name = "Anonymous Raster Table", description = "Use map from CARTO PostGIS Raster")
 public class AnonymousRasterTableActivity extends BaseMapActivity {
 
     @Override

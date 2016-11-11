@@ -3,41 +3,12 @@ package com.carto.cartomap.sections.mapsapi;
 import android.os.Bundle;
 
 import com.carto.cartomap.sections.BaseMapActivity;
-import com.carto.cartomap.util.Description;
-import com.carto.core.BinaryData;
+import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.StringVariantMap;
-import com.carto.datasources.HTTPTileDataSource;
-import com.carto.datasources.LocalVectorDataSource;
-import com.carto.geometry.Feature;
-import com.carto.geometry.Geometry;
-import com.carto.geometry.LineGeometry;
-import com.carto.geometry.MultiGeometry;
-import com.carto.geometry.PointGeometry;
-import com.carto.geometry.PolygonGeometry;
-import com.carto.graphics.Color;
 import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
-import com.carto.layers.VectorLayer;
-import com.carto.layers.VectorTileEventListener;
-import com.carto.layers.VectorTileLayer;
-import com.carto.projections.Projection;
 import com.carto.services.CartoMapsService;
-import com.carto.styles.BalloonPopupStyleBuilder;
-import com.carto.styles.CartoCSSStyleSet;
-import com.carto.styles.GeometryCollectionStyleBuilder;
-import com.carto.styles.LineStyleBuilder;
-import com.carto.styles.PointStyleBuilder;
-import com.carto.styles.PolygonStyleBuilder;
-import com.carto.ui.VectorTileClickInfo;
-import com.carto.utils.AssetUtils;
-import com.carto.utils.ZippedAssetPackage;
-import com.carto.vectorelements.BalloonPopup;
-import com.carto.vectorelements.GeometryCollection;
-import com.carto.vectorelements.Line;
-import com.carto.vectorelements.Point;
-import com.carto.vectorelements.Polygon;
-import com.carto.vectortiles.MBVectorTileDecoder;
 
 import java.io.IOException;
 
@@ -45,7 +16,7 @@ import java.io.IOException;
  * Created by aareundo on 13/10/16.
  */
 
-@Description(value = "CARTO data as Vector Tiles from a named map")
+@ActivityData(name = "Named Map", description = "CARTO data as Vector Tiles from a named map")
 public class NamedMapActivity extends BaseMapActivity {
 
     @Override

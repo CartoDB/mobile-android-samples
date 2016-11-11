@@ -12,17 +12,15 @@ import com.carto.cartomap.sections.cartojsapi.CountriesVisMapActivity;
 import com.carto.cartomap.sections.cartojsapi.DotsVisMapActivity;
 import com.carto.cartomap.sections.cartojsapi.FontsVisMapActivity;
 import com.carto.cartomap.sections.header.CartoJSHeader;
-import com.carto.cartomap.sections.header.ImportHeader;
 import com.carto.cartomap.sections.header.MapsHeader;
 import com.carto.cartomap.sections.header.SQLHeader;
 import com.carto.cartomap.sections.header.TorqueHeader;
-import com.carto.cartomap.sections.importapi.TilePackagerActivity;
 import com.carto.cartomap.sections.mapsapi.AnonymousVectorTableActivity;
 import com.carto.cartomap.sections.mapsapi.NamedMapActivity;
 import com.carto.cartomap.sections.mapsapi.AnonymousRasterTableActivity;
 import com.carto.cartomap.sections.sqlapi.SQLServiceActivity;
 import com.carto.cartomap.sections.torqueapi.TorqueShipActivity;
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 
 public class LauncherListActivity extends ListActivity {
 
@@ -66,19 +64,21 @@ public class LauncherListActivity extends ListActivity {
 
         for(int i = 0; i < samples.length; i++) {
 
-            String name = samples[i].getSimpleName().replace("Activity", "");
-            String description = "none";
+            String name = "";
+            String description = "";
 
             java.lang.annotation.Annotation[] annotations = samples[i].getAnnotations();
 
-            if (annotations.length > 0 && annotations[0] instanceof Description) {
-                description = ((Description) annotations[0]).value();
+            if (annotations.length > 0 && annotations[0] instanceof ActivityData) {
+                name = ((ActivityData) annotations[0]).name();
+                description = ((ActivityData) annotations[0]).description();
             }
 
             MapListItem item = new MapListItem();
 
-            if (name.contains("Header")) {
-                item.name = description;
+
+            if (description.equals("")) {
+                item.name = name;
                 item.isHeader = true;
             } else {
                 item.name = name;
@@ -94,15 +94,15 @@ public class LauncherListActivity extends ListActivity {
     public void onListItemClick(ListView parent, View v, int position, long id) {
 
         Class sample = samples[position];
-        String name = sample.getSimpleName().replace("Activity", "");
 
-        if (name.contains("Header")) {
-            // Headers aren't clickable
+        ActivityData data = ((ActivityData) sample.getAnnotations()[0]);
+        String name = data.name();
+        String description = data.description();
+
+        if (description.equals("")) {
+            // Headers don't have descriptions and aren't clickable
             return;
         }
-
-        java.lang.annotation.Annotation[] annotations = sample.getAnnotations();
-        String description = ((Description) annotations[0]).value();
 
         Intent intent = new Intent(LauncherListActivity.this, sample);
 

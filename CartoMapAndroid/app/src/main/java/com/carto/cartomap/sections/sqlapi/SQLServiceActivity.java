@@ -3,19 +3,16 @@ package com.carto.cartomap.sections.sqlapi;
 import android.os.Bundle;
 
 import com.carto.cartomap.sections.BaseMapActivity;
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.PointGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
-import com.carto.projections.Projection;
 import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
-import com.carto.utils.Log;
-import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.Point;
 
 import java.io.IOException;
@@ -24,7 +21,7 @@ import java.io.IOException;
  * Created by aareundo on 13/10/16.
  */
 
-@Description(value = "Displays cities on the map via SQL query")
+@ActivityData(name = "SQL Service", description = "Displays cities on the map via SQL query")
 public class SQLServiceActivity extends BaseMapActivity {
 
     static final String query = "SELECT * FROM cities15000 WHERE population > 100000";

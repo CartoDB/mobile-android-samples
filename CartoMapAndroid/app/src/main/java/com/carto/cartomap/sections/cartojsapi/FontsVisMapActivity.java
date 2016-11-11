@@ -2,12 +2,12 @@ package com.carto.cartomap.sections.cartojsapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.util.Description;
+import com.carto.cartomap.util.ActivityData;
 
 /**
  * Created by aareundo on 13/10/16.
  */
-@Description(value = "Vis displaying text on the map")
+@ActivityData(name = "Fonts Viz", description = "Vis displaying text on the map")
 public class FontsVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override
