@@ -75,9 +75,11 @@ public class BundledMapActivity extends MapBaseActivity {
 
         InputStream in = assetManager.open(fileName);
         File outFile = new File(toDir, fileName);
-        // TODO jaak - check if storage is available and has enough space
-        if(outFile.exists()){
-            Log.d(MapApplication.LOG_TAG, "file already exits: "+outFile.getAbsolutePath());
+
+        // NB! Remember to check if storage is available and has enough space
+
+        if(outFile.exists()) {
+            // File already exists, no need to recreate
             return;
         }
 

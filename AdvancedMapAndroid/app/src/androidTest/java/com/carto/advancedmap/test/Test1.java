@@ -17,6 +17,7 @@ import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.util.Log;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.MapListItem;
@@ -70,9 +71,14 @@ public class Test1 {
 
         for (Integer i = 0; i < maps.size(); i++) {
 
-            interaction.atPosition(i).perform(click());
-            new PermissionGranter().allowPermissionsIfNeeded();
-            pressBack();
+            try {
+                interaction.atPosition(i).perform(click());
+                new PermissionGranter().allowPermissionsIfNeeded();
+                pressBack();
+            } catch (Exception e) {
+                Log.d("TEST: ", e.getLocalizedMessage());
+                Log.d("COUNTER: ", i.toString());
+            }
         }
     }
 
