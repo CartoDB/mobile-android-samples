@@ -17,12 +17,11 @@
     
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:name=".AdvancedMapApplication">
+        android:icon="@drawable/icon_180"
+        android:label="Advanced.Java"
+        android:name=".MapApplication">
         <activity
-            android:name=".maplist.LauncherListActivity"
-            android:label="@string/app_name" >
+            android:name=".list.LauncherListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,31 +29,30 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".map.PinMapActivity" />
-        <activity android:name=".map.PackagedMapActivity" />
-        <activity android:name=".map.Overlays2DActivity" />
-        <activity android:name=".map.MapListenerActivity" />
-        <activity android:name=".map.Overlays3DActivity" />
-        <activity android:name=".map.OfflineVectorMapActivity" />
-        <activity android:name=".map.GroundOverlayActivity" />
-        <activity android:name=".map.AnimatedRasterMapActivity" />
-        <activity android:name=".map.RasterOverlayActivity" />
-        <activity android:name=".map.AerialMapActivity" />
-        <activity android:name=".map.CustomRasterDataSourceActivity" />
-        <activity android:name=".map.CustomPopupActivity" />
-        <activity android:name=".map.MbtilesActivity" />
-        <activity android:name=".map.WmsMapActivity" />
-        <activity android:name=".map.ClusteredRandomPointsActivity" />
-        <activity android:name=".map.ClusteredGeoJsonActivity" />
-        <activity android:name=".map.MyLocationActivity" />
-        <activity android:name=".map.InteractivityMapActivity" />
-        <activity android:name=".map.OfflineRoutingActivity" />
-        <activity android:name=".map.MapZenActivity" />
-        <activity android:name=".map.CaptureActivity" />
+        <!--Section 1-->
+        <activity android:name=".sections.basemap.BaseMapActivity"/>
 
-        <activity android:name=".maplist.PackageManagerActivity" />
+        <!--Section 2-->
+        <activity android:name=".sections.offlinemap.BasicPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.PackagedMapActivity" />
+        <activity android:name=".sections.offlinemap.BundledMapActivity" />
 
-        <activity android:name="com.carto.filepicker.FilePicker" />
+        <!--Section 3-->
+        <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
+        <activity android:name=".sections.overlaydatasources.CustomRasterDataSourceActivity" />
+        <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
+
+        <!--Section 4-->
+        <activity android:name=".sections.vectorobjects.ClusteredMarkersActivity" />
+        <activity android:name=".sections.vectorobjects.OverlaysActivity" />
+        <activity android:name=".sections.vectorobjects.VectorObjectEditingActivity" />
+
+        <!--Section 6-->
+        <activity android:name=".sections.other.CaptureActivity" />
+        <activity android:name=".sections.other.CustomPopupActivity" />
+        <activity android:name=".sections.other.GPSLocationActivity" />
+        <activity android:name=".sections.other.OfflineRoutingActivity" />
 
     </application>
 

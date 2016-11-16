@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.1"
     useLibrary  'org.apache.http.legacy'
 
     lintOptions {
@@ -11,8 +11,8 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.carto.hellomap.android"
-        minSdkVersion 15
+        applicationId "com.carto.advancedmap"
+        minSdkVersion 18
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -43,8 +43,11 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.carto:carto-mobile-sdk:snapshot@aar'
+
+    compile 'com.android.support.test.uiautomator:uiautomator-v18:2.0.0'
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
