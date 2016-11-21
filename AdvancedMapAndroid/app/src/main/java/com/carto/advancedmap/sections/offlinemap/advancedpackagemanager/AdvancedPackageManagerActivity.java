@@ -345,10 +345,6 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 				} else {
 					// This is package group
 					packageName = packageName.substring(0, index);
-//					if (pkgs.containsKey(packageName)) {
-//						continue;
-//					}
-//					pkg = new Package(packageName, null, null);
 
 					// Try n' find an existing package from the list.
 					ArrayList<Package> existingPackages = new ArrayList<>();

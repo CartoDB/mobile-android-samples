@@ -43,7 +43,7 @@ public class LauncherListActivity extends ListActivity {
             BaseMapActivity.class,
 
             OfflineMapHeader.class,
-//            BasicPackageManagerActivity.class,
+            BasicPackageManagerActivity.class,
             AdvancedPackageManagerActivity.class,
             BundledMapActivity.class,
 
