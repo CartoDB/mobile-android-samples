@@ -315,7 +315,8 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	}
 	
 	private ArrayList<Package> getPackages() {
-		HashMap<String, Package> pkgs = new HashMap<String, Package>();
+		ArrayList<Package> pkgs = new ArrayList<>();
+
 		PackageInfoVector packageInfoVector = packageManager.getServerPackages();
 		for (int i = 0; i < packageInfoVector.size(); i++) {
 			PackageInfo packageInfo = packageInfoVector.get(i);
@@ -325,14 +326,18 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 			// is "Europe/Northern Europe/Sweden". We display packages as a tree, so we need
 			// to extract only relevant packages belonging to the current folder.
 			StringVector packageNames = packageInfo.getNames(language);
+
 			for (int j = 0; j < packageNames.size(); j++) {
 				String packageName = packageNames.get(j);
+
 				if (!packageName.startsWith(currentFolder)) {
 					continue; // belongs to a different folder, so ignore
 				}
+
 				packageName = packageName.substring(currentFolder.length());
 				int index = packageName.indexOf('/');
 				Package pkg;
+
 				if (index == -1) {
 					// This is actual package
 					PackageStatus packageStatus = packageManager.getLocalPackageStatus(packageInfo.getPackageId(), -1);
@@ -340,15 +345,42 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 				} else {
 					// This is package group
 					packageName = packageName.substring(0, index);
-					if (pkgs.containsKey(packageName)) {
+//					if (pkgs.containsKey(packageName)) {
+//						continue;
+//					}
+//					pkg = new Package(packageName, null, null);
+
+					// Try n' find an existing package from the list.
+					ArrayList<Package> existingPackages = new ArrayList<>();
+
+					for (Package existingPackage : pkgs) {
+						if (existingPackage.packageName.equals(packageName)) {
+							existingPackages.add(existingPackage);
+						}
+					}
+
+					if (existingPackages.size() == 0) {
+						// If there are none, add a package group if we don't have an existing list item
+						pkg = new Package(packageName, null, null);
+					} else if (existingPackages.size() == 1 && existingPackages.get(0).packageInfo != null) {
+
+						// Sometimes we need to add two labels with the same name.
+						// One a downloadable package and the other pointing to a list of said country's counties,
+						// such as with Spain, Germany, France, Great Britain
+
+						// If there is one existing package and its info isn't null,
+						// we will add a "parent" package containing subpackages (or package group)
+						pkg = new Package(packageName, null, null);
+
+					} else {
+						// Shouldn't be added, as both cases are accounted for
 						continue;
 					}
-					pkg = new Package(packageName, null, null);
 				}
-				pkgs.put(packageName, pkg);
+				pkgs.add(pkg);
 			}
 		}
-		return new ArrayList<Package>(pkgs.values());
+		return pkgs;
 	}
 	
 	private void updatePackages() {
