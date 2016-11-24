@@ -242,7 +242,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 		getActionBar().setBackgroundDrawable(background);
 
 		// Create package manager
-        File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");
+        File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "regionpackages");
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
         	Log.e(MapApplication.LOG_TAG, "Could not create package folder!");
         }

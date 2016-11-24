@@ -59,7 +59,7 @@ public class BasicPackageManagerActivity extends BaseActivity {
         contentView = new BasicPackageManagerView(this);
         setContentView(contentView);
 
-        String folder = createPackageFolder("mappackages");
+        String folder = createPackageFolder("citypackages");
 
         try {
             manager = new CartoPackageManager("nutiteq.osm", folder);
@@ -74,7 +74,8 @@ public class BasicPackageManagerActivity extends BaseActivity {
         bbox = new BoundingBox(-0.8164, 51.2382, 0.6406, 51.7401);
         String packaged = bbox.toString();
 
-        if (manager.getLocalPackage(packaged) == null) {
+        // Package version has no real value when looking up the status of bbox
+        if (manager.getLocalPackageStatus(packaged, 1) == null) {
             manager.startPackageDownload(packaged);
         } else {
             updateStatusLabel("Package downloaded");

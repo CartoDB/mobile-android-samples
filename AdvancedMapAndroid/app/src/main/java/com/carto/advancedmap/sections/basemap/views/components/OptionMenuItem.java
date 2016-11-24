@@ -69,6 +69,17 @@ public class OptionMenuItem extends LinearLayout
         setLayoutParams(parameters);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            setAlpha(1);
+        } else {
+            setAlpha(0.6f);
+        }
+
+        super.setEnabled(enabled);
+    }
+
     TextView getHeaderItem(int padding, int style)
     {
         TextView view = new TextView(context);
@@ -184,6 +195,10 @@ public class OptionMenuItem extends LinearLayout
     }
 
     public OptionLabel setFirstItemActive() {
+
+        for (OptionLabel label : optionLabels) {
+            label.normalize();
+        }
 
         if (optionLabels.size() > 0)
         {

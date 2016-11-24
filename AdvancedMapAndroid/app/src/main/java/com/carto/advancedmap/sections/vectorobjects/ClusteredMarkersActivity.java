@@ -29,6 +29,7 @@ import com.carto.vectorelements.VectorElementVector;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +54,8 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
 
         // Initialize a vector layer with the previous data source
-        VectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
+        ClusteredVectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
+        layer.setMinimumClusterDistance(50);
 
         // Add the clustered vector layer to the map
         mapView.getLayers().add(layer);
@@ -77,13 +79,16 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
                 FeatureCollection features = reader.readFeatureCollection(loadJSONFromAsset());
                 alert("Finished load from .geojson");
 
+                VectorElementVector elements = new VectorElementVector();
+
                 for (int i = 0; i < features.getFeatureCount(); i++) {
                     // This data set features point geometry,
                     // however, it can also be LineGeometry or PolygonGeometry
                     PointGeometry geometry = (PointGeometry) features.getFeature(i).getGeometry();
-                    source.add(new Marker(geometry, style));
+                    elements.add(new Marker(geometry, style));
                 }
 
+                source.addAll(elements);
                 alert("Finished adding Markers to source. Clustering started");
             }
         });

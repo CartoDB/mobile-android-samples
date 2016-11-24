@@ -15,9 +15,12 @@ import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.Layer;
+import com.carto.layers.VectorElementEventListener;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.styles.BalloonPopupMargins;
+import com.carto.styles.BalloonPopupStyle;
 import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.BillboardOrientation;
 import com.carto.styles.LineStyleBuilder;
@@ -27,9 +30,11 @@ import com.carto.styles.PointStyleBuilder;
 import com.carto.styles.Polygon3DStyleBuilder;
 import com.carto.styles.PolygonStyleBuilder;
 import com.carto.styles.TextStyleBuilder;
+import com.carto.ui.VectorElementClickInfo;
 import com.carto.utils.AssetUtils;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
+import com.carto.vectorelements.Billboard;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
 import com.carto.vectorelements.NMLModel;
@@ -37,11 +42,15 @@ import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
+import com.carto.vectorelements.VectorElement;
+import com.carto.vectorelements.VectorElementVector;
 
 @ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
 public class OverlaysActivity extends MapBaseActivity {
 
     Projection projection;
+
+    VectorElementListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +96,28 @@ public class OverlaysActivity extends MapBaseActivity {
         // Animate map to Tallinn where the objects are
         mapView.setFocusPos(projection.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
         mapView.setZoom(12, 1);
+
+        // Add maplistener to detect click on model
+
+        listener = new VectorElementListener(source);
+
+        for (int i = 0; i < mapView.getLayers().count(); i++)
+        {
+            Layer layer = mapView.getLayers().get(i);
+
+            if (layer instanceof VectorLayer)
+            {
+                ((VectorLayer)layer).setVectorElementEventListener(listener);
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        listener = null;
+
+        super.onDestroy();
     }
 
     void addPoint1(LocalVectorDataSource source) {
@@ -374,5 +405,59 @@ public class OverlaysActivity extends MapBaseActivity {
         pointStyleBuilder.setSize(16);
 
         return new Point(projection.fromWgs84(position), pointStyleBuilder.buildStyle());
+    }
+
+    /**************
+     * LISTENER
+     **************/
+
+    private class VectorElementListener extends VectorElementEventListener {
+
+        LocalVectorDataSource source;
+        BalloonPopup previous;
+
+        VectorElementListener(LocalVectorDataSource source) {
+            this.source = source;
+        }
+
+        @Override
+        public boolean onVectorElementClicked(VectorElementClickInfo vectorElementClickInfo) {
+
+            if (previous != null) {
+                source.remove(previous);
+            }
+
+            VectorElement element = vectorElementClickInfo.getVectorElement();
+
+            BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
+            builder.setLeftMargins(new BalloonPopupMargins(0, 0, 0, 0));
+            builder.setRightMargins(new BalloonPopupMargins(6, 3, 6, 3));
+            builder.setPlacementPriority(10);
+
+            BalloonPopupStyle style = builder.buildStyle();
+
+            String title = element.getMetaDataElement("ClickText").getString();
+            String description = "";
+
+            for (int i = 0; i < element.getMetaData().size(); i++) {
+                String key = element.getMetaData().get_key(i);
+                description += key  + " = " + element.getMetaDataElement(key);
+            }
+
+            BalloonPopup popup;
+
+            if (element instanceof BalloonPopup) {
+                Billboard billboard = (Billboard)element;
+                popup = new BalloonPopup(billboard, style, title, description);
+            } else {
+                MapPos position = vectorElementClickInfo.getClickPos();
+                popup = new BalloonPopup(position, style, title, description);
+            }
+
+            source.add(popup);
+            previous = popup;
+
+            return true;
+        }
     }
 }

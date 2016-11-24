@@ -175,6 +175,27 @@ public class BaseMapsView extends RelativeLayout
             }
         }
 
+        public void setLanguageMenuEnabled(boolean enabled) {
+
+            OptionMenuItem language = getLanguageMenu();
+            language.setEnabled(enabled);
+            if (enabled) {
+
+            } else {
+
+            }
+        }
+
+        OptionMenuItem getLanguageMenu() {
+            for (OptionMenuItem view : views) {
+                if (view.getSection().getType() == SectionType.LANGUAGE) {
+                    return view;
+                }
+            }
+
+            return null;
+        }
+
         public void setInitialItem(Section section)
         {
             for (OptionMenuItem view : views)
@@ -217,6 +238,10 @@ public class BaseMapsView extends RelativeLayout
                         for (OptionLabel option : item.getOptions()) {
 
                             if (option.getGlobalRect(headerHeight, outerRect).contains(x, y)) {
+
+                                if (!item.isEnabled()) {
+                                    return true;
+                                }
 
                                 if (item.getSection().getType() == SectionType.LANGUAGE) {
 
