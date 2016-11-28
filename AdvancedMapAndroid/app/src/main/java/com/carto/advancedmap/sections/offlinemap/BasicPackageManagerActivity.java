@@ -16,6 +16,8 @@ import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.datasources.PackageManagerTileDataSource;
+import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOfflineVectorTileLayer;
 import com.carto.layers.VectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageErrorType;
@@ -82,7 +84,7 @@ public class BasicPackageManagerActivity extends BaseActivity {
             contentView.zoomTo(bbox.getCenter());
         }
 
-        contentView.setBaseLayer(new PackageManagerTileDataSource(manager));
+        contentView.setBaseLayer();
     }
 
     @Override
@@ -206,17 +208,9 @@ public class BasicPackageManagerActivity extends BaseActivity {
             mapView.setZoom(12, 2);
         }
 
-        public void setBaseLayer(PackageManagerTileDataSource source)
+        public void setBaseLayer()
         {
-            // Create style set
-            BinaryData styleBytes = AssetUtils.loadAsset("nutiteq-dark.zip");
-            CompiledStyleSet style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-            // Create Decoder
-            MBVectorTileDecoder decoder = new MBVectorTileDecoder(style);
-
-            VectorTileLayer layer = new VectorTileLayer(source, decoder);
-
+            CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
             mapView.getLayers().add(layer);
         }
     }

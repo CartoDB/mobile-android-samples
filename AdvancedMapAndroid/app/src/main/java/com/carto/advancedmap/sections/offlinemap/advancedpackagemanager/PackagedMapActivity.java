@@ -7,7 +7,10 @@ import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.BinaryData;
 import com.carto.datasources.PackageManagerTileDataSource;
 import com.carto.datasources.TileDataSource;
+import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOfflineVectorTileLayer;
 import com.carto.layers.VectorTileLayer;
+import com.carto.packagemanager.CartoPackageManager;
 import com.carto.styles.CompiledStyleSet;
 import com.carto.utils.AssetUtils;
 import com.carto.utils.ZippedAssetPackage;
@@ -21,21 +24,15 @@ public class PackagedMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
+
         // Create style set
-        PackageManagerTileDataSource source = AdvancedPackageManagerActivity.dataSource;
+        CartoPackageManager manager = AdvancedPackageManagerActivity.Manager;
 
-        BinaryData styleBytes = AssetUtils.loadAsset("nutiteq-dark.zip");
-        CompiledStyleSet style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-        // Create Decoder
-        MBVectorTileDecoder decoder = new MBVectorTileDecoder(style);
-
-        VectorTileLayer layer = new VectorTileLayer(source, decoder);
-
+        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
         mapView.getLayers().add(layer);
-
 
         ActivityData data = ((ActivityData) this.getClass().getAnnotations()[0]);
         String name = data.name();

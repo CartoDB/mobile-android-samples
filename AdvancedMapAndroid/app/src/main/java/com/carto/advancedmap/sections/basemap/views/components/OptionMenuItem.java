@@ -53,7 +53,6 @@ public class OptionMenuItem extends LinearLayout
 
         contentContainer = new RelativeLayout(context);
         contentContainer.setLayoutParams(new RelativeLayout.LayoutParams(width, 100));
-        contentContainer.setBackgroundColor(Color.YELLOW);
         addView(contentContainer);
 
         osmLabel = getHeaderItem(padding, Typeface.BOLD);

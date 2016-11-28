@@ -26,7 +26,7 @@ import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.StringVector;
-import com.carto.datasources.PackageManagerTileDataSource;
+
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageAction;
 import com.carto.packagemanager.PackageErrorType;
@@ -38,7 +38,6 @@ import com.carto.packagemanager.PackageStatus;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @ActivityData(name = "Advanced Package Manager", description = "Download offline map packages with OSM")
 public class AdvancedPackageManagerActivity extends ListActivity {
@@ -232,8 +231,9 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	
 	private String currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 	private String language = "en"; // Language for the package names. Most major languages are supported
-    public static PackageManagerTileDataSource dataSource;
-	
+
+	public static CartoPackageManager Manager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -434,7 +434,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
             public boolean onMenuItemClick (MenuItem item){
                
                 // Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-                dataSource = new PackageManagerTileDataSource(AdvancedPackageManagerActivity.this.packageManager);
+                Manager = AdvancedPackageManagerActivity.this.packageManager;
                 
                 Intent myIntent = new Intent(AdvancedPackageManagerActivity.this, PackagedMapActivity.class);
                 AdvancedPackageManagerActivity.this.startActivity(myIntent);
