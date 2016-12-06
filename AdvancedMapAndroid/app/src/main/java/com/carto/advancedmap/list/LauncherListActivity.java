@@ -43,7 +43,7 @@ public class LauncherListActivity extends ListActivity {
             BaseMapActivity.class,
 
             OfflineMapHeader.class,
-//            BasicPackageManagerActivity.class,
+            BasicPackageManagerActivity.class,
             AdvancedPackageManagerActivity.class,
             BundledMapActivity.class,
 
@@ -107,6 +107,7 @@ public class LauncherListActivity extends ListActivity {
                 item.name = name;
                 item.isHeader = true;
             } else {
+                // Filler class for tests
                 item = new MapListMap();
                 item.name = name;
                 item.description = description;

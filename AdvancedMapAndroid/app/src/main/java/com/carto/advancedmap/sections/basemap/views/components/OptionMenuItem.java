@@ -53,7 +53,6 @@ public class OptionMenuItem extends LinearLayout
 
         contentContainer = new RelativeLayout(context);
         contentContainer.setLayoutParams(new RelativeLayout.LayoutParams(width, 100));
-        contentContainer.setBackgroundColor(Color.YELLOW);
         addView(contentContainer);
 
         osmLabel = getHeaderItem(padding, Typeface.BOLD);
@@ -67,6 +66,17 @@ public class OptionMenuItem extends LinearLayout
         LinearLayout.LayoutParams parameters = new LinearLayout.LayoutParams(width, LayoutParams.WRAP_CONTENT, 0.8f);
         parameters.setMargins(padding, padding, padding,  0);
         setLayoutParams(parameters);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            setAlpha(1);
+        } else {
+            setAlpha(0.6f);
+        }
+
+        super.setEnabled(enabled);
     }
 
     TextView getHeaderItem(int padding, int style)
@@ -184,6 +194,10 @@ public class OptionMenuItem extends LinearLayout
     }
 
     public OptionLabel setFirstItemActive() {
+
+        for (OptionLabel label : optionLabels) {
+            label.normalize();
+        }
 
         if (optionLabels.size() > 0)
         {

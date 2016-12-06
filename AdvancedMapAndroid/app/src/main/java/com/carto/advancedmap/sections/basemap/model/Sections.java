@@ -36,7 +36,7 @@ public class Sections
 
     public static String getBaseLanguageCode()
     {
-        return "en";
+        return "";
     }
 
     public static String getBaseStyleValue()
@@ -82,6 +82,7 @@ public class Sections
         type = SectionType.LANGUAGE;
 
         styles = new ArrayList<NameValuePair>() {{
+            add(new NameValuePair("Default", ""));
             add(new NameValuePair("English", "en"));
             add(new NameValuePair("German", "de"));
             add(new NameValuePair("Spanish", "es"));

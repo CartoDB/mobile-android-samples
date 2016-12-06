@@ -36,6 +36,8 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
 
     LocalVectorDataSource source;
 
+    EditableVectorLayer editLayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,23 +47,23 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
 
         source = new LocalVectorDataSource(mapView.getOptions().getBaseProjection());
 
-        EditableVectorLayer editLayer = new EditableVectorLayer(source);
+        editLayer = new EditableVectorLayer(source);
         mapView.getLayers().add(editLayer);
 
-        AddPoint(new MapPos(-5000000, -900000));
+        addPoint(new MapPos(-5000000, -900000));
 
         MapPosVector linePositions = new MapPosVector();
         linePositions.add(new MapPos(-6000000, -500000));
         linePositions.add(new MapPos(-9000000, -500000));
 
-        AddLine(linePositions);
+        addLine(linePositions);
 
         MapPosVector polygonPositions = new MapPosVector();
         polygonPositions.add(new MapPos(-5000000, -5000000));
         polygonPositions.add(new MapPos(5000000, -5000000));
         polygonPositions.add(new MapPos(0, 10000000));
 
-        AddPolygon(polygonPositions);
+        addPolygon(polygonPositions);
 
         // Add a vector element event listener to select elements (on element click)
         editLayer.setVectorElementEventListener(new VectorElementSelectEventListener(editLayer));
@@ -73,7 +75,22 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         editLayer.setVectorEditEventListener(new BasicEditEventListener(source));
     }
 
-    private void AddPoint(MapPos position)
+    @Override
+    public void onDestroy() {
+
+        // Add a vector element event listener to select elements (on element click)
+        editLayer.setVectorElementEventListener(null);
+
+        // Add a map event listener to deselect element (on map click)
+        mapView.setMapEventListener(null);
+
+        // Add the vector element edit event listener
+        editLayer.setVectorEditEventListener(null);
+
+        super.onDestroy();
+    }
+
+    private void addPoint(MapPos position)
     {
         PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
         pointStyleBuilder.setColor(new Color(android.graphics.Color.BLUE));
@@ -83,7 +100,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         source.add(point);
     }
 
-    private void AddLine(MapPosVector positions)
+    private void addLine(MapPosVector positions)
     {
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new Color(android.graphics.Color.RED));
@@ -93,7 +110,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         source.add(line);
     }
 
-    private void AddPolygon(MapPosVector positions)
+    private void addPolygon(MapPosVector positions)
     {
         PolygonStyleBuilder polygonStyleBuilder = new PolygonStyleBuilder();
         polygonStyleBuilder.setColor(new Color(android.graphics.Color.GREEN));

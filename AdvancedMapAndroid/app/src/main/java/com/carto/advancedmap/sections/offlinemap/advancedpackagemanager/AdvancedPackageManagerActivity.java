@@ -26,7 +26,7 @@ import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.StringVector;
-import com.carto.datasources.PackageManagerTileDataSource;
+
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageAction;
 import com.carto.packagemanager.PackageErrorType;
@@ -38,7 +38,6 @@ import com.carto.packagemanager.PackageStatus;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @ActivityData(name = "Advanced Package Manager", description = "Download offline map packages with OSM")
 public class AdvancedPackageManagerActivity extends ListActivity {
@@ -232,8 +231,9 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	
 	private String currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 	private String language = "en"; // Language for the package names. Most major languages are supported
-    public static PackageManagerTileDataSource dataSource;
-	
+
+	public static CartoPackageManager Manager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -242,7 +242,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 		getActionBar().setBackgroundDrawable(background);
 
 		// Create package manager
-        File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "mappackages");
+        File packageFolder = new File(getApplicationContext().getExternalFilesDir(null), "regionpackages");
         if (!(packageFolder.mkdirs() || packageFolder.isDirectory())) {
         	Log.e(MapApplication.LOG_TAG, "Could not create package folder!");
         }
@@ -315,7 +315,8 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	}
 	
 	private ArrayList<Package> getPackages() {
-		HashMap<String, Package> pkgs = new HashMap<String, Package>();
+		ArrayList<Package> pkgs = new ArrayList<>();
+
 		PackageInfoVector packageInfoVector = packageManager.getServerPackages();
 		for (int i = 0; i < packageInfoVector.size(); i++) {
 			PackageInfo packageInfo = packageInfoVector.get(i);
@@ -325,14 +326,18 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 			// is "Europe/Northern Europe/Sweden". We display packages as a tree, so we need
 			// to extract only relevant packages belonging to the current folder.
 			StringVector packageNames = packageInfo.getNames(language);
+
 			for (int j = 0; j < packageNames.size(); j++) {
 				String packageName = packageNames.get(j);
+
 				if (!packageName.startsWith(currentFolder)) {
 					continue; // belongs to a different folder, so ignore
 				}
+
 				packageName = packageName.substring(currentFolder.length());
 				int index = packageName.indexOf('/');
 				Package pkg;
+
 				if (index == -1) {
 					// This is actual package
 					PackageStatus packageStatus = packageManager.getLocalPackageStatus(packageInfo.getPackageId(), -1);
@@ -340,15 +345,38 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 				} else {
 					// This is package group
 					packageName = packageName.substring(0, index);
-					if (pkgs.containsKey(packageName)) {
+
+					// Try n' find an existing package from the list.
+					ArrayList<Package> existingPackages = new ArrayList<>();
+
+					for (Package existingPackage : pkgs) {
+						if (existingPackage.packageName.equals(packageName)) {
+							existingPackages.add(existingPackage);
+						}
+					}
+
+					if (existingPackages.size() == 0) {
+						// If there are none, add a package group if we don't have an existing list item
+						pkg = new Package(packageName, null, null);
+					} else if (existingPackages.size() == 1 && existingPackages.get(0).packageInfo != null) {
+
+						// Sometimes we need to add two labels with the same name.
+						// One a downloadable package and the other pointing to a list of said country's counties,
+						// such as with Spain, Germany, France, Great Britain
+
+						// If there is one existing package and its info isn't null,
+						// we will add a "parent" package containing subpackages (or package group)
+						pkg = new Package(packageName, null, null);
+
+					} else {
+						// Shouldn't be added, as both cases are accounted for
 						continue;
 					}
-					pkg = new Package(packageName, null, null);
 				}
-				pkgs.put(packageName, pkg);
+				pkgs.add(pkg);
 			}
 		}
-		return new ArrayList<Package>(pkgs.values());
+		return pkgs;
 	}
 	
 	private void updatePackages() {
@@ -406,7 +434,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
             public boolean onMenuItemClick (MenuItem item){
                
                 // Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-                dataSource = new PackageManagerTileDataSource(AdvancedPackageManagerActivity.this.packageManager);
+                Manager = AdvancedPackageManagerActivity.this.packageManager;
                 
                 Intent myIntent = new Intent(AdvancedPackageManagerActivity.this, PackagedMapActivity.class);
                 AdvancedPackageManagerActivity.this.startActivity(myIntent);

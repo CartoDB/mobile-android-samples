@@ -69,6 +69,26 @@ public class VisJsonBaseMapActivity extends BaseMapActivity {
         thread.start();
     }
 
+    @Override
+    protected void onDestroy() {
+
+        TileLayer layer = null;
+
+        // Find tile layer and remove event listener
+        for (int i = 0; i < mapView.getLayers().count(); i++) {
+            Layer existing = mapView.getLayers().get(i);
+
+            if (existing instanceof TileLayer) {
+                layer = (TileLayer)existing;
+            }
+        }
+
+        if (layer != null) {
+            layer.setUTFGridEventListener(null);
+        }
+        super.onDestroy();
+    }
+
     private class MyCartoVisBuilder extends CartoVisBuilder {
 
         private VectorLayer vectorLayer; // vector layer for popups

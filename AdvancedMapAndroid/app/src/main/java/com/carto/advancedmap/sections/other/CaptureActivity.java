@@ -26,6 +26,8 @@ import java.io.IOException;
 @ActivityData(name = "Screencapture", description = "Capture rendered mapView as a Bitmap")
 public class CaptureActivity extends MapBaseActivity {
 
+	RenderListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,9 +67,24 @@ public class CaptureActivity extends MapBaseActivity {
         // Animate map to the marker
         mapView.setFocusPos(berlin, 1);
         mapView.setZoom(12, 1);
-        mapView.getMapRenderer().captureRendering(new RenderListener(), true);
     }
 
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		listener = new RenderListener();
+		mapView.getMapRenderer().captureRendering(listener, true);
+	}
+
+	@Override
+	public void onPause() {
+
+		mapView.getMapRenderer().setMapRendererListener(null);
+		listener = null;
+
+		super.onPause();
+	}
 
 	private class RenderListener extends RendererCaptureListener {
 		private MapPos pos = new MapPos();

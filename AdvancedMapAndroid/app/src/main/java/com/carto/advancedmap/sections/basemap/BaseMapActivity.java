@@ -120,8 +120,8 @@ public class BaseMapActivity extends BaseActivity {
                 currentLayer = new VectorTileLayer(source, decoder);
             }
 
-            contentView.menu.setInitialItem(Sections.getLanguage());
-            updateLanguage(Sections.getBaseLanguageCode());
+            resetLanguage();
+            contentView.menu.setLanguageMenuEnabled(true);
 
         } else if (section.getType() == SectionType.RASTER) {
             // We know that the value of raster will be Positron or Darkmatter,
@@ -132,6 +132,10 @@ public class BaseMapActivity extends BaseActivity {
 
             TileDataSource source = new HTTPTileDataSource(1, 19, url);
             currentLayer = new RasterTileLayer(source);
+
+            // Language choice not enabled in raster tiles
+            contentView.menu.setLanguageMenuEnabled(false);
+
         } else if (section.getType() == SectionType.LANGUAGE) {
             if (currentLayer instanceof RasterTileLayer) {
                 // Raster tile language chance is not supported
@@ -147,6 +151,12 @@ public class BaseMapActivity extends BaseActivity {
         contentView.menu.hide();
 
         initializeVectorTileListener();
+    }
+
+    void resetLanguage() {
+
+        contentView.menu.setInitialItem(Sections.getLanguage());
+        updateLanguage(Sections.getBaseLanguageCode());
     }
 
     void updateLanguage(String code) {
