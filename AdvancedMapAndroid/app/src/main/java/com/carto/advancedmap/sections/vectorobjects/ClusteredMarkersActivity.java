@@ -41,6 +41,8 @@ import java.util.Map;
 @ActivityData(name = "Clustered Markers", description = "Read data from .geojson and show as clusters")
 public class ClusteredMarkersActivity extends MapBaseActivity {
 
+    Thread thread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,9 +61,9 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
 
         // Add the clustered vector layer to the map
         mapView.getLayers().add(layer);
-
+;
         // As the file to load is rather large, we don't want to block our main thread
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
 
@@ -84,6 +86,11 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
                 for (int i = 0; i < features.getFeatureCount(); i++) {
                     // This data set features point geometry,
                     // however, it can also be LineGeometry or PolygonGeometry
+                    boolean destroyed = ClusteredMarkersActivity.this.isDestroyed();
+                    if (destroyed) {
+                        System.out.println("Activity was destroyed. Finish thread");
+                        return;
+                    }
                     PointGeometry geometry = (PointGeometry) features.getFeature(i).getGeometry();
                     elements.add(new Marker(geometry, style));
                 }

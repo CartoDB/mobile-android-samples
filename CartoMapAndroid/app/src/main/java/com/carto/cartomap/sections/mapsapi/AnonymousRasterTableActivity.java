@@ -68,9 +68,11 @@ public class AnonymousRasterTableActivity extends BaseMapActivity {
         Thread serviceThread = new Thread(new Runnable() {
             @Override
             public void run() {
+
                 CartoMapsService mapsService = new CartoMapsService();
                 mapsService.setUsername("nutiteq");
                 mapsService.setDefaultVectorLayerMode(false); // use raster layers, not vector layers
+
                 try {
                     LayerVector layers = mapsService.buildMap(Variant.fromString(config));
                     for (int i = 0; i < layers.size(); i++) {
@@ -82,6 +84,7 @@ public class AnonymousRasterTableActivity extends BaseMapActivity {
                 }
             }
         });
+
         serviceThread.start();
 
         // finally go map to the content area

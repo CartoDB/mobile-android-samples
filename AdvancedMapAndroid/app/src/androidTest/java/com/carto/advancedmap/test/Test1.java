@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
+import com.carto.advancedmap.baseactivities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.MapListItem;
 import com.carto.advancedmap.list.LauncherListActivity;
@@ -74,6 +75,8 @@ public class Test1 {
             try {
                 interaction.atPosition(i).perform(click());
                 new PermissionGranter().allowPermissionsIfNeeded();
+                MapBaseActivity.takeScreenshot("screenshot-001", list);
+
                 pressBack();
             } catch (Exception e) {
                 Log.d("TEST: ", e.getLocalizedMessage());

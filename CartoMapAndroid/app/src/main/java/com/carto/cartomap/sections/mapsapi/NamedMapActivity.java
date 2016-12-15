@@ -43,9 +43,7 @@ public class NamedMapActivity extends BaseMapActivity {
                     LayerVector layers = service.buildNamedMap(name, new StringVariantMap());
 
                     for (int i = 0; i < layers.size(); i++) {
-
                         Layer layer = layers.get(i);
-
                         mapView.getLayers().add(layer);
                     }
 

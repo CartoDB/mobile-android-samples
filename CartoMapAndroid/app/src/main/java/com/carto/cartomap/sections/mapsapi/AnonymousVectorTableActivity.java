@@ -65,8 +65,6 @@ public class AnonymousVectorTableActivity extends BaseMapActivity {
 
     private String getConfigJson() {
 
-//        String cartoCSS;
-
         // Define server config
         JSONObject configJson = new JSONObject();
 

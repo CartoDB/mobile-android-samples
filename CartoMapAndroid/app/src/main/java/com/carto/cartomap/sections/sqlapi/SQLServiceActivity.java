@@ -25,7 +25,6 @@ import java.io.IOException;
 public class SQLServiceActivity extends BaseMapActivity {
 
     static final String query = "SELECT * FROM cities15000 WHERE population > 100000";
-//    static final String query = "SELECT * FROM cities15000";
 
     FeatureCollection features = null;
 
@@ -44,7 +43,6 @@ public class SQLServiceActivity extends BaseMapActivity {
         final CartoSQLService service = new CartoSQLService();
         service.setUsername("nutiteq");
 
-        //https://cartomobile-team.carto.com/u/nutiteq/viz/f1407ed4-84b8-11e6-96bc-0ee66e2c9693/map
         // Be sure to make network queries on another thread
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -60,8 +58,6 @@ public class SQLServiceActivity extends BaseMapActivity {
                         PointGeometry geometry = (PointGeometry)features.getFeature(i).getGeometry();
                         source.add(new Point(geometry, getPointStyle()));
                     }
-
-                    System.out.println("Total: " + features.getFeatureCount());
 
                 } catch (IOException e) {
                     e.printStackTrace();

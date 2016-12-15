@@ -71,10 +71,25 @@ public class BaseMapActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (currentListener != null) {
+            currentListener = null;
+        }
+
+        contentView = null;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            if (contentView.menu.isVisible()) {
+                contentView.menu.hide();
+            } else {
+                onBackPressed();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -83,6 +98,8 @@ public class BaseMapActivity extends BaseActivity {
     String currentOSM;
     String currentSelection;
     TileLayer currentLayer;
+
+    VectorTileListener currentListener;
 
     public void updateBaseLayer(Section section, String selection)
     {
@@ -150,7 +167,7 @@ public class BaseMapActivity extends BaseActivity {
 
         contentView.menu.hide();
 
-        initializeVectorTileListener();
+        currentListener = initializeVectorTileListener();
     }
 
     void resetLanguage() {
@@ -168,8 +185,8 @@ public class BaseMapActivity extends BaseActivity {
         decoder.setStyleParameter("lang", code);
     }
 
-    void initializeVectorTileListener()
-    {
+    VectorTileListener initializeVectorTileListener() {
+
         Projection projection = contentView.mapView.getOptions().getBaseProjection();
         LocalVectorDataSource source = new LocalVectorDataSource(projection);
 
@@ -178,9 +195,12 @@ public class BaseMapActivity extends BaseActivity {
 
         Layer layer = contentView.mapView.getLayers().get(0);
 
-        if (layer instanceof VectorTileLayer)
-        {
-            ((VectorTileLayer)layer).setVectorTileEventListener(new VectorTileListener(vectorLayer));
+        VectorTileListener listener = new VectorTileListener(vectorLayer);
+
+        if (layer instanceof VectorTileLayer) {
+            ((VectorTileLayer)layer).setVectorTileEventListener(listener);
         }
+
+        return listener;
     }
 }

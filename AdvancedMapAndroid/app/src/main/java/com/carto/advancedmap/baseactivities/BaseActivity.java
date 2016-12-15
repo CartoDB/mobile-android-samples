@@ -28,12 +28,31 @@ public class BaseActivity extends Activity {
         getActionBar().setBackgroundDrawable(background);
     }
 
+    protected boolean isPaused = true;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isPaused = false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isPaused = true;
+    }
+
     protected void requestPermission(String permission) {
         ActivityCompat.requestPermissions(this, new String[]{ permission }, 1);
     }
 
     protected void alert(final String message)
     {
+        if (isPaused) {
+            System.out.println("Prevented alert (" + message + ") in paused activity");
+            return;
+        }
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
