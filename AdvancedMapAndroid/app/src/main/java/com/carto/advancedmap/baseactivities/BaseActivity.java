@@ -56,7 +56,7 @@ public class BaseActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -265,7 +265,7 @@ public class OfflineRoutingActivity extends MapBaseActivity {
         
         // Style for instruction balloons
         balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-        balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4,4,4,4));
+        balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4, 4, 4, 4));
         
         // Animate map to Estonia
         mapView.setFocusPos(mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(25.662893, 58.919365)), 0);

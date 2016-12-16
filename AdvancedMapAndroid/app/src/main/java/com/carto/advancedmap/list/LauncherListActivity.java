@@ -11,8 +11,11 @@ import android.widget.ListView;
 
 import com.carto.advancedmap.Colors;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
+import com.carto.advancedmap.sections.header.RoutingHeader;
 import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
 import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
+import com.carto.advancedmap.sections.routing.OfflineRoutingActivity_New;
+import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
 import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
@@ -25,7 +28,6 @@ import com.carto.advancedmap.sections.other.CustomPopupActivity;
 import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.sections.other.GPSLocationActivity;
-import com.carto.advancedmap.sections.other.OfflineRoutingActivity;
 import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
 import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
@@ -47,6 +49,10 @@ public class LauncherListActivity extends ListActivity {
             AdvancedPackageManagerActivity.class,
             BundledMapActivity.class,
 
+            RoutingHeader.class,
+            OnlineRoutingActivity.class,
+            OfflineRoutingActivity_New.class,
+
             OverlayDataSourcesHeader.class,
             CustomRasterDataSourceActivity.class,
             GroundOverlayActivity.class,
@@ -61,7 +67,6 @@ public class LauncherListActivity extends ListActivity {
             CaptureActivity.class,
             CustomPopupActivity.class,
             GPSLocationActivity.class,
-            OfflineRoutingActivity.class
     };
 
     public void unlockScreen() {

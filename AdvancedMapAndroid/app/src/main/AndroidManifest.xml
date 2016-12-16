@@ -39,11 +39,14 @@
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
 
         <!--Section 3-->
+        <activity android:name=".sections.routing.OnlineRoutingActivity" />
+
+        <!--Section 4-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
         <activity android:name=".sections.overlaydatasources.CustomRasterDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
 
-        <!--Section 4-->
+        <!--Section 5-->
         <activity android:name=".sections.vectorobjects.ClusteredMarkersActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".sections.vectorobjects.VectorObjectEditingActivity" />

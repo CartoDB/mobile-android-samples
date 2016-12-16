@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@ActivityData(name = "Bundled Map", description = "Bundle MBTiles file for offline base map")
+@ActivityData(name = "Bundled Map", description = "Download City map for Offline use")
 public class BundledMapActivity extends MapBaseActivity {
 
     @Override
@@ -78,7 +78,7 @@ public class BundledMapActivity extends MapBaseActivity {
 
         // NB! Remember to check if storage is available and has enough space
 
-        if(outFile.exists()) {
+        if (outFile.exists()) {
             // File already exists, no need to recreate
             return;
         }

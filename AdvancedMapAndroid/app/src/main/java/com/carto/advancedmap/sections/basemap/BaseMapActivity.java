@@ -155,11 +155,17 @@ public class BaseMapActivity extends BaseActivity {
 
         } else if (section.getType() == SectionType.LANGUAGE) {
             if (currentLayer instanceof RasterTileLayer) {
-                // Raster tile language chance is not supported
+                // Raster tile language choice is not supported
                 return;
             }
 
             updateLanguage(selection);
+        }
+
+        if (currentOSM == "nutiteq.osm") {
+            // 3D texts on by default
+            MBVectorTileDecoder decoder = (MBVectorTileDecoder)((CartoOnlineVectorTileLayer)currentLayer).getTileDecoder();
+            decoder.setStyleParameter("texts3d", "1");
         }
 
         contentView.mapView.getLayers().clear();
