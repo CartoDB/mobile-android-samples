@@ -1,7 +1,9 @@
 package com.carto.advancedmap.sections.other;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
+import com.carto.projections.Projection;
 import com.carto.renderers.RendererCaptureListener;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -101,6 +104,7 @@ public class CaptureActivity extends MapBaseActivity {
 				final String filename = path + "/screen" + num + ".png";
 
 				FileOutputStream out = null;
+
 				try {
 					out = new FileOutputStream(filename);
 					bmp.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
@@ -117,11 +121,19 @@ public class CaptureActivity extends MapBaseActivity {
 					CaptureActivity.this.runOnUiThread(new Runnable() {
 						public void run() {
 							Toast.makeText(CaptureActivity.this, "Screen saved to " + filename, Toast.LENGTH_LONG).show();
+							share(filename);
 						}
 					});
 				}
 			}
-			//mapView.getMapRenderer().captureRendering(this, true);
+		}
+
+		void share(String path) {
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("image/png");
+			intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
+
+			CaptureActivity.this.startActivity(Intent.createChooser(intent, "Share image"));
 		}
 	}
 }
