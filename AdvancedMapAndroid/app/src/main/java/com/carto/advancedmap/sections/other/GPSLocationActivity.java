@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;

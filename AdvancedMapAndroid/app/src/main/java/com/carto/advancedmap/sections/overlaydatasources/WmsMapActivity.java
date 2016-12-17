@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;

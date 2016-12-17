@@ -1,4 +1,4 @@
-package com.carto.advancedmap.baseactivities;
+package com.carto.advancedmap.shared.activities;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

@@ -1,39 +1,32 @@
 package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carto.advancedmap.Colors;
+import com.carto.advancedmap.shared.Colors;
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.shared.packages.PackageAdapter;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.StringVector;
 
 import com.carto.packagemanager.CartoPackageManager;
-import com.carto.packagemanager.PackageAction;
 import com.carto.packagemanager.PackageErrorType;
 import com.carto.packagemanager.PackageInfo;
 import com.carto.packagemanager.PackageInfoVector;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
+import com.carto.advancedmap.shared.packages.Package;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,152 +35,6 @@ import java.util.ArrayList;
 @ActivityData(name = "Advanced Package Manager", description = "Download offline map packages with OSM")
 public class AdvancedPackageManagerActivity extends ListActivity {
 
-	/**
-	 * A full package info, containing package info and status.
-	 */
-	private static class Package {
-		final String packageName;
-		final String packageId;
-		final PackageInfo packageInfo;
-		final PackageStatus packageStatus;
-		
-		Package(String packageName, PackageInfo packageInfo, PackageStatus packageStatus) {
-			this.packageName = packageName;
-			this.packageId = (packageInfo != null ? packageInfo.getPackageId() : null);
-			this.packageInfo = packageInfo;
-			this.packageStatus = packageStatus;
-		}
-	}
-	
-	/**
-	 * A holder class for packages containing views for each row in list view.
-	 */
-	private static class PackageHolder {
-		TextView nameView;
-		TextView statusView;
-		Button actionButton;
-	}
-	
-	/**
-	 * Adapter for displaying packages as a list.
-	 */
-	private class PackageAdapter extends ArrayAdapter<Package> {
-		Context context;
-		int layoutResourceId;
-		ArrayList<Package> packages;
-		
-		public PackageAdapter(Context context, int layoutResourceId, ArrayList<Package> packages) {
-			super(context, layoutResourceId, packages);
-			this.context = context;
-			this.layoutResourceId = layoutResourceId;
-			this.packages = packages;
-		}
-		
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			View row = convertView;
-			PackageHolder holder = null;
-
-			// Create new holder object or reuse existing
-			if (row == null) {
-				LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-				row = inflater.inflate(layoutResourceId, parent, false);
-
-				holder = new PackageHolder();
-				holder.nameView = (TextView) row.findViewById(com.carto.advancedmap.R.id.package_name);
-				holder.statusView = (TextView) row.findViewById(com.carto.advancedmap.R.id.package_status);
-				holder.actionButton = (Button) row.findViewById(com.carto.advancedmap.R.id.package_action);
-
-				row.setTag(holder);
-			} else {
-				holder = (PackageHolder) row.getTag();
-			}
-
-			// Report package name and size
-			final Package pkg = packages.get(position);
-			holder.nameView.setText(pkg.packageName);
-			if (pkg.packageInfo != null) {
-				String status = "available";
-				if (pkg.packageInfo.getSize().longValue() < 1024 * 1024) {
-					status += " v." + pkg.packageInfo.getVersion()+" (<1MB)";
-				} else {
-					status += " v." + pkg.packageInfo.getVersion()+" (" + pkg.packageInfo.getSize().longValue() / 1024 / 1024 + "MB)";
-				}
-
-				// Check if the package is downloaded/is being downloaded (so that status is not null)
-				if (pkg.packageStatus != null) {
-					if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY) {
-						status = "ready";
-						holder.actionButton.setText("RM");
-						holder.actionButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								packageManager.startPackageRemove(pkg.packageInfo.getPackageId());
-							}
-						});
-					} else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_WAITING) {
-						status = "queued";
-						holder.actionButton.setText("C");
-						holder.actionButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								packageManager.cancelPackageTasks(pkg.packageInfo.getPackageId());
-							}
-						});
-					} else {
-						if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_COPYING) {
-							status = "copying";
-						} else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_DOWNLOADING) {
-							status = "downloading";
-						} else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_REMOVING) {
-							status = "removing";
-						}
-						status += " " + Integer.toString((int) pkg.packageStatus.getProgress()) + "%";
-						if (pkg.packageStatus.isPaused()) {
-							status = status + " (paused)";
-							holder.actionButton.setText("R");
-							holder.actionButton.setOnClickListener(new OnClickListener() {
-								@Override
-								public void onClick(View v) {
-									packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), 0);
-								}
-							});
-						} else {
-							holder.actionButton.setText("P");
-							holder.actionButton.setOnClickListener(new OnClickListener() {
-								@Override
-								public void onClick(View v) {
-									packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), -1);
-								}
-							});
-						}
-					}
-				} else {
-					holder.actionButton.setText("DL");
-					holder.actionButton.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							packageManager.startPackageDownload(pkg.packageInfo.getPackageId());
-						}
-					});
-				}
-				holder.statusView.setText(status);
-			} else {
-				holder.actionButton.setText(">");
-				holder.actionButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						currentFolder = currentFolder + pkg.packageName + "/";
-						updatePackages();
-					}
-				});
-				holder.statusView.setText("");				
-			}
-			
-			return row;
-		}
-	}
-	
 	/**
 	 * Listener for package manager events.
 	 */
@@ -229,7 +76,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 	private ArrayAdapter<Package> packageAdapter;
 	private ArrayList<Package> packageArray = new ArrayList<Package>();
 	
-	private String currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
+	public String currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 	private String language = "en"; // Language for the package names. Most major languages are supported
 
 	public static CartoPackageManager Manager;
@@ -259,7 +106,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 
         // Initialize list view
         setContentView(R.layout.list);
-        packageAdapter = new PackageAdapter(this, com.carto.advancedmap.R.layout.package_item_row, packageArray);
+        packageAdapter = new PackageAdapter(this, com.carto.advancedmap.R.layout.package_item_row, packageArray, packageManager);
         getListView().setAdapter(packageAdapter);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -379,7 +226,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
 		return pkgs;
 	}
 	
-	private void updatePackages() {
+	public void updatePackages() {
 		if (packageAdapter == null) {
 			return;
 		}

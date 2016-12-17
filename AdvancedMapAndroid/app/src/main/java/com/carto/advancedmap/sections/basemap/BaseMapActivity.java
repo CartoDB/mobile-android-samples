@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.basemap;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.carto.advancedmap.baseactivities.BaseActivity;
+import com.carto.advancedmap.shared.activities.BaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.sections.basemap.model.Section;
 import com.carto.advancedmap.sections.basemap.model.SectionType;

@@ -3,13 +3,9 @@ package com.carto.advancedmap.sections.routing;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
-import com.carto.advancedmap.sections.other.OfflineRoutingActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;
@@ -17,7 +13,6 @@ import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Bitmap;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
-import com.carto.packagemanager.PackageManager;
 import com.carto.routing.RoutingAction;
 import com.carto.routing.RoutingInstruction;
 import com.carto.routing.RoutingInstructionVector;
@@ -32,6 +27,7 @@ import com.carto.styles.MarkerStyleBuilder;
 import com.carto.ui.ClickType;
 import com.carto.ui.MapClickInfo;
 import com.carto.ui.MapEventListener;
+import com.carto.ui.MapView;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
@@ -58,12 +54,11 @@ public class BaseRoutingActivity extends MapBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Add online base layer, even used in Offline routing example
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        addBaseLayer();
 
         routeDataSource = new LocalVectorDataSource(baseProjection);
         VectorLayer routeLayer = new VectorLayer(routeDataSource);
-        mapView.getLayers().add(routeLayer);
+        getMapView().getLayers().add(routeLayer);
 
         // Define layer and datasource for route start and stop markers
         routeStartStopDataSource = new LocalVectorDataSource(baseProjection);
@@ -72,14 +67,14 @@ public class BaseRoutingActivity extends MapBaseActivity {
         VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);
 
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer);
+        getMapView().getLayers().add(vectorLayer);
 
         // Set visible zoom range for the vector layer
         vectorLayer.setVisibleZoomRange(new MapRange(0, 22));
 
         // Set route listener
         RouteMapEventListener mapListener = new RouteMapEventListener();
-        mapView.setMapEventListener(mapListener);
+        getMapView().setMapEventListener(mapListener);
 
         // Create markers for start & end, and a layer for them
         MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
@@ -116,6 +111,15 @@ public class BaseRoutingActivity extends MapBaseActivity {
         balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4, 4, 4, 4));
     }
 
+    protected MapView getMapView() {
+        return mapView;
+    }
+
+    protected void addBaseLayer() {
+        // Add online base layer, even used in Offline routing example
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+    }
+
     protected RoutingService service;
 
     public RoutingResult getResult(MapPos start, MapPos stop) {
@@ -124,7 +128,7 @@ public class BaseRoutingActivity extends MapBaseActivity {
         poses.add(start);
         poses.add(stop);
 
-        RoutingRequest request = new RoutingRequest(mapView.getOptions().getBaseProjection(), poses);
+        RoutingRequest request = new RoutingRequest(getMapView().getOptions().getBaseProjection(), poses);
 
         try {
             return service.calculateRoute(request);

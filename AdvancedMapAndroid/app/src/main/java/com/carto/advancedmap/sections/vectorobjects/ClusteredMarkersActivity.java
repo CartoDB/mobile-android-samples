@@ -6,10 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
@@ -19,7 +18,6 @@ import com.carto.geometry.PointGeometry;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.ClusterElementBuilder;
 import com.carto.layers.ClusteredVectorLayer;
-import com.carto.layers.VectorLayer;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
 import com.carto.utils.BitmapUtils;
@@ -29,7 +27,6 @@ import com.carto.vectorelements.VectorElementVector;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.carto.advancedmap.baseactivities;
+package com.carto.advancedmap.shared.activities;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
-import com.carto.advancedmap.Colors;
+import com.carto.advancedmap.shared.Colors;
 
 /**
  * Created by aareundo on 20/09/16.

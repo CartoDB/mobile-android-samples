@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
-import com.carto.advancedmap.Colors;
+import com.carto.advancedmap.shared.Colors;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
 import com.carto.advancedmap.sections.header.RoutingHeader;
 import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;

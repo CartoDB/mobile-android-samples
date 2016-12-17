@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;

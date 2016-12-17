@@ -11,23 +11,16 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.carto.advancedmap.baseactivities.BaseActivity;
+import com.carto.advancedmap.shared.activities.BaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
-import com.carto.datasources.PackageManagerTileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOfflineVectorTileLayer;
-import com.carto.layers.VectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageErrorType;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
-import com.carto.styles.CompiledStyleSet;
 import com.carto.ui.MapView;
-import com.carto.utils.AssetUtils;
-import com.carto.utils.ZippedAssetPackage;
-import com.carto.vectortiles.MBVectorTileDecoder;
 
 import java.io.File;
 import java.io.IOException;

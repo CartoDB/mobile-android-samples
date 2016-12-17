@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.vectorobjects;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;

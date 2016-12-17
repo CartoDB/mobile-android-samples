@@ -19,9 +19,8 @@ import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
-import com.carto.advancedmap.baseactivities.MapBaseActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.list.MapListItem;
 import com.carto.advancedmap.list.LauncherListActivity;
 
 import org.junit.Rule;

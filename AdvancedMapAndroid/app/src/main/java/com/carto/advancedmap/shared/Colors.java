@@ -1,4 +1,4 @@
-package com.carto.advancedmap;
+package com.carto.advancedmap.shared;
 
 import android.graphics.Color;
 
