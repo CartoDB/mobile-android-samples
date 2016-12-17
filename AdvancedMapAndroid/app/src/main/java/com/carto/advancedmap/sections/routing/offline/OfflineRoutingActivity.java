@@ -1,9 +1,10 @@
-package com.carto.advancedmap.sections.routing;
+package com.carto.advancedmap.sections.routing.offline;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingView;
 import com.carto.advancedmap.shared.packages.Package;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
@@ -28,7 +29,7 @@ import java.util.Collections;
  */
 
 @ActivityData(name = "Offline Routing", description = "Offline routing with OpenStreetMap data packages")
-public class OfflineRoutingActivity_New extends BaseRoutingActivity {
+public class OfflineRoutingActivity extends BaseRoutingActivity {
 
     CartoPackageManager manager;
 

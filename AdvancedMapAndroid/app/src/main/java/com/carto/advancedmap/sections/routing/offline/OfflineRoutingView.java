@@ -1,7 +1,6 @@
 package com.carto.advancedmap.sections.routing.offline;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.MotionEvent;
@@ -9,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.carto.advancedmap.sections.routing.OfflineRoutingActivity_New;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
 import com.carto.advancedmap.shared.views.BaseMenu;
 import com.carto.advancedmap.shared.views.MenuButton;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
-import com.carto.packagemanager.CartoPackageManager;
 import com.carto.ui.MapView;
 
 /**
