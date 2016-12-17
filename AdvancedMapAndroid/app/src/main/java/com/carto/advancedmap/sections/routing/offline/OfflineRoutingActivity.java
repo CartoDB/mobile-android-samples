@@ -91,6 +91,15 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if (contentView.menu.isVisible()) {
+            contentView.menu.hide();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
