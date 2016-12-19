@@ -175,26 +175,26 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
         return packages;
     }
 
-    void updatePackage(String id) {
+    void updatePackage(final String id) {
 
         // Try to find the package that needs to be updated
         for (int i = 0; i < packages.size(); i++) {
-            Package pkg = packages.get(i);
+            final Package pkg = packages.get(i);
 
             if (id.equals(pkg.packageId)) {
                 PackageStatus status = manager.getLocalPackageStatus(id, -1);
                 pkg.packageStatus = status;
                 packages.set(i, pkg);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.updatePackage(pkg);
+                    }
+                });
+
             }
         }
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.notifyDataSetChanged();
-            }
-        });
-
     }
 
     /**

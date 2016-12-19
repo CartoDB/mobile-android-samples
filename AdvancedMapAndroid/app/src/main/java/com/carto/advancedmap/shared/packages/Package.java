@@ -5,6 +5,9 @@ package com.carto.advancedmap.shared.packages;
  */
 
 
+import android.view.View;
+
+import com.carto.packagemanager.PackageAction;
 import com.carto.packagemanager.PackageInfo;
 import com.carto.packagemanager.PackageStatus;
 

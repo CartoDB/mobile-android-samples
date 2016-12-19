@@ -71,6 +71,16 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
         // Report package name and size
         final Package pkg = packages.get(position);
+
+        holder.id = pkg.packageId;
+
+        updateView(holder, pkg);
+
+        return row;
+    }
+
+    void updateView(final PackageHolder holder, final Package pkg) {
+
         holder.nameView.setText(pkg.packageName);
 
         if (pkg.packageInfo != null) {
@@ -153,8 +163,6 @@ public class PackageAdapter extends ArrayAdapter<Package> {
             });
             holder.statusView.setText("");
         }
-
-        return row;
     }
 
     public void updateCurrentFolder(Package pkg) {
@@ -175,6 +183,22 @@ public class PackageAdapter extends ArrayAdapter<Package> {
         } else if (context instanceof OfflineRoutingActivity) {
             OfflineRoutingActivity activity = (OfflineRoutingActivity)context;
             activity.updatePackages();
+        }
+    }
+
+    public void updatePackage(Package pkg) {
+
+        for (int i = 0; i < list.getChildCount(); i++) {
+
+            View child = list.getChildAt(i);
+
+            if (child != null && child.getTag() instanceof PackageHolder) {
+                PackageHolder holder = (PackageHolder) child.getTag();
+                if (holder.id.equals(pkg.packageId)) {
+                    updateView(holder, pkg);
+                }
+            }
+
         }
     }
 }

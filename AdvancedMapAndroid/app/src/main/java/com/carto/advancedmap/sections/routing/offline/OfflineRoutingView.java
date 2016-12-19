@@ -57,6 +57,8 @@ public class OfflineRoutingView extends RelativeLayout {
 
             list = new ListView(context);
             list.setAdapter(adapter);
+            adapter.setList(list);
+
             list.setLayoutParams(new LinearLayoutCompat.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
