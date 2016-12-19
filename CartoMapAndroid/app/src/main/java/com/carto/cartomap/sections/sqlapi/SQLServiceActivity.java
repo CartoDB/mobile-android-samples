@@ -42,7 +42,7 @@ public class SQLServiceActivity extends BaseMapActivity {
         CartoOnlineVectorTileLayer baselayer = (CartoOnlineVectorTileLayer)mapView.getLayers().get(0);
         // We can get the tile decoder like this from our default base layer
         // and remove texts so dots would be more prominent
-        ((MBVectorTileDecoder)baselayer.getTileDecoder()).setStyleParameter("lang", "noname");
+        ((MBVectorTileDecoder)baselayer.getTileDecoder()).setStyleParameter("lang", "nolang");
 
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
         final VectorLayer layer = new VectorLayer(source);
