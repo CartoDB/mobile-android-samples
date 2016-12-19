@@ -9,11 +9,13 @@ import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.PointGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.VectorLayer;
 import com.carto.services.CartoSQLService;
 import com.carto.styles.PointStyle;
 import com.carto.styles.PointStyleBuilder;
 import com.carto.vectorelements.Point;
+import com.carto.vectortiles.MBVectorTileDecoder;
 
 import java.io.IOException;
 
@@ -35,6 +37,12 @@ public class SQLServiceActivity extends BaseMapActivity {
         super.onCreate(savedInstanceState);
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
+
+        // We have only added a single layer
+        CartoOnlineVectorTileLayer baselayer = (CartoOnlineVectorTileLayer)mapView.getLayers().get(0);
+        // We can get the tile decoder like this from our default base layer
+        // and remove texts so dots would be more prominent
+        ((MBVectorTileDecoder)baselayer.getTileDecoder()).setStyleParameter("lang", "noname");
 
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
         final VectorLayer layer = new VectorLayer(source);

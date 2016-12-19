@@ -8,7 +8,7 @@ import com.carto.cartomap.util.ActivityData;
  * Created by aareundo on 13/10/16.
  */
 
-@ActivityData(name = "Countries Viz", description = "Vis displaying countries in different colors")
+@ActivityData(name = "Countries Viz", description = "Vis displaying countries in different colors using UTFGrid")
 public class CountriesVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override

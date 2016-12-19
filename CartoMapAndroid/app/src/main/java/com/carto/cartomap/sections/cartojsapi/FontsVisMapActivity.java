@@ -7,7 +7,7 @@ import com.carto.cartomap.util.ActivityData;
 /**
  * Created by aareundo on 13/10/16.
  */
-@ActivityData(name = "Fonts Viz", description = "Vis displaying text on the map")
+@ActivityData(name = "Fonts Viz", description = "Vis displaying text on the map using UTFGrid")
 public class FontsVisMapActivity extends VisJsonBaseMapActivity {
 
     @Override

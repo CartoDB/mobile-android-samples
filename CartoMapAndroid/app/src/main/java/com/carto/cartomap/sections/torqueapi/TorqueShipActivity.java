@@ -89,7 +89,8 @@ public class TorqueShipActivity extends BaseMapActivity {
         TorqueTileDecoder torqueDecoder = new TorqueTileDecoder(torqueStyleSet);
 
         torqueTileLayer = new TorqueTileLayer(cacheDataSource, torqueDecoder);
-        torqueTileLayer.setUpdatePriority(0);
+        // Lower priority for torque layer so base layer would load quickly
+        torqueTileLayer.setUpdatePriority(-1);
 
         mapView.getLayers().add(torqueTileLayer);
 
