@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@ActivityData(name = "Bundled Map", description = "Download City map for Offline use")
+@ActivityData(name = "Bundled Map", description = "Offline map of Rome bundled with app")
 public class BundledMapActivity extends MapBaseActivity {
 
     @Override

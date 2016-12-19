@@ -35,7 +35,7 @@ import java.util.Map;
  */
 
 
-@ActivityData(name = "Clustered Markers", description = "Read data from .geojson and show as clusters")
+@ActivityData(name = "Clustered Markers", description = "Show 20,000 points from geojson")
 public class ClusteredMarkersActivity extends MapBaseActivity {
 
     Thread thread;
