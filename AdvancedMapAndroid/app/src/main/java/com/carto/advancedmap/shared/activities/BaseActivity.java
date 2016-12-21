@@ -46,6 +46,10 @@ public class BaseActivity extends Activity {
         ActivityCompat.requestPermissions(this, new String[]{ permission }, 1);
     }
 
+    protected void requestPermissions(String[] permissions) {
+        ActivityCompat.requestPermissions(this, permissions, 1);
+    }
+
     protected void alert(final String message)
     {
         if (isPaused) {

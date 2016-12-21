@@ -132,7 +132,8 @@ public class BaseRoutingActivity extends MapBaseActivity {
 
         try {
             return service.calculateRoute(request);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            // Can return IOException and RuntimeException
             return null;
         }
     }
