@@ -5,14 +5,20 @@ import android.util.Log;
 
 import com.carto.cartomap.sections.BaseMapActivity;
 import com.carto.cartomap.util.ActivityData;
+import com.carto.core.MapPos;
+import com.carto.core.StringVariantMap;
 import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.PersistentCacheTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.Layer;
+import com.carto.layers.LayerVector;
 import com.carto.layers.TorqueTileLayer;
+import com.carto.services.CartoMapsService;
 import com.carto.styles.CartoCSSStyleSet;
 import com.carto.vectortiles.TorqueTileDecoder;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,36 +26,37 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
-@ActivityData(name = "Torque Ships", description = "Torque showing ship movement during WWII")
+@ActivityData(name = "Torque Ship", description = "Shows indoor movement on a cruise ship throughout the day")
 public class TorqueShipActivity extends BaseMapActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final long FRAME_TIME_MS = 100;
 
-    private TorqueTileLayer torqueTileLayer;
-    private boolean stopped;
+    boolean stopped;
 
-    String cartoCSS = "#layer {\n"+
-            "  comp-op: lighten;\n"+
-            "  marker-type:ellipse;\n"+
-            "  marker-width: 10;\n"+
-            "  marker-fill: #FEE391;\n"+
-            "  [description > 2] { marker-fill: #FEC44F; }\n"+
-            "  [description > 3] { marker-fill: #FE9929; }\n"+
-            "  [description > 4] { marker-fill: #EC7014; }\n"+
-            "  [description > 5] { marker-fill: #CC4C02; }\n"+
-            "  [description > 6] { marker-fill: #993404; }\n"+
-            "  [description > 7] { marker-fill: #662506; }\n"+
-            "\n"+
-            "  [frame-offset = 1] {\n"+
-            "    marker-width: 20;\n"+
-            "    marker-fill-opacity: 0.1;\n"+
-            "  }\n"+
-            "  [frame-offset = 2] {\n"+
-            "    marker-width: 30;\n"+
-            "    marker-fill-opacity: 0.05;\n"+
-            "  }\n"+
-            "}\n";
+    TorqueTileDecoder decoder;
+    TorqueTileLayer torqueLayer;
+
+    TorqueTileLayer getTorqueLayer()
+    {
+            if (torqueLayer != null)
+            {
+                return torqueLayer;
+            }
+
+            for (int i = 0; i < mapView.getLayers().count(); i++)
+            {
+                Layer layer = mapView.getLayers().get(i);
+                if (layer instanceof TorqueTileLayer)
+                {
+                    torqueLayer = (TorqueTileLayer)layer;
+                    decoder = (TorqueTileDecoder)torqueLayer.getTileDecoder();
+                    return torqueLayer;
+                }
+            }
+
+            return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,45 +66,56 @@ public class TorqueShipActivity extends BaseMapActivity {
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
 
-        String encodedQuery =
-                "WITH%20par%20AS%20(%20%20SELECT%20CDB_XYZ_Resolution({zoom})*1%20as%20res%2" +
-                "C%20%20256%2F1%20as%20tile_size%2C%20CDB_XYZ_Extent({x}%2C%20{y}%2C%20{zoom})%20as" +
-                "%20ext%20)%2Ccte%20AS%20(%20%20%20SELECT%20ST_SnapToGrid(i.the_geom_webmercator%2C" +
-                "%20p.res)%20g%2C%20count(cartodb_id)%20c%2C%20floor((date_part(%27epoch%27%2C%20da" +
-                "te)%20-%20-1796072400)%2F476536.5)%20d%20%20FROM%20(select%20*%20from%20ow)%20i%2C" +
-                "%20par%20p%20%20%20WHERE%20i.the_geom_webmercator%20%26%26%20p.ext%20%20%20GROUP%2" +
-                "0BY%20g%2C%20d)%20SELECT%20(st_x(g)-st_xmin(p.ext))%2Fp.res%20x__uint8%2C%20%20%20" +
-                "%20%20%20%20%20(st_y(g)-st_ymin(p.ext))%2Fp.res%20y__uint8%2C%20array_agg(c)%20val" +
-                "s__uint8%2C%20array_agg(d)%20dates__uint16%20FROM%20cte%2C%20par%20p%20where%20(st" +
-                "_y(g)-st_ymin(p.ext))%2Fp.res%20%3C%20tile_size%20and%20(st_x(g)-st_xmin(p.ext))%2" +
-                "Fp.res%20%3C%20tile_size%20GROUP%20BY%20x__uint8%2C%20y__uint8&last_updated=1970-0" +
-                "1-01T00%3A00%3A00.000Z";
+        final String username = "solutions";
+        final String mapname = "tpl_a108ee2b_6699_43bc_aa71_3b0bc962acf9";
+        boolean isVector = false;
 
-        // Define datasource with the query
-        String url = "http://viz2.cartodb.com/api/v2/sql?q=" + encodedQuery + "&cache_policy=persist";
-        HTTPTileDataSource torqueDataSource = new HTTPTileDataSource(0, 14, url);
+        final CartoMapsService service = new CartoMapsService();
+        service.setUsername(username);
 
-        // Create persistent cache to make it faster
-        String cacheFile = getExternalFilesDir(null)+"/torque_tile_cache.db";
-        Log.i("LOG", "cacheFile = " + cacheFile);
-        TileDataSource cacheDataSource = new PersistentCacheTileDataSource(torqueDataSource, cacheFile);
+        service.setDefaultVectorLayerMode(isVector);
 
-        // Create CartoCSS style from Torque points
-        CartoCSSStyleSet torqueStyleSet = new CartoCSSStyleSet(cartoCSS);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LayerVector layers = null;
+                try {
+                    layers = service.buildNamedMap(mapname, new StringVariantMap());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-        // Create tile decoder and Torque layer
-        TorqueTileDecoder torqueDecoder = new TorqueTileDecoder(torqueStyleSet);
+                // NB! This update priority only works for the map tpl_a108ee2b_6699_43bc_aa71_3b0bc962acf9
+                // It may make loading worse or even break it when tried with other maps
+                layers.get(0).setUpdatePriority(2);
+                layers.get(1).setUpdatePriority(1);
+                layers.get(2).setUpdatePriority(0);
 
-        torqueTileLayer = new TorqueTileLayer(cacheDataSource, torqueDecoder);
-        // Lower priority for torque layer so base layer would load quickly
-        torqueTileLayer.setUpdatePriority(-1);
+                for (int i = 0; i < layers.size(); i++) {
+                    Layer layer = layers.get(i);
+                    mapView.getLayers().add(layer);
+                }
 
-        mapView.getLayers().add(torqueTileLayer);
+                task.run();
 
-        // Start updating frames for animation
-        worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);
+            }
+        });
 
-        mapView.setZoom(1, 0);
+        thread.start();
+
+        MapPos center = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(0.0013, 0.0013));
+        mapView.setFocusPos(center, 0);
+        mapView.setZoom(18.0f, 0);
+    }
+
+
+    @Override
+    protected void onStart() {
+        synchronized (worker) {
+            stopped = false;
+        }
+
+        super.onStart();
     }
 
     @Override
@@ -113,10 +131,15 @@ public class TorqueShipActivity extends BaseMapActivity {
         public void run() {
             synchronized (worker) {
 
-                int frameCount = ((TorqueTileDecoder)torqueTileLayer.getTileDecoder()).getFrameCount();
-                int frameNr = (torqueTileLayer.getFrameNr()+1) % frameCount;
+                if (getTorqueLayer() == null) {
+                    // getTorqueLayer() function initializes torqueLayer and decoder
+                    return;
+                }
 
-                torqueTileLayer.setFrameNr(frameNr);
+                int frameCount = decoder.getFrameCount();
+                int frameNr = (torqueLayer.getFrameNr() + 1) % frameCount;
+
+                torqueLayer.setFrameNr(frameNr);
 
                 if (!stopped) {
                     worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);
