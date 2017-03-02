@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
-@ActivityData(name = "Torque Ship", description = "Shows indoor movement on a cruise ship throughout the day")
+@ActivityData(name = "Torque Ship", description = "Indoor: shopper movement in a mall throughout the day")
 public class TorqueShipActivity extends BaseMapActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
