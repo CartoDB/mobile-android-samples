@@ -1,5 +1,6 @@
 package com.carto.cartomap.sections.torqueapi;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
 @ActivityData(name = "Torque", description = "Shopper movement in a mall throughout the day")
-public class TorqueShipActivity extends BaseMapActivity {
+public class TorqueShipActivity extends Activity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final long FRAME_TIME_MS = 100;
@@ -45,9 +46,9 @@ public class TorqueShipActivity extends BaseMapActivity {
                 return torqueLayer;
             }
 
-            for (int i = 0; i < mapView.getLayers().count(); i++)
+            for (int i = 0; i < contentView.MapView.getLayers().count(); i++)
             {
-                Layer layer = mapView.getLayers().get(i);
+                Layer layer = contentView.MapView.getLayers().get(i);
                 if (layer instanceof TorqueTileLayer)
                 {
                     torqueLayer = (TorqueTileLayer)layer;
@@ -99,7 +100,7 @@ public class TorqueShipActivity extends BaseMapActivity {
 
                 for (int i = 0; i < layers.size(); i++) {
                     Layer layer = layers.get(i);
-                    mapView.getLayers().add(layer);
+                    contentView.MapView.getLayers().add(layer);
                 }
 
                 task.run();
@@ -117,9 +118,11 @@ public class TorqueShipActivity extends BaseMapActivity {
 
         thread.start();
 
-        MapPos center = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(0.0013, 0.0013));
-        mapView.setFocusPos(center, 0);
-        mapView.setZoom(18.0f, 0);
+        MapPos center = contentView.MapView.getOptions().getBaseProjection().fromWgs84(
+                new MapPos(0.0013, 0.0013)
+        );
+        contentView.MapView.setFocusPos(center, 0);
+        contentView.MapView.setZoom(18.0f, 0);
     }
 
 
