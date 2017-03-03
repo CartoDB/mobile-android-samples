@@ -3,21 +3,15 @@ package com.carto.cartomap.sections.torqueapi;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.carto.cartomap.sections.BaseMapActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.StringVariantMap;
-import com.carto.datasources.HTTPTileDataSource;
-import com.carto.datasources.PersistentCacheTileDataSource;
-import com.carto.datasources.TileDataSource;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
 import com.carto.layers.TorqueTileLayer;
 import com.carto.services.CartoMapsService;
-import com.carto.styles.CartoCSSStyleSet;
+
 import com.carto.vectortiles.TorqueTileDecoder;
 
 import java.io.IOException;
@@ -188,7 +182,7 @@ public class TorqueShipActivity extends Activity {
                         } else {
                             contentView.Histogram.UpdateElement(frameNr, count, max);
                         }
-//                        System.out.println("Number, Max: " + frameNr + ", " + max);
+
                         contentView.Histogram.Counter.Update(frameNr, frameCount);
                     }
                 });
