@@ -16,6 +16,8 @@ import com.carto.services.CartoMapsService;
 import com.carto.vectortiles.TorqueTileDecoder;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -98,8 +100,6 @@ public class TorqueShipActivity extends Activity implements TorqueHistogramInter
                     contentView.MapView.getLayers().add(layer);
                 }
 
-                task.run();
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -138,31 +138,17 @@ public class TorqueShipActivity extends Activity implements TorqueHistogramInter
         // Play/pause is handled inside, use this method to invoke other actions
     }
 
-    @Override
-    protected void onStart() {
-        synchronized (worker) {
-            stopped = false;
-        }
-
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        synchronized (worker) {
-            stopped = true;
-        }
-
-        super.onStop();
-    }
-
+    Timer timer;
     int max;
 
-    private Runnable task = new Runnable() {
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        public void run() {
-            synchronized (worker) {
-
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
                 if (contentView.Histogram.Button.isPaused()) {
                     return;
                 }
@@ -192,14 +178,13 @@ public class TorqueShipActivity extends Activity implements TorqueHistogramInter
                         contentView.Histogram.Counter.Update(frameNr, frameCount);
                     }
                 });
-
-
-                if (!stopped) {
-                    worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);
-                }
-
             }
-        }
-    };
+        }, 150, 150);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
 }

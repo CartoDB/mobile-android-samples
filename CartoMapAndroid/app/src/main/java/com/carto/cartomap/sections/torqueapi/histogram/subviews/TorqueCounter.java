@@ -70,7 +70,7 @@ public class TorqueCounter extends TextView {
         boolean success = false;
 
         try {
-            frameCount = Integer.parseInt(text.split("/")[1]);
+            frameCount = Integer.parseInt(text.split("/")[1].trim());
             success = true;
         } catch (Exception e) {
             e.printStackTrace();
