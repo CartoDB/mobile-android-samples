@@ -1,5 +1,6 @@
 package com.carto.cartomap.sections.torqueapi;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
-@ActivityData(name = "Torque Ship", description = "Indoor: shopper movement in a mall throughout the day")
+@ActivityData(name = "Torque", description = "Shopper movement in a mall throughout the day")
 public class TorqueShipActivity extends BaseMapActivity {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
@@ -58,13 +59,18 @@ public class TorqueShipActivity extends BaseMapActivity {
             return null;
     }
 
+    TorqueView contentView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        contentView = new TorqueView(this);
+        setContentView(contentView);
 
         final String username = "solutions";
         final String mapname = "tpl_a108ee2b_6699_43bc_aa71_3b0bc962acf9";
@@ -98,6 +104,14 @@ public class TorqueShipActivity extends BaseMapActivity {
 
                 task.run();
 
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("Success: " + getTorqueLayer());
+                        contentView.InitializeHistogram(decoder.getFrameCount());
+                    }
+                });
+
             }
         });
 
@@ -108,6 +122,18 @@ public class TorqueShipActivity extends BaseMapActivity {
         mapView.setZoom(18.0f, 0);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        contentView.Dispose();
+    }
+
+    public void onHistogramClick(int frameNumber) {
+        contentView.Histogram.Button.pause();
+        contentView.Histogram.Counter.Update(frameNumber);
+        getTorqueLayer().setFrameNr(frameNumber);
+    }
 
     @Override
     protected void onStart() {
@@ -127,23 +153,48 @@ public class TorqueShipActivity extends BaseMapActivity {
         super.onStop();
     }
 
+    int max;
+
     private Runnable task = new Runnable() {
+
         public void run() {
             synchronized (worker) {
+
+                if (contentView.Histogram.Button.isPaused()) {
+                    return;
+                }
 
                 if (getTorqueLayer() == null) {
                     // getTorqueLayer() function initializes torqueLayer and decoder
                     return;
                 }
 
-                int frameCount = decoder.getFrameCount();
-                int frameNr = (torqueLayer.getFrameNr() + 1) % frameCount;
+                final int frameCount = decoder.getFrameCount();
+                final int frameNr = (torqueLayer.getFrameNr() + 1) % frameCount;
 
                 torqueLayer.setFrameNr(frameNr);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int count = getTorqueLayer().countVisibleFeatures(frameNr);
+
+                        if (count > max) {
+                            max = count;
+                            contentView.Histogram.UpdateAll(max);
+                        } else {
+                            contentView.Histogram.UpdateElement(frameNr, count, max);
+                        }
+//                        System.out.println("Number, Max: " + frameNr + ", " + max);
+                        contentView.Histogram.Counter.Update(frameNr, frameCount);
+                    }
+                });
+
 
                 if (!stopped) {
                     worker.schedule(task, FRAME_TIME_MS, TimeUnit.MILLISECONDS);
                 }
+
             }
         }
     };

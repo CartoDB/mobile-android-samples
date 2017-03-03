@@ -42,7 +42,8 @@
         <activity android:name="com.carto.cartomap.sections.sqlapi.SQLServiceActivity"/>
 
         <!--Section 5-->
-        <activity android:name="com.carto.cartomap.sections.torqueapi.TorqueShipActivity" />
+        <activity
+            android:name="com.carto.cartomap.sections.torqueapi.TorqueShipActivity" />
 
     </application>
 
