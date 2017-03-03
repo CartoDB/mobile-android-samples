@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.carto.cartomap.R;
+import com.carto.cartomap.sections.torqueapi.TorqueShipActivity;
 import com.carto.cartomap.sections.torqueapi.histogram.TorqueHistogram;
+import com.carto.cartomap.sections.torqueapi.histogram.TorqueHistogramInterface;
 
 /**
  * Created by aareundo on 02/03/17.
@@ -24,7 +26,9 @@ public class TorqueButton extends RelativeLayout {
 
     int imageResource;
 
-    public TorqueButton(Context context) {
+    TorqueHistogramInterface histogramInterface;
+
+    public TorqueButton(Context context, TorqueShipActivity activity) {
 
         super(context);
 
@@ -45,6 +49,8 @@ public class TorqueButton extends RelativeLayout {
         }
 
         setPadding(10, 10, 10, 10);
+
+        histogramInterface = activity;
     }
 
     public boolean isPaused() {
@@ -99,6 +105,7 @@ public class TorqueButton extends RelativeLayout {
         } else if (action == MotionEvent.ACTION_UP) {
             animateToScale(1.0f);
             toggle();
+            histogramInterface.onButtonClicked();
         } else if (action == MotionEvent.ACTION_CANCEL) {
             animateToScale(1.0f);
         }

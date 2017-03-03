@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import com.carto.cartomap.sections.torqueapi.histogram.TorqueHistogramInterface;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.StringVariantMap;
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * A sample demonstrating how to use Carto Torque tiles with CartoCSS styling
  */
 @ActivityData(name = "Torque", description = "Shopper movement in a mall throughout the day")
-public class TorqueShipActivity extends Activity {
+public class TorqueShipActivity extends Activity implements TorqueHistogramInterface {
 
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     private static final long FRAME_TIME_MS = 100;
@@ -126,10 +127,15 @@ public class TorqueShipActivity extends Activity {
         contentView.Dispose();
     }
 
-    public void onHistogramClick(int frameNumber) {
+    public void onHistogramClicked(int frameNumber) {
         contentView.Histogram.Button.pause();
         contentView.Histogram.Counter.Update(frameNumber);
         getTorqueLayer().setFrameNr(frameNumber);
+    }
+
+    @Override
+    public void onButtonClicked() {
+        // Play/pause is handled inside, use this method to invoke other actions
     }
 
     @Override

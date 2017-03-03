@@ -33,7 +33,7 @@ public class TorqueView extends RelativeLayout {
                 LayoutParams.MATCH_PARENT
         ));
 
-        Histogram = new TorqueHistogram(context);
+        Histogram = new TorqueHistogram(context, (TorqueShipActivity)context);
         addView(Histogram);
     }
 

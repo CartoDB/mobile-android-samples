@@ -42,12 +42,11 @@ public class TorqueHistogram extends RelativeLayout {
 
     public TorqueButton Button;
 
-    TorqueShipActivity parent;
-    public TorqueHistogram(Context context) {
+    TorqueHistogramInterface histogramInterface;
+
+    public TorqueHistogram(Context context, TorqueShipActivity activity) {
 
         super(context);
-
-        this.parent = (TorqueShipActivity)context;
 
         intervals = new ArrayList<>();
 
@@ -76,7 +75,9 @@ public class TorqueHistogram extends RelativeLayout {
 
         Counter = new TorqueCounter(context);
 
-        Button = new TorqueButton(context);
+        Button = new TorqueButton(context, activity);
+
+        histogramInterface = activity;
     }
 
     public void Initialize(int frameCount, int margin)
@@ -169,8 +170,7 @@ public class TorqueHistogram extends RelativeLayout {
 
             indicator.Update(number);
 
-            // TODO better approach to events
-            parent.onHistogramClick(number);
+            histogramInterface.onHistogramClicked(number);
         }
 
         return false;
