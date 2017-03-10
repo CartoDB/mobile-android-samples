@@ -46,6 +46,7 @@
         <!--Section 4-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
         <activity android:name=".sections.overlaydatasources.CustomRasterDataSourceActivity" />
+        <activity android:name=".sections.overlaydatasources.CustomVectorDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
 
         <!--Section 5-->

@@ -9,29 +9,30 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
-import com.carto.advancedmap.shared.Colors;
+import com.carto.advancedmap.R;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
-import com.carto.advancedmap.sections.header.RoutingHeader;
-import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
-import com.carto.advancedmap.sections.routing.offline.OfflineRoutingActivity;
-import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
-import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
-import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;
 import com.carto.advancedmap.sections.header.OtherMapHeader;
 import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
+import com.carto.advancedmap.sections.header.RoutingHeader;
 import com.carto.advancedmap.sections.header.VectorObjectsHeader;
+import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
+import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
+import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
 import com.carto.advancedmap.sections.other.CaptureActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;
-import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
-import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.sections.other.GPSLocationActivity;
-import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
-import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
+import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
+import com.carto.advancedmap.sections.overlaydatasources.CustomVectorDataSourceActivity;
+import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
-import com.carto.advancedmap.R;
+import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
+import com.carto.advancedmap.sections.routing.offline.OfflineRoutingActivity;
+import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
+import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
+import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
+import com.carto.advancedmap.shared.Colors;
 
 /**
  * Shows list of demo Activities. This is the "main" of samples
@@ -55,6 +56,7 @@ public class LauncherListActivity extends ListActivity {
 
             OverlayDataSourcesHeader.class,
             CustomRasterDataSourceActivity.class,
+            CustomVectorDataSourceActivity.class,
             GroundOverlayActivity.class,
             WmsMapActivity.class,
 
