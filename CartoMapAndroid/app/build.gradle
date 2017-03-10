@@ -19,21 +19,9 @@ android {
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-        maven {
-            url "http://repository-nutiteq.forge.cloudbees.com/release/"
-        }
-        maven {
-            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
-        }
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.carto:carto-mobile-sdk:snapshot@aar'
+    compile 'com.carto:carto-mobile-sdk:4.0.1@aar'
 }
