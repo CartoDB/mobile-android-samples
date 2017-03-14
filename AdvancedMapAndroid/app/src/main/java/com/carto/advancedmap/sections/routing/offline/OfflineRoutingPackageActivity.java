@@ -29,7 +29,7 @@ import java.util.Collections;
  */
 
 @ActivityData(name = "Offline Routing", description = "Offline routing with OpenStreetMap data packages")
-public class OfflineRoutingActivity extends BaseRoutingActivity {
+public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
     CartoPackageManager manager;
 
@@ -127,7 +127,6 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
     }
 
     @Override
@@ -136,7 +135,7 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
         contentView.mapView.getLayers().add(layer);
     }
 
-    ArrayList<Package> getPackages() {
+    protected ArrayList<Package> getPackages() {
 
         String language = "en";
         ArrayList<Package> packages = new ArrayList<>();
@@ -164,7 +163,6 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
                 name = split[split.length - 1];
             }
 
-            System.out.println("GetPackages: " + info.getPackageId() + " - " + name + " (" + info.getNames(language).size() + ")");
             PackageStatus status = manager.getLocalPackageStatus(info.getPackageId(), -1);
             Package pkg = new Package(name, info, status);
 
