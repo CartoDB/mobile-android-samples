@@ -28,7 +28,7 @@ import java.util.Collections;
  * Created by aareundo on 16/12/16.
  */
 
-@ActivityData(name = "Offline Routing", description = "Offline routing with OpenStreetMap data packages")
+@ActivityData(name = "Offline Routing (package)", description = "Offline Routing where country packages are downloaded")
 public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
     CartoPackageManager manager;
