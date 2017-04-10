@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import com.carto.cartomap.sections.torqueapi.histogram.TorqueHistogram;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * Created by aareundo on 02/03/17.
  */
@@ -21,7 +26,7 @@ public class TorqueCounter extends TextView {
 
         setGravity(Gravity.CENTER);
         setTypeface(Typeface.create("sans-serif-thin", Typeface.BOLD));
-        setTextSize(17f);
+        setTextSize(14f);
         setTextColor(Color.WHITE);
 
         GradientDrawable drawable = new GradientDrawable();
@@ -39,21 +44,39 @@ public class TorqueCounter extends TextView {
         }
     }
 
+    static final int incrementBy = 15;
+    public static ArrayList<String> timestamps;
+
     public void Update(int frameNumber, int frameCount) {
 
-        String number = "";
+        if (timestamps == null) {
 
-        if (frameCount > 100) {
-            if (frameNumber < 10) {
-                number = "00" + frameNumber;
-            } else if (frameNumber < 100) {
-                number = "0" + frameNumber;
-            } else {
-                number = Integer.toString(frameNumber);
+            timestamps = new ArrayList<>();
+
+            /*
+			 * Hardcoded (pretty) timestamp in accordance with the web UI.
+			 * Non-hardcoded currently only available via external api
+			 */
+
+            Calendar date = new GregorianCalendar(2016, 9, 15, 12, 14, 0);
+
+            for (int i = 0; i < 256; i++)
+            {
+                String time = " ";
+
+                time += date.get(GregorianCalendar.HOUR_OF_DAY) + ":";
+                time += date.get(GregorianCalendar.MINUTE) + " ";
+
+                time += date.get(GregorianCalendar.DAY_OF_MONTH) + "/";
+                time += date.get(GregorianCalendar.MONTH) + "/";
+                time += date.get(GregorianCalendar.YEAR) + " ";
+
+                timestamps.add(time);
+                date.add((GregorianCalendar.MINUTE), incrementBy);
             }
         }
 
-        setText("  " + number + "/" + frameCount + "  ");
+        setText(timestamps.get(frameNumber));
     }
 
     public void Update(int frameNumber) {
