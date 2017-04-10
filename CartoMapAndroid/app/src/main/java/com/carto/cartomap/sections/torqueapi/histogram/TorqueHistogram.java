@@ -34,9 +34,17 @@ public class TorqueHistogram extends RelativeLayout {
 
     ArrayList<TorqueInterval> intervals;
 
-    static final int BarHeight = 120;
-    static final int CounterHeight = 45;
-    static final int TotalHeight = BarHeight + CounterHeight;
+    int getBarHeight() {
+        return (int)(getContext().getResources().getDisplayMetrics().density * 60);
+    }
+
+    int getCounterHeight() {
+        return (int)(getContext().getResources().getDisplayMetrics().density * 22);
+    }
+
+    int getTotalHeight() {
+        return getBarHeight() + getCounterHeight();
+    }
 
     public TorqueCounter Counter;
 
@@ -97,7 +105,7 @@ public class TorqueHistogram extends RelativeLayout {
                 width, ViewGroup.LayoutParams.MATCH_PARENT
         );
 
-        containerParams.setMargins(0, CounterHeight + margin, 0, margin);
+        containerParams.setMargins(0, getCounterHeight() + margin, 0, margin);
         outerContainer.setLayoutParams(containerParams);
 
         for (int i = 0; i < frameCount; i++)
@@ -108,7 +116,7 @@ public class TorqueHistogram extends RelativeLayout {
         }
 
         RelativeLayout.LayoutParams parameters = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, TotalHeight
+                ViewGroup.LayoutParams.MATCH_PARENT, getTotalHeight()
         );
 
         parameters.addRule(ALIGN_PARENT_BOTTOM);
@@ -116,7 +124,7 @@ public class TorqueHistogram extends RelativeLayout {
         setLayoutParams(parameters);
 
         RelativeLayout.LayoutParams counterParams = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, CounterHeight
+                ViewGroup.LayoutParams.WRAP_CONTENT, getCounterHeight()
         );
 
         counterParams.addRule(ALIGN_PARENT_TOP);
@@ -125,10 +133,10 @@ public class TorqueHistogram extends RelativeLayout {
         RelativeLayout.LayoutParams indictorParams = new RelativeLayout.LayoutParams(
                 getIntervalWidth(), ViewGroup.LayoutParams.MATCH_PARENT
         );
-        indictorParams.topMargin = CounterHeight;
+        indictorParams.topMargin = getCounterHeight();
         indicator.setLayoutParams(indictorParams);
 
-        int buttonSize = BarHeight - 2 * margin;
+        int buttonSize = getBarHeight() - 2 * margin;
 
         RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(buttonSize, buttonSize);
         buttonParams.addRule(ALIGN_PARENT_RIGHT);
@@ -148,7 +156,7 @@ public class TorqueHistogram extends RelativeLayout {
             return;
         }
 
-        intervals.get(frameNumber).Update(TotalHeight, elementCount, maxElements);
+        intervals.get(frameNumber).Update(getTotalHeight(), elementCount, maxElements);
         indicator.Update(frameNumber);
     }
 
@@ -156,7 +164,7 @@ public class TorqueHistogram extends RelativeLayout {
     {
         for (TorqueInterval interval : intervals)
         {
-            interval.Update(TotalHeight, maxElements);
+            interval.Update(getTotalHeight(), maxElements);
         }
     }
 
