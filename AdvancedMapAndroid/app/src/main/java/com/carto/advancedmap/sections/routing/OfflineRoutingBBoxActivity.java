@@ -20,7 +20,7 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
 
     @Override
     protected String createPackageFolder() {
-        return createPackageFolder("city_routing_packages");
+        return createPackageFolder("cityroutingpackages");
     }
 
     @Override
@@ -39,6 +39,4 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
         // New York
         return new BoundingBox(-73.4768, 40.4621, -74.1205, 41.0043);
     }
-
-
 }

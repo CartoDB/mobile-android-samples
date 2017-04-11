@@ -32,6 +32,7 @@ public class BasicPackageManagerActivity extends BoundingBoxActivity {
 
     @Override
     protected BoundingBox getBoundingBox() {
+        // London
         return new BoundingBox(-0.8164, 51.2382, 0.6406, 51.7401);
     }
 }
