@@ -1,11 +1,17 @@
 
 package com.carto.advancedmap.sections.routing;
 
+import android.os.Bundle;
+
 import com.carto.advancedmap.list.ActivityData;
 
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
+import com.carto.advancedmap.utils.RouteCalculator;
 import com.carto.packagemanager.CartoPackageManager;
+import com.carto.routing.PackageManagerValhallaRoutingService;
+import com.carto.routing.RoutingService;
+import com.carto.routing.ValhallaOfflineRoutingService;
 
 import java.io.IOException;
 
@@ -18,6 +24,19 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
 
     static final String ROUTING = "routing:";
     static  final String SOURCE = "valhalla.osm";
+
+    RouteCalculator calculator;
+    RoutingService service;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        service = new PackageManagerValhallaRoutingService(manager);
+        
+        calculator = new RouteCalculator(this, contentView.mapView, service);
+    }
 
     @Override
     protected String createPackageFolder() {
