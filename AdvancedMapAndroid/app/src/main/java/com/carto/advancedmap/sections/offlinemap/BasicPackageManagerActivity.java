@@ -1,6 +1,8 @@
 
 package com.carto.advancedmap.sections.offlinemap;
 
+import android.os.Bundle;
+
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
@@ -14,6 +16,12 @@ import java.io.IOException;
 
 @ActivityData(name = "Basic Package Manager", description = "Download a bounding box of London")
 public class BasicPackageManagerActivity extends BoundingBoxActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        contentView.setBaseLayer();
+    }
 
     @Override
     protected String createPackageFolder() {

@@ -96,8 +96,6 @@ public class BoundingBoxActivity extends BaseActivity {
             updateStatusLabel("Package downloaded");
             contentView.zoomTo(bbox.getCenter());
         }
-
-        contentView.setBaseLayer();
     }
 
     @Override
