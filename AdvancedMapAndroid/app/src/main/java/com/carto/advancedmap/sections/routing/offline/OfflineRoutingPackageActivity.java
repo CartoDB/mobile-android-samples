@@ -17,6 +17,7 @@ import com.carto.packagemanager.PackageInfoVector;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
 import com.carto.routing.PackageManagerRoutingService;
+import com.carto.routing.ValhallaOfflineRoutingService;
 import com.carto.ui.MapView;
 
 import java.io.File;
@@ -58,11 +59,12 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
         adapter = new PackageAdapter(this, com.carto.advancedmap.R.layout.package_item_row, packages, manager);
 
         contentView = new OfflineRoutingView(this, adapter);
+
         super.onCreate(savedInstanceState);
 
         setContentView(contentView);
 
-        service = new PackageManagerRoutingService(manager);
+        setService(new PackageManagerRoutingService(manager));
         alert("Click on the menu to see a list of countries that can be downloaded");
 
         listener = new PackageListener();

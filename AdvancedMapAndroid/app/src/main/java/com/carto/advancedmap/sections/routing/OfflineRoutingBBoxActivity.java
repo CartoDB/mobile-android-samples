@@ -28,8 +28,6 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
     protected CartoPackageManager getPackageManager(String folder) {
 
         try {
-
-
             String source = ROUTING + SOURCE;
             return new CartoPackageManager(source, folder);
         } catch (IOException e) {
