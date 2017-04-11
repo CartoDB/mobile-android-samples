@@ -33,8 +33,10 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
 
         super.onCreate(savedInstanceState);
 
+        contentView.setOnlineBaseLayer();
+
         service = new PackageManagerValhallaRoutingService(manager);
-        
+
         calculator = new RouteCalculator(this, contentView.mapView, service);
     }
 

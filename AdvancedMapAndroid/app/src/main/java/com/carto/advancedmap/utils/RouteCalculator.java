@@ -184,6 +184,7 @@ public class RouteCalculator {
             return null;
         }
     }
+
     protected void createRoutePoint(MapPos pos, RoutingAction action, LocalVectorDataSource ds) {
 
         MarkerStyle style = instructionUp;
