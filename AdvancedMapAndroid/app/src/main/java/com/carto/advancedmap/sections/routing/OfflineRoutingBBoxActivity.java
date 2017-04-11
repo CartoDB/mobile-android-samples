@@ -16,7 +16,8 @@ import java.io.IOException;
 @ActivityData(name = "Offline Routing (bbox)", description = "Offline Routing where a bounding box of New York is downloaded")
 public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
 
-    static final String MODE_OF_TRANSPORT = "car";
+    static final String ROUTING = "routing:";
+    static  final String SOURCE = "valhalla.osm";
 
     @Override
     protected String createPackageFolder() {
@@ -27,11 +28,13 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
     protected CartoPackageManager getPackageManager(String folder) {
 
         try {
-            return new CartoPackageManager("routing:nutiteq.osm." + MODE_OF_TRANSPORT, folder);
+
+
+            String source = ROUTING + SOURCE;
+            return new CartoPackageManager(source, folder);
         } catch (IOException e) {
             return null;
         }
-
     }
 
     @Override
