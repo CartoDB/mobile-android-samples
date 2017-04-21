@@ -58,9 +58,7 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
 
     @Override
     protected BoundingBox getBoundingBox() {
-//        // London
-//        return new BoundingBox(-0.8164, 51.2382, 0.6406, 51.7401);
         // New York
-        return new BoundingBox(-73.4768, 40.4621, -74.1205, 41.0043);
+        return new BoundingBox(-74.1205, 40.4621, -73.4768, 41.0043);
     }
 }
