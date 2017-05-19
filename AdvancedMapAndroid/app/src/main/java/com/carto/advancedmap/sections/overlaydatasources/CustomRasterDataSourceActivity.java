@@ -46,7 +46,7 @@ public class CustomRasterDataSourceActivity extends MapBaseActivity {
      * A custom raster tile data source that loads tiles from two sources and then blends
      * them into a single tile.
      */
-    private class MyMergedRasterTileDataSource extends TileDataSource {
+    private static class MyMergedRasterTileDataSource extends TileDataSource {
 
         private TileDataSource dataSource1;
         private TileDataSource dataSource2;

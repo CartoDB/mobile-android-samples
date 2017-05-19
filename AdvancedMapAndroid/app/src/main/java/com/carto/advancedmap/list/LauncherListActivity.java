@@ -91,6 +91,12 @@ public class LauncherListActivity extends ListActivity {
         setTitle("Advanced Mobile Samples");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        System.gc();
+    }
+
     private MapListItem[] getListItems()
     {
         MapListItem[] items = new MapListItem[samples.length];

@@ -46,7 +46,7 @@ public class CustomVectorDataSourceActivity extends MapBaseActivity {
      * A custom vector data source that generates random points and selects only visible points
      * for each view.
      */
-    private class MyVectorDataSource extends VectorDataSource {
+    private static class MyVectorDataSource extends VectorDataSource {
         private Point[] points;
 
         public MyVectorDataSource(Projection proj, int numPoints) {
