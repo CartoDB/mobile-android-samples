@@ -149,6 +149,7 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
             PackageInfo info = vector.get(i);
 
             String name = info.getNames(language).get(0);
+            System.out.println("Name: " + name);
             String[] split = name.split("/");
             int dashCount = info.getPackageId().split("-").length - 1;
 
