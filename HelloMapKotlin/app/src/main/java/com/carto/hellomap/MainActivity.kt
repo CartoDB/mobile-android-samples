@@ -7,6 +7,8 @@ import com.carto.core.MapPosVector
 import com.carto.core.Variant
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.graphics.Color
+import com.carto.layers.CartoBaseMapStyle
+import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.layers.VectorLayer
 import com.carto.projections.Projection
 import com.carto.styles.LineJoinType
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         mapView = MapView(this)
         setContentView(mapView)
+
+        mapView?.layers?.add(CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT))
 
         // Get base projection from mapView
         projection = mapView?.options?.baseProjection
