@@ -50,7 +50,7 @@ public class BaseActivity extends Activity {
         ActivityCompat.requestPermissions(this, permissions, 1);
     }
 
-    protected void alert(final String message)
+    public void alert(final String message)
     {
         if (isPaused) {
             System.out.println("Prevented alert (" + message + ") in paused activity");

@@ -17,6 +17,7 @@ import com.carto.packagemanager.PackageInfoVector;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
 import com.carto.routing.PackageManagerRoutingService;
+import com.carto.routing.ValhallaOfflineRoutingService;
 import com.carto.ui.MapView;
 
 import java.io.File;
@@ -28,8 +29,8 @@ import java.util.Collections;
  * Created by aareundo on 16/12/16.
  */
 
-@ActivityData(name = "Offline Routing", description = "Offline routing with OpenStreetMap data packages")
-public class OfflineRoutingActivity extends BaseRoutingActivity {
+@ActivityData(name = "Offline Routing (package)", description = "Offline Routing where country packages are downloaded")
+public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
     CartoPackageManager manager;
 
@@ -58,11 +59,12 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
         adapter = new PackageAdapter(this, com.carto.advancedmap.R.layout.package_item_row, packages, manager);
 
         contentView = new OfflineRoutingView(this, adapter);
+
         super.onCreate(savedInstanceState);
 
         setContentView(contentView);
 
-        service = new PackageManagerRoutingService(manager);
+        setService(new PackageManagerRoutingService(manager));
         alert("Click on the menu to see a list of countries that can be downloaded");
 
         listener = new PackageListener();
@@ -127,7 +129,6 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
     }
 
     @Override
@@ -136,7 +137,7 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
         contentView.mapView.getLayers().add(layer);
     }
 
-    ArrayList<Package> getPackages() {
+    protected ArrayList<Package> getPackages() {
 
         String language = "en";
         ArrayList<Package> packages = new ArrayList<>();
@@ -148,6 +149,7 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
             PackageInfo info = vector.get(i);
 
             String name = info.getNames(language).get(0);
+            System.out.println("Name: " + name);
             String[] split = name.split("/");
             int dashCount = info.getPackageId().split("-").length - 1;
 
@@ -164,7 +166,6 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
                 name = split[split.length - 1];
             }
 
-            System.out.println("GetPackages: " + info.getPackageId() + " - " + name + " (" + info.getNames(language).size() + ")");
             PackageStatus status = manager.getLocalPackageStatus(info.getPackageId(), -1);
             Package pkg = new Package(name, info, status);
 

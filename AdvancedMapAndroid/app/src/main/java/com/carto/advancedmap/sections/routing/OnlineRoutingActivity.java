@@ -16,6 +16,6 @@ public class OnlineRoutingActivity extends BaseRoutingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new CartoOnlineRoutingService("nutiteq.osm.car");
+        setService(new CartoOnlineRoutingService("nutiteq.osm.car"));
     }
 }

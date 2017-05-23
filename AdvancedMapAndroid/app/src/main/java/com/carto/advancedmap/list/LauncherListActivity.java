@@ -27,8 +27,9 @@ import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceA
 import com.carto.advancedmap.sections.overlaydatasources.CustomVectorDataSourceActivity;
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
+import com.carto.advancedmap.sections.routing.OfflineRoutingBBoxActivity;
 import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
-import com.carto.advancedmap.sections.routing.offline.OfflineRoutingActivity;
+import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
 import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
@@ -52,7 +53,8 @@ public class LauncherListActivity extends ListActivity {
 
             RoutingHeader.class,
             OnlineRoutingActivity.class,
-            OfflineRoutingActivity.class,
+            OfflineRoutingPackageActivity.class,
+            OfflineRoutingBBoxActivity.class,
 
             OverlayDataSourcesHeader.class,
             CustomRasterDataSourceActivity.class,
