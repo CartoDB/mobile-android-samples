@@ -71,8 +71,7 @@ class MainView(context: Context) : BaseView(context) {
 
         for (sample in samples) {
 
-            val view = GalleryRow(context)
-            view.setBackgroundColor(Color.GREEN)
+            val view = GalleryRow(context, sample)
 
             views.add(view)
             container?.addView(view)

@@ -30,6 +30,7 @@ open class BaseView(context: Context) : RelativeLayout(context) {
     open fun layoutSubviews() {
 
     }
+
 }
 
 fun MapView.setFrame(x: Int, y: Int, width: Int, height: Int) {
