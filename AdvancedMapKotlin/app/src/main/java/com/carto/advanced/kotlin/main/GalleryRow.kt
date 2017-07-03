@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.carto.advanced.kotlin.model.Sample
 import com.carto.advanced.kotlin.sections.base.base.BaseView
+import com.carto.advanced.kotlin.sections.base.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
 /**
@@ -41,7 +42,7 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
         title = TextView(context)
         title?.setTextColor(Colors.appleBlueInt)
-        title?.textSize = 8 * context.resources.displayMetrics.density
+        title?.textSize = 7 * context.resources.displayMetrics.density
         title?.typeface = Typeface.DEFAULT_BOLD
         addView(title)
 
@@ -78,32 +79,16 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
         val w: Int = frame.width - 2 * padding
         var h: Int = imageHeight
 
-        image?.layoutParams = getFrame(x, y, w, h)
+        image?.setFrame(x, y, w, h)
 
         y += h + padding
         h = title?.measuredHeight!!
 
-        title?.layoutParams = getFrame(x, y, w, h)
+        title?.setFrame(x, y, w, h)
 
         y += h + padding
         h = frame.height - (imageHeight + h + 2 * padding)
 
-        description?.layoutParams = getFrame(x, y, w, h)
-    }
-
-    fun isJellybeanOrHigher(): Boolean {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
-    }
-
-    fun getFrame(x: Int, y: Int, w: Int, h: Int): RelativeLayout.LayoutParams {
-        var parameters = RelativeLayout.LayoutParams(w, h)
-        parameters.leftMargin = x
-        parameters.topMargin = y
-        return parameters
-    }
-
-    fun updateFrame(textview: TextView, height: Int) {
-        val params = textview.layoutParams as RelativeLayout.LayoutParams
-        textview.layoutParams = getFrame(params.leftMargin, params.topMargin, params.width, height)
+        description?.setFrame(x, y, w, h)
     }
 }

@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.base.base
 
 import android.content.Context
+import android.os.Build
 import android.widget.RelativeLayout
 import com.carto.ui.MapView
 
@@ -31,13 +32,7 @@ open class BaseView(context: Context) : RelativeLayout(context) {
 
     }
 
-}
-
-fun MapView.setFrame(x: Int, y: Int, width: Int, height: Int) {
-
-    val params = RelativeLayout.LayoutParams(width, height)
-    params.leftMargin = x
-    params.topMargin = y
-
-    layoutParams = params
+    fun isJellybeanOrHigher(): Boolean {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+    }
 }
