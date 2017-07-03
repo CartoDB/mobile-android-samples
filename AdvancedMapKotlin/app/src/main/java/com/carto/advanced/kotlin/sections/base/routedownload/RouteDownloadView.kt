@@ -1,16 +1,18 @@
 package com.carto.advanced.kotlin.sections.base.routedownload
 
 import android.content.Context
-import com.carto.advanced.kotlin.sections.base.base.MapBaseView
+import com.carto.advanced.kotlin.sections.base.base.DownloadBaseView
 import com.carto.layers.CartoBaseMapStyle
 
 /**
  * Created by aareundo on 03/07/2017.
  */
-class RouteDownloadView(context: Context) : MapBaseView(context) {
+class RouteDownloadView(context: Context) : DownloadBaseView(context) {
 
     init {
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+
+        layoutSubviews()
     }
 
     override fun layoutSubviews() {

@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.base.base
 
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOnlineVectorTileLayer
+import com.carto.projections.Projection
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -11,8 +12,15 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
     var map: com.carto.ui.MapView = com.carto.ui.MapView(context)
 
+    var projection: Projection? = null
+
     init {
+
+        projection = map.options.baseProjection
+
         addView(map)
+
+        frame = CGRect(0, 0, context.resources.displayMetrics.widthPixels, context.resources.displayMetrics.heightPixels)
     }
 
     override fun layoutSubviews() {
