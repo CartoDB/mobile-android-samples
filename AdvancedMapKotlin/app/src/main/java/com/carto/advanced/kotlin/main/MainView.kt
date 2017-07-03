@@ -2,9 +2,7 @@ package com.carto.advanced.kotlin.main
 
 import android.content.Context
 import com.carto.advanced.kotlin.model.Sample
-import com.carto.advanced.kotlin.sections.base.base.BaseScrollView
-import com.carto.advanced.kotlin.sections.base.base.BaseView
-import com.carto.advanced.kotlin.sections.base.base.CGRect
+import com.carto.advanced.kotlin.sections.base.base.*
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -24,14 +22,13 @@ class MainView(context: Context) : BaseView(context) {
 
         var itemsInRow: Int = 2
 
-        // TODO improve itemsInRow logic based on mobile-dotnet-samples AdvancedMap.Droid
-        if (frame.width > frame.height) {
+        if (isLandScape()) {
             itemsInRow = 3
 
-            if (frame.width > 1024) {
+            if (isLargeTablet()) {
                 itemsInRow = 4
             }
-        } else if (frame.width > 720) {
+        } else if (isLargeTablet()) {
             itemsInRow = 3
         }
 

@@ -28,7 +28,7 @@ class StateSwitch(context: Context) : BaseView(context) {
 
         label.setTextColor(Color.WHITE)
         label.gravity = Gravity.CENTER
-        label.textSize = 8 * context.resources.displayMetrics.density
+        label.textSize = 15f
 
         addView(label)
         addView(switch)
@@ -40,7 +40,6 @@ class StateSwitch(context: Context) : BaseView(context) {
 
         switchHeight = switch.measuredHeight
         switchWidth =  switch.measuredWidth
-        print("wut")
     }
 
     fun setText(text: String) {

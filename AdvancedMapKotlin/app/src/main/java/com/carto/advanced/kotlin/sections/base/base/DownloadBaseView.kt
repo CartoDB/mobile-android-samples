@@ -32,10 +32,12 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
         onlineSwitch.setFrame(x, y, w, h)
 
-        x = 0
-        y = frame.height - (h + MapApplication.navigationBarHeight!!)
+        // I have no idea why this is necessary
+        val bonus: Int = (8 * context.resources.displayMetrics.density).toInt()
         w = frame.width
-        h = h
+        h = 100
+        x = 0
+        y = frame.height - (h + MapApplication.navigationBarHeight!! + MapApplication.statusBarHeight!! + bonus)
 
         progressLabel.setFrame(x, y, w, h)
     }

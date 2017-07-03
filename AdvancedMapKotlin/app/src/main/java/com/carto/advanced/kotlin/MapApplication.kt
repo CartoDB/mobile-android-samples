@@ -14,6 +14,7 @@ class MapApplication : Application() {
 
     companion object {
         @JvmField var navigationBarHeight: Int? = -1
+        @JvmField var statusBarHeight: Int? = -1
     }
 
     val LICENSE = "XTUMwQ0ZHWGp4MDQ0OWpiWVBtNHE5V0Y5eXc2VkU2TFJBaFVBdTA5TFFOYTlPRG42U" +
@@ -31,15 +32,18 @@ class MapApplication : Application() {
 
         MapView.registerLicense(LICENSE, this)
 
-        navigationBarHeight = getNavigationBarHeight()
+        navigationBarHeight = getItemHeight("navigation_bar_height")
+        statusBarHeight = getItemHeight("status_bar_height")
     }
 
-    fun getNavigationBarHeight(): Int {
+    fun getItemHeight(id: String): Int {
         val resources = this.resources
-        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        val resourceId = resources.getIdentifier(id, "dimen", "android")
+
         if (resourceId > 0) {
             return resources.getDimensionPixelSize(resourceId)
         }
+
         return 0
     }
 }

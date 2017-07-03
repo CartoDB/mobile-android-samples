@@ -11,6 +11,8 @@ class PackageDownloadView(context: Context) : DownloadBaseView(context) {
 
     init {
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+
+        layoutSubviews()
     }
 
     override fun layoutSubviews() {
