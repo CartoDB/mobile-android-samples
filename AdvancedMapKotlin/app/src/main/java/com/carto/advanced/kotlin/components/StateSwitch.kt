@@ -2,9 +2,7 @@ package com.carto.advanced.kotlin.components
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.view.Gravity
-import android.view.View
 import android.widget.Switch
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.base.BaseView
