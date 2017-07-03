@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.main
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -23,6 +24,14 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
     var description: TextView? = null
 
     var sample: Sample? = sample
+
+    fun getRect(): Rect {
+        val rect = Rect()
+
+        getHitRect(rect)
+
+        return rect
+    }
 
     init {
 

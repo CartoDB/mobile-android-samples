@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.model
 
 import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.citydownload.CityDownloadActivity
 import com.carto.advanced.kotlin.sections.base.clustering.ClusteringActivity
@@ -58,13 +59,13 @@ class Sample() {
 
     var description: String? = null
 
-    var activity: Type? = null
+    var activity: Class<*>? = null
 
     init {
 
     }
 
-    constructor(imageResource: Int, title: String, description: String, activity: Type) : this() {
+    constructor(imageResource: Int, title: String, description: String, activity: Class<*>) : this() {
         this.imageResource = imageResource
         this.title = title
         this.description = description

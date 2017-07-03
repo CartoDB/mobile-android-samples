@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".sections.base.styles.StyleChoiceActivity" />
         <activity android:name=".sections.base.citydownload.CityDownloadActivity" />
         <activity android:name=".sections.base.editing.EditingActivity" />
         <activity android:name=".sections.base.gpslocation.GPSLocationActivity" />
