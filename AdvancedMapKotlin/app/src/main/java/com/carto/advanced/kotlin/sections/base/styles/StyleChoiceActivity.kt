@@ -8,7 +8,12 @@ import com.carto.advanced.kotlin.sections.base.base.BaseActivity
  */
 class StyleChoiceActivity : BaseActivity() {
 
+    var contentView: StyleChoiceView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        contentView = StyleChoiceView(this)
+        setContentView(contentView)
     }
 }

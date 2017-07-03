@@ -1,7 +1,6 @@
 package com.carto.cartomap;
 
 import android.app.Application;
-
 import com.carto.ui.MapView;
 
 /**
