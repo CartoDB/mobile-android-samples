@@ -1,11 +1,10 @@
 package com.carto.advanced.kotlin.main
 
 import android.content.Context
-import android.graphics.Color
 import com.carto.advanced.kotlin.model.Sample
-import com.carto.advanced.kotlin.sections.base.BaseScrollView
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.CGRect
+import com.carto.advanced.kotlin.sections.base.base.BaseScrollView
+import com.carto.advanced.kotlin.sections.base.base.BaseView
+import com.carto.advanced.kotlin.sections.base.base.CGRect
 
 /**
  * Created by aareundo on 30/06/2017.

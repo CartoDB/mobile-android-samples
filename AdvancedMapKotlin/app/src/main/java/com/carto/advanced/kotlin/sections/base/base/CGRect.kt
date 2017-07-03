@@ -1,4 +1,4 @@
-package com.carto.advanced.kotlin.sections.base
+package com.carto.advanced.kotlin.sections.base.base
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -18,11 +18,11 @@ class CGRect(x: Int, y: Int, width: Int, height: Int) {
         this.height = height
     }
 
-    fun getBounds(): CGRect {
-        return CGRect(0, 0, width, height)
+    fun getBounds(): com.carto.advanced.kotlin.sections.base.base.CGRect {
+        return com.carto.advanced.kotlin.sections.base.base.CGRect(0, 0, width, height)
     }
 
     companion object {
-        @JvmField val empty = CGRect(0, 0, 0, 0)
+        @JvmField val empty = com.carto.advanced.kotlin.sections.base.base.CGRect(0, 0, 0, 0)
     }
 }

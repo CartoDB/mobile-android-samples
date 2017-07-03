@@ -11,7 +11,7 @@
         android:name=".MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Advanced Map"
+        android:label="ADVANCED MAP"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,7 +28,7 @@
         <activity android:name=".sections.base.packagedownload.PackageDownloadActivity" />
         <activity android:name=".sections.base.routedownload.RouteDownloadActivity" />
         <activity android:name=".sections.base.vectorelement.VectorElementActivity" />
-        <activity android:name=".sections.base.clustering.ClusteringActivity"></activity>
+        <activity android:name=".sections.base.clustering.ClusteringActivity"/>
     </application>
 
 </manifest>

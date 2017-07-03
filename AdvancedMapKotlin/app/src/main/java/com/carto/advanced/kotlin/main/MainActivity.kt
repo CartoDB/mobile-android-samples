@@ -1,10 +1,8 @@
 package com.carto.advanced.kotlin.main
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.carto.advanced.kotlin.model.Samples
-import com.carto.advanced.kotlin.sections.base.MapBaseView
 
 class MainActivity : AppCompatActivity() {
 

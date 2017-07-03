@@ -2,13 +2,15 @@ package com.carto.advanced.kotlin.main
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.carto.advanced.kotlin.model.Sample
-import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.base.BaseView
+import com.carto.advanced.kotlin.utils.Colors
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -27,22 +29,43 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
         if (isJellybeanOrHigher()) {
             background = ColorDrawable(color)
+
         } else {
             setBackgroundColor(color)
         }
 
         image = ImageView(context)
         image?.scaleType = ImageView.ScaleType.CENTER_CROP
-        image?.setImageResource(this.sample?.imageResource!!)
+
         addView(image)
 
         title = TextView(context)
-        title?.text = this.sample?.title
+        title?.setTextColor(Colors.appleBlueInt)
+        title?.textSize = 8 * context.resources.displayMetrics.density
+        title?.typeface = Typeface.DEFAULT_BOLD
         addView(title)
 
         description = TextView(context)
-        description?.text = this.sample?.description
+        description?.setTextColor(Colors.darkGrayInt)
+        description?.textSize = 6 * context.resources.displayMetrics.density
+
         addView(description)
+
+        update(sample)
+    }
+
+    fun update(sample: Sample) {
+
+        this.sample = sample
+
+        title?.text = this.sample?.title
+        title?.measure(0, 0)
+
+        description?.text = this.sample?.description
+
+        image?.setImageResource(this.sample?.imageResource!!)
+
+        layoutSubviews()
     }
 
     override fun layoutSubviews() {
@@ -57,12 +80,13 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
         image?.layoutParams = getFrame(x, y, w, h)
 
-        y += h
-        h = (frame.height - imageHeight) / 2
+        y += h + padding
+        h = title?.measuredHeight!!
 
         title?.layoutParams = getFrame(x, y, w, h)
 
-        y += h
+        y += h + padding
+        h = frame.height - (imageHeight + h + 2 * padding)
 
         description?.layoutParams = getFrame(x, y, w, h)
     }
@@ -76,5 +100,10 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
         parameters.leftMargin = x
         parameters.topMargin = y
         return parameters
+    }
+
+    fun updateFrame(textview: TextView, height: Int) {
+        val params = textview.layoutParams as RelativeLayout.LayoutParams
+        textview.layoutParams = getFrame(params.leftMargin, params.topMargin, params.width, height)
     }
 }
