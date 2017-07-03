@@ -5,9 +5,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.carto.advanced.kotlin.model.Sample
 import com.carto.advanced.kotlin.sections.base.base.BaseView
@@ -25,21 +23,12 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
     var sample: Sample? = sample
 
-    fun getRect(): Rect {
-        val rect = Rect()
-
-        getHitRect(rect)
-
-        return rect
-    }
-
     init {
 
         val color = Color.WHITE
 
         if (isJellybeanOrHigher()) {
             background = ColorDrawable(color)
-
         } else {
             setBackgroundColor(color)
         }
@@ -51,13 +40,13 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
         title = TextView(context)
         title?.setTextColor(Colors.appleBlueInt)
-        title?.textSize = 7 * context.resources.displayMetrics.density
+        title?.textSize = 14f
         title?.typeface = Typeface.DEFAULT_BOLD
         addView(title)
 
         description = TextView(context)
         description?.setTextColor(Colors.darkGrayInt)
-        description?.textSize = 6 * context.resources.displayMetrics.density
+        description?.textSize = 12f
 
         addView(description)
 

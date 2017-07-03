@@ -17,7 +17,7 @@ class MainView(context: Context) : BaseView(context) {
         container = BaseScrollView(context)
         container?.matchParent()
         addView(container)
-        frame = CGRect(0, 0, context.resources.displayMetrics.widthPixels, context.resources.displayMetrics.heightPixels)
+        setMainViewFrame()
     }
 
     override fun layoutSubviews() {

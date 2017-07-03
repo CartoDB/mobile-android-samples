@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.base.base
 
 import android.content.Context
+import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.components.ProgressLabel
 import com.carto.advanced.kotlin.components.StateSwitch
 import com.carto.projections.Projection
@@ -32,7 +33,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
         onlineSwitch.setFrame(x, y, w, h)
 
         x = 0
-        y = frame.height - h
+        y = frame.height - (h + MapApplication.navigationBarHeight!!)
         w = frame.width
         h = h
 

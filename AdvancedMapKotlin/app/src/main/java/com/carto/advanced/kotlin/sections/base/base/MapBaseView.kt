@@ -20,7 +20,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
         addView(map)
 
-        frame = CGRect(0, 0, context.resources.displayMetrics.widthPixels, context.resources.displayMetrics.heightPixels)
+        setMainViewFrame()
     }
 
     override fun layoutSubviews() {

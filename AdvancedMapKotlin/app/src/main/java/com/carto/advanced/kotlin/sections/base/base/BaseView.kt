@@ -2,10 +2,12 @@ package com.carto.advanced.kotlin.sections.base.base
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
+import android.view.WindowManager
 import android.widget.RelativeLayout
 import com.carto.ui.MapView
 
@@ -56,6 +58,15 @@ open class BaseView(context: Context) : RelativeLayout(context) {
     fun matchParent() {
         val metrics = context.resources.displayMetrics
         setFrame(0, 0, metrics.widthPixels, metrics.heightPixels)
+    }
+
+    fun setMainViewFrame() {
+        val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val size = Point()
+
+        manager.defaultDisplay.getSize(size)
+
+        frame = CGRect(0, 0, size.x, size.y)
     }
 
     open fun layoutSubviews() {

@@ -1,10 +1,9 @@
 package com.carto.advanced.kotlin;
 
 import android.app.Application;
-import android.os.Bundle
-
 import com.carto.ui.MapView;
-import com.carto.utils.Log;
+
+
 
 /**
  * Entry point for an android application.
@@ -12,6 +11,10 @@ import com.carto.utils.Log;
  * should be initialized here
  */
 class MapApplication : Application() {
+
+    companion object {
+        @JvmField var navigationBarHeight: Int? = -1
+    }
 
     val LICENSE = "XTUMwQ0ZHWGp4MDQ0OWpiWVBtNHE5V0Y5eXc2VkU2TFJBaFVBdTA5TFFOYTlPRG42U" +
             "ms3NFh3Kzh4djh1MERJPQoKYXBwVG9rZW49MTAyNjEyMjktOTIwNS00NGQzLWIzOWItZGY4N" +
@@ -27,5 +30,16 @@ class MapApplication : Application() {
 //        Log.setShowInfo(true)
 
         MapView.registerLicense(LICENSE, this)
+
+        navigationBarHeight = getNavigationBarHeight()
+    }
+
+    fun getNavigationBarHeight(): Int {
+        val resources = this.resources
+        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            return resources.getDimensionPixelSize(resourceId)
+        }
+        return 0
     }
 }
