@@ -4,7 +4,6 @@ import android.content.Context
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.components.ProgressLabel
 import com.carto.advanced.kotlin.components.StateSwitch
-import com.carto.projections.Projection
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -35,7 +34,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
         // I have no idea why this is necessary
         val bonus: Int = (8 * context.resources.displayMetrics.density).toInt()
         w = frame.width
-        h = 100
+        h = (40 * context.resources.displayMetrics.density).toInt()
         x = 0
         y = frame.height - (h + MapApplication.navigationBarHeight!! + MapApplication.statusBarHeight!! + bonus)
 

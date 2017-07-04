@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.components
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
@@ -28,7 +29,10 @@ class ProgressLabel(context: Context) : BaseView(context) {
 
         setBackgroundColor(Colors.transparentGray)
 
+        label.setTextColor(Color.WHITE)
         addView(label)
+
+        progressBar.setBackgroundColor(Colors.appleBlue)
         addView(progressBar)
     }
 
@@ -68,7 +72,7 @@ class ProgressLabel(context: Context) : BaseView(context) {
     fun updateProgressBar(progress: Float) {
 
         val width: Int = ((frame.width * progress) / 100).toInt()
-        val height: Int = 3
+        val height: Int = (3 * context.resources.displayMetrics.density).toInt()
         val y: Int = frame.height - height
 
         progressBar.setFrame(0, y, width, height)
