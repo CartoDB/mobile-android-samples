@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.components.popup
 
 import android.content.Context
+import android.graphics.Color
 import com.carto.advanced.kotlin.sections.base.base.BaseView
 
 /**
@@ -10,7 +11,13 @@ class PopupView(context: Context) : BaseView(context) {
 
     val header = SlideInPopupHeader(context)
 
-    override fun layoutSubviews() {
+    init {
+        setBackgroundColor(Color.WHITE)
 
+        addView(header)
+    }
+
+    override fun layoutSubviews() {
+        header.setFrame(0, 0, frame.width, header.totalHeight)
     }
 }
