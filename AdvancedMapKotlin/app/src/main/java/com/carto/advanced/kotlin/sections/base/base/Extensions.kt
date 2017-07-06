@@ -1,10 +1,7 @@
 package com.carto.advanced.kotlin.sections.base.base
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import com.carto.ui.MapView
 
 /**
@@ -39,6 +36,15 @@ fun ImageView.setFrame(x: Int, y: Int, width: Int, height: Int) {
 }
 
 fun Switch.setFrame(x: Int, y: Int, width: Int, height: Int) {
+
+    val params = RelativeLayout.LayoutParams(width, height)
+    params.leftMargin = x
+    params.topMargin = y
+
+    layoutParams = params
+}
+
+fun ScrollView.setFrame(x: Int, y: Int, width: Int, height: Int) {
 
     val params = RelativeLayout.LayoutParams(width, height)
     params.leftMargin = x

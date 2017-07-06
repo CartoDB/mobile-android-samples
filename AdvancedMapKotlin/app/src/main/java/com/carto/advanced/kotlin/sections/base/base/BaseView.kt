@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
+import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import com.carto.ui.MapView
@@ -15,6 +16,7 @@ import com.carto.ui.MapView
  * Created by aareundo on 30/06/2017.
  */
 open class BaseView(context: Context) : RelativeLayout(context) {
+
     var frame: CGRect = CGRect.Companion.empty
 
     override fun setBackground(background: Drawable?) {
@@ -34,6 +36,10 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         val drawable = GradientDrawable()
         drawable.setColor(color)
         background = drawable
+    }
+
+    fun getMetrics(): DisplayMetrics {
+        return context.resources.displayMetrics
     }
 
     fun setCornerRadius(radius: Float) {
