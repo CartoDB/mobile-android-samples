@@ -4,6 +4,9 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.sections.base.base.BaseView
 import com.carto.advanced.kotlin.sections.base.base.isLandScape
@@ -23,7 +26,7 @@ class SlideInPopup(context: Context) : BaseView(context) {
     var content: BaseView? = null
 
     fun isVisible(): Boolean {
-        return transparentArea.alpha <= 0
+        return transparentArea.alpha > 0.0
     }
 
     init {
@@ -94,12 +97,61 @@ class SlideInPopup(context: Context) : BaseView(context) {
         transparentArea.alpha = 0.5f
         popup.setFrame(popup.frame.x, visibleY, popup.frame.width, popup.frame.height)
         visibility = View.VISIBLE
+
+//        animateAlpha(0.5f)
+//        animateY(visibleY)
+
     }
 
     fun hide() {
         transparentArea.alpha = 0.0f
         popup.setFrame(popup.frame.x, hiddenY, popup.frame.width, popup.frame.height)
         visibility = View.GONE
+
+//        animateAlpha(0.0f)
+//        animateY(hiddenY)
+    }
+
+    val duration: Long = 200
+
+    fun animateAlpha(to: Float) {
+        val animation = AlphaAnimation(alpha, to)
+        animation.duration = duration
+        animation.start()
+    }
+
+    fun animateY(to: Int) {
+        val animation = TranslateAnimation(
+                0, popup.frame.x.toFloat(), TranslateAnimation.ABSOLUTE, popup.frame.x.toFloat(),
+                0, popup.frame.y.toFloat(), TranslateAnimation.ABSOLUTE, to.toFloat()
+        )
+
+        animation.duration = duration
+        animation.start()
+
+        animation.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationEnd(animation: Animation?) {
+                if (popup.frame.y.equals(hiddenY)) {
+                    visibility = View.GONE
+                }
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+        })
     }
 
 }
+
+
+
+
+
+
+
+

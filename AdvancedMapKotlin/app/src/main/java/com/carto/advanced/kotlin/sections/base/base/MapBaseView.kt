@@ -36,7 +36,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         addView(map)
 
         addView(popup)
-        popup.visibility = View.GONE
+        popup.hide()
 
         addButton(infoButton)
 
