@@ -47,6 +47,7 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
             alpha = 0.5f
         } else if (event?.action == MotionEvent.ACTION_UP) {
             alpha = 1.0f
+            callOnClick()
         } else if (event?.action == MotionEvent.ACTION_CANCEL) {
             alpha = 1.0f
         }

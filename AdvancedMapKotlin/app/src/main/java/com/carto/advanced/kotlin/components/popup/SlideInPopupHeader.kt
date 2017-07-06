@@ -20,6 +20,10 @@ class SlideInPopupHeader(context: Context) : BaseView(context) {
     val label = TextView(context)
     val closeButton = PopupCloseButton(context)
 
+    fun setText(text: String) {
+        label.text = text
+    }
+
     init {
         label.gravity = Gravity.CENTER
         label.textSize = 11f

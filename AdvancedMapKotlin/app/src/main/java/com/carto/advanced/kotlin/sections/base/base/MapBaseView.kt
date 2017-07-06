@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.sections.base.base
 
+import android.view.View
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
@@ -34,7 +35,8 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
         addView(map)
 
-//        addView(popup)
+        addView(popup)
+        popup.visibility = View.GONE
 
         addButton(infoButton)
 
@@ -77,6 +79,18 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
             button.setFrame(x, y, w, h)
             x += w + innerPadding
         }
+    }
+
+    fun addListeners() {
+        infoButton.setOnClickListener {
+            popup.setPopupContent(infoContent)
+            popup.popup.header.setText("INFORMATION")
+            popup.show()
+        }
+    }
+
+    fun removeListeners() {
+        infoButton.setOnClickListener(null)
     }
 
     fun addButton(button: PopupButton) {

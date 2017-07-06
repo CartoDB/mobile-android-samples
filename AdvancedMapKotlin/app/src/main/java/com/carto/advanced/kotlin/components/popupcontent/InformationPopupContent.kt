@@ -1,6 +1,9 @@
 package com.carto.advanced.kotlin.components.popupcontent
 
 import android.content.Context
+import android.graphics.Color
+import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.base.BaseView
@@ -27,6 +30,7 @@ class InformationPopupContent(context: Context) : BaseView(context) {
         addView(container)
 
         content.setTextColor(Colors.navy)
+        content.layoutParams = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         container.addView(content)
     }
 
@@ -48,12 +52,14 @@ class InformationPopupContent(context: Context) : BaseView(context) {
         h = frame.height - (headerHeight + 3 * padding)
 
         container.setFrame(x, y, w, h)
+//        content.setFrame(0, 0, w, h)
+//        content.setBackgroundColor(Color.YELLOW)
 
         // Need to set frame before, so sizeToFit() knows what the width it.
-        content.setFrame(0, 0, container.layoutParams.width, container.layoutParams.height)
-
-        content.measure(0, 0)
-
-        content.setFrame(0, 0, container.layoutParams.width, content.measuredHeight)
+//        content.setFrame(0, 0, container.layoutParams.width, container.layoutParams.height)
+//
+//        content.measure(0, 0)
+//
+//        content.setFrame(0, 0, container.layoutParams.width, content.measuredHeight)
     }
 }

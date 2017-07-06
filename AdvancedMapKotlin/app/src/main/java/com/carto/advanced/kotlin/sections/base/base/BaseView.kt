@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import com.carto.ui.MapView
@@ -81,5 +82,16 @@ open class BaseView(context: Context) : RelativeLayout(context) {
 
     fun isJellybeanOrHigher(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+    }
+
+    fun sendToBack(view: View) {
+
+        for (i in 0..childCount) {
+            val child = getChildAt(i)
+
+            if (child != null && !child.equals(view)) {
+                child.bringToFront()
+            }
+        }
     }
 }

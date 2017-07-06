@@ -2,6 +2,8 @@ package com.carto.advanced.kotlin.components.popup
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
+import android.view.View
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.sections.base.base.BaseView
 import com.carto.advanced.kotlin.sections.base.base.isLandScape
@@ -30,6 +32,14 @@ class SlideInPopup(context: Context) : BaseView(context) {
         addView(transparentArea)
 
         addView(popup)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            elevation = 11.0f
+        }
+
+        transparentArea.setOnClickListener {
+            hide()
+        }
     }
 
     override fun layoutSubviews() {
@@ -83,11 +93,13 @@ class SlideInPopup(context: Context) : BaseView(context) {
     fun show() {
         transparentArea.alpha = 0.5f
         popup.setFrame(popup.frame.x, visibleY, popup.frame.width, popup.frame.height)
+        visibility = View.VISIBLE
     }
 
     fun hide() {
         transparentArea.alpha = 0.0f
         popup.setFrame(popup.frame.x, hiddenY, popup.frame.width, popup.frame.height)
+        visibility = View.GONE
     }
 
 }
