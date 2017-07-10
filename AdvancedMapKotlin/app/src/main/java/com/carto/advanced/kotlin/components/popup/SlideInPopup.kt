@@ -100,7 +100,7 @@ class SlideInPopup(context: Context) : BaseView(context) {
 
 //        animateAlpha(0.5f)
 //        animateY(visibleY)
-
+        bringToFront()
     }
 
     fun hide() {
