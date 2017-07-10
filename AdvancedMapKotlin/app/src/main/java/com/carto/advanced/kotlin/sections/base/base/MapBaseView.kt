@@ -33,10 +33,9 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
         projection = map.options.baseProjection
 
-        addView(map)
-
         addView(popup)
-        popup.hide()
+
+        addView(map)
 
         addButton(infoButton)
 

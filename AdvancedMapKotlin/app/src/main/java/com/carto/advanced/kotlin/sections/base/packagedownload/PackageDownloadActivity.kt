@@ -13,4 +13,14 @@ class PackageDownloadActivity : BaseActivity() {
         contentView = PackageDownloadView(this)
         setContentView(contentView)
     }
+
+    override fun onResume() {
+        super.onResume()
+        contentView?.addListeners()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        contentView?.removeListeners()
+    }
 }

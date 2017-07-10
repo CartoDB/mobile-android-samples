@@ -1,12 +1,11 @@
 package com.carto.advanced.kotlin.components.popup
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.View
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.sections.base.base.BaseView
 import com.carto.advanced.kotlin.sections.base.base.isLandScape
@@ -39,10 +38,6 @@ class SlideInPopup(context: Context) : BaseView(context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             elevation = 11.0f
         }
-
-        transparentArea.setOnClickListener {
-            hide()
-        }
     }
 
     override fun layoutSubviews() {
@@ -58,8 +53,8 @@ class SlideInPopup(context: Context) : BaseView(context) {
         visibleY = h - (h / 5 * 3)
 
         if (isLandScape() || isLargeTablet()) {
-            w = (300 * context.resources.displayMetrics.density).toInt()
-            visibleY = MapApplication.navigationBarHeight!!
+            w = (400 * context.resources.displayMetrics.density).toInt()
+            visibleY = 0//MapApplication.navigationBarHeight!!
         }
 
         y += h
@@ -94,54 +89,49 @@ class SlideInPopup(context: Context) : BaseView(context) {
     }
 
     fun show() {
-        transparentArea.alpha = 0.5f
-        popup.setFrame(popup.frame.x, visibleY, popup.frame.width, popup.frame.height)
+        bringToFront()
         visibility = View.VISIBLE
 
-//        animateAlpha(0.5f)
-//        animateY(visibleY)
-        bringToFront()
+        animateAlpha(0.5f)
+        animateY(visibleY)
+
+        transparentArea.setOnClickListener {
+            hide()
+        }
     }
 
     fun hide() {
-        transparentArea.alpha = 0.0f
-        popup.setFrame(popup.frame.x, hiddenY, popup.frame.width, popup.frame.height)
-        visibility = View.GONE
+        animateAlpha(0.0f)
+        animateY(hiddenY)
 
-//        animateAlpha(0.0f)
-//        animateY(hiddenY)
+        transparentArea.setOnClickListener(null)
     }
 
     val duration: Long = 200
 
     fun animateAlpha(to: Float) {
-        val animation = AlphaAnimation(alpha, to)
-        animation.duration = duration
-        animation.start()
+        val animator = ObjectAnimator.ofFloat(transparentArea, "alpha", to)
+        animator.duration = duration
+        animator.start()
     }
 
     fun animateY(to: Int) {
-        val animation = TranslateAnimation(
-                0, popup.frame.x.toFloat(), TranslateAnimation.ABSOLUTE, popup.frame.x.toFloat(),
-                0, popup.frame.y.toFloat(), TranslateAnimation.ABSOLUTE, to.toFloat()
-        )
+        print("AnimateY: " + to)
+        val animator = ObjectAnimator.ofFloat(popup, "y", to.toFloat())
+        animator.duration = duration
+        animator.start()
 
-        animation.duration = duration
-        animation.start()
+        animator.addListener(object: Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) { }
 
-        animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationEnd(animation: Animation?) {
-                if (popup.frame.y.equals(hiddenY)) {
+            override fun onAnimationCancel(animation: Animator?) { }
+
+            override fun onAnimationRepeat(animation: Animator?) { }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                if (to == hiddenY) {
                     visibility = View.GONE
                 }
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
-
             }
         })
     }
