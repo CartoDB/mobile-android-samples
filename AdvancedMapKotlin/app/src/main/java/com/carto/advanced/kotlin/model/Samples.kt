@@ -1,17 +1,16 @@
 package com.carto.advanced.kotlin.model
 
-import android.app.Activity
-import android.support.v7.app.AppCompatActivity
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.citydownload.CityDownloadActivity
 import com.carto.advanced.kotlin.sections.base.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.base.editing.EditingActivity
+import com.carto.advanced.kotlin.sections.base.geocoding.GeocodingActivity
 import com.carto.advanced.kotlin.sections.base.gpslocation.GPSLocationActivity
 import com.carto.advanced.kotlin.sections.base.packagedownload.PackageDownloadActivity
+import com.carto.advanced.kotlin.sections.base.reversegeocoding.ReverseGeocodingActivity
 import com.carto.advanced.kotlin.sections.base.routedownload.RouteDownloadActivity
 import com.carto.advanced.kotlin.sections.base.styles.StyleChoiceActivity
 import com.carto.advanced.kotlin.sections.base.vectorelement.VectorElementActivity
-import java.lang.reflect.Type
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -26,7 +25,7 @@ class Samples {
                 Sample(R.drawable.icon_sample_route_download, "ROUTE DOWNLOAD",
                         "Route download via bounding box for offline use", RouteDownloadActivity::class.java
                 ),
-                Sample(R.drawable.icon_sample_city_download, "CITY DOWLOAD",
+                Sample(R.drawable.icon_sample_city_download, "CITY DOWNLOAD",
                         "City download via bounding box for offline use", CityDownloadActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_package_download, "PACKAGE DOWNLOAD",
@@ -43,6 +42,12 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_gps_location, "GPS LOCATION",
                         "Locates you and places a marker on the location", GPSLocationActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_geocoding, "GEOCODING",
+                        "Enter an address to locate it on the map", GeocodingActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_reverse_geocoding, "REVERSE GEOCODING",
+                        "Click on an area on the map to get information about it", ReverseGeocodingActivity::class.java
                 )
         )
     }

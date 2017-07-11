@@ -30,6 +30,8 @@
         <activity android:name=".sections.base.routedownload.RouteDownloadActivity" />
         <activity android:name=".sections.base.vectorelement.VectorElementActivity" />
         <activity android:name=".sections.base.clustering.ClusteringActivity"/>
+        <activity android:name=".sections.base.geocoding.GeocodingActivity"/>
+        <activity android:name=".sections.base.reversegeocoding.ReverseGeocodingActivity"/>
     </application>
 
 </manifest>

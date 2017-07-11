@@ -11,6 +11,8 @@ class ClusteringView(context: Context) : MapBaseView(context) {
 
     init {
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
+
+        layoutSubviews()
     }
 
     override fun layoutSubviews() {

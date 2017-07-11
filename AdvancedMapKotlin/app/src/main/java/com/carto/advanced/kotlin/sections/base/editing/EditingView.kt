@@ -11,6 +11,8 @@ class EditingView(context: Context) : MapBaseView(context) {
 
     init {
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
+
+        layoutSubviews()
     }
 
     override fun layoutSubviews() {
