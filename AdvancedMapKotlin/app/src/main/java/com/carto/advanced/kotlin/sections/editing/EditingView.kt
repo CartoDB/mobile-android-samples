@@ -1,6 +1,9 @@
 package com.carto.advanced.kotlin.sections.editing
 
 import android.content.Context
+import android.view.View
+import android.widget.ImageView
+import com.carto.R
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
@@ -22,12 +25,13 @@ import com.carto.vectorelements.Polygon
  */
 class EditingView(context: Context) : MapBaseView(context) {
 
-
     var baseLayer: CartoOnlineVectorTileLayer? = null
 
     var editLayer: EditableVectorLayer? = null
 
     var editSource: LocalVectorDataSource? = null
+
+    var trashCan = ImageView(context)
 
     init {
         baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
@@ -37,6 +41,11 @@ class EditingView(context: Context) : MapBaseView(context) {
         map.layers.add(editLayer)
 
         topBanner.setText("CLICK ON AN ELEMENT TO EDIT IT")
+
+        trashCan.setImageResource(com.carto.advanced.kotlin.R.drawable.icon_trashcan)
+        trashCan.scaleType = ImageView.ScaleType.CENTER_CROP
+        topBanner.setRightItem(trashCan)
+        trashCan.visibility = View.GONE
 
         layoutSubviews()
     }

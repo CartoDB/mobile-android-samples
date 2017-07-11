@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.carto.advanced.kotlin.utils.Colors
 
@@ -33,10 +34,25 @@ class Banner(context: Context) : BaseView(context) {
     override fun layoutSubviews() {
         super.layoutSubviews()
         label.setFrame(0, 0, frame.width, frame.height)
+
+
+        val padding = frame.height / 5
+
+        val h = frame.height - 2 * padding
+        val w = h
+
+        itemRight?.setFrame(frame.width - (w + padding), padding, w, h)
     }
 
     fun setText(text: String) {
         label.text = text
         visibility = View.VISIBLE
+    }
+
+    var itemRight: ImageView? = null
+
+    fun setRightItem(view: ImageView) {
+        itemRight = view
+        addView(view)
     }
 }
