@@ -5,6 +5,7 @@ import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.widget.Toast
 import com.carto.advanced.kotlin.main.MainActivity
 
 /**
@@ -29,5 +30,12 @@ open class BaseActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun alert(message: String) {
+        runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

@@ -31,6 +31,7 @@ class ClusteringActivity : BaseActivity() {
         // Kotlin Anko library: https://github.com/Kotlin/anko
         doAsync {
 
+            alert("Reading .geojson from assets")
             val json = getJsonFromAssets()
 
             // This is the style of a non-cluster element
@@ -45,8 +46,10 @@ class ClusteringActivity : BaseActivity() {
             val reader = GeoJSONGeometryReader()
             reader.targetProjection = contentView?.projection
 
+            alert("Parsing .geojson to feature collection")
             val features = reader.readFeatureCollection(json)
 
+            alert("Clustering...")
             val elements = VectorElementVector()
             val total = features.featureCount
 

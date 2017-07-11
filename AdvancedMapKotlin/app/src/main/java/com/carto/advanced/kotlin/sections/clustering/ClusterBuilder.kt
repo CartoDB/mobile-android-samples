@@ -27,7 +27,7 @@ class ClusterBuilder : ClusterElementBuilder() {
         val count = elements?.size()!!
         var style = findByKey(count)
 
-        if (count >= 0.0) {
+        if (count <= 1.0) {
             style = (elements.get(0) as Marker).style
         }
 
