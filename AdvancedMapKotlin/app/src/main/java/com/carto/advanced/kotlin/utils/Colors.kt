@@ -14,6 +14,8 @@ class Colors {
 
         @JvmField val darkGrayInt = Color.parseColor("#5A5A5A")
 
+        @JvmField val green = Color.parseColor("#73C86B")
+
         @JvmField val locationRed = Color.rgb(215, 82, 75)
 
         @JvmField val navy = Color.rgb(22, 41, 69)

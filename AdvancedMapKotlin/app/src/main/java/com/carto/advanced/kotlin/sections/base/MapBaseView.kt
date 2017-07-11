@@ -15,6 +15,8 @@ import com.carto.projections.Projection
 
 open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
+    var topBanner: Banner = Banner(context)
+
     var map: com.carto.ui.MapView = com.carto.ui.MapView(context)
 
     val popup = SlideInPopup(context)
@@ -35,6 +37,8 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         addView(popup)
 
         addView(map)
+
+        addView(topBanner)
 
         addButton(infoButton)
 
@@ -77,6 +81,13 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
             button.setFrame(x, y, w, h)
             x += w + innerPadding
         }
+
+        x = 0
+        y = 0
+        w = frame.width
+        h = frame.height / 12
+
+        topBanner.setFrame(x, y, w, h)
     }
 
     fun addListeners() {

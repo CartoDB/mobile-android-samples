@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.sections.base
 
+import android.graphics.Color
 import android.view.View
 import android.widget.*
 import com.carto.ui.MapView
@@ -73,4 +74,14 @@ fun BaseView.isLargeTablet(): Boolean {
 
 fun BaseView.isLandScape(): Boolean {
     return frame.width > frame.height
+}
+
+fun Int.toCartoColor(): com.carto.graphics.Color {
+
+    val r = Color.red(this).toShort()
+    val g = Color.green(this).toShort()
+    val b = Color.blue(this).toShort()
+    val a = Color.alpha(this).toShort()
+
+    return com.carto.graphics.Color(r, g, b, a)
 }

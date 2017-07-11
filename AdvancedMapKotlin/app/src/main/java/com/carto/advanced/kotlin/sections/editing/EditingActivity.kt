@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.editing
 
 import android.os.Bundle
 import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.layers.VectorEditEventListener
 
 class EditingActivity : BaseActivity() {
 
@@ -17,6 +18,9 @@ class EditingActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         contentView?.addListeners()
+
+        contentView?.addElements()
+
     }
 
     override fun onPause() {
