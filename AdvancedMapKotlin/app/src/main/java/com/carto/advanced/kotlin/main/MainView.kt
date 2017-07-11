@@ -2,7 +2,7 @@ package com.carto.advanced.kotlin.main
 
 import android.content.Context
 import com.carto.advanced.kotlin.model.Sample
-import com.carto.advanced.kotlin.sections.base.base.*
+import com.carto.advanced.kotlin.sections.base.*
 
 /**
  * Created by aareundo on 30/06/2017.

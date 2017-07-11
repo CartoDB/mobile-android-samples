@@ -1,16 +1,16 @@
 package com.carto.advanced.kotlin.model
 
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.base.citydownload.CityDownloadActivity
-import com.carto.advanced.kotlin.sections.base.clustering.ClusteringActivity
-import com.carto.advanced.kotlin.sections.base.editing.EditingActivity
-import com.carto.advanced.kotlin.sections.base.geocoding.GeocodingActivity
-import com.carto.advanced.kotlin.sections.base.gpslocation.GPSLocationActivity
-import com.carto.advanced.kotlin.sections.base.packagedownload.PackageDownloadActivity
-import com.carto.advanced.kotlin.sections.base.reversegeocoding.ReverseGeocodingActivity
-import com.carto.advanced.kotlin.sections.base.routedownload.RouteDownloadActivity
-import com.carto.advanced.kotlin.sections.base.styles.StyleChoiceActivity
-import com.carto.advanced.kotlin.sections.base.vectorelement.VectorElementActivity
+import com.carto.advanced.kotlin.sections.citydownload.CityDownloadActivity
+import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
+import com.carto.advanced.kotlin.sections.editing.EditingActivity
+import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
+import com.carto.advanced.kotlin.sections.gpslocation.GPSLocationActivity
+import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
+import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
+import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
+import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity
+import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity
 
 /**
  * Created by aareundo on 30/06/2017.

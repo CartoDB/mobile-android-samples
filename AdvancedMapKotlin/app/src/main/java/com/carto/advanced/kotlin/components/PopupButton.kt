@@ -6,8 +6,8 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.MotionEvent
 import android.widget.ImageView
-import com.carto.advanced.kotlin.sections.base.base.BaseView
-import com.carto.advanced.kotlin.sections.base.base.setFrame
+import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.setFrame
 
 /**
  * Created by aareundo on 04/07/2017.

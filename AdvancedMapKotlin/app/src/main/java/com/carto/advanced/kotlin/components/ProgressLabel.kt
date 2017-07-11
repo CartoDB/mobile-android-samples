@@ -5,8 +5,8 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
-import com.carto.advanced.kotlin.sections.base.base.BaseView
-import com.carto.advanced.kotlin.sections.base.base.setFrame
+import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.core.MapPos
 import java.lang.Math.round

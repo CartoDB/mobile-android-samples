@@ -1,13 +1,12 @@
 package com.carto.advanced.kotlin.components.popupcontent
 
 import android.content.Context
-import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import com.carto.advanced.kotlin.sections.base.base.BaseView
-import com.carto.advanced.kotlin.sections.base.base.setFrame
+import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
 /**
