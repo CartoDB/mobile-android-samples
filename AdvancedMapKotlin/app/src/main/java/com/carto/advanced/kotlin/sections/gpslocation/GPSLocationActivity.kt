@@ -1,6 +1,8 @@
 package com.carto.advanced.kotlin.sections.gpslocation
 
 import android.Manifest
+import android.content.Context
+import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
@@ -32,17 +34,52 @@ class GPSLocationActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         contentView?.removeListeners()
+
+        manager?.removeUpdates(listener)
     }
 
     override fun onPermissionsGranted(granted: Boolean) {
 
         if (granted) {
-
+            initializeLocationManager()
         } else {
             val text = "Fine, so we won't track your location"
-            contentView?.topBanner?.setText(text)
-            contentView?.layoutSubviews()
+            contentView?.showBanner(text)
             contentView?.switch?.visibility = View.GONE
         }
+    }
+
+    fun initializeLocationManager() {
+
+        manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        listener = CartoLocationListener()
+
+        val providers = manager?.getProviders(true)!!
+
+        if (providers.size == 0) {
+            val text = "Cannot get location, no location providers enabled. Check device settings"
+            contentView?.showBanner(text)
+        }
+
+        for (provider in providers) {
+            manager?.requestLocationUpdates(provider, 1000, 50.0f, listener)
+        }
+    }
+
+    inner class CartoLocationListener : android.location.LocationListener {
+
+        override fun onLocationChanged(location: Location?) {
+            contentView?.showUserAt(location!!)
+        }
+
+        override fun onProviderDisabled(provider: String?) {
+        }
+
+        override fun onProviderEnabled(provider: String?) {
+        }
+
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        }
+
     }
 }

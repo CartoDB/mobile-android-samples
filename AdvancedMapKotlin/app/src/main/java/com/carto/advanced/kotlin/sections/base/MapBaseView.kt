@@ -113,4 +113,9 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         map.layers.add(layer)
         return layer
     }
+
+    fun showBanner(text: String) {
+        topBanner.setText(text)
+        layoutSubviews()
+    }
 }
