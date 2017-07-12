@@ -22,6 +22,8 @@ class Colors {
 
         @JvmField val navy = Color.rgb(22, 41, 69)
 
+        @JvmField val transparentNavy = Color.argb(150, 22, 41, 69)
+
         @JvmField val transparentGray = Color.argb(150, 50, 50, 50)
     }
 }
