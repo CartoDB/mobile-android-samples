@@ -16,4 +16,14 @@ class StyleChoiceActivity : BaseActivity() {
         contentView = StyleChoiceView(this)
         setContentView(contentView)
     }
+
+    override fun onResume() {
+        super.onResume()
+        contentView?.addListeners()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        contentView?.removeListeners()
+    }
 }

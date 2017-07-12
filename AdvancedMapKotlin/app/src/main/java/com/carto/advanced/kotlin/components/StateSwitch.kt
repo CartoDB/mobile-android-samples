@@ -31,7 +31,7 @@ class StateSwitch(context: Context) : BaseView(context) {
         addView(label)
         addView(switch)
 
-        setText("ONLINE")
+        setText(" ONLINE")
         switch.isChecked = true
 
         switch.measure(0, 0)

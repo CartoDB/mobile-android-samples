@@ -21,7 +21,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
     override fun layoutSubviews() {
         super.layoutSubviews()
 
-        val padding: Int = 5
+        val padding: Int = (5 * context.resources.displayMetrics.density).toInt()
 
         var w: Int = onlineSwitch.getTotalWidth()
         var h: Int = onlineSwitch.getTotalHeight()
