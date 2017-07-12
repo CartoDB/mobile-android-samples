@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.ListView
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
@@ -21,7 +22,6 @@ class PackagePopupContent(context: Context) : BaseView(context) {
 
     override fun layoutSubviews() {
         super.layoutSubviews()
-
         list.setFrame(0, 0, frame.width, frame.height)
     }
 

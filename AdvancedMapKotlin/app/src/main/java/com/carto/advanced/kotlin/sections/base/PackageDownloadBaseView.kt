@@ -6,6 +6,7 @@ import android.view.View
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent
+import com.carto.advanced.kotlin.utils.Package
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOfflineVectorTileLayer
 import com.carto.layers.CartoOnlineVectorTileLayer
@@ -15,7 +16,7 @@ import com.carto.packagemanager.PackageStatus
 /**
  * Created by aareundo on 12/07/2017.
  */
-class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
+open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
 
     var countryButton: PopupButton? = null
 
@@ -36,7 +37,7 @@ class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
         packageContent = PackagePopupContent(context)
     }
 
-    override fun layoutSubviews() {
+    open override fun layoutSubviews() {
         super.layoutSubviews()
     }
 
@@ -86,7 +87,7 @@ class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
         (context as Activity).runOnUiThread {
 
             if (this.currentDownload == null) {
-                // TODO in case a download has been started and the controller is reloaded
+                // TODO in case a download has been started and the activity is reloaded
                 return@runOnUiThread
             }
 
@@ -125,6 +126,56 @@ class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
     fun getPackages(): MutableList<com.carto.advanced.kotlin.utils.Package> {
 
         val list = mutableListOf<com.carto.advanced.kotlin.utils.Package>()
+
+        val vector = manager?.serverPackages
+        val count = vector!!.size().toInt()
+
+        for (i in 0..count - 1) {
+            val info = vector.get(i)
+            val name = info?.name
+
+            val item = Package()
+
+            if (!name!!.startsWith(folder)) {
+                // Belongs to a different folder,
+                // should not be added if name is e.g. Asia/, while folder is /Europe
+                continue
+            }
+
+            var modified = name.substring(folder.length)
+            val index = modified.indexOf("/")
+
+            if (index == -1) {
+                // This is an actual package
+                item.id = info.packageId
+                item.name = modified
+                item.status = manager?.getLocalPackageStatus(item.id, -1)
+                item.info = info
+            } else {
+                // This is a package group
+                modified = modified.substring(index)
+
+                val found = list.filter { name == modified }
+
+                if (found.isEmpty()) {
+                    // If there are none, add a package group if we don't have an existing list item
+                    item.name = modified
+                } else if (found.size == 1 && found[0].info != null) {
+                    // Sometimes we need to add two labels with the same name.
+                    // One a downloadable package and the other pointing to a list of said country's counties,
+                    // such as with Spain, Germany, France, Great Britain
+
+                    // If there is one existing package and its info isn't null,
+                    // we will add a "parent" package containing subpackages (or package group)
+                    item.name = modified
+                } else {
+                    // Shouldn't be added, as both cases are accounted for
+                    continue
+                }
+            }
+
+            list.add(item)
+        }
 
         return  list
     }
