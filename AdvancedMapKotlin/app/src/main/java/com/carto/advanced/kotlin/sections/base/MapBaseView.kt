@@ -90,7 +90,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         topBanner.setFrame(x, y, w, h)
     }
 
-    fun addListeners() {
+    open fun addListeners() {
         infoButton.setOnClickListener {
             popup.setPopupContent(infoContent)
             popup.popup.header.setText("INFORMATION")
@@ -98,7 +98,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         }
     }
 
-    fun removeListeners() {
+    open fun removeListeners() {
         infoButton.setOnClickListener(null)
     }
 

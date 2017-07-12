@@ -54,6 +54,15 @@ fun ScrollView.setFrame(x: Int, y: Int, width: Int, height: Int) {
     layoutParams = params
 }
 
+fun ListView.setFrame(x: Int, y: Int, width: Int, height: Int) {
+
+    val params = RelativeLayout.LayoutParams(width, height)
+    params.leftMargin = x
+    params.topMargin = y
+
+    layoutParams = params
+}
+
 fun BaseView.isLargeTablet(): Boolean {
 
     var greater = height
