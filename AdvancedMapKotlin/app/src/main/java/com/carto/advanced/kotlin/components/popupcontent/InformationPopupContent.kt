@@ -1,7 +1,9 @@
 package com.carto.advanced.kotlin.components.popupcontent
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
+import android.text.method.ScrollingMovementMethod
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
@@ -18,8 +20,7 @@ class InformationPopupContent(context: Context) : BaseView(context) {
 
     val header = TextView(context)
 
-    val content = JustifiedTextView(context)
-    val container = ScrollView(context)
+    val content = TextView(context)
 
     init {
 
@@ -29,15 +30,11 @@ class InformationPopupContent(context: Context) : BaseView(context) {
 
         addView(header)
 
-        addView(container)
-
         content.setTextColor(Colors.navy)
         content.textSize = 15.0f
-        container.addView(content)
-
-        var layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-
-//        content.layoutParams = layout
+        content.maxLines = Int.MAX_VALUE
+        content.movementMethod = ScrollingMovementMethod()
+        addView(content)
 
     }
 
@@ -47,24 +44,19 @@ class InformationPopupContent(context: Context) : BaseView(context) {
 
         val headerHeight: Int = (40 * density).toInt()
         val padding: Int = (5 * density).toInt()
+        var leftPadding = 2 * padding
 
         val x: Int = 2 * padding
         var y: Int = padding
-        val h: Int = headerHeight
+        var h: Int = headerHeight
         val w: Int = frame.width - 4 * padding
 
         header.setFrame(x, y, w, h)
 
-        var layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        y += h
+        h = frame.height - (headerHeight + padding)
 
-//        content.layoutParams = layout
-
-        layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        layout.topMargin = y
-        layout.leftMargin = 2 * padding
-        layout.rightMargin = 2 * padding
-
-        container.layoutParams = layout
+        content.setFrame(x, y, w, h)
     }
 
     fun setTitle(text: String) {

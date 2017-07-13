@@ -16,6 +16,11 @@ import android.widget.TextView
  */
 class JustifiedTextView(context: Context) : TextView(context) {
 
+    /**
+     * Copied and translated from:
+     * https://github.com/ufo22940268/android-justifiedtextview
+     */
+
     private var mLineY: Int = 0
     private var mViewWidth: Int = 0
 
