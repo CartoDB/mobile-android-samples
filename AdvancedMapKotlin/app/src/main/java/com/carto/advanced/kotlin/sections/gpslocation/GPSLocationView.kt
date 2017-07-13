@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Location
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.StateSwitch
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
@@ -24,6 +25,10 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
     var source: LocalVectorDataSource? = null
 
     init {
+
+        title = Texts.gpsLocationInfoHeader
+        description = Texts.gpsLocationInfoContainer
+
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
 
         addView(switch)

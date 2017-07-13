@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import com.carto.R
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
@@ -34,6 +35,10 @@ class EditingView(context: Context) : MapBaseView(context) {
     var trashCan = ImageView(context)
 
     init {
+
+        title = Texts.objectEditingInfoHeader
+        description = Texts.objectEditingInfoContainer
+
         baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
 
         editSource = LocalVectorDataSource(projection)

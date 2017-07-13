@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.vectorelement
 
 import android.content.Context
 import com.carto.advanced.kotlin.R
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
@@ -32,6 +33,10 @@ class VectorElementView(context: Context) : MapBaseView(context) {
     var objectLayer: VectorLayer? = null
 
     init {
+
+        title = Texts.vectorElementsInfoHeader
+        description = Texts.vectorElementsInfoContainer
+
         baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
 
         source = LocalVectorDataSource(projection)

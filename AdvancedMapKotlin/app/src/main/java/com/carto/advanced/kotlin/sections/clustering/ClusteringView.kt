@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.clustering
 
 import android.content.Context
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.CartoBaseMapStyle
@@ -13,6 +14,10 @@ import com.carto.vectorelements.VectorElementVector
 class ClusteringView(context: Context) : MapBaseView(context) {
 
     init {
+
+        title = Texts.clusteringInfoHeader
+        description = Texts.clusteringInfoContainer
+
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
 
         layoutSubviews()

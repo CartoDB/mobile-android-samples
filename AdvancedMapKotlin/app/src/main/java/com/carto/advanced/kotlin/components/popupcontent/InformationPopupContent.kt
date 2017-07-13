@@ -1,11 +1,13 @@
 package com.carto.advanced.kotlin.components.popupcontent
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.JustifiedTextView
 import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
@@ -16,21 +18,27 @@ class InformationPopupContent(context: Context) : BaseView(context) {
 
     val header = TextView(context)
 
-    val content = TextView(context)
+    val content = JustifiedTextView(context)
     val container = ScrollView(context)
 
     init {
 
-        header.textSize = 14.0f
+        header.textSize = 18.0f
         header.setTextColor(Colors.navy)
+        header.typeface = Typeface.DEFAULT_BOLD
 
         addView(header)
 
         addView(container)
 
         content.setTextColor(Colors.navy)
-        content.layoutParams = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        content.textSize = 15.0f
         container.addView(content)
+
+        var layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+
+//        content.layoutParams = layout
+
     }
 
     override fun layoutSubviews() {
@@ -42,23 +50,31 @@ class InformationPopupContent(context: Context) : BaseView(context) {
 
         val x: Int = 2 * padding
         var y: Int = padding
-        var h: Int = headerHeight
+        val h: Int = headerHeight
         val w: Int = frame.width - 4 * padding
 
         header.setFrame(x, y, w, h)
 
-        y += h + padding
-        h = frame.height - (headerHeight + 3 * padding)
+        var layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-        container.setFrame(x, y, w, h)
-//        content.setFrame(0, 0, w, h)
-//        content.setBackgroundColor(Color.YELLOW)
+//        content.layoutParams = layout
 
-        // Need to set frame before, so sizeToFit() knows what the width it.
-//        content.setFrame(0, 0, container.layoutParams.width, container.layoutParams.height)
-//
-//        content.measure(0, 0)
-//
-//        content.setFrame(0, 0, container.layoutParams.width, content.measuredHeight)
+        layout = RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        layout.topMargin = y
+        layout.leftMargin = 2 * padding
+        layout.rightMargin = 2 * padding
+
+        container.layoutParams = layout
     }
+
+    fun setTitle(text: String) {
+        header.text = text
+        layoutSubviews()
+    }
+
+    fun setDescription(text: String) {
+        content.text = text
+        layoutSubviews()
+    }
+
 }

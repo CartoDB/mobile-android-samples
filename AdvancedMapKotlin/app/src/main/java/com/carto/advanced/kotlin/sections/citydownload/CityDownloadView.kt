@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityPopupContent
 import com.carto.advanced.kotlin.model.City
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.DownloadBaseView
 import com.carto.packagemanager.PackageStatus
 
@@ -19,6 +20,10 @@ class CityDownloadView(context: Context) : DownloadBaseView(context) {
     var cityContent = CityPopupContent(context)
 
     init {
+
+        title = Texts.cityDownloadInfoHeader
+        description = Texts.cityDownloadInfoContainer
+
         addButton(cityButton)
 
         layoutSubviews()

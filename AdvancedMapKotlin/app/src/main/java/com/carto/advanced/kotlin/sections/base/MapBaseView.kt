@@ -90,10 +90,15 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         topBanner.setFrame(x, y, w, h)
     }
 
+    var title = ""
+    var description = ""
+
     open fun addListeners() {
         infoButton.setOnClickListener {
             popup.setPopupContent(infoContent)
             popup.popup.header.setText("INFORMATION")
+            infoContent.setTitle(title!!)
+            infoContent.setDescription(description!!)
             popup.show()
         }
     }

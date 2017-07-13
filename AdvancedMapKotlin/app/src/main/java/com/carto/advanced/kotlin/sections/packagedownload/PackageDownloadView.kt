@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.packagedownload
 
 import android.content.Context
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.DownloadBaseView
 import com.carto.advanced.kotlin.sections.base.PackageDownloadBaseView
 import com.carto.layers.CartoBaseMapStyle
@@ -11,6 +12,9 @@ import com.carto.layers.CartoBaseMapStyle
 class PackageDownloadView(context: Context) : PackageDownloadBaseView(context) {
 
     init {
+
+        title = Texts.packageDownloadInfoHeader
+        description = Texts.packageDownloadInfoContainer
 
         layoutSubviews()
     }

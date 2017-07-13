@@ -50,7 +50,7 @@ class SlideInPopup(context: Context) : BaseView(context) {
         transparentArea.setFrame(x, y, w, h)
 
         hiddenY = h
-        visibleY = h - (h / 5 * 3)
+        visibleY = h - (h / 5 * 3) - 200
 
         if (isLandScape() || isLargeTablet()) {
             w = (400 * context.resources.displayMetrics.density).toInt()
@@ -82,6 +82,7 @@ class SlideInPopup(context: Context) : BaseView(context) {
             popup.removeView(content)
             this.content = null
         }
+
         this.content = content
         popup.addView(content)
 

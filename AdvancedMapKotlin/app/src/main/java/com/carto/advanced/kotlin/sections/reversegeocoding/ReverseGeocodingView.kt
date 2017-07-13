@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.reversegeocoding
 
 import android.content.Context
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.layers.CartoBaseMapStyle
 
@@ -10,6 +11,10 @@ import com.carto.layers.CartoBaseMapStyle
 class ReverseGeocodingView(context: Context) : MapBaseView(context) {
 
     init {
+
+        title = Texts.reverseGeocodingInfoHeader
+        description = Texts.reverseGeocodingInfoContainer
+
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
 
         layoutSubviews()

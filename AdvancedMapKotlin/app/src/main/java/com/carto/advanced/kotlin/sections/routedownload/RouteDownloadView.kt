@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.routedownload
 
 import android.content.Context
+import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.DownloadBaseView
 import com.carto.layers.CartoBaseMapStyle
 
@@ -10,6 +11,10 @@ import com.carto.layers.CartoBaseMapStyle
 class RouteDownloadView(context: Context) : DownloadBaseView(context) {
 
     init {
+
+        title = Texts.routeDownloadInfoHeader
+        description = Texts.routeDownloadInfoContainer
+
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
 
         layoutSubviews()
