@@ -80,7 +80,26 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
     fun onPackageClick(item: com.carto.advanced.kotlin.utils.Package) {
 
         if (item.isGroup()) {
+            folder = folder + item.name + "/"
+            packageContent?.addPackages(getPackages())
+            popup.popup.header.backButton.visibility = View.VISIBLE
+        } else {
 
+            currentDownload = item
+            val action = item.getActionText()
+
+            if (action == Package.ACTION_DOWNLOAD) {
+                manager?.startPackageDownload(item.id)
+                progressLabel.show()
+            } else if (action == Package.ACTION_PAUSE) {
+                manager?.setPackagePriority(item.id, -1)
+            } else if (action == Package.ACTION_RESUME) {
+                manager?.setPackagePriority(item.id, 0)
+            } else if (action == Package.ACTION_CANCEL) {
+                manager?.cancelPackageTasks(item.id)
+            } else if (action == Package.ACTION_REMOVE) {
+                manager?.startPackageRemove(item.id)
+            }
         }
     }
 

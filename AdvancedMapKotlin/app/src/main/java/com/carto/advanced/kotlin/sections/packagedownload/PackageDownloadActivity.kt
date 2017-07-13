@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.AdapterView
+import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.packagemanager.CartoPackageManager
@@ -48,6 +49,13 @@ class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener 
                 runOnUiThread {
                     contentView?.downloadComplete(id!!)
                 }
+            }
+        }
+
+        contentView?.packageContent?.list?.setOnItemClickListener { parent, view, position, id ->
+            run {
+                val cell = view as PackageCell
+                contentView?.onPackageClick(cell.item!!)
             }
         }
 

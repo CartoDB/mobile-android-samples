@@ -117,7 +117,7 @@ class PackageCell(context: Context) : BaseView(context) {
         subtitle.setFrame(x, y, w, h)
 
         w = (82 * context.resources.displayMetrics.density).toInt()
-        h = frame.height / 3 * 2
+        h = frame.height / 5 * 3
         x = frame.width - (w + leftPadding)
         y = frame.height / 2 - h / 2
 
@@ -151,12 +151,12 @@ class PackageCell(context: Context) : BaseView(context) {
         val action = item.getActionText()
         statusIndicator.text = action
 
+        var width = 0
         if (action == Package.ACTION_DOWNLOAD) {
-            (statusIndicator.background as GradientDrawable).setStroke(1, Colors.appleBlue)
-        } else {
-            (statusIndicator.background as GradientDrawable).setStroke(0, Colors.appleBlue)
+            width = (1 * context.displayMetrics.density).toInt()
         }
 
+        (statusIndicator.background as GradientDrawable).setStroke(width, Colors.appleBlue)
         if (this.item?.status == null) {
             progressIndicator.frame = CGRect.empty
             return
