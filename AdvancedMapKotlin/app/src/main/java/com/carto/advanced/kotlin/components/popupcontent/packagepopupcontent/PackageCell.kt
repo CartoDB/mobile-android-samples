@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.CGRect
 import com.carto.advanced.kotlin.sections.base.setFrame
@@ -34,24 +35,25 @@ class PackageCell(context: Context) : BaseView(context) {
 
     init {
 
-        val titleSize = 13.0f
+        val titleSize = 15.0f
         val titleColor = Colors.navy
 
         textLabel.textSize = titleSize
         textLabel.setTextColor(titleColor)
+        textLabel.gravity = Gravity.CENTER_VERTICAL
         addView(textLabel)
 
         title.textSize = titleSize
         title.setTextColor(titleColor)
         addView(title)
 
-        subtitle.textSize = 11.0f
+        subtitle.textSize = 13.0f
         subtitle.setTextColor(Color.LTGRAY)
         addView(subtitle)
 
         statusIndicator.gravity = Gravity.CENTER
         statusIndicator.setTextColor(Colors.appleBlue)
-        statusIndicator.textSize = 11.0f
+        statusIndicator.textSize = 13.0f
 
         val drawable = GradientDrawable()
         drawable.cornerRadius = 5.0f
@@ -63,6 +65,9 @@ class PackageCell(context: Context) : BaseView(context) {
         }
 
         addView(statusIndicator)
+
+        forwardIcon.setImageResource(R.drawable.icon_forward_blue)
+        forwardIcon.scaleType = ImageView.ScaleType.CENTER_CROP
         addView(forwardIcon)
 
         addView(progressIndicator)
@@ -71,6 +76,10 @@ class PackageCell(context: Context) : BaseView(context) {
     val leftPadding: Int = (15 * context.resources.displayMetrics.density).toInt()
 
     override fun layoutSubviews() {
+
+        if (item == null) {
+            return
+        }
 
         if (item!!.isGroup()) {
 
@@ -85,6 +94,8 @@ class PackageCell(context: Context) : BaseView(context) {
             val y: Int = frame.height / 2 - h / 2
 
             forwardIcon.setFrame(x, y, w, h)
+            textLabel.setFrame(leftPadding, 0, frame.width, frame.height)
+            return
         }
 
         title.measure(0, 0)

@@ -12,6 +12,7 @@ import com.carto.layers.CartoOfflineVectorTileLayer
 import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageStatus
+import org.jetbrains.anko.collections.toAndroidPair
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -153,9 +154,9 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
                 item.info = info
             } else {
                 // This is a package group
-                modified = modified.substring(index)
+                modified = modified.substring(0, index)
 
-                val found = list.filter { name == modified }
+                val found = list.filter { p: Package -> p.name == modified }
 
                 if (found.isEmpty()) {
                     // If there are none, add a package group if we don't have an existing list item

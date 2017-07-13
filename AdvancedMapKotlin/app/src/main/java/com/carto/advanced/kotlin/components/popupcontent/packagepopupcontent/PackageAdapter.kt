@@ -3,7 +3,9 @@ package com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.ArrayAdapter
+import com.carto.advanced.kotlin.sections.base.CGRect
 import com.carto.advanced.kotlin.utils.Package
 
 /**
@@ -12,6 +14,8 @@ import com.carto.advanced.kotlin.utils.Package
 class PackageAdapter(context: Context?, resource: Int) : ArrayAdapter<Package>(context, resource) {
 
     var packages: MutableList<Package> = mutableListOf()
+
+    var width: Int = 0
 
     override fun getCount(): Int {
         return packages.size
@@ -29,11 +33,16 @@ class PackageAdapter(context: Context?, resource: Int) : ArrayAdapter<Package>(c
 
         if (convertView == null) {
             cell = PackageCell(context)
+
+            val height = 200
+            cell.layoutParams = AbsListView.LayoutParams(width, height)
+            cell.frame = CGRect(0, 0, width, height)
         } else {
             cell = convertView as PackageCell
         }
 
         cell.update(item)
+        cell.layoutSubviews()
 
         return cell
     }

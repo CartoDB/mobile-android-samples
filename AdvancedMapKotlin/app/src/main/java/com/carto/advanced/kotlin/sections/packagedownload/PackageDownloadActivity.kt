@@ -33,15 +33,21 @@ class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener 
 
         contentView?.manager?.packageManagerListener = object: PackageManagerListener() {
             override fun onPackageListUpdated() {
-                contentView?.updatePackages()
+                runOnUiThread {
+                    contentView?.updatePackages()
+                }
             }
 
             override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
-                contentView?.onStatusChanged(status!!)
+                runOnUiThread {
+                    contentView?.onStatusChanged(status!!)
+                }
             }
 
             override fun onPackageUpdated(id: String?, version: Int) {
-                contentView?.downloadComplete(id!!)
+                runOnUiThread {
+                    contentView?.downloadComplete(id!!)
+                }
             }
         }
 

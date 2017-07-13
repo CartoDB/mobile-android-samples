@@ -17,11 +17,13 @@ class PackagePopupContent(context: Context) : BaseView(context) {
 
     init {
         list.adapter = adapter
+
         addView(list)
     }
 
     override fun layoutSubviews() {
         super.layoutSubviews()
+        adapter.width = frame.width
         list.setFrame(0, 0, frame.width, frame.height)
     }
 
