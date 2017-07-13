@@ -32,6 +32,9 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
     var manager: CartoPackageManager? = null
 
     init {
+
+        setOnlineMode()
+
         countryButton = PopupButton(context, R.drawable.icon_global)
         addButton(countryButton!!)
 
@@ -67,7 +70,15 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
     }
 
     fun setOnlineMode() {
-        map.layers?.remove(offlineLayer)
+
+        if (onlineLayer == null) {
+            onlineLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+        }
+
+        if (offlineLayer != null) {
+            map.layers?.remove(offlineLayer)
+        }
+
         map.layers?.insert(0, onlineLayer)
     }
 

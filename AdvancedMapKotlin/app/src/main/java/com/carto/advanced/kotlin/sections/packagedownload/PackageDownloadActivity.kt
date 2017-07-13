@@ -1,17 +1,15 @@
 package com.carto.advanced.kotlin.sections.packagedownload
 
 import android.os.Bundle
-import android.os.Environment
-import android.view.View
-import android.widget.AdapterView
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
+import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 
-class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener {
+class PackageDownloadActivity : BaseActivity() {
 
     var contentView: PackageDownloadView? = null
 
@@ -30,7 +28,6 @@ class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener 
     override fun onResume() {
         super.onResume()
         contentView?.addListeners()
-        contentView?.packageContent?.list?.onItemClickListener = this
 
         contentView?.manager?.packageManagerListener = object: PackageManagerListener() {
             override fun onPackageListUpdated() {
@@ -59,6 +56,15 @@ class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener 
             }
         }
 
+        contentView?.onlineSwitch?.switch?.onCheckedChange { buttonView, isChecked ->
+            run {
+                if (isChecked) {
+                    contentView?.setOnlineMode()
+                } else {
+                    contentView?.setOfflineMode()
+                }
+        } }
+
         contentView?.manager?.start()
         contentView?.manager?.startPackageListDownload()
     }
@@ -71,11 +77,9 @@ class PackageDownloadActivity : BaseActivity(), AdapterView.OnItemClickListener 
 
         contentView?.manager?.packageManagerListener = null
 
-        contentView?.manager?.stop(false)
-    }
+        contentView?.onlineSwitch?.switch?.setOnCheckedChangeListener(null)
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        contentView?.manager?.stop(false)
     }
 
 }

@@ -11,7 +11,6 @@ import com.carto.layers.CartoBaseMapStyle
 class PackageDownloadView(context: Context) : PackageDownloadBaseView(context) {
 
     init {
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
 
         layoutSubviews()
     }
