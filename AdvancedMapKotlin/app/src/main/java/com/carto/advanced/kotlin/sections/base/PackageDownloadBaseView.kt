@@ -23,17 +23,10 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
 
     var packageContent: PackagePopupContent? = null
 
-    var onlineLayer: CartoOnlineVectorTileLayer? = null
-    var offlineLayer: CartoOfflineVectorTileLayer? = null
-
     var currentDownload: com.carto.advanced.kotlin.utils.Package? = null
     var folder = ""
 
-    var manager: CartoPackageManager? = null
-
     init {
-
-        setOnlineMode()
 
         countryButton = PopupButton(context, R.drawable.icon_global)
         addButton(countryButton!!)
@@ -69,31 +62,8 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         countryButton?.setOnClickListener(null)
     }
 
-    fun setOnlineMode() {
-
-        if (onlineLayer == null) {
-            onlineLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
-        }
-
-        if (offlineLayer != null) {
-            map.layers?.remove(offlineLayer)
-        }
-
-        map.layers?.insert(0, onlineLayer)
-    }
-
-    fun setOfflineMode(manager: CartoPackageManager) {
-        map.layers?.remove(onlineLayer)
-        offlineLayer = CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
-        map.layers?.insert(0, offlineLayer)
-    }
-
     fun updatePackages() {
         packageContent?.addPackages(getPackages())
-    }
-
-    fun setOfflineMode() {
-        setOfflineMode(manager!!)
     }
 
     fun onPackageClick(item: com.carto.advanced.kotlin.utils.Package) {

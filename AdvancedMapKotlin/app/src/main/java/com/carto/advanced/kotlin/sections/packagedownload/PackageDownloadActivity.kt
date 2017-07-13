@@ -13,8 +13,6 @@ class PackageDownloadActivity : BaseActivity() {
 
     var contentView: PackageDownloadView? = null
 
-    val MAP_SOURCE = "nutiteq.osm"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,7 +20,7 @@ class PackageDownloadActivity : BaseActivity() {
         setContentView(contentView)
 
         val folder = Utils.createDirectory(this, "countrypackages")
-        contentView?.manager = CartoPackageManager(MAP_SOURCE, folder)
+        contentView?.manager = CartoPackageManager(contentView!!.MAP_SOURCE, folder)
     }
 
     override fun onResume() {

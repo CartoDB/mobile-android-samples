@@ -42,7 +42,7 @@ class Texts {
         val cityDownloadInfoContainer =
                 "This example lets you download specific cities. Cities are also based on bounding boxes, " +
                         "we used http://bboxfinder.com to cut out the bounding boxes of specific cities.\n\n" +
-                        "Simply click on the city you wish to download, a progress bar will appear " +
+                        "Simply click on the item you wish to download, a progress bar will appear " +
                         "and your're free to browse the map as you wish. " +
                         "You will be zoomed in to the location when the download is completed.\n\n" +
                         "If you wish to see more cities on this list, simply contact CARTO or, if you're " +
