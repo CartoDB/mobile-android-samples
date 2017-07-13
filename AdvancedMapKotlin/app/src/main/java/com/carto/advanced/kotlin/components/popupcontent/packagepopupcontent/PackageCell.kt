@@ -70,6 +70,7 @@ class PackageCell(context: Context) : BaseView(context) {
         forwardIcon.scaleType = ImageView.ScaleType.CENTER_CROP
         addView(forwardIcon)
 
+        progressIndicator.setBackgroundColor(Colors.appleBlue)
         addView(progressIndicator)
     }
 
@@ -157,9 +158,12 @@ class PackageCell(context: Context) : BaseView(context) {
         }
 
         (statusIndicator.background as GradientDrawable).setStroke(width, Colors.appleBlue)
+
         if (this.item?.status == null) {
             progressIndicator.frame = CGRect.empty
             return
+        } else {
+            updateProgress(this.item?.status?.progress!!)
         }
 
         if (this.item?.status?.currentAction != PackageAction.PACKAGE_ACTION_DOWNLOADING) {
@@ -169,13 +173,17 @@ class PackageCell(context: Context) : BaseView(context) {
 
     fun update(item: Package, progress: Float) {
         update(item)
+        updateProgress(progress)
+
+    }
+
+    fun updateProgress(progress: Float) {
 
         val width = ((frame.width - 2 * leftPadding) * progress / 100).toInt()
-        val height = (1 * context.resources.displayMetrics.density).toInt()
-        val y = frame.height - (4 * context.displayMetrics.density).toInt()
+        val height = (1.5 * context.resources.displayMetrics.density).toInt()
+        val y = frame.height - (5 * context.displayMetrics.density).toInt()
         val x = leftPadding
 
         progressIndicator.setFrame(x, y, width, height)
-
     }
 }

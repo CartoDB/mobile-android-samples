@@ -3,6 +3,7 @@ package com.carto.advanced.kotlin.components
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.view.Gravity
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.BaseView
@@ -29,6 +30,7 @@ class ProgressLabel(context: Context) : BaseView(context) {
 
         setBackgroundColor(Colors.transparentGray)
 
+        label.gravity = Gravity.CENTER
         label.setTextColor(Color.WHITE)
         addView(label)
 
@@ -48,12 +50,12 @@ class ProgressLabel(context: Context) : BaseView(context) {
     }
 
     fun update(text: String, progress: Float) {
-        label.text = text
+        update(text)
         updateProgressBar(progress)
     }
 
     fun update(text: String) {
-        label.text = text
+        label.text = text.toUpperCase()
     }
 
     fun complete(message: String) {
