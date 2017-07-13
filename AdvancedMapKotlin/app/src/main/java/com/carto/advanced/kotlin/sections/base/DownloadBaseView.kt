@@ -16,6 +16,8 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
         addView(onlineSwitch)
         addView(progressLabel)
+
+        progressLabel.hide()
     }
 
     override fun layoutSubviews() {

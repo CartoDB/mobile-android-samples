@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.components
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -99,10 +100,9 @@ class ProgressLabel(context: Context) : BaseView(context) {
         }
     }
 
-    fun animateAlpha(alpha: Float) {
-        val animation = AlphaAnimation(this.alpha, alpha)
-        animation.duration = 100
-
-        animation.start()
+    fun animateAlpha(to: Float) {
+        val animator = ObjectAnimator.ofFloat(this, "alpha", to)
+        animator.duration = 200
+        animator.start()
     }
 }
