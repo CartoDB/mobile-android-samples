@@ -1,10 +1,15 @@
 package com.carto.advanced.kotlin.components.popup
 
 import android.content.Context
+import android.graphics.Color
+import android.view.Gravity
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.utils.Colors
 
 /**
  * Created by aareundo on 04/07/2017.
@@ -16,10 +21,16 @@ class PopupBackButton(context: Context) : BaseView(context) {
 
     init {
 
-//        button.imager
+        setBackgroundColor(Color.WHITE)
+        visibility = View.GONE
+
+        button.setImageResource(R.drawable.icon_back_blue)
+        button.scaleType = ImageView.ScaleType.CENTER_CROP
         addView(button)
 
         text.text = "BACK"
+        text.setTextColor(Colors.navy)
+        text.gravity = Gravity.CENTER_VERTICAL
         addView(text)
     }
 

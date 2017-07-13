@@ -22,6 +22,7 @@ class SlideInPopupHeader(context: Context) : BaseView(context) {
 
     fun setText(text: String) {
         label.text = text
+        layoutSubviews()
     }
 
     init {
@@ -30,11 +31,8 @@ class SlideInPopupHeader(context: Context) : BaseView(context) {
         label.setTextColor(Colors.navy)
         addView(label)
 
-        backButton.text.textSize = label.textSize
-        backButton.text.setTextColor(Colors.navy)
-        backButton.setBackgroundColor(Color.WHITE)
+        backButton.text.textSize = 11f
         addView(backButton)
-        backButton.visibility = View.GONE
 
         addView(closeButton)
     }
@@ -42,6 +40,8 @@ class SlideInPopupHeader(context: Context) : BaseView(context) {
     override fun layoutSubviews() {
 
         val padding: Int = (10 * context.resources.displayMetrics.density).toInt()
+
+        label.measure(0, 0)
 
         var x: Int = padding
         val y: Int = 0

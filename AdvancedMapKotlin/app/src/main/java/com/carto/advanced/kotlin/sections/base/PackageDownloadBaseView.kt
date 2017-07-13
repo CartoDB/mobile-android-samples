@@ -50,6 +50,14 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
             popup.popup.header.setText("SELECT A PACKAGE")
             popup.show()
         }
+
+        popup.popup.header.setOnClickListener {
+            // Empty listener to catch touches so popup wouldn't close
+        }
+
+        popup.popup.header.backButton.setOnClickListener {
+            onPopupBackButtonClick()
+        }
     }
 
     override fun removeListeners() {
@@ -130,14 +138,15 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
     }
 
     fun onPopupBackButtonClick() {
-        folder = folder.substring(folder.length - 1)
+        folder = folder.substring(0, folder.length - 1)
+
         val lastSlash = folder.lastIndexOf("/")
 
         if (lastSlash == -1) {
             folder = ""
             popup.popup.header.backButton.visibility = View.GONE
         } else {
-            folder = folder.substring(lastSlash + 1)
+            folder = folder.substring(0, lastSlash + 1)
         }
 
         packageContent?.addPackages(getPackages())

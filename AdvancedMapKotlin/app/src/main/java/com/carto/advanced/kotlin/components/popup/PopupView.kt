@@ -13,7 +13,6 @@ class PopupView(context: Context) : BaseView(context) {
 
     init {
         setBackgroundColor(Color.WHITE)
-
         addView(header)
     }
 

@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.components.popup
 
 import android.content.Context
 import android.widget.ImageView
+import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
 
@@ -13,6 +14,8 @@ class PopupCloseButton(context: Context) : BaseView(context) {
     val image = ImageView(context)
 
     init {
+        image.setImageResource(R.drawable.icon_close)
+        image.scaleType = ImageView.ScaleType.CENTER_CROP
         addView(image)
     }
 
