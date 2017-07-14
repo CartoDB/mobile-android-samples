@@ -74,7 +74,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
         w = buttonWidth
         h = w
-        y = getBottomLabelY() - (h + smallPadding)
+        y = frame.height - (h + smallPadding + bottomLabelHeight)
         x = frame.width / 2 - totalArea / 2
 
         for (button in buttons) {

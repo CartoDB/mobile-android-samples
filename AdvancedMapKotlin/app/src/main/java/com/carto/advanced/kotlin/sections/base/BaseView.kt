@@ -72,8 +72,8 @@ open class BaseView(context: Context) : RelativeLayout(context) {
 
         manager.defaultDisplay.getSize(size)
 
-        frame = CGRect(0, 0, size.x, size.y)
-//        frame = CGRect(0, 0, size.x, size.y - (getActionBarHeight() + getStatusBarHeight()))
+//        frame = CGRect(0, 0, size.x, size.y)
+        frame = CGRect(0, 0, size.x, size.y - (getActionBarHeight() + getStatusBarHeight()))
     }
 
     fun getNavBarHeight(): Int {
