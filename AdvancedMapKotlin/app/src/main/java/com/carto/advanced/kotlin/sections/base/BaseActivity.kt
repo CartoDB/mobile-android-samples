@@ -11,7 +11,6 @@ import com.carto.advanced.kotlin.main.MainActivity
 import android.support.v4.app.ActivityCompat
 
 
-
 /**
  * Created by aareundo on 03/07/2017.
  */

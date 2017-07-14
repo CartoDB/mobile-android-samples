@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import android.widget.RelativeLayout
@@ -72,6 +73,29 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         manager.defaultDisplay.getSize(size)
 
         frame = CGRect(0, 0, size.x, size.y)
+//        frame = CGRect(0, 0, size.x, size.y - (getActionBarHeight() + getStatusBarHeight()))
+    }
+
+    fun getNavBarHeight(): Int {
+        return getHeightOf("navigation_bar_height")
+    }
+
+    fun getStatusBarHeight(): Int {
+        return  getHeightOf("status_bar_height")
+    }
+    fun getHeightOf(of: String): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier(of, "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
+    fun getActionBarHeight(): Int {
+        val tv = TypedValue()
+        context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)
+        return resources.getDimensionPixelSize(tv.resourceId)
     }
 
     open fun layoutSubviews() {
