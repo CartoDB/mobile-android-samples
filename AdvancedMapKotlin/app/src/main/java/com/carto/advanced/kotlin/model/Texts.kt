@@ -40,12 +40,12 @@ class Texts {
         val cityDownloadInfoHeader = "CITY DOWNLOAD"
 
         val cityDownloadInfoContainer =
-                "This example lets you download specific cities. Cities are also based on bounding boxes, " +
-                        "we used http://bboxfinder.com to cut out the bounding boxes of specific cities.\n\n" +
+                "This example lets you download specific languages. Cities are also based on bounding boxes, " +
+                        "we used http://bboxfinder.com to cut out the bounding boxes of specific languages.\n\n" +
                         "Simply click on the item you wish to download, a progress bar will appear " +
                         "and your're free to browse the map as you wish. " +
                         "You will be zoomed in to the location when the download is completed.\n\n" +
-                        "If you wish to see more cities on this list, simply contact CARTO or, if you're " +
+                        "If you wish to see more languages on this list, simply contact CARTO or, if you're " +
                         "the technical kind, find this app on github.com and make a pull request."
 
         val packageDownloadInfoHeader = "PACKAGE DOWNLOAD"
@@ -73,8 +73,8 @@ class Texts {
 
         val clusteringInfoContainer =
                 "CARTO offers a convenient way to build clusters.\n\n" +
-                        "Here's an example of the clustering of cities with over 15000 residents, " +
-                        "which is approximately 20,000 cities around the world.\n\n" +
+                        "Here's an example of the clustering of languages with over 15000 residents, " +
+                        "which is approximately 20,000 languages around the world.\n\n" +
                         "CARTO's Mobile SDK creates these clusters in a matter of milliseconds " +
                         "and animates them to place when zooming in, animates them back when zooming out.\n\n" +
                         "With our sdk, You can style your clusters however you want (they are regular markers " +
