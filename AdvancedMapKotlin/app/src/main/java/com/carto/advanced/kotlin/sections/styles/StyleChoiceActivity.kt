@@ -38,7 +38,7 @@ class StyleChoiceActivity : BaseActivity() {
             }
         }
 
-        contentView?.languageContent?.list?.setOnItemClickListener { parent, view, position, id ->
+        contentView?.languageContent?.list?.setOnItemClickListener { _, view, _, _ ->
             run {
                 contentView?.popup?.hide()
                 val cell = view as LanguageCell

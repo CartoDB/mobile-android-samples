@@ -54,7 +54,7 @@ class CityDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.cityContent?.list?.setOnItemClickListener { parent, view, position, id ->
+        contentView?.cityContent?.list?.setOnItemClickListener { _, view, _, _ ->
             run {
                 val cell = view as CityCell
 
@@ -66,7 +66,7 @@ class CityDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.onlineSwitch?.switch?.onCheckedChange { buttonView, isChecked ->
+        contentView?.onlineSwitch?.switch?.onCheckedChange { _, isChecked ->
             run {
                 if (isChecked) {
                     contentView?.setOnlineMode()
