@@ -23,7 +23,7 @@ class StylePopupContentSectionItem(context: Context, text: String, resource: Int
 
         label.text = text
         label.setTextColor(Colors.appleBlue)
-        label.textSize = 13.0f
+        label.textSize = 11.0f
 
         addView(label)
     }

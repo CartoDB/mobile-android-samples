@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent
 
 import android.content.Context
+import android.graphics.Typeface
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
@@ -21,7 +22,8 @@ class StylePopupContentSection(context: Context) : BaseView(context) {
     init {
 
         header.setTextColor(Colors.navy)
-        header.textSize = 15.0f
+        header.textSize = 12.0f
+        header.typeface = Typeface.DEFAULT_BOLD
 
         addView(header)
 

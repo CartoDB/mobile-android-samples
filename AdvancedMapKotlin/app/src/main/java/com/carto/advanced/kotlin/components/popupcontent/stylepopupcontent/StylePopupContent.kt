@@ -1,6 +1,8 @@
 package com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent
 
 import android.content.Context
+import android.graphics.Color
+import android.widget.ScrollView
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.BaseScrollView
 import com.carto.advanced.kotlin.sections.base.BaseView
@@ -71,8 +73,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
     override fun layoutSubviews() {
 
-        container.setFrame(0, 0, frame.width, frame.height)
-
         val padding = (5 * context.resources.displayMetrics.density).toInt()
         val headerPadding = (20 * context.resources.displayMetrics.density).toInt()
 
@@ -89,7 +89,7 @@ class StylePopupContent(context: Context) : BaseView(context) {
         mapzen.setFrame(x, y, w, h)
 
         y += h + headerPadding
-        h = cartoRaster.getCalculatedHeight()
+        h = cartoRaster.getCalculatedHeight() + headerPadding
 
         cartoRaster.setFrame(x, y, w, h)
     }

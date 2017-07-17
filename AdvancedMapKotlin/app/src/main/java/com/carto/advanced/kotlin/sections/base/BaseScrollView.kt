@@ -1,5 +1,8 @@
 package com.carto.advanced.kotlin.sections.base
 
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+
 /**
  * Created by aareundo on 30/06/2017.
  */
@@ -9,7 +12,7 @@ open class BaseScrollView(context: android.content.Context) : android.widget.Scr
 
     init {
         container = BaseView(context)
-        container?.matchParent()
+
         super.addView(container)
     }
     var frame: CGRect = CGRect.Companion.empty
@@ -29,6 +32,7 @@ open class BaseScrollView(context: android.content.Context) : android.widget.Scr
     fun matchParent() {
         val metrics = context.resources.displayMetrics
         setFrame(0, 0, metrics.widthPixels, metrics.heightPixels)
+
     }
 
     open fun layoutSubviews() {
