@@ -34,7 +34,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         title = Texts.basemapInfoHeader
         description = Texts.basemapInfoContainer
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
+        currentLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
 
         addButton(languageButton)
         addButton(baseMapButton)
@@ -83,7 +83,6 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
     }
 
     fun updateBaseLayer(selection: String, source: String) {
-
 
         if (source == StylePopupContent.NutiteqSource) {
 

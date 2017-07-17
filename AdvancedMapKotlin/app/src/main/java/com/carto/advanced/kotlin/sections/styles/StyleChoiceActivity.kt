@@ -1,8 +1,10 @@
 package com.carto.advanced.kotlin.sections.styles
 
 import android.os.Bundle
+import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguageCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
+import com.carto.advanced.kotlin.model.Languages
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 
 /**
@@ -17,6 +19,8 @@ class StyleChoiceActivity : BaseActivity() {
 
         contentView = StyleChoiceView(this)
         setContentView(contentView)
+
+        contentView?.languageContent?.addItems(Languages.list)
     }
 
     override fun onResume() {
@@ -33,6 +37,14 @@ class StyleChoiceActivity : BaseActivity() {
                 }
             }
         }
+
+        contentView?.languageContent?.list?.setOnItemClickListener { parent, view, position, id ->
+            run {
+                contentView?.popup?.hide()
+                val cell = view as LanguageCell
+                contentView?.updateMapLanguage(cell.item!!.value)
+            }
+        }
     }
 
     override fun onPause() {
@@ -46,5 +58,7 @@ class StyleChoiceActivity : BaseActivity() {
                 item.setOnClickListener(null)
             }
         }
+
+        contentView?.languageContent?.list?.onItemClickListener = null
     }
 }
