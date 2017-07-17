@@ -94,12 +94,11 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
             } else if (selection == StylePopupContent.Dark) {
                 currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
             } else if (selection == StylePopupContent.Positron) {
-                // TODO Enable when new build available
-//                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
-//            } else if (selection == StylePopupContent.DarkMatter) {
-//                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER)
-//            } else if (selection == StylePopupContent.Voyager) {
-//                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
+                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
+            } else if (selection == StylePopupContent.DarkMatter) {
+                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER)
+            } else if (selection == StylePopupContent.Voyager) {
+                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
             }
 
         } else if (source == StylePopupContent.MapzenSource) {
