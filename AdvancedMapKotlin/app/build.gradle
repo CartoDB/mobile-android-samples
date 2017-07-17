@@ -33,6 +33,7 @@ dependencies {
     // Coroutine listeners for Anko Layouts
     compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
 }
+
 repositories {
     mavenCentral()
 }

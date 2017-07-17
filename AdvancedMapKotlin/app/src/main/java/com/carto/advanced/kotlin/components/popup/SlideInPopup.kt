@@ -10,6 +10,7 @@ import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.isLandScape
 import com.carto.advanced.kotlin.sections.base.isLargeTablet
+import com.carto.advanced.kotlin.sections.base.setFrame
 
 /**
  * Created by aareundo on 04/07/2017.

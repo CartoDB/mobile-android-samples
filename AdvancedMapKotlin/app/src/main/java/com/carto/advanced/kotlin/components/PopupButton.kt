@@ -25,7 +25,7 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
         setBackgroundColor(Color.WHITE)
 
         imageView.setImageResource(imageResource)
-        imageView?.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
         imageView.adjustViewBounds = true
 
         addView(imageView)
@@ -43,6 +43,10 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
+        if (!isEnabled) {
+            return true
+        }
+
         if (event?.action == MotionEvent.ACTION_DOWN) {
             alpha = 0.5f
         } else if (event?.action == MotionEvent.ACTION_UP) {
@@ -53,5 +57,15 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
         }
 
         return true
+    }
+
+    fun disable() {
+        isEnabled = false
+        alpha = 0.5f
+    }
+
+    fun enable() {
+        isEnabled = true
+        alpha = 1.0f
     }
 }
