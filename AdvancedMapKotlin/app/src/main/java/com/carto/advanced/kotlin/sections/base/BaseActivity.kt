@@ -17,6 +17,9 @@ import android.support.v4.app.ActivityCompat
 
 open class BaseActivity : AppCompatActivity() {
 
+    val instance: BaseActivity
+        get() = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -128,7 +128,8 @@ class Routing(val context: Context, val mapView: MapView) {
     }
 
     fun getMessage(result: RoutingResult): String {
-        return "Calculated route is " + (result.totalTime / 10000) * 10 + "km"
+        val km = (result.totalDistance / 10000) * 10
+        return "Your route is " + (km * 10).toInt() / 10.0f + "km"
     }
 
     fun getResult(startPos: MapPos, stopPos: MapPos): RoutingResult? {

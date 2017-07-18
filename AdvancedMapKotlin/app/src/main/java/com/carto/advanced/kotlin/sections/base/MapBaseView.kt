@@ -48,13 +48,6 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
     val bottomLabelHeight: Int = (40 * getMetrics().density).toInt()
     val smallPadding: Int = (5 * getMetrics().density).toInt()
 
-    fun getBottomLabelY(): Int {
-        // I have no idea why this is necessary
-        val bonus: Int = (8 * context.resources.displayMetrics.density).toInt()
-        val unusableArea = MapApplication.navigationBarHeight!! + MapApplication.statusBarHeight!! + bonus
-        return frame.height - (bottomLabelHeight + unusableArea)
-    }
-
     override fun layoutSubviews() {
 
         var x: Int = 0

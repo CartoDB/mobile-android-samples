@@ -48,7 +48,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
         w = frame.width
         h = bottomLabelHeight
         x = 0
-        y = getBottomLabelY()
+        y = frame.height - h
 
         progressLabel.setFrame(x, y, w, h)
     }
