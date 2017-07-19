@@ -7,6 +7,7 @@ import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.utils.BoundingBox
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
+import com.carto.geometry.PolygonGeometry
 import com.carto.packagemanager.*
 import com.carto.routing.CartoOnlineRoutingService
 import com.carto.routing.PackageManagerValhallaRoutingService
@@ -248,8 +249,8 @@ class RouteDownloadActivity : BaseActivity() {
             if (result == null) {
                 runOnUiThread {
                     contentView?.progressLabel?.complete("Routing failed. Please try again")
-                    return@runOnUiThread
                 }
+                return@doAsync
             }
 
             val color = com.carto.graphics.Color(14, 122, 254, 150)
@@ -258,15 +259,27 @@ class RouteDownloadActivity : BaseActivity() {
 
                 contentView?.progressLabel?.complete(routing?.getMessage(result!!)!!)
 
-                routing!!.show(result!!, color, {
+                routing!!.show(result, color, {
                     route: Route ->
                     boundingBox = BoundingBox.fromMapBounds(contentView?.projection!!, route.bounds)
                 })
+
+                val collection = contentView?.overlaySource?.featureCollection
+                val count = collection?.featureCount!!
+
+                // Don't enable the download button if the route is in an existing polygon
+                for (i in 0..count - 1) {
+                    val item = collection.getFeature(i)!!
+
+                    if (item.geometry is PolygonGeometry) {
+                        if (item.geometry.bounds.contains(boundingBox?.bounds)) {
+                            return@runOnUiThread
+                        }
+                    }
+                }
+
                 contentView?.downloadButton?.enable()
 
-                if (!contentView?.progressLabel?.isVisible()!!) {
-                    contentView?.progressLabel?.show()
-                }
             }
 
         }
