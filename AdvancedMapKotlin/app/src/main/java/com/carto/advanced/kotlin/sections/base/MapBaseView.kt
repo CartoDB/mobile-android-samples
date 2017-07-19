@@ -90,8 +90,8 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         infoButton.setOnClickListener {
             popup.setPopupContent(infoContent)
             popup.popup.header.setText("INFORMATION")
-            infoContent.setTitle(title!!)
-            infoContent.setDescription(description!!)
+            infoContent.setTitle(title)
+            infoContent.setDescription(description)
             popup.show()
         }
     }

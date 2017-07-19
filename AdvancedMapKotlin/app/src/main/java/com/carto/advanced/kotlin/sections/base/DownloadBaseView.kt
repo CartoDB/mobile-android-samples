@@ -38,8 +38,6 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
     override fun layoutSubviews() {
         super.layoutSubviews()
 
-        val padding: Int = (5 * context.resources.displayMetrics.density).toInt()
-
         val w = frame.width
         val h = bottomLabelHeight
         val x = 0

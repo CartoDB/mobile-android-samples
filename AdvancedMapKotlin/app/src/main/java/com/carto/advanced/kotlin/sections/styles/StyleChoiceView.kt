@@ -127,7 +127,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
             // We know that the value of raster will be Positron or Darkmatter,
             // as Nutiteq and Mapzen use vector tiles
-            var url = ""
+            var url: String
 
             if (selection == StylePopupContent.Positron) {
                 url = StylePopupContent.PositronUrl

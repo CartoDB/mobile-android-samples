@@ -1,15 +1,10 @@
 package com.carto.advanced.kotlin.components.popupcontent
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.text.method.ScrollingMovementMethod
-import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.JustifiedTextView
 import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
@@ -46,10 +41,10 @@ class InformationPopupContent(context: Context) : BaseView(context) {
         val padding: Int = (5 * density).toInt()
         var leftPadding = 2 * padding
 
-        val x: Int = 2 * padding
+        val x: Int = leftPadding
         var y: Int = padding
         var h: Int = headerHeight
-        val w: Int = frame.width - 4 * padding
+        val w: Int = frame.width - leftPadding
 
         header.setFrame(x, y, w, h)
 

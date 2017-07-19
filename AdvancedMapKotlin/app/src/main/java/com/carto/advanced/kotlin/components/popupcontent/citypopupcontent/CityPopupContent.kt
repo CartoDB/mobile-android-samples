@@ -32,7 +32,7 @@ class CityPopupContent(context: Context) : BaseView(context) {
     }
 
     fun update(item: City) {
-        findItem(item.name!!)?.update(item)
+        findItem(item.name)?.update(item)
     }
 
     fun findItem(name: String): CityCell? {

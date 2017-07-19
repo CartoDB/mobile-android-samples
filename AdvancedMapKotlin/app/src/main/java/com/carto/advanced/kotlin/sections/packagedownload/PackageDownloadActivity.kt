@@ -47,7 +47,7 @@ class PackageDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.packageContent?.list?.setOnItemClickListener { parent, view, position, id ->
+        contentView?.packageContent?.list?.setOnItemClickListener { _, view, _, _ ->
             run {
                 val cell = view as PackageCell
                 contentView?.onPackageClick(cell.item!!)

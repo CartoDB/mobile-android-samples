@@ -61,6 +61,7 @@ class PackageCell(context: Context) : BaseView(context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             statusIndicator.background = drawable
         } else {
+            @Suppress("DEPRECATION")
             statusIndicator.setBackgroundDrawable(drawable)
         }
 

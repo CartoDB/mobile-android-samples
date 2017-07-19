@@ -32,7 +32,7 @@ class LanguagePopupContent(context: Context) : BaseView(context) {
     }
 
     fun update(item: Language) {
-        findItem(item.name!!)?.update(item)
+        findItem(item.name)?.update(item)
     }
 
     fun findItem(name: String): LanguageCell? {
