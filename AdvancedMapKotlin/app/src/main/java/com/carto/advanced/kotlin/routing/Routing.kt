@@ -71,7 +71,7 @@ class Routing(val context: Context, val mapView: MapView) {
         val builder = MarkerStyleBuilder()
         builder.bitmap = start
         builder.isHideIfOverlapped = false
-        builder.size = 15 / context.displayMetrics.density
+        builder.size = 5 * context.displayMetrics.density
 
         val defaultPosition = MapPos(0.0, 0.0)
 

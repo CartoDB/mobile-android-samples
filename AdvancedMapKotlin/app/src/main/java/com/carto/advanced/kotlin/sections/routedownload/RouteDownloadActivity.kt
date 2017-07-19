@@ -89,11 +89,14 @@ class RouteDownloadActivity : BaseActivity() {
                 instance.runOnUiThread {
                     val progress = status?.progress!!
                     contentView?.progressLabel?.update("Downloading Map: $progress%", progress)
+
+                    contentView?.downloadButton?.disable()
                 }
             }
 
             override fun onPackageUpdated(id: String?, version: Int) {
-
+                val id = boundingBox.toString()
+                routingManager?.startPackageDownload(id)
             }
 
             override fun onPackageCancelled(id: String?, version: Int) {
@@ -122,7 +125,23 @@ class RouteDownloadActivity : BaseActivity() {
             }
 
             override fun onPackageUpdated(id: String?, version: Int) {
-                contentView?.addPolygonTo(boundingBox?.bounds!!)
+
+                val bytesInMB = 1048576.0
+                val id = boundingBox.toString()
+
+                val mapPackage = mapManager?.getLocalPackage(id)!!
+                val routingPackage = routingManager?.getLocalPackage(id)!!
+
+                instance.runOnUiThread {
+                    contentView?.addPolygonTo(boundingBox?.bounds!!)
+
+                    val mapSize = Math.round(mapPackage.size.toDouble() / bytesInMB * 10.0) / 10.0
+                    val routeSize = Math.round(routingPackage.size.toDouble() / bytesInMB * 10.0) / 10.0
+
+                    val text = "DOWNLOADED MAP (" + mapSize + "MB) & ROUTE (" + routeSize + "MB)"
+
+                    contentView?.progressLabel?.complete( text)
+                }
             }
 
             override fun onPackageCancelled(id: String?, version: Int) {
@@ -175,7 +194,13 @@ class RouteDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.downloadButton?.setOnClickListener {  }
+        contentView?.downloadButton?.setOnClickListener {
+            val id = boundingBox.toString()
+            mapManager?.startPackageDownload(id)
+            contentView?.downloadButton?.disable()
+        }
+
+        contentView?.downloadButton?.disable()
     }
 
     override fun onPause() {

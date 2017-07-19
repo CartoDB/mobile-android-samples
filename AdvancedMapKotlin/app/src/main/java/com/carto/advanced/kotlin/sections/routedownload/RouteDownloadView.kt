@@ -25,12 +25,15 @@ class RouteDownloadView(context: Context) : DownloadBaseView(context) {
     val overlayLayer = VectorLayer(overlaySource)
 
     val downloadButton = PopupButton(context, R.drawable.icon_download)
+
     init {
 
         title = Texts.routeDownloadInfoHeader
         description = Texts.routeDownloadInfoContainer
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+
+        addButton(downloadButton)
 
         layoutSubviews()
 
@@ -48,7 +51,7 @@ class RouteDownloadView(context: Context) : DownloadBaseView(context) {
 
         val positions = MapPosVector()
 
-        positions.add(MapPos(bounds.max.x, bounds.min.y))
+        positions.add(MapPos(bounds.min.x, bounds.min.y))
         positions.add(MapPos(bounds.max.x, bounds.min.y))
         positions.add(MapPos(bounds.max.x, bounds.max.y))
         positions.add(MapPos(bounds.min.x, bounds.max.y))

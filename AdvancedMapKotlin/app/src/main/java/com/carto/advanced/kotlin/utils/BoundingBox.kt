@@ -40,7 +40,10 @@ class BoundingBox(var minLon: Double, var maxLon: Double, var minLat: Double, va
             val minWgs = projection.toWgs84(min)
             val maxWgs = projection.toWgs84(max)
 
-            return BoundingBox(minWgs.x, maxWgs.x, minWgs.y, maxWgs.y)
+            val box = BoundingBox(minWgs.x, maxWgs.x, minWgs.y, maxWgs.y)
+            box.bounds = MapBounds(min, max)
+
+            return box
         }
     }
 
