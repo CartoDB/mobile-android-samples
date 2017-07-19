@@ -29,6 +29,10 @@ class GPSLocationActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         contentView?.addListeners()
+
+        contentView?.switch?.setOnClickListener {
+            // TODO Disable/Enable location tracking
+        }
     }
 
     override fun onPause() {
@@ -36,6 +40,8 @@ class GPSLocationActivity : BaseActivity() {
         contentView?.removeListeners()
 
         manager?.removeUpdates(listener)
+
+        contentView?.switch?.setOnClickListener(null)
     }
 
     override fun onPermissionsGranted(granted: Boolean) {
@@ -69,7 +75,12 @@ class GPSLocationActivity : BaseActivity() {
     inner class CartoLocationListener : android.location.LocationListener {
 
         override fun onLocationChanged(location: Location?) {
-            contentView?.showUserAt(location!!)
+
+            // Not "online", but reusing the online switch to achieve location tracking functionality
+            if (contentView?.switch?.isOnline!!) {
+                contentView?.showUserAt(location!!)
+            }
+
         }
 
         override fun onProviderDisabled(provider: String?) {

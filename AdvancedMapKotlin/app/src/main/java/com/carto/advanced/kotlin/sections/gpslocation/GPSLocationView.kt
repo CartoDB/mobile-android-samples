@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Location
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.StateSwitch
+import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.utils.Utils
@@ -20,7 +21,7 @@ import com.carto.vectorelements.Marker
  */
 class GPSLocationView(context: Context) : MapBaseView(context) {
 
-    var switch = StateSwitch(context)
+    var switch = SwitchButton(context, R.drawable.icon_track_location_on, R.drawable.icon_track_location_off)
 
     var source: LocalVectorDataSource? = null
 
@@ -31,8 +32,7 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
 
-        addView(switch)
-        switch.setText(" TRACK LOCATION")
+        addButton(switch)
 
         source = LocalVectorDataSource(projection)
         val layer = VectorLayer(source)
@@ -43,15 +43,6 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
     override fun layoutSubviews() {
         super.layoutSubviews()
-
-        val padding: Int = (5 * context.resources.displayMetrics.density).toInt()
-
-        val w: Int = switch.getTotalWidth()
-        val h: Int = switch.getTotalHeight()
-        val y: Int = padding
-        val x: Int = frame.width - (w + padding)
-
-        switch.setFrame(x, y, w, h)
     }
 
     var userMarker: Marker? = null
