@@ -12,7 +12,7 @@ import com.carto.advanced.kotlin.sections.base.setFrame
 /**
  * Created by aareundo on 04/07/2017.
  */
-class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
+open class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
 
     val imageView = ImageView(context)
 
@@ -24,7 +24,8 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
 
         setBackgroundColor(Color.WHITE)
 
-        imageView.setImageResource(imageResource)
+        setImageResource(imageResource)
+
         imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
         imageView.adjustViewBounds = true
 
@@ -39,6 +40,11 @@ class PopupButton(context: Context, imageResource: Int) : BaseView(context) {
         val imageSize = frame.width - 2 * padding
 
         imageView.setFrame(padding, padding, imageSize, imageSize)
+    }
+
+    fun setImageResource(resource: Int) {
+        imageView.setImageResource(resource)
+        imageView.tag = resource
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

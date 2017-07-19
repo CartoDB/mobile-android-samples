@@ -66,14 +66,14 @@ class CityDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.onlineSwitch?.switch?.onCheckedChange { _, isChecked ->
-            run {
-                if (isChecked) {
-                    contentView?.setOnlineMode()
-                } else {
-                    contentView?.setOfflineMode()
-                }
-            } }
+        contentView?.switchButton?.setOnClickListener {
+            val isChecked = contentView?.switchButton?.isOnline!!
+            if (isChecked) {
+                contentView?.setOnlineMode()
+            } else {
+                contentView?.setOfflineMode()
+            }
+        }
 
         contentView?.manager?.start()
         contentView?.manager?.startPackageListDownload()
@@ -89,7 +89,7 @@ class CityDownloadActivity : BaseActivity() {
 
         contentView?.manager?.packageManagerListener = null
 
-        contentView?.onlineSwitch?.switch?.setOnCheckedChangeListener(null)
+        contentView?.switchButton?.setOnClickListener(null)
 
         contentView?.manager?.stop(false)
     }

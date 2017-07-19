@@ -1,8 +1,10 @@
 package com.carto.advanced.kotlin.sections.base
 
 import android.content.Context
+import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.ProgressLabel
 import com.carto.advanced.kotlin.components.StateSwitch
+import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOfflineVectorTileLayer
 import com.carto.layers.CartoOnlineVectorTileLayer
@@ -15,7 +17,6 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
     val MAP_SOURCE = "nutiteq.osm"
 
-    val onlineSwitch = StateSwitch(context)
     val progressLabel = ProgressLabel(context)
 
     var onlineLayer: CartoOnlineVectorTileLayer? = null
@@ -23,12 +24,13 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
     var manager: CartoPackageManager? = null
 
+    val switchButton = SwitchButton(context, R.drawable.icon_wifi_on, R.drawable.icon_wifi_off)
     init {
 
-        addView(onlineSwitch)
         addView(progressLabel)
-
         progressLabel.hide()
+
+        addButton(switchButton)
 
         setOnlineMode()
     }
@@ -38,17 +40,10 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
         val padding: Int = (5 * context.resources.displayMetrics.density).toInt()
 
-        var w: Int = onlineSwitch.getTotalWidth()
-        var h: Int = onlineSwitch.getTotalHeight()
-        var y: Int = padding
-        var x: Int = frame.width - (w + padding)
-
-        onlineSwitch.setFrame(x, y, w, h)
-
-        w = frame.width
-        h = bottomLabelHeight
-        x = 0
-        y = frame.height - h
+        val w = frame.width
+        val h = bottomLabelHeight
+        val x = 0
+        val y = frame.height - h
 
         progressLabel.setFrame(x, y, w, h)
     }
