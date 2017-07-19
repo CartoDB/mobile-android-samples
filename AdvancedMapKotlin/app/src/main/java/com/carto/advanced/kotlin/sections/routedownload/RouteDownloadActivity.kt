@@ -40,7 +40,7 @@ class RouteDownloadActivity : BaseActivity() {
         folder = Utils.createDirectory(this, "routeingpackages")
         routingManager = CartoPackageManager(Routing.ROUTING_TAG + Routing.ROUTING_SOURCE, folder)
 
-        setOnlineMode()
+        setOnlineMode(false)
 
         val mapPackages = mapManager!!.localPackages
         val routingPackages = routingManager!!.localPackages
@@ -201,6 +201,15 @@ class RouteDownloadActivity : BaseActivity() {
         }
 
         contentView?.downloadButton?.disable()
+
+        contentView?.switchButton?.setOnClickListener {
+            val isChecked = contentView?.switchButton?.isOnline!!
+            if (isChecked) {
+                setOnlineMode()
+            } else {
+                setOfflineMode()
+            }
+        }
     }
 
     override fun onPause() {
@@ -216,13 +225,19 @@ class RouteDownloadActivity : BaseActivity() {
         contentView?.map?.mapEventListener = null
 
         contentView?.downloadButton?.setOnClickListener(null)
+
+        contentView?.switchButton?.setOnClickListener(null)
     }
 
-    fun setOnlineMode() {
+    fun setOnlineMode(withLayer: Boolean = true) {
+        if (withLayer) {
+            contentView?.setOnlineMode()
+        }
         routing?.service = CartoOnlineRoutingService(Routing.MAP_SOURCE + Routing.TRANSPORT_MODE)
     }
 
     fun setOfflineMode() {
+        contentView?.setOfflineMode(mapManager!!)
         routing?.service = PackageManagerValhallaRoutingService(routingManager)
     }
 

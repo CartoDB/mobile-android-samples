@@ -31,8 +31,6 @@ class RouteDownloadView(context: Context) : DownloadBaseView(context) {
         title = Texts.routeDownloadInfoHeader
         description = Texts.routeDownloadInfoContainer
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
-
         addButton(downloadButton)
 
         layoutSubviews()
