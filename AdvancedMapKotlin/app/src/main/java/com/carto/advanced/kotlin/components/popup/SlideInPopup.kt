@@ -55,20 +55,13 @@ class SlideInPopup(context: Context) : BaseView(context) {
 
         if (isLandScape() || isLargeTablet()) {
             w = (400 * context.resources.displayMetrics.density).toInt()
-            visibleY = 0//MapApplication.navigationBarHeight!!
+            visibleY = 0
         }
 
-//        visibleY = 200
-//        hiddenY = h - 300
+        y = visibleY
+        popup.setFrame(x, y, w, h)
 
-        y += h
-        h -= visibleY
-
-        popup.setFrame(x, hiddenY, w, h)
-
-        if (isVisible()) {
-            show()
-        }
+        hide()
     }
 
     fun setPopupContent(content: BaseView) {
@@ -99,6 +92,10 @@ class SlideInPopup(context: Context) : BaseView(context) {
         transparentArea.setOnClickListener {
             hide()
         }
+
+        popup.header.closeButton.setOnClickListener {
+            hide()
+        }
     }
 
     fun hide() {
@@ -106,6 +103,8 @@ class SlideInPopup(context: Context) : BaseView(context) {
         animateY(hiddenY)
 
         transparentArea.setOnClickListener(null)
+
+        popup.header.closeButton.setOnClickListener(null)
     }
 
     val duration: Long = 200
@@ -118,28 +117,29 @@ class SlideInPopup(context: Context) : BaseView(context) {
 
     fun animateY(to: Int) {
 
-        popup.setFrame(popup.frame.x, to, popup.frame.width, popup.frame.height)
-        if (to == hiddenY) {
-            visibility = View.GONE
-        }
+//        popup.setFrame(popup.frame.x, to, popup.frame.width, popup.frame.height)
+//        if (to == hiddenY) {
+//            visibility = View.GONE
+//        }
 
-//        val animator = ObjectAnimator.ofFloat(popup, "y", to.toFloat())
-//        animator.duration = duration
-//        animator.start()
-//
-//        animator.addListener(object: Animator.AnimatorListener {
-//            override fun onAnimationStart(animation: Animator?) { }
-//
-//            override fun onAnimationCancel(animation: Animator?) { }
-//
-//            override fun onAnimationRepeat(animation: Animator?) { }
-//
-//            override fun onAnimationEnd(animation: Animator?) {
-//                if (to == hiddenY) {
-//                    visibility = View.GONE
-//                }
-//            }
-//        })
+        val animator = ObjectAnimator.ofFloat(popup, "y", to.toFloat())
+        animator.duration = duration
+        animator.start()
+
+        animator.addListener(object: Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) { }
+
+            override fun onAnimationCancel(animation: Animator?) { }
+
+            override fun onAnimationRepeat(animation: Animator?) { }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                if (to == hiddenY) {
+                    visibility = View.GONE
+                }
+
+            }
+        })
     }
 
 }
