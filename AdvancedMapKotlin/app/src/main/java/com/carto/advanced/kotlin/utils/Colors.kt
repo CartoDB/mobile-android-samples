@@ -26,6 +26,9 @@ class Colors {
 
         @JvmField val transparentGray = Color.argb(150, 50, 50, 50)
 
+        @JvmField val darkTransparentGray = Color.argb(200, 50, 50, 50)
+        @JvmField val lightTransparentGray = Color.argb(120, 50, 50, 50)
+
         @JvmField val nearWhite = Color.rgb(245, 245, 245)
     }
 }

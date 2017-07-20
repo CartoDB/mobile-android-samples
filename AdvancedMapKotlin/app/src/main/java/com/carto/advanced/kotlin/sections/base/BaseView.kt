@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.sections.base
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
@@ -10,6 +11,7 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 
 /**
@@ -114,6 +116,17 @@ open class BaseView(context: Context) : RelativeLayout(context) {
             if (child != null && !child.equals(view)) {
                 child.bringToFront()
             }
+        }
+    }
+
+    fun closeKeyboard() {
+        // Check if no view has focus:
+        val view = (context as Activity).currentFocus
+
+        if (view != null) {
+            val service = context.getSystemService(Context.INPUT_METHOD_SERVICE)
+            val manager = service as InputMethodManager
+            manager.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 }

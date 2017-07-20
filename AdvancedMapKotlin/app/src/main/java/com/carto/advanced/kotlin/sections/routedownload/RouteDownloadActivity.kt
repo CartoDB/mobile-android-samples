@@ -96,6 +96,7 @@ class RouteDownloadActivity : BaseActivity() {
             }
 
             override fun onPackageUpdated(id: String?, version: Int) {
+                @Suppress("NAME_SHADOWING")
                 val id = boundingBox.toString()
                 routingManager?.startPackageDownload(id)
             }
@@ -128,6 +129,7 @@ class RouteDownloadActivity : BaseActivity() {
             override fun onPackageUpdated(id: String?, version: Int) {
 
                 val bytesInMB = 1048576.0
+                @Suppress("NAME_SHADOWING")
                 val id = boundingBox.toString()
 
                 val mapPackage = mapManager?.getLocalPackage(id)!!
@@ -257,7 +259,7 @@ class RouteDownloadActivity : BaseActivity() {
 
             runOnUiThread {
 
-                contentView?.progressLabel?.complete(routing?.getMessage(result!!)!!)
+                contentView?.progressLabel?.complete(routing?.getMessage(result)!!)
 
                 routing!!.show(result, color, {
                     route: Route ->

@@ -89,11 +89,8 @@ open class BaseGeocodingView(context: Context) : PackageDownloadBaseView(context
 
         if (goToPosition) {
 
-            val min = ScreenPos(10.0f, 10.0f)
-            val max = ScreenPos(map.layoutParams.width - 20.0f, map.layoutParams.height - 20.0f)
-            val bounds = ScreenBounds(min, max)
-
-            map.moveToFitBounds(geometry?.bounds, bounds, false, 0.5f)
+            map.setFocusPos(position, 1.0f)
+            map.setZoom(17.0f, 1.0f)
         }
 
         val popup = BalloonPopup(position, builder.buildStyle(), title, description)
