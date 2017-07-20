@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.text.SpannableStringBuilder
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ListView
 import com.carto.advanced.kotlin.model.Texts
@@ -32,6 +33,8 @@ class GeocodingView(context: Context) : BaseGeocodingView(context) {
         inputField.setTextColor(Color.WHITE)
         inputField.setBackgroundColor(Colors.darkTransparentGray)
         inputField.setPadding(padding, inputField.paddingTop, inputField.paddingRight, inputField.paddingBottom)
+        inputField.imeOptions = EditorInfo.IME_ACTION_DONE
+        inputField.setSingleLine()
         addView(inputField)
 
         resultTable.adapter = adapter

@@ -4,7 +4,12 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
+import android.view.MotionEvent
+import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
@@ -18,6 +23,7 @@ import com.carto.packagemanager.PackageStatus
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.sdk25.coroutines.onEditorAction
 
 /**
  * Created by aareundo on 11/07/2017.
@@ -50,8 +56,15 @@ class GeocodingActivity : BaseActivity() {
         override fun afterTextChanged(s: Editable?) { }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            var text = s!!
+
+            if ((text.toString() == "")) {
+                return
+            }
+
             contentView?.showTable()
-            val text = contentView?.inputField?.text.toString()
+            text = contentView?.inputField?.text.toString()
             val autoComplete = true
             geocode(text, autoComplete)
         }
@@ -64,6 +77,7 @@ class GeocodingActivity : BaseActivity() {
         contentView?.map?.mapEventListener = object : MapEventListener() {
             override fun onMapClicked(mapClickInfo: MapClickInfo?) {
                 contentView?.closeKeyboard()
+                contentView?.hideTable()
             }
         }
 
@@ -98,17 +112,19 @@ class GeocodingActivity : BaseActivity() {
         contentView?.manager?.startPackageListDownload()
 
         contentView?.inputField?.addTextChangedListener(changeListener)
+        contentView?.inputField?.setOnEditorActionListener() { v, actionId, _ ->
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                onEditingEnded()
+            }
+            false
+        }
 
         contentView?.resultTable?.setOnItemClickListener { _, _, _, _ ->
             run {
-                contentView?.closeKeyboard()
-                contentView?.hideTable()
-                val text = contentView?.inputField?.text.toString()
-                val autoComplete = false
-                geocode(text, autoComplete)
-                contentView?.clearInput()
+                onEditingEnded()
             }
         }
+
     }
 
     override fun onPause() {
@@ -126,10 +142,17 @@ class GeocodingActivity : BaseActivity() {
         contentView?.inputField?.removeTextChangedListener(changeListener)
 
         contentView?.resultTable?.onItemClickListener = null
+
+        contentView?.inputField?.onFocusChangeListener = null
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
+    fun onEditingEnded() {
+        contentView?.closeKeyboard()
+        contentView?.hideTable()
+        val text = contentView?.inputField?.text.toString()
+        val autoComplete = false
+        geocode(text, autoComplete)
+        contentView?.clearInput()
     }
 
     var searchQueueSize: Int = 0
