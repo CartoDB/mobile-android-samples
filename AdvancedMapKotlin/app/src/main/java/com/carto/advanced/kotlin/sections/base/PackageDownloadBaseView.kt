@@ -120,7 +120,8 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
             if (!popup.isVisible()) {
                 getCurrentDownload({ download: Package? ->
                     if (download != null) {
-                        val text = "Downloading " + download.name + ": " + status.progress.toString()
+                        val progress = status.progress.toInt().toString()
+                        val text = "Downloading " + download.name + ": " + progress + "%"
                         (context as Activity).runOnUiThread {
                             progressLabel.update(text)
                             progressLabel.updateProgressBar(status.progress)
@@ -220,13 +221,11 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
     var downloadQueue = mutableListOf<Package>()
 
     fun getCurrentDownload(complete: (item: Package?) -> Unit) {
-        print("wut")
         doAsync {
             if (downloadQueue.size > 0) {
                 val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
                 if (downloading.size == 1) {
                     complete(downloading[0])
-                    print("getCurrentDownload: Item found in queue")
                     return@doAsync
                 }
             }
@@ -237,13 +236,11 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
                 val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
                 if (downloading.size == 1) {
                     complete(downloading[0])
-                    print("getCurrentDownload: Item found in queue after reset")
                     return@doAsync
                 }
             }
 
             complete(null)
-            print("getCurrentDownload: Item !found in queue")
         }
     }
 
