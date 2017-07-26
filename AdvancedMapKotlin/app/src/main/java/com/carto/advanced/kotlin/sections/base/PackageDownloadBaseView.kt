@@ -62,33 +62,50 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         countryButton?.setOnClickListener(null)
     }
 
-    fun updatePackages() {
-        packageContent?.addPackages(getPackages())
+    fun updatePackages(packages: MutableList<Package>) {
+        packageContent?.addPackages(packages)
+    }
+
+    fun getActivity(): BaseActivity {
+        return context as BaseActivity
     }
 
     fun onPackageClick(item: com.carto.advanced.kotlin.utils.Package) {
 
         if (item.isGroup()) {
-            folder = folder + item.name + "/"
-            packageContent?.addPackages(getPackages())
-            popup.popup.header.backButton.visibility = View.VISIBLE
+            doAsync {
+                folder = folder + item.name + "/"
+                val packages = getPackages()
+
+                (context as BaseActivity).runOnUiThread {
+                    packageContent?.addPackages(packages)
+                    popup.popup.header.backButton.visibility = View.VISIBLE
+                }
+            }
+
         } else {
 
-            val action = item.getActionText()
-            enqueue(item)
+            doAsync {
+                val action = item.getActionText()
+                enqueue(item)
 
-            if (action == Package.ACTION_DOWNLOAD) {
-                manager?.startPackageDownload(item.id)
-                progressLabel.show()
-            } else if (action == Package.ACTION_PAUSE) {
-                manager?.setPackagePriority(item.id, -1)
-            } else if (action == Package.ACTION_RESUME) {
-                manager?.setPackagePriority(item.id, 0)
-            } else if (action == Package.ACTION_CANCEL) {
-                manager?.cancelPackageTasks(item.id)
-            } else if (action == Package.ACTION_REMOVE) {
-                manager?.startPackageRemove(item.id)
+                if (action == Package.ACTION_DOWNLOAD) {
+                    manager?.startPackageDownload(item.id)
+                } else if (action == Package.ACTION_PAUSE) {
+                    manager?.setPackagePriority(item.id, -1)
+                } else if (action == Package.ACTION_RESUME) {
+                    manager?.setPackagePriority(item.id, 0)
+                } else if (action == Package.ACTION_CANCEL) {
+                    manager?.cancelPackageTasks(item.id)
+                } else if (action == Package.ACTION_REMOVE) {
+                    manager?.startPackageRemove(item.id)
+                }
             }
+
+            getActivity().runOnUiThread {
+                progressLabel.show()
+            }
+
         }
     }
 
@@ -97,6 +114,9 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
 
             packageContent?.findAndUpdate(id, status)
 
+            // Bottom label update:
+            // As getting the name of a package is a costly operation,
+            // only do it when the popup isn't visible
             if (!popup.isVisible()) {
                 getCurrentDownload({ download: Package? ->
                     if (download != null) {

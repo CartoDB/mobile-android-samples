@@ -92,8 +92,9 @@ class ReverseGeocodingActivity : BaseActivity() {
 
         contentView?.manager?.packageManagerListener = object: PackageManagerListener() {
             override fun onPackageListUpdated() {
+                val packages = contentView?.getPackages()!!
                 runOnUiThread {
-                    contentView?.updatePackages()
+                    contentView?.updatePackages(packages)
                 }
             }
 
