@@ -1,9 +1,11 @@
 package com.carto.advanced.kotlin.main
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.carto.advanced.kotlin.model.Samples
+import com.carto.advanced.kotlin.utils.Colors
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(contentView)
 
         contentView?.addRows(Samples.list)
+
+        val drawable = ColorDrawable(Colors.locationRed)
+        supportActionBar?.setBackgroundDrawable(drawable)
     }
 
     override fun onResume() {

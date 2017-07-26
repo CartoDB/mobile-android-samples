@@ -16,9 +16,9 @@ class Colors {
 
         @JvmField val green = Color.parseColor("#73C86B")
 
-        @JvmField val locationRed = Color.rgb(215, 82, 75)
+        @JvmField val locationRed = Color.rgb(242, 68, 64)
 
-        @JvmField val transparentLocationRed = Color.argb(150, 215, 82, 75)
+        @JvmField val transparentLocationRed = Color.argb(150, 242, 68, 64)
 
         @JvmField val navy = Color.rgb(22, 41, 69)
 

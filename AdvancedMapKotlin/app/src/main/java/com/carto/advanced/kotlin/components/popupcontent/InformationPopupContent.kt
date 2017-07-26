@@ -26,11 +26,10 @@ class InformationPopupContent(context: Context) : BaseView(context) {
         addView(header)
 
         content.setTextColor(Colors.navy)
-        content.textSize = 15.0f
+        content.textSize = 12.0f
         content.maxLines = Int.MAX_VALUE
         content.movementMethod = ScrollingMovementMethod()
         addView(content)
-
     }
 
     override fun layoutSubviews() {
@@ -44,7 +43,7 @@ class InformationPopupContent(context: Context) : BaseView(context) {
         val x: Int = leftPadding
         var y: Int = padding
         var h: Int = headerHeight
-        val w: Int = frame.width - leftPadding
+        val w: Int = frame.width - 2 * leftPadding
 
         header.setFrame(x, y, w, h)
 

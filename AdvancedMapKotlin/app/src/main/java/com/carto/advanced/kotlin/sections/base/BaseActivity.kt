@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.base
 
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.carto.advanced.kotlin.main.MainActivity
 import android.support.v4.app.ActivityCompat
+import com.carto.advanced.kotlin.utils.Colors
 
 
 /**
@@ -26,6 +28,9 @@ open class BaseActivity : AppCompatActivity() {
         title = intent.getStringExtra(MainActivity.TITLE)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val drawable = ColorDrawable(Colors.locationRed)
+        supportActionBar?.setBackgroundDrawable(drawable)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
