@@ -11,7 +11,7 @@
         android:name=".MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="ADVANCED MAP"
+        android:label="Advanced Map"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
