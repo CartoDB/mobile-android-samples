@@ -18,7 +18,7 @@ import com.carto.vectorelements.*
 open class BaseGeocodingView(context: Context) : PackageDownloadBaseView(context) {
 
     companion object {
-        val SOURCE = "geocoding:carto.geocode"
+        val SOURCE = "geocoding:carto.streets"
     }
 
     val source = LocalVectorDataSource(projection)

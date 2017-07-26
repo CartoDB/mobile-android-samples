@@ -38,7 +38,7 @@ class RouteDownloadActivity : BaseActivity() {
         var folder = Utils.createDirectory(this, "mappackages")
         mapManager = CartoPackageManager(Routing.MAP_SOURCE, folder)
 
-        folder = Utils.createDirectory(this, "routeingpackages")
+        folder = Utils.createDirectory(this, "routingpackages")
         routingManager = CartoPackageManager(Routing.ROUTING_TAG + Routing.ROUTING_SOURCE, folder)
 
         setOnlineMode(false)
