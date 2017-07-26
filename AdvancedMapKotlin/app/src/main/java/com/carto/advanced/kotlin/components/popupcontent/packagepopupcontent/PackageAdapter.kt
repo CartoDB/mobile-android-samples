@@ -34,7 +34,7 @@ class PackageAdapter(context: Context?, resource: Int) : ArrayAdapter<Package>(c
         if (convertView == null) {
             cell = PackageCell(context)
 
-            val height = (57 * context.resources.displayMetrics.density).toInt()
+            val height = (45 * context.resources.displayMetrics.density).toInt()
             cell.layoutParams = AbsListView.LayoutParams(width, height)
             cell.frame = CGRect(0, 0, width, height)
         } else {

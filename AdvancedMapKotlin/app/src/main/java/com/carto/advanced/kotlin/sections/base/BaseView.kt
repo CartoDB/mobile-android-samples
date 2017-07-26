@@ -44,6 +44,10 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         return context.resources.displayMetrics
     }
 
+    fun getDensity(): Float {
+        return getMetrics().density
+    }
+
     fun setCornerRadius(radius: Float) {
 
         if (isJellybeanOrHigher()) {

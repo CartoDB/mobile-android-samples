@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.Gravity
@@ -36,28 +37,31 @@ class PackageCell(context: Context) : BaseView(context) {
 
     init {
 
-        val titleSize = 15.0f
+        val titleSize = 13.0f
         val titleColor = Colors.navy
 
         textLabel.textSize = titleSize
         textLabel.setTextColor(titleColor)
         textLabel.gravity = Gravity.CENTER_VERTICAL
+        textLabel.typeface = Typeface.DEFAULT_BOLD
         addView(textLabel)
 
         title.textSize = titleSize
         title.setTextColor(titleColor)
+        title.typeface = Typeface.DEFAULT_BOLD
         addView(title)
 
-        subtitle.textSize = 13.0f
+        subtitle.textSize = titleSize - 2
         subtitle.setTextColor(Color.LTGRAY)
         addView(subtitle)
 
         statusIndicator.gravity = Gravity.CENTER
         statusIndicator.setTextColor(Colors.appleBlue)
-        statusIndicator.textSize = 13.0f
+        statusIndicator.textSize = titleSize - 1
+        statusIndicator.typeface = Typeface.DEFAULT_BOLD
 
         val drawable = GradientDrawable()
-        drawable.cornerRadius = 5.0f
+        drawable.cornerRadius = 3 * getDensity()
         drawable.setStroke(1, Colors.appleBlue)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             statusIndicator.background = drawable
@@ -119,8 +123,8 @@ class PackageCell(context: Context) : BaseView(context) {
 
         subtitle.setFrame(x, y, w, h)
 
-        w = (82 * context.resources.displayMetrics.density).toInt()
-        h = frame.height / 5 * 3
+        w = (80 * context.resources.displayMetrics.density).toInt()
+        h = (frame.height / 5 * 3.1).toInt()
         x = frame.width - (w + leftPadding)
         y = frame.height / 2 - h / 2
 
@@ -156,7 +160,7 @@ class PackageCell(context: Context) : BaseView(context) {
 
         var width = 0
         if (action == Package.ACTION_DOWNLOAD) {
-            width = (1 * context.displayMetrics.density).toInt()
+            width = (1.2 * context.displayMetrics.density).toInt()
         }
 
         (statusIndicator.background as GradientDrawable).setStroke(width, Colors.appleBlue)
