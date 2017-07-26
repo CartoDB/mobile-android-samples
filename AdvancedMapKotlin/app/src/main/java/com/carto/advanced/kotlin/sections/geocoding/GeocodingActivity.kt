@@ -90,7 +90,7 @@ class GeocodingActivity : BaseActivity() {
 
             override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
                 runOnUiThread {
-                    contentView?.onStatusChanged(status!!)
+                    contentView?.onStatusChanged(id!!, status!!)
                 }
             }
 
@@ -112,7 +112,7 @@ class GeocodingActivity : BaseActivity() {
         contentView?.manager?.startPackageListDownload()
 
         contentView?.inputField?.addTextChangedListener(changeListener)
-        contentView?.inputField?.setOnEditorActionListener() { v, actionId, _ ->
+        contentView?.inputField?.setOnEditorActionListener() { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 onEditingEnded()
             }

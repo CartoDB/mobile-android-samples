@@ -56,6 +56,9 @@ class ProgressLabel(context: Context) : BaseView(context) {
     }
 
     fun update(text: String) {
+        if (!isVisible()) {
+            show()
+        }
         label.text = text.toUpperCase()
     }
 

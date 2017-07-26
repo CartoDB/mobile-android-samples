@@ -6,6 +6,7 @@ import android.widget.ListView
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Package
+import com.carto.packagemanager.PackageStatus
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -33,14 +34,18 @@ class PackagePopupContent(context: Context) : BaseView(context) {
     }
 
     fun findAndUpdate(item: Package) {
-        findItem(item.id!!)?.update(item)
+        find(item.id!!)?.update(item)
     }
 
     fun findAndUpdate(item: Package, progress: Float) {
-        findItem(item.id!!)?.update(item, progress)
+        find(item.id!!)?.update(item, progress)
     }
 
-    fun findItem(id: String): PackageCell? {
+    fun findAndUpdate(id: String, status: PackageStatus) {
+        find(id)?.update(status)
+    }
+
+    fun find(id: String): PackageCell? {
         for (i in 0..list.childCount - 1) {
             val child = list.getChildAt(i)
 

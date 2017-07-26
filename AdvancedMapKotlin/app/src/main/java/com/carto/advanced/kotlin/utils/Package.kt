@@ -65,6 +65,21 @@ class Package {
         return status
     }
 
+    fun isDownloading(): Boolean {
+        if (status == null) {
+            return false
+        }
+
+        return status!!.currentAction == PackageAction.PACKAGE_ACTION_DOWNLOADING && !status!!.isPaused
+    }
+
+    fun isQueued(): Boolean {
+        if (status == null) {
+            return false
+        }
+
+        return status!!.currentAction == PackageAction.PACKAGE_ACTION_WAITING && !status!!.isPaused
+    }
 
     companion object {
         val READY = "READY"

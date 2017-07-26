@@ -15,6 +15,7 @@ import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advanced.kotlin.utils.Package
 import com.carto.packagemanager.PackageAction
+import com.carto.packagemanager.PackageStatus
 import org.jetbrains.anko.displayMetrics
 
 /**
@@ -170,6 +171,12 @@ class PackageCell(context: Context) : BaseView(context) {
         if (this.item?.status?.currentAction != PackageAction.PACKAGE_ACTION_DOWNLOADING) {
             progressIndicator.frame = CGRect.empty
         }
+    }
+
+    fun update(status: PackageStatus) {
+        this.item!!.status = status
+        update(this.item!!)
+        updateProgress(status.progress)
     }
 
     fun update(item: Package, progress: Float) {

@@ -13,6 +13,7 @@ import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageStatus
 import org.jetbrains.anko.collections.toAndroidPair
+import org.jetbrains.anko.doAsync
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -23,7 +24,6 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
 
     var packageContent: PackagePopupContent? = null
 
-    var currentDownload: com.carto.advanced.kotlin.utils.Package? = null
     var folder = ""
 
     init {
@@ -34,7 +34,7 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         packageContent = PackagePopupContent(context)
     }
 
-    open override fun layoutSubviews() {
+    override fun layoutSubviews() {
         super.layoutSubviews()
     }
 
@@ -74,8 +74,8 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
             popup.popup.header.backButton.visibility = View.VISIBLE
         } else {
 
-            currentDownload = item
             val action = item.getActionText()
+            enqueue(item)
 
             if (action == Package.ACTION_DOWNLOAD) {
                 manager?.startPackageDownload(item.id)
@@ -92,29 +92,32 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         }
     }
 
-    fun onStatusChanged(status: PackageStatus) {
+    fun onStatusChanged(id: String, status: PackageStatus) {
         (context as Activity).runOnUiThread {
 
-            if (this.currentDownload == null) {
-                // TODO in case a download has been started and the activity is reloaded
-                return@runOnUiThread
+            packageContent?.findAndUpdate(id, status)
+
+            if (!popup.isVisible()) {
+                getCurrentDownload({ download: Package? ->
+                    if (download != null) {
+                        val text = "Downloading " + download.name + ": " + status.progress.toString()
+                        (context as Activity).runOnUiThread {
+                            progressLabel.update(text)
+                            progressLabel.updateProgressBar(status.progress)
+                            download.status = status
+                        }
+                    }
+                })
             }
-
-            val text = "Downloading " + currentDownload?.name + ": " + status.progress.toString()
-            progressLabel.update(text)
-            progressLabel.updateProgressBar(status.progress)
-
-            currentDownload?.status = manager?.getLocalPackageStatus(currentDownload?.id, -1)
-            packageContent?.findAndUpdate(currentDownload!!, status.progress)
         }
+
     }
 
     fun downloadComplete(id: String) {
         (context as Activity).runOnUiThread {
-            if (currentDownload != null) {
-                currentDownload?.status = manager?.getLocalPackageStatus(id, -1)
-                packageContent?.findAndUpdate(currentDownload!!)
-            }
+            packageContent!!.addPackages(getPackages())
+            packageContent!!.adapter.notifyDataSetChanged()
+            dequeue(id)
         }
     }
 
@@ -188,5 +191,92 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         }
 
         return  list
+    }
+
+    /*
+     * Download queue
+     */
+
+    var downloadQueue = mutableListOf<Package>()
+
+    fun getCurrentDownload(complete: (item: Package?) -> Unit) {
+        print("wut")
+        doAsync {
+            if (downloadQueue.size > 0) {
+                val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
+                if (downloading.size == 1) {
+                    complete(downloading[0])
+                    print("getCurrentDownload: Item found in queue")
+                    return@doAsync
+                }
+            }
+
+            downloadQueue = getAllPackages().filter({ item: Package -> item.isDownloading() || item.isQueued() }) as MutableList<Package>
+
+            if (downloadQueue.size > 0) {
+                val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
+                if (downloading.size == 1) {
+                    complete(downloading[0])
+                    print("getCurrentDownload: Item found in queue after reset")
+                    return@doAsync
+                }
+            }
+
+            complete(null)
+            print("getCurrentDownload: Item !found in queue")
+        }
+    }
+
+    fun enqueue(item: Package) {
+        if (!downloadQueue.contains(item)) {
+            downloadQueue.add(item)
+        }
+    }
+
+    fun dequeue() {
+        downloadQueue.removeAt(0)
+    }
+
+    fun dequeue(item: Package) {
+        downloadQueue.remove(item)
+    }
+
+    fun dequeue(id: String) {
+        val item = downloadQueue.find { p: Package -> p.id == id }
+        if (item != null) {
+            dequeue(item)
+        }
+    }
+
+    fun getAllPackages(): MutableList<Package> {
+
+        val packages = mutableListOf<Package>()
+
+        val vector = manager!!.serverPackages
+        val total = vector.size()
+
+        for (i in 0..total -1) {
+
+            val info = vector?.get(i.toInt())
+            val name = info?.name
+
+            val split = name!!.split("/")
+
+            if (split.isEmpty()) {
+                continue
+            }
+
+            val modified = split[split.size - 1]
+
+            val item = Package()
+            item.id = info.packageId
+            item.name = modified
+            item.status = manager!!.getLocalPackageStatus(item.id, -1)
+            item.info = info
+
+            packages.add(item)
+        }
+
+        return packages
     }
 }

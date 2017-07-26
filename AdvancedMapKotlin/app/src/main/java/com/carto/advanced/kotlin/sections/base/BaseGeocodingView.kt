@@ -2,8 +2,6 @@ package com.carto.advanced.kotlin.sections.base
 
 import android.content.Context
 import com.carto.core.MapPos
-import com.carto.core.ScreenBounds
-import com.carto.core.ScreenPos
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.geocoding.GeocodingResult
 import com.carto.geometry.*
@@ -46,7 +44,7 @@ open class BaseGeocodingView(context: Context) : PackageDownloadBaseView(context
 
         var position: MapPos? = null
 
-        var geometry: Geometry? = null
+        var geometry: Geometry?
 
         for (i in 0..count - 1) {
 

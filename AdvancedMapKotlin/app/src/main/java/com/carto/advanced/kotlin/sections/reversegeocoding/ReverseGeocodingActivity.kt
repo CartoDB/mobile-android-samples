@@ -99,7 +99,7 @@ class ReverseGeocodingActivity : BaseActivity() {
 
             override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
                 runOnUiThread {
-                    contentView?.onStatusChanged(status!!)
+                    contentView?.onStatusChanged(id!!, status!!)
                 }
             }
 
