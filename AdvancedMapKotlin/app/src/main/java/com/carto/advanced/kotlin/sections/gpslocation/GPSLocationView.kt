@@ -7,14 +7,25 @@ import com.carto.advanced.kotlin.components.StateSwitch
 import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
+import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
+import com.carto.core.MapPosVector
+import com.carto.core.MapPosVectorVector
 import com.carto.datasources.LocalVectorDataSource
+import com.carto.geometry.PolygonGeometry
+import com.carto.graphics.Color
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.VectorLayer
+import com.carto.styles.LineStyleBuilder
 import com.carto.styles.MarkerStyleBuilder
+import com.carto.styles.PointStyleBuilder
+import com.carto.styles.PolygonStyleBuilder
 import com.carto.utils.BitmapUtils
 import com.carto.vectorelements.Marker
+import com.carto.vectorelements.Point
+import com.carto.vectorelements.Polygon
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -45,27 +56,67 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
         super.layoutSubviews()
     }
 
-    var userMarker: Marker? = null
+    var userMarker: Point? = null
+    var accuracyMarker: Polygon? = null
 
     fun showUserAt(location: Location) {
 
         val latitude = location.latitude
         val longitude = location.longitude
+        val accuracy = location.accuracy
 
         val position = projection?.fromWgs84(MapPos(longitude, latitude))
         map.setFocusPos(position, 1.0f)
         map.setZoom(16.0f, 1.0f)
 
-        if (userMarker == null) {
-            val builder = MarkerStyleBuilder()
-            val bitmap = Utils.resourceToBitmap(context.resources, R.drawable.icon_marker_blue)
-            builder.bitmap = bitmap
-            builder.size = 25.0f
+        val builder = PolygonStyleBuilder()
+        builder.color = Colors.lightTransparentAppleBlue.toCartoColor()
+        val borderBuilder = LineStyleBuilder()
+        borderBuilder.color = Colors.darkTransparentAppleBlue.toCartoColor()
+        borderBuilder.width = 1.0f
+        builder.lineStyle = borderBuilder.buildStyle()
 
-            userMarker = Marker(position, builder.buildStyle())
+        val points = getCirclePoints(latitude, longitude, accuracy)
+
+        if (accuracyMarker == null) {
+            accuracyMarker = Polygon(points, MapPosVectorVector(), builder.buildStyle())
+            source?.add(accuracyMarker)
+        } else {
+            accuracyMarker?.style = builder.buildStyle()
+            accuracyMarker?.geometry = PolygonGeometry(points)
+        }
+
+        if (userMarker == null) {
+            val builder = PointStyleBuilder()
+            builder.size = 15.0f
+            builder.color = Colors.appleBlue.toCartoColor()
+            userMarker = Point(position, builder.buildStyle())
             source?.add(userMarker)
         }
 
-        userMarker?.setPos(position)
+        userMarker?.pos = position
+    }
+
+    val N = 100
+    val EARTH_RADIUS = 6378137.0
+
+    fun getCirclePoints(latitude: Double, longitude: Double, accuracy: Float): MapPosVector {
+        val points = MapPosVector()
+
+        val radius = accuracy.toDouble()
+
+        for (i in 0..N) {
+            val angle = Math.PI * 2 * (i % N) / N
+            val dx = radius * Math.cos(angle)
+            val dy = radius * Math.sin(angle)
+
+            val lat = latitude + (180 / Math.PI) * (dy / EARTH_RADIUS)
+            val lon = longitude + (180 / Math.PI) * (dx / EARTH_RADIUS) / Math.cos(latitude * Math.PI / 180)
+
+            val point = projection?.fromWgs84(MapPos(lon, lat))
+            points.add(point)
+        }
+
+        return points
     }
 }

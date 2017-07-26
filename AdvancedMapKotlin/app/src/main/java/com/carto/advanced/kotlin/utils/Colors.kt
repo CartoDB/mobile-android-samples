@@ -8,6 +8,9 @@ import android.graphics.Color
 class Colors {
 
     companion object {
+
+        @JvmField val lightTransparentAppleBlue = Color.argb(70, 14, 122, 254)
+        @JvmField val darkTransparentAppleBlue = Color.argb(150, 14, 122, 254)
         @JvmField val appleBlue = Color.rgb(14, 122, 254)
 
         @JvmField val appleBlueInt = Color.parseColor("#0E7AFE")
