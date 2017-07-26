@@ -3,27 +3,21 @@ package com.carto.advanced.kotlin.sections.gpslocation
 import android.content.Context
 import android.location.Location
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.components.StateSwitch
 import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
-import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
 import com.carto.core.MapPosVector
 import com.carto.core.MapPosVectorVector
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.geometry.PolygonGeometry
-import com.carto.graphics.Color
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.VectorLayer
 import com.carto.styles.LineStyleBuilder
-import com.carto.styles.MarkerStyleBuilder
 import com.carto.styles.PointStyleBuilder
 import com.carto.styles.PolygonStyleBuilder
-import com.carto.utils.BitmapUtils
-import com.carto.vectorelements.Marker
 import com.carto.vectorelements.Point
 import com.carto.vectorelements.Polygon
 

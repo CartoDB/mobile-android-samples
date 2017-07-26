@@ -12,7 +12,9 @@ import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.RelativeLayout
+import android.widget.TextView
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -87,8 +89,9 @@ open class BaseView(context: Context) : RelativeLayout(context) {
     }
 
     fun getStatusBarHeight(): Int {
-        return  getHeightOf("status_bar_height")
+        return getHeightOf("status_bar_height")
     }
+
     fun getHeightOf(of: String): Int {
         var result = 0
         val resourceId = resources.getIdentifier(of, "dimen", "android")
@@ -134,3 +137,4 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         }
     }
 }
+

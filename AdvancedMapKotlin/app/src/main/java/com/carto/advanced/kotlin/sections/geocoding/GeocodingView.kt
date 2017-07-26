@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.geocoding
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.shapes.Shape
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -9,11 +10,12 @@ import android.widget.EditText
 import android.widget.ListView
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
-import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.geocoding.GeocodingResult
-import com.carto.layers.CartoBaseMapStyle
+import android.widget.TextView
+import com.carto.advanced.kotlin.R
+
 
 /**
  * Created by aareundo on 11/07/2017.
@@ -34,8 +36,17 @@ class GeocodingView(context: Context) : BaseGeocodingView(context) {
         inputField.setBackgroundColor(Colors.darkTransparentGray)
         inputField.setPadding(padding, inputField.paddingTop, inputField.paddingRight, inputField.paddingBottom)
         inputField.imeOptions = EditorInfo.IME_ACTION_DONE
+        inputField.hint = "Type address..."
+        inputField.setHintTextColor(Color.LTGRAY)
         inputField.setSingleLine()
         addView(inputField)
+
+        try {
+            // https://github.com/android/platform_frameworks_base/blob/kitkat-release/core/java/android/widget/TextView.java#L562-564
+            val f = TextView::class.java.getDeclaredField("mCursorDrawableRes")
+            f.isAccessible = true
+            f.set(inputField, R.drawable.cursor)
+        } catch (ignored: Exception) { }
 
         resultTable.adapter = adapter
         resultTable.setBackgroundColor(Colors.lightTransparentGray)
