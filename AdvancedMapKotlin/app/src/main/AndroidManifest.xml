@@ -15,13 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".main.MainActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".sections.styles.StyleChoiceActivity" />
         <activity android:name=".sections.citydownload.CityDownloadActivity" />
         <activity android:name=".sections.editing.EditingActivity" />
@@ -29,9 +24,17 @@
         <activity android:name=".sections.packagedownload.PackageDownloadActivity" />
         <activity android:name=".sections.routedownload.RouteDownloadActivity" />
         <activity android:name=".sections.vectorelement.VectorElementActivity" />
-        <activity android:name=".sections.clustering.ClusteringActivity"/>
-        <activity android:name=".sections.geocoding.GeocodingActivity"/>
-        <activity android:name=".sections.reversegeocoding.ReverseGeocodingActivity"/>
+        <activity android:name=".sections.clustering.ClusteringActivity" />
+        <activity android:name=".sections.geocoding.GeocodingActivity" />
+        <activity android:name=".sections.reversegeocoding.ReverseGeocodingActivity" />
+        <activity android:name=".main.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
