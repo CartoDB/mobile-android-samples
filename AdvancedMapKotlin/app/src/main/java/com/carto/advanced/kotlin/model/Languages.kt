@@ -7,7 +7,7 @@ class Languages {
 
     companion object {
         val list: MutableList<Language> = mutableListOf(
-                Language("Default", ""),
+                Language("Local", ""),
                 Language("English", "en"),
                 Language("German", "de"),
                 Language("Spanish", "es"),
