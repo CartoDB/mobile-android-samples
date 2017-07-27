@@ -98,6 +98,7 @@ class GeocodingActivity : BaseActivity() {
             override fun onPackageUpdated(id: String?, version: Int) {
                 runOnUiThread {
                     contentView?.downloadComplete(id!!)
+                    contentView?.showSearchBar()
                 }
             }
         }
@@ -126,6 +127,12 @@ class GeocodingActivity : BaseActivity() {
             }
         }
 
+        if (contentView?.hasLocalPackages()!!) {
+            contentView?.showLocalPackages()
+            contentView?.showSearchBar()
+        } else {
+            contentView?.showBannerInsteadOfSearchBar()
+        }
     }
 
     override fun onPause() {

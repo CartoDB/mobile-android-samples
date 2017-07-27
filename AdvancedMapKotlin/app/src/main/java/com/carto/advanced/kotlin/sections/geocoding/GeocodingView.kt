@@ -15,6 +15,8 @@ import com.carto.advanced.kotlin.utils.Colors
 import com.carto.geocoding.GeocodingResult
 import android.widget.TextView
 import com.carto.advanced.kotlin.R
+import com.carto.advanced.kotlin.sections.base.hide
+import com.carto.advanced.kotlin.sections.base.show
 
 
 /**
@@ -90,4 +92,14 @@ class GeocodingView(context: Context) : BaseGeocodingView(context) {
     fun clearInput() {
         inputField.text = SpannableStringBuilder("")
     }
- }
+
+    fun showBannerInsteadOfSearchBar() {
+        inputField.alpha = 0.0f
+        showBanner("DOWNLOAD A PACKAGE TO START GEOCODING")
+    }
+
+    fun showSearchBar() {
+        inputField.show({})
+        topBanner.hide({})
+    }
+}

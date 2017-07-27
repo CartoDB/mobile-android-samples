@@ -1,12 +1,14 @@
 package com.carto.advanced.kotlin.sections.base
 
 import android.content.Context
+import com.carto.advanced.kotlin.utils.toList
 import com.carto.core.MapPos
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.geocoding.GeocodingResult
 import com.carto.geometry.*
 import com.carto.graphics.Color
 import com.carto.layers.VectorLayer
+import com.carto.packagemanager.PackageInfo
 import com.carto.styles.*
 import com.carto.vectorelements.*
 
@@ -93,5 +95,35 @@ open class BaseGeocodingView(context: Context) : PackageDownloadBaseView(context
 
         val popup = BalloonPopup(position, builder.buildStyle(), title, description)
         source.add(popup)
+    }
+
+    fun showLocalPackages() {
+        var text = "You have downloaded "
+
+        val packages = getLocalPackages()
+        val total = packages.size
+        var counter = 0
+
+        for (item in packages) {
+            val split = item.name.split("/")
+            val shortName = split[split.size - 1]
+
+            text += shortName
+            counter++
+
+            if (counter < total) {
+                text += ", "
+            }
+        }
+
+        progressLabel.complete(text)
+    }
+
+    fun hasLocalPackages(): Boolean {
+        return getLocalPackages().size > 0
+    }
+
+    fun getLocalPackages(): MutableList<PackageInfo> {
+        return manager!!.localPackages.toList()
     }
 }

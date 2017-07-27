@@ -1,17 +1,19 @@
 package com.carto.advanced.kotlin.components
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
-import android.view.animation.AlphaAnimation
 import android.widget.TextView
+import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.sections.base.BaseView
 import com.carto.advanced.kotlin.sections.base.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.core.MapPos
 import java.lang.Math.round
+import java.util.*
+import kotlin.concurrent.schedule
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -43,6 +45,7 @@ class ProgressLabel(context: Context) : BaseView(context) {
         label.setFrame(0, 0, frame.width, frame.height)
     }
 
+    @SuppressLint("SetTextI18n")
     fun update(progress: Float, position: MapPos) {
 
         label.text = "DOWNLOADING" + position.toString() + " (" + (round(progress * 10) / 10).toString() + "%)"
@@ -64,15 +67,18 @@ class ProgressLabel(context: Context) : BaseView(context) {
 
     fun complete(message: String) {
 
-        if (!isVisible()) {
-            show()
-        }
+        show()
 
         label.text = message
-    }
 
-    fun complete(position: MapPos) {
-        label.text = "DOWNLOAD OF" + position.toString() + "COMPLETED"
+        val timer = Timer()
+        timer.schedule(5000) {
+            if (context is BaseActivity) {
+                (context as BaseActivity).runOnUiThread {
+                    hide()
+                }
+            }
+        }
     }
 
     fun updateProgressBar(progress: Float) {
@@ -84,28 +90,17 @@ class ProgressLabel(context: Context) : BaseView(context) {
         progressBar.setFrame(0, y, width, height)
     }
 
-    fun positionToString(position: MapPos): String {
-
-        val lat = round(position.x * 100) / 100
-        val lon = round(position.y * 100) / 100
-        return  " [lat: " + lat.toString() + ", lon: " + lon.toString() + "] "
-    }
-
     fun hide() {
-        if (isVisible()) {
-            animateAlpha(0f)
-        }
+        animateAlpha(0f)
     }
 
     fun show() {
-        if (!isVisible()) {
-            animateAlpha(1.0f)
-        }
+        animateAlpha(1.0f)
     }
 
     fun animateAlpha(to: Float) {
         val animator = ObjectAnimator.ofFloat(this, "alpha", to)
-        animator.duration = 200
+        animator.duration = 300
         animator.start()
     }
 }

@@ -29,8 +29,6 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
     val buttons: MutableList<PopupButton> = mutableListOf()
 
-    val topBar = BaseView(context)
-
     init {
 
         projection = map.options.baseProjection
@@ -39,6 +37,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
         addView(map)
 
+        topBanner.alpha = 0.0f
         addView(topBanner)
 
         addButton(infoButton)

@@ -61,7 +61,7 @@ class SlideInPopup(context: Context) : BaseView(context) {
         y = visibleY
         popup.setFrame(x, y, w, h)
 
-        hide()
+        hide(0)
     }
 
     fun setPopupContent(content: BaseView) {
@@ -98,24 +98,22 @@ class SlideInPopup(context: Context) : BaseView(context) {
         }
     }
 
-    fun hide() {
-        animateAlpha(0.0f)
-        animateY(hiddenY)
+    fun hide(duration: Long = 200) {
+        animateAlpha(0.0f, duration)
+        animateY(hiddenY, duration)
 
         transparentArea.setOnClickListener(null)
 
         popup.header.closeButton.setOnClickListener(null)
     }
 
-    val duration: Long = 200
-
-    fun animateAlpha(to: Float) {
+    fun animateAlpha(to: Float, duration: Long = 200) {
         val animator = ObjectAnimator.ofFloat(transparentArea, "alpha", to)
         animator.duration = duration
         animator.start()
     }
 
-    fun animateY(to: Int) {
+    fun animateY(to: Int, duration: Long = 200) {
 
 //        popup.setFrame(popup.frame.x, to, popup.frame.width, popup.frame.height)
 //        if (to == hiddenY) {

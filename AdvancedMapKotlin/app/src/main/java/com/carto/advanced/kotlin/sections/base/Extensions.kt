@@ -1,8 +1,11 @@
 package com.carto.advanced.kotlin.sections.base
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.view.View
 import android.widget.*
+import com.carto.advanced.kotlin.routing.Route
 import com.carto.ui.MapView
 
 /**
@@ -102,4 +105,35 @@ fun Int.toCartoColor(): com.carto.graphics.Color {
     val a = Color.alpha(this).toShort()
 
     return com.carto.graphics.Color(r, g, b, a)
+}
+
+fun View.hide(complete: (success: Boolean) -> Unit) {
+    animateAlpha(0.0f, complete)
+}
+
+fun View.show(complete: (success: Boolean) -> Unit) {
+    animateAlpha(1.0f, complete)
+}
+
+val duration: Long = 200
+
+fun View.animateAlpha(to: Float, complete: (success: Boolean) -> Unit) {
+    val animator = ObjectAnimator.ofFloat(this, "alpha", to)
+    animator.duration = duration
+    animator.start()
+
+    animator.addListener(object : Animator.AnimatorListener {
+
+        override fun onAnimationStart(animation: Animator?) { }
+        override fun onAnimationRepeat(animation: Animator?) { }
+
+        override fun onAnimationCancel(animation: Animator?) {
+            complete(false)
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            complete(true)
+        }
+
+    })
 }

@@ -61,7 +61,7 @@ class Banner(context: Context) : BaseView(context) {
 
     fun setText(text: String) {
         label.text = text
-        visibility = View.VISIBLE
+        alpha = 1.0f
     }
 
     fun setRightItem(resource: Int) {
