@@ -120,6 +120,10 @@ class ReverseGeocodingActivity : BaseActivity() {
 
         contentView?.manager?.start()
         contentView?.manager?.startPackageListDownload()
+
+        if (contentView?.hasLocalPackages()!!) {
+            contentView?.showLocalPackages()
+        }
     }
 
     override fun onPause() {
