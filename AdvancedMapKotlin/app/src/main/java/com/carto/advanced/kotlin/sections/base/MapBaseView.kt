@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.base
 
 import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.R
+import com.carto.advanced.kotlin.components.Banner
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popup.SlideInPopup
 import com.carto.advanced.kotlin.components.popupcontent.InformationPopupContent
