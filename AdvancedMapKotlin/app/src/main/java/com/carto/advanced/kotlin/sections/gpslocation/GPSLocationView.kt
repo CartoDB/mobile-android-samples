@@ -3,8 +3,11 @@ package com.carto.advanced.kotlin.sections.gpslocation
 import android.content.Context
 import android.location.Location
 import com.carto.advanced.kotlin.R
+import com.carto.advanced.kotlin.components.PopupButton
+import com.carto.advanced.kotlin.components.RotationResetButton
 import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
+import com.carto.advanced.kotlin.sections.base.CGRect
 import com.carto.advanced.kotlin.sections.base.MapBaseView
 import com.carto.advanced.kotlin.sections.base.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
@@ -30,6 +33,8 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
     var source: LocalVectorDataSource? = null
 
+    var rotationResetButton = RotationResetButton(context)
+
     init {
 
         title = Texts.gpsLocationInfoHeader
@@ -43,11 +48,22 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
         val layer = VectorLayer(source)
         map.layers.add(layer)
 
+        addView(rotationResetButton)
+
         layoutSubviews()
     }
 
     override fun layoutSubviews() {
         super.layoutSubviews()
+
+        val padding: Int = (10 * getDensity()).toInt()
+
+        val w = buttonSize - padding
+        val h = w
+        val x: Int = frame.width - (w + padding)
+        val y = padding
+
+        rotationResetButton.setFrame(x, y, w, h)
     }
 
     var userMarker: Point? = null

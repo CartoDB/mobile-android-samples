@@ -8,6 +8,8 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
 import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.ui.MapClickInfo
+import com.carto.ui.MapEventListener
 
 class GPSLocationActivity : BaseActivity() {
 
@@ -30,8 +32,8 @@ class GPSLocationActivity : BaseActivity() {
         super.onResume()
         contentView?.addListeners()
 
-        contentView?.switch?.setOnClickListener {
-            // TODO Disable/Enable location tracking
+        contentView?.rotationResetButton?.setOnClickListener {
+            contentView?.map?.setMapRotation(0.0f, 0.3f)
         }
     }
 
@@ -41,7 +43,19 @@ class GPSLocationActivity : BaseActivity() {
 
         manager?.removeUpdates(listener)
 
-        contentView?.switch?.setOnClickListener(null)
+        contentView?.map?.mapEventListener = object : MapEventListener() {
+
+            var previous: Float = -1.0f
+
+            override fun onMapMoved() {
+                val angle = contentView?.map?.mapRotation!!
+
+                if (previous != angle) {
+                    contentView?.rotationResetButton?.rotate(angle)
+                    previous = angle
+                }
+            }
+        }
     }
 
     override fun onPermissionsGranted(granted: Boolean) {

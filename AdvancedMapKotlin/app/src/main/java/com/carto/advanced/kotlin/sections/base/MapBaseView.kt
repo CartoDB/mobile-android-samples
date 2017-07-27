@@ -48,6 +48,8 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
     val bottomLabelHeight: Int = (40 * getMetrics().density).toInt()
     val smallPadding: Int = (5 * getMetrics().density).toInt()
 
+    val buttonSize: Int = (60 * getMetrics().density).toInt()
+
     override fun layoutSubviews() {
 
         var x: Int = 0
@@ -60,7 +62,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         popup.setFrame(x, y, w, h)
 
         val count = buttons.count()
-        val buttonWidth: Int = (60 * getMetrics().density).toInt()
+        val buttonWidth = buttonSize
         val innerPadding: Int = (25 * getMetrics().density).toInt()
 
         val totalArea: Int = buttonWidth * count + (innerPadding * (count - 1))
