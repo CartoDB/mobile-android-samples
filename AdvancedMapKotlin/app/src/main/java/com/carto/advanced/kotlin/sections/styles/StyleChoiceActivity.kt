@@ -21,6 +21,7 @@ class StyleChoiceActivity : BaseActivity() {
         setContentView(contentView)
 
         contentView?.languageContent?.addItems(Languages.list)
+        contentView?.baseMapContent?.highlightDefault()
     }
 
     override fun onResume() {
@@ -32,6 +33,14 @@ class StyleChoiceActivity : BaseActivity() {
             section.list.forEach {
                 item: StylePopupContentSectionItem ->
                 item.setOnClickListener {
+
+                    if (contentView?.baseMapContent?.previous != null) {
+                        contentView?.baseMapContent?.previous!!.normalize()
+                    }
+
+                    item.highlight()
+                    contentView?.baseMapContent?.previous = item
+
                     contentView?.popup?.hide()
                     contentView?.updateBaseLayer(item.label.text as String, section.source!!)
                 }

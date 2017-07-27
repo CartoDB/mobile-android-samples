@@ -57,6 +57,10 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         }
     }
 
+    fun setBorderColor(width: Int, color: Int) {
+        (background as GradientDrawable).setStroke(width, color)
+    }
+
     fun setFrame(x: Int, y: Int, width: Int, height: Int) {
         this.frame = CGRect(x, y, width, height)
 

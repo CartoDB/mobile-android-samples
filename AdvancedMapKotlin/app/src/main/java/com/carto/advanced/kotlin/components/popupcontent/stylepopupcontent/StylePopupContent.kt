@@ -1,12 +1,9 @@
 package com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent
 
 import android.content.Context
-import android.graphics.Color
-import android.widget.ScrollView
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.BaseScrollView
 import com.carto.advanced.kotlin.sections.base.BaseView
-import org.jetbrains.anko.displayMetrics
 
 /**
  * Created by aareundo on 17/07/2017.
@@ -14,7 +11,7 @@ import org.jetbrains.anko.displayMetrics
 class StylePopupContent(context: Context) : BaseView(context) {
 
     companion object {
-        val NutiteqSource = "nutiteq.osm"
+        val CartoVectorSource = "carto.streets"
         val MapzenSource = "mapzen.osm"
         val CartoSource = "carto.osm"
 
@@ -44,14 +41,14 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
         addView(container)
 
-        cartoVector.source = NutiteqSource
+        cartoVector.source = CartoVectorSource
         cartoVector.header.text = "CARTO VECTOR"
-        cartoVector.addItem(Bright, R.drawable.style_image_nutiteq_bright)
-        cartoVector.addItem(Gray, R.drawable.style_image_nutiteq_gray)
-        cartoVector.addItem(Dark, R.drawable.style_image_nutiteq_dark)
+//        cartoVector.addItem(Bright, R.drawable.style_image_nutiteq_bright)
+//        cartoVector.addItem(Gray, R.drawable.style_image_nutiteq_gray)
+//        cartoVector.addItem(Dark, R.drawable.style_image_nutiteq_dark)
+        cartoVector.addItem(Voyager, R.drawable.style_image_nutiteq_voyager)
         cartoVector.addItem(Positron, R.drawable.style_image_nutiteq_positron)
         cartoVector.addItem(DarkMatter, R.drawable.style_image_nutiteq_darkmatter)
-        cartoVector.addItem(Voyager, R.drawable.style_image_nutiteq_voyager)
 
         container.addView(cartoVector)
 
@@ -93,5 +90,16 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
         cartoRaster.setFrame(x, y, w, h)
     }
+
+    fun highlightDefault() {
+        val default = cartoVector.list[0]
+
+        default.highlight()
+        previous = default
+    }
+
+    var previous: StylePopupContentSectionItem? = null
+
+
 
 }

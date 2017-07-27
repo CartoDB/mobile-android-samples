@@ -22,7 +22,7 @@ class StylePopupContentSection(context: Context) : BaseView(context) {
     init {
 
         header.setTextColor(Colors.navy)
-        header.textSize = 12.0f
+        header.textSize = 14.0f
         header.typeface = Typeface.DEFAULT_BOLD
 
         addView(header)
@@ -42,7 +42,7 @@ class StylePopupContentSection(context: Context) : BaseView(context) {
 
         val density = context.resources.displayMetrics.density
 
-        val headerHeight = (20 * density).toInt()
+        val headerHeight = (25 * density).toInt()
         val padding = (5 * density).toInt()
 
         var x = padding
@@ -76,7 +76,7 @@ class StylePopupContentSection(context: Context) : BaseView(context) {
 
     }
 
-    val rowHeight = (90 * context.resources.displayMetrics.density).toInt()
+    val rowHeight = (110 * context.resources.displayMetrics.density).toInt()
 
     fun getCalculatedHeight(): Int {
 
