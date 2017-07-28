@@ -36,6 +36,10 @@ class RouteDownloadView(context: Context) : DownloadBaseView(context) {
         layoutSubviews()
 
         map.layers.add(overlayLayer)
+
+        val washingtonDC = projection?.fromWgs84(MapPos(-77.0369, 38.9072))
+        map.setFocusPos(washingtonDC, 0.0f)
+        map.setZoom(8.0f, 0.0f)
     }
 
     override fun layoutSubviews() {

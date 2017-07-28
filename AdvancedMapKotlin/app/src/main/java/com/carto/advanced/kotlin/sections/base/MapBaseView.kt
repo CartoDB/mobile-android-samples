@@ -110,6 +110,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
     fun addBaseLayer(style: CartoBaseMapStyle): CartoOnlineVectorTileLayer {
 
         val layer = CartoOnlineVectorTileLayer(style)
+        layer.isPreloading = true
         map.layers.add(layer)
         return layer
     }

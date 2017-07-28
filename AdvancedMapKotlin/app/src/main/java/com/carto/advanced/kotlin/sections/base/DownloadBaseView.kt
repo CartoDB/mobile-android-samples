@@ -61,7 +61,12 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
     fun setOfflineMode(manager: CartoPackageManager) {
         map.layers?.remove(onlineLayer)
-        offlineLayer = CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+
+        if (offlineLayer == null) {
+            offlineLayer = CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+            offlineLayer!!.isPreloading = true
+        }
+
         map.layers?.insert(0, offlineLayer)
     }
 
