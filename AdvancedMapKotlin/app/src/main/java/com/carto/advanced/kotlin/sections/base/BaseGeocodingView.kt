@@ -27,6 +27,8 @@ open class BaseGeocodingView(context: Context) : PackageDownloadBaseView(context
 
         val layer = VectorLayer(source)
         map.layers.add(layer)
+
+        removeSwitch()
     }
 
     fun showResult(result: GeocodingResult, title: String, description: String, goToPosition: Boolean) {

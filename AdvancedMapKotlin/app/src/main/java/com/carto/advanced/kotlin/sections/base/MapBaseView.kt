@@ -107,6 +107,13 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         addView(button)
     }
 
+    fun removeButton(button: PopupButton) {
+        if (buttons.contains(button)) {
+            buttons.remove(button)
+            removeView(button)
+        }
+    }
+
     fun addBaseLayer(style: CartoBaseMapStyle): CartoOnlineVectorTileLayer {
 
         val layer = CartoOnlineVectorTileLayer(style)

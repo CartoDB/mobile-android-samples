@@ -44,6 +44,10 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
         progressLabel.setFrame(x, y, w, h)
     }
 
+    fun removeSwitch() {
+        removeButton(switchButton)
+    }
+
     fun setOnlineMode() {
 
         if (onlineLayer == null) {
