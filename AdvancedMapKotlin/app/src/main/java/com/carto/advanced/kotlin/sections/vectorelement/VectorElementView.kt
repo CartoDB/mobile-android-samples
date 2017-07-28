@@ -15,13 +15,9 @@ import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.layers.VectorLayer
-import com.carto.styles.BalloonPopupMargins
-import com.carto.styles.BalloonPopupStyleBuilder
-import com.carto.styles.Polygon3DStyleBuilder
+import com.carto.styles.*
 import com.carto.utils.AssetUtils
-import com.carto.vectorelements.BalloonPopup
-import com.carto.vectorelements.NMLModel
-import com.carto.vectorelements.Polygon3D
+import com.carto.vectorelements.*
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -52,6 +48,7 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         map.setZoom(14.5f, 0.0f)
         map.setTilt(20.0f, 0.0f)
         map.rotate(-30.0f, 0.0f)
+
         /*
          * Milktruck NML Model
          */
@@ -102,11 +99,48 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         balloonBuilder.titleFontSize = 15
         balloonBuilder.descriptionFontSize = 12
 
-        val position = projection?.fromWgs84(MapPos(longitude + 0.003, latitude + 0.003))
+        var position = projection?.fromWgs84(MapPos(longitude + 0.003, latitude + 0.003))
         val balloonPopup = BalloonPopup(position, balloonBuilder.buildStyle(), "Balloon popup", "Look at me, whee!")
         balloonPopup.setMetaDataElement(titleKey, Variant("Did you just click me?"))
         balloonPopup.setMetaDataElement(descriptionKey, Variant("You'd better not try that again"))
         source?.add(balloonPopup)
+
+        /*
+         * Line
+         */
+        val lineBuilder = LineStyleBuilder()
+        positions.add(projection?.fromWgs84(MapPos(longitude - 0.0015, latitude - 0.001)))
+        positions.add(projection?.fromWgs84(MapPos(longitude - 0.001, latitude - 0.002)))
+        lineBuilder.color = Colors.green.toCartoColor()
+        val line = Line(positions, lineBuilder?.buildStyle())
+        line.setMetaDataElement(titleKey, Variant("Hi! They call me Line!"))
+        val description = Variant("I'm just a little fatso line between the point and the car. I dislike the car")
+        line.setMetaDataElement(descriptionKey, description)
+        source?.add(line)
+
+        /*
+         * Marker
+         */
+        val markerBuilder = MarkerStyleBuilder()
+        markerBuilder.color = Colors.appleBlue.toCartoColor()
+        markerBuilder.size = 15.0f
+        markerBuilder.bitmap = Utils.resourceToBitmap(resources, R.drawable.icon_pin_red)
+        position = projection?.fromWgs84(MapPos(longitude - 0.005, latitude - 0.005))
+        val marker = Marker(position, markerBuilder.buildStyle())
+        marker.setMetaDataElement(titleKey, Variant("Hi!"))
+        marker.setMetaDataElement(descriptionKey, Variant("I'm a dark blue marker, my name is Mark"))
+        source?.add(marker)
+
+        /*
+         * Point
+         */
+        val pointBuilder = PointStyleBuilder()
+        pointBuilder.color = Colors.locationRed.toCartoColor()
+        position = projection?.fromWgs84(MapPos(longitude - 0.003, latitude - 0.003))
+        val point = Point(position, pointBuilder.buildStyle())
+        point.setMetaDataElement(titleKey, Variant("Hi!"))
+        point.setMetaDataElement(descriptionKey, Variant("I'm just a red dot lying on the ground"))
+        source?.add(point)
 
         layoutSubviews()
     }
