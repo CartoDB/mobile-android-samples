@@ -53,9 +53,14 @@ class SlideInPopup(context: Context) : BaseView(context) {
         hiddenY = h
         visibleY = h - (h / 5 * 3)
 
-        if (isLandScape() || isLargeTablet()) {
+        if (isLandScape || isLargeTablet()) {
             w = (400 * context.resources.displayMetrics.density).toInt()
             visibleY = 0
+        }
+
+        if (!isLandScape && isLargeTablet()) {
+            h = frame.width
+            visibleY = frame.height - h
         }
 
         y = visibleY

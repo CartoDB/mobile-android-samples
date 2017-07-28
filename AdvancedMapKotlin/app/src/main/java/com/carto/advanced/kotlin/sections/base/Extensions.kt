@@ -77,15 +77,20 @@ fun View.setFrame(x: Int, y: Int, width: Int, height: Int) {
 
 fun BaseView.isLargeTablet(): Boolean {
 
+    val metrics = getMetrics()
+    val width = metrics.widthPixels
+    val height = metrics.heightPixels
+    val density = metrics.density
+
     var greater = height
     var lesser = width
 
-    if (isLandScape()) {
+    if (isLandScape) {
         greater = width
         lesser = height
     }
 
-    if (context.resources.displayMetrics.density > 2.5) {
+    if (density > 2.5) {
         // If density is too large, it'll be a phone
         return false
     }
@@ -93,9 +98,9 @@ fun BaseView.isLargeTablet(): Boolean {
     return greater > 1920 && lesser > 1080
 }
 
-fun BaseView.isLandScape(): Boolean {
-    return frame.width > frame.height
-}
+val BaseView.isLandScape: Boolean
+    get() = frame.width > frame.height
+
 
 fun Int.toCartoColor(): com.carto.graphics.Color {
 

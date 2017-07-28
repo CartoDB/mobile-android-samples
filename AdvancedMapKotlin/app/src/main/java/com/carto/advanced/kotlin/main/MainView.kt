@@ -22,7 +22,7 @@ class MainView(context: Context) : BaseView(context) {
 
         var itemsInRow: Int = 2
 
-        if (isLandScape()) {
+        if (isLandScape) {
             itemsInRow = 3
 
             if (isLargeTablet()) {
