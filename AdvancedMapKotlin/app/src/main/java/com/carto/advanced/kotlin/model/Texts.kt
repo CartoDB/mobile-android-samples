@@ -11,11 +11,11 @@ class Texts {
 
         val basemapInfoContainer =
                 "CARTO offers a variety of different base map styles, here are a few samples:\n \n" +
-                        "Nutiteq Bright is your classic style, when you want to go old school, used " +
+                        "Voyager is your classic style, with a new polish, used " +
                         "mainly for routing, navigation etc.\n \n" +
-                        "Nutiteq Gray is a bit more humble, shades of light gray, for when you need" +
+                        "Positron is a bit more humble, shades of light gray, for when you need" +
                         " to display information on top of your base map: great for colorful visualizations.\n \n" +
-                        "Nutiteq Dark is dark, heavy, like the night, it's for when you're feeling extra frisky," +
+                        "Darkmatter is dark, heavy, like the night, it's for when you're feeling extra frisky," +
                         " when you want to walk on the wild side or... " +
                         "just for visualizations that work better with a dark background. \n \n" +
                         "Mapzen and CARTO are similar in that way, " +

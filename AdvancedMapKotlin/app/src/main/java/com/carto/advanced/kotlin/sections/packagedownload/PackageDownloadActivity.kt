@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.packagedownload
 
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
+import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.packagemanager.CartoPackageManager
@@ -20,7 +21,7 @@ class PackageDownloadActivity : BaseActivity() {
         setContentView(contentView)
 
         val folder = Utils.createDirectory(this, "countrypackages")
-        contentView?.manager = CartoPackageManager(contentView!!.MAP_SOURCE, folder)
+        contentView?.manager = CartoPackageManager(Routing.MAP_SOURCE, folder)
     }
 
     override fun onResume() {

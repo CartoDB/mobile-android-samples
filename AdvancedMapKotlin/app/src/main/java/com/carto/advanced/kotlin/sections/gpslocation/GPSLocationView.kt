@@ -97,6 +97,7 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
         }
 
         if (userMarker == null) {
+            @Suppress("NAME_SHADOWING")
             val builder = PointStyleBuilder()
             builder.size = 15.0f
             builder.color = Colors.appleBlue.toCartoColor()

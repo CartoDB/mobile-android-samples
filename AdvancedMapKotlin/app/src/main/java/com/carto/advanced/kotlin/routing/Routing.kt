@@ -30,7 +30,7 @@ class Routing(val context: Context, val mapView: MapView) {
     companion object {
         val ROUTING_TAG = "routing:"
         val ROUTING_SOURCE = "valhalla.osm"
-        val MAP_SOURCE = "nutiteq.osm"
+        val MAP_SOURCE = "carto.streets"
         val TRANSPORT_MODE = ".car"
     }
 

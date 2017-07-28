@@ -112,7 +112,7 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         positions.add(projection?.fromWgs84(MapPos(longitude - 0.0015, latitude - 0.001)))
         positions.add(projection?.fromWgs84(MapPos(longitude - 0.001, latitude - 0.002)))
         lineBuilder.color = Colors.green.toCartoColor()
-        val line = Line(positions, lineBuilder?.buildStyle())
+        val line = Line(positions, lineBuilder.buildStyle())
         line.setMetaDataElement(titleKey, Variant("Hi! They call me Line!"))
         val description = Variant("I'm just a little fatso line between the point and the car. I dislike the car")
         line.setMetaDataElement(descriptionKey, description)

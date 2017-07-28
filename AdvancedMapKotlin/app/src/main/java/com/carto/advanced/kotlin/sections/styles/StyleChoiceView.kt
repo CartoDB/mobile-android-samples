@@ -123,10 +123,9 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
             currentLayer = VectorTileLayer(datasource, decoder)
 
-        } else if (source == StylePopupContent.CartoSource) {
+        } else if (source == StylePopupContent.CartoRasterSource) {
 
             // We know that the value of raster will be Positron or Darkmatter,
-            // as Nutiteq and Mapzen use vector tiles
             var url: String
 
             if (selection == StylePopupContent.Positron) {
@@ -139,7 +138,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
             currentLayer = RasterTileLayer(datasource)
         }
 
-        if (source == StylePopupContent.CartoSource) {
+        if (source == StylePopupContent.CartoRasterSource) {
             languageButton.disable()
         } else {
             languageButton.enable()

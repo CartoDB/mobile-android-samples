@@ -15,8 +15,6 @@ import com.carto.packagemanager.CartoPackageManager
  */
 open class DownloadBaseView(context: Context) : MapBaseView(context) {
 
-    val MAP_SOURCE = "nutiteq.osm"
-
     val progressLabel = ProgressLabel(context)
 
     var onlineLayer: CartoOnlineVectorTileLayer? = null
@@ -49,7 +47,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
     fun setOnlineMode() {
 
         if (onlineLayer == null) {
-            onlineLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+            onlineLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
         }
 
         if (offlineLayer != null) {
@@ -63,7 +61,7 @@ open class DownloadBaseView(context: Context) : MapBaseView(context) {
         map.layers?.remove(onlineLayer)
 
         if (offlineLayer == null) {
-            offlineLayer = CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+            offlineLayer = CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
             offlineLayer!!.isPreloading = true
         }
 

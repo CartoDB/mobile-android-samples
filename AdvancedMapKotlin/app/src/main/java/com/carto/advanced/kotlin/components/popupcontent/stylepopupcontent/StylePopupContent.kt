@@ -13,7 +13,7 @@ class StylePopupContent(context: Context) : BaseView(context) {
     companion object {
         val CartoVectorSource = "carto.streets"
         val MapzenSource = "mapzen.osm"
-        val CartoSource = "carto.osm"
+        val CartoRasterSource = "carto.osm"
 
         val Bright = "BRIGHT"
         val Gray = "GRAY"
@@ -60,7 +60,7 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
         container.addView(mapzen)
 
-        cartoRaster.source = CartoSource
+        cartoRaster.source = CartoRasterSource
         cartoRaster.header.text = "CARTO RASTER"
         cartoRaster.addItem(StylePopupContent.Positron, R.drawable.style_image_carto_positron)
         cartoRaster.addItem(DarkMatter, R.drawable.style_image_carto_darkmatter)
