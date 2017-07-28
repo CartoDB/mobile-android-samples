@@ -2,7 +2,7 @@ package com.carto.advanced.kotlin;
 
 import android.app.Application;
 import com.carto.ui.MapView;
-
+import net.hockeyapp.android.CrashManager
 
 
 /**
@@ -34,6 +34,8 @@ class MapApplication : Application() {
 
         navigationBarHeight = getItemHeight("navigation_bar_height")
         statusBarHeight = getItemHeight("status_bar_height")
+
+        CrashManager.register(this)
     }
 
     fun getItemHeight(id: String): Int {

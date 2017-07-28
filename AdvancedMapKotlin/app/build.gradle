@@ -11,6 +11,7 @@ android {
         versionCode 2
         versionName "0.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "a1008a0e3e0f444d8770d3810f3d34c0"]
     }
     buildTypes {
         release {
@@ -32,6 +33,7 @@ dependencies {
 
     // Coroutine listeners for Anko Layouts
     compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    compile 'net.hockeyapp.android:HockeySDK:4.1.5'
 }
 
 repositories {
