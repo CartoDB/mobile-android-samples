@@ -7,5 +7,8 @@ import com.carto.advanced.kotlin.utils.BoundingBox
  */
 class City(val name: String, val bbox: BoundingBox) {
 
-    var existsLocally = false
+    val existsLocally
+        get() = size != -1.0
+
+    var size: Double = -1.0
 }

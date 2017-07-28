@@ -5,10 +5,11 @@ import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityCe
 import com.carto.advanced.kotlin.model.Cities
 import com.carto.advanced.kotlin.sections.base.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
+import com.carto.advanced.kotlin.utils.toMB
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
+import org.jetbrains.anko.doAsync
 
 class CityDownloadActivity : BaseActivity() {
 
@@ -28,7 +29,7 @@ class CityDownloadActivity : BaseActivity() {
             val status = contentView?.manager?.getLocalPackageStatus(id, -1)
 
             if (status != null && status.progress == 100.0f) {
-                city.existsLocally = true
+                city.size = contentView?.manager?.getLocalPackage(id)?.size!!.toMB()
             }
         }
 
@@ -43,13 +44,13 @@ class CityDownloadActivity : BaseActivity() {
 
             override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
                 runOnUiThread {
-                    contentView?.onStatusChanged(status!!)
+                    contentView?.onStatusChanged(id!!, status!!)
                 }
             }
 
             override fun onPackageUpdated(id: String?, version: Int) {
                 runOnUiThread {
-                    contentView?.downloadComplete()
+                    contentView?.downloadComplete(id!!)
                 }
             }
         }

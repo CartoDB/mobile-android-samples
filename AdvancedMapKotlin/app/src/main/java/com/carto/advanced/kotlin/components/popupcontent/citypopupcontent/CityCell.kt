@@ -34,12 +34,14 @@ class CityCell(context: Context) : BaseView(context) {
 
     fun update(city: City) {
         this.item = city
-        label.text = city.name.toUpperCase()
+        val text = city.name.toUpperCase()
 
         if (city.existsLocally) {
             label.setTextColor(Colors.appleBlue)
+            label.text = "$text (${city.size} MB)"
         } else {
             label.setTextColor(Colors.navy)
+            label.text = text
         }
     }
 }

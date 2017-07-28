@@ -5,9 +5,11 @@ import android.content.Context
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityPopupContent
+import com.carto.advanced.kotlin.model.Cities
 import com.carto.advanced.kotlin.model.City
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.DownloadBaseView
+import com.carto.advanced.kotlin.utils.toMB
 import com.carto.packagemanager.PackageStatus
 
 /**
@@ -49,29 +51,33 @@ class CityDownloadView(context: Context) : DownloadBaseView(context) {
         cityButton.setOnClickListener(null)
     }
 
-    var currentDownload: City? = null
+    fun getCurrentDownload(id: String): City? {
+        return Cities.list.find { city: City -> city.bbox.toString() == id }
+    }
 
-    fun onStatusChanged(status: PackageStatus) {
+    fun onStatusChanged(id: String, status: PackageStatus) {
         (context as Activity).runOnUiThread {
 
-            if (this.currentDownload == null) {
-                // TODO in case a download has been started and the activity is reloaded
-                return@runOnUiThread
-            }
-
-            val text = "Downloading " + currentDownload?.name + ": " + status.progress.toString() + "%"
-            progressLabel.update(text)
+            val progress = status.progress.toInt().toString()
+            val name = getCurrentDownload(id)?.name
+            progressLabel.update("Downloading $name: $progress%")
             progressLabel.updateProgressBar(status.progress)
         }
     }
 
-    fun downloadComplete() {
+    fun downloadComplete(id: String) {
         (context as Activity).runOnUiThread {
-            currentDownload?.existsLocally = true
-            cityContent.update(currentDownload!!)
-            progressLabel.update("DOWNLOAD OF " + currentDownload?.name + " COMPLETE")
+            val current = getCurrentDownload(id)
 
-            val position = projection?.fromWgs84(currentDownload?.bbox?.center)
+            val size = manager?.getLocalPackage(current?.bbox.toString())?.size!!
+            getCurrentDownload(id)?.size = size.toMB()
+
+            cityContent.update(current!!)
+
+            val name = current.name.toUpperCase()
+            progressLabel.complete("DOWNLOAD OF " + name + " COMPLETE (" + size.toMB() + " MB)")
+
+            val position = projection?.fromWgs84(current.bbox.center)
             map.setFocusPos(position, 1.0f)
             map.setZoom(8.0f, 1.0f)
         }
@@ -80,11 +86,10 @@ class CityDownloadView(context: Context) : DownloadBaseView(context) {
     fun onCityClick(city: City) {
 
         if (city.existsLocally) {
-            downloadComplete()
+            downloadComplete(city.bbox.toString())
             return
         }
 
-        currentDownload = city
         progressLabel.show()
         progressLabel.update("STARTING DOWNLOAD OF " + city.name)
 
