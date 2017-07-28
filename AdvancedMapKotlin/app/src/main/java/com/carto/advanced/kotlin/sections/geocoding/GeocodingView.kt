@@ -41,6 +41,7 @@ class GeocodingView(context: Context) : BaseGeocodingView(context) {
         inputField.hint = "Type address..."
         inputField.setHintTextColor(Color.LTGRAY)
         inputField.setSingleLine()
+
         addView(inputField)
 
         try {
@@ -57,6 +58,8 @@ class GeocodingView(context: Context) : BaseGeocodingView(context) {
         hideTable()
 
         layoutSubviews()
+
+        disableAutoFocusOfTextField()
     }
 
     override fun layoutSubviews() {

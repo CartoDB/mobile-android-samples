@@ -130,6 +130,12 @@ open class BaseView(context: Context) : RelativeLayout(context) {
         }
     }
 
+    fun disableAutoFocusOfTextField() {
+        this.isFocusable = true
+        this.isFocusableInTouchMode = true
+        this.requestFocus()
+    }
+
     fun closeKeyboard() {
         // Check if no view has focus:
         val view = (context as Activity).currentFocus
