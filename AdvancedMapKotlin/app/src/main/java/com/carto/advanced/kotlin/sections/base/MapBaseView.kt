@@ -80,7 +80,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         x = 0
         y = 0
         w = frame.width
-        h = frame.height / 12
+        h = (50 * getDensity()).toInt()
 
         topBanner.setFrame(x, y, w, h)
     }
