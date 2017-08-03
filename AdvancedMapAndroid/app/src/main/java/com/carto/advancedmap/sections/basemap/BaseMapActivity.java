@@ -9,6 +9,7 @@ import com.carto.advancedmap.sections.basemap.model.Section;
 import com.carto.advancedmap.sections.basemap.model.SectionType;
 import com.carto.advancedmap.sections.basemap.model.Sections;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.datasources.CartoOnlineTileDataSource;
@@ -56,10 +57,10 @@ public class BaseMapActivity extends BaseActivity {
         contentView.menu.setItems(Sections.getList());
 
         // Set initial style
-        contentView.menu.setInitialItem(Sections.getNutiteq());
+        contentView.menu.setInitialItem(Sections.getDefault());
         contentView.menu.setInitialItem(Sections.getLanguage());
 
-        updateBaseLayer(Sections.getNutiteq(), Sections.getBaseStyleValue());
+        updateBaseLayer(Sections.getDefault(), Sections.getBaseStyleValue());
         updateLanguage(Sections.getBaseLanguageCode());
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -110,16 +111,16 @@ public class BaseMapActivity extends BaseActivity {
 
         if (section.getType() == SectionType.VECTOR) {
 
-            if (currentOSM == "nutiteq.osm") {
-                // Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-                if (currentSelection == "default") {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
-                } else if (currentSelection == "gray") {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+            if (currentOSM.equals(Sources.CARTO_VECTOR)) {
+                // Carto styles are bundled with the SDK, we can initialize them via constuctor
+                if (currentSelection.equals("voyager")) {
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
+                } else if (currentSelection.equals("positron")) {
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
                 } else {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);
                 }
-            } else if (currentOSM == "mapzen.osm") {
+            } else if (currentOSM.equals(Sources.MAPZEN)) {
                 // Mapzen styles are all bundled in one .zip file.
                 // Selection contains both the style name and file name (cf. Sections.cs in Shared)
                 String fileName = currentSelection.split(":")[0];
@@ -142,7 +143,6 @@ public class BaseMapActivity extends BaseActivity {
 
         } else if (section.getType() == SectionType.RASTER) {
             // We know that the value of raster will be Positron or Darkmatter,
-            // as Nutiteq and Mapzen use vector tiles
 
             // Additionally, raster tiles do not support language choice
             String url = currentSelection;
@@ -162,7 +162,7 @@ public class BaseMapActivity extends BaseActivity {
             updateLanguage(selection);
         }
 
-        if (currentOSM == "nutiteq.osm") {
+        if (currentOSM == Sources.CARTO_VECTOR) {
             // 3D texts on by default
             MBVectorTileDecoder decoder = (MBVectorTileDecoder)((CartoOnlineVectorTileLayer)currentLayer).getTileDecoder();
             decoder.setStyleParameter("texts3d", "1");

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.packagemanager.CartoPackageManager;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class BasicPackageManagerActivity extends BoundingBoxActivity {
     protected CartoPackageManager getPackageManager(String folder) {
 
         try {
-            return new CartoPackageManager("nutiteq.osm", folder);
+            return new CartoPackageManager(Sources.CARTO_VECTOR, folder);
         } catch (IOException e) {
             return null;
         }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
@@ -28,7 +29,7 @@ public class BundledMapActivity extends MapBaseActivity {
         // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         TileDataSource source = createTileDataSource();
 

@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingView;
 import com.carto.advancedmap.shared.packages.Package;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
@@ -17,6 +19,7 @@ import com.carto.packagemanager.PackageInfoVector;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
 import com.carto.routing.PackageManagerRoutingService;
+import com.carto.routing.PackageManagerValhallaRoutingService;
 import com.carto.routing.ValhallaOfflineRoutingService;
 import com.carto.ui.MapView;
 
@@ -49,7 +52,7 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
         String folder = createFolder();
 
         try {
-            manager = new CartoPackageManager("routing:nutiteq.osm.car", folder);
+            manager = new CartoPackageManager(Sources.ROUTING_TAG + Sources.OFFLINE_ROUTING, folder);
         } catch (IOException e) {
             alert(e.getMessage());
             return;
@@ -64,7 +67,7 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
         setContentView(contentView);
 
-        setService(new PackageManagerRoutingService(manager));
+        setService(new PackageManagerValhallaRoutingService(manager));
         alert("Click on the menu to see a list of countries that can be downloaded");
 
         listener = new PackageListener();
@@ -133,7 +136,7 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
     @Override
     protected void addBaseLayer() {
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
         contentView.mapView.getLayers().add(layer);
     }
 

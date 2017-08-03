@@ -14,6 +14,7 @@ import android.text.TextPaint;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
@@ -41,7 +42,7 @@ public class CustomPopupActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         // Initialize a local vector data source
         LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.core.MapPos;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOfflineVectorTileLayer;
@@ -72,13 +73,13 @@ public class BasicPackageManagerView extends RelativeLayout {
 
     public void setBaseLayer()
     {
-        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, BaseMapsView.DEFAULT_STYLE);
         mapView.getLayers().add(layer);
     }
 
     public void setOnlineBaseLayer()
     {
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
         mapView.getLayers().add(layer);
     }
 }

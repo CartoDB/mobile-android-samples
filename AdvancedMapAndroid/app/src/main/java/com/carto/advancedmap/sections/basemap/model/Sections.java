@@ -1,5 +1,7 @@
 package com.carto.advancedmap.sections.basemap.model;
 
+import com.carto.advancedmap.utils.Sources;
+
 import java.util.ArrayList;
 
 /**
@@ -18,7 +20,7 @@ public class Sections
         return list;
     }
 
-    public static Section getNutiteq()
+    public static Section getDefault()
     {
         if (list == null) {
             initializeList();
@@ -41,23 +43,23 @@ public class Sections
 
     public static String getBaseStyleValue()
     {
-        return getNutiteq().getStyles().get(0).getValue();
+        return getDefault().getStyles().get(0).getValue();
     }
 
     private static void initializeList()
     {
-        NameValuePair osm = new NameValuePair("Nutiteq", "nutiteq.osm");
+        NameValuePair osm = new NameValuePair("Carto Vector", Sources.CARTO_VECTOR);
         SectionType type = SectionType.VECTOR;
 
         ArrayList<NameValuePair> styles = new ArrayList<NameValuePair>(){{
-            add(new NameValuePair("Bright", "default"));
-            add(new NameValuePair("Gray", "gray"));
-            add(new NameValuePair("Dark", "dark"));
+            add(new NameValuePair("Voyager", "voyager"));
+            add(new NameValuePair("Positron", "positron"));
+            add(new NameValuePair("Darkmatter", "darkmatter"));
         }};
 
-        final Section nutiteq = new Section(osm, type, styles);
+        final Section cartoVector = new Section(osm, type, styles);
 
-        osm = new NameValuePair("MapZeN", "mapzen.osm");
+        osm = new NameValuePair("MapZeN", Sources.MAPZEN);
         type = SectionType.VECTOR;
 
         styles = new ArrayList<NameValuePair>(){{
@@ -68,7 +70,7 @@ public class Sections
 
         final Section mapzen = new Section(osm, type, styles);
 
-        osm = new NameValuePair("CARTO", "carto.osm");
+        osm = new NameValuePair("Carto Raster", Sources.CARTO_RASTER);
         type = SectionType.RASTER;
 
         styles = new ArrayList<NameValuePair>() {{
@@ -76,7 +78,7 @@ public class Sections
             add(new NameValuePair("Dark Matter", "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"));
         }};
 
-        final Section carto = new Section(osm, type, styles);
+        final Section cartoRaster = new Section(osm, type, styles);
 
         osm = new NameValuePair("Language", "lang");
         type = SectionType.LANGUAGE;
@@ -98,9 +100,9 @@ public class Sections
         final Section language = new Section(osm, type, styles);
 
         list = new ArrayList<Section>(){ {
-            add(nutiteq);
+            add(cartoVector);
             add(mapzen);
-            add(carto);
+            add(cartoRaster);
             add(language);
         } };
     }

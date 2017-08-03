@@ -28,7 +28,7 @@ public class CustomVectorDataSourceActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Create custom vector data source
         VectorDataSource customDataSource = new MyVectorDataSource(mapView.getOptions().getBaseProjection(), NUM_POINTS);

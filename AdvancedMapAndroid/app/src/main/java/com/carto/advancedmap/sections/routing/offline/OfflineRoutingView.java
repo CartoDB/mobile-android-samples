@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
 import com.carto.advancedmap.shared.views.BaseMenu;
 import com.carto.advancedmap.shared.views.MenuButton;
@@ -32,7 +33,7 @@ public class OfflineRoutingView extends RelativeLayout {
 
         mapView = new MapView(context);
 
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
         mapView.getLayers().add(layer);
 
         mapView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
