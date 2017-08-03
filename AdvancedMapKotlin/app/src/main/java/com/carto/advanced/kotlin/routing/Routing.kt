@@ -28,9 +28,11 @@ import org.jetbrains.anko.displayMetrics
 class Routing(val context: Context, val mapView: MapView) {
 
     companion object {
+
+        val OFFLINE_ROUTING_SOURCE = "carto.streets"
+        val ONLINE_ROUTING_SOURCE = "nutiteq.osm"
+
         val ROUTING_TAG = "routing:"
-        val ROUTING_SOURCE = "valhalla.osm"
-        val MAP_SOURCE = "carto.streets"
         val TRANSPORT_MODE = ".car"
     }
 

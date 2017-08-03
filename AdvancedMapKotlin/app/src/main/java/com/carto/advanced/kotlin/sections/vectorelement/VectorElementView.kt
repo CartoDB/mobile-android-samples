@@ -33,7 +33,7 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         title = Texts.vectorElementsInfoHeader
         description = Texts.vectorElementsInfoContainer
 
-        baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
+        baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
 
         source = LocalVectorDataSource(projection)
         objectLayer = VectorLayer(source)

@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.routedownload
 
 import android.os.Bundle
+import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.BaseActivity
@@ -36,10 +37,10 @@ class RouteDownloadActivity : BaseActivity() {
         routing = Routing(this, contentView!!.map)
 
         var folder = Utils.createDirectory(this, "mappackages")
-        mapManager = CartoPackageManager(Routing.MAP_SOURCE, folder)
+        mapManager = CartoPackageManager(StylePopupContent.CartoVectorSource, folder)
 
         folder = Utils.createDirectory(this, "routingpackages")
-        routingManager = CartoPackageManager(Routing.ROUTING_TAG + Routing.ROUTING_SOURCE, folder)
+        routingManager = CartoPackageManager(Routing.ROUTING_TAG + Routing.OFFLINE_ROUTING_SOURCE, folder)
 
         setOnlineMode(false)
 
@@ -236,7 +237,7 @@ class RouteDownloadActivity : BaseActivity() {
         if (withLayer) {
             contentView?.setOnlineMode()
         }
-        routing?.service = CartoOnlineRoutingService(Routing.MAP_SOURCE + Routing.TRANSPORT_MODE)
+        routing?.service = CartoOnlineRoutingService(Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE)
     }
 
     fun setOfflineMode() {

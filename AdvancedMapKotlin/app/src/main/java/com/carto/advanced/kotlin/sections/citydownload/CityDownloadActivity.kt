@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.citydownload
 
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityCell
+import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
 import com.carto.advanced.kotlin.model.Cities
 import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.BaseActivity
@@ -23,7 +24,7 @@ class CityDownloadActivity : BaseActivity() {
         setContentView(contentView)
 
         val folder = Utils.createDirectory(this, "citypackages")
-        contentView?.manager = CartoPackageManager(Routing.MAP_SOURCE, folder)
+        contentView?.manager = CartoPackageManager(StylePopupContent.CartoVectorSource, folder)
 
         for (city in Cities.list) {
             val id = city.bbox.toString()

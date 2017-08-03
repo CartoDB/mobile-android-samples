@@ -39,7 +39,7 @@ class EditingView(context: Context) : MapBaseView(context) {
         title = Texts.objectEditingInfoHeader
         description = Texts.objectEditingInfoContainer
 
-        baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
+        baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER)
 
         editSource = LocalVectorDataSource(projection)
         editLayer = EditableVectorLayer(editSource)

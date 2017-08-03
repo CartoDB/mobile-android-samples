@@ -18,7 +18,7 @@ class ClusteringView(context: Context) : MapBaseView(context) {
         title = Texts.clusteringInfoHeader
         description = Texts.clusteringInfoContainer
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
 
         layoutSubviews()
     }

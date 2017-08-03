@@ -40,7 +40,7 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
         title = Texts.gpsLocationInfoHeader
         description = Texts.gpsLocationInfoContainer
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
 
         addButton(switch)
 

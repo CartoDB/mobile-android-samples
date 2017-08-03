@@ -43,9 +43,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
         cartoVector.source = CartoVectorSource
         cartoVector.header.text = "CARTO VECTOR"
-//        cartoVector.addItem(Bright, R.drawable.style_image_nutiteq_bright)
-//        cartoVector.addItem(Gray, R.drawable.style_image_nutiteq_gray)
-//        cartoVector.addItem(Dark, R.drawable.style_image_nutiteq_dark)
         cartoVector.addItem(Voyager, R.drawable.style_image_nutiteq_voyager)
         cartoVector.addItem(Positron, R.drawable.style_image_nutiteq_positron)
         cartoVector.addItem(DarkMatter, R.drawable.style_image_nutiteq_darkmatter)

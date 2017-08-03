@@ -86,18 +86,12 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         if (source == StylePopupContent.CartoVectorSource) {
 
-            if (selection == StylePopupContent.Bright) {
-                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT)
-            } else if (selection == StylePopupContent.Gray) {
-                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY)
-            } else if (selection == StylePopupContent.Dark) {
-                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK)
+            if (selection == StylePopupContent.Voyager) {
+                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
             } else if (selection == StylePopupContent.Positron) {
                 currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
             } else if (selection == StylePopupContent.DarkMatter) {
                 currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER)
-            } else if (selection == StylePopupContent.Voyager) {
-                currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
             }
 
         } else if (source == StylePopupContent.MapzenSource) {
