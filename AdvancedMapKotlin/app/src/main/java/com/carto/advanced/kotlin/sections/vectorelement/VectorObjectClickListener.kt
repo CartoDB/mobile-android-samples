@@ -1,9 +1,8 @@
 package com.carto.advanced.kotlin.sections.vectorelement
 
-import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.datasources.LocalVectorDataSource
-import com.carto.graphics.Color
 import com.carto.layers.VectorElementEventListener
 import com.carto.styles.BalloonPopupMargins
 import com.carto.styles.BalloonPopupStyleBuilder

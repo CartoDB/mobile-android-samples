@@ -4,13 +4,12 @@ import android.content.Context
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.DownloadBaseView
+import com.carto.advanced.kotlin.sections.base.views.DownloadBaseView
 import com.carto.advanced.kotlin.utils.BoundingBox
 import com.carto.core.MapBounds
 import com.carto.core.MapPos
 import com.carto.core.MapPosVector
 import com.carto.datasources.LocalVectorDataSource
-import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.VectorLayer
 import com.carto.packagemanager.PackageInfo
 import com.carto.styles.PolygonStyleBuilder

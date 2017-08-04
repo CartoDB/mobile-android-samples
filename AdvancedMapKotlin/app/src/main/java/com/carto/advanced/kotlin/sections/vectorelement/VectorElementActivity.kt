@@ -1,7 +1,7 @@
 package com.carto.advanced.kotlin.sections.vectorelement
 
 import android.os.Bundle
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 
 class VectorElementActivity : BaseActivity() {
 

@@ -2,9 +2,7 @@ package com.carto.advanced.kotlin.sections.packagedownload
 
 import android.content.Context
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.DownloadBaseView
-import com.carto.advanced.kotlin.sections.base.PackageDownloadBaseView
-import com.carto.layers.CartoBaseMapStyle
+import com.carto.advanced.kotlin.sections.base.views.PackageDownloadBaseView
 
 /**
  * Created by aareundo on 03/07/2017.

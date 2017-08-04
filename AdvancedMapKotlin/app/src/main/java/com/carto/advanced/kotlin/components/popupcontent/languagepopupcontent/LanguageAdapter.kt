@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
 import com.carto.advanced.kotlin.model.Language
-import com.carto.advanced.kotlin.sections.base.CGRect
+import com.carto.advanced.kotlin.sections.base.utils.CGRect
 
 /**
  * Created by aareundo on 14/07/2017.

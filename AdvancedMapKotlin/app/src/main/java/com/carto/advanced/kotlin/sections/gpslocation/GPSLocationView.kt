@@ -3,13 +3,11 @@ package com.carto.advanced.kotlin.sections.gpslocation
 import android.content.Context
 import android.location.Location
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.RotationResetButton
 import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.CGRect
-import com.carto.advanced.kotlin.sections.base.MapBaseView
-import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.sections.base.views.MapBaseView
+import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.core.MapPos
 import com.carto.core.MapPosVector

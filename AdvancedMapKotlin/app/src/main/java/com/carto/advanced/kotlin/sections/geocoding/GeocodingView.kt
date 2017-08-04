@@ -2,21 +2,20 @@ package com.carto.advanced.kotlin.sections.geocoding
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.shapes.Shape
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ListView
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.geocoding.GeocodingResult
 import android.widget.TextView
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.base.hide
-import com.carto.advanced.kotlin.sections.base.show
+import com.carto.advanced.kotlin.sections.base.utils.hide
+import com.carto.advanced.kotlin.sections.base.utils.show
 
 
 /**

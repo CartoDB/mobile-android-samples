@@ -6,7 +6,7 @@ import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguagePopupContent
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.MapBaseView
+import com.carto.advanced.kotlin.sections.base.views.MapBaseView
 import com.carto.datasources.CartoOnlineTileDataSource
 import com.carto.datasources.HTTPTileDataSource
 import com.carto.layers.*

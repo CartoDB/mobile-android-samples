@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
-import com.carto.advanced.kotlin.sections.base.CGRect
+import com.carto.advanced.kotlin.sections.base.utils.CGRect
 import com.carto.geocoding.GeocodingResult
 
 /**

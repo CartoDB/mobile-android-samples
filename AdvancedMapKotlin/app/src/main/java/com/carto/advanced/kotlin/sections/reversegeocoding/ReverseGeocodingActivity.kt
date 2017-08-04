@@ -2,8 +2,8 @@ package com.carto.advanced.kotlin.sections.reversegeocoding
 
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
-import com.carto.advanced.kotlin.sections.base.BaseActivity
-import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.GeocodingResult
 import com.carto.geocoding.PackageManagerReverseGeocodingService

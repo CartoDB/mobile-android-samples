@@ -5,7 +5,7 @@ import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.La
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
 import com.carto.advanced.kotlin.model.Languages
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 
 /**
  * Created by aareundo on 30/06/2017.

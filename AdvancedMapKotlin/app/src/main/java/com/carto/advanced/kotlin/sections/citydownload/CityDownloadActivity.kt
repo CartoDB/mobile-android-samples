@@ -4,14 +4,12 @@ import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
 import com.carto.advanced.kotlin.model.Cities
-import com.carto.advanced.kotlin.routing.Routing
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.advanced.kotlin.utils.toMB
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.doAsync
 
 class CityDownloadActivity : BaseActivity() {
 

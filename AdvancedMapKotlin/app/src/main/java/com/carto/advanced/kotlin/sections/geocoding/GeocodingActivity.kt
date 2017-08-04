@@ -1,18 +1,13 @@
 package com.carto.advanced.kotlin.sections.geocoding
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
-import android.view.MotionEvent
-import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
-import com.carto.advanced.kotlin.sections.base.BaseActivity
-import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.GeocodingRequest
 import com.carto.geocoding.GeocodingResult
@@ -23,7 +18,6 @@ import com.carto.packagemanager.PackageStatus
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onEditorAction
 
 /**
  * Created by aareundo on 11/07/2017.

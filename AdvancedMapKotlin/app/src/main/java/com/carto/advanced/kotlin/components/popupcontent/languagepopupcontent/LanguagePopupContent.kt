@@ -3,8 +3,8 @@ package com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent
 import android.content.Context
 import android.widget.ListView
 import com.carto.advanced.kotlin.model.Language
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 
 /**
  * Created by aareundo on 14/07/2017.

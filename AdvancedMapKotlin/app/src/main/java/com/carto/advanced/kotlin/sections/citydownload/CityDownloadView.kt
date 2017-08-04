@@ -8,7 +8,7 @@ import com.carto.advanced.kotlin.components.popupcontent.citypopupcontent.CityPo
 import com.carto.advanced.kotlin.model.Cities
 import com.carto.advanced.kotlin.model.City
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.DownloadBaseView
+import com.carto.advanced.kotlin.sections.base.views.DownloadBaseView
 import com.carto.advanced.kotlin.utils.toMB
 import com.carto.packagemanager.PackageStatus
 

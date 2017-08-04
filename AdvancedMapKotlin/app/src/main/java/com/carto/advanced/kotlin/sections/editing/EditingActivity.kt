@@ -2,8 +2,8 @@ package com.carto.advanced.kotlin.sections.editing
 
 import android.os.Bundle
 import android.view.View
-import com.carto.advanced.kotlin.sections.base.BaseActivity
-import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.geometry.Geometry
 import com.carto.geometry.LineGeometry

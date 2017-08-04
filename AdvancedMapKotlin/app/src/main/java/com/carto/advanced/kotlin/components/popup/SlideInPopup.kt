@@ -6,11 +6,9 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.View
-import com.carto.advanced.kotlin.MapApplication
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.isLandScape
-import com.carto.advanced.kotlin.sections.base.isLargeTablet
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.isLandScape
+import com.carto.advanced.kotlin.sections.base.utils.isLargeTablet
 
 /**
  * Created by aareundo on 04/07/2017.

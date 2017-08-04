@@ -10,9 +10,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.CGRect
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.CGRect
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advanced.kotlin.utils.Package
 import com.carto.packagemanager.PackageAction

@@ -1,11 +1,9 @@
-package com.carto.advanced.kotlin.sections.base
+package com.carto.advanced.kotlin.sections.base.activities
 
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
-import android.view.KeyEvent
 import android.view.MenuItem
 import android.widget.Toast
 import com.carto.advanced.kotlin.main.MainActivity
@@ -29,7 +27,7 @@ open class BaseActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val drawable = ColorDrawable(Colors.locationRed)
+        val drawable = ColorDrawable(Colors.Companion.locationRed)
         supportActionBar?.setBackgroundDrawable(drawable)
     }
 
