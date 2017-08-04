@@ -1,7 +1,8 @@
-package com.carto.advanced.kotlin;
+package com.carto.advanced.kotlin
 
-import android.app.Application;
-import com.carto.ui.MapView;
+import android.app.Application
+import com.carto.ui.MapView
+import com.carto.utils.Log
 import net.hockeyapp.android.CrashManager
 
 
