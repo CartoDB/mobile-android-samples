@@ -98,6 +98,14 @@ class Texts {
                         "This example also has a 'track location' switch, as it by default zooms " +
                         "to your location when it receives a location update. Turn it off if you wish to browse the map"
 
+        val groundOverlayInfoHeader = "GROUND OVERLAY"
+
+        val groundOverlayInfoContainer =
+                "CartoMobileSDK includes support for aligning raster overlay at geographically precise locations. " +
+                        "This sample uses image of Thomas Jefferson Building and places it using coordinates of two corners.\n\n" +
+                        "The sample uses RasterTileLayer with BitmapOverlayRasterTileDataSource class that provides high-quality " +
+                        "image resampling for all zoom levels"
+
         val geocodingInfoHeader = "GEOCODING"
 
         val geocodingInfoContainer =

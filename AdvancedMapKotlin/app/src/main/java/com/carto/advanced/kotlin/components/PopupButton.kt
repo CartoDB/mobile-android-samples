@@ -2,12 +2,11 @@ package com.carto.advanced.kotlin.components
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.MotionEvent
 import android.widget.ImageView
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 
 /**
  * Created by aareundo on 04/07/2017.

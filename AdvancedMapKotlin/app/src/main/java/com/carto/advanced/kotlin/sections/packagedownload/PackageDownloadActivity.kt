@@ -3,13 +3,11 @@ package com.carto.advanced.kotlin.sections.packagedownload
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
-import com.carto.advanced.kotlin.routing.Routing
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 
 class PackageDownloadActivity : BaseActivity() {
 

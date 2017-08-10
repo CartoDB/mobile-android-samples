@@ -1,7 +1,4 @@
-package com.carto.advanced.kotlin.sections.base
-
-import android.view.ViewGroup
-import android.widget.RelativeLayout
+package com.carto.advanced.kotlin.sections.base.views
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -15,10 +12,10 @@ open class BaseScrollView(context: android.content.Context) : android.widget.Scr
 
         super.addView(container)
     }
-    var frame: CGRect = CGRect.Companion.empty
+    var frame: com.carto.advanced.kotlin.sections.base.utils.CGRect = com.carto.advanced.kotlin.sections.base.utils.CGRect.Companion.empty
 
     fun setFrame(x: Int, y: Int, width: Int, height: Int) {
-        this.frame = CGRect(x, y, width, height)
+        this.frame = com.carto.advanced.kotlin.sections.base.utils.CGRect(x, y, width, height)
 
         val params = android.widget.RelativeLayout.LayoutParams(width, height)
         params.leftMargin = x

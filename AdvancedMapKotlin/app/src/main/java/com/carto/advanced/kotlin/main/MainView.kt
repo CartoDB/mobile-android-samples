@@ -2,7 +2,10 @@ package com.carto.advanced.kotlin.main
 
 import android.content.Context
 import com.carto.advanced.kotlin.model.Sample
-import com.carto.advanced.kotlin.sections.base.*
+import com.carto.advanced.kotlin.sections.base.utils.isLandScape
+import com.carto.advanced.kotlin.sections.base.utils.isLargeTablet
+import com.carto.advanced.kotlin.sections.base.views.BaseScrollView
+import com.carto.advanced.kotlin.sections.base.views.BaseView
 
 /**
  * Created by aareundo on 30/06/2017.

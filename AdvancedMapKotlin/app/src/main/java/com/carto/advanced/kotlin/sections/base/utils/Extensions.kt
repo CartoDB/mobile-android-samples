@@ -1,11 +1,11 @@
-package com.carto.advanced.kotlin.sections.base
+package com.carto.advanced.kotlin.sections.base.utils
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.view.View
 import android.widget.*
-import com.carto.advanced.kotlin.routing.Route
+import com.carto.advanced.kotlin.sections.base.views.BaseView
 import com.carto.ui.MapView
 
 /**

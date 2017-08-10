@@ -2,7 +2,7 @@ package com.carto.advanced.kotlin.components.popup
 
 import android.content.Context
 import android.graphics.Color
-import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.views.BaseView
 
 /**
  * Created by aareundo on 04/07/2017.

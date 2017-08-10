@@ -7,8 +7,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
-import com.carto.advanced.kotlin.sections.base.BaseActivity
-import com.carto.ui.MapClickInfo
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.ui.MapEventListener
 
 class GPSLocationActivity : BaseActivity() {

@@ -3,8 +3,8 @@ package com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent
 import android.content.Context
 import android.graphics.Typeface
 import android.widget.TextView
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
 /**

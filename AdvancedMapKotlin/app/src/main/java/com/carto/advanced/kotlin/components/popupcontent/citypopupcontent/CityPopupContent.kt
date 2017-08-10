@@ -3,8 +3,8 @@ package com.carto.advanced.kotlin.components.popupcontent.citypopupcontent
 import android.content.Context
 import android.widget.ListView
 import com.carto.advanced.kotlin.model.City
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 
 /**
  * Created by aareundo on 13/07/2017.

@@ -5,8 +5,8 @@ import android.graphics.Typeface
 import android.view.Gravity
 import android.widget.TextView
 import com.carto.advanced.kotlin.model.City
-import com.carto.advanced.kotlin.sections.base.BaseView
-import com.carto.advanced.kotlin.sections.base.setFrame
+import com.carto.advanced.kotlin.sections.base.views.BaseView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 
 /**

@@ -1,7 +1,7 @@
-package com.carto.advanced.kotlin;
+package com.carto.advanced.kotlin
 
-import android.app.Application;
-import com.carto.ui.MapView;
+import android.app.Application
+import com.carto.ui.MapView
 import com.carto.utils.Log
 import net.hockeyapp.android.CrashManager
 
@@ -21,11 +21,10 @@ class MapApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-
         MapView.registerLicense(LICENSE, this)
 
-        Log.setShowDebug(true)
         Log.setShowError(true)
+        Log.setShowWarn(true)
         Log.setShowInfo(true)
 
         CrashManager.register(this)

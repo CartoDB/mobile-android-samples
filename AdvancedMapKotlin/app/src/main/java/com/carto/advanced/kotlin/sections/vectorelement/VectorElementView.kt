@@ -3,8 +3,8 @@ package com.carto.advanced.kotlin.sections.vectorelement
 import android.content.Context
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.MapBaseView
-import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.sections.base.views.MapBaseView
+import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos

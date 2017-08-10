@@ -2,8 +2,8 @@ package com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent
 
 import android.content.Context
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.base.BaseScrollView
-import com.carto.advanced.kotlin.sections.base.BaseView
+import com.carto.advanced.kotlin.sections.base.views.BaseScrollView
+import com.carto.advanced.kotlin.sections.base.views.BaseView
 
 /**
  * Created by aareundo on 17/07/2017.

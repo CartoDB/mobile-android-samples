@@ -1,10 +1,9 @@
 package com.carto.advanced.kotlin.sections.clustering
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.geometry.GeoJSONGeometryReader
 import com.carto.geometry.PointGeometry
 import com.carto.styles.MarkerStyleBuilder

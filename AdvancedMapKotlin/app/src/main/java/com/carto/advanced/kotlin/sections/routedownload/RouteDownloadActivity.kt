@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
-import com.carto.advanced.kotlin.sections.base.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.BoundingBox
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos

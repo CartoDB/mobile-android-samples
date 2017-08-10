@@ -3,10 +3,9 @@ package com.carto.advanced.kotlin.sections.editing
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
-import com.carto.R
 import com.carto.advanced.kotlin.model.Texts
-import com.carto.advanced.kotlin.sections.base.MapBaseView
-import com.carto.advanced.kotlin.sections.base.toCartoColor
+import com.carto.advanced.kotlin.sections.base.views.MapBaseView
+import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.core.MapPos
 import com.carto.core.MapPosVector

@@ -1,4 +1,4 @@
-package com.carto.advanced.kotlin.sections.base
+package com.carto.advanced.kotlin.sections.base.views
 
 import android.app.Activity
 import android.content.Context
@@ -6,13 +6,9 @@ import android.view.View
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Package
-import com.carto.layers.CartoBaseMapStyle
-import com.carto.layers.CartoOfflineVectorTileLayer
-import com.carto.layers.CartoOnlineVectorTileLayer
-import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.collections.toAndroidPair
 import org.jetbrains.anko.doAsync
 
 /**
@@ -70,7 +66,7 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         return context as BaseActivity
     }
 
-    fun onPackageClick(item: com.carto.advanced.kotlin.utils.Package) {
+    fun onPackageClick(item: Package) {
 
         if (item.isGroup()) {
             doAsync {
@@ -157,9 +153,9 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         packageContent?.addPackages(getPackages())
     }
 
-    fun getPackages(): MutableList<com.carto.advanced.kotlin.utils.Package> {
+    fun getPackages(): MutableList<Package> {
 
-        val list = mutableListOf<com.carto.advanced.kotlin.utils.Package>()
+        val list = mutableListOf<Package>()
 
         val vector = manager?.serverPackages
         val count = vector!!.size().toInt()

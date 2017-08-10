@@ -1,14 +1,7 @@
-package com.carto.advanced.kotlin.sections.base
+package com.carto.advanced.kotlin.sections.base.views
 
-import com.carto.advanced.kotlin.MapApplication
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.components.Banner
-import com.carto.advanced.kotlin.components.PopupButton
-import com.carto.advanced.kotlin.components.popup.SlideInPopup
-import com.carto.advanced.kotlin.components.popupcontent.InformationPopupContent
-import com.carto.layers.CartoBaseMapStyle
-import com.carto.layers.CartoOnlineVectorTileLayer
-import com.carto.projections.Projection
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -16,20 +9,21 @@ import com.carto.projections.Projection
 
 open class MapBaseView(context: android.content.Context) : BaseView(context) {
 
-    var topBanner: Banner = Banner(context)
+    var topBanner: com.carto.advanced.kotlin.components.Banner = com.carto.advanced.kotlin.components.Banner(context)
 
     var map: com.carto.ui.MapView = com.carto.ui.MapView(context)
 
-    val popup = SlideInPopup(context)
+    val popup = com.carto.advanced.kotlin.components.popup.SlideInPopup(context)
 
-    var projection: Projection? = null
+    var projection: com.carto.projections.Projection? = null
 
-    val infoButton = PopupButton(context, R.drawable.icon_info)
-    val infoContent = InformationPopupContent(context)
+    val infoButton = com.carto.advanced.kotlin.components.PopupButton(context, R.drawable.icon_info)
+    val infoContent = com.carto.advanced.kotlin.components.popupcontent.InformationPopupContent(context)
 
-    val buttons: MutableList<PopupButton> = mutableListOf()
+    val buttons: MutableList<com.carto.advanced.kotlin.components.PopupButton> = mutableListOf()
 
     init {
+        map.options.isZoomGestures = true
 
         projection = map.options.baseProjection
 
@@ -102,21 +96,21 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
         infoButton.setOnClickListener(null)
     }
 
-    fun addButton(button: PopupButton) {
+    fun addButton(button: com.carto.advanced.kotlin.components.PopupButton) {
         buttons.add(button)
         addView(button)
     }
 
-    fun removeButton(button: PopupButton) {
+    fun removeButton(button: com.carto.advanced.kotlin.components.PopupButton) {
         if (buttons.contains(button)) {
             buttons.remove(button)
             removeView(button)
         }
     }
 
-    fun addBaseLayer(style: CartoBaseMapStyle): CartoOnlineVectorTileLayer {
+    fun addBaseLayer(style: com.carto.layers.CartoBaseMapStyle): com.carto.layers.CartoOnlineVectorTileLayer {
 
-        val layer = CartoOnlineVectorTileLayer(style)
+        val layer = com.carto.layers.CartoOnlineVectorTileLayer(style)
         layer.isPreloading = true
         map.layers.add(layer)
         return layer

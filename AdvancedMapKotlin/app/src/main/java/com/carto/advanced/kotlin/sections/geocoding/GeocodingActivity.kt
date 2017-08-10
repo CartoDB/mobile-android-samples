@@ -1,21 +1,17 @@
 package com.carto.advanced.kotlin.sections.geocoding
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
-import android.view.MotionEvent
-import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
-import com.carto.advanced.kotlin.sections.base.BaseActivity
-import com.carto.advanced.kotlin.sections.base.BaseGeocodingView
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.GeocodingRequest
 import com.carto.geocoding.GeocodingResult
+import com.carto.geocoding.GeocodingResultVector
 import com.carto.geocoding.PackageManagerGeocodingService
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
@@ -23,7 +19,6 @@ import com.carto.packagemanager.PackageStatus
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onEditorAction
 
 /**
  * Created by aareundo on 11/07/2017.
@@ -116,14 +111,15 @@ class GeocodingActivity : BaseActivity() {
         contentView?.inputField?.addTextChangedListener(changeListener)
         contentView?.inputField?.setOnEditorActionListener() { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
-                onEditingEnded()
+                onEditingEnded(true)
             }
             false
         }
 
-        contentView?.resultTable?.setOnItemClickListener { _, _, _, _ ->
+        contentView?.resultTable?.setOnItemClickListener { _, _, position, _ ->
             run {
-                onEditingEnded()
+                showResult(results!!.get(position)!!)
+                onEditingEnded(false)
             }
         }
 
@@ -154,17 +150,20 @@ class GeocodingActivity : BaseActivity() {
         contentView?.inputField?.onFocusChangeListener = null
     }
 
-    fun onEditingEnded() {
+    fun onEditingEnded(geocode: Boolean) {
         contentView?.closeKeyboard()
         contentView?.hideTable()
-        val text = contentView?.inputField?.text.toString()
-        val autoComplete = false
-        geocode(text, autoComplete)
+        if (geocode) {
+            val text = contentView?.inputField?.text.toString()
+            val autoComplete = false
+            geocode(text, autoComplete)
+        }
         contentView?.clearInput()
     }
 
     var searchQueueSize: Int = 0
     var addresses = mutableListOf<GeocodingResult>()
+    var results: GeocodingResultVector? = null
 
     fun geocode(text: String, autocomplete: Boolean) {
 
@@ -182,8 +181,8 @@ class GeocodingActivity : BaseActivity() {
             val request = GeocodingRequest(contentView?.projection, text)
 
             service!!.isAutocomplete = autocomplete
-            val results = service!!.calculateAddresses(request)
-            val count = results.size()
+            results = service!!.calculateAddresses(request)
+            val count = results!!.size()
 
             runOnUiThread {
                 // In autocomplete mode just fill the autocomplete address list and reload tableview
