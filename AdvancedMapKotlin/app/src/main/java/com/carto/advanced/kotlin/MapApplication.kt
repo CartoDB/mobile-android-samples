@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin;
 
 import android.app.Application;
 import com.carto.ui.MapView;
+import com.carto.utils.Log
 import net.hockeyapp.android.CrashManager
 
 
@@ -20,12 +21,12 @@ class MapApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // TODO What's going on here? Keeps throwing methodNotFoundException
-//        Log.setShowDebug(true)
-//        Log.setShowError(true)
-//        Log.setShowInfo(true)
 
         MapView.registerLicense(LICENSE, this)
+
+        Log.setShowDebug(true)
+        Log.setShowError(true)
+        Log.setShowInfo(true)
 
         CrashManager.register(this)
     }
