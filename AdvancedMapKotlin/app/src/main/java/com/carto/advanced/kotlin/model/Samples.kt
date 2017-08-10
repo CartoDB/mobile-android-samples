@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
 import com.carto.advanced.kotlin.sections.gpslocation.GPSLocationActivity
+import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
 import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
@@ -33,6 +34,9 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_vector_objects, "VECTOR ELEMENTS",
                         "Different popups, polygons and a NMLModel", VectorElementActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_groundoverlay, "GROUND OVERLAY",
+                        "Ground overlay, indoor maps", GroundOverlayActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_clustering, "ELEMENT CLUSTERING",
                         "Loads 20000 elements and shows as clusters", ClusteringActivity::class.java

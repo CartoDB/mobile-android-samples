@@ -21,12 +21,11 @@ class MapApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // TODO What's going on here? Keeps throwing methodNotFoundException
-//        Log.setShowDebug(true)
-//        Log.setShowError(true)
-//        Log.setShowInfo(true)
-
         MapView.registerLicense(LICENSE, this)
+
+        Log.setShowError(true)
+        Log.setShowWarn(true)
+        Log.setShowInfo(true)
 
         CrashManager.register(this)
     }
