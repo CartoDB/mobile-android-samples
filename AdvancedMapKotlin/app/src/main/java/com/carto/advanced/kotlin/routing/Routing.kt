@@ -41,6 +41,7 @@ class Routing(val context: Context, val mapView: MapView) {
     var startMarker: Marker? = null
     var stopMarker: Marker? = null
 
+    var showTurns: Boolean = true
     var instructionUp: MarkerStyle? = null
     var instructionLeft: MarkerStyle? = null
     var instructionRight: MarkerStyle? = null
@@ -116,7 +117,9 @@ class Routing(val context: Context, val mapView: MapView) {
             val index = instruction.pointIndex
             val position = result.points[index]
 
-            createRoutePoint(position, instruction, routeDataSource)
+            if (showTurns) {
+                createRoutePoint(position, instruction, routeDataSource)
+            }
             vector.add(position)
         }
 

@@ -10,6 +10,7 @@ import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
 import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
+import com.carto.advanced.kotlin.sections.routesearch.RouteSearchActivity
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity
 import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity
 
@@ -25,6 +26,9 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_route_download, "ROUTE DOWNLOAD",
                         "Route download via bounding box for offline use", RouteDownloadActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_route_search, "ROUTE SEARCH",
+                        "Search POIs along a route", RouteSearchActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_city_download, "CITY DOWNLOAD",
                         "City download via bounding box for offline use", CityDownloadActivity::class.java

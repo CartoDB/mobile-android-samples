@@ -2,6 +2,7 @@ package com.carto.advanced.kotlin.sections.vectorelement
 
 import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
+import com.carto.core.VariantType
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.VectorElementEventListener
 import com.carto.styles.AnimationStyleBuilder
@@ -27,9 +28,13 @@ class VectorObjectClickListener(val source: LocalVectorDataSource) : VectorEleme
 
         if (previous != null) {
             source.remove(previous)
+            previous = null
         }
 
         val element = clickInfo?.vectorElement!!
+        if (element.getMetaDataElement(CLICK_TITLE).type != VariantType.VARIANT_TYPE_STRING) {
+            return true;
+        }
 
         val animationBuilder = AnimationStyleBuilder()
         animationBuilder.relativeSpeed = 2.0f
