@@ -116,7 +116,7 @@ class Routing(val context: Context, val mapView: MapView) {
             val index = instruction.pointIndex
             val position = result.points[index]
 
-            createRoutPoint(position, instruction, routeDataSource)
+            createRoutePoint(position, instruction, routeDataSource)
             vector.add(position)
         }
 
@@ -153,7 +153,7 @@ class Routing(val context: Context, val mapView: MapView) {
         return result
     }
 
-    fun createRoutPoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
+    fun createRoutePoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
         val action = instruction.action
 
         var style = instructionUp
