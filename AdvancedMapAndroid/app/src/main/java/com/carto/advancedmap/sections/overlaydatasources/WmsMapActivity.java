@@ -42,7 +42,7 @@ public class WmsMapActivity extends MapBaseActivity {
     /**
      * A custom tile source makes WMS request. Supports only WGS84 (EPSG:4326) requests
      */
-    private class HttpWmsTileDataSource extends HTTPTileDataSource {
+    private static class HttpWmsTileDataSource extends HTTPTileDataSource {
 
         private String baseUrl;
 

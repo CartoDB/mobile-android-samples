@@ -47,7 +47,7 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Initialize a local vector data source
         final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);

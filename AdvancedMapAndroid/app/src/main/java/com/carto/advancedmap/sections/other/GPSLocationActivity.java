@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
@@ -39,7 +40,7 @@ public class GPSLocationActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         proj = super.baseProjection;
 

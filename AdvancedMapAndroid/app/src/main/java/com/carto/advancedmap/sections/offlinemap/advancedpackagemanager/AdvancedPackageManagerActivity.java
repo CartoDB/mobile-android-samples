@@ -18,6 +18,7 @@ import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.core.StringVector;
 
 import com.carto.packagemanager.CartoPackageManager;
@@ -94,7 +95,7 @@ public class AdvancedPackageManagerActivity extends ListActivity {
         	Log.e(MapApplication.LOG_TAG, "Could not create package folder!");
         }
 		try {
-			packageManager = new CartoPackageManager("nutiteq.osm", packageFolder.getAbsolutePath());
+			packageManager = new CartoPackageManager(Sources.CARTO_VECTOR, packageFolder.getAbsolutePath());
 		}
 		catch (IOException e) {
 			Log.e(MapApplication.LOG_TAG, "Exception: " + e);

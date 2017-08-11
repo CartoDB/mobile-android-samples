@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.utils.RouteCalculator;
 import com.carto.core.MapPos;
@@ -57,7 +58,7 @@ public class BaseRoutingActivity extends MapBaseActivity {
 
     protected void addBaseLayer() {
         // Add online base layer, even used in Offline routing example
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
     }
 
     protected RoutingService service;

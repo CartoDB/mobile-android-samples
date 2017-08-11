@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.carto.advanced.kotlin">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".MapApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Advanced Map"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+
+        <activity android:name=".main.MainActivity" />
+
+        <activity android:name=".sections.styles.StyleChoiceActivity" />
+        <activity android:name=".sections.citydownload.CityDownloadActivity" />
+        <activity android:name=".sections.editing.EditingActivity" />
+        <activity android:name=".sections.gpslocation.GPSLocationActivity" />
+        <activity android:name=".sections.groundoverlay.GroundOverlayActivity" />
+        <activity android:name=".sections.packagedownload.PackageDownloadActivity" />
+        <activity android:name=".sections.routedownload.RouteDownloadActivity" />
+        <activity android:name=".sections.vectorelement.VectorElementActivity" />
+        <activity android:name=".sections.clustering.ClusteringActivity" />
+        <activity android:name=".sections.geocoding.GeocodingActivity" />
+        <activity android:name=".sections.reversegeocoding.ReverseGeocodingActivity" />
+        <activity android:name=".main.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

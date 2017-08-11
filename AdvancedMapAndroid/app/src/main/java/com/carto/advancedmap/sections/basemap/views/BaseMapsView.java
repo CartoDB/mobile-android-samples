@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 public class BaseMapsView extends RelativeLayout
 {
+    public static final CartoBaseMapStyle DEFAULT_STYLE = CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER;
+
     public MapView mapView;
 
     public MenuButton button;
@@ -40,7 +42,7 @@ public class BaseMapsView extends RelativeLayout
 
         mapView = new MapView(context);
 
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(DEFAULT_STYLE);
         mapView.getLayers().add(layer);
 
         mapView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

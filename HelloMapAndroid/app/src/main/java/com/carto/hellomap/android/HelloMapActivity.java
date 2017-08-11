@@ -22,9 +22,7 @@ import java.util.Random;
 
 public class HelloMapActivity extends Activity {
 
-    static final String LICENSE = "XTUMwQ0ZRQ1NTeXRJSnIrUFNUUXpsSk45OTh0bVpKZy9QUUlVR0pDbk5wTGVGZUdSMW92" +
-            "Sk82Vi80UERNUHRNPQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21" +
-            "hcC5hbmRyb2lkCndhdGVybWFyaz1kZXZlbG9wbWVudAp2YWxpZFVudGlsPTIwMTYtMDktMTUKb25saW5lTGljZW5zZT0xCg==";
+    static final String LICENSE = "XTUMwQ0ZDNGo4cFZKMklMZHlFQVdZditGYzduazV4QzZBaFVBbkJzRUExMmhqVnFxSEY3bkpTUFVyM0M2NzdRPQoKYXBwVG9rZW49YzQxYTM5ZjktN2I5MC00MThhLTkyZjUtN2I0ODljZDYxZmFhCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21hcC5hbmRyb2lkCm9ubGluZUxpY2Vuc2U9MQpwcm9kdWN0cz1zZGstYW5kcm9pZC00LioKd2F0ZXJtYXJrPWNhcnRvZGIK";
 
     private MapView mapView;
 
@@ -39,7 +37,7 @@ public class HelloMapActivity extends Activity {
         mapView = (MapView) this.findViewById(R.id.map_view);
 
         // Add base map
-        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
+        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
         mapView.getLayers().add(baseLayer);
 
         // Set default location and zoom

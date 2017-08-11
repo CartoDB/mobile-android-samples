@@ -2,6 +2,8 @@ package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.sections.basemap.BaseMapActivity;
+import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.layers.CartoBaseMapStyle;
@@ -23,7 +25,7 @@ public class PackagedMapActivity extends MapBaseActivity {
         // Create style set
         CartoPackageManager manager = AdvancedPackageManagerActivity.Manager;
 
-        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, BaseMapsView.DEFAULT_STYLE);
         mapView.getLayers().add(layer);
 
         ActivityData data = ((ActivityData) this.getClass().getAnnotations()[0]);

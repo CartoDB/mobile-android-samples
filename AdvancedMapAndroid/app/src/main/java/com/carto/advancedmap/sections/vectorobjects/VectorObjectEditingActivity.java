@@ -43,7 +43,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         source = new LocalVectorDataSource(mapView.getOptions().getBaseProjection());
 

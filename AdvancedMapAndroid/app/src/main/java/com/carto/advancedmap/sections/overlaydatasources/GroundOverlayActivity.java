@@ -25,7 +25,7 @@ public class GroundOverlayActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         Projection proj = mapView.getOptions().getBaseProjection();
         

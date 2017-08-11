@@ -8,6 +8,7 @@ import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
 import com.carto.advancedmap.utils.RouteCalculator;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.routing.PackageManagerValhallaRoutingService;
 import com.carto.routing.RoutingService;
@@ -21,9 +22,6 @@ import java.io.IOException;
 
 @ActivityData(name = "Offline Routing (bbox)", description = "Offline Routing where a bounding box of New York is downloaded")
 public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
-
-    static final String ROUTING = "routing:";
-    static  final String SOURCE = "valhalla.osm";
 
     RouteCalculator calculator;
     RoutingService service;
@@ -49,7 +47,7 @@ public class OfflineRoutingBBoxActivity extends BoundingBoxActivity {
     protected CartoPackageManager getPackageManager(String folder) {
 
         try {
-            String source = ROUTING + SOURCE;
+            String source = Sources.ROUTING_TAG + Sources.OFFLINE_ROUTING;
             return new CartoPackageManager(source, folder);
         } catch (IOException e) {
             return null;
