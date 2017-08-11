@@ -4,6 +4,8 @@ import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.VectorElementEventListener
+import com.carto.styles.AnimationStyleBuilder
+import com.carto.styles.AnimationType
 import com.carto.styles.BalloonPopupMargins
 import com.carto.styles.BalloonPopupStyleBuilder
 import com.carto.ui.VectorElementClickInfo
@@ -29,6 +31,10 @@ class VectorObjectClickListener(val source: LocalVectorDataSource) : VectorEleme
 
         val element = clickInfo?.vectorElement!!
 
+        val animationBuilder = AnimationStyleBuilder()
+        animationBuilder.relativeSpeed = 2.0f
+        animationBuilder.sizeAnimationType = AnimationType.ANIMATION_TYPE_SPRING
+
         val builder = BalloonPopupStyleBuilder()
         builder.leftMargins = BalloonPopupMargins(0, 0, 0, 0)
         builder.rightMargins = BalloonPopupMargins(6, 3, 6, 3)
@@ -37,6 +43,7 @@ class VectorObjectClickListener(val source: LocalVectorDataSource) : VectorEleme
         builder.descriptionColor = android.graphics.Color.GRAY.toCartoColor()
         builder.descriptionFontSize = 10
         builder.cornerRadius = 5
+        builder.animationStyle = animationBuilder.buildStyle()
 
         val style = builder.buildStyle()
         val title = element.getMetaDataElement(CLICK_TITLE).string
