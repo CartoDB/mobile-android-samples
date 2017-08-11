@@ -68,8 +68,9 @@ class EditingView(context: Context) : MapBaseView(context) {
         /*
          * Points that form a circle of lines, the contours of the face
          */
-        val lineBuilder = LineStyleBuilder()
-        lineBuilder.color = color
+        val lineStyleBuilder = LineStyleBuilder()
+        lineStyleBuilder.color = color
+        lineStyleBuilder.clickWidth = 20.0f // make the line 'virtually wider' for click detection
 
         val minY: Double = -80.0
         val maxY: Double = Math.abs(minY)
@@ -92,7 +93,7 @@ class EditingView(context: Context) : MapBaseView(context) {
         positions.add(projection?.fromWgs84(MapPos(30.0, minY)))
         positions.add(projection?.fromWgs84(MapPos(-30.0, minY)))
 
-        var line = Line(positions, lineBuilder.buildStyle())
+        var line = Line(positions, lineStyleBuilder.buildStyle())
         editSource?.add(line)
 
         positions.clear()
@@ -101,14 +102,14 @@ class EditingView(context: Context) : MapBaseView(context) {
          * Points, eyes
          */
         var position = projection?.fromWgs84(MapPos(-50.0, 50.0))
-        val pointBuilder = PointStyleBuilder()
-        pointBuilder.color = color
+        val pointStyleBuilder = PointStyleBuilder()
+        pointStyleBuilder.color = color
 
-        var point = Point(position, pointBuilder.buildStyle())
+        var point = Point(position, pointStyleBuilder.buildStyle())
         editSource?.add(point)
 
         position = projection?.fromWgs84(MapPos(50.0, 50.0))
-        point = Point(position, pointBuilder.buildStyle())
+        point = Point(position, pointStyleBuilder.buildStyle())
         editSource?.add(point)
 
         /*
@@ -118,10 +119,10 @@ class EditingView(context: Context) : MapBaseView(context) {
         positions.add(projection?.fromWgs84(MapPos(-35.0, -30.0)))
         positions.add(projection?.fromWgs84(MapPos(0.0, -30.0)))
 
-        val polygonBuilder = PolygonStyleBuilder()
-        polygonBuilder.color = color
+        val polygonStyleBuilder = PolygonStyleBuilder()
+        polygonStyleBuilder.color = color
 
-        val polygon = Polygon(positions, polygonBuilder.buildStyle())
+        val polygon = Polygon(positions, polygonStyleBuilder.buildStyle())
         editSource?.add(polygon)
 
         positions.clear()
@@ -135,7 +136,7 @@ class EditingView(context: Context) : MapBaseView(context) {
         positions.add(projection?.fromWgs84(MapPos(100.0, -45.0)))
         positions.add(projection?.fromWgs84(MapPos(110.0, -20.0)))
 
-        line = Line(positions, lineBuilder.buildStyle())
+        line = Line(positions, lineStyleBuilder.buildStyle())
         editSource?.add(line)
     }
 }
