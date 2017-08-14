@@ -36,7 +36,7 @@ public class SQLServiceActivity extends BaseMapActivity {
         // BaseMapActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARK);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);
 
         // We have only added a single layer
         CartoOnlineVectorTileLayer baselayer = (CartoOnlineVectorTileLayer)mapView.getLayers().get(0);

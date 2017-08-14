@@ -30,6 +30,6 @@ class GeocodingResultCell(context: Context) : BaseView(context) {
     }
 
     fun update(item: GeocodingResult) {
-        label.text = item.getPrettyAddress().toUpperCase()
+        label.text = item.getPrettyAddress()
     }
 }

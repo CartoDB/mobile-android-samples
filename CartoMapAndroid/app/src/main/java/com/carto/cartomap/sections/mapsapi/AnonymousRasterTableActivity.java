@@ -30,7 +30,7 @@ public class AnonymousRasterTableActivity extends BaseMapActivity {
         // BaseMapActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_GRAY);
+        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Define server config
         JSONObject configJson = new JSONObject();
