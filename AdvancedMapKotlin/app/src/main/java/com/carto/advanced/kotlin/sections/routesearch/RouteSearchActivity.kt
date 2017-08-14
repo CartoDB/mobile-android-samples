@@ -32,14 +32,16 @@ class RouteSearchActivity : BaseActivity() {
         routing = Routing(this, contentView!!.map)
 
         routing?.showTurns = false
-        routing?.service = CartoOnlineRoutingService(Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE)
+        val source = Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE
+        routing?.service = CartoOnlineRoutingService(source)
     }
 
     override fun onResume() {
         super.onResume()
         contentView?.addListeners()
 
-        contentView?.overlayLayer?.vectorElementEventListener = VectorObjectClickListener(contentView?.overlaySource!!)
+        contentView?.overlayLayer?.vectorElementEventListener =
+                VectorObjectClickListener(contentView?.overlaySource!!)
 
         contentView?.map?.mapEventListener = object : MapEventListener() {
 
@@ -99,7 +101,7 @@ class RouteSearchActivity : BaseActivity() {
                 contentView?.showBanner(routing?.getMessage(routingResult)!!)
 
                 routing!!.show(routingResult, color, {
-                    route: Route -> {}
+                    _: Route -> run {}
                 })
 
                 val collection = routing?.routeDataSource?.featureCollection
@@ -120,15 +122,15 @@ class RouteSearchActivity : BaseActivity() {
     }
 
     fun showAttractions(geometry: Geometry) {
-        val searchService = com.carto.search.VectorTileSearchService(contentView?.baseSource, contentView?.baseLayer?.tileDecoder)
 
-        val searchRequest = SearchRequest()
-        searchRequest.projection = contentView?.baseSource?.projection
-        searchRequest.geometry = geometry
-        searchRequest.searchRadius = 500.0f
-        searchRequest.filterExpression = "class='attraction'"
+        val request = SearchRequest()
+        request.projection = contentView?.baseSource?.projection
+        request.geometry = geometry
+        request.searchRadius = 500.0f
+        request.filterExpression = "class='attraction'"
 
-        val searchResults = searchService.findFeatures(searchRequest)
+        val searchResults = contentView?.searchService!!.findFeatures(request)
+
         for (i in 0..searchResults.featureCount-1) {
             val item = searchResults.getFeature(i)
 
