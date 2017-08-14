@@ -1,6 +1,8 @@
 package com.carto.advanced.kotlin.sections.base.views
 
 import com.carto.advanced.kotlin.utils.toList
+import com.carto.styles.AnimationStyleBuilder
+import com.carto.styles.AnimationType
 
 /**
  * Created by aareundo on 20/07/2017.
@@ -25,10 +27,15 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
         source.clear()
 
+        val animationBuilder = AnimationStyleBuilder()
+        animationBuilder.relativeSpeed = 2.0f
+        animationBuilder.fadeAnimationType = AnimationType.ANIMATION_TYPE_SMOOTHSTEP
+
         val builder = com.carto.styles.BalloonPopupStyleBuilder()
         builder.leftMargins = com.carto.styles.BalloonPopupMargins(0, 0, 0, 0)
         builder.titleMargins = com.carto.styles.BalloonPopupMargins(6, 3, 6, 3)
         builder.cornerRadius = 5
+        builder.animationStyle = animationBuilder.buildStyle()
 
         // Make sure this label is shown on top of all other labels
         builder.placementPriority = 10

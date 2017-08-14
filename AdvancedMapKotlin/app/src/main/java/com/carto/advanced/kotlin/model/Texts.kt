@@ -25,7 +25,7 @@ class Texts {
         val routeDownloadInfoHeader = "ROUTE DOWNLOAD"
 
         val routeDownloadInfoContainer =
-                "CARTOMobileSDK 4.1.0 uses Valhalla routing. With that, we have the option to " +
+                "CARTOMobileSDK 4.1.0 includes optional Valhalla routing. With that, we have the option to " +
                         "download a specific bounding box... and that is exactly what this example does.\n\n" +
                         "It first downloads the map package, then saves it to a specified folder, " +
                         "then downloads the routing package separately. " +
@@ -36,6 +36,16 @@ class Texts {
                         " a transparent visualization of the downloaded area appears on your map.\n\n" +
                         "Oh, and downloaded areas stay forever. You're gonna have to uninstall the app to get rid " +
                         "of the bounding boxes. So be careful, don't fill your phone with bounding boxes!\n\n"
+
+        val routeSearchInfoHeader = "ROUTE SEARCH"
+
+        val routeSearchInfoContainer =
+                "CARTOMobileSDK 4.1.0 supports searching from various sources. " +
+                        "This sample combines online routing with online searching from vector tiles. \n\n" +
+                        "To see this in action, just click on two different points. The sample will first " +
+                        "calculate the fastest route between the points and then uses search APIs to find " +
+                        "all attractions along the route within 500 meters. These Points of Interests are then " +
+                        "shown as clickable red dots.\n\n"
 
         val cityDownloadInfoHeader = "CITY DOWNLOAD"
 
@@ -97,6 +107,14 @@ class Texts {
                         "from CLLoationManager and you can easily place a highly customized marker on those coordinates.\n\n" +
                         "This example also has a 'track location' switch, as it by default zooms " +
                         "to your location when it receives a location update. Turn it off if you wish to browse the map"
+
+        val groundOverlayInfoHeader = "GROUND OVERLAY"
+
+        val groundOverlayInfoContainer =
+                "CartoMobileSDK includes support for aligning raster overlay at geographically precise locations. " +
+                        "This sample uses image of Thomas Jefferson Building and places it using coordinates of two corners.\n\n" +
+                        "The sample uses RasterTileLayer with BitmapOverlayRasterTileDataSource class that provides high-quality " +
+                        "image resampling for all zoom levels"
 
         val geocodingInfoHeader = "GEOCODING"
 

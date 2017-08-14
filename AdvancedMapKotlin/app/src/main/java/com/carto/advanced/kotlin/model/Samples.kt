@@ -6,9 +6,11 @@ import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
 import com.carto.advanced.kotlin.sections.gpslocation.GPSLocationActivity
+import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
 import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
+import com.carto.advanced.kotlin.sections.routesearch.RouteSearchActivity
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity
 import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity
 
@@ -25,6 +27,9 @@ class Samples {
                 Sample(R.drawable.icon_sample_route_download, "ROUTE DOWNLOAD",
                         "Route download via bounding box for offline use", RouteDownloadActivity::class.java
                 ),
+                Sample(R.drawable.icon_sample_route_search, "ROUTE SEARCH",
+                        "Search POIs along a route", RouteSearchActivity::class.java
+                ),
                 Sample(R.drawable.icon_sample_city_download, "CITY DOWNLOAD",
                         "City download via bounding box for offline use", CityDownloadActivity::class.java
                 ),
@@ -33,6 +38,9 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_vector_objects, "VECTOR ELEMENTS",
                         "Different popups, polygons and a NMLModel", VectorElementActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_groundoverlay, "GROUND OVERLAY",
+                        "Ground overlay, indoor maps", GroundOverlayActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_clustering, "ELEMENT CLUSTERING",
                         "Loads 20000 elements and shows as clusters", ClusteringActivity::class.java

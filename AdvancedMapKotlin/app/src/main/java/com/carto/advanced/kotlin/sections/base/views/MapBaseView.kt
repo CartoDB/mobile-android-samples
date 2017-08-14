@@ -23,6 +23,7 @@ open class MapBaseView(context: android.content.Context) : BaseView(context) {
     val buttons: MutableList<com.carto.advanced.kotlin.components.PopupButton> = mutableListOf()
 
     init {
+        map.options.isZoomGestures = true
 
         projection = map.options.baseProjection
 
