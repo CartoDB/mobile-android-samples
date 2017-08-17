@@ -53,6 +53,15 @@ open class PackageDownloadBaseActivity : BaseActivity() {
         contentView?.manager?.start()
         contentView?.manager?.startPackageListDownload()
 
+        contentView?.switchButton?.setOnClickListener {
+            val isChecked = contentView?.switchButton?.isOnline!!
+            if (isChecked) {
+                setOnlineMode()
+            } else {
+                setOfflineMode()
+            }
+        }
+
     }
 
     override fun onPause() {
@@ -66,7 +75,12 @@ open class PackageDownloadBaseActivity : BaseActivity() {
 
         contentView?.manager?.stop(false)
 
+        contentView?.switchButton?.setOnClickListener(null)
     }
 
     open fun packageDownloadComplete() {}
+
+    open fun setOnlineMode() { }
+
+    open fun setOfflineMode() {}
 }

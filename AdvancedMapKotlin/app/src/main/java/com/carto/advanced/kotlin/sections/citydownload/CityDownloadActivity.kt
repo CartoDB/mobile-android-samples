@@ -70,9 +70,9 @@ class CityDownloadActivity : BaseActivity() {
         contentView?.switchButton?.setOnClickListener {
             val isChecked = contentView?.switchButton?.isOnline!!
             if (isChecked) {
-                contentView?.setOnlineMode()
+                contentView?.setOnlineMap()
             } else {
-                contentView?.setOfflineMode()
+                contentView?.setOfflineMap()
             }
         }
 

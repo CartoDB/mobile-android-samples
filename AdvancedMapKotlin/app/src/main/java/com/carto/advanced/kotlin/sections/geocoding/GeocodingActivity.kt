@@ -11,10 +11,7 @@ import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseAct
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.utils.Utils
-import com.carto.geocoding.GeocodingRequest
-import com.carto.geocoding.GeocodingResult
-import com.carto.geocoding.GeocodingResultVector
-import com.carto.geocoding.PackageManagerGeocodingService
+import com.carto.geocoding.*
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
@@ -27,7 +24,7 @@ import org.jetbrains.anko.doAsync
  */
 class GeocodingActivity : PackageDownloadBaseActivity() {
 
-    var service: PackageManagerGeocodingService? = null
+    var service: GeocodingService? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +38,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
         val folder = Utils.createDirectory(this, "geocodingpackages")
         contentView?.manager = CartoPackageManager(BaseGeocodingView.SOURCE, folder)
 
-        service = PackageManagerGeocodingService(contentView?.manager)
+        setOnlineMode()
     }
 
     val changeListener = object: TextWatcher {
@@ -74,13 +71,16 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
 
         contentView?.map?.mapEventListener = object : MapEventListener() {
             override fun onMapClicked(mapClickInfo: MapClickInfo?) {
-                contentView?.closeKeyboard()
-                (contentView as? GeocodingView)!!.hideTable()
+
+                runOnUiThread {
+                    contentView?.closeKeyboard()
+                    (contentView as? GeocodingView)!!.hideTable()
+                }
             }
         }
 
         (contentView as? GeocodingView)!!.inputField.addTextChangedListener(changeListener)
-        (contentView as? GeocodingView)!!.inputField?.setOnEditorActionListener() { _, actionId, _ ->
+        (contentView as? GeocodingView)!!.inputField.setOnEditorActionListener() { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 onEditingEnded(true)
             }
@@ -144,7 +144,12 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
 
             val request = GeocodingRequest(contentView?.projection, text)
 
-            service!!.isAutocomplete = autocomplete
+            if (service is PackageManagerGeocodingService) {
+                (service as PackageManagerGeocodingService).isAutocomplete = autocomplete
+            } else {
+                (service as PeliasOnlineGeocodingService).isAutocomplete = autocomplete
+            }
+
             results = service!!.calculateAddresses(request)
             val count = results!!.size()
 
@@ -175,5 +180,13 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
         val goToPosition = true
 
         (contentView as? GeocodingView)!!.showResult(result, title, description, goToPosition)
+    }
+
+    override fun setOnlineMode() {
+        service = PeliasOnlineGeocodingService(BaseGeocodingView.API_KEY)
+    }
+
+    override fun setOfflineMode() {
+        service = PackageManagerGeocodingService(contentView?.manager)
     }
 }

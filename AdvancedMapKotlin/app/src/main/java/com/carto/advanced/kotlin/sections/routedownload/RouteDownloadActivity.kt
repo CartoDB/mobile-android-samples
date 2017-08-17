@@ -235,13 +235,13 @@ class RouteDownloadActivity : BaseActivity() {
 
     fun setOnlineMode(withLayer: Boolean = true) {
         if (withLayer) {
-            contentView?.setOnlineMode()
+            contentView?.setOnlineMap()
         }
         routing?.service = CartoOnlineRoutingService(Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE)
     }
 
     fun setOfflineMode() {
-        contentView?.setOfflineMode(mapManager!!)
+        contentView?.setOfflineMap(mapManager!!)
         routing?.service = PackageManagerValhallaRoutingService(routingManager)
     }
 

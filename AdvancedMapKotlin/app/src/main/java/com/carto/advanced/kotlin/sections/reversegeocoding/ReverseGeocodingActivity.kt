@@ -3,11 +3,10 @@ package com.carto.advanced.kotlin.sections.reversegeocoding
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.Utils
-import com.carto.geocoding.GeocodingResult
-import com.carto.geocoding.PackageManagerReverseGeocodingService
-import com.carto.geocoding.ReverseGeocodingRequest
+import com.carto.geocoding.*
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
@@ -17,11 +16,9 @@ import com.carto.ui.MapEventListener
 /**
  * Created by aareundo on 11/07/2017.
  */
-class ReverseGeocodingActivity : BaseActivity() {
+class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
 
-    var contentView: ReverseGeocodingView? = null
-
-    var service: PackageManagerReverseGeocodingService? = null
+    var service: ReverseGeocodingService? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +34,6 @@ class ReverseGeocodingActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        contentView?.addListeners()
 
         contentView?.map?.mapEventListener = object : MapEventListener() {
 
@@ -86,40 +82,9 @@ class ReverseGeocodingActivity : BaseActivity() {
                 val description = result.toString()
                 val goToPosition = false
 
-                contentView?.showResult(result, title, description, goToPosition)
+                (contentView as ReverseGeocodingView).showResult(result, title, description, goToPosition)
             }
         }
-
-        contentView?.manager?.packageManagerListener = object: PackageManagerListener() {
-            override fun onPackageListUpdated() {
-                val packages = contentView?.getPackages()!!
-                runOnUiThread {
-                    contentView?.updatePackages(packages)
-                }
-            }
-
-            override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
-                runOnUiThread {
-                    contentView?.onStatusChanged(id!!, status!!)
-                }
-            }
-
-            override fun onPackageUpdated(id: String?, version: Int) {
-                runOnUiThread {
-                    contentView?.downloadComplete(id!!)
-                }
-            }
-        }
-
-        contentView?.packageContent?.list?.setOnItemClickListener { _, view, _, _ ->
-            run {
-                val cell = view as PackageCell
-                contentView?.onPackageClick(cell.item!!)
-            }
-        }
-
-        contentView?.manager?.start()
-        contentView?.manager?.startPackageListDownload()
 
         if (contentView?.hasLocalPackages()!!) {
             contentView?.showLocalPackages()
@@ -128,14 +93,15 @@ class ReverseGeocodingActivity : BaseActivity() {
 
     override fun onPause() {
         super.onPause()
-        contentView?.removeListeners()
 
         contentView?.map?.mapEventListener = null
+    }
 
-        contentView?.manager?.packageManagerListener = null
+    override fun setOnlineMode() {
+        service = PeliasOnlineReverseGeocodingService(BaseGeocodingView.API_KEY)
+    }
 
-        contentView?.packageContent?.list?.onItemClickListener = null
-
-        contentView?.manager?.stop(false)
+    override fun setOfflineMode() {
+        service = PackageManagerReverseGeocodingService(contentView?.manager)
     }
 }

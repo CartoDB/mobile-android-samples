@@ -23,7 +23,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
 
         addButton(switchButton)
 
-        setOnlineMode()
+        setOnlineMap()
     }
 
     override fun layoutSubviews() {
@@ -41,7 +41,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         removeButton(switchButton)
     }
 
-    fun setOnlineMode() {
+    fun setOnlineMap() {
 
         if (onlineLayer == null) {
             onlineLayer = addBaseLayer(com.carto.layers.CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
@@ -54,7 +54,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         map.layers?.insert(0, onlineLayer)
     }
 
-    fun setOfflineMode(manager: com.carto.packagemanager.CartoPackageManager) {
+    fun setOfflineMap(manager: com.carto.packagemanager.CartoPackageManager) {
         map.layers?.remove(onlineLayer)
 
         if (offlineLayer == null) {
@@ -65,7 +65,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         map.layers?.insert(0, offlineLayer)
     }
 
-    fun setOfflineMode() {
-        setOfflineMode(manager!!)
+    fun setOfflineMap() {
+        setOfflineMap(manager!!)
     }
 }

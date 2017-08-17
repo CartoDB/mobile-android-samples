@@ -11,6 +11,7 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
     companion object {
         val SOURCE = "geocoding:carto.streets"
+        val API_KEY = "mapzen-e2gmwsC"
     }
 
     val source = com.carto.datasources.LocalVectorDataSource(projection)
@@ -19,8 +20,6 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
         val layer = com.carto.layers.VectorLayer(source)
         map.layers.add(layer)
-
-        removeSwitch()
     }
 
     fun showResult(result: com.carto.geocoding.GeocodingResult, title: String, description: String, goToPosition: Boolean) {
