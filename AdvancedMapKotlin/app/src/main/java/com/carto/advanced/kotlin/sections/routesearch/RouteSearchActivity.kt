@@ -30,8 +30,8 @@ class RouteSearchActivity : BaseActivity() {
         setContentView(contentView)
 
         routing = Routing(this, contentView!!.map)
-
         routing?.showTurns = false
+
         val source = Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE
         routing?.service = CartoOnlineRoutingService(source)
     }

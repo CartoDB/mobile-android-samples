@@ -7,7 +7,9 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
+import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.GeocodingRequest
 import com.carto.geocoding.GeocodingResult
@@ -23,9 +25,7 @@ import org.jetbrains.anko.doAsync
 /**
  * Created by aareundo on 11/07/2017.
  */
-class GeocodingActivity : BaseActivity() {
-
-    var contentView: GeocodingView? = null
+class GeocodingActivity : PackageDownloadBaseActivity() {
 
     var service: PackageManagerGeocodingService? = null
 
@@ -58,65 +58,36 @@ class GeocodingActivity : BaseActivity() {
                 return
             }
 
-            contentView?.showTable()
-            text = contentView?.inputField?.text.toString()
+            (contentView as? GeocodingView)!!.showTable()
+            text = (contentView as? GeocodingView)!!.inputField.text.toString()
             val autoComplete = true
             geocode(text, autoComplete)
         }
     }
 
+    override fun packageDownloadComplete() {
+        (contentView as? GeocodingView)!!.showSearchBar()
+    }
+
     override fun onResume() {
         super.onResume()
-        contentView?.addListeners()
 
         contentView?.map?.mapEventListener = object : MapEventListener() {
             override fun onMapClicked(mapClickInfo: MapClickInfo?) {
                 contentView?.closeKeyboard()
-                contentView?.hideTable()
+                (contentView as? GeocodingView)!!.hideTable()
             }
         }
 
-        contentView?.manager?.packageManagerListener = object: PackageManagerListener() {
-            override fun onPackageListUpdated() {
-                val packages = contentView?.getPackages()!!
-                runOnUiThread {
-                    contentView?.updatePackages(packages)
-                }
-            }
-
-            override fun onPackageStatusChanged(id: String?, version: Int, status: PackageStatus?) {
-                runOnUiThread {
-                    contentView?.onStatusChanged(id!!, status!!)
-                }
-            }
-
-            override fun onPackageUpdated(id: String?, version: Int) {
-                runOnUiThread {
-                    contentView?.downloadComplete(id!!)
-                    contentView?.showSearchBar()
-                }
-            }
-        }
-
-        contentView?.packageContent?.list?.setOnItemClickListener { _, view, _, _ ->
-            run {
-                val cell = view as PackageCell
-                contentView?.onPackageClick(cell.item!!)
-            }
-        }
-
-        contentView?.manager?.start()
-        contentView?.manager?.startPackageListDownload()
-
-        contentView?.inputField?.addTextChangedListener(changeListener)
-        contentView?.inputField?.setOnEditorActionListener() { _, actionId, _ ->
+        (contentView as? GeocodingView)!!.inputField.addTextChangedListener(changeListener)
+        (contentView as? GeocodingView)!!.inputField?.setOnEditorActionListener() { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 onEditingEnded(true)
             }
             false
         }
 
-        contentView?.resultTable?.setOnItemClickListener { _, _, position, _ ->
+        (contentView as? GeocodingView)!!.resultTable.setOnItemClickListener { _, _, position, _ ->
             run {
                 showResult(results!!.get(position)!!)
                 onEditingEnded(false)
@@ -125,40 +96,33 @@ class GeocodingActivity : BaseActivity() {
 
         if (contentView?.hasLocalPackages()!!) {
             contentView?.showLocalPackages()
-            contentView?.showSearchBar()
+            (contentView as? GeocodingView)!!.showSearchBar()
         } else {
-            contentView?.showBannerInsteadOfSearchBar()
+            (contentView as? GeocodingView)!!.showBannerInsteadOfSearchBar()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        contentView?.removeListeners()
-
-        contentView?.manager?.packageManagerListener = null
-
-        contentView?.packageContent?.list?.onItemClickListener = null
-
-        contentView?.manager?.stop(false)
 
         contentView?.map?.mapEventListener = null
 
-        contentView?.inputField?.removeTextChangedListener(changeListener)
+        (contentView as? GeocodingView)!!.inputField.removeTextChangedListener(changeListener)
 
-        contentView?.resultTable?.onItemClickListener = null
+        (contentView as? GeocodingView)!!.resultTable.onItemClickListener = null
 
-        contentView?.inputField?.onFocusChangeListener = null
+        (contentView as? GeocodingView)!!.inputField.onFocusChangeListener = null
     }
 
     fun onEditingEnded(geocode: Boolean) {
         contentView?.closeKeyboard()
-        contentView?.hideTable()
+        (contentView as? GeocodingView)!!.hideTable()
         if (geocode) {
-            val text = contentView?.inputField?.text.toString()
+            val text = (contentView as? GeocodingView)!!.inputField?.text.toString()
             val autoComplete = false
             geocode(text, autoComplete)
         }
-        contentView?.clearInput()
+        (contentView as? GeocodingView)!!.clearInput()
     }
 
     var searchQueueSize: Int = 0
@@ -195,7 +159,7 @@ class GeocodingActivity : BaseActivity() {
                         addresses.add(result!!)
                     }
 
-                    contentView?.update(addresses)
+                    (contentView as? GeocodingView)!!.update(addresses)
 
                 } else if (count > 0) {
                     showResult(results?.get(0)!!)
@@ -210,6 +174,6 @@ class GeocodingActivity : BaseActivity() {
         val description = result.getPrettyAddress()
         val goToPosition = true
 
-        contentView?.showResult(result, title, description, goToPosition)
+        (contentView as? GeocodingView)!!.showResult(result, title, description, goToPosition)
     }
 }

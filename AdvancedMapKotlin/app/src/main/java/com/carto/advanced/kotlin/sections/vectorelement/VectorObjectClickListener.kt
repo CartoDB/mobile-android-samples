@@ -33,7 +33,7 @@ class VectorObjectClickListener(val source: LocalVectorDataSource) : VectorEleme
 
         val element = clickInfo?.vectorElement!!
         if (element.getMetaDataElement(CLICK_TITLE).type != VariantType.VARIANT_TYPE_STRING) {
-            return true;
+            return true
         }
 
         val animationBuilder = AnimationStyleBuilder()

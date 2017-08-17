@@ -47,8 +47,6 @@ class RouteSearchView(context: Context) : MapBaseView(context) {
         val washingtonDC = projection?.fromWgs84(MapPos(-77.0369, 38.9072))
         map.setFocusPos(washingtonDC, 0.0f)
         map.setZoom(14.0f, 0.0f)
-
-
     }
 
     override fun layoutSubviews() {

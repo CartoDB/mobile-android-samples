@@ -95,34 +95,4 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
         val popup = com.carto.vectorelements.BalloonPopup(position, builder.buildStyle(), title, description)
         source.add(popup)
     }
-
-    fun showLocalPackages() {
-        var text = "You have downloaded "
-
-        val packages = getLocalPackages()
-        val total = packages.size
-        var counter = 0
-
-        for (item in packages) {
-            val split = item.name.split("/")
-            val shortName = split[split.size - 1]
-
-            text += shortName
-            counter++
-
-            if (counter < total) {
-                text += ", "
-            }
-        }
-
-        progressLabel.complete(text)
-    }
-
-    fun hasLocalPackages(): Boolean {
-        return getLocalPackages().size > 0
-    }
-
-    fun getLocalPackages(): MutableList<com.carto.packagemanager.PackageInfo> {
-        return manager!!.localPackages.toList()
-    }
 }

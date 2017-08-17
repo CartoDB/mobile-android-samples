@@ -8,6 +8,7 @@ import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Package
+import com.carto.advanced.kotlin.utils.toList
 import com.carto.packagemanager.PackageStatus
 import org.jetbrains.anko.doAsync
 
@@ -291,5 +292,36 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         }
 
         return packages
+    }
+
+
+    fun showLocalPackages() {
+        var text = "You have downloaded "
+
+        val packages = getLocalPackages()
+        val total = packages.size
+        var counter = 0
+
+        for (item in packages) {
+            val split = item.name.split("/")
+            val shortName = split[split.size - 1]
+
+            text += shortName
+            counter++
+
+            if (counter < total) {
+                text += ", "
+            }
+        }
+
+        progressLabel.complete(text)
+    }
+
+    fun hasLocalPackages(): Boolean {
+        return getLocalPackages().size > 0
+    }
+
+    fun getLocalPackages(): MutableList<com.carto.packagemanager.PackageInfo> {
+        return manager!!.localPackages.toList()
     }
 }
