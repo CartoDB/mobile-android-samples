@@ -16,7 +16,7 @@ import org.jetbrains.anko.doAsync
 /**
  * Created by aareundo on 12/07/2017.
  */
-open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
+open class PackageDownloadBaseView(context: Context, withBaseLayer: Boolean = true) : DownloadBaseView(context, withBaseLayer) {
 
     var countryButton: PopupButton? = null
 

@@ -2,12 +2,12 @@ package com.carto.advanced.kotlin.sections.base.views
 
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.sections.base.utils.setFrame
-
+import android.content.Context
 /**
  * Created by aareundo on 30/06/2017.
  */
 
-open class MapBaseView(context: android.content.Context) : BaseView(context) {
+open class MapBaseView(context: Context) : BaseView(context) {
 
     var topBanner: com.carto.advanced.kotlin.components.Banner = com.carto.advanced.kotlin.components.Banner(context)
 

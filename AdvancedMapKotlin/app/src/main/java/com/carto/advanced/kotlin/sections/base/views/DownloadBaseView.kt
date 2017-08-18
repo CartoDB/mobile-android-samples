@@ -2,11 +2,11 @@ package com.carto.advanced.kotlin.sections.base.views
 
 import com.carto.advanced.kotlin.R
 import com.carto.layers.CartoBaseMapStyle
-
+import android.content.Context
 /**
  * Created by aareundo on 03/07/2017.
  */
-open class DownloadBaseView(context: android.content.Context) : MapBaseView(context) {
+open class DownloadBaseView(context: Context, withBaseLayer: Boolean = true) : MapBaseView(context) {
 
     val progressLabel = com.carto.advanced.kotlin.components.ProgressLabel(context)
 
@@ -23,7 +23,9 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
 
         addButton(switchButton)
 
-        setOnlineMap()
+        if (withBaseLayer) {
+            setOnlineMap()
+        }
     }
 
     override fun layoutSubviews() {

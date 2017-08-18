@@ -5,6 +5,7 @@ import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
+import com.carto.advanced.kotlin.sections.base.views.PackageDownloadBaseView
 import com.carto.advanced.kotlin.sections.vectorelement.VectorObjectClickListener
 import com.carto.core.MapPos
 import com.carto.core.Variant
@@ -22,7 +23,7 @@ import com.carto.vectorelements.Point
 /**
  * Created by mark on 11/08/2017.
  */
-class RouteSearchView(context: Context) : MapBaseView(context) {
+class RouteSearchView(context: Context) : PackageDownloadBaseView(context, false) {
 
     var baseSource: TileDataSource? = null
     var baseLayer: VectorTileLayer? = null

@@ -5,23 +5,26 @@ import com.carto.advanced.kotlin.sections.routedownload.VectorElementIgnoreListe
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.vectorelement.VectorObjectClickListener
+import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
 import com.carto.geometry.Geometry
 import com.carto.geometry.LineGeometry
 import com.carto.geometry.PointGeometry
+import com.carto.packagemanager.CartoPackageManager
 import com.carto.routing.CartoOnlineRoutingService
+import com.carto.routing.PackageManagerValhallaRoutingService
 import com.carto.search.SearchRequest
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
 
-class RouteSearchActivity : BaseActivity() {
-
-    var contentView: RouteSearchView? = null
+class RouteSearchActivity : PackageDownloadBaseActivity() {
 
     var routing: Routing? = null
+    var objectListener: VectorObjectClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +35,19 @@ class RouteSearchActivity : BaseActivity() {
         routing = Routing(this, contentView!!.map)
         routing?.showTurns = false
 
-        val source = Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE
-        routing?.service = CartoOnlineRoutingService(source)
+        val source = Routing.ROUTING_TAG + Routing.OFFLINE_ROUTING_SOURCE
+        val folder = Utils.createDirectory(this, "routingpackages")
+        contentView?.manager = CartoPackageManager(source, folder)
+
+        objectListener = VectorObjectClickListener((contentView as RouteSearchView).overlaySource)
+        setOnlineMode()
     }
 
     override fun onResume() {
         super.onResume()
         contentView?.addListeners()
 
-        contentView?.overlayLayer?.vectorElementEventListener =
-                VectorObjectClickListener(contentView?.overlaySource!!)
+        (contentView as RouteSearchView).overlayLayer.vectorElementEventListener = objectListener
 
         contentView?.map?.mapEventListener = object : MapEventListener() {
 
@@ -51,6 +57,7 @@ class RouteSearchActivity : BaseActivity() {
             override fun onMapClicked(mapClickInfo: MapClickInfo?) {
                 if (mapClickInfo?.clickType != ClickType.CLICK_TYPE_LONG) {
                     // Only listen to long clicks
+                    objectListener?.reset()
                     return
                 }
 
@@ -60,7 +67,7 @@ class RouteSearchActivity : BaseActivity() {
                     startPosition = position
 
                     routing?.setStartMarker(startPosition!!)
-                    contentView?.clearPOIs()
+                    (contentView as RouteSearchView).clearPOIs()
                 } else {
                     stopPosition = position
 
@@ -78,9 +85,18 @@ class RouteSearchActivity : BaseActivity() {
         super.onPause()
         contentView?.removeListeners()
 
-        contentView?.overlayLayer!!.vectorElementEventListener = null
+        (contentView as RouteSearchView).overlayLayer.vectorElementEventListener = null
 
         contentView?.map?.mapEventListener = null
+    }
+
+    override fun setOnlineMode() {
+        val source = Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE
+        routing?.service = CartoOnlineRoutingService(source)
+    }
+
+    override fun setOfflineMode() {
+        routing?.service = PackageManagerValhallaRoutingService(contentView?.manager)
     }
 
     fun showRoute(start: MapPos, stop: MapPos) {
@@ -124,18 +140,18 @@ class RouteSearchActivity : BaseActivity() {
     fun showAttractions(geometry: Geometry) {
 
         val request = SearchRequest()
-        request.projection = contentView?.baseSource?.projection
+        request.projection = (contentView as RouteSearchView).baseSource?.projection
         request.geometry = geometry
         request.searchRadius = 500.0f
         request.filterExpression = "class='attraction'"
 
-        val searchResults = contentView?.searchService!!.findFeatures(request)
+        val searchResults = (contentView as RouteSearchView).searchService!!.findFeatures(request)
 
         for (i in 0..searchResults.featureCount-1) {
             val item = searchResults.getFeature(i)
 
             if (item.geometry is PointGeometry) {
-                contentView?.addPOITo(item)
+                (contentView as RouteSearchView).addPOITo(item)
             }
         }
     }
