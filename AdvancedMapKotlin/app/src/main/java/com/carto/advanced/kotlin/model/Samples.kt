@@ -1,7 +1,6 @@
 package com.carto.advanced.kotlin.model
 
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.citydownload.CityDownloadActivity
 import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
@@ -30,10 +29,7 @@ class Samples {
                 Sample(R.drawable.icon_sample_route_search, "ROUTE SEARCH",
                         "Search POIs along a route", RouteSearchActivity::class.java
                 ),
-                Sample(R.drawable.icon_sample_city_download, "CITY DOWNLOAD",
-                        "City download via bounding box for offline use", CityDownloadActivity::class.java
-                ),
-                Sample(R.drawable.icon_sample_package_download, "PACKAGE DOWNLOAD",
+                Sample(R.drawable.icon_sample_package_download, "OFFLINE MAP",
                         "Download existing packages for offline use", PackageDownloadActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_vector_objects, "VECTOR ELEMENTS",

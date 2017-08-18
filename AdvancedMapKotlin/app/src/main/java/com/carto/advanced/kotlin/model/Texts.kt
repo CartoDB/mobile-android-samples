@@ -47,18 +47,7 @@ class Texts {
                         "all attractions along the route within 500 meters. These Points of Interests are then " +
                         "shown as clickable red dots.\n\n"
 
-        val cityDownloadInfoHeader = "CITY DOWNLOAD"
-
-        val cityDownloadInfoContainer =
-                "This example lets you download specific languages. Cities are also based on bounding boxes, " +
-                        "we used http://bboxfinder.com to cut out the bounding boxes of specific languages.\n\n" +
-                        "Simply click on the item you wish to download, a progress bar will appear " +
-                        "and your're free to browse the map as you wish. " +
-                        "You will be zoomed in to the location when the download is completed.\n\n" +
-                        "If you wish to see more languages on this list, simply contact CARTO or, if you're " +
-                        "the technical kind, find this app on github.com and make a pull request."
-
-        val packageDownloadInfoHeader = "PACKAGE DOWNLOAD"
+        val packageDownloadInfoHeader = "OFFLINE MAP"
 
         val packageDownloadInfoContainer =
                 "This example lets you download pre-defined packages. The packages are mostly " +
