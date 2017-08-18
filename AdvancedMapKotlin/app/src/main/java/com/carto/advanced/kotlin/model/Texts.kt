@@ -123,6 +123,15 @@ class Texts {
                         "All you have to do is download the correct package (current sample features Estonia) and you're good to go\n\n" +
                         "I don't really know what to say here any more. Geocoding is rather self-explanatory. " +
                         "It's an awesome feature, though, that's worth a mention!"
+
+        val offlineRoutingInfoHeader = "COUNTRY ROUTE DOWNLOAD"
+
+        val offlineRoutingInfoContainer =
+        "This example lets you download pre-defined packages. The packages are mostly country-based, but some larger countries, " +
+                "like The United States, Russia and Germany, are municipality (or oblast etc.) based.\n\n" +
+        "Simply choose a package, press download and it will start, the progress will be displayed in the list and on the map.\n\n" +
+        "Our SDK also offers the option to pause, resume he download and, when you have it, the option to delete the package.\n\n" +
+        "The packages are defined by CARTO's Mobile team and are readily available in our mobile SDK's API."
     }
 
 }

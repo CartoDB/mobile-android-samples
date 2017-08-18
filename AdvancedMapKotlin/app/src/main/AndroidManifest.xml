@@ -25,6 +25,7 @@
         <activity android:name=".sections.gpslocation.GPSLocationActivity" />
         <activity android:name=".sections.groundoverlay.GroundOverlayActivity" />
         <activity android:name=".sections.packagedownload.PackageDownloadActivity" />
+        <activity android:name=".sections.offlinerouting.OfflineRoutingActivity" />
         <activity android:name=".sections.routedownload.RouteDownloadActivity" />
         <activity android:name=".sections.routesearch.RouteSearchActivity" />
         <activity android:name=".sections.vectorelement.VectorElementActivity" />

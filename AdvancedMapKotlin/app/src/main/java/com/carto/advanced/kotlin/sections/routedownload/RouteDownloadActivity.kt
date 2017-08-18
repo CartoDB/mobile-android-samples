@@ -50,7 +50,6 @@ class RouteDownloadActivity : BaseActivity() {
         val mapPackageCount = mapPackages.size().toInt()
         val routingPackageCount = routingPackages.size().toInt()
 
-
         val existing = mutableListOf<PackageInfo>()
 
         // Add existing packages to the map as polygons,
@@ -76,7 +75,6 @@ class RouteDownloadActivity : BaseActivity() {
         contentView?.addListeners()
 
         contentView?.overlayLayer!!.vectorElementEventListener = VectorElementIgnoreListener()
-
 
         mapManager?.packageManagerListener = object : PackageManagerListener() {
             override fun onPackageListUpdated() {

@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
 import com.carto.advanced.kotlin.sections.gpslocation.GPSLocationActivity
 import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
+import com.carto.advanced.kotlin.sections.offlinerouting.OfflineRoutingActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
 import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
@@ -31,6 +32,9 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_package_download, "OFFLINE MAP",
                         "Download existing packages for offline use", PackageDownloadActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_offline_routing, "OFFLINE ROUTING",
+                        "Download existing routing packages for offline use", OfflineRoutingActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_vector_objects, "VECTOR ELEMENTS",
                         "Different popups, polygons and a NMLModel", VectorElementActivity::class.java
