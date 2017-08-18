@@ -35,10 +35,10 @@ class PackageCell(context: Context) : BaseView(context) {
 
     val progressIndicator = BaseView(context)
 
-    init {
+    val titleSize = 13.0f
+    val titleColor = Colors.navy
 
-        val titleSize = 13.0f
-        val titleColor = Colors.navy
+    init {
 
         textLabel.textSize = titleSize
         textLabel.setTextColor(titleColor)
@@ -144,6 +144,13 @@ class PackageCell(context: Context) : BaseView(context) {
             // It's a package group. These are displayed with a single label
             textLabel.text = item.name?.toUpperCase()
             forwardIcon.visibility = View.VISIBLE
+
+            if (item.isCustomRegionFolder) {
+                textLabel.setTextColor(Colors.appleBlue)
+            } else {
+                textLabel.setTextColor(titleColor)
+            }
+
             return
         }
 

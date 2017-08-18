@@ -18,8 +18,20 @@ class Package {
 
     var info: PackageInfo? = null
 
+    val isCustomRegionFolder: Boolean
+        get() = name == Package.CUSTOM_REGION_FOLDER_NAME
+
+    fun isCustomRegionPackage(): Boolean {
+        if (id == null) {
+            return false
+        }
+
+        return id!!.contains(Package.BBOX_IDENTIFIER)
+    }
+
     fun isGroup(): Boolean {
-        return status == null && info == null
+        // Custom region packages will have status & info == null, but they're not groups
+        return status == null && info == null && !isCustomRegionPackage()
     }
 
     fun isSmallerThan1MB(): Boolean {
@@ -28,20 +40,9 @@ class Package {
 
     fun getStatusText(): String {
 
-        if (info == null) {
-            return ""
-        }
-
         var status = "Available"
 
-        val version = info?.version.toString()
-
-        if (isSmallerThan1MB()) {
-            status += " v.$version(<1MB)"
-        } else {
-            val size = (info?.size?.toLong()?.div(1024)?.div(1024)).toString()
-            status += " v." + version + " (" + size + "MB)"
-        }
+        status += getVersionAndSize()
 
         if (this.status != null) {
 
@@ -65,6 +66,22 @@ class Package {
         return status
     }
 
+    fun getVersionAndSize(): String {
+
+        if (isCustomRegionPackage()) {
+            return  ""
+        }
+
+        val version = info?.version.toString()
+        val size = info?.size?.toMB()
+
+        if (isSmallerThan1MB()) {
+            return " v.$version (<1MB)"
+        }
+
+        return " v.$version ($size MB)"
+
+    }
     fun isDownloading(): Boolean {
         if (status == null) {
             return false
@@ -82,20 +99,17 @@ class Package {
     }
 
     companion object {
-        val READY = "READY"
-        val QUEUED = "QUEUED"
         val ACTION_PAUSE = "PAUSE"
         val ACTION_RESUME = "RESUME"
         val ACTION_CANCEL = "CANCEL"
         val ACTION_DOWNLOAD = "DOWNLOAD"
         val ACTION_REMOVE = "REMOVE"
+
+        val CUSTOM_REGION_FOLDER_NAME = "CUSTOM_REGION"
+        val BBOX_IDENTIFIER = "bbox("
     }
 
     fun getActionText(): String {
-
-        if (info == null) {
-            return "NONE"
-        }
 
         if (status == null) {
             return ACTION_DOWNLOAD
@@ -116,3 +130,4 @@ class Package {
         }
     }
 }
+
