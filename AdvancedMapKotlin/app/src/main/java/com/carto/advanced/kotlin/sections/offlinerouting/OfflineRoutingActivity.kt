@@ -100,7 +100,7 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
 
             val color = com.carto.graphics.Color(14, 122, 254, 150)
             routing!!.show(result, color, { })
-            
+
             runOnUiThread {
                 contentView?.progressLabel?.complete(routing?.getMessage(result)!!)
             }
