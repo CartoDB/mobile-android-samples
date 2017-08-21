@@ -1,4 +1,4 @@
-package com.carto.advancedmap.sections.geocoding;
+package com.carto.advancedmap.sections.geocoding.base;
 
 import android.os.Bundle;
 

@@ -1,8 +1,9 @@
-package com.carto.advancedmap.sections.geocoding;
+package com.carto.advancedmap.sections.geocoding.online;
 
 import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.geocoding.base.BaseReverseGeocodingActivity;
 import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
 
 /**

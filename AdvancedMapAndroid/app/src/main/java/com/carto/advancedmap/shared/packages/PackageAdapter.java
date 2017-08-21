@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.carto.advancedmap.sections.geocoding.ReverseGeoPackageDownloadActivity;
+import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
 import com.carto.packagemanager.PackageAction;

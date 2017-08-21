@@ -45,9 +45,9 @@
         <activity android:name=".sections.routing.OfflineRoutingBBoxActivity" />
 
         <!--Section 4-->
-        <activity android:name=".sections.geocoding.OnlineReverseGeocodingActivity" />
-        <activity android:name=".sections.geocoding.OfflineReverseGeocodingActivity" />
-        <activity android:name=".sections.geocoding.ReverseGeoPackageDownloadActivity" />
+        <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />
+        <activity android:name=".sections.geocoding.offline.OfflineReverseGeocodingActivity" />
+        <activity android:name=".sections.geocoding.offline.ReverseGeoPackageDownloadActivity" />
 
         <!--Section 5-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />

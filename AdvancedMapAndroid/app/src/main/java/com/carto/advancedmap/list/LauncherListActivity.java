@@ -11,9 +11,8 @@ import android.widget.ListView;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
-import com.carto.advancedmap.sections.geocoding.OfflineReverseGeocodingActivity;
-import com.carto.advancedmap.sections.geocoding.OnlineReverseGeocodingActivity;
-import com.carto.advancedmap.sections.geocoding.ReverseGeoPackageDownloadActivity;
+import com.carto.advancedmap.sections.geocoding.online.OnlineReverseGeocodingActivity;
+import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
 import com.carto.advancedmap.sections.header.GeocodingHeader;
 import com.carto.advancedmap.sections.header.OfflineMapHeader;

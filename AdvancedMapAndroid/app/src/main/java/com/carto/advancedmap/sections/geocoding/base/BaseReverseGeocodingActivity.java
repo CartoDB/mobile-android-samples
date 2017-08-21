@@ -1,4 +1,4 @@
-package com.carto.advancedmap.sections.geocoding;
+package com.carto.advancedmap.sections.geocoding.base;
 
 import com.carto.core.MapPos;
 import com.carto.geocoding.GeocodingResult;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class BaseReverseGeocodingActivity extends BaseGeocodingActivity {
 
-    ReverseGeocodingService service;
+    protected ReverseGeocodingService service;
 
     public String getFailMessage() {
         // Should be overridden in child class
