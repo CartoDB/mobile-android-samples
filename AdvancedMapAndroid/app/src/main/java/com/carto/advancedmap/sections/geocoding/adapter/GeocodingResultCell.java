@@ -3,6 +3,7 @@ package com.carto.advancedmap.sections.geocoding.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +18,23 @@ import com.carto.geocoding.GeocodingResult;
 public class GeocodingResultCell extends RelativeLayout {
 
     TextView label, type;
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams params) {
+        super.setLayoutParams(params);
+
+        int padding = (int)(5 * getResources().getDisplayMetrics().density);
+        int width = params.width - 2 * padding;
+        int split = params.height * 3 / 5;
+
+        RelativeLayout.LayoutParams parameters = new RelativeLayout.LayoutParams(width, split);
+        parameters.setMarginStart(padding);
+        label.setLayoutParams(parameters);
+
+        parameters = new RelativeLayout.LayoutParams(width, params.height);
+        parameters.setMargins(padding, split, 0, 0);
+        type.setLayoutParams(parameters);
+    }
 
     public GeocodingResultCell(Context context) {
         super(context);

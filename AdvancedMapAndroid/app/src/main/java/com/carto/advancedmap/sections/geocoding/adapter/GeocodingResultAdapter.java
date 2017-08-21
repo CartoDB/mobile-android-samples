@@ -19,7 +19,7 @@ import java.util.List;
 
 public class GeocodingResultAdapter extends ArrayAdapter<GeocodingResult> {
 
-    List<GeocodingResult> items = new ArrayList<GeocodingResult>();
+    public List<GeocodingResult> items = new ArrayList<GeocodingResult>();
     public int width;
 
     public GeocodingResultAdapter(Context context) {
