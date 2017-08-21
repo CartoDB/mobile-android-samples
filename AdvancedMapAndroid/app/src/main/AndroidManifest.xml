@@ -47,8 +47,10 @@
         <!--Section 4-->
         <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />
         <activity android:name=".sections.geocoding.online.OnlineGeocodingActivity" />
-        <activity android:name=".sections.geocoding.offline.OfflineReverseGeocodingBaseActivity" />
+        <activity android:name=".sections.geocoding.offline.OfflineReverseGeocodingActivity" />
         <activity android:name=".sections.geocoding.offline.ReverseGeoPackageDownloadActivity" />
+        <activity android:name=".sections.geocoding.offline.OfflineGeocodingActivity" />
+        <activity android:name=".sections.geocoding.offline.GeoPackageDownloadActivity" />
 
         <!--Section 5-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />

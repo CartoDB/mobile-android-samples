@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.carto.advancedmap.sections.geocoding.offline.GeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
@@ -176,6 +177,9 @@ public class PackageAdapter extends ArrayAdapter<Package> {
         } else if (context instanceof ReverseGeoPackageDownloadActivity) {
             ReverseGeoPackageDownloadActivity activity = (ReverseGeoPackageDownloadActivity)context;
             activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
+        } else if (context instanceof GeoPackageDownloadActivity) {
+            GeoPackageDownloadActivity activity = (GeoPackageDownloadActivity)context;
+            activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
         }
     }
 
@@ -189,6 +193,9 @@ public class PackageAdapter extends ArrayAdapter<Package> {
             activity.updatePackages();
         } else if (context instanceof  ReverseGeoPackageDownloadActivity) {
             ReverseGeoPackageDownloadActivity activity = (ReverseGeoPackageDownloadActivity)context;
+            activity.updatePackages();
+        }else if (context instanceof GeoPackageDownloadActivity) {
+            GeoPackageDownloadActivity activity = (GeoPackageDownloadActivity)context;
             activity.updatePackages();
         }
     }

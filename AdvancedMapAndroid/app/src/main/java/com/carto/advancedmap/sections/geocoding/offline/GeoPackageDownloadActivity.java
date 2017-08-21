@@ -10,8 +10,8 @@ import com.carto.advancedmap.sections.geocoding.base.BaseGeoPackageDownloadActiv
  * Created by aareundo on 21/08/2017.
  */
 
-@ActivityData(name = "Offline Reverse Geocoding", description = "Download offline geocoding packages")
-public class ReverseGeoPackageDownloadActivity extends BaseGeoPackageDownloadActivity {
+@ActivityData(name = "Offline Geocoding", description = "Download offline geocoding packages")
+public class GeoPackageDownloadActivity extends BaseGeoPackageDownloadActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class ReverseGeoPackageDownloadActivity extends BaseGeoPackageDownloadAct
     public void onMapIconClick() {
         super.onMapIconClick();
 
-        Intent myIntent = new Intent(this, OfflineReverseGeocodingActivity.class);
+        Intent myIntent = new Intent(this, OfflineGeocodingActivity.class);
         startActivity(myIntent);
     }
 }

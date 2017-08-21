@@ -10,7 +10,7 @@ import com.carto.geocoding.PackageManagerReverseGeocodingService;
  * Created by aareundo on 21/08/2017.
  */
 @ActivityData(name = "Offline Reverse Geocoding", description = "Click the map to find an address")
-public class OfflineReverseGeocodingBaseActivity extends ReverseGeocodingBaseActivity {
+public class OfflineReverseGeocodingActivity extends ReverseGeocodingBaseActivity {
 
     @Override
     public String getFailMessage() {
