@@ -36,7 +36,7 @@
         <!--Section 2-->
         <activity android:name=".sections.offlinemap.BasicPackageManagerActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.PackagedMapActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
 
         <!--Section 3-->
@@ -45,17 +45,22 @@
         <activity android:name=".sections.routing.OfflineRoutingBBoxActivity" />
 
         <!--Section 4-->
+        <activity android:name=".sections.geocoding.OnlineReverseGeocodingActivity" />
+        <activity android:name=".sections.geocoding.OfflineReverseGeocodingActivity" />
+        <activity android:name=".sections.geocoding.ReverseGeoPackageDownloadActivity" />
+
+        <!--Section 5-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
         <activity android:name=".sections.overlaydatasources.CustomRasterDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.CustomVectorDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
 
-        <!--Section 5-->
+        <!--Section 6-->
         <activity android:name=".sections.vectorobjects.ClusteredMarkersActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".sections.vectorobjects.VectorObjectEditingActivity" />
 
-        <!--Section 6-->
+        <!--Section 7-->
         <activity android:name=".sections.other.CaptureActivity" />
         <activity android:name=".sections.other.CustomPopupActivity" />
         <activity android:name=".sections.other.GPSLocationActivity" />

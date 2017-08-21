@@ -8,25 +8,21 @@ import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOfflineVectorTileLayer;
+import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 
 /**
  * A uses AdvancedPackageManagerActivity datasource. This has maps which are downloaded offline using PackageManager
  */
 @ActivityData(name = "Packaged Map", description = "This has maps which are downloaded offline using PackageManager")
-public class PackagedMapActivity extends MapBaseActivity {
+public class MapPackageActivity extends MapBaseActivity {
 
+    public static CartoPackageManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
-
-        // Create style set
-        CartoPackageManager manager = AdvancedPackageManagerActivity.Manager;
-
-        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, BaseMapsView.DEFAULT_STYLE);
-        mapView.getLayers().add(layer);
 
         ActivityData data = ((ActivityData) this.getClass().getAnnotations()[0]);
         String name = data.name();
@@ -34,6 +30,9 @@ public class PackagedMapActivity extends MapBaseActivity {
 
         setTitle(name);
         getActionBar().setSubtitle(description);
+
+        CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, BaseMapsView.DEFAULT_STYLE);
+        mapView.getLayers().add(layer);
     }
 
 }

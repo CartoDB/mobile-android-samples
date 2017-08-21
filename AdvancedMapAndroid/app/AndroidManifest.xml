@@ -27,7 +27,7 @@
         </activity>
         <activity android:name=".mapsamples.PinMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.PackagedMapActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".mapsamples.MapListenerActivity" />
         <activity android:name=".sections.vectorobjects.Overlays3DActivity" />

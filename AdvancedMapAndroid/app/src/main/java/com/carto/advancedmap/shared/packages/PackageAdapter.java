@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.carto.advancedmap.sections.geocoding.ReverseGeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
 import com.carto.packagemanager.PackageAction;
@@ -172,6 +173,9 @@ public class PackageAdapter extends ArrayAdapter<Package> {
             activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
         } else if (context instanceof OfflineRoutingPackageActivity) {
             // Offline routing features no such foldering system.
+        } else if (context instanceof ReverseGeoPackageDownloadActivity) {
+            ReverseGeoPackageDownloadActivity activity = (ReverseGeoPackageDownloadActivity)context;
+            activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
         }
     }
 
@@ -182,6 +186,9 @@ public class PackageAdapter extends ArrayAdapter<Package> {
             activity.updatePackages();
         } else if (context instanceof OfflineRoutingPackageActivity) {
             OfflineRoutingPackageActivity activity = (OfflineRoutingPackageActivity)context;
+            activity.updatePackages();
+        } else if (context instanceof  ReverseGeoPackageDownloadActivity) {
+            ReverseGeoPackageDownloadActivity activity = (ReverseGeoPackageDownloadActivity)context;
             activity.updatePackages();
         }
     }
