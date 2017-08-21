@@ -3,14 +3,14 @@ package com.carto.advancedmap.sections.geocoding.online;
 import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
-import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
+import com.carto.advancedmap.sections.geocoding.base.BaseGeocodingActivity;
+import com.carto.geocoding.PeliasOnlineGeocodingService;
 
 /**
  * Created by aareundo on 21/08/2017.
  */
-@ActivityData(name = "Online Reverse Geocoding", description = "Online reverse geocoding with Pelias geocoder")
-public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity {
+@ActivityData(name = "Online Geocoding", description = "Online geocoding with Pelias geocoder")
+public class OnlineGeocodingActivity extends BaseGeocodingActivity {
 
     @Override
     public String getFailMessage() {
@@ -21,6 +21,6 @@ public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new PeliasOnlineReverseGeocodingService(API_KEY);
+        service = new PeliasOnlineGeocodingService(API_KEY);
     }
 }

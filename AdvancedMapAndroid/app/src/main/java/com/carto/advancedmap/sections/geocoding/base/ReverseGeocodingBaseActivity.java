@@ -14,14 +14,9 @@ import java.io.IOException;
  * Created by aareundo on 21/08/2017.
  */
 
-public class BaseReverseGeocodingActivity extends BaseGeocodingActivity {
+public class ReverseGeocodingBaseActivity extends GeocodingBaseActivity {
 
     protected ReverseGeocodingService service;
-
-    public String getFailMessage() {
-        // Should be overridden in child class
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public void onResume() {

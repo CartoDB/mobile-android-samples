@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.BaseGeoPackageDownloadActivity;
-import com.carto.advancedmap.sections.geocoding.offline.OfflineReverseGeocodingActivity;
 
 /**
  * Created by aareundo on 21/08/2017.
@@ -23,7 +22,7 @@ public class ReverseGeoPackageDownloadActivity extends BaseGeoPackageDownloadAct
     public void onMapIconClick() {
         super.onMapIconClick();
 
-        Intent myIntent = new Intent(this, OfflineReverseGeocodingActivity.class);
+        Intent myIntent = new Intent(this, OfflineReverseGeocodingBaseActivity.class);
         startActivity(myIntent);
     }
 }

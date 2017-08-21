@@ -1,132 +1,59 @@
 package com.carto.advancedmap.sections.geocoding.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.core.MapPos;
-import com.carto.datasources.LocalVectorDataSource;
-import com.carto.geocoding.GeocodingResult;
-import com.carto.geometry.FeatureCollection;
-import com.carto.geometry.Geometry;
-import com.carto.geometry.LineGeometry;
-import com.carto.geometry.MultiGeometry;
-import com.carto.geometry.PointGeometry;
-import com.carto.geometry.PolygonGeometry;
-import com.carto.graphics.Color;
-import com.carto.layers.CartoOnlineVectorTileLayer;
-import com.carto.layers.VectorLayer;
-import com.carto.packagemanager.CartoPackageManager;
-import com.carto.styles.AnimationStyleBuilder;
-import com.carto.styles.AnimationType;
-import com.carto.styles.BalloonPopupMargins;
-import com.carto.styles.BalloonPopupStyleBuilder;
-import com.carto.styles.GeometryCollectionStyleBuilder;
-import com.carto.styles.LineStyleBuilder;
-import com.carto.styles.PointStyleBuilder;
-import com.carto.styles.PolygonStyleBuilder;
-import com.carto.vectorelements.BalloonPopup;
-import com.carto.vectorelements.GeometryCollection;
-import com.carto.vectorelements.Line;
-import com.carto.vectorelements.Point;
-import com.carto.vectorelements.Polygon;
+import com.carto.advancedmap.sections.geocoding.adapter.GeocodingResultAdapter;
+import com.carto.advancedmap.shared.Colors;
+import com.carto.geocoding.GeocodingService;
 
 /**
- * Created by aareundo on 21/08/2017.
+ * Base class for non-reverse (type address) geocoding
  */
+public class BaseGeocodingActivity extends GeocodingBaseActivity {
 
-public class BaseGeocodingActivity extends MapBaseActivity {
+    EditText inputField;
+    ListView resultTable;
+    GeocodingResultAdapter adapter;
 
-    public static final String API_KEY = "mapzen-e2gmwsC";
-
-    LocalVectorDataSource geocodingSource;
-    VectorLayer geocodingLayer;
-
-    public static CartoPackageManager manager;
+    protected GeocodingService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
-        mapView.getLayers().add(baseLayer);
+        inputField = new EditText(this);
+        inputField.setTextColor(Color.WHITE);
+        inputField.setBackgroundColor(Colors.DARK_TRANSPARENT_GRAY);
+        inputField.setHint("Type address...");
+        inputField.setHintTextColor(Color.LTGRAY);
+        inputField.setSingleLine();
 
-        geocodingSource = new LocalVectorDataSource(baseProjection);
-        geocodingLayer = new VectorLayer(geocodingSource);
-        mapView.getLayers().add(geocodingLayer);
-    }
+        int totalWidth = getResources().getDisplayMetrics().widthPixels;
+        int padding = (int)(5 * getResources().getDisplayMetrics().density);
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+        int width = totalWidth - 2 * padding;
+        int height = (int)(45 * getResources().getDisplayMetrics().density);
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
+        RelativeLayout.LayoutParams parameters = new RelativeLayout.LayoutParams(width, height);
+        parameters.setMargins(padding, padding, 0, 0);
+        addContentView(inputField, parameters);
 
-    public void showResult(GeocodingResult result, String title, String description, boolean goToPosition) {
+        resultTable = new ListView(this);
+        resultTable.setBackgroundColor(Colors.LIGHT_TRANSPARENT_GRAY);
 
-        geocodingSource.clear();
+        height = (int)(200 * getResources().getDisplayMetrics().density);
 
-        AnimationStyleBuilder animationBuilder = new AnimationStyleBuilder();
-        animationBuilder.setRelativeSpeed(2.0f);
-        animationBuilder.setFadeAnimationType(AnimationType.ANIMATION_TYPE_SMOOTHSTEP);
+        parameters = new RelativeLayout.LayoutParams(width, height);
+        parameters.setMargins(padding, padding, 0, 0);
 
-        BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
-        builder.setLeftMargins(new BalloonPopupMargins(0, 0, 0, 0));
-        builder.setRightMargins(new BalloonPopupMargins(6, 3, 6, 3));
-        builder.setCornerRadius(5);
-        builder.setAnimationStyle(animationBuilder.buildStyle());
-        // Make sure this label is shown on top of all other labels
-        builder.setPlacementPriority(10);
+        addContentView(resultTable, parameters);
 
-        FeatureCollection collection = result.getFeatureCollection();
-        int count = collection.getFeatureCount();
-
-        MapPos position = null;
-        Geometry geometry;
-
-        Color color = new Color((short)0, (short)100,(short)200, (short)150);
-
-        for (int i = 0; i < count; i++) {
-            geometry = collection.getFeature(i).getGeometry();
-
-            PointStyleBuilder pointBuilder = new PointStyleBuilder();
-            pointBuilder.setColor(color);
-
-            LineStyleBuilder lineBuilder = new LineStyleBuilder();
-            lineBuilder.setColor(color);
-
-            PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
-            polygonBuilder.setColor(color);
-
-            if (geometry instanceof PointGeometry) {
-                geocodingSource.add(new Point((PointGeometry)geometry, pointBuilder.buildStyle()));
-            } else if (geometry instanceof LineGeometry) {
-                geocodingSource.add(new Line((LineGeometry)geometry, lineBuilder.buildStyle()));
-            }  else if (geometry instanceof PolygonGeometry) {
-                geocodingSource.add(new Polygon((PolygonGeometry)geometry, polygonBuilder.buildStyle()));
-            } else if (geometry instanceof MultiGeometry) {
-
-                GeometryCollectionStyleBuilder collectionBuilder = new GeometryCollectionStyleBuilder();
-                collectionBuilder.setPointStyle(pointBuilder.buildStyle());
-                collectionBuilder.setLineStyle(lineBuilder.buildStyle());
-                collectionBuilder.setPolygonStyle(polygonBuilder.buildStyle());
-
-                geocodingSource.add(new GeometryCollection((MultiGeometry)geometry, collectionBuilder.buildStyle()));
-            }
-
-            position = geometry.getCenterPos();
-        }
-
-        if (goToPosition) {
-            mapView.setFocusPos(position, 1.0f);
-            mapView.setZoom(17.0f, 1.0f);
-        }
-
-        BalloonPopup popup = new BalloonPopup(position, builder.buildStyle(), title, description);
-        geocodingSource.add(popup);
+        adapter = new GeocodingResultAdapter(this);
+        adapter.width = width;
+        resultTable.setAdapter(adapter);
     }
 }

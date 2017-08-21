@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
+import com.carto.advancedmap.sections.geocoding.online.OnlineGeocodingActivity;
 import com.carto.advancedmap.sections.geocoding.online.OnlineReverseGeocodingActivity;
 import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.header.BaseMapHeader;
@@ -61,6 +62,7 @@ public class LauncherListActivity extends ListActivity {
 
             GeocodingHeader.class,
             OnlineReverseGeocodingActivity.class,
+            OnlineGeocodingActivity.class,
             ReverseGeoPackageDownloadActivity.class,
 
             OverlayDataSourcesHeader.class,

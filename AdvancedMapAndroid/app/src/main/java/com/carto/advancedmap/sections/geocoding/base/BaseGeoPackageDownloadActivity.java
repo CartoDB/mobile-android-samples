@@ -22,6 +22,6 @@ public class BaseGeoPackageDownloadActivity extends PackageManagerBaseActivity {
     @Override
     public void onMapIconClick() {
         // Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-        BaseGeocodingActivity.manager = this.packageManager;
+        GeocodingBaseActivity.manager = this.packageManager;
     }
 }

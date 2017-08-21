@@ -3,14 +3,14 @@ package com.carto.advancedmap.sections.geocoding.offline;
 import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.sections.geocoding.base.BaseReverseGeocodingActivity;
+import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
 import com.carto.geocoding.PackageManagerReverseGeocodingService;
 
 /**
  * Created by aareundo on 21/08/2017.
  */
 @ActivityData(name = "Offline Reverse Geocoding", description = "Click the map to find an address")
-public class OfflineReverseGeocodingActivity extends BaseReverseGeocodingActivity {
+public class OfflineReverseGeocodingBaseActivity extends ReverseGeocodingBaseActivity {
 
     @Override
     public String getFailMessage() {
