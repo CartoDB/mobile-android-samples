@@ -34,6 +34,28 @@ class GPSLocationActivity : BaseActivity() {
         contentView?.rotationResetButton?.setOnClickListener {
             contentView?.map?.setMapRotation(0.0f, 0.3f)
         }
+
+        contentView?.map?.mapEventListener = object : MapEventListener() {
+
+            var previousAngle: Float = -1.0f
+            var previousZoom: Float = -1.0f
+
+            override fun onMapMoved() {
+
+                val angle = contentView?.map?.mapRotation!!
+                val zoom = contentView?.map?.zoom!!
+
+                if (previousAngle != angle) {
+                    contentView?.rotationResetButton?.rotate(angle)
+                    previousAngle = angle
+                }
+
+                if (previousZoom != zoom) {
+                    contentView?.scaleBar?.update()
+                    previousZoom = zoom
+                }
+            }
+        }
     }
 
     override fun onPause() {
@@ -42,19 +64,8 @@ class GPSLocationActivity : BaseActivity() {
 
         manager?.removeUpdates(listener)
 
-        contentView?.map?.mapEventListener = object : MapEventListener() {
-
-            var previous: Float = -1.0f
-
-            override fun onMapMoved() {
-                val angle = contentView?.map?.mapRotation!!
-
-                if (previous != angle) {
-                    contentView?.rotationResetButton?.rotate(angle)
-                    previous = angle
-                }
-            }
-        }
+        contentView?.rotationResetButton?.setOnClickListener(null)
+        contentView?.map?.mapEventListener = null
     }
 
     override fun onPermissionsGranted(granted: Boolean) {

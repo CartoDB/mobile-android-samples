@@ -118,7 +118,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
         contentView?.closeKeyboard()
         (contentView as? GeocodingView)!!.hideTable()
         if (geocode) {
-            val text = (contentView as? GeocodingView)!!.inputField?.text.toString()
+            val text = (contentView as? GeocodingView)!!.inputField.text.toString()
             val autoComplete = false
             geocode(text, autoComplete)
         }

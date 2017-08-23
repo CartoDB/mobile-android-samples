@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.BaseGeoPackageDownloadActivity;
+import com.carto.core.MapPos;
 
 /**
  * Created by aareundo on 21/08/2017.
