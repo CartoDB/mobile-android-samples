@@ -1,15 +1,11 @@
 package com.carto.advanced.kotlin.sections.reversegeocoding
 
 import android.os.Bundle
-import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
-import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.*
 import com.carto.packagemanager.CartoPackageManager
-import com.carto.packagemanager.PackageManagerListener
-import com.carto.packagemanager.PackageStatus
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 
@@ -98,7 +94,7 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        service = PeliasOnlineReverseGeocodingService(BaseGeocodingView.API_KEY)
+        service = PeliasOnlineReverseGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
     }
 
     override fun setOfflineMode() {

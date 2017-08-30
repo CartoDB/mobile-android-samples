@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.sections.vectorelement.VectorObjectClickListener
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
@@ -15,6 +16,7 @@ import com.carto.geometry.PointGeometry
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.routing.CartoOnlineRoutingService
 import com.carto.routing.PackageManagerValhallaRoutingService
+import com.carto.routing.ValhallaOnlineRoutingService
 import com.carto.search.SearchRequest
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
@@ -91,8 +93,7 @@ class RouteSearchActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        val source = Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE
-        routing?.service = CartoOnlineRoutingService(source)
+        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY);
     }
 
     override fun setOfflineMode() {

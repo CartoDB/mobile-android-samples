@@ -42,8 +42,6 @@ public class GeocodingBaseActivity extends MapBaseActivity {
         throw new UnsupportedOperationException();
     }
 
-    public static final String API_KEY = "mapzen-e2gmwsC";
-
     LocalVectorDataSource geocodingSource;
     VectorLayer geocodingLayer;
 

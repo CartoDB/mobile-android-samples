@@ -13,6 +13,8 @@ import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorTileLayer;
+import com.carto.routing.CartoOnlineRoutingService;
+import com.carto.routing.ValhallaOnlineRoutingService;
 import com.carto.vectortiles.MBVectorTileDecoder;
 
 import java.io.File;

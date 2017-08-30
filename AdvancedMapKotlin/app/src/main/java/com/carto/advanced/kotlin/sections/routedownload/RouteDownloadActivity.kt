@@ -5,6 +5,7 @@ import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.Style
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.utils.BoundingBox
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
@@ -12,6 +13,7 @@ import com.carto.geometry.PolygonGeometry
 import com.carto.packagemanager.*
 import com.carto.routing.CartoOnlineRoutingService
 import com.carto.routing.PackageManagerValhallaRoutingService
+import com.carto.routing.ValhallaOnlineRoutingService
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
@@ -235,7 +237,7 @@ class RouteDownloadActivity : BaseActivity() {
         if (withLayer) {
             contentView?.setOnlineMap()
         }
-        routing?.service = CartoOnlineRoutingService(Routing.ONLINE_ROUTING_SOURCE + Routing.TRANSPORT_MODE)
+        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY);
     }
 
     fun setOfflineMode() {

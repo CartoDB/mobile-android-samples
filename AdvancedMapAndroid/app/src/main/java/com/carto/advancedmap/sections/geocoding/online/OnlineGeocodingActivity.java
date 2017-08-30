@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.BaseGeocodingActivity;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.geocoding.PeliasOnlineGeocodingService;
 
 /**
@@ -21,6 +22,6 @@ public class OnlineGeocodingActivity extends BaseGeocodingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new PeliasOnlineGeocodingService(API_KEY);
+        service = new PeliasOnlineGeocodingService(Sources.API_KEY);
     }
 }

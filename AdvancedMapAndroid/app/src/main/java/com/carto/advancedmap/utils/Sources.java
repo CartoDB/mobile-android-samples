@@ -11,11 +11,11 @@ public class Sources {
     public static final String CARTO_RASTER = "carto.osm";
 
     public static final String OFFLINE_ROUTING = CARTO_VECTOR;
-    public static final String ONLINE_ROUTING = "nutiteq.osm";
 
     public static final String ROUTING_TAG = "routing:";
-    public static final String TRANSPORT_MODE_CAR = ".car";
 
     public static final String GEOCODING_TAG = "geocoding:";
     public static final String OFFLINE_GEOCODING = CARTO_VECTOR;
+
+    public static final String API_KEY = "mapzen-e2gmwsC";
 }

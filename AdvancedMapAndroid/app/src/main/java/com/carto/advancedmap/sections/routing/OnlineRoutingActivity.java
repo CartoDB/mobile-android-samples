@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.routing.CartoOnlineRoutingService;
+import com.carto.routing.ValhallaOnlineRoutingService;
 
 /**
  * Created by aareundo on 16/12/16.
@@ -17,6 +18,7 @@ public class OnlineRoutingActivity extends BaseRoutingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setService(new CartoOnlineRoutingService(Sources.ONLINE_ROUTING + Sources.TRANSPORT_MODE_CAR));
+        ValhallaOnlineRoutingService service = new ValhallaOnlineRoutingService(Sources.API_KEY);
+        setService(service);
     }
 }

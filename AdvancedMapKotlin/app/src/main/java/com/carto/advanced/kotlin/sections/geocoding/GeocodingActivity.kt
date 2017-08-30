@@ -5,16 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
-import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
-import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
-import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.geocoding.*
 import com.carto.packagemanager.CartoPackageManager
-import com.carto.packagemanager.PackageManagerListener
-import com.carto.packagemanager.PackageStatus
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
@@ -183,7 +178,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        service = PeliasOnlineGeocodingService(BaseGeocodingView.API_KEY)
+        service = PeliasOnlineGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
     }
 
     override fun setOfflineMode() {
