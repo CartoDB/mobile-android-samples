@@ -54,7 +54,7 @@ public class BundledMapActivity extends MapBaseActivity {
     protected TileDataSource createTileDataSource() {
 
         // Offline map data source
-        String mbTileFile = "rome_ntvt.mbtiles";
+        String mbTileFile = "rome_carto-streets.mbtiles";
 
         try {
             String localDir = getExternalFilesDir(null).toString();
@@ -62,7 +62,7 @@ public class BundledMapActivity extends MapBaseActivity {
 
             String path = localDir + "/" + mbTileFile;
             Log.i(MapApplication.LOG_TAG,"copy done to " + path);
-            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 19, path);
+            MBTilesTileDataSource vectorTileDataSource = new MBTilesTileDataSource(0, 14, path);
 
             return vectorTileDataSource;
 
