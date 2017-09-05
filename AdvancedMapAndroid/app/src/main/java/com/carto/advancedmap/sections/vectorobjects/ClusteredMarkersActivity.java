@@ -58,7 +58,7 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
 
         // Add the clustered vector layer to the map
         mapView.getLayers().add(layer);
-;
+
         // As the file to load is rather large, we don't want to block our main thread
         thread = new Thread(new Runnable() {
             @Override
