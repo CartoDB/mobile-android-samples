@@ -13,8 +13,13 @@ import android.util.Log;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.LauncherListActivity;
+import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.test.Utils.PermissionGranter;
 import com.carto.advancedmap.test.Utils.Screenshot;
+import com.carto.graphics.Bitmap;
+import com.carto.renderers.RendererCaptureListener;
+import com.carto.ui.MapView;
+import com.carto.utils.BitmapUtils;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -76,12 +81,43 @@ public class Test1 {
             try {
                 interaction.atPosition(j).perform(click());
                 new PermissionGranter().allowPermissionsIfNeeded();
-                Thread.sleep(2000);
+                final android.graphics.Bitmap[] screenshot = new android.graphics.Bitmap[1];
+
                 getInstrumentation().runOnMainSync(new Runnable() {
                     @Override
                     public void run() {
                         Activity current = getCurrentActivity();
-                        Screenshot.take(current);
+
+                        Boolean isAssignable = MapBaseActivity.class.isAssignableFrom(current.getClass());
+
+                        if (isAssignable) {
+                            final MapView map = ((MapBaseActivity)current).mapView;
+                            map.getMapRenderer().captureRendering(new RendererCaptureListener() {
+
+                                @Override
+                                public void onMapRendered(Bitmap bitmap) {
+                                    super.onMapRendered(bitmap);
+                                    screenshot[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
+                                    map.getMapRenderer().setMapRendererListener(null);
+                                }
+                            }, true);
+                        }
+
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (screenshot[0] == null) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (screenshot[0] != null) {
+                            Screenshot.take(current, screenshot[0]);
+                        }
                     }
 
                 });

@@ -25,7 +25,7 @@ import java.io.OutputStream;
  */
 public class MapBaseActivity extends BaseActivity {
 
-    protected MapView mapView;
+    public MapView mapView;
     protected Projection baseProjection;
     protected TileLayer baseLayer;
 

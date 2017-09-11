@@ -49,7 +49,7 @@ public class Screenshot {
         return Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 
-    public static void take(Activity activity, String fileName) {
+    public static void take(Activity activity, String fileName, Bitmap bitmap) {
         // Create the file path.
         final StringBuilder pathBuilder = new StringBuilder()
                 .append(getDirectory())
@@ -71,10 +71,12 @@ public class Screenshot {
 
         Log.i(TAG, "Saving to path: " + imageFile.toString());
 
-        View phoneView = activity.getWindow().getDecorView().getRootView();
-        phoneView.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(phoneView.getDrawingCache());
-        phoneView.setDrawingCacheEnabled(false);
+        if (bitmap == null) {
+            View phoneView = activity.getWindow().getDecorView().getRootView();
+            phoneView.setDrawingCacheEnabled(true);
+            bitmap = Bitmap.createBitmap(phoneView.getDrawingCache());
+            phoneView.setDrawingCacheEnabled(false);
+        }
 
         OutputStream out = null;
 
@@ -95,7 +97,7 @@ public class Screenshot {
         }
     }
 
-    public static void take(Activity activity) {
-        take(activity, UUID.randomUUID().toString());
+    public static void take(Activity activity, Bitmap bitmap) {
+        take(activity, UUID.randomUUID().toString(), bitmap);
     }
 }

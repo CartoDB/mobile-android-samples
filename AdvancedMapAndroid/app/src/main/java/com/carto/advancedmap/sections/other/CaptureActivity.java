@@ -162,7 +162,7 @@ public class CaptureActivity extends MapBaseActivity {
 
 	com.carto.graphics.Bitmap bitmap;
 
-	private class RenderListener extends RendererCaptureListener {
+	public class RenderListener extends RendererCaptureListener {
 
 		@Override
 		public void onMapRendered(com.carto.graphics.Bitmap bitmap) {
