@@ -2,26 +2,19 @@ package com.carto.advancedmap.test;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.DataInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitor;
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.runner.lifecycle.Stage;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
-import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.LauncherListActivity;
+import com.carto.advancedmap.test.Utils.PermissionGranter;
+import com.carto.advancedmap.test.Utils.Screenshot;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -50,7 +43,13 @@ public class Test1 {
     @Test
     public void test1() {
 
-        setActivity();
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                list = (LauncherListActivity) getCurrentActivity();
+                list.unlockScreen();
+            }
+        });
 
         ArrayList<Class> maps = new ArrayList<>();
 
@@ -69,73 +68,39 @@ public class Test1 {
 
         DataInteraction interaction = onData(allOf(is(instanceOf(LauncherListActivity.MapListMap.class))));
 
-        for (Integer i = 0; i < maps.size(); i++) {
+        for (Integer j = 0; j < maps.size(); j++) {
 
             try {
-                interaction.atPosition(i).perform(click());
+                interaction.atPosition(j).perform(click());
                 new PermissionGranter().allowPermissionsIfNeeded();
-                MapBaseActivity.takeScreenshot("screenshot-001", list);
+                Thread.sleep(2000);
+                getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        Activity current = getCurrentActivity();
+                        Screenshot.take(current);
+                    }
+
+                });
 
                 pressBack();
+
             } catch (Exception e) {
                 Log.d("TEST: ", e.getLocalizedMessage());
-                Log.d("COUNTER: ", i.toString());
+                Log.d("COUNTER: ", j.toString());
             }
         }
+
     }
 
-    static void setActivity() {
-        getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                Collection<Activity> activities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
-                if (activities.size() > 0) {
-                    list = (LauncherListActivity)activities.toArray()[0];
-                    list.unlockScreen();
-                }
-            }
-        });
-    }
+    static Activity getCurrentActivity() {
 
-    public class PermissionGranter {
+        ActivityLifecycleMonitor registry = ActivityLifecycleMonitorRegistry.getInstance();
+        Collection<Activity> activities = registry.getActivitiesInStage(Stage.RESUMED);
 
-        private static final int PERMISSIONS_DIALOG_DELAY = 3000;
-        private static final int GRANT_BUTTON_INDEX = 1;
-
-        public void allowPermissionsIfNeeded() {
-            try {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    sleep(PERMISSIONS_DIALOG_DELAY);
-                    UiDevice device = UiDevice.getInstance(getInstrumentation());
-                    UiObject allowPermissions = device.findObject(new UiSelector()
-                            .clickable(true)
-                            .checkable(false)
-                            .index(GRANT_BUTTON_INDEX));
-
-                    if (allowPermissions.exists()) {
-                        allowPermissions.click();
-                    }
-                }
-
-            } catch (UiObjectNotFoundException e) {
-                System.out.println("There is no permissions dialog to interact with");
-            }
+        if (activities.size() > 0) {
+            return (Activity) activities.toArray()[0];
         }
-
-        private boolean hasNeededPermission(String permissionNeeded) {
-            Context context = InstrumentationRegistry.getTargetContext();
-            int permissionStatus = ContextCompat.checkSelfPermission(context, permissionNeeded);
-            return permissionStatus == PackageManager.PERMISSION_GRANTED;
-        }
-
-        private void sleep(long millis) {
-            try {
-                Thread.sleep(millis);
-            } catch (InterruptedException e) {
-                throw new RuntimeException("Cannot execute Thread.sleep()");
-            }
-        }
+        return null;
     }
 }
