@@ -39,14 +39,20 @@ import java.util.UUID;
  * https://github.com/awslabs/aws-device-farm-sample-app-for-android/blob/master/app/src/androidTest/java/com/amazonaws/devicefarm/android/referenceapp/Util/ScreenShot.java
  */
 public class Screenshot {
+
+    public static final String DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY = "/test-screenshots/";
+
     private static final String TAG = "SCREENSHOT";
-    private static final String DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY = "/test-screenshots/";
     private static final int SCREEN_SHOT_IMAGE_QUALITY = 100;
+
+    public static String getDirectory() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath();
+    }
 
     public static void take(Activity activity, String fileName) {
         // Create the file path.
         final StringBuilder pathBuilder = new StringBuilder()
-                .append(Environment.getExternalStorageDirectory().getAbsolutePath())
+                .append(getDirectory())
                 .append(DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY)
                 .append(fileName)
                 .append(".png");

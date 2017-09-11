@@ -51,6 +51,9 @@ public class Test1 {
             }
         });
 
+        list.mkFolder(Screenshot.getDirectory() + Screenshot.DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY);
+        new PermissionGranter().allowPermissionsIfNeeded();
+
         ArrayList<Class> maps = new ArrayList<>();
 
         for (Integer i = 0; i < list.samples.length; i++) {
