@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.Style
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
 import com.carto.advanced.kotlin.model.Languages
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.ui.MapView
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -13,6 +14,8 @@ import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 class StyleChoiceActivity : BaseActivity() {
 
     var contentView: StyleChoiceView? = null
+
+    val mapView: MapView get() = contentView!!.map
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

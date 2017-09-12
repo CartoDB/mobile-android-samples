@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.main;
 
+import android.app.Activity;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
@@ -9,14 +10,25 @@ import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitor;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
+
+import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
+import com.carto.core.MapPos;
+import com.carto.projections.Projection;
+import com.carto.ui.MapView;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Collection;
+
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
@@ -42,10 +54,37 @@ public class MapActivityTest {
 
         stallFor(300);
 
-        ViewInteraction stylePopupContentSectionItem = onView(withContentDescription("style_positron"));
-        stylePopupContentSectionItem.perform(click());
+        ViewInteraction positronStyle = onView(withContentDescription("style_positron"));
+        positronStyle.perform(click());
 
         stallFor(300);
+
+        /**
+         * I actually wanted to create bitchin' zoom animation with espresso,
+         * but it turns out it's not really supported in espresso
+         * and I would've had to rewrite most of Android's touch logic.
+         *
+         * cf: https://android.googlesource.com/platform/frameworks/testing/+/
+         * android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
+         *
+         * So in the end I decided that animated zoom does exactly what I needed to achieve,
+         * but with a much simpler implementation
+         */
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                StyleChoiceActivity activity = (StyleChoiceActivity) getCurrentActivity();
+                MapView map = activity.getMapView();
+                Projection projection = map.getOptions().getBaseProjection();
+
+                MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
+                map.setFocusPos(washingtonDC, 1.0f);
+                map.setZoom(8.0f, 1.0f);
+
+            }
+        });
+
+        stallFor(1500);
 
         ViewInteraction mapView = onView(withContentDescription("map_view"));
         mapView.perform(swipe());
@@ -87,5 +126,16 @@ public class MapActivityTest {
                 uiController.loopMainThreadForAtLeast(millis);
             }
         };
+    }
+
+    static Activity getCurrentActivity() {
+
+        ActivityLifecycleMonitor registry = ActivityLifecycleMonitorRegistry.getInstance();
+        Collection<Activity> activities = registry.getActivitiesInStage(Stage.RESUMED);
+
+        if (activities.size() > 0) {
+            return (Activity) activities.toArray()[0];
+        }
+        return null;
     }
 }
