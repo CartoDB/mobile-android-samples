@@ -61,7 +61,7 @@ open class PopupButton(context: Context, imageResource: Int) : BaseView(context)
             alpha = 1.0f
         }
 
-        return true
+        return super.onTouchEvent(event)
     }
 
     fun disable() {

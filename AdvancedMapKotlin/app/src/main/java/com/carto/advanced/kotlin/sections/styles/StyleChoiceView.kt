@@ -20,6 +20,17 @@ import com.carto.vectortiles.MBVectorTileDecoder
  */
 class StyleChoiceView(context: Context) : MapBaseView(context) {
 
+    companion object {
+        // Content descriptions for auto tests
+        val INFO_BUTTON_DESCRIPTION = "info_button"
+        val LANGUAGE_BUTTON_DESCRIPTION = "language_button"
+        val BASEMAP_BUTTON_DESCRIPTION = "basemap_button"
+
+        val STYLE_POSITRON_DESCRIPTION = "style_positron"
+
+        val MAP_DESCRIPTION = "map_view"
+    }
+
     var languageButton: PopupButton = PopupButton(context, R.drawable.icon_language)
     var baseMapButton: PopupButton = PopupButton(context, R.drawable.icon_basemap)
 
@@ -40,6 +51,14 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         addButton(baseMapButton)
 
         layoutSubviews()
+
+        infoButton.contentDescription = INFO_BUTTON_DESCRIPTION
+        languageButton.contentDescription = LANGUAGE_BUTTON_DESCRIPTION
+        baseMapButton.contentDescription = BASEMAP_BUTTON_DESCRIPTION
+
+        baseMapContent.cartoVector.list[1].contentDescription = STYLE_POSITRON_DESCRIPTION
+
+        map.contentDescription = MAP_DESCRIPTION
     }
 
     override fun layoutSubviews() {
