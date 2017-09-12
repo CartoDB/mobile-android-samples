@@ -89,7 +89,7 @@ public class Test1 {
         }
         /**
          * I have no idea what's going on here, Android's Espresso API is super weird,
-         * but apparently this snippet returns and interaction where we can perform clicks.
+         * but apparently this snippet returns an "interaction" where we can perform clicks.
          */
         DataInteraction interaction = onData(allOf(is(instanceOf(LauncherListActivity.MapListMap.class))));
 
