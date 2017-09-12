@@ -92,11 +92,6 @@ public class MapActivityTest {
         stallFor(500);
     }
 
-    public static void stall() {
-        final long TWO_SECONDS = 2000;
-        onView(isRoot()).perform(waitFor(TWO_SECONDS));
-    }
-
     public static void stallFor(final long duration) {
         onView(isRoot()).perform(waitFor(duration));
     }
