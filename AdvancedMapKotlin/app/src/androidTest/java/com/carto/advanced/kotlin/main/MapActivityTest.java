@@ -61,10 +61,9 @@ public class MapActivityTest {
 
         /**
          * I actually wanted to create bitchin' zoom animation with espresso,
-         * but it turns out it's not really supported in espresso
-         * and I would've had to rewrite most of Android's touch logic.
-         *
-         * cf: https://android.googlesource.com/platform/frameworks/testing/+/
+         * but it turns out multi-touch gestures aren't really supported in espresso
+         * and I would've had to rewrite most of Espresso's touch event logic.
+         * e.g: https://android.googlesource.com/platform/frameworks/testing/+/
          * android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
          *
          * So in the end I decided that animated zoom does exactly what I needed to achieve,
