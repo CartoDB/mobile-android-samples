@@ -57,12 +57,12 @@ public class MapActivityTest {
         ViewInteraction positronStyle = onView(withContentDescription("style_positron"));
         positronStyle.perform(click());
 
-        stallFor(300);
+        stallFor(500);
 
         /**
-         * I actually wanted to create bitchin' zoom animation with espresso,
-         * but it turns out multi-touch gestures aren't really supported in espresso
-         * and I would've had to rewrite most of Espresso's touch event logic.
+         * I actually wanted to create bitchin' zoom animation,
+         * but it turns out multi-touch gestures aren't really supported in Espresso
+         * and I would've had to rewrite most of it's touch event logic.
          * e.g: https://android.googlesource.com/platform/frameworks/testing/+/
          * android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
          *
@@ -79,7 +79,6 @@ public class MapActivityTest {
                 MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
                 map.setFocusPos(washingtonDC, 1.0f);
                 map.setZoom(8.0f, 1.0f);
-
             }
         });
 
