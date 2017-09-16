@@ -35,7 +35,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.carto:carto-mobile-sdk:4.1.0-snapshot@aar'
+    compile 'com.carto:carto-mobile-sdk:4.1.0-rc.2@aar'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
