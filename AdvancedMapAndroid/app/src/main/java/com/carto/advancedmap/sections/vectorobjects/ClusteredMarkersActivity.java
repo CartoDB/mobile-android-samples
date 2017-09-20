@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;

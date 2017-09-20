@@ -3,7 +3,7 @@ package com.carto.advancedmap.shared.activities;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
+import com.carto.advancedmap.baseclasses.activities.BaseActivity;
 import com.carto.advancedmap.shared.views.BasicPackageManagerView;
 import com.carto.advancedmap.utils.BoundingBox;
 import com.carto.packagemanager.CartoPackageManager;
@@ -12,7 +12,6 @@ import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by aareundo on 14/03/17.

@@ -1,12 +1,10 @@
 package com.carto.advancedmap.utils;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
-import com.carto.advancedmap.shared.activities.BaseActivity;
+import com.carto.advancedmap.baseclasses.activities.BaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;

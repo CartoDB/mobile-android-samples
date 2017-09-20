@@ -6,11 +6,9 @@ import android.view.MenuItem;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
-import com.carto.advancedmap.sections.routing.offline.OfflineRoutingView;
 import com.carto.advancedmap.shared.packages.Package;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
 import com.carto.advancedmap.utils.Sources;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageErrorType;
@@ -18,9 +16,7 @@ import com.carto.packagemanager.PackageInfo;
 import com.carto.packagemanager.PackageInfoVector;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;
-import com.carto.routing.PackageManagerRoutingService;
 import com.carto.routing.PackageManagerValhallaRoutingService;
-import com.carto.routing.ValhallaOfflineRoutingService;
 import com.carto.ui.MapView;
 
 import java.io.File;
@@ -185,9 +181,9 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
         for (int i = 0; i < packages.size(); i++) {
             final Package pkg = packages.get(i);
 
-            if (id.equals(pkg.packageId)) {
+            if (id.equals(pkg.id)) {
                 PackageStatus status = manager.getLocalPackageStatus(id, -1);
-                pkg.packageStatus = status;
+                pkg.status = status;
                 packages.set(i, pkg);
 
                 runOnUiThread(new Runnable() {

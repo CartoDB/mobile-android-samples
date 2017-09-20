@@ -1,5 +1,6 @@
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
@@ -42,6 +43,10 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // Coroutine listeners for Anko Layouts
+    compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    compile 'net.hockeyapp.android:HockeySDK:4.1.5'
 }
 
 configurations.all {
@@ -52,4 +57,7 @@ configurations.all {
 task instrumentTest(dependsOn: connectedCheck)
 
 apply plugin: 'maven'
+repositories {
+    mavenCentral()
+}
 

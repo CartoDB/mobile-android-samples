@@ -1,4 +1,4 @@
-package com.carto.advancedmap.shared.activities;
+package com.carto.advancedmap.baseclasses.activities;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;

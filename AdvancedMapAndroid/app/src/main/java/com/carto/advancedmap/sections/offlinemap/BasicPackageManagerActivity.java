@@ -37,6 +37,7 @@ public class BasicPackageManagerActivity extends BoundingBoxActivity {
         } catch (IOException e) {
             return null;
         }
+
     }
 
     @Override

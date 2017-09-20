@@ -15,12 +15,11 @@ import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;

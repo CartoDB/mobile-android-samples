@@ -74,7 +74,7 @@ public class PackageAdapter extends ArrayAdapter<Package> {
         // Report package name and size
         final Package pkg = packages.get(position);
 
-        holder.id = pkg.packageId;
+        holder.id = pkg.id;
 
         updateView(holder, pkg);
 
@@ -83,55 +83,55 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
     void updateView(final PackageHolder holder, final Package pkg) {
 
-        holder.nameView.setText(pkg.packageName);
+        holder.nameView.setText(pkg.name);
 
-        if (pkg.packageInfo != null) {
+        if (pkg.info != null) {
             String status = "available";
-            if (pkg.packageInfo.getSize().longValue() < 1024 * 1024) {
-                status += " v." + pkg.packageInfo.getVersion()+" (<1MB)";
+            if (pkg.info.getSize().longValue() < 1024 * 1024) {
+                status += " v." + pkg.info.getVersion()+" (<1MB)";
             } else {
-                status += " v." + pkg.packageInfo.getVersion()+" (" + pkg.packageInfo.getSize().longValue() / 1024 / 1024 + "MB)";
+                status += " v." + pkg.info.getVersion()+" (" + pkg.info.getSize().longValue() / 1024 / 1024 + "MB)";
             }
 
             // Check if the package is downloaded/is being downloaded (so that status is not null)
-            if (pkg.packageStatus != null) {
-                if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY) {
+            if (pkg.status != null) {
+                if (pkg.status.getCurrentAction() == PackageAction.PACKAGE_ACTION_READY) {
                     status = "ready";
                     holder.actionButton.setText("RM");
                     holder.actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            packageManager.startPackageRemove(pkg.packageInfo.getPackageId());
+                            packageManager.startPackageRemove(pkg.info.getPackageId());
                         }
                     });
-                } else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_WAITING) {
+                } else if (pkg.status.getCurrentAction() == PackageAction.PACKAGE_ACTION_WAITING) {
                     status = "queued";
                     holder.actionButton.setText("C");
                     holder.actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            packageManager.cancelPackageTasks(pkg.packageInfo.getPackageId());
+                            packageManager.cancelPackageTasks(pkg.info.getPackageId());
                         }
                     });
                 } else {
 
-                    if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_COPYING) {
+                    if (pkg.status.getCurrentAction() == PackageAction.PACKAGE_ACTION_COPYING) {
                         status = "copying";
-                    } else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_DOWNLOADING) {
+                    } else if (pkg.status.getCurrentAction() == PackageAction.PACKAGE_ACTION_DOWNLOADING) {
                         status = "downloading";
-                    } else if (pkg.packageStatus.getCurrentAction() == PackageAction.PACKAGE_ACTION_REMOVING) {
+                    } else if (pkg.status.getCurrentAction() == PackageAction.PACKAGE_ACTION_REMOVING) {
                         status = "removing";
                     }
 
-                    status += " " + Integer.toString((int) pkg.packageStatus.getProgress()) + "%";
+                    status += " " + Integer.toString((int) pkg.status.getProgress()) + "%";
 
-                    if (pkg.packageStatus.isPaused()) {
+                    if (pkg.status.isPaused()) {
                         status = status + " (paused)";
                         holder.actionButton.setText("R");
                         holder.actionButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), 0);
+                                packageManager.setPackagePriority(pkg.info.getPackageId(), 0);
                             }
                         });
                     } else {
@@ -139,7 +139,7 @@ public class PackageAdapter extends ArrayAdapter<Package> {
                         holder.actionButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), -1);
+                                packageManager.setPackagePriority(pkg.info.getPackageId(), -1);
                             }
                         });
                     }
@@ -149,7 +149,7 @@ public class PackageAdapter extends ArrayAdapter<Package> {
                 holder.actionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        packageManager.startPackageDownload(pkg.packageInfo.getPackageId());
+                        packageManager.startPackageDownload(pkg.info.getPackageId());
                     }
                 });
             }
@@ -171,15 +171,15 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
         if (context instanceof AdvancedPackageManagerActivity) {
             AdvancedPackageManagerActivity activity = (AdvancedPackageManagerActivity)context;
-            activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
+            activity.currentFolder = activity.currentFolder + pkg.name + "/";
         } else if (context instanceof OfflineRoutingPackageActivity) {
             // Offline routing features no such foldering system.
         } else if (context instanceof ReverseGeoPackageDownloadActivity) {
             ReverseGeoPackageDownloadActivity activity = (ReverseGeoPackageDownloadActivity)context;
-            activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
+            activity.currentFolder = activity.currentFolder + pkg.name + "/";
         } else if (context instanceof GeoPackageDownloadActivity) {
             GeoPackageDownloadActivity activity = (GeoPackageDownloadActivity)context;
-            activity.currentFolder = activity.currentFolder + pkg.packageName + "/";
+            activity.currentFolder = activity.currentFolder + pkg.name + "/";
         }
     }
 
@@ -208,7 +208,7 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
             if (child != null && child.getTag() instanceof PackageHolder) {
                 PackageHolder holder = (PackageHolder) child.getTag();
-                if (holder.id.equals(pkg.packageId)) {
+                if (holder.id.equals(pkg.id)) {
                     updateView(holder, pkg);
                 }
             }

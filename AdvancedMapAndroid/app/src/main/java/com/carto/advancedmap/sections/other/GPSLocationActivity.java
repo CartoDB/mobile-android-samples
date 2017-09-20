@@ -10,12 +10,11 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
 import com.carto.styles.PolygonStyle;

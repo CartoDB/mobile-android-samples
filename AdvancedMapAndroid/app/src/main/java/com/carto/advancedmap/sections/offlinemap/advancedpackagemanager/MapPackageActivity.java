@@ -2,13 +2,10 @@ package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.sections.basemap.BaseMapActivity;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.list.ActivityData;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOfflineVectorTileLayer;
-import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 
 /**

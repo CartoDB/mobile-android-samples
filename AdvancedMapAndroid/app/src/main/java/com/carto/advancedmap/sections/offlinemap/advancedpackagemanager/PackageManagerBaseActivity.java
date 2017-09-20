@@ -204,7 +204,7 @@ public class PackageManagerBaseActivity extends ListActivity {
                     ArrayList<Package> existingPackages = new ArrayList<>();
 
                     for (Package existingPackage : pkgs) {
-                        if (existingPackage.packageName.equals(packageName)) {
+                        if (existingPackage.name.equals(packageName)) {
                             existingPackages.add(existingPackage);
                         }
                     }
@@ -212,7 +212,7 @@ public class PackageManagerBaseActivity extends ListActivity {
                     if (existingPackages.size() == 0) {
                         // If there are none, add a package group if we don't have an existing list item
                         pkg = new Package(packageName, null, null);
-                    } else if (existingPackages.size() == 1 && existingPackages.get(0).packageInfo != null) {
+                    } else if (existingPackages.size() == 1 && existingPackages.get(0).info != null) {
 
                         // Sometimes we need to add two labels with the same name.
                         // One a downloadable package and the other pointing to a list of said country's counties,
@@ -258,9 +258,9 @@ public class PackageManagerBaseActivity extends ListActivity {
                 // Try to find the package that needs to be updated
                 for (int i = 0; i < packageArray.size(); i++) {
                     Package pkg = packageArray.get(i);
-                    if (packageId.equals(pkg.packageId)) {
+                    if (packageId.equals(pkg.id)) {
                         PackageStatus packageStatus = packageManager.getLocalPackageStatus(packageId, -1);
-                        pkg = new Package(pkg.packageName, pkg.packageInfo, packageStatus);
+                        pkg = new Package(pkg.name, pkg.info, packageStatus);
                         packageArray.set(i, pkg);
                         // TODO: it would be much better to only refresh the changed row
                         packageAdapter.notifyDataSetChanged();

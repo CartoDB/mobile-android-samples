@@ -13,7 +13,7 @@ import android.util.Log;
 
 import com.carto.advancedmap.list.ActivityData;
 import com.carto.advancedmap.list.LauncherListActivity;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.test.Utils.PermissionGranter;
 import com.carto.advancedmap.test.Utils.Screenshot;
 import com.carto.graphics.Bitmap;

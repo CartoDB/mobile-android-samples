@@ -3,11 +3,10 @@ package com.carto.advancedmap.sections.geocoding.base;
 import android.os.Bundle;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geocoding.GeocodingResult;
-import com.carto.geocoding.GeocodingService;
 import com.carto.geometry.FeatureCollection;
 import com.carto.geometry.Geometry;
 import com.carto.geometry.LineGeometry;
