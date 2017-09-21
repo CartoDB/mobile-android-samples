@@ -63,6 +63,10 @@ class Banner(context: Context) : BaseView(context) {
         alpha = 1.0f
     }
 
+    fun hide() {
+        alpha = 0.0f
+    }
+
     fun setRightItem(resource: Int) {
         rightImage.setImageResource(resource)
         addView(rightImage)

@@ -5,8 +5,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.shared.Colors;
 
 /**
@@ -26,6 +28,14 @@ public class BaseActivity extends Activity {
 
         ColorDrawable background = new ColorDrawable(Colors.ACTION_BAR);
         getActionBar().setBackgroundDrawable(background);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String title = getIntent().getStringExtra(MainActivity.TITLE);
+        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
+
+        setTitle(title);
+        getActionBar().setSubtitle(description);
     }
 
     protected boolean isPaused = true;
@@ -40,6 +50,16 @@ public class BaseActivity extends Activity {
     protected void onPause() {
         super.onPause();
         isPaused = true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     protected void requestPermission(String permission) {

@@ -40,7 +40,7 @@
 
         <!--Section 3-->
         <activity android:name=".sections.routing.OnlineRoutingActivity" />
-        <activity android:name=".sections.routing.offline.OfflineRoutingPackageActivity" />
+        <activity android:name=".sections.routing.OfflineRoutingActivity" />
 
         <!--Section 4-->
         <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />

@@ -23,25 +23,7 @@ public class MapBaseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        String title = getIntent().getStringExtra(MainActivity.TITLE);
-        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
-
-        setTitle(title);
-        getActionBar().setSubtitle(description);
-
         contentView = new MapBaseView(this);
         setContentView(contentView);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

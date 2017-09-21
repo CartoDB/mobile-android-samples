@@ -18,10 +18,4 @@ public class BaseGeoPackageDownloadActivity extends PackageManagerBaseActivity {
     public String getSource() {
         return Sources.GEOCODING_TAG + Sources.OFFLINE_GEOCODING;
     }
-
-    @Override
-    public void onMapIconClick() {
-        // Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-        GeocodingBaseActivity.manager = this.packageManager;
-    }
 }

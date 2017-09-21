@@ -101,12 +101,12 @@ public class Package {
         String size = getSizeInMb();
 
         if (isSmallerThan1MB()) {
-            return " v.$version (<1MB)";
+            return " v." + version + " (<1MB)";
         }
 
-        return " v.$version ($size MB)";
-
+        return " v." + version + " (" + size + " MB)";
     }
+
     public boolean isDownloading() {
 
         if (status == null) {

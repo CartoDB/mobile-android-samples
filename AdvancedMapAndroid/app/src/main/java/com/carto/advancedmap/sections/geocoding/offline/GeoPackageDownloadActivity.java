@@ -16,12 +16,4 @@ public class GeoPackageDownloadActivity extends BaseGeoPackageDownloadActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-    @Override
-    public void onMapIconClick() {
-        super.onMapIconClick();
-
-        Intent myIntent = new Intent(this, OfflineGeocodingActivity.class);
-        startActivity(myIntent);
-    }
 }

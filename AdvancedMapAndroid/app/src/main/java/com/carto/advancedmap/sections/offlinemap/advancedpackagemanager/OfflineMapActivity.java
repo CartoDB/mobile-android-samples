@@ -1,8 +1,8 @@
 package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.content.Intent;
-import com.carto.advancedmap.main.ActivityData;
-import com.carto.advancedmap.main.MainActivity;
+import android.os.Bundle;
+
 import com.carto.advancedmap.utils.Sources;
 
 public class OfflineMapActivity extends PackageManagerBaseActivity {
@@ -18,11 +18,10 @@ public class OfflineMapActivity extends PackageManagerBaseActivity {
 	}
 
 	@Override
-	public void onMapIconClick() {
-		// Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-		MapPackageActivity.manager = this.packageManager;
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-		Intent myIntent = new Intent(this, MapPackageActivity.class);
-		startActivity(myIntent);
+		contentView = new PackageManagerBaseView(this);
+		setContentView(contentView);
 	}
 }

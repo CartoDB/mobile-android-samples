@@ -16,7 +16,7 @@ import com.carto.advancedmap.sections.overlaydatasources.CustomVectorDataSourceA
 import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
 import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
 import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
-import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
+import com.carto.advancedmap.sections.routing.OfflineRoutingActivity;
 import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
 import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
 import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
@@ -57,7 +57,7 @@ public class Samples {
                     R.drawable.background_routing_offline,
                     "Offline Routing",
                     "Download routing packages for offline use",
-                    OfflineRoutingPackageActivity.class
+                    OfflineRoutingActivity.class
             ),
             new Sample(
                     R.drawable.background_online_reverse_geocoding,

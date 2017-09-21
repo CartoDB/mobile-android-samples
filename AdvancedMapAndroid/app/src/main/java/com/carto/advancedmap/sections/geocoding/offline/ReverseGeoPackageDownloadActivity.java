@@ -17,12 +17,4 @@ public class ReverseGeoPackageDownloadActivity extends BaseGeoPackageDownloadAct
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-    @Override
-    public void onMapIconClick() {
-        super.onMapIconClick();
-
-        Intent myIntent = new Intent(this, OfflineReverseGeocodingActivity.class);
-        startActivity(myIntent);
-    }
 }

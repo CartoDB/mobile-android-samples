@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.PackageManagerBaseActivity;
 import com.carto.advancedmap.utils.RouteCalculator;
 import com.carto.routing.RoutingService;
 import com.carto.ui.MapView;
@@ -12,7 +13,7 @@ import com.carto.ui.MapView;
  * Created by aareundo on 16/12/16.
  */
 
-public class BaseRoutingActivity extends MapBaseActivity {
+public class BaseRoutingActivity extends PackageManagerBaseActivity {
 
     RouteCalculator calculator;
 

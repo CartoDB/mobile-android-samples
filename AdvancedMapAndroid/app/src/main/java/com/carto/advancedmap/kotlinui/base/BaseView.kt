@@ -61,7 +61,7 @@ open class BaseView(context: android.content.Context) : android.widget.RelativeL
     }
 
     fun setFrame(x: Int, y: Int, width: Int, height: Int) {
-        this.frame = com.carto.advanced.kotlin.sections.base.utils.CGRect(x, y, width, height)
+        this.frame = CGRect(x, y, width, height)
 
         val params = android.widget.RelativeLayout.LayoutParams(width, height)
         params.leftMargin = x
@@ -83,8 +83,7 @@ open class BaseView(context: android.content.Context) : android.widget.RelativeL
 
         manager.defaultDisplay.getSize(size)
 
-//        frame = CGRect(0, 0, size.x, size.y)
-        frame = com.carto.advanced.kotlin.sections.base.utils.CGRect(0, 0, size.x, size.y - (getActionBarHeight() + getStatusBarHeight()))
+        setFrame(0, 0, size.x, size.y - (getActionBarHeight() + getStatusBarHeight()))
     }
 
     fun getNavBarHeight(): Int {
