@@ -1,12 +1,9 @@
-package com.carto.advancedmap.list;
+package com.carto.advancedmap.main;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 /**
  * Created by aareundo on 31/08/16.

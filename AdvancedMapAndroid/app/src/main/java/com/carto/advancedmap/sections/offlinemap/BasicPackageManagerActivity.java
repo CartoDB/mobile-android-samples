@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.offlinemap;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
 import com.carto.advancedmap.utils.Sources;

@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
@@ -44,7 +44,6 @@ import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
 import com.carto.vectorelements.VectorElement;
 
-@ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
 public class OverlaysActivity extends MapBaseActivity {
 
     Projection projection;

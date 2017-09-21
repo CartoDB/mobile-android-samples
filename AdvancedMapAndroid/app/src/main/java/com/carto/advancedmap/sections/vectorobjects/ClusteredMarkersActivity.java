@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
@@ -35,7 +35,6 @@ import java.util.Map;
  */
 
 
-@ActivityData(name = "Clustered Markers", description = "Show 20,000 points from geojson")
 public class ClusteredMarkersActivity extends MapBaseActivity {
 
     Thread thread;

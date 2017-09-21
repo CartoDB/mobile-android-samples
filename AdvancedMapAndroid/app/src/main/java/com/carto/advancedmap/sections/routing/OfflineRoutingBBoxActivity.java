@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.routing;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 
 import com.carto.advancedmap.shared.activities.BoundingBoxActivity;
 import com.carto.advancedmap.utils.BoundingBox;
@@ -12,7 +12,6 @@ import com.carto.advancedmap.utils.Sources;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.routing.PackageManagerValhallaRoutingService;
 import com.carto.routing.RoutingService;
-import com.carto.routing.ValhallaOfflineRoutingService;
 
 import java.io.IOException;
 

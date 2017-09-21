@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
@@ -23,7 +23,6 @@ import com.carto.utils.Log;
 import com.carto.vectorelements.Polygon;
 import com.carto.core.MapPosVector;
 
-@ActivityData(name = "GPS Location", description = "Shows user GPS location on the map")
 public class GPSLocationActivity extends MapBaseActivity {
 	
 	private LocationManager locationManager;

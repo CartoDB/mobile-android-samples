@@ -11,8 +11,8 @@ import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
-import com.carto.advancedmap.list.ActivityData;
-import com.carto.advancedmap.list.LauncherListActivity;
+import com.carto.advancedmap.main.ActivityData;
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.test.Utils.PermissionGranter;
 import com.carto.advancedmap.test.Utils.Screenshot;
@@ -41,9 +41,9 @@ import static org.hamcrest.Matchers.is;
 public class Test1 {
 
     @Rule
-    public ActivityTestRule<LauncherListActivity> mActivityTestRule = new ActivityTestRule<>(LauncherListActivity.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    private static LauncherListActivity list;
+    private static MainActivity list;
 
     /**
      * This test opens the application, clicks on a list item to open a MapView sample,
@@ -57,7 +57,7 @@ public class Test1 {
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                list = (LauncherListActivity) getCurrentActivity();
+                list = (MainActivity) getCurrentActivity();
                 list.unlockScreen();
             }
         });
@@ -91,7 +91,7 @@ public class Test1 {
          * I have no idea what's going on here, Android's Espresso API is super weird,
          * but apparently this snippet returns an "interaction" where we can perform clicks.
          */
-        DataInteraction interaction = onData(allOf(is(instanceOf(LauncherListActivity.MapListMap.class))));
+        DataInteraction interaction = onData(allOf(is(instanceOf(MainActivity.MapListMap.class))));
 
         for (Integer j = 0; j < maps.size(); j++) {
 

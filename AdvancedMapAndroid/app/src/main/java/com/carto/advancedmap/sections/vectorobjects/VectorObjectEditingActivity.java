@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.vectorobjects;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.datasources.LocalVectorDataSource;
@@ -31,7 +31,6 @@ import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.VectorElement;
 
-@ActivityData(name = "Vector Object Editing", description = "Shows usage of an editable vector layer")
 public class VectorObjectEditingActivity extends MapBaseActivity {
 
     LocalVectorDataSource source;

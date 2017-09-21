@@ -1,4 +1,4 @@
-package com.carto.advancedmap.list;
+package com.carto.advancedmap.main;
 
 import android.Manifest;
 import android.app.ListActivity;
@@ -16,34 +16,8 @@ import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.sections.basemap.BaseMapActivity;
-import com.carto.advancedmap.sections.geocoding.offline.GeoPackageDownloadActivity;
-import com.carto.advancedmap.sections.geocoding.online.OnlineGeocodingActivity;
-import com.carto.advancedmap.sections.geocoding.online.OnlineReverseGeocodingActivity;
-import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
-import com.carto.advancedmap.sections.header.BaseMapHeader;
-import com.carto.advancedmap.sections.header.GeocodingHeader;
-import com.carto.advancedmap.sections.header.OfflineMapHeader;
-import com.carto.advancedmap.sections.header.OtherMapHeader;
-import com.carto.advancedmap.sections.header.OverlayDataSourcesHeader;
-import com.carto.advancedmap.sections.header.RoutingHeader;
-import com.carto.advancedmap.sections.header.VectorObjectsHeader;
-import com.carto.advancedmap.sections.offlinemap.BasicPackageManagerActivity;
-import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
-import com.carto.advancedmap.sections.other.CaptureActivity;
-import com.carto.advancedmap.sections.other.CustomPopupActivity;
-import com.carto.advancedmap.sections.other.GPSLocationActivity;
-import com.carto.advancedmap.sections.overlaydatasources.CustomRasterDataSourceActivity;
-import com.carto.advancedmap.sections.overlaydatasources.CustomVectorDataSourceActivity;
-import com.carto.advancedmap.sections.overlaydatasources.GroundOverlayActivity;
-import com.carto.advancedmap.sections.overlaydatasources.WmsMapActivity;
-import com.carto.advancedmap.sections.routing.OfflineRoutingBBoxActivity;
-import com.carto.advancedmap.sections.routing.OnlineRoutingActivity;
-import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
-import com.carto.advancedmap.sections.vectorobjects.ClusteredMarkersActivity;
-import com.carto.advancedmap.sections.vectorobjects.OverlaysActivity;
-import com.carto.advancedmap.sections.vectorobjects.VectorObjectEditingActivity;
+import com.carto.advancedmap.model.Sample;
+import com.carto.advancedmap.model.Samples;
 import com.carto.advancedmap.shared.Colors;
 
 import java.io.File;
@@ -52,45 +26,7 @@ import java.io.File;
  * Shows list of demo Activities. This is the "main" of samples
  */
 
-public class LauncherListActivity extends ListActivity {
-
-    public Class[] samples = {
-
-            BaseMapHeader.class,
-            BaseMapActivity.class,
-
-            OfflineMapHeader.class,
-            BasicPackageManagerActivity.class,
-            AdvancedPackageManagerActivity.class,
-            BundledMapActivity.class,
-
-            RoutingHeader.class,
-            OnlineRoutingActivity.class,
-            OfflineRoutingPackageActivity.class,
-            OfflineRoutingBBoxActivity.class,
-
-            GeocodingHeader.class,
-            OnlineReverseGeocodingActivity.class,
-            OnlineGeocodingActivity.class,
-            ReverseGeoPackageDownloadActivity.class,
-            GeoPackageDownloadActivity.class,
-
-            OverlayDataSourcesHeader.class,
-            CustomRasterDataSourceActivity.class,
-            CustomVectorDataSourceActivity.class,
-            GroundOverlayActivity.class,
-            WmsMapActivity.class,
-
-            VectorObjectsHeader.class,
-            ClusteredMarkersActivity.class,
-            OverlaysActivity.class,
-            VectorObjectEditingActivity.class,
-
-            OtherMapHeader.class,
-            CaptureActivity.class,
-            CustomPopupActivity.class,
-            GPSLocationActivity.class,
-    };
+public class MainActivity extends ListActivity {
 
     public void unlockScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
@@ -109,7 +45,7 @@ public class LauncherListActivity extends ListActivity {
         lv.setBackgroundColor(Color.BLACK);
         lv.setAdapter(new MapListAdapter(this, android.R.layout.two_line_list_item, getListItems()));
 
-        setTitle("Advanced Mobile Samples");
+        setTitle("Advanced Map");
     }
 
     @Override
@@ -118,57 +54,38 @@ public class LauncherListActivity extends ListActivity {
         System.gc();
     }
 
-    private MapListItem[] getListItems()
-    {
-        MapListItem[] items = new MapListItem[samples.length];
+    private MapListItem[] getListItems() {
 
-        for(int i = 0; i < samples.length; i++) {
+        MapListItem[] items = new MapListItem[Samples.LIST.length];
 
-            String name = "";
-            String description = "";
+        for (int i = 0; i < Samples.LIST.length; i++) {
 
-            java.lang.annotation.Annotation[] annotations = samples[i].getAnnotations();
+            Sample sample = Samples.LIST[i];
 
-            if (annotations.length > 0 && annotations[0] instanceof ActivityData) {
-                name = ((ActivityData) annotations[0]).name();
-                description = ((ActivityData) annotations[0]).description();
-            }
+            String title = sample.title;
+            String description = sample.description;
 
             MapListItem item = new MapListItem();
 
-
-            if (description.equals("")) {
-                item.name = name;
-                item.isHeader = true;
-            } else {
-                // Filler class for tests
-                item = new MapListMap();
-                item.name = name;
-                item.description = description;
-            }
+            item.name = title;
+            item.description = description;
 
             items[i] = item;
         }
 
-        return  items;
+        return items;
     }
 
     public void onListItemClick(ListView parent, View v, int position, long id) {
 
-        Class sample = samples[position];
+        Sample sample = Samples.LIST[position];
 
-        ActivityData data = ((ActivityData) sample.getAnnotations()[0]);
-        String name = data.name();
-        String description = data.description();
+        String title = sample.title;
+        String description = sample.description;
 
-        if (description.equals("")) {
-            // Headers don't have descriptions and aren't clickable
-            return;
-        }
+        Intent intent = new Intent(MainActivity.this, sample.activity);
 
-        Intent intent = new Intent(LauncherListActivity.this, sample);
-
-        intent.putExtra("title", name);
+        intent.putExtra("title", title);
         intent.putExtra("description", description);
 
         this.startActivity(intent);

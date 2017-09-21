@@ -1,4 +1,4 @@
-package com.carto.advancedmap.list;
+package com.carto.advancedmap.main;
 
 /**
  * Created by aareundo on 31/08/16.

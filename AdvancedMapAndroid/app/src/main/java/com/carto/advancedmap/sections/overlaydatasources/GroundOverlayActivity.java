@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
 import com.carto.datasources.BitmapOverlayRasterTileDataSource;
@@ -16,7 +16,6 @@ import com.carto.utils.BitmapUtils;
 import com.carto.core.MapPosVector;
 import com.carto.core.ScreenPosVector;
 
-@ActivityData(name = "Ground Overlays", description = "Show non-tiled Bitmap on ground")
 public class GroundOverlayActivity extends MapBaseActivity {
 
     @Override

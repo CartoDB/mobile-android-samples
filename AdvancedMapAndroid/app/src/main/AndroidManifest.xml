@@ -22,7 +22,7 @@
         android:label="Advanced.Java"
         android:name=".MapApplication">
         <activity
-            android:name=".list.LauncherListActivity">
+            android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,7 @@
 
         <!--Section 2-->
         <activity android:name=".sections.offlinemap.BasicPackageManagerActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.OfflineMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
 

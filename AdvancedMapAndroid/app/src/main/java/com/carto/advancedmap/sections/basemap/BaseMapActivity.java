@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.carto.advancedmap.baseclasses.activities.BaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.sections.basemap.model.Section;
 import com.carto.advancedmap.sections.basemap.model.SectionType;
 import com.carto.advancedmap.sections.basemap.model.Sections;
@@ -33,7 +33,6 @@ import com.carto.vectortiles.MBVectorTileDecoder;
  * Created by aareundo on 08/11/16.
  */
 
-@ActivityData(name = "Base Maps", description = "Choice between different base maps, styles, languages")
 public class BaseMapActivity extends BaseActivity {
 
     BaseMapsView contentView;

@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.routing.offline;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
 import com.carto.advancedmap.shared.packages.Package;
@@ -28,7 +28,6 @@ import java.util.Collections;
  * Created by aareundo on 16/12/16.
  */
 
-@ActivityData(name = "Offline Routing (package)", description = "Offline Routing where country packages are downloaded")
 public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
 
     CartoPackageManager manager;

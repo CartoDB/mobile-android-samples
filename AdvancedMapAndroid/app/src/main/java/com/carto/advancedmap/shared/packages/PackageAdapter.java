@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.carto.advancedmap.sections.geocoding.offline.GeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity;
+import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.OfflineMapActivity;
 import com.carto.advancedmap.sections.routing.offline.OfflineRoutingPackageActivity;
 import com.carto.packagemanager.PackageAction;
 import com.carto.packagemanager.PackageManager;
@@ -169,8 +169,8 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
     public void updateCurrentFolder(Package pkg) {
 
-        if (context instanceof AdvancedPackageManagerActivity) {
-            AdvancedPackageManagerActivity activity = (AdvancedPackageManagerActivity)context;
+        if (context instanceof OfflineMapActivity) {
+            OfflineMapActivity activity = (OfflineMapActivity)context;
             activity.currentFolder = activity.currentFolder + pkg.name + "/";
         } else if (context instanceof OfflineRoutingPackageActivity) {
             // Offline routing features no such foldering system.
@@ -185,8 +185,8 @@ public class PackageAdapter extends ArrayAdapter<Package> {
 
     public void updatePackages() {
 
-        if (context instanceof AdvancedPackageManagerActivity) {
-            AdvancedPackageManagerActivity activity = (AdvancedPackageManagerActivity)context;
+        if (context instanceof OfflineMapActivity) {
+            OfflineMapActivity activity = (OfflineMapActivity)context;
             activity.updatePackages();
         } else if (context instanceof OfflineRoutingPackageActivity) {
             OfflineRoutingPackageActivity activity = (OfflineRoutingPackageActivity)context;

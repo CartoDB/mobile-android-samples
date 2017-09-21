@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@ActivityData(name = "Screencapture", description = "Capture rendered mapView as a Bitmap")
 public class CaptureActivity extends MapBaseActivity {
 
 	RenderListener listener;

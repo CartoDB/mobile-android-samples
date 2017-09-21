@@ -3,7 +3,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
 import com.carto.datasources.VectorDataSource;
@@ -18,7 +18,6 @@ import com.carto.styles.PointStyleBuilder;
 import com.carto.vectorelements.Point;
 import com.carto.vectorelements.VectorElementVector;
 
-@ActivityData(name = "Custom Vector Data Source", description = "Customized vector data source")
 public class CustomVectorDataSourceActivity extends MapBaseActivity {
 
     public static final int NUM_POINTS = 1000;

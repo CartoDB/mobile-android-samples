@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.layers.CartoOfflineVectorTileLayer;
 import com.carto.packagemanager.CartoPackageManager;
 
 /**
- * A uses AdvancedPackageManagerActivity datasource. This has maps which are downloaded offline using PackageManager
+ * A uses OfflineMapActivity datasource. This has maps which are downloaded offline using PackageManager
  */
 @ActivityData(name = "Packaged Map", description = "This has maps which are downloaded offline using PackageManager")
 public class MapPackageActivity extends MapBaseActivity {

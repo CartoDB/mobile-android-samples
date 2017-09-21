@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.geocoding.offline;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
 import com.carto.geocoding.PackageManagerReverseGeocodingService;
 

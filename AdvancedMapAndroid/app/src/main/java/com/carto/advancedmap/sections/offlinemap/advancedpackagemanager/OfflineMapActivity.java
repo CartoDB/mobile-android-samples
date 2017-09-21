@@ -1,11 +1,10 @@
 package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.content.Intent;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.utils.Sources;
 
-@ActivityData(name = "Advanced Package Manager", description = "Download offline map packages")
-public class AdvancedPackageManagerActivity extends PackageManagerBaseActivity {
+public class OfflineMapActivity extends PackageManagerBaseActivity {
 
 	@Override
 	public String getFolderName() {

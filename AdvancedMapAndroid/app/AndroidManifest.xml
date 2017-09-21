@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".list.LauncherListActivity"
+            android:name=".main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".mapsamples.PinMapActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.AdvancedPackageManagerActivity" />
+        <activity android:name=".sections.offlinemap.advancedpackagemanager.OfflineMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".mapsamples.MapListenerActivity" />

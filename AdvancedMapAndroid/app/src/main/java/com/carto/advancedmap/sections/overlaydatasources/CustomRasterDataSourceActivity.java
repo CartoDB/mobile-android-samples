@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapTile;
@@ -16,7 +16,6 @@ import com.carto.datasources.components.TileData;
 import com.carto.layers.RasterTileLayer;
 import com.carto.utils.BitmapUtils;
 
-@ActivityData(name = "Custom Raster Data Source", description = "Customized raster tile data source")
 public class CustomRasterDataSourceActivity extends MapBaseActivity {
 
     public static final String TILED_RASTER_URL = "http://{s}.basemaps.cartocdn.com/light_all/{zoom}/{x}/{y}.png";

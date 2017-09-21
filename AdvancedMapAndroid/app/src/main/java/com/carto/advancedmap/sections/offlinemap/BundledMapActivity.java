@@ -7,7 +7,7 @@ import android.util.Log;
 import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@ActivityData(name = "Bundled Map", description = "Offline map of Rome bundled with app")
 public class BundledMapActivity extends MapBaseActivity {
 
     @Override

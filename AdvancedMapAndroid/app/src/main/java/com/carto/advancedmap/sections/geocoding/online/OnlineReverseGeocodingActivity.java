@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.geocoding.online;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
@@ -10,7 +10,7 @@ import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
 /**
  * Created by aareundo on 21/08/2017.
  */
-@ActivityData(name = "Online Reverse Geocoding", description = "Online reverse geocoding with Pelias geocoder")
+
 public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity {
 
     @Override
