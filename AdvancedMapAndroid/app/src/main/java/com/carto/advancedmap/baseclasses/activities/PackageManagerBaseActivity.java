@@ -1,4 +1,4 @@
-package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
+package com.carto.advancedmap.baseclasses.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 import com.carto.advanced.kotlin.components.popup.SlideInPopupHeader;
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell;
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.baseclasses.activities.BaseActivity;
+import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageManagerListener;
 import com.carto.packagemanager.PackageStatus;

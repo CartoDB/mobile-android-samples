@@ -53,7 +53,7 @@ public class GeocodingResultCell extends RelativeLayout {
     public void update(GeocodingResult result) {
         Address address = result.getAddress();
 
-        label.setText(GeocodingUtils.getPrettyAddres(address));
+        label.setText(GeocodingUtils.getPrettyAddress(address));
 
         if (!address.getName().isEmpty()) {
             type.setText("Point of Interest");

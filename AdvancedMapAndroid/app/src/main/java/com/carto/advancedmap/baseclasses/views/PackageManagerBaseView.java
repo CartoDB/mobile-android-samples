@@ -1,4 +1,4 @@
-package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
+package com.carto.advancedmap.baseclasses.views;
 
 import android.app.Activity;
 import android.content.Context;

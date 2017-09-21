@@ -3,11 +3,9 @@ package com.carto.advancedmap.sections.routing;
 import android.os.Bundle;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.PackageManagerBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.utils.RouteCalculator;
 import com.carto.routing.RoutingService;
-import com.carto.ui.MapView;
 
 /**
  * Created by aareundo on 16/12/16.

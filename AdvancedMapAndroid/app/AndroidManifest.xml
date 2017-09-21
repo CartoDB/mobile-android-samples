@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".mapsamples.PinMapActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.OfflineMapActivity" />
+        <activity android:name=".sections.offlinemap.OfflineMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".mapsamples.MapListenerActivity" />

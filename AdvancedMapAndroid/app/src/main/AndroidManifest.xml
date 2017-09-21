@@ -34,7 +34,7 @@
         <activity android:name=".sections.basemap.BaseMapActivity"/>
 
         <!--Section 2-->
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.OfflineMapActivity" />
+        <activity android:name=".sections.offlinemap.OfflineMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
 

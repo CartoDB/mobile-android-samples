@@ -2,7 +2,7 @@ package com.carto.advancedmap.sections.routing;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.PackageManagerBaseView;
+import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
 
 import com.carto.advancedmap.utils.Sources;
 import com.carto.layers.CartoBaseMapStyle;

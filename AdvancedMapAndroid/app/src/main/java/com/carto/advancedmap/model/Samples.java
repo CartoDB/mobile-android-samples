@@ -7,7 +7,7 @@ import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloa
 import com.carto.advancedmap.sections.geocoding.online.OnlineGeocodingActivity;
 import com.carto.advancedmap.sections.geocoding.online.OnlineReverseGeocodingActivity;
 import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.OfflineMapActivity;
+import com.carto.advancedmap.sections.offlinemap.OfflineMapActivity;
 import com.carto.advancedmap.sections.other.CaptureActivity;
 import com.carto.advancedmap.sections.other.CustomPopupActivity;
 import com.carto.advancedmap.sections.other.GPSLocationActivity;

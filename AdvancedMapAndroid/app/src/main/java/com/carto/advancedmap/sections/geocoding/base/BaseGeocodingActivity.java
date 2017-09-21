@@ -152,7 +152,7 @@ public class BaseGeocodingActivity extends GeocodingBaseActivity {
 
     public void showResult(GeocodingResult result) {
         String title = "";
-        String description = GeocodingUtils.getPrettyAddres(result.getAddress());
+        String description = GeocodingUtils.getPrettyAddress(result.getAddress());
         boolean goToPosition = true;
 
         showResult(result, title, description, goToPosition);

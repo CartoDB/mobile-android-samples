@@ -1,6 +1,6 @@
 package com.carto.advancedmap.sections.geocoding.base;
 
-import com.carto.advancedmap.sections.offlinemap.advancedpackagemanager.PackageManagerBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.utils.Sources;
 
 /**

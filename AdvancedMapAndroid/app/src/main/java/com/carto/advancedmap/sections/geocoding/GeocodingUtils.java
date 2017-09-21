@@ -9,7 +9,7 @@ import com.carto.geocoding.GeocodingResult;
 
 public class GeocodingUtils {
 
-    public static String getPrettyAddres(Address address) {
+    public static String getPrettyAddress(Address address) {
 
         String string = "";
 
