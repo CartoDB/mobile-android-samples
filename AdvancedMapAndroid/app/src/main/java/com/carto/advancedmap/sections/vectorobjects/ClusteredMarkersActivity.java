@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
@@ -46,17 +45,17 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Initialize a local vector data source
-        final LocalVectorDataSource source = new LocalVectorDataSource(baseProjection);
+        final LocalVectorDataSource source = new LocalVectorDataSource(contentView.projection);
 
         // Initialize a vector layer with the previous data source
         ClusteredVectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
         layer.setMinimumClusterDistance(50);
 
         // Add the clustered vector layer to the map
-        mapView.getLayers().add(layer);
+        contentView.mapView.getLayers().add(layer);
 
         // As the file to load is rather large, we don't want to block our main thread
         thread = new Thread(new Runnable() {
@@ -70,7 +69,7 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
                 GeoJSONGeometryReader reader = new GeoJSONGeometryReader();
 
                 // Set target projection to base (mercator)
-                reader.setTargetProjection(baseProjection);
+                reader.setTargetProjection(contentView.projection);
                 alert("Starting load from .geojson");
 
                 // Read features from local asset

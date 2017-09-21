@@ -51,11 +51,11 @@ public class GeocodingBaseActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
-        mapView.getLayers().add(baseLayer);
+        contentView.mapView.getLayers().add(baseLayer);
 
-        geocodingSource = new LocalVectorDataSource(baseProjection);
+        geocodingSource = new LocalVectorDataSource(contentView.projection);
         geocodingLayer = new VectorLayer(geocodingSource);
-        mapView.getLayers().add(geocodingLayer);
+        contentView.mapView.getLayers().add(geocodingLayer);
     }
 
     @Override
@@ -124,8 +124,8 @@ public class GeocodingBaseActivity extends MapBaseActivity {
         }
 
         if (goToPosition) {
-            mapView.setFocusPos(position, 1.0f);
-            mapView.setZoom(17.0f, 1.0f);
+            contentView.mapView.setFocusPos(position, 1.0f);
+            contentView.mapView.setZoom(17.0f, 1.0f);
         }
 
         BalloonPopup popup = new BalloonPopup(position, builder.buildStyle(), title, description);

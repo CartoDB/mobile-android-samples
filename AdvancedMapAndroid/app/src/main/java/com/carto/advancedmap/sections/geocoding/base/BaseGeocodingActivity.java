@@ -84,7 +84,7 @@ public class BaseGeocodingActivity extends GeocodingBaseActivity {
     public void onResume() {
         super.onResume();
 
-        mapView.setMapEventListener(new MapEventListener(){
+        contentView.mapView.setMapEventListener(new MapEventListener(){
             @Override
             public void onMapClicked(MapClickInfo mapClickInfo) {
                 BaseGeocodingActivity.this.runOnUiThread(new Runnable() {
@@ -144,7 +144,7 @@ public class BaseGeocodingActivity extends GeocodingBaseActivity {
     public void onPause() {
         super.onPause();
 
-        mapView.setMapEventListener(null);
+        contentView.mapView.setMapEventListener(null);
         inputField.addTextChangedListener(null);
         inputField.setOnEditorActionListener(null);
         resultTable.setOnItemClickListener(null);
@@ -188,7 +188,7 @@ public class BaseGeocodingActivity extends GeocodingBaseActivity {
 
                 searchQueueSize -= 1;
 
-                GeocodingRequest request = new GeocodingRequest(baseProjection, text);
+                GeocodingRequest request = new GeocodingRequest(contentView.projection, text);
 
                 if (service instanceof PackageManagerGeocodingService) {
                     ((PackageManagerGeocodingService)service).setAutocomplete(autocomplete);

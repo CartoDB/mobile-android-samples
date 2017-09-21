@@ -16,29 +16,20 @@ public class BaseRoutingActivity extends MapBaseActivity {
 
     RouteCalculator calculator;
 
+    protected RoutingService service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addBaseLayer();
+        contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
     }
-
-    protected MapView getMapView() {
-        return mapView;
-    }
-
-    protected void addBaseLayer() {
-        // Add online base layer, even used in Offline routing example
-        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
-    }
-
-    protected RoutingService service;
 
     protected void setService(RoutingService service) {
 
         this.service = service;
 
         /* Use getter for mapView as it can be (and is) overridden in subclass */
-        calculator = new RouteCalculator(this, getMapView(), service);
+        calculator = new RouteCalculator(this, contentView.mapView, service);
     }
 }

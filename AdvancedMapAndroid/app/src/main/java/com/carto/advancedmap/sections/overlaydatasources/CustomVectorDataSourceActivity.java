@@ -3,7 +3,6 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
 import com.carto.datasources.VectorDataSource;
@@ -27,18 +26,18 @@ public class CustomVectorDataSourceActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Create custom vector data source
-        VectorDataSource customDataSource = new MyVectorDataSource(mapView.getOptions().getBaseProjection(), NUM_POINTS);
+        VectorDataSource customDataSource = new MyVectorDataSource(contentView.projection, NUM_POINTS);
 
         // Create overlay vector layer
         VectorLayer overlayLayer = new VectorLayer(customDataSource);
-        mapView.getLayers().add(overlayLayer);
+        contentView.mapView.getLayers().add(overlayLayer);
 
         // finally animate map to a nice place
-        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(0, 0)), 0);
-        mapView.setZoom(3, 1);
+        contentView.mapView.setFocusPos(contentView.projection.fromWgs84(new MapPos(0, 0)), 0);
+        contentView.mapView.setZoom(3, 1);
     }
 
     /**

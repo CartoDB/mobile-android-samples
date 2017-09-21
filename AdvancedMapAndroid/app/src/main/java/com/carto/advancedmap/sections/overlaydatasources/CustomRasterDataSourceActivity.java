@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 
-import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.core.MapTile;
@@ -30,15 +29,19 @@ public class CustomRasterDataSourceActivity extends MapBaseActivity {
         TileDataSource hillshadeTileDataSource = new HTTPTileDataSource(0, 24, HILLSHADE_RASTER_URL);
         
         // Create merged raster data source
-        TileDataSource mergedTileDataSource = new MyMergedRasterTileDataSource(baseTileDataSource, hillshadeTileDataSource);
+        TileDataSource mergedTileDataSource = new MyMergedRasterTileDataSource(
+                baseTileDataSource,
+                hillshadeTileDataSource
+        );
 
         // Create raster layer
-        baseLayer = new RasterTileLayer(mergedTileDataSource);
-        mapView.getLayers().add(baseLayer);
+        RasterTileLayer layer = new RasterTileLayer(mergedTileDataSource);
+        contentView.mapView.getLayers().add(layer);
         
         // finally animate map to a nice place
-        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-122.4323, 37.7582)), 1);
-        mapView.setZoom(13, 1);
+        MapPos position = contentView.projection.fromWgs84(new MapPos(-122.4323, 37.7582));
+        contentView.mapView.setFocusPos(position, 1);
+        contentView.mapView.setZoom(13, 1);
     }
 
     /**

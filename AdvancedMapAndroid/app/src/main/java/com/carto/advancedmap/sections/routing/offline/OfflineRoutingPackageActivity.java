@@ -72,11 +72,6 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
     }
 
     @Override
-    protected MapView getMapView() {
-        return contentView.mapView;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
@@ -127,12 +122,6 @@ public class OfflineRoutingPackageActivity extends BaseRoutingActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-    }
-
-    @Override
-    protected void addBaseLayer() {
-        CartoOnlineVectorTileLayer layer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
-        contentView.mapView.getLayers().add(layer);
     }
 
     protected ArrayList<Package> getPackages() {

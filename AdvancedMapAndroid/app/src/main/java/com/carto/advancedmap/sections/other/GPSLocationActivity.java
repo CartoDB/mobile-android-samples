@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
-import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
@@ -28,7 +27,6 @@ public class GPSLocationActivity extends MapBaseActivity {
 	private LocationManager locationManager;
 	private LocationListener locationListener;
 
-    Projection proj;
     LocalVectorDataSource vectorDataSource;
 
     @Override
@@ -38,16 +36,14 @@ public class GPSLocationActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
-
-        proj = super.baseProjection;
+        contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         // Initialize an local vector data source where to put my location circle
-        vectorDataSource = new LocalVectorDataSource(proj);
+        vectorDataSource = new LocalVectorDataSource(contentView.projection);
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer);
+        contentView.mapView.getLayers().add(vectorLayer);
 
         if (isMarshmallow()) {
             requestPermission(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -91,10 +87,11 @@ public class GPSLocationActivity extends MapBaseActivity {
             public void onLocationChanged(Location location) {
                 Log.debug("GPS onLocationChanged " + location);
                 if (locationCircle != null) {
-                    locationCircle.setPoses(createLocationCircle(location, proj));
+                    locationCircle.setPoses(createLocationCircle(location, contentView.projection));
                     locationCircle.setVisible(true);
-                    mapView.setFocusPos(proj.fromWgs84(new MapPos(location.getLongitude(), location.getLatitude())), 0.5f);
-                    mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
+                    MapPos position = contentView.projection.fromWgs84(new MapPos(location.getLongitude(), location.getLatitude()));
+                    contentView.mapView.setFocusPos(position, 0.5f);
+                    contentView.mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
                 }
             }
 

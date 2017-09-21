@@ -24,16 +24,14 @@ public class GroundOverlayActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
-        Projection proj = mapView.getOptions().getBaseProjection();
-        
         // Load ground overlay bitmap
         Bitmap overlayBitmap = BitmapUtils.loadBitmapFromAssets("jefferson-building-ground-floor.jpg");
         
         // Create two vectors containing geographical positions and corresponding raster image pixel coordinates.
         // 2, 3 or 4 points may be specified. Usually 2 points are enough (for conformal mapping).
-        MapPos pos = proj.fromWgs84(new MapPos(-77.004590, 38.888702));
+        MapPos pos = contentView.projection.fromWgs84(new MapPos(-77.004590, 38.888702));
         double sizeNS = 110, sizeWE = 100;
 
         MapPosVector mapPoses = new MapPosVector();
@@ -50,21 +48,21 @@ public class GroundOverlayActivity extends MapBaseActivity {
         
         // Create bitmap overlay raster tile data source
         BitmapOverlayRasterTileDataSource rasterDataSource = new BitmapOverlayRasterTileDataSource(
-                0, 20, overlayBitmap, proj, mapPoses, bitmapPoses
+                0, 20, overlayBitmap, contentView.projection, mapPoses, bitmapPoses
         );
 
         RasterTileLayer rasterLayer = new RasterTileLayer(rasterDataSource);
-        mapView.getLayers().add(rasterLayer);
+        contentView.mapView.getLayers().add(rasterLayer);
         
         // Apply zoom level bias to the raster layer.
         // By default, bitmaps are upsampled on high-DPI screens.
         // We will correct this by applying appropriate bias
-        float zoomLevelBias = (float) (Math.log(mapView.getOptions().getDPI() / 160.0f) / Math.log(2));
+        float zoomLevelBias = (float) (Math.log(contentView.mapView.getOptions().getDPI() / 160.0f) / Math.log(2));
 
         rasterLayer.setZoomLevelBias(zoomLevelBias * 0.75f);
         rasterLayer.setTileSubstitutionPolicy(TileSubstitutionPolicy.TILE_SUBSTITUTION_POLICY_VISIBLE);
-        
-        mapView.setFocusPos(pos, 0);
-        mapView.setZoom(15.5f, 0);
+
+        contentView.mapView.setFocusPos(pos, 0);
+        contentView.mapView.setZoom(15.5f, 0);
     }
 }

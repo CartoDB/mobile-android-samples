@@ -163,9 +163,4 @@ public class MainActivity extends Activity {
         }
     }
 
-    // Filler class to differentiate between clickable Map and Header for Espresso tests
-    public class MapListMap extends MapListItem {
-
-    }
-
 }

@@ -22,14 +22,14 @@ public class ReverseGeocodingBaseActivity extends GeocodingBaseActivity {
     public void onResume() {
         super.onResume();
 
-        mapView.setMapEventListener(new MapEventListener() {
+        contentView.mapView.setMapEventListener(new MapEventListener() {
 
             @Override
             public void onMapClicked(MapClickInfo mapClickInfo) {
 
                 MapPos location = mapClickInfo.getClickPos();
 
-                ReverseGeocodingRequest request = new ReverseGeocodingRequest(baseProjection, location);
+                ReverseGeocodingRequest request = new ReverseGeocodingRequest(contentView.projection, location);
                 float meters = 125.0f;
                 request.setSearchRadius(meters);
 
@@ -83,6 +83,6 @@ public class ReverseGeocodingBaseActivity extends GeocodingBaseActivity {
     public void onPause() {
         super.onPause();
 
-        mapView.setMapEventListener(null);
+        contentView.mapView.setMapEventListener(null);
     }
 }

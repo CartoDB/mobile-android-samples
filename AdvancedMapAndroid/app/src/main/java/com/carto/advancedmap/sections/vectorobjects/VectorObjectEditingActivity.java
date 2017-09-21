@@ -42,12 +42,12 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
-        source = new LocalVectorDataSource(mapView.getOptions().getBaseProjection());
+        source = new LocalVectorDataSource(contentView.projection);
 
         editLayer = new EditableVectorLayer(source);
-        mapView.getLayers().add(editLayer);
+        contentView.mapView.getLayers().add(editLayer);
 
         addPoint(new MapPos(-5000000, -900000));
 
@@ -68,7 +68,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         editLayer.setVectorElementEventListener(new VectorElementSelectEventListener(editLayer));
 
         // Add a map event listener to deselect element (on map click)
-        mapView.setMapEventListener(new VectorElementDeselectEventListener(editLayer));
+        contentView.mapView.setMapEventListener(new VectorElementDeselectEventListener(editLayer));
 
         // Add the vector element edit event listener
         editLayer.setVectorEditEventListener(new BasicEditEventListener(source));
@@ -81,7 +81,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         editLayer.setVectorElementEventListener(null);
 
         // Add a map event listener to deselect element (on map click)
-        mapView.setMapEventListener(null);
+        contentView.mapView.setMapEventListener(null);
 
         // Add the vector element edit event listener
         editLayer.setVectorEditEventListener(null);

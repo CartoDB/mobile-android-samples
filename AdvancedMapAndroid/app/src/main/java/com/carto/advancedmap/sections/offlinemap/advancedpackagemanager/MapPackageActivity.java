@@ -29,7 +29,7 @@ public class MapPackageActivity extends MapBaseActivity {
         getActionBar().setSubtitle(description);
 
         CartoOfflineVectorTileLayer layer = new CartoOfflineVectorTileLayer(manager, BaseMapsView.DEFAULT_STYLE);
-        mapView.getLayers().add(layer);
+        contentView.mapView.getLayers().add(layer);
     }
 
 }
