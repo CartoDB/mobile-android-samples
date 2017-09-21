@@ -34,7 +34,6 @@
         <activity android:name=".sections.basemap.BaseMapActivity"/>
 
         <!--Section 2-->
-        <activity android:name=".sections.offlinemap.BasicPackageManagerActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.OfflineMapActivity" />
         <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
@@ -42,7 +41,6 @@
         <!--Section 3-->
         <activity android:name=".sections.routing.OnlineRoutingActivity" />
         <activity android:name=".sections.routing.offline.OfflineRoutingPackageActivity" />
-        <activity android:name=".sections.routing.OfflineRoutingBBoxActivity" />
 
         <!--Section 4-->
         <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />
