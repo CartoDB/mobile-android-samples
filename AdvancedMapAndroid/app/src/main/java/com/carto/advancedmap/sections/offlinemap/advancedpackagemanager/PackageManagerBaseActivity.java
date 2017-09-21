@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.carto.advancedmap.MapApplication;
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.shared.Colors;
 import com.carto.advancedmap.shared.packages.Package;
 import com.carto.advancedmap.shared.packages.PackageAdapter;
@@ -118,16 +119,12 @@ public class PackageManagerBaseActivity extends ListActivity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String title = getIntent().getStringExtra("title");
-        String description = getIntent().getStringExtra("description");
 
-        if (title != null) {
-            setTitle(title);
-        }
+        String title = getIntent().getStringExtra(MainActivity.TITLE);
+        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
 
-        if (description != null) {
-            getActionBar().setSubtitle(description);
-        }
+        setTitle(title);
+        getActionBar().setSubtitle(description);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.carto.advancedmap.model;
 
+import com.carto.advancedmap.R;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
 import com.carto.advancedmap.sections.geocoding.offline.GeoPackageDownloadActivity;
 import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
@@ -28,104 +29,122 @@ public class Samples {
 
     public static Sample[] LIST = {
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_basemaps,
                     "Base Maps",
                     "Choice between different base maps, styles, languages",
                     BaseMapActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_advanced_package_manager,
                     "Offline Map",
                     "Download offline map packages",
                     OfflineMapActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_bundled_map,
                     "Bundled Map",
                     "Offline map of Rome bundled with app",
                     BundledMapActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_routing_online,
                     "Online Routing",
                     "Online routing with Open Street Map data packages",
                     OnlineRoutingActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_routing_offline,
                     "Offline Routing",
                     "Download routing packages for offline use",
                     OfflineRoutingPackageActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_online_reverse_geocoding,
                     "Online Reverse Geocoding",
                     "Online reverse geocoding with Pelias geocoder",
                     OnlineReverseGeocodingActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_online_geocoding,
                     "Online Geocoding",
                     "Online geocoding with Pelias geocoder",
                     OnlineGeocodingActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_offline_reverse_geocoding,
                     "Offline Reverse Geocoding",
                     "Download offline geocoding packages",
                     ReverseGeoPackageDownloadActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_offline_geocoding,
                     "Offline Geocoding",
                     "Download offline geocoding packages",
                     GeoPackageDownloadActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_custom_raster_source,
                     "Custom Raster Data Source",
                     "Customized raster tile data source",
                     CustomRasterDataSourceActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_custom_verctor_source,
                     "Custom Vector Data Source",
                     "Customized vector data source",
                     CustomVectorDataSourceActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_ground_overlay,
                     "Ground Overlays",
                     "Show non-tiled Bitmap on ground",
                     GroundOverlayActivity.class
             ),
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_wms,
                     "WMS Map",
                     "Use external WMS service for raster tile overlay",
                     WmsMapActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_clusters,
                     "Clustered Markers",
                     "Show 20,000 points from geojson",
                     ClusteredMarkersActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_overlays,
                     "Overlays",
                     "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel",
                     OverlaysActivity.class
             ),
-
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_object_editing,
                     "Vector Object Editing",
                     "Shows usage of an editable vector layer",
                     VectorObjectEditingActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_screen_capture,
                     "Screencapture",
                     "Capture rendered mapView as a Bitmap",
                     CaptureActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_custom_popup,
                     "Custom Popup",
                     "Creates a custom popup",
                     CustomPopupActivity.class
             ),
 
-            new Sample(0,
+            new Sample(
+                    R.drawable.background_gps_location,
                     "GPS Location",
                     "Shows user GPS location on the map",
                     GPSLocationActivity.class

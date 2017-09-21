@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import com.carto.advancedmap.baseclasses.activities.BaseActivity;
 import com.carto.advancedmap.main.ActivityData;
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.sections.basemap.model.Section;
 import com.carto.advancedmap.sections.basemap.model.SectionType;
 import com.carto.advancedmap.sections.basemap.model.Sections;
@@ -63,8 +64,8 @@ public class BaseMapActivity extends BaseActivity {
         updateLanguage(Sections.getBaseLanguageCode());
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String title = getIntent().getStringExtra("title");
-        String description = getIntent().getStringExtra("description");
+        String title = getIntent().getStringExtra(MainActivity.TITLE);
+        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
 
         setTitle(title);
         getActionBar().setSubtitle(description);

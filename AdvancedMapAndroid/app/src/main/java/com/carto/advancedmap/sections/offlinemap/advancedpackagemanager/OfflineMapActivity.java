@@ -2,6 +2,7 @@ package com.carto.advancedmap.sections.offlinemap.advancedpackagemanager;
 
 import android.content.Intent;
 import com.carto.advancedmap.main.ActivityData;
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.utils.Sources;
 
 public class OfflineMapActivity extends PackageManagerBaseActivity {

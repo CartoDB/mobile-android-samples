@@ -1,7 +1,9 @@
 package com.carto.advancedmap.main;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,69 +29,59 @@ import java.io.File;
  * Shows list of demo Activities. This is the "main" of samples
  */
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
 
-    public void unlockScreen() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-    }
+    public static String TITLE = "activity_title";
+    public static String DESCRIPTION = "activity_title";
+
+    MainView contentView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setTitle("Advanced Map");
+
+        contentView = new MainView(this);
+        setContentView(contentView);
+
         ColorDrawable background = new ColorDrawable(Colors.ACTION_BAR);
         getActionBar().setBackgroundDrawable(background);
 
-        setContentView(R.layout.list);
-
-        ListView lv = this.getListView();
-        lv.setBackgroundColor(Color.BLACK);
-        lv.setAdapter(new MapListAdapter(this, android.R.layout.two_line_list_item, getListItems()));
-
-        setTitle("Advanced Map");
+        contentView.addRows(Samples.LIST);
     }
 
     @Override
     public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        System.gc();
-    }
+        super.onResume();
 
-    private MapListItem[] getListItems() {
+        for (final GalleryRow row : contentView.views) {
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-        MapListItem[] items = new MapListItem[Samples.LIST.length];
+                    Activity context = MainActivity.this;
 
-        for (int i = 0; i < Samples.LIST.length; i++) {
-
-            Sample sample = Samples.LIST[i];
-
-            String title = sample.title;
-            String description = sample.description;
-
-            MapListItem item = new MapListItem();
-
-            item.name = title;
-            item.description = description;
-
-            items[i] = item;
+                    Intent intent = new Intent(context, row.sample.activity);
+                    intent.putExtra(TITLE, row.sample.title);
+                    intent.putExtra(TITLE, row.sample.description);
+                    context.startActivity(intent);
+                }
+            });
         }
-
-        return items;
     }
 
-    public void onListItemClick(ListView parent, View v, int position, long id) {
+    @Override
+    protected void onPause() {
+        super.onPause();
 
-        Sample sample = Samples.LIST[position];
+        for (final GalleryRow row : contentView.views) {
+            row.setOnClickListener(null);
+        }
+    }
 
-        String title = sample.title;
-        String description = sample.description;
-
-        Intent intent = new Intent(MainActivity.this, sample.activity);
-
-        intent.putExtra("title", title);
-        intent.putExtra("description", description);
-
-        this.startActivity(intent);
+    public void unlockScreen() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;

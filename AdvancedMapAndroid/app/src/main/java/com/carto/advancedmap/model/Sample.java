@@ -10,7 +10,7 @@ public class Sample {
 
     public String title, description;
 
-    public Class activity;
+    public Class<?> activity;
 
     public Sample(int resource, String title, String description, Class activity) {
         this.imageResource = resource;

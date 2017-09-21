@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.main.MainActivity;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.TileLayer;
@@ -31,8 +32,8 @@ public class MapBaseActivity extends BaseActivity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String title = getIntent().getStringExtra("title");
-        String description = getIntent().getStringExtra("description");
+        String title = getIntent().getStringExtra(MainActivity.TITLE);
+        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
 
         setTitle(title);
         getActionBar().setSubtitle(description);

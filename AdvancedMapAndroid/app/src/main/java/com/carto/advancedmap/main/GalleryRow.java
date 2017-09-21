@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.carto.advanced.kotlin.sections.base.utils.ExtensionsKt;
 import com.carto.advanced.kotlin.sections.base.views.BaseView;
 import com.carto.advanced.kotlin.utils.Colors;
 import com.carto.advancedmap.model.Sample;
@@ -54,9 +55,38 @@ public class GalleryRow extends BaseView {
     @Override
     public void layoutSubviews() {
         super.layoutSubviews();
+
+        int padding = 5;
+        int imageHeight = getFrame().getHeight() / 5 * 3;
+
+        int x = padding;
+        int y = padding;
+        int w = getFrame().getWidth() - 2 * padding;
+        int h = imageHeight;
+
+        ExtensionsKt.setFrame(image, x, y, w, h);
+
+        y += h + padding;
+        h = title.getMeasuredHeight();
+
+        ExtensionsKt.setFrame(title, x, y, w, h);
+
+        y += h + padding;
+        h = getFrame().getHeight() - (imageHeight + h + 2 * padding);
+
+        ExtensionsKt.setFrame(description, x, y, w, h);
     }
 
     public void update(Sample sample) {
+        this.sample = sample;
 
+        title.setText(sample.title);
+        title.measure(0, 0);
+
+        description.setText(sample.description);
+
+        image.setImageResource(sample.imageResource);
+
+        layoutSubviews();
     }
 }
