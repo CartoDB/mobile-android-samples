@@ -17,7 +17,7 @@ import com.carto.advancedmap.R
 import com.carto.packagemanager.PackageAction
 import com.carto.packagemanager.PackageStatus
 import org.jetbrains.anko.displayMetrics
-import com.carto.advancedmap.shared.packages.Package
+import com.carto.advancedmap.model.Package
 
 /**
  * Created by aareundo on 12/07/2017.

@@ -2,8 +2,11 @@ package com.carto.advancedmap.sections.geocoding.base;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
+import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
 import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.utils.Sources;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geocoding.GeocodingResult;
@@ -34,20 +37,32 @@ import com.carto.vectorelements.Polygon;
 /**
  * Base class for all geocoding - both reverse and regular
  */
-public class GeocodingBaseActivity extends MapBaseActivity {
+public class GeocodingBaseActivity extends PackageManagerBaseActivity {
 
     public String getFailMessage() {
         // Should be overridden in child class
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String getFolderName() {
+        return "com.carto.geocodingpackages";
+    }
+
+    @Override
+    public String getSource() {
+        return Sources.GEOCODING_TAG + Sources.OFFLINE_GEOCODING;
+    }
+
     LocalVectorDataSource geocodingSource;
     VectorLayer geocodingLayer;
 
-    public static CartoPackageManager manager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        contentView = new PackageManagerBaseView(this);
+        setContentView(contentView);
+
         super.onCreate(savedInstanceState);
 
         CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);

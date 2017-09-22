@@ -2,8 +2,8 @@ package com.carto.advancedmap.model;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.sections.basemap.BaseMapActivity;
-import com.carto.advancedmap.sections.geocoding.offline.GeoPackageDownloadActivity;
-import com.carto.advancedmap.sections.geocoding.offline.ReverseGeoPackageDownloadActivity;
+import com.carto.advancedmap.sections.geocoding.offline.OfflineGeocodingActivity;
+import com.carto.advancedmap.sections.geocoding.offline.OfflineReverseGeocodingActivity;
 import com.carto.advancedmap.sections.geocoding.online.OnlineGeocodingActivity;
 import com.carto.advancedmap.sections.geocoding.online.OnlineReverseGeocodingActivity;
 import com.carto.advancedmap.sections.offlinemap.BundledMapActivity;
@@ -75,15 +75,14 @@ public class Samples {
                     R.drawable.background_offline_reverse_geocoding,
                     "Offline Reverse Geocoding",
                     "Download offline geocoding packages",
-                    ReverseGeoPackageDownloadActivity.class
+                    OfflineReverseGeocodingActivity.class
             ),
             new Sample(
                     R.drawable.background_offline_geocoding,
                     "Offline Geocoding",
                     "Download offline geocoding packages",
-                    GeoPackageDownloadActivity.class
+                    OfflineGeocodingActivity.class
             ),
-
             new Sample(
                     R.drawable.background_custom_raster_source,
                     "Custom Raster Data Source",

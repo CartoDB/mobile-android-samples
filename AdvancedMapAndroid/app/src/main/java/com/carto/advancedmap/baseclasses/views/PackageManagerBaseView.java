@@ -2,7 +2,6 @@ package com.carto.advancedmap.baseclasses.views;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 
 import com.carto.advanced.kotlin.components.PopupButton;
@@ -10,8 +9,7 @@ import com.carto.advanced.kotlin.components.ProgressLabel;
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent;
 import com.carto.advanced.kotlin.sections.base.views.BaseView;
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.baseclasses.views.MapBaseView;
-import com.carto.advancedmap.shared.packages.Package;
+import com.carto.advancedmap.model.Package;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageInfo;
 import com.carto.packagemanager.PackageInfoVector;

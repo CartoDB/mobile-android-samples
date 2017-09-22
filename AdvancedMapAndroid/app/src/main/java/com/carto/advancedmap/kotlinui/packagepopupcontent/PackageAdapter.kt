@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
 import com.carto.advanced.kotlin.sections.base.utils.CGRect
-import com.carto.advancedmap.shared.packages.Package
+import com.carto.advancedmap.model.Package
 /**
  * Created by aareundo on 12/07/2017.
  */

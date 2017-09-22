@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.carto.advancedmap.sections.geocoding.GeocodingUtils;
 import com.carto.advancedmap.sections.geocoding.adapter.GeocodingResultAdapter;
-import com.carto.advancedmap.shared.Colors;
+import com.carto.advancedmap.utils.Colors;
 import com.carto.geocoding.GeocodingRequest;
 import com.carto.geocoding.GeocodingResult;
 import com.carto.geocoding.GeocodingResultVector;

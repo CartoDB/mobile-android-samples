@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.ListView
 import com.carto.advanced.kotlin.sections.base.views.BaseView
 import com.carto.advanced.kotlin.sections.base.utils.setFrame
-import com.carto.advancedmap.shared.packages.Package
+import com.carto.advancedmap.model.Package
 import com.carto.packagemanager.PackageStatus
 
 /**

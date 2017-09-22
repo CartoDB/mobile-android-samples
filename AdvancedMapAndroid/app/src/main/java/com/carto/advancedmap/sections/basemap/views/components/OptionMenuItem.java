@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.carto.advancedmap.shared.Colors;
+import com.carto.advancedmap.utils.Colors;
 import com.carto.advancedmap.sections.basemap.model.NameValuePair;
 import com.carto.advancedmap.sections.basemap.model.Section;
 import com.carto.advancedmap.sections.basemap.model.SectionType;

@@ -21,6 +21,6 @@ public class OfflineReverseGeocodingActivity extends ReverseGeocodingBaseActivit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new PackageManagerReverseGeocodingService(manager);
+        service = new PackageManagerReverseGeocodingService(contentView.manager);
     }
 }

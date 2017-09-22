@@ -1,4 +1,4 @@
-package com.carto.advancedmap.shared.packages;
+package com.carto.advancedmap.model;
 
 /**
  * Created by aareundo on 16/12/16.

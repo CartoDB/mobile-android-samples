@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.carto.advancedmap.main.MainActivity;
-import com.carto.advancedmap.shared.Colors;
+import com.carto.advancedmap.utils.Colors;
 
 /**
  * Created by aareundo on 20/09/16.

@@ -22,6 +22,6 @@ public class OfflineGeocodingActivity extends BaseGeocodingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new PackageManagerGeocodingService(manager);
+        service = new PackageManagerGeocodingService(contentView.manager);
     }
 }
