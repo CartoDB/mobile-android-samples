@@ -21,6 +21,10 @@ public class Package {
     public PackageInfo info;
     public PackageStatus status;
 
+    public Package() {
+
+    }
+
     public Package(String name, PackageInfo packageInfo, PackageStatus status) {
         this.name = name;
         this.id = (packageInfo != null ? packageInfo.getPackageId() : null);

@@ -19,12 +19,13 @@ public class BoundingBox
 
     public double maxLon;
 
-    public BoundingBox(double minLon, double minLat, double maxLon, double maxLat) {
+    public BoundingBox(double minLon, double maxLon, double minLat, double maxLat) {
         this.minLat = minLat;
         this.minLon = minLon;
         this.maxLat = maxLat;
         this.maxLon = maxLon;
     }
+
     public MapPos getCenter() {
         return new MapPos((maxLon + minLon) / 2, (maxLat + minLat) / 2);
     }

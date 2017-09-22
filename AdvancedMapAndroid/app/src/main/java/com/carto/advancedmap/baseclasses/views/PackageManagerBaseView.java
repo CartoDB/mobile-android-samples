@@ -9,6 +9,8 @@ import com.carto.advanced.kotlin.components.ProgressLabel;
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent;
 import com.carto.advanced.kotlin.sections.base.views.BaseView;
 import com.carto.advancedmap.R;
+import com.carto.advancedmap.model.Cities;
+import com.carto.advancedmap.model.City;
 import com.carto.advancedmap.model.Package;
 import com.carto.packagemanager.CartoPackageManager;
 import com.carto.packagemanager.PackageInfo;
@@ -86,7 +88,18 @@ public class PackageManagerBaseView extends MapBaseView {
     }
 
     private ArrayList<Package> getPackages() {
-        ArrayList<Package> pkgs = new ArrayList<>();
+
+        ArrayList<Package> list = new ArrayList<>();
+
+        if (currentFolder.equals(Package.CUSTOM_REGION_FOLDER_NAME + "/")) {
+            ArrayList<Package> custom = getCustomRegionPackages();
+            list.addAll(custom);
+            return list;
+        }
+
+        if (currentFolder.isEmpty()) {
+            list.add(getCustomRegionFolder());
+        }
 
         PackageInfoVector infoVector = manager.getServerPackages();
 
@@ -120,7 +133,7 @@ public class PackageManagerBaseView extends MapBaseView {
                 // Try n' find an existing package from the list.
                 ArrayList<Package> existingPackages = new ArrayList<>();
 
-                for (Package existingPackage : pkgs) {
+                for (Package existingPackage : list) {
                     if (existingPackage.name.equals(name)) {
                         existingPackages.add(existingPackage);
                     }
@@ -145,10 +158,10 @@ public class PackageManagerBaseView extends MapBaseView {
                 }
             }
 
-            pkgs.add(pkg);
+            list.add(pkg);
         }
 
-        return pkgs;
+        return list;
     }
 
     public String currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
@@ -231,5 +244,26 @@ public class PackageManagerBaseView extends MapBaseView {
         });
 
         thread.start();
+    }
+
+    Package getCustomRegionFolder() {
+        Package item = new Package();
+        item.name = Package.CUSTOM_REGION_FOLDER_NAME;
+        item.id = "NONE";
+        return item;
+    }
+
+    ArrayList<Package> getCustomRegionPackages() {
+        ArrayList<Package> packages = new ArrayList<>();
+
+        for (City city : Cities.LIST) {
+            Package item = new Package();
+            item.id = city.bbox.toString();
+            item.name = city.name;
+            item.status = manager.getLocalPackageStatus(item.id, -1);
+            packages.add(item);
+        }
+
+        return packages;
     }
 }
