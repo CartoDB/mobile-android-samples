@@ -9,7 +9,6 @@ import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
 import com.carto.advanced.kotlin.sections.offlinerouting.OfflineRoutingActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
-import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
 import com.carto.advanced.kotlin.sections.routesearch.RouteSearchActivity
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity
 import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity
@@ -21,13 +20,10 @@ class Samples {
 
     companion object {
         val list: MutableList<Sample> = mutableListOf(
-                Sample(R.drawable.icon_sample_styles, "STYLES",
+                Sample(R.drawable.icon_sample_styles, "BASEMAP STYLES",
                         "Various samples of different CARTO Base Maps", StyleChoiceActivity::class.java
                 ),
-                Sample(R.drawable.icon_sample_route_download, "ROUTE DOWNLOAD",
-                        "Route download via bounding box for offline use", RouteDownloadActivity::class.java
-                ),
-                Sample(R.drawable.icon_sample_route_search, "ROUTE SEARCH",
+                Sample(R.drawable.icon_sample_route_search, "SEARCH API",
                         "Search POIs along a route", RouteSearchActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_package_download, "OFFLINE MAP",

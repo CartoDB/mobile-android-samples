@@ -1,10 +1,8 @@
 package com.carto.advanced.kotlin.sections.routesearch
 
 import android.os.Bundle
-import com.carto.advanced.kotlin.sections.routedownload.VectorElementIgnoreListener
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
-import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.sections.vectorelement.VectorObjectClickListener
@@ -14,7 +12,6 @@ import com.carto.geometry.Geometry
 import com.carto.geometry.LineGeometry
 import com.carto.geometry.PointGeometry
 import com.carto.packagemanager.CartoPackageManager
-import com.carto.routing.CartoOnlineRoutingService
 import com.carto.routing.PackageManagerValhallaRoutingService
 import com.carto.routing.ValhallaOnlineRoutingService
 import com.carto.search.SearchRequest
