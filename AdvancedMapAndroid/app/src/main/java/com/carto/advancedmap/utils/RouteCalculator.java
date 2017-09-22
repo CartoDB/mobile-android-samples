@@ -30,6 +30,9 @@ import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
 
+import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_LEFT;
+import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_RIGHT;
+
 /**
  * Created by aareundo on 11/04/2017.
  */
@@ -116,10 +119,8 @@ public class RouteCalculator {
 
         AsyncTask<Void, Void, RoutingResult> task = new AsyncTask<Void, Void, RoutingResult>() {
 
-            long timeStart;
-
             protected RoutingResult doInBackground(Void... v) {
-                timeStart = System.currentTimeMillis();
+
                 RoutingResult result = getResult(startPos, stopPos);
 
                 return result;
@@ -134,8 +135,7 @@ public class RouteCalculator {
 
                 String routeText =
                         "The route is " + (int) (result.getTotalDistance() / 100) / 10f
-                                + "km (" + secondsToHours((int) result.getTotalTime())
-                                + ") calculation: " + (System.currentTimeMillis() - timeStart) + " ms";
+                                + "km (" + secondsToHours((int) result.getTotalTime()) + ")";
 
                 context.alert(routeText);
 
@@ -187,60 +187,15 @@ public class RouteCalculator {
     protected void createRoutePoint(MapPos pos, RoutingAction action, LocalVectorDataSource ds) {
 
         MarkerStyle style = instructionUp;
-        String str = "";
 
-        switch (action) {
-            case ROUTING_ACTION_HEAD_ON:
-                str = "head on";
-                break;
-            case ROUTING_ACTION_FINISH:
-                str = "finish";
-                break;
-            case ROUTING_ACTION_TURN_LEFT:
-                style = instructionLeft;
-                str = "turn left";
-                break;
-            case ROUTING_ACTION_TURN_RIGHT:
-                style = instructionRight;
-                str = "turn right";
-                break;
-            case ROUTING_ACTION_UTURN:
-                str = "u turn";
-                break;
-            case ROUTING_ACTION_NO_TURN:
-            case ROUTING_ACTION_GO_STRAIGHT:
-                // Do nothing
-                break;
-            case ROUTING_ACTION_REACH_VIA_LOCATION:
-                style = instructionUp;
-                str = "stopover";
-                break;
-            case ROUTING_ACTION_ENTER_AGAINST_ALLOWED_DIRECTION:
-                str = "enter against allowed direction";
-                break;
-            case ROUTING_ACTION_LEAVE_AGAINST_ALLOWED_DIRECTION:
-                break;
-            case ROUTING_ACTION_ENTER_ROUNDABOUT:
-                str = "enter roundabout";
-                break;
-            case ROUTING_ACTION_STAY_ON_ROUNDABOUT:
-                str = "stay on roundabout";
-                break;
-            case ROUTING_ACTION_LEAVE_ROUNDABOUT:
-                str = "leave roundabout";
-                break;
-            case ROUTING_ACTION_START_AT_END_OF_STREET:
-                str = "start at end of street";
-                break;
+        if (action == ROUTING_ACTION_TURN_LEFT) {
+            style = instructionLeft;
+        } else if (action == ROUTING_ACTION_TURN_RIGHT) {
+            style = instructionRight;
         }
 
-        if (!str.equals("")){
-            Marker marker = new Marker(pos, style);
-            BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.buildStyle(),
-                    str, "");
-            ds.add(popup2);
-            ds.add(marker);
-        }
+        Marker marker = new Marker(pos, style);
+        ds.add(marker);
     }
 
     protected Line createPolyline(RoutingResult result) {
