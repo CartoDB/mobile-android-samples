@@ -1,6 +1,8 @@
 package com.carto.advanced.kotlin.sections.vectorelement
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
@@ -17,6 +19,7 @@ import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.layers.VectorLayer
 import com.carto.styles.*
 import com.carto.utils.AssetUtils
+import com.carto.utils.BitmapUtils
 import com.carto.vectorelements.*
 
 /**
@@ -141,6 +144,27 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         point.setMetaDataElement(titleKey, Variant("Hi!"))
         point.setMetaDataElement(descriptionKey, Variant("I'm just a red dot lying on the ground"))
         source?.add(point)
+
+        /*
+         * Custom popup
+         */
+        val bitmap = Utils.resourceToBitmap(resources, R.drawable.marker)
+        val markerBuilder2 = MarkerStyleBuilder();
+        markerBuilder2.bitmap = bitmap
+        markerBuilder2.size = 30f
+
+        position = projection?.fromWgs84(MapPos(longitude - 0.01, latitude))
+        val popupMarker = Marker(position, markerBuilder2.buildStyle())
+        source?.add(popupMarker)
+
+        val popupStyleBuilder = PopupStyleBuilder()
+        popupStyleBuilder.setAttachAnchorPoint(0.5f, 0f)
+
+        val handler = MyCustomPopupHandler("custom popup")
+
+        val customPopup = CustomPopup(popupMarker, popupStyleBuilder.buildStyle(), handler)
+        customPopup.setAnchorPoint(-1f, 0f)
+        source?.add(customPopup)
 
         layoutSubviews()
     }
