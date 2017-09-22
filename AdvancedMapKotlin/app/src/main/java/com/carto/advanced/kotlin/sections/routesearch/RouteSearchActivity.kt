@@ -3,6 +3,7 @@ package com.carto.advanced.kotlin.sections.routesearch
 import android.os.Bundle
 import com.carto.advanced.kotlin.routing.Route
 import com.carto.advanced.kotlin.routing.Routing
+import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.sections.base.views.BaseGeocodingView
 import com.carto.advanced.kotlin.sections.vectorelement.VectorObjectClickListener
@@ -11,6 +12,8 @@ import com.carto.core.MapPos
 import com.carto.geometry.Geometry
 import com.carto.geometry.LineGeometry
 import com.carto.geometry.PointGeometry
+import com.carto.layers.CartoBaseMapStyle
+import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.routing.PackageManagerValhallaRoutingService
 import com.carto.routing.ValhallaOnlineRoutingService
@@ -20,7 +23,9 @@ import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
 import org.jetbrains.anko.doAsync
 
-class RouteSearchActivity : PackageDownloadBaseActivity() {
+class RouteSearchActivity : BaseActivity() {
+
+    var contentView: RouteSearchView? = null
 
     var routing: Routing? = null
     var objectListener: VectorObjectClickListener? = null
@@ -34,12 +39,9 @@ class RouteSearchActivity : PackageDownloadBaseActivity() {
         routing = Routing(this, contentView!!.map)
         routing?.showTurns = false
 
-        val source = Routing.ROUTING_TAG + Routing.OFFLINE_ROUTING_SOURCE
-        val folder = Utils.createDirectory(this, "routingpackages")
-        contentView?.manager = CartoPackageManager(source, folder)
-
         objectListener = VectorObjectClickListener((contentView as RouteSearchView).overlaySource)
-        setOnlineMode()
+
+        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY)
     }
 
     override fun onResume() {
@@ -78,6 +80,8 @@ class RouteSearchActivity : PackageDownloadBaseActivity() {
                 }
             }
         }
+
+        contentView?.topBanner?.alert("Long click on a location to add a starting point")
     }
 
     override fun onPause() {
@@ -87,14 +91,6 @@ class RouteSearchActivity : PackageDownloadBaseActivity() {
         (contentView as RouteSearchView).overlayLayer.vectorElementEventListener = null
 
         contentView?.map?.mapEventListener = null
-    }
-
-    override fun setOnlineMode() {
-        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY);
-    }
-
-    override fun setOfflineMode() {
-        routing?.service = PackageManagerValhallaRoutingService(contentView?.manager)
     }
 
     fun showRoute(start: MapPos, stop: MapPos) {

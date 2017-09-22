@@ -23,7 +23,7 @@ import com.carto.vectorelements.Point
 /**
  * Created by mark on 11/08/2017.
  */
-class RouteSearchView(context: Context) : PackageDownloadBaseView(context, false) {
+class RouteSearchView(context: Context) : MapBaseView(context) {
 
     var baseSource: TileDataSource? = null
     var baseLayer: VectorTileLayer? = null
@@ -40,7 +40,7 @@ class RouteSearchView(context: Context) : PackageDownloadBaseView(context, false
         layoutSubviews()
 
         baseLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON)
-        baseSource = baseLayer!!.dataSource;
+        baseSource = baseLayer!!.dataSource
         searchService = VectorTileSearchService(baseSource, baseLayer?.tileDecoder)
 
         map.layers.add(overlayLayer)
