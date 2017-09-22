@@ -2,8 +2,7 @@ package com.carto.advancedmap.sections.geocoding.online;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.main.ActivityData;
-import com.carto.advancedmap.sections.geocoding.base.BaseGeocodingActivity;
+import com.carto.advancedmap.sections.geocoding.base.GeocodingBaseActivity;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.geocoding.PeliasOnlineGeocodingService;
 
@@ -11,7 +10,7 @@ import com.carto.geocoding.PeliasOnlineGeocodingService;
  * Created by aareundo on 21/08/2017.
  */
 
-public class OnlineGeocodingActivity extends BaseGeocodingActivity {
+public class OnlineGeocodingActivity extends GeocodingBaseActivity {
 
     @Override
     public String getFailMessage() {

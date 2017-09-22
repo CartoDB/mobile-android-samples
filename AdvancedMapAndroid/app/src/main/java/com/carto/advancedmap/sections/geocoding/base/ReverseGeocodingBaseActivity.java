@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by aareundo on 21/08/2017.
  */
 
-public class ReverseGeocodingBaseActivity extends GeocodingBaseActivity {
+public class ReverseGeocodingBaseActivity extends BaseGeocodingActivity {
 
     protected ReverseGeocodingService service;
 

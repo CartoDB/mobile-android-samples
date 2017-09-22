@@ -1,261 +1,147 @@
 package com.carto.advancedmap.sections.geocoding.base;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.carto.advancedmap.sections.geocoding.GeocodingUtils;
-import com.carto.advancedmap.sections.geocoding.adapter.GeocodingResultAdapter;
-import com.carto.advancedmap.utils.Colors;
-import com.carto.geocoding.GeocodingRequest;
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
+import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
+import com.carto.advancedmap.utils.Sources;
+import com.carto.core.MapPos;
+import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geocoding.GeocodingResult;
-import com.carto.geocoding.GeocodingResultVector;
-import com.carto.geocoding.GeocodingService;
-import com.carto.geocoding.PackageManagerGeocodingService;
-import com.carto.geocoding.PeliasOnlineGeocodingService;
-import com.carto.ui.MapClickInfo;
-import com.carto.ui.MapEventListener;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.carto.geometry.FeatureCollection;
+import com.carto.geometry.Geometry;
+import com.carto.geometry.LineGeometry;
+import com.carto.geometry.MultiGeometry;
+import com.carto.geometry.PointGeometry;
+import com.carto.geometry.PolygonGeometry;
+import com.carto.graphics.Color;
+import com.carto.layers.CartoOnlineVectorTileLayer;
+import com.carto.layers.VectorLayer;
+import com.carto.styles.AnimationStyleBuilder;
+import com.carto.styles.AnimationType;
+import com.carto.styles.BalloonPopupMargins;
+import com.carto.styles.BalloonPopupStyleBuilder;
+import com.carto.styles.GeometryCollectionStyleBuilder;
+import com.carto.styles.LineStyleBuilder;
+import com.carto.styles.PointStyleBuilder;
+import com.carto.styles.PolygonStyleBuilder;
+import com.carto.vectorelements.BalloonPopup;
+import com.carto.vectorelements.GeometryCollection;
+import com.carto.vectorelements.Line;
+import com.carto.vectorelements.Point;
+import com.carto.vectorelements.Polygon;
 
 /**
- * Base class for non-reverse (type address) geocoding
+ * Base class for all geocoding - both reverse and regular
  */
-public class BaseGeocodingActivity extends GeocodingBaseActivity {
+public class BaseGeocodingActivity extends PackageManagerBaseActivity {
 
-    EditText inputField;
-    ListView resultTable;
-    GeocodingResultAdapter adapter;
+    public String getFailMessage() {
+        // Should be overridden in child class
+        throw new UnsupportedOperationException();
+    }
 
-    protected GeocodingService service;
+    @Override
+    public String getFolderName() {
+        return "com.carto.geocodingpackages";
+    }
+
+    @Override
+    public String getSource() {
+        return Sources.GEOCODING_TAG + Sources.OFFLINE_GEOCODING;
+    }
+
+    LocalVectorDataSource geocodingSource;
+    VectorLayer geocodingLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        contentView = new PackageManagerBaseView(this);
+        setContentView(contentView);
+
         super.onCreate(savedInstanceState);
 
-        inputField = new EditText(this);
-        inputField.setTextColor(Color.WHITE);
-        inputField.setBackgroundColor(Colors.DARK_TRANSPARENT_GRAY);
-        inputField.setHint("Type address...");
-        inputField.setHintTextColor(Color.LTGRAY);
-        inputField.setSingleLine();
-        inputField.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(BaseMapsView.DEFAULT_STYLE);
+        contentView.mapView.getLayers().add(baseLayer);
 
-        int totalWidth = getResources().getDisplayMetrics().widthPixels;
-        int padding = (int)(5 * getResources().getDisplayMetrics().density);
-
-        int width = totalWidth - 2 * padding;
-        int height = (int)(45 * getResources().getDisplayMetrics().density);
-
-        RelativeLayout.LayoutParams parameters = new RelativeLayout.LayoutParams(width, height);
-        parameters.setMargins(padding, padding, 0, 0);
-        addContentView(inputField, parameters);
-
-        resultTable = new ListView(this);
-        resultTable.setBackgroundColor(Colors.LIGHT_TRANSPARENT_GRAY);
-
-        height = (int)(200 * getResources().getDisplayMetrics().density);
-
-        parameters = new RelativeLayout.LayoutParams(width, height);
-        parameters.setMargins(padding, 2 * padding + inputField.getLayoutParams().height, 0, 0);
-
-        addContentView(resultTable, parameters);
-
-        adapter = new GeocodingResultAdapter(this);
-        adapter.width = width;
-        resultTable.setAdapter(adapter);
-
-        hideTable();
+        geocodingSource = new LocalVectorDataSource(contentView.projection);
+        geocodingLayer = new VectorLayer(geocodingSource);
+        contentView.mapView.getLayers().add(geocodingLayer);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        contentView.mapView.setMapEventListener(new MapEventListener(){
-            @Override
-            public void onMapClicked(MapClickInfo mapClickInfo) {
-                BaseGeocodingActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        closeKeyboard();
-                        hideTable();
-                    }
-                });
-            }
-        });
-
-        inputField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-            @Override
-
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                String text = charSequence.toString();
-
-                if (text.isEmpty()) {
-                    return;
-                }
-
-                showTable();
-                text = inputField.getText().toString();
-                boolean autocomplete = true;
-
-                geocode(text, autocomplete);
-            }
-        });
-
-        inputField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_DONE) {
-                    onEditingEnded(true);
-                }
-                return false;
-            }
-        });
-
-        resultTable.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                GeocodingResult result = adapter.items.get(i);
-                showResult(result);
-                onEditingEnded(false);
-            }
-        });
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        contentView.mapView.setMapEventListener(null);
-        inputField.addTextChangedListener(null);
-        inputField.setOnEditorActionListener(null);
-        resultTable.setOnItemClickListener(null);
     }
 
-    public void showResult(GeocodingResult result) {
-        String title = "";
-        String description = GeocodingUtils.getPrettyAddress(result.getAddress());
-        boolean goToPosition = true;
+    public void showResult(GeocodingResult result, String title, String description, boolean goToPosition) {
 
-        showResult(result, title, description, goToPosition);
-    }
+        geocodingSource.clear();
 
-    public void onEditingEnded(boolean geocode) {
-        closeKeyboard();
-        hideTable();
+        AnimationStyleBuilder animationBuilder = new AnimationStyleBuilder();
+        animationBuilder.setRelativeSpeed(2.0f);
+        animationBuilder.setFadeAnimationType(AnimationType.ANIMATION_TYPE_SMOOTHSTEP);
 
-        if (geocode) {
-            String text = inputField.getText().toString();
-            boolean autocomplete = false;
-            geocode(text, autocomplete);
-        }
+        BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
+        builder.setLeftMargins(new BalloonPopupMargins(0, 0, 0, 0));
+        builder.setRightMargins(new BalloonPopupMargins(6, 3, 6, 3));
+        builder.setCornerRadius(5);
+        builder.setAnimationStyle(animationBuilder.buildStyle());
+        // Make sure this label is shown on top of all other labels
+        builder.setPlacementPriority(10);
 
-        clearInput();
-    }
+        FeatureCollection collection = result.getFeatureCollection();
+        int count = collection.getFeatureCount();
 
-    int searchQueueSize = 0;
-    List<GeocodingResult> addresses = new ArrayList<>();
-    GeocodingResultVector results;
+        MapPos position = null;
+        Geometry geometry;
 
-    public void geocode(final String text, final boolean autocomplete) {
+        Color color = new Color((short)0, (short)100,(short)200, (short)150);
 
-        searchQueueSize += 1;
+        for (int i = 0; i < count; i++) {
+            geometry = collection.getFeature(i).getGeometry();
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (searchQueueSize - 1 > 0) {
-                    return;
-                }
+            PointStyleBuilder pointBuilder = new PointStyleBuilder();
+            pointBuilder.setColor(color);
 
-                searchQueueSize -= 1;
+            LineStyleBuilder lineBuilder = new LineStyleBuilder();
+            lineBuilder.setColor(color);
 
-                GeocodingRequest request = new GeocodingRequest(contentView.projection, text);
+            PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
+            polygonBuilder.setColor(color);
 
-                if (service instanceof PackageManagerGeocodingService) {
-                    ((PackageManagerGeocodingService)service).setAutocomplete(autocomplete);
-                } else {
-                    ((PeliasOnlineGeocodingService)service).setAutocomplete(autocomplete);
-                }
+            if (geometry instanceof PointGeometry) {
+                geocodingSource.add(new Point((PointGeometry)geometry, pointBuilder.buildStyle()));
+            } else if (geometry instanceof LineGeometry) {
+                geocodingSource.add(new Line((LineGeometry)geometry, lineBuilder.buildStyle()));
+            }  else if (geometry instanceof PolygonGeometry) {
+                geocodingSource.add(new Polygon((PolygonGeometry)geometry, polygonBuilder.buildStyle()));
+            } else if (geometry instanceof MultiGeometry) {
 
-                try {
-                    results = service.calculateAddresses(request);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
+                GeometryCollectionStyleBuilder collectionBuilder = new GeometryCollectionStyleBuilder();
+                collectionBuilder.setPointStyle(pointBuilder.buildStyle());
+                collectionBuilder.setLineStyle(lineBuilder.buildStyle());
+                collectionBuilder.setPolygonStyle(polygonBuilder.buildStyle());
 
-                final int count = (int)results.size();
-                final GeocodingResultVector finalResults = results;
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // In autocomplete mode just fill the autocomplete address list and reload tableview
-                        // In full geocode mode, show the result
-                        if (autocomplete) {
-                            addresses.clear();
-
-                            for (int i = 0; i < count; i++) {
-                                GeocodingResult result = results.get(i);
-                                addresses.add(result);
-                            }
-
-                            updateList();
-
-                        } else if (count > 0) {
-                            showResult(results.get(0));
-                        }
-                    }
-                });
+                geocodingSource.add(new GeometryCollection((MultiGeometry)geometry, collectionBuilder.buildStyle()));
             }
-        });
 
-        thread.start();
-    }
-
-    public void updateList() {
-        adapter.items = addresses;
-        adapter.notifyDataSetChanged();
-    }
-
-    public void closeKeyboard() {
-        View view = getCurrentFocus();
-
-        if (view != null) {
-            Object service = getSystemService(INPUT_METHOD_SERVICE);
-            InputMethodManager manager = (InputMethodManager)service;
-            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            position = geometry.getCenterPos();
         }
-    }
 
-    public void showTable() {
-        resultTable.setVisibility(View.VISIBLE);
-    }
+        if (goToPosition) {
+            contentView.mapView.setFocusPos(position, 1.0f);
+            contentView.mapView.setZoom(17.0f, 1.0f);
+        }
 
-    public void hideTable() {
-        resultTable.setVisibility(View.INVISIBLE);
-    }
-
-    public void clearInput() {
-        inputField.setText("");
+        BalloonPopup popup = new BalloonPopup(position, builder.buildStyle(), title, description);
+        geocodingSource.add(popup);
     }
 }
