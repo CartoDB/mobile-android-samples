@@ -3,8 +3,8 @@ package com.carto.advancedmap.sections.basemap;
 import android.content.Context;
 
 import com.carto.advanced.kotlin.components.PopupButton;
+import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguagePopupContent;
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent;
-import com.carto.advanced.kotlin.sections.base.views.BaseView;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseclasses.views.MapBaseView;
 import com.carto.advancedmap.utils.Sources;
@@ -35,8 +35,10 @@ public class BaseMapsView extends MapBaseView
     public static final CartoBaseMapStyle DEFAULT_STYLE = CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER;
 
     public PopupButton styleButton;
+    public PopupButton languageButton;
 
     public StylePopupContent styleContent;
+    public LanguagePopupContent languageContent;
 
     public BaseMapsView(Context context)
     {
@@ -45,30 +47,23 @@ public class BaseMapsView extends MapBaseView
         styleButton = new PopupButton(context, R.drawable.icon_basemap);
         addButton(styleButton);
 
+        languageButton = new PopupButton(context, R.drawable.icon_language);
+        addButton(languageButton);
+
         styleContent = new StylePopupContent(context);
+        languageContent = new LanguagePopupContent(context);
 
         setMainViewFrame();
     }
 
+    public void setLanguageContent() {
+        popup.getPopup().getHeader().setText("SELECT A LANGUAGE");
+        setContent(languageContent);
+    }
 
     public void setBasemapContent() {
         popup.getPopup().getHeader().setText("SELECT A BASEMAP");
         setContent(styleContent);
-    }
-
-    public void setContent(BaseView content) {
-        int x = 0;
-        int y = popup.getPopup().getHeader().getFrame().getHeight();
-        int w = popup.getPopup().getFrame().getWidth();
-        int h = popup.getPopup().getFrame().getHeight() - y;
-
-        if (content.getParent() == null) {
-            popup.getPopup().addView(content);
-        } else {
-            popup.getPopup().bringChildToFront(content);
-        }
-
-        content.setFrame(x, y, w, h);
     }
 
     String currentOSM;
@@ -92,10 +87,6 @@ public class BaseMapsView extends MapBaseView
             } else {
                 currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);
             }
-
-            resetLanguage();
-
-            // TODO contentView.menu.setLanguageMenuEnabled(true);
 
         } else if (source.equals(StylePopupContent.getMapzenSource())) {
 
@@ -137,9 +128,6 @@ public class BaseMapsView extends MapBaseView
 
             TileDataSource ds = new HTTPTileDataSource(1, 19, url);
             currentLayer = new RasterTileLayer(ds);
-
-            // Language choice not enabled in raster tiles
-            // TODO contentView.menu.setLanguageMenuEnabled(false);
         }
 
         if (currentOSM.equals(Sources.CARTO_VECTOR)) {
@@ -149,16 +137,16 @@ public class BaseMapsView extends MapBaseView
             decoder.setStyleParameter("texts3d", "1");
         }
 
+        if (currentSelection.equals(StylePopupContent.getCartoRasterSource())) {
+            languageButton.disable();
+        } else {
+            languageButton.enable();
+        }
+
         mapView.getLayers().clear();
         mapView.getLayers().add(currentLayer);
 
         currentListener = initializeVectorTileListener();
-    }
-
-    void resetLanguage() {
-
-        // TODO contentView.menu.setInitialItem(Sections.getLanguage());
-        // updateLanguage(Sections.getBaseLanguageCode());
     }
 
     void updateLanguage(String code) {

@@ -76,6 +76,7 @@ public class MapBaseView extends BaseView {
 
         for (PopupButton button : buttons) {
             button.setFrame(x, y, w, h);
+            x += w + innerPadding;
         }
 
         x = 0;
@@ -96,4 +97,25 @@ public class MapBaseView extends BaseView {
         buttons.add(button);
         addView(button);
     }
+
+
+    BaseView previous;
+
+    public void setContent(BaseView content) {
+
+        if (previous != null) {
+            popup.getPopup().removeView(previous);
+        }
+
+        int x = 0;
+        int y = popup.getPopup().getHeader().getFrame().getHeight();
+        int w = popup.getPopup().getFrame().getWidth();
+        int h = popup.getPopup().getFrame().getHeight() - y;
+
+        content.setFrame(x, y, w, h);
+
+        popup.getPopup().addView(content);
+        previous = content;
+    }
+
 }

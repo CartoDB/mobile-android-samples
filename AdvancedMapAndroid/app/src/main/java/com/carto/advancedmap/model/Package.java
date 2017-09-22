@@ -35,7 +35,6 @@ public class Package {
         }
     }
 
-
     public boolean isCustomRegionFolder() {
         return name.equals(Package.CUSTOM_REGION_FOLDER_NAME);
     }
