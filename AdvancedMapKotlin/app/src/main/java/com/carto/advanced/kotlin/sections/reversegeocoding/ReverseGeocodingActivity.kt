@@ -85,6 +85,12 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
         if (contentView?.hasLocalPackages()!!) {
             contentView?.showLocalPackages()
         }
+
+        if (contentView!!.hasLocalPackages()) {
+            contentView?.topBanner?.alert("Click on a location to find out more about")
+        } else {
+            contentView?.topBanner?.alert("Click the globe icon to download a geocoding package")
+        }
     }
 
     override fun onPause() {

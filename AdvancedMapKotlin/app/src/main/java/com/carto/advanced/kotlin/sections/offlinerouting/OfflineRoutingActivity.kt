@@ -74,6 +74,12 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
                 }
             }
         }
+
+        if (contentView!!.hasLocalPackages()) {
+            contentView?.topBanner?.alert("Long click on a location to add a starting point")
+        } else {
+            contentView?.topBanner?.alert("Click the globe icon to download a routing package")
+        }
     }
 
     override fun onPause() {
