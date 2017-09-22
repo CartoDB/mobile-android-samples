@@ -4,8 +4,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
@@ -19,7 +18,6 @@ import com.carto.geometry.PolygonGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.VectorLayer;
-import com.carto.packagemanager.CartoPackageManager;
 import com.carto.styles.AnimationStyleBuilder;
 import com.carto.styles.AnimationType;
 import com.carto.styles.BalloonPopupMargins;

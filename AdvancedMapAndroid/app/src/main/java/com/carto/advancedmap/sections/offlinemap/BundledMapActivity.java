@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapPos;
 import com.carto.datasources.MBTilesTileDataSource;
 import com.carto.datasources.TileDataSource;
-import com.carto.layers.VectorLayer;
 import com.carto.layers.VectorTileLayer;
 import com.carto.vectortiles.MBVectorTileDecoder;
 

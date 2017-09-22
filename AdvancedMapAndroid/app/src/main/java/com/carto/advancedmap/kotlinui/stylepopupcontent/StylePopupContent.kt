@@ -11,20 +11,20 @@ import com.carto.advancedmap.R
 class StylePopupContent(context: Context) : BaseView(context) {
 
     companion object {
-        val CartoVectorSource = "carto.streets"
-        val MapzenSource = "mapzen.osm"
-        val CartoRasterSource = "carto.osm"
+        @JvmStatic val CartoVectorSource = "carto.streets"
+        @JvmStatic val MapzenSource = "mapzen.osm"
+        @JvmStatic val CartoRasterSource = "carto.osm"
 
-        val Bright = "BRIGHT"
-        val Gray = "GRAY"
-        val Dark = "DARK"
+        @JvmStatic val Bright = "BRIGHT"
+        @JvmStatic val Gray = "GRAY"
+        @JvmStatic val Dark = "DARK"
 
-        val Positron = "POSITRON"
-        val DarkMatter = "DARKMATTER"
-        val Voyager = "VOYAGER"
+        @JvmStatic val Positron = "POSITRON"
+        @JvmStatic val DarkMatter = "DARKMATTER"
+        @JvmStatic val Voyager = "VOYAGER"
 
-        val PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
-        val DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+        @JvmStatic val PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+        @JvmStatic val DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
     }
 
     val container = BaseScrollView(context)

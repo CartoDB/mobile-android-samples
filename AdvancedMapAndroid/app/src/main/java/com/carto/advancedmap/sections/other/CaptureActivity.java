@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;

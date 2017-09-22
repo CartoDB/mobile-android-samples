@@ -1,42 +1,19 @@
 package com.carto.advancedmap.sections.basemap;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 
-import com.carto.advancedmap.baseclasses.activities.BaseActivity;
-import com.carto.advancedmap.main.ActivityData;
-import com.carto.advancedmap.main.MainActivity;
-import com.carto.advancedmap.sections.basemap.model.Section;
-import com.carto.advancedmap.sections.basemap.model.SectionType;
-import com.carto.advancedmap.sections.basemap.model.Sections;
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.utils.Sources;
-import com.carto.core.BinaryData;
+import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent;
+import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection;
+import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapPos;
-import com.carto.datasources.CartoOnlineTileDataSource;
-import com.carto.datasources.HTTPTileDataSource;
-import com.carto.datasources.LocalVectorDataSource;
-import com.carto.datasources.TileDataSource;
-import com.carto.layers.CartoBaseMapStyle;
-import com.carto.layers.CartoOnlineVectorTileLayer;
-import com.carto.layers.Layer;
-import com.carto.layers.RasterTileLayer;
-import com.carto.layers.TileLayer;
-import com.carto.layers.VectorLayer;
-import com.carto.layers.VectorTileLayer;
-import com.carto.projections.Projection;
-import com.carto.styles.CompiledStyleSet;
-import com.carto.utils.AssetUtils;
-import com.carto.utils.ZippedAssetPackage;
-import com.carto.vectortiles.MBVectorTileDecoder;
 
 /**
  * Created by aareundo on 08/11/16.
  */
 
-public class BaseMapActivity extends BaseActivity {
-
-    BaseMapsView contentView;
+public class BaseMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,168 +22,64 @@ public class BaseMapActivity extends BaseActivity {
         contentView = new BaseMapsView(this);
         setContentView(contentView);
 
-        setTitle("Base maps");
-
         // Zoom to Central Europe so some texts would be visible
-        MapPos europe = contentView.mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(15.2551, 54.5260));
+        MapPos europe = contentView.projection.fromWgs84(new MapPos(15.2551, 54.5260));
         contentView.mapView.setFocusPos(europe, 0);
         contentView.mapView.setZoom(5, 0);
 
-        alert("Click the menu to choose between different styles and languages");
-
-        contentView.menu.setItems(Sections.getList());
-
-        // Set initial style
-        contentView.menu.setInitialItem(Sections.getDefault());
-        contentView.menu.setInitialItem(Sections.getLanguage());
-
-        updateBaseLayer(Sections.getDefault(), Sections.getBaseStyleValue());
-        updateLanguage(Sections.getBaseLanguageCode());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        String title = getIntent().getStringExtra(MainActivity.TITLE);
-        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
-
-        setTitle(title);
-        getActionBar().setSubtitle(description);
+        ((BaseMapsView)contentView).styleContent.highlightDefault();
+        ((BaseMapsView)contentView).updateBaseLayer(
+                StylePopupContent.getVoyager(),
+                StylePopupContent.getCartoVectorSource()
+        );
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
 
-        if (currentListener != null) {
-            currentListener = null;
+
+        ((BaseMapsView)contentView).styleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((BaseMapsView)contentView).setBasemapContent();
+                contentView.popup.show();
+            }
+        });
+
+        final StylePopupContent content = ((BaseMapsView)contentView).styleContent;
+        for (final StylePopupContentSection section : content.getItems()) {
+            for (final StylePopupContentSectionItem item : section.getList()) {
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (content.getPrevious() != null) {
+                            content.getPrevious().normalize();
+                        }
+
+                        item.highlight();
+                        content.setPrevious(item);
+
+                        contentView.popup.hide(200);
+                        String text = (String) item.getLabel().getText();
+                        ((BaseMapsView)contentView).updateBaseLayer(text, section.getSource());
+                    }
+                });
+            }
         }
-
-        contentView = null;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    protected void onPause() {
+        super.onPause();
 
-        if (item.getItemId() == android.R.id.home) {
-            if (contentView.menu.isVisible()) {
-                contentView.menu.hide();
-            } else {
-                onBackPressed();
+        ((BaseMapsView)contentView).styleButton.setOnClickListener(null);
+
+        final StylePopupContent content = ((BaseMapsView)contentView).styleContent;
+        for (final StylePopupContentSection section : content.getItems()) {
+            for (final StylePopupContentSectionItem item : section.getList()) {
+                item.setOnClickListener(null);
             }
-            return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
-
-    String currentOSM;
-    String currentSelection;
-    TileLayer currentLayer;
-
-    VectorTileListener currentListener;
-
-    public void updateBaseLayer(Section section, String selection)
-    {
-        if (section.getType() != SectionType.LANGUAGE) {
-            currentOSM = section.getOSM().getValue();
-            currentSelection = selection;
-        }
-
-        if (section.getType() == SectionType.VECTOR) {
-
-            if (currentOSM.equals(Sources.CARTO_VECTOR)) {
-                // Carto styles are bundled with the SDK, we can initialize them via constuctor
-                if (currentSelection.equals("voyager")) {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
-                } else if (currentSelection.equals("positron")) {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
-                } else {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);
-                }
-            } else if (currentOSM.equals(Sources.MAPZEN)) {
-                // Mapzen styles are all bundled in one .zip file.
-                // Selection contains both the style name and file name (cf. Sections.cs in Shared)
-                String fileName = currentSelection.split(":")[0];
-                String styleName = currentSelection.split(":")[1];
-
-                // Create a style set from the file and style
-                BinaryData styleAsset = AssetUtils.loadAsset(fileName + ".zip");
-                ZippedAssetPackage assetPackage = new ZippedAssetPackage(styleAsset);
-                CompiledStyleSet styleSet = new CompiledStyleSet(assetPackage, styleName);
-
-                // Create datasource and style decoder
-                CartoOnlineTileDataSource source = new CartoOnlineTileDataSource(currentOSM);
-                MBVectorTileDecoder decoder = new MBVectorTileDecoder(styleSet);
-
-                currentLayer = new VectorTileLayer(source, decoder);
-            }
-
-            resetLanguage();
-            contentView.menu.setLanguageMenuEnabled(true);
-
-        } else if (section.getType() == SectionType.RASTER) {
-            // We know that the value of raster will be Positron or Darkmatter,
-
-            // Additionally, raster tiles do not support language choice
-            String url = currentSelection;
-
-            TileDataSource source = new HTTPTileDataSource(1, 19, url);
-            currentLayer = new RasterTileLayer(source);
-
-            // Language choice not enabled in raster tiles
-            contentView.menu.setLanguageMenuEnabled(false);
-
-        } else if (section.getType() == SectionType.LANGUAGE) {
-            if (currentLayer instanceof RasterTileLayer) {
-                // Raster tile language choice is not supported
-                return;
-            }
-
-            updateLanguage(selection);
-        }
-
-        if (currentOSM == Sources.CARTO_VECTOR) {
-            // 3D texts on by default
-            MBVectorTileDecoder decoder = (MBVectorTileDecoder)((CartoOnlineVectorTileLayer)currentLayer).getTileDecoder();
-            decoder.setStyleParameter("texts3d", "1");
-        }
-
-        contentView.mapView.getLayers().clear();
-        contentView.mapView.getLayers().add(currentLayer);
-
-        contentView.menu.hide();
-
-        currentListener = initializeVectorTileListener();
-    }
-
-    void resetLanguage() {
-
-        contentView.menu.setInitialItem(Sections.getLanguage());
-        updateLanguage(Sections.getBaseLanguageCode());
-    }
-
-    void updateLanguage(String code) {
-        if (currentLayer == null) {
-            return;
-        }
-
-        MBVectorTileDecoder decoder = (MBVectorTileDecoder)((VectorTileLayer)currentLayer).getTileDecoder();
-        decoder.setStyleParameter("lang", code);
-    }
-
-    VectorTileListener initializeVectorTileListener() {
-
-        Projection projection = contentView.mapView.getOptions().getBaseProjection();
-        LocalVectorDataSource source = new LocalVectorDataSource(projection);
-
-        VectorLayer vectorLayer = new VectorLayer(source);
-        contentView.mapView.getLayers().add(vectorLayer);
-
-        Layer layer = contentView.mapView.getLayers().get(0);
-
-        VectorTileListener listener = new VectorTileListener(vectorLayer);
-
-        if (layer instanceof VectorTileLayer) {
-            ((VectorTileLayer)layer).setVectorTileEventListener(listener);
-        }
-
-        return listener;
     }
 }

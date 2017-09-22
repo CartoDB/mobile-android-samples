@@ -14,7 +14,7 @@ import android.text.TextPaint;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
