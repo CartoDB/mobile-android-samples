@@ -16,6 +16,7 @@ import com.carto.packagemanager.PackageStatus;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by aareundo on 21/08/2017.
@@ -33,7 +34,7 @@ public class PackageManagerBaseActivity extends BaseActivity {
         throw new UnsupportedOperationException();
     }
 
-    protected PackageManagerBaseView contentView;
+    public PackageManagerBaseView contentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

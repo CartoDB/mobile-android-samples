@@ -2,9 +2,12 @@ package com.carto.advancedmap.sections.routing;
 
 import android.os.Bundle;
 
+import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
 import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.utils.RouteCalculator;
+import com.carto.advancedmap.utils.Sources;
+import com.carto.layers.CartoBaseMapStyle;
 import com.carto.routing.RoutingService;
 
 /**
@@ -18,10 +21,24 @@ public class BaseRoutingActivity extends PackageManagerBaseActivity {
     protected RoutingService service;
 
     @Override
+    public String getFolderName() {
+        return "com.carto.routingpackages";
+    }
+
+    @Override
+    public String getSource() {
+        return Sources.ROUTING_TAG + Sources.OFFLINE_ROUTING;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        contentView = new PackageManagerBaseView(this);
+        setContentView(contentView);
+
         super.onCreate(savedInstanceState);
 
-        contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
     }
 
     protected void setService(RoutingService service) {

@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseclasses.activities.BaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.sections.routing.RouteMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
@@ -129,15 +131,15 @@ public class RouteCalculator {
             protected void onPostExecute(RoutingResult result) {
 
                 if (result == null) {
-                    context.alert("Routing failed");
+                    alert("Routing failed");
                     return;
                 }
 
-                String routeText =
-                        "The route is " + (int) (result.getTotalDistance() / 100) / 10f
-                                + "km (" + secondsToHours((int) result.getTotalTime()) + ")";
+                float distance = (int)(result.getTotalDistance() / 100) / 10f;
+                String time = secondsToHours((int) result.getTotalTime());
+                String text = "Your route is " + distance + "km (" + time + ")";
 
-                context.alert(routeText);
+                alert(text);
 
                 routeDataSource.clear();
 
@@ -166,6 +168,15 @@ public class RouteCalculator {
         };
 
         task.execute();
+    }
+
+    void alert(String text) {
+
+        if (MapBaseActivity.class.isAssignableFrom(context.getClass())) {
+            ((MapBaseActivity)context).contentView.banner.alert(text);
+        } else if(PackageManagerBaseActivity.class.isAssignableFrom(context.getClass())) {
+            ((PackageManagerBaseActivity)context).contentView.banner.alert(text);
+        }
     }
 
     public RoutingResult getResult(MapPos start, MapPos stop) {

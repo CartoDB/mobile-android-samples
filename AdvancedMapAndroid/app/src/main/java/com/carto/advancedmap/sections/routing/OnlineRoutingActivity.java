@@ -18,5 +18,7 @@ public class OnlineRoutingActivity extends BaseRoutingActivity {
 
         ValhallaOnlineRoutingService service = new ValhallaOnlineRoutingService(Sources.API_KEY);
         setService(service);
+
+        contentView.removeButton(contentView.downloadButton);
     }
 }

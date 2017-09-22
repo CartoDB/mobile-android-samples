@@ -23,5 +23,7 @@ public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity
         super.onCreate(savedInstanceState);
 
         service = new PeliasOnlineReverseGeocodingService(Sources.API_KEY);
+
+        contentView.removeButton(contentView.downloadButton);
     }
 }

@@ -17,7 +17,7 @@ import com.carto.ui.MapView;
  */
 public class MapBaseActivity extends BaseActivity {
 
-    protected MapBaseView contentView;
+    public MapBaseView contentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

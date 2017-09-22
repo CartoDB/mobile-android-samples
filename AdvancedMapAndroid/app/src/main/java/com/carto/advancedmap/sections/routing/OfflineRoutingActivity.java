@@ -15,24 +15,9 @@ import com.carto.routing.PackageManagerValhallaRoutingService;
 public class OfflineRoutingActivity extends BaseRoutingActivity {
 
     @Override
-    public String getFolderName() {
-        return "com.carto.routingpackages";
-    }
-
-    @Override
-    public String getSource() {
-        return Sources.ROUTING_TAG + Sources.OFFLINE_ROUTING;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        contentView = new PackageManagerBaseView(this);
-        setContentView(contentView);
-
         super.onCreate(savedInstanceState);
-
-        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
 
         PackageManagerValhallaRoutingService service =
                 new PackageManagerValhallaRoutingService(contentView.manager);

@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.components
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.view.Gravity
@@ -9,6 +10,8 @@ import com.carto.advanced.kotlin.sections.base.views.BaseView
 import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advancedmap.R
+import java.util.*
+import kotlin.concurrent.schedule
 
 /**
  * Created by aareundo on 27/07/2017.
@@ -80,5 +83,18 @@ class Banner(context: Context) : BaseView(context) {
         rightImage = image
         addView(rightImage)
         layoutSubviews()
+    }
+
+    fun alert(text: String) {
+        setText(text)
+
+        val timer = Timer()
+        timer.schedule(4000) {
+            if (context is Activity) {
+                (context as Activity).runOnUiThread {
+                    hide()
+                }
+            }
+        }
     }
 }

@@ -23,5 +23,7 @@ public class OnlineGeocodingActivity extends BaseGeocodingActivity {
         super.onCreate(savedInstanceState);
 
         service = new PeliasOnlineGeocodingService(Sources.API_KEY);
+
+        contentView.removeButton(contentView.downloadButton);
     }
 }

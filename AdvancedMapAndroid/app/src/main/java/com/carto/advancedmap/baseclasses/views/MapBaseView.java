@@ -98,6 +98,10 @@ public class MapBaseView extends BaseView {
         addView(button);
     }
 
+    public void removeButton(PopupButton button) {
+        buttons.remove(button);
+        removeView(button);
+    }
 
     BaseView previous;
 
