@@ -1,14 +1,13 @@
 package com.carto.cartomap.sections;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ZoomControls;
 
 import com.carto.cartomap.R;
+import com.carto.cartomap.main.MainActivity;
+import com.carto.cartomap.util.Colors;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.projections.Projection;
@@ -17,9 +16,7 @@ import com.carto.ui.MapView;
 /**
  * Base activity for map samples. Includes simple lifecycle management
  */
-public class BaseMapActivity extends Activity {
-
-    public static int BACKGROUND_COLOR = Color.argb(255, 215, 82, 75);
+public class MapBaseActivity extends AppCompatActivity {
 
     protected MapView mapView;
     protected Projection baseProjection;
@@ -28,8 +25,8 @@ public class BaseMapActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ColorDrawable background = new ColorDrawable(BACKGROUND_COLOR);
-        getActionBar().setBackgroundDrawable(background);
+        ColorDrawable background = new ColorDrawable(Colors.LOCATION_RED);
+        getSupportActionBar().setBackgroundDrawable(background);
 
         // Create map view
         setContentView(R.layout.activity_main);
@@ -37,13 +34,13 @@ public class BaseMapActivity extends Activity {
 
         baseProjection = mapView.getOptions().getBaseProjection();
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String title = getIntent().getStringExtra("title");
-        String description = getIntent().getStringExtra("description");
+        String title = getIntent().getStringExtra(MainActivity.TITLE);
+        String description = getIntent().getStringExtra(MainActivity.DESCRIPTION);
 
-        setTitle(title);
-        getActionBar().setSubtitle(description);
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setSubtitle(description);
     }
 
     @Override

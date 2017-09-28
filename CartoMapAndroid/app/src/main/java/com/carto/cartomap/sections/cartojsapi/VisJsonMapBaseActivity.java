@@ -1,15 +1,13 @@
 package com.carto.cartomap.sections.cartojsapi;
 
-import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
 import com.carto.core.VariantType;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.Layer;
 import com.carto.layers.TileLayer;
 import com.carto.layers.UTFGridEventListener;
@@ -31,7 +29,7 @@ import java.io.IOException;
  * Created by aareundo on 13/10/16.
  */
 
-public class VisJsonBaseMapActivity extends BaseMapActivity {
+public class VisJsonMapBaseActivity extends MapBaseActivity {
 
     protected void updateVis(final String url) {
 

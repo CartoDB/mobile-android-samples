@@ -62,7 +62,7 @@ public class TorqueShipActivity extends Activity implements TorqueHistogramInter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and sets mapView
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

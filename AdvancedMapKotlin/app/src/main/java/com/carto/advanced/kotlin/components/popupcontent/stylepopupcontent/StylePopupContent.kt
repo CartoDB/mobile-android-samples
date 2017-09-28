@@ -23,8 +23,8 @@ class StylePopupContent(context: Context) : BaseView(context) {
         val DarkMatter = "DARKMATTER"
         val Voyager = "VOYAGER"
 
-        val PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
-        val DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+        val PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+        val DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
     }
 
     val container = BaseScrollView(context)

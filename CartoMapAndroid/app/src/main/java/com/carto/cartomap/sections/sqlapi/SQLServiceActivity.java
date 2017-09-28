@@ -2,7 +2,7 @@ package com.carto.cartomap.sections.sqlapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.FeatureCollection;
@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 
 @ActivityData(name = "SQL Service", description = "Displays cities on the map via SQL query")
-public class SQLServiceActivity extends BaseMapActivity {
+public class SQLServiceActivity extends MapBaseActivity {
 
     static final String query = "SELECT * FROM cities15000 WHERE population > 100000";
 
@@ -33,7 +33,7 @@ public class SQLServiceActivity extends BaseMapActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and sets mapView
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);

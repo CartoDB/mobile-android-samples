@@ -3,7 +3,7 @@ package com.carto.cartomap.sections.mapsapi;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -21,12 +21,12 @@ import java.io.IOException;
  * A sample demonstrating how to use Carto Vector Tiles, using CartoCSS styling
  */
 @ActivityData(name = "Anonymous Vector Table", description = "Data as Vector Tiles, using CartoCSS styling")
-public class AnonymousVectorTableActivity extends BaseMapActivity {
+public class AnonymousVectorTableActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and sets mapView
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);

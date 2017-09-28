@@ -2,11 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="3dp"
-    android:paddingLeft="3dp"
-    android:paddingRight="3dp"
-    android:paddingTop="3dp"
-    tools:context="com.carto.cartomap.sections.BaseMapActivity" >
+    tools:context="com.carto.cartomap.sections.MapBaseActivity" >
 
     <com.carto.ui.MapView android:id="@+id/map_view"
         android:layout_width="match_parent"

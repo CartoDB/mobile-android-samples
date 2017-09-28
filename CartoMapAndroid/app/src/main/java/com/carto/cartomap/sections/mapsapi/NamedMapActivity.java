@@ -2,7 +2,7 @@ package com.carto.cartomap.sections.mapsapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.StringVariantMap;
@@ -16,7 +16,6 @@ import com.carto.geometry.PolygonGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
-import com.carto.layers.TileLayer;
 import com.carto.layers.VectorLayer;
 import com.carto.layers.VectorTileEventListener;
 import com.carto.layers.VectorTileLayer;
@@ -41,12 +40,12 @@ import java.io.IOException;
  */
 
 @ActivityData(name = "Named Map", description = "CARTO data as Vector Tiles from a named map")
-public class NamedMapActivity extends BaseMapActivity {
+public class NamedMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and sets mapView
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         final CartoMapsService service = new CartoMapsService();

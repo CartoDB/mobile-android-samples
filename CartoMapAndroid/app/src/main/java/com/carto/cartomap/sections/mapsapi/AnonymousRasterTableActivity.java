@@ -3,7 +3,7 @@ package com.carto.cartomap.sections.mapsapi;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.Variant;
@@ -22,12 +22,12 @@ import java.io.IOException;
  * Inspired by web sample http://bl.ocks.org/jorgeas80/4c7169c9b6356858f3cc
  */
 @ActivityData(name = "Anonymous Raster Table", description = "Use map from CARTO PostGIS Raster")
-public class AnonymousRasterTableActivity extends BaseMapActivity {
+public class AnonymousRasterTableActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and configures mapView
+        // MapBaseActivity creates and configures mapView
         super.onCreate(savedInstanceState);
 
         addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
