@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
 import com.carto.advanced.kotlin.model.Sample
@@ -46,8 +47,11 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
         description = TextView(context)
         description?.setTextColor(Colors.darkGrayInt)
         description?.textSize = 12f
-
         addView(description)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            elevation = 5.0F
+        }
 
         update(sample)
     }

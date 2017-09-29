@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,10 @@ public class GalleryRow extends BaseView {
         description.setTextColor(Colors.darkGrayInt);
         description.setTextSize(12.0f);
         addView(description);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setElevation(5.0f);
+        }
 
         update(sample);
     }

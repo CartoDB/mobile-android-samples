@@ -26,5 +26,5 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.carto:carto-mobile-sdk:4.1.0-rc.2@aar'
+    compile 'com.carto:carto-mobile-sdk:4.1.0-rc.3@aar'
 }
