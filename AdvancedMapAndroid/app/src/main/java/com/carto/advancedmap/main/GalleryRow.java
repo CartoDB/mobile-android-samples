@@ -61,7 +61,7 @@ public class GalleryRow extends BaseView {
     public void layoutSubviews() {
         super.layoutSubviews();
 
-        int padding = 5;
+        int padding = (int)(5 * getDensity());
         int imageHeight = getFrame().getHeight() / 5 * 3;
 
         int x = padding;
