@@ -72,7 +72,7 @@ class GalleryRow(context: Context, sample: Sample) : BaseView(context) {
 
     override fun layoutSubviews() {
 
-        val padding: Int = 5
+        val padding: Int = (5 * getDensity()).toInt()
         val imageHeight: Int = frame.height / 5 * 3
 
         val x: Int = padding
