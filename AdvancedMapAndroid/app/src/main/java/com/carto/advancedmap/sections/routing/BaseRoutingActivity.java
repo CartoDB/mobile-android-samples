@@ -41,6 +41,13 @@ public class BaseRoutingActivity extends PackageManagerBaseActivity {
         contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        contentView.banner.alert("Long click on the map to set route start position");
+    }
+
     protected void setService(RoutingService service) {
 
         this.service = service;

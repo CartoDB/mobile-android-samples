@@ -17,6 +17,12 @@ public class OnlineRoutingActivity extends BaseRoutingActivity {
         super.onCreate(savedInstanceState);
 
         ValhallaOnlineRoutingService service = new ValhallaOnlineRoutingService(Sources.API_KEY);
+
+        // Set auto by default.
+        // Other Mapzen costing models: pedestrian etc, cf.
+        // cf. https://github.com/valhalla/valhalla-docs/blob/master/api-reference.md
+        service.setProfile("auto");
+
         setService(service);
 
         contentView.removeButton(contentView.downloadButton);
