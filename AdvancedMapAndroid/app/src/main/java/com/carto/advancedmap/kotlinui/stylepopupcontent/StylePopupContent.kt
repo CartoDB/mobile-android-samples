@@ -16,9 +16,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
         @JvmStatic val CartoRasterSource = "carto.osm"
 
         @JvmStatic val Bright = "BRIGHT"
-        @JvmStatic val Gray = "GRAY"
-        @JvmStatic val Dark = "DARK"
-
         @JvmStatic val Positron = "POSITRON"
         @JvmStatic val DarkMatter = "DARKMATTER"
         @JvmStatic val Voyager = "VOYAGER"
@@ -58,7 +55,7 @@ class StylePopupContent(context: Context) : BaseView(context) {
         container.addView(mapzen)
 
         cartoRaster.source = CartoRasterSource
-        cartoRaster.header.text = "CARTO RASTER"
+        cartoRaster.header.text = "HERE RASTER"
         cartoRaster.addItem(StylePopupContent.Positron, R.drawable.style_image_carto_positron)
         cartoRaster.addItem(DarkMatter, R.drawable.style_image_carto_darkmatter)
 

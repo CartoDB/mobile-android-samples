@@ -130,13 +130,6 @@ public class BaseMapsView extends MapBaseView
             currentLayer = new RasterTileLayer(ds);
         }
 
-        if (currentOSM.equals(Sources.CARTO_VECTOR)) {
-            // 3D texts on by default
-            CartoOnlineVectorTileLayer current = (CartoOnlineVectorTileLayer) currentLayer;
-            MBVectorTileDecoder decoder = (MBVectorTileDecoder) current.getTileDecoder();
-            decoder.setStyleParameter("texts3d", "1");
-        }
-
         if (currentSelection.equals(StylePopupContent.getCartoRasterSource())) {
             languageButton.disable();
         } else {
