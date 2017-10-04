@@ -266,4 +266,9 @@ public class PackageManagerBaseView extends MapBaseView {
 
         return packages;
     }
+
+    public boolean hasLocalPackages() {
+        int count = (int)manager.getLocalPackages().size();
+        return count > 0;
+    }
 }

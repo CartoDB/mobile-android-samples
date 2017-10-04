@@ -23,5 +23,13 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
                 new PackageManagerValhallaRoutingService(contentView.manager);
         setService(service);
     }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        if (!contentView.hasLocalPackages()) {
+            contentView.banner.alert("Click the globe icon to download a package");
+        }
+    }
 }

@@ -23,4 +23,13 @@ public class OfflineReverseGeocodingActivity extends ReverseGeocodingBaseActivit
 
         service = new PackageManagerReverseGeocodingService(contentView.manager);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!contentView.hasLocalPackages()) {
+            contentView.banner.alert("Click the globe icon to download a package");
+        }
+    }
 }

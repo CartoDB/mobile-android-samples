@@ -78,7 +78,7 @@ public class ReverseGeocodingBaseActivity extends BaseGeocodingActivity {
             }
         });
 
-        contentView.banner.alert("Click on the map to find out more about a location");
+        contentView.banner.alert("Click the map to show reverse geocoding data");
     }
 
     @Override

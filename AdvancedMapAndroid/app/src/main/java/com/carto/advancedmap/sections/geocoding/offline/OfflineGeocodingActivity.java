@@ -24,4 +24,13 @@ public class OfflineGeocodingActivity extends GeocodingBaseActivity {
 
         service = new PackageManagerGeocodingService(contentView.manager);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!contentView.hasLocalPackages()) {
+            contentView.banner.alert("Click the globe icon to download a package");
+        }
+    }
 }

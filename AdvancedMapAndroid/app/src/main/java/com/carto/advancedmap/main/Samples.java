@@ -61,7 +61,7 @@ public class Samples {
             ),
             new Sample(
                     R.drawable.background_online_reverse_geocoding,
-                    "Online Reverse Geocoding",
+                    "Online Rev-Geocoding",
                     "Online reverse geocoding with Pelias geocoder",
                     OnlineReverseGeocodingActivity.class
             ),
@@ -73,7 +73,7 @@ public class Samples {
             ),
             new Sample(
                     R.drawable.background_offline_reverse_geocoding,
-                    "Offline Reverse Geocoding",
+                    "Offline Rev-Geocoding",
                     "Download offline geocoding packages",
                     OfflineReverseGeocodingActivity.class
             ),
