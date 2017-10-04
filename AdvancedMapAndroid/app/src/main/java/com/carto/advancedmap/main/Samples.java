@@ -68,7 +68,7 @@ public class Samples {
             new Sample(
                     R.drawable.background_online_geocoding,
                     "Online Geocoding",
-                    "Online geocoding with Pelias geocoder",
+                    "Online geocoding via Pelias geocoder with autocomplete",
                     OnlineGeocodingActivity.class
             ),
             new Sample(
@@ -80,7 +80,7 @@ public class Samples {
             new Sample(
                     R.drawable.background_offline_geocoding,
                     "Offline Geocoding",
-                    "Download offline geocoding packages",
+                    "Offline geocoding with autocomplete",
                     OfflineGeocodingActivity.class
             ),
             new Sample(
