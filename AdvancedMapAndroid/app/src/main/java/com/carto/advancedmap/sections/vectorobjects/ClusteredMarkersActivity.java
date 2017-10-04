@@ -70,11 +70,16 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
 
                 // Set target projection to base (mercator)
                 reader.setTargetProjection(contentView.projection);
-                alert("Starting load from .geojson");
+
+                ClusteredMarkersActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        contentView.banner.alert("Loading markers...");
+                    }
+                });
 
                 // Read features from local asset
                 FeatureCollection features = reader.readFeatureCollection(loadJSONFromAsset());
-                alert("Finished load from .geojson");
 
                 VectorElementVector elements = new VectorElementVector();
 
@@ -91,7 +96,6 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
                 }
 
                 source.addAll(elements);
-                alert("Finished adding Markers to source. Clustering started");
             }
         });
 
