@@ -4,6 +4,12 @@ android {
     compileSdkVersion 24
     buildToolsVersion '25.0.2'
 
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
     defaultConfig {
         applicationId "com.carto.cartomap"
         minSdkVersion 15
