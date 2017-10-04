@@ -12,8 +12,11 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
 import com.carto.advancedmap.main.ActivityData;
+import com.carto.advancedmap.main.GalleryRow;
 import com.carto.advancedmap.main.MainActivity;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.main.Sample;
+import com.carto.advancedmap.main.Samples;
 import com.carto.advancedmap.test.Utils.PermissionGranter;
 import com.carto.advancedmap.test.Utils.Screenshot;
 import com.carto.graphics.Bitmap;
@@ -43,10 +46,10 @@ public class Test1 {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    private static MainActivity list;
+    private static MainActivity mainActivity;
 
     /**
-     * This test opens the application, clicks on a list item to open a MapView sample,
+     * This test opens the application, clicks on a mainActivity item to open a MapView sample,
      * waits 4 seconds in order to render the map and take a screenshot
      * (if it's not rendered in that time, the screenshot is not taken),
      * then goes back and opens the next MapView sample
@@ -57,8 +60,8 @@ public class Test1 {
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                list = (MainActivity) getCurrentActivity();
-                list.unlockScreen();
+                mainActivity = (MainActivity) getCurrentActivity();
+                mainActivity.unlockScreen();
             }
         });
 
@@ -67,33 +70,23 @@ public class Test1 {
          * and folder creation is a context-based operation, so it'll need to be in the activity.
          * ... and since we're saving screenshots, just do it at the initial step
          */
-        list.mkFolder(Screenshot.getDirectory() + Screenshot.DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY);
+        String path = Screenshot.getDirectory() + Screenshot.DEVICE_FARM_ESPRESSO_SCREEN_DIRECTORY;
+        mainActivity.mkFolder(path);
         new PermissionGranter().allowPermissionsIfNeeded();
 
-        ArrayList<Class> maps = new ArrayList<>();
+        Sample[] maps = Samples.LIST;
 
-        /**
-         * Get all list elements, filter them to find the correct elements we need to test.
-         */
-        for (Integer i = 0; i < list.samples.length; i++) {
-
-            Class sample = list.samples[i];
-
-            java.lang.annotation.Annotation[] annotations = sample.getAnnotations();
-            String description = ((ActivityData) annotations[0]).description();
-
-            if (!description.equals("")) {
-                // Headers have no description
-                maps.add(sample);
-            }
-        }
         /**
          * I have no idea what's going on here, Android's Espresso API is super weird,
          * but apparently this snippet returns an "interaction" where we can perform clicks.
          */
-        DataInteraction interaction = onData(allOf(is(instanceOf(MainActivity.MapListMap.class))));
+        DataInteraction interaction = onData(allOf(is(instanceOf(GalleryRow.class))));
 
-        for (Integer j = 0; j < maps.size(); j++) {
+        for (Integer j = 0; j < maps.length; j++) {
+
+            Sample map = maps[j];
+            String text = "Testing sample: " + map.title + " - " + map.description;
+            System.out.println(text);
 
             try {
                 interaction.atPosition(j).perform(click());
@@ -112,7 +105,7 @@ public class Test1 {
                         Boolean isAssignable = MapBaseActivity.class.isAssignableFrom(current.getClass());
 
                         if (isAssignable) {
-                            final MapView map = ((MapBaseActivity)current).mapView;
+                            final MapView map = ((MapBaseActivity)current).contentView.mapView;
                             /**
                              * Using our SDK's built-in function to capture screenshots,
                              * as Android's screenshot takes black screenshots when taking pictures of GLSurfaceView.
@@ -166,7 +159,7 @@ public class Test1 {
 
             } catch (Exception e) {
                 /**
-                 * I wrote this some time ago, edited/improved it 12 September 2017 for AWS Device farm
+                 * I wrote this some time ago, edited/improved it in September 2017 for AWS Device farm
                  * and I have no idea why there is a try-catch block here, but let's leave it here just in case.
                  * Java is mostly try-catch anyway, so it looks quite natural.
                  */
