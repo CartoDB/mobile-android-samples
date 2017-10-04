@@ -7,8 +7,15 @@ import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
 import com.carto.advancedmap.utils.RouteCalculator;
 import com.carto.advancedmap.utils.Sources;
+import com.carto.core.MapPos;
 import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.VectorElementEventListener;
 import com.carto.routing.RoutingService;
+import com.carto.styles.BalloonPopupStyle;
+import com.carto.styles.BalloonPopupStyleBuilder;
+import com.carto.ui.VectorElementClickInfo;
+import com.carto.vectorelements.BalloonPopup;
+import com.carto.vectorelements.VectorElement;
 
 /**
  * Created by aareundo on 16/12/16.
@@ -41,11 +48,49 @@ public class BaseRoutingActivity extends PackageManagerBaseActivity {
         contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
     }
 
+    BalloonPopup previous;
+
     @Override
     protected void onResume() {
         super.onResume();
 
         contentView.banner.alert("Long click on the map to set route start position");
+
+        calculator.getRouteLayer().setVectorElementEventListener(new VectorElementEventListener() {
+            @Override
+            public boolean onVectorElementClicked(VectorElementClickInfo clickInfo) {
+
+                if (previous != null) {
+                    calculator.getRouteSource().remove(previous);
+                }
+
+                VectorElement element = clickInfo.getVectorElement();
+
+                String title = "DATA";
+                String description = element.getMetaDataElement(RouteCalculator.DESCRIPTION).getString();
+                description = description.replace("RoutingInstruction ", "");
+
+                BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
+                // Set a higher placement priority so it would always be visible
+                builder.setPlacementPriority(10);
+
+                MapPos position = clickInfo.getClickPos();
+                BalloonPopupStyle style = builder.buildStyle();
+
+                BalloonPopup popup = new BalloonPopup(position, style, title, description);
+
+                calculator.getRouteSource().add(popup);
+                previous = popup;
+                return true;
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        calculator.getRouteLayer().setVectorElementEventListener(null);
     }
 
     protected void setService(RoutingService service) {

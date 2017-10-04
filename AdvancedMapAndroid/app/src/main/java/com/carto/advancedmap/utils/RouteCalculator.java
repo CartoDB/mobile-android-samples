@@ -11,6 +11,7 @@ import com.carto.advancedmap.sections.routing.RouteMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Bitmap;
 import com.carto.layers.VectorLayer;
@@ -26,11 +27,14 @@ import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
+import com.carto.styles.StringCartoCSSStyleSetMap;
 import com.carto.ui.MapView;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
+
+import java.nio.charset.Charset;
 
 import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_LEFT;
 import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_RIGHT;
@@ -46,13 +50,23 @@ public class RouteCalculator {
     private MarkerStyle instructionUp;
     private MarkerStyle instructionLeft;
     private MarkerStyle instructionRight;
+
     private LocalVectorDataSource routeDataSource;
     private LocalVectorDataSource routeStartStopDataSource;
-    private BalloonPopupStyleBuilder balloonPopupStyleBuilder;
+
+    private VectorLayer routeLayer;
 
     BaseActivity context;
     MapView mapView;
     RoutingService service;
+
+    public LocalVectorDataSource getRouteSource() {
+        return routeDataSource;
+    }
+
+    public VectorLayer getRouteLayer() {
+        return routeLayer;
+    }
 
     public RouteCalculator(BaseActivity context, MapView mapView, RoutingService service) {
 
@@ -63,7 +77,7 @@ public class RouteCalculator {
         Projection baseProjection = mapView.getOptions().getBaseProjection();
 
         routeDataSource = new LocalVectorDataSource(baseProjection);
-        VectorLayer routeLayer = new VectorLayer(routeDataSource);
+        routeLayer = new VectorLayer(routeDataSource);
         mapView.getLayers().add(routeLayer);
 
         // Define layer and datasource for route start and stop markers
@@ -111,10 +125,6 @@ public class RouteCalculator {
         markerStyleBuilder.setBitmap(createBitmap(R.drawable.direction_upthenright));
 
         instructionRight = markerStyleBuilder.buildStyle();
-
-        // Style for instruction balloons
-        balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-        balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4, 4, 4, 4));
     }
 
     public void showRoute(final MapPos startPos, final MapPos stopPos) {
@@ -160,7 +170,7 @@ public class RouteCalculator {
                         first = false;
                     } else {
                         MapPos position = result.getPoints().get(instruction.getPointIndex());
-                        createRoutePoint(position, instruction.getAction(), routeDataSource);
+                        createRoutePoint(position, instruction, routeDataSource);
                     }
 
                 }
@@ -195,9 +205,12 @@ public class RouteCalculator {
         }
     }
 
-    protected void createRoutePoint(MapPos pos, RoutingAction action, LocalVectorDataSource ds) {
+    public static final String DESCRIPTION = "";
+
+    protected void createRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource ds) {
 
         MarkerStyle style = instructionUp;
+        RoutingAction action = instruction.getAction();
 
         if (action == ROUTING_ACTION_TURN_LEFT) {
             style = instructionLeft;
@@ -206,6 +219,8 @@ public class RouteCalculator {
         }
 
         Marker marker = new Marker(pos, style);
+        marker.setMetaDataElement(DESCRIPTION, new Variant(instruction.toString()));
+
         ds.add(marker);
     }
 
