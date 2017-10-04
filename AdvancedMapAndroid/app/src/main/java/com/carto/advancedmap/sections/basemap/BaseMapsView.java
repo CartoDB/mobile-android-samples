@@ -14,6 +14,7 @@ import com.carto.datasources.HTTPTileDataSource;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
+import com.carto.layers.CartoOnlineRasterTileLayer;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.Layer;
 import com.carto.layers.RasterTileLayer;
@@ -113,23 +114,16 @@ public class BaseMapsView extends MapBaseView
 
             currentLayer = new VectorTileLayer(ds, decoder);
 
-        } else {
+        } else if (source.equals(StylePopupContent.getCartoRasterSource())) {
 
-            // We know that the value of raster will be Positron or Darkmatter,
-
-            // Additionally, raster tiles do not support language choice
-            String url;
-
-            if (selection.equals(StylePopupContent.getPositron())) {
-                url = StylePopupContent.getPositronUrl();
-            } else {
-                url = StylePopupContent.getDarkMatterUrl();
+            if (selection.equals(StylePopupContent.getHereSatelliteDaySource())) {
+                currentLayer = new CartoOnlineRasterTileLayer("here.satellite.day@2x");
+            } else if(selection.equals(StylePopupContent.getHereNormalDaySource())) {
+                currentLayer = new CartoOnlineRasterTileLayer("here.normal.day@2x");
             }
-
-            TileDataSource ds = new HTTPTileDataSource(1, 19, url);
-            currentLayer = new RasterTileLayer(ds);
         }
 
+        // Raster tiles do not support language choice
         if (currentSelection.equals(StylePopupContent.getCartoRasterSource())) {
             languageButton.disable();
         } else {
