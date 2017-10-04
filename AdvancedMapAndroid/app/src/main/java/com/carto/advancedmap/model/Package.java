@@ -133,7 +133,7 @@ public class Package {
     public static final String ACTION_DOWNLOAD = "DOWNLOAD";
     public static final String ACTION_REMOVE = "REMOVE";
 
-    public static final String CUSTOM_REGION_FOLDER_NAME = "CUSTOM_REGION";
+    public static final String CUSTOM_REGION_FOLDER_NAME = "CUSTOM REGION";
     public static final String BBOX_IDENTIFIER = "bbox(";
 
     public String getActionText() {

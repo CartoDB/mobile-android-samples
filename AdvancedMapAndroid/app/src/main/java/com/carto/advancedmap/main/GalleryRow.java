@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.carto.advanced.kotlin.sections.base.utils.ExtensionsKt;
 import com.carto.advanced.kotlin.sections.base.views.BaseView;
 import com.carto.advanced.kotlin.utils.Colors;
-import com.carto.advancedmap.model.Sample;
 
 /**
  * Created by aareundo on 21/09/2017.

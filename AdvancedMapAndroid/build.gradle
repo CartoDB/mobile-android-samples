@@ -16,8 +16,13 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
-        }
+
+        /**
+         * Use the following repository url if you need a snapshot build.
+         * Release builds are always uploaded to jcenter.
+         */
+//        maven {
+//            url "http://repository-nutiteq.forge.cloudbees.com/snapshot/"
+//        }
     }
 }

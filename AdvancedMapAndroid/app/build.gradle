@@ -56,8 +56,3 @@ configurations.all {
 
 task instrumentTest(dependsOn: connectedCheck)
 
-apply plugin: 'maven'
-repositories {
-    mavenCentral()
-}
-

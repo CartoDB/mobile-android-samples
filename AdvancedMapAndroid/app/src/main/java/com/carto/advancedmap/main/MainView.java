@@ -5,7 +5,6 @@ import android.content.Context;
 import com.carto.advanced.kotlin.sections.base.utils.ExtensionsKt;
 import com.carto.advanced.kotlin.sections.base.views.BaseScrollView;
 import com.carto.advanced.kotlin.sections.base.views.BaseView;
-import com.carto.advancedmap.model.Sample;
 
 import java.util.ArrayList;
 

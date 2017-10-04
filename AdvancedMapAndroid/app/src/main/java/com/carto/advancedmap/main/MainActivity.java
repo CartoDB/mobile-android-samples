@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.carto.advancedmap.model.Samples;
 import com.carto.advancedmap.utils.Colors;
 
 import java.io.File;
@@ -25,7 +24,7 @@ import java.io.File;
 public class MainActivity extends Activity {
 
     public static String TITLE = "activity_title";
-    public static String DESCRIPTION = "activity_title";
+    public static String DESCRIPTION = "activity_description";
 
     MainView contentView;
 
@@ -57,7 +56,7 @@ public class MainActivity extends Activity {
 
                     Intent intent = new Intent(context, row.sample.activity);
                     intent.putExtra(TITLE, row.sample.title);
-                    intent.putExtra(TITLE, row.sample.description);
+                    intent.putExtra(DESCRIPTION, row.sample.description);
                     context.startActivity(intent);
                 }
             });
@@ -93,12 +92,13 @@ public class MainActivity extends Activity {
         Log.d("myAppName", "External storage is not read only or unavailable");
 
         // request permission when it is not granted.
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        int grantResult = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (grantResult != PackageManager.PERMISSION_GRANTED) {
             Log.d("myAppName", "permission:WRITE_EXTERNAL_STORAGE: NOT granted!");
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                // Show an expanation to the user *asynchronously* -- don't block
+                // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
 
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
                 // No explanation needed, we can request the permission.
 
                 ActivityCompat.requestPermissions(this,
-                        new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                        new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
                         MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
