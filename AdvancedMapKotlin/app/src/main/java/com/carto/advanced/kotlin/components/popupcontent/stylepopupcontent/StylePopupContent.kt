@@ -16,22 +16,19 @@ class StylePopupContent(context: Context) : BaseView(context) {
         val CartoRasterSource = "carto.osm"
 
         val Bright = "BRIGHT"
-        val Gray = "GRAY"
-        val Dark = "DARK"
-
         val Positron = "POSITRON"
         val DarkMatter = "DARKMATTER"
         val Voyager = "VOYAGER"
 
-        val PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
-        val DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+        val HereSatelliteDaySource = "SATELLITE DAY"
+        val HereNormalDaySource = "NORMAL DAY"
     }
 
-    val container = BaseScrollView(context)
+    private val container = BaseScrollView(context)
 
     val cartoVector = StylePopupContentSection(context)
-    val mapzen = StylePopupContentSection(context)
-    val cartoRaster = StylePopupContentSection(context)
+    private val mapzen = StylePopupContentSection(context)
+    private val cartoRaster = StylePopupContentSection(context)
 
     fun getItems() : MutableList<StylePopupContentSection> {
         return mutableListOf(cartoVector, mapzen, cartoRaster)
@@ -58,9 +55,9 @@ class StylePopupContent(context: Context) : BaseView(context) {
         container.addView(mapzen)
 
         cartoRaster.source = CartoRasterSource
-        cartoRaster.header.text = "CARTO RASTER"
-        cartoRaster.addItem(StylePopupContent.Positron, R.drawable.style_image_carto_positron)
-        cartoRaster.addItem(DarkMatter, R.drawable.style_image_carto_darkmatter)
+        cartoRaster.header.text = "HERE RASTER"
+        cartoRaster.addItem(HereSatelliteDaySource, R.drawable.style_image_here_satellite)
+        cartoRaster.addItem(HereNormalDaySource, R.drawable.style_image_here_normal)
 
         container.addView(cartoRaster)
     }

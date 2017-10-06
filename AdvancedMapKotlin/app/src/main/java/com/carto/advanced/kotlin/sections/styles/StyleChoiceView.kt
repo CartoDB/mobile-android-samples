@@ -138,17 +138,11 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         } else if (source == StylePopupContent.CartoRasterSource) {
 
-            // We know that the value of raster will be Positron or Darkmatter,
-            var url: String
-
-            if (selection == StylePopupContent.Positron) {
-                url = StylePopupContent.PositronUrl
-            } else {
-                url = StylePopupContent.DarkMatterUrl
+            if (selection == StylePopupContent.HereSatelliteDaySource) {
+                currentLayer = CartoOnlineRasterTileLayer("here.satellite.day@2x")
+            } else if (selection == StylePopupContent.HereNormalDaySource) {
+                currentLayer = CartoOnlineRasterTileLayer("here.normal.day@2x")
             }
-
-            val datasource = HTTPTileDataSource(1, 19, url)
-            currentLayer = RasterTileLayer(datasource)
         }
 
         if (source == StylePopupContent.CartoRasterSource) {
