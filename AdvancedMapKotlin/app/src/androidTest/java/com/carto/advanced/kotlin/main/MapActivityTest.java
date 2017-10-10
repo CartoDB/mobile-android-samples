@@ -52,13 +52,30 @@ public class MapActivityTest {
     @Test
     public void mapActivityTest() {
 
-        // Screenshot holder:
-        // Several screenshots are taken and temporarily stored in this array
-        final android.graphics.Bitmap[] screenshots = new android.graphics.Bitmap[1];
-
         // Activity holder:
         // We open several activities, instances are temporarily stored here
         final Activity[] activities = new Activity[1];
+
+        /**
+         * Android 6.0 requires runtime permission for write access as well, god damnit.
+         * and folder creation is a context-based operation, so it'll need to be in the activity.
+         * ... and since we're saving screenshots, just do it at the initial step
+         */
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity activity = (MainActivity) getCurrentActivity();
+                activities[0] = activity;
+            }
+        });
+
+        String path = Screenshot.INSTANCE.getDirectory() + Screenshot.INSTANCE.getFOLDER();
+        ((MainActivity)activities[0]).mkFolder(path);
+        new PermissionGranter().allowPermissionsIfNeeded();
+
+        // Screenshot holder:
+        // Several screenshots are taken and temporarily stored in this array
+        final android.graphics.Bitmap[] screenshots = new android.graphics.Bitmap[1];
 
         ViewInteraction textView = onView(withText("BASEMAP STYLES"));
         textView.perform(click());
@@ -104,8 +121,22 @@ public class MapActivityTest {
 
         ViewInteraction mapView = onView(withContentDescription("map_view"));
 
-        mapView.perform(click());
+        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
+                .captureRendering(new RendererCaptureListener() {
 
+                    @Override
+                    public void onMapRendered(Bitmap bitmap) {
+                        super.onMapRendered(bitmap);
+                        screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
+                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+                    }
+                }, true);
+
+        stallFor(1500);
+
+        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+
+        mapView.perform(click());
 
         ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
                 .captureRendering(new RendererCaptureListener() {
@@ -121,9 +152,25 @@ public class MapActivityTest {
         stallFor(1500);
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+
         mapView.perform(swipe());
 
         stallFor(500);
+
+        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
+                .captureRendering(new RendererCaptureListener() {
+
+                    @Override
+                    public void onMapRendered(Bitmap bitmap) {
+                        super.onMapRendered(bitmap);
+                        screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
+                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+                    }
+                }, true);
+
+        stallFor(1500);
+
+        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
     }
 
     public static void stallFor(final long duration) {

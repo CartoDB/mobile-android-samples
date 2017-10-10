@@ -21,12 +21,12 @@ import java.util.*
  */
 object Screenshot {
 
-    private val FOLDER = "/test-screenshots/"
+    val FOLDER = "/test-screenshots/"
 
     private val TAG = "SCREENSHOT"
     private val SCREEN_SHOT_IMAGE_QUALITY = 100
 
-    private val directory: String
+    val directory: String
         get() = Environment.getExternalStorageDirectory().absolutePath
 
     fun take(activity: Activity, fileName: String, bitmap: Bitmap?) {
