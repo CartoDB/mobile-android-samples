@@ -9,11 +9,13 @@ import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
 import com.carto.datasources.CartoOnlineTileDataSource
 import com.carto.datasources.HTTPTileDataSource
+import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.*
 import com.carto.styles.CompiledStyleSet
 import com.carto.utils.AssetUtils
 import com.carto.utils.ZippedAssetPackage
 import com.carto.vectortiles.MBVectorTileDecoder
+import java.util.*
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -40,12 +42,19 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
     var currentLanguage: String = ""
     var currentLayer: TileLayer? = null
 
+    private val vectorSource = LocalVectorDataSource(projection)
+    private val vectorLayer = VectorLayer(vectorSource)
+    private val clickListener = VectorTileListener(vectorLayer)
+
     init {
 
         title = Texts.basemapInfoHeader
         description = Texts.basemapInfoContainer
 
         currentLayer = addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
+
+        map.layers.add(vectorLayer)
+        (currentLayer as VectorTileLayer).vectorTileEventListener = clickListener
 
         addButton(languageButton)
         addButton(baseMapButton)
@@ -155,6 +164,11 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         map.layers.add(currentLayer)
 
         updateMapLanguage(currentLanguage)
+
+        if (currentLayer is VectorTileLayer) {
+            map.layers.add(vectorLayer)
+            (currentLayer as VectorTileLayer).vectorTileEventListener = clickListener
+        }
     }
 
 }

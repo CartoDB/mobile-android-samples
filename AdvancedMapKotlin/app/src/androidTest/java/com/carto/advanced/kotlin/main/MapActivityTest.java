@@ -18,7 +18,10 @@ import android.view.View;
 
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
 import com.carto.core.MapPos;
+import com.carto.core.ScreenPos;
+import com.carto.graphics.ViewState;
 import com.carto.projections.Projection;
+import com.carto.ui.ClickType;
 import com.carto.ui.MapView;
 
 import org.hamcrest.Matcher;
@@ -44,7 +47,7 @@ public class MapActivityTest {
 
     @Test
     public void mapActivityTest() {
-        ViewInteraction textView = onView(withText("STYLES"));
+        ViewInteraction textView = onView(withText("BASEMAP STYLES"));
         textView.perform(click());
 
         stallFor(500);
@@ -85,6 +88,11 @@ public class MapActivityTest {
         stallFor(1500);
 
         ViewInteraction mapView = onView(withContentDescription("map_view"));
+
+        mapView.perform(click());
+
+        stallFor(1500);
+
         mapView.perform(swipe());
 
         stallFor(500);

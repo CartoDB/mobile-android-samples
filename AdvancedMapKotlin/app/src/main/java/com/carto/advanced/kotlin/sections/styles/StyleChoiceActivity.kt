@@ -6,6 +6,7 @@ import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.Style
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
 import com.carto.advanced.kotlin.model.Languages
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.layers.VectorTileLayer
 import com.carto.ui.MapView
 
 /**
@@ -72,5 +73,9 @@ class StyleChoiceActivity : BaseActivity() {
         }
 
         contentView?.languageContent?.list?.onItemClickListener = null
+
+        if (contentView?.currentLayer is VectorTileLayer) {
+            (contentView?.currentLayer as VectorTileLayer).vectorTileEventListener = null
+        }
     }
 }
