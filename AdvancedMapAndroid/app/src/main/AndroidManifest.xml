@@ -30,40 +30,26 @@
             </intent-filter>
         </activity>
 
-        <!--Section 1-->
         <activity android:name=".sections.basemap.BaseMapActivity"/>
-
-        <!--Section 2-->
         <activity android:name=".sections.offlinemap.OfflineMapActivity" />
-        <activity android:name=".sections.offlinemap.advancedpackagemanager.MapPackageActivity" />
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
-
-        <!--Section 3-->
         <activity android:name=".sections.routing.OnlineRoutingActivity" />
         <activity android:name=".sections.routing.OfflineRoutingActivity" />
-
-        <!--Section 4-->
         <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />
         <activity android:name=".sections.geocoding.online.OnlineGeocodingActivity" />
         <activity android:name=".sections.geocoding.offline.OfflineReverseGeocodingActivity" />
         <activity android:name=".sections.geocoding.offline.OfflineGeocodingActivity" />
-
-        <!--Section 5-->
         <activity android:name=".sections.overlaydatasources.GroundOverlayActivity" />
         <activity android:name=".sections.overlaydatasources.CustomRasterDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.CustomVectorDataSourceActivity" />
         <activity android:name=".sections.overlaydatasources.WmsMapActivity" />
-
-        <!--Section 6-->
         <activity android:name=".sections.vectorobjects.ClusteredMarkersActivity" />
         <activity android:name=".sections.vectorobjects.OverlaysActivity" />
         <activity android:name=".sections.vectorobjects.VectorObjectEditingActivity" />
-
-        <!--Section 7-->
         <activity android:name=".sections.other.CaptureActivity" />
         <activity android:name=".sections.other.CustomPopupActivity" />
         <activity android:name=".sections.other.GPSLocationActivity" />
-
+x
     </application>
 
 </manifest>
