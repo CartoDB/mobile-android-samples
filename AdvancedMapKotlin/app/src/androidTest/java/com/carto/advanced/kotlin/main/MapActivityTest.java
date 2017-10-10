@@ -20,10 +20,13 @@ import android.view.View;
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
 import com.carto.core.MapPos;
 import com.carto.core.ScreenPos;
+import com.carto.graphics.Bitmap;
 import com.carto.graphics.ViewState;
 import com.carto.projections.Projection;
+import com.carto.renderers.RendererCaptureListener;
 import com.carto.ui.ClickType;
 import com.carto.ui.MapView;
+import com.carto.utils.BitmapUtils;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
@@ -86,6 +89,7 @@ public class MapActivityTest {
             @Override
             public void run() {
                 StyleChoiceActivity activity = (StyleChoiceActivity) getCurrentActivity();
+                activities[0] = activity;
                 MapView map = activity.getMapView();
 
                 Projection projection = map.getOptions().getBaseProjection();
@@ -102,8 +106,21 @@ public class MapActivityTest {
 
         mapView.perform(click());
 
+
+        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
+                .captureRendering(new RendererCaptureListener() {
+
+            @Override
+            public void onMapRendered(Bitmap bitmap) {
+                super.onMapRendered(bitmap);
+                screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
+                ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+            }
+        }, true);
+
         stallFor(1500);
 
+        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
         mapView.perform(swipe());
 
         stallFor(500);
