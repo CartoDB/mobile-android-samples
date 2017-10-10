@@ -1,6 +1,6 @@
 ## Android Samples (Java & Kotlin) of CARTO Mobile SDK
 
-![alt text](https://travis-ci.org/CartoDB/mobile-android-samples.svg?branch=master)
+[![Build Status](https://travis-ci.org/CartoDB/mobile-android-samples.svg?branch=master)](https://travis-ci.org/CartoDB/mobile-android-samples)
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 * Reference: http://cartodb.github.io/mobile-android-samples/
