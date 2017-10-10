@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.CoordinatesProvider;
 import android.support.test.espresso.action.GeneralLocation;
 import android.support.test.espresso.action.GeneralSwipeAction;
 import android.support.test.espresso.action.Press;
@@ -47,6 +48,15 @@ public class MapActivityTest {
 
     @Test
     public void mapActivityTest() {
+
+        // Screenshot holder:
+        // Several screenshots are taken and temporarily stored in this array
+        final android.graphics.Bitmap[] screenshots = new android.graphics.Bitmap[1];
+
+        // Activity holder:
+        // We open several activities, instances are temporarily stored here
+        final Activity[] activities = new Activity[1];
+
         ViewInteraction textView = onView(withText("BASEMAP STYLES"));
         textView.perform(click());
 
@@ -77,6 +87,7 @@ public class MapActivityTest {
             public void run() {
                 StyleChoiceActivity activity = (StyleChoiceActivity) getCurrentActivity();
                 MapView map = activity.getMapView();
+
                 Projection projection = map.getOptions().getBaseProjection();
 
                 MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
@@ -103,8 +114,10 @@ public class MapActivityTest {
     }
 
     private static ViewAction swipe() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.TOP_CENTER,
-                GeneralLocation.BOTTOM_CENTER, Press.FINGER);
+
+        CoordinatesProvider start = GeneralLocation.TOP_CENTER;
+        CoordinatesProvider end = GeneralLocation.BOTTOM_CENTER;
+        return new GeneralSwipeAction(Swipe.SLOW, start, end, Press.FINGER);
     }
 
     /**
