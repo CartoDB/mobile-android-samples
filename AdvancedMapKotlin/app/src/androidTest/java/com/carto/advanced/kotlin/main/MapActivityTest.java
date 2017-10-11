@@ -202,9 +202,9 @@ public class MapActivityTest {
                     public void onMapRendered(Bitmap bitmap) {
                         super.onMapRendered(bitmap);
                         screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
-                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+                        ((StyleChoiceActivity) activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
                     }
-                }, true);
+                }, false);
 
         stallFor(1500);
 
