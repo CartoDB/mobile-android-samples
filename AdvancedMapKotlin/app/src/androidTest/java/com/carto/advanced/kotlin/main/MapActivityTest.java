@@ -72,6 +72,11 @@ public class MapActivityTest {
 
         String path = Screenshot.INSTANCE.getDirectory() + Screenshot.INSTANCE.getFOLDER();
         ((MainActivity)activities[0]).mkFolder(path);
+
+        // TODO: This works fine if permission dialogue shows up,
+        // TODO: but clicks a Gallery Row when no dialogue is present
+        // TODO: (permissions have already been previously granted)
+        // TODO: ... so search run requires a clean install
         new PermissionGranter().allowPermissionsIfNeeded();
 
         // Screenshot holder:
@@ -82,6 +87,34 @@ public class MapActivityTest {
         textView.perform(click());
 
         stallFor(500);
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                StyleChoiceActivity activity = (StyleChoiceActivity) getCurrentActivity();
+                activities[0] = activity;
+            }
+        });
+
+        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
+                .captureRendering(new RendererCaptureListener() {
+
+                    @Override
+                    public void onMapRendered(Bitmap bitmap) {
+                        super.onMapRendered(bitmap);
+                        screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
+                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+                    }
+                }, true);
+
+        stallFor(1500);
+
+        while (screenshots[0] == null) {
+            stallFor(1000);
+        }
+
+        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+        screenshots[0] = null;
 
         ViewInteraction popupButton = onView(withContentDescription("basemap_button"));
         popupButton.perform(click());
@@ -103,20 +136,14 @@ public class MapActivityTest {
          * So in the end I decided that animated zoom does exactly what I needed to achieve,
          * but with a much simpler implementation
          */
-        getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                StyleChoiceActivity activity = (StyleChoiceActivity) getCurrentActivity();
-                activities[0] = activity;
-                MapView map = activity.getMapView();
 
-                Projection projection = map.getOptions().getBaseProjection();
+        MapView map = ((StyleChoiceActivity)activities[0]).getMapView();
 
-                MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
-                map.setFocusPos(washingtonDC, 1.0f);
-                map.setZoom(8.0f, 1.0f);
-            }
-        });
+        Projection projection = map.getOptions().getBaseProjection();
+
+        MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
+        map.setFocusPos(washingtonDC, 1.0f);
+        map.setZoom(8.0f, 1.0f);
 
         stallFor(1500);
 
@@ -135,8 +162,8 @@ public class MapActivityTest {
 
         stallFor(1500);
 
-        if (screenshots[0] == null) {
-            stallFor(1500);
+        while (screenshots[0] == null) {
+            stallFor(1000);
         }
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
@@ -157,8 +184,8 @@ public class MapActivityTest {
 
         stallFor(1500);
 
-        if (screenshots[0] == null) {
-            stallFor(1500);
+        while (screenshots[0] == null) {
+            stallFor(1000);
         }
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
@@ -181,8 +208,8 @@ public class MapActivityTest {
 
         stallFor(1500);
 
-        if (screenshots[0] == null) {
-            stallFor(1500);
+        while (screenshots[0] == null) {
+            stallFor(1000);
         }
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
