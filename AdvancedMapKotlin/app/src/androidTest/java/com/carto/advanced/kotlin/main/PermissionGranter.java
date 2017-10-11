@@ -28,10 +28,11 @@ public class PermissionGranter {
 
                 sleep(PERMISSIONS_DIALOG_DELAY);
                 UiDevice device = UiDevice.getInstance(getInstrumentation());
-                UiObject allowPermissions = device.findObject(new UiSelector()
+                UiSelector selector = new UiSelector()
                         .clickable(true)
                         .checkable(false)
-                        .index(GRANT_BUTTON_INDEX));
+                        .index(GRANT_BUTTON_INDEX);
+                UiObject allowPermissions = device.findObject(selector);
 
                 if (allowPermissions.exists()) {
                     allowPermissions.click();
@@ -43,7 +44,7 @@ public class PermissionGranter {
         }
     }
 
-    private boolean hasNeededPermission(String permissionNeeded) {
+    public boolean hasPermission(String permissionNeeded) {
         Context context = InstrumentationRegistry.getTargetContext();
         int permissionStatus = ContextCompat.checkSelfPermission(context, permissionNeeded);
         return permissionStatus == PackageManager.PERMISSION_GRANTED;

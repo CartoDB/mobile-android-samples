@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.main;
 
+import android.Manifest;
 import android.app.Activity;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -19,12 +20,9 @@ import android.view.View;
 
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
 import com.carto.core.MapPos;
-import com.carto.core.ScreenPos;
 import com.carto.graphics.Bitmap;
-import com.carto.graphics.ViewState;
 import com.carto.projections.Projection;
 import com.carto.renderers.RendererCaptureListener;
-import com.carto.ui.ClickType;
 import com.carto.ui.MapView;
 import com.carto.utils.BitmapUtils;
 
@@ -38,7 +36,6 @@ import java.util.Collection;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -73,11 +70,10 @@ public class MapActivityTest {
         String path = Screenshot.INSTANCE.getDirectory() + Screenshot.INSTANCE.getFOLDER();
         ((MainActivity)activities[0]).mkFolder(path);
 
-        // TODO: This works fine if permission dialogue shows up,
-        // TODO: but clicks a Gallery Row when no dialogue is present
-        // TODO: (permissions have already been previously granted)
-        // TODO: ... so search run requires a clean install
-        new PermissionGranter().allowPermissionsIfNeeded();
+        PermissionGranter granter = new PermissionGranter();
+        if (!granter.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            granter.allowPermissionsIfNeeded();
+        }
 
         // Screenshot holder:
         // Several screenshots are taken and temporarily stored in this array
@@ -129,9 +125,8 @@ public class MapActivityTest {
         /**
          * I actually wanted to create bitchin' zoom animation,
          * but it turns out multi-touch gestures aren't really supported in Espresso
-         * and I would've had to rewrite most of it's touch event logic.
-         * e.g: https://android.googlesource.com/platform/frameworks/testing/+/
-         * android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
+         * and I would've had to rewrite most of its touch event logic.
+         * e.g: https://android.googlesource.com/platform/frameworks/testing/+/android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
          *
          * So in the end I decided that animated zoom does exactly what I needed to achieve,
          * but with a much simpler implementation
