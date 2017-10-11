@@ -38,6 +38,7 @@ import java.util.Collection;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -134,7 +135,12 @@ public class MapActivityTest {
 
         stallFor(1500);
 
+        if (screenshots[0] == null) {
+            stallFor(1500);
+        }
+
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+        screenshots[0] = null;
 
         mapView.perform(click());
 
@@ -151,7 +157,12 @@ public class MapActivityTest {
 
         stallFor(1500);
 
+        if (screenshots[0] == null) {
+            stallFor(1500);
+        }
+
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+        screenshots[0] = null;
 
         mapView.perform(swipe());
 
@@ -169,6 +180,10 @@ public class MapActivityTest {
                 }, true);
 
         stallFor(1500);
+
+        if (screenshots[0] == null) {
+            stallFor(1500);
+        }
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
     }
