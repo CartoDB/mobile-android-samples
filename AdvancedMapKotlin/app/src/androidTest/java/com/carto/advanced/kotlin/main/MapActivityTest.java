@@ -19,6 +19,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 
 import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity;
+import com.carto.advanced.kotlin.sections.offlinerouting.OfflineRoutingActivity;
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
 import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity;
 import com.carto.core.MapPos;
@@ -39,6 +40,7 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -160,6 +162,41 @@ public class MapActivityTest {
 
         stall(1000);
         map = ((VectorElementActivity)activities[0]).getContentView().getMap();
+        waitForScreenshot(map, false);
+
+        pressBack();
+
+        galleryRow = onView(withText("OFFLINE ROUTING"));
+        galleryRow.perform(click());
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                OfflineRoutingActivity activity = (OfflineRoutingActivity) getCurrentActivity();
+                activities[0] = activity;
+            }
+        });
+
+        stall(1000);
+
+        map = ((OfflineRoutingActivity)activities[0]).getContentView().getMap();
+        map.setFocusPos(washingtonDC, 0.0f);
+        map.setZoom(10.0f, 0.0f);
+
+        mapView = onView(withContentDescription("map_view"));
+
+        mapView.perform(longClick());
+
+        stall(1000);
+
+        // Since it's difficult to emulate clicks in different positions,
+        // simply move the map slightly and long click again to initialize route calculation
+        MapPos position = projection.fromWgs84(new MapPos(-77.0259, 38.9282));
+        map.setFocusPos(position, 0.0f);
+
+        mapView.perform(longClick());
+
+        stall(1000);
         waitForScreenshot(map, false);
     }
 

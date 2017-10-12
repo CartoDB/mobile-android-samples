@@ -9,6 +9,12 @@ import android.content.Context
 
 open class MapBaseView(context: Context) : BaseView(context) {
 
+    companion object {
+        // Content descriptions for auto tests
+        val INFO_BUTTON_DESCRIPTION = "info_button"
+        val MAP_DESCRIPTION = "map_view"
+    }
+
     var topBanner: com.carto.advanced.kotlin.components.Banner = com.carto.advanced.kotlin.components.Banner(context)
 
     var map: com.carto.ui.MapView = com.carto.ui.MapView(context)
@@ -37,6 +43,9 @@ open class MapBaseView(context: Context) : BaseView(context) {
         addButton(infoButton)
 
         setMainViewFrame()
+
+        infoButton.contentDescription = INFO_BUTTON_DESCRIPTION
+        map.contentDescription = MAP_DESCRIPTION
     }
 
     val bottomLabelHeight: Int = (40 * getMetrics().density).toInt()
