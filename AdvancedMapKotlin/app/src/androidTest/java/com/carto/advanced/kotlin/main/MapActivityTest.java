@@ -18,7 +18,9 @@ import android.support.test.runner.lifecycle.Stage;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 
+import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity;
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity;
+import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity;
 import com.carto.core.MapPos;
 import com.carto.graphics.Bitmap;
 import com.carto.projections.Projection;
@@ -35,6 +37,7 @@ import java.util.Collection;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -47,13 +50,16 @@ public class MapActivityTest {
     @Rule
     public ActivityTestRule<SplashActivity> splashRule = new ActivityTestRule<>(SplashActivity.class);
 
+    // Activity holder:
+    // We open several activities, instances are temporarily stored here
+    static final Activity[] activities = new Activity[1];
+
+    // Screenshot holder:
+    // Several screenshots are taken and temporarily stored in this array
+    static final android.graphics.Bitmap[] screenshots = new android.graphics.Bitmap[1];
+
     @Test
     public void mapActivityTest() {
-
-        // Activity holder:
-        // We open several activities, instances are temporarily stored here
-        final Activity[] activities = new Activity[1];
-
         /**
          * Android 6.0 requires runtime permission for write access as well, god damnit.
          * and folder creation is a context-based operation, so it'll need to be in the activity.
@@ -67,22 +73,12 @@ public class MapActivityTest {
             }
         });
 
-        String path = Screenshot.INSTANCE.getDirectory() + Screenshot.INSTANCE.getFOLDER();
-        ((MainActivity)activities[0]).mkFolder(path);
+        grantWritePermission();
 
-        PermissionGranter granter = new PermissionGranter();
-        if (!granter.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            granter.allowPermissionsIfNeeded();
-        }
+        ViewInteraction galleryRow = onView(withText("BASEMAP STYLES"));
+        galleryRow.perform(click());
 
-        // Screenshot holder:
-        // Several screenshots are taken and temporarily stored in this array
-        final android.graphics.Bitmap[] screenshots = new android.graphics.Bitmap[1];
-
-        ViewInteraction textView = onView(withText("BASEMAP STYLES"));
-        textView.perform(click());
-
-        stallFor(500);
+        stall(500);
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -92,126 +88,119 @@ public class MapActivityTest {
             }
         });
 
-        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
-                .captureRendering(new RendererCaptureListener() {
-
-                    @Override
-                    public void onMapRendered(Bitmap bitmap) {
-                        super.onMapRendered(bitmap);
-                        screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
-                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
-                    }
-                }, true);
-
-        stallFor(1500);
-
-        while (screenshots[0] == null) {
-            stallFor(1000);
-        }
-
-        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
-        screenshots[0] = null;
+        waitForStyleChoiceScreenshot(true);
 
         ViewInteraction popupButton = onView(withContentDescription("basemap_button"));
         popupButton.perform(click());
 
-        stallFor(300);
+        stall(300);
 
         ViewInteraction positronStyle = onView(withContentDescription("style_positron"));
         positronStyle.perform(click());
 
-        stallFor(500);
+        stall(500);
 
         /**
          * I actually wanted to create bitchin' zoom animation,
          * but it turns out multi-touch gestures aren't really supported in Espresso
          * and I would've had to rewrite most of its touch event logic.
-         * e.g: https://android.googlesource.com/platform/frameworks/testing/+/android-support-test/espresso/core/src/main/java/android/support/test/espresso/action/Swipe.java
-         *
+
          * So in the end I decided that animated zoom does exactly what I needed to achieve,
          * but with a much simpler implementation
          */
-
         MapView map = ((StyleChoiceActivity)activities[0]).getMapView();
-
         Projection projection = map.getOptions().getBaseProjection();
-
         MapPos washingtonDC = projection.fromWgs84(new MapPos(-77.0369, 38.9072));
         map.setFocusPos(washingtonDC, 1.0f);
         map.setZoom(8.0f, 1.0f);
 
-        stallFor(1500);
+        stall(1500);
 
         ViewInteraction mapView = onView(withContentDescription("map_view"));
 
-        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
-                .captureRendering(new RendererCaptureListener() {
-
-                    @Override
-                    public void onMapRendered(Bitmap bitmap) {
-                        super.onMapRendered(bitmap);
-                        screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
-                        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
-                    }
-                }, true);
-
-        stallFor(1500);
-
-        while (screenshots[0] == null) {
-            stallFor(1000);
-        }
-
-        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
-        screenshots[0] = null;
+        waitForStyleChoiceScreenshot(true);
 
         mapView.perform(click());
 
-        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
-                .captureRendering(new RendererCaptureListener() {
-
-            @Override
-            public void onMapRendered(Bitmap bitmap) {
-                super.onMapRendered(bitmap);
-                screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
-                ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
-            }
-        }, true);
-
-        stallFor(1500);
-
-        while (screenshots[0] == null) {
-            stallFor(1000);
-        }
-
-        Screenshot.INSTANCE.take(activities[0], screenshots[0]);
-        screenshots[0] = null;
+        waitForStyleChoiceScreenshot(true);
 
         mapView.perform(swipe());
 
-        stallFor(500);
+        waitForStyleChoiceScreenshot(false);
 
-        ((StyleChoiceActivity)activities[0]).getMapView().getMapRenderer()
-                .captureRendering(new RendererCaptureListener() {
+        pressBack();
+
+        galleryRow = onView(withText("GROUND OVERLAY"));
+        galleryRow.perform(click());
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                GroundOverlayActivity activity = (GroundOverlayActivity) getCurrentActivity();
+                activities[0] = activity;
+            }
+        });
+
+        stall(1000);
+        map = ((GroundOverlayActivity)activities[0]).getContentView().getMap();
+        waitForScreenshot(map, false);
+
+        pressBack();
+
+        galleryRow = onView(withText("VECTOR ELEMENTS"));
+        galleryRow.perform(click());
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                VectorElementActivity activity = (VectorElementActivity) getCurrentActivity();
+                activities[0] = activity;
+            }
+        });
+
+        stall(1000);
+        map = ((VectorElementActivity)activities[0]).getContentView().getMap();
+        waitForScreenshot(map, false);
+    }
+
+    public static void waitForStyleChoiceScreenshot(boolean waitForRendering) {
+       final MapView map = ((StyleChoiceActivity)activities[0]).getMapView();
+        waitForScreenshot(map, waitForRendering);
+    }
+
+    static void waitForScreenshot(final MapView map, boolean waitForRendering) {
+        map.getMapRenderer().captureRendering(new RendererCaptureListener() {
 
                     @Override
                     public void onMapRendered(Bitmap bitmap) {
                         super.onMapRendered(bitmap);
                         screenshots[0] = BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
-                        ((StyleChoiceActivity) activities[0]).getMapView().getMapRenderer().setMapRendererListener(null);
+                        map.getMapRenderer().setMapRendererListener(null);
                     }
-                }, false);
-
-        stallFor(1500);
+                }, waitForRendering);
+        stall(1500);
 
         while (screenshots[0] == null) {
-            stallFor(1000);
+            stall(1000);
         }
 
         Screenshot.INSTANCE.take(activities[0], screenshots[0]);
+        screenshots[0] = null;
     }
 
-    public static void stallFor(final long duration) {
-        onView(isRoot()).perform(waitFor(duration));
+    public static void grantWritePermission() {
+
+        while (activities[0] == null) {
+            stall(1000);
+        }
+
+        String path = Screenshot.INSTANCE.getDirectory() + Screenshot.INSTANCE.getFOLDER();
+        ((MainActivity)activities[0]).mkFolder(path);
+
+        PermissionGranter granter = new PermissionGranter();
+        if (!granter.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            granter.allowPermissionsIfNeeded();
+        }
     }
 
     private static ViewAction swipe() {
@@ -221,9 +210,10 @@ public class MapActivityTest {
         return new GeneralSwipeAction(Swipe.SLOW, start, end, Press.FINGER);
     }
 
-    /**
-     * Perform action of waiting for a specific time.
-     */
+    public static void stall(final long duration) {
+        onView(isRoot()).perform(waitFor(duration));
+    }
+
     public static ViewAction waitFor(final long millis) {
         return new ViewAction() {
             @Override
