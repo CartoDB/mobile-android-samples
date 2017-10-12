@@ -32,6 +32,16 @@ public class OfflineMapActivity extends PackageManagerBaseActivity {
 		addLayer();
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		if (!contentView.hasLocalPackages()) {
+			String text = "Click the Globe icon to download a package";
+			contentView.banner.alert(text);
+		}
+	}
+
 	void addLayer() {
 
 		CartoPackageManager manager = contentView.manager;
