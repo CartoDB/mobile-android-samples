@@ -61,7 +61,7 @@ class PackageCell(context: Context) : BaseView(context) {
         statusIndicator.typeface = Typeface.DEFAULT_BOLD
 
         val drawable = GradientDrawable()
-        drawable.cornerRadius = 3 * getDensity()
+        drawable.setCornerRadius(3 * getDensity())
         drawable.setStroke(1, Colors.appleBlue)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             statusIndicator.background = drawable
