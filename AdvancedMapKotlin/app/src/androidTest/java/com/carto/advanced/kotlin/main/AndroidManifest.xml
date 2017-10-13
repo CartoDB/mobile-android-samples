@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.carto.advanced.kotlin.main"
+    platformBuildVersionCode="23"
+    platformBuildVersionName="6.0-2704002">
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="23"
+        tools:overrideLibrary="android.support.test.uiautomator.v18" />
+
+    <instrumentation
+        android:label="Tests for com.carto.advanced.kotlin"
+        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:targetPackage="com.carto.advanced.kotlin"
+        android:handleProfiling="false"
+        android:functionalTest="false" />
+
+    <application
+        android:debuggable="true">
+
+        <uses-library
+            android:name="android.test.runner" />
+    </application>
+
+</manifest>

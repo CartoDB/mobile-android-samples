@@ -10,8 +10,12 @@ android {
         targetSdkVersion 23
         versionCode 4
         versionName "0.3.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "a1008a0e3e0f444d8770d3810f3d34c0"]
+
+        testApplicationId "com.carto.advanced.kotlin.main"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testHandleProfiling true
+        testFunctionalTest true
     }
     buildTypes {
         release {
