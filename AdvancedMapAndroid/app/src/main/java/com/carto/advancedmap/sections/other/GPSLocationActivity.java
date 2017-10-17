@@ -19,6 +19,7 @@ import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
+import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.PointStyleBuilder;
 import com.carto.styles.PolygonStyle;
 import com.carto.styles.PolygonStyleBuilder;
@@ -80,6 +81,13 @@ public class GPSLocationActivity extends MapBaseActivity {
         // Style for GPS My Location circle
         PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
         polygonBuilder.setColor(lightAppleBlue);
+
+        // Add a nice darker border to our accuracy marker
+        LineStyleBuilder borderBuilder = new LineStyleBuilder();
+        borderBuilder.setColor(darkAppleBlue);
+        borderBuilder.setWidth(1);
+        polygonBuilder.setLineStyle(borderBuilder.buildStyle());
+
         final Polygon accuracyMarker = new Polygon(new MapPosVector(), polygonBuilder.buildStyle());
 
         PointStyleBuilder pointBuilder = new PointStyleBuilder();
