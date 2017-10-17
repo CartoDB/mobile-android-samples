@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.sections.styles
 
 import android.os.Bundle
+import android.widget.CompoundButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguageCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
@@ -58,6 +59,16 @@ class StyleChoiceActivity : BaseActivity() {
                 contentView?.updateMapLanguage(cell.item!!.value)
             }
         }
+
+        var switch = contentView!!.switchesContent.buildingsSwitch.switch
+        switch.setOnCheckedChangeListener({ _, b ->
+            contentView!!.updateBuildings(b)
+        })
+
+        switch = contentView!!.switchesContent.textsSwitch.switch
+        switch.setOnCheckedChangeListener({ _, b ->
+            contentView!!.updateTexts(b)
+        })
     }
 
     override fun onPause() {
@@ -73,6 +84,9 @@ class StyleChoiceActivity : BaseActivity() {
         }
 
         contentView?.languageContent?.list?.onItemClickListener = null
+
+        contentView!!.switchesContent.buildingsSwitch.switch.setOnCheckedChangeListener(null)
+        contentView!!.switchesContent.textsSwitch.switch.setOnCheckedChangeListener(null)
 
         if (contentView?.currentLayer is VectorTileLayer) {
             (contentView?.currentLayer as VectorTileLayer).vectorTileEventListener = null

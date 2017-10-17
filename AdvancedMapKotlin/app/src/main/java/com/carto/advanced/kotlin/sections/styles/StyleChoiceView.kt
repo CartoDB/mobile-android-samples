@@ -5,6 +5,7 @@ import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguagePopupContent
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
+import com.carto.advanced.kotlin.components.popupcontent.switchescontent.SwitchesContent
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
 import com.carto.datasources.CartoOnlineTileDataSource
@@ -30,11 +31,13 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         val STYLE_POSITRON_DESCRIPTION = "style_positron"
     }
 
-    var languageButton: PopupButton = PopupButton(context, R.drawable.icon_language)
-    var baseMapButton: PopupButton = PopupButton(context, R.drawable.icon_basemap)
+    var languageButton = PopupButton(context, R.drawable.icon_language)
+    var baseMapButton = PopupButton(context, R.drawable.icon_basemap)
+    var switchesButton = PopupButton(context, R.drawable.icon_switches)
 
-    var languageContent: LanguagePopupContent = LanguagePopupContent(context)
-    var baseMapContent: StylePopupContent = StylePopupContent(context)
+    var languageContent = LanguagePopupContent(context)
+    var baseMapContent = StylePopupContent(context)
+    var switchesContent = SwitchesContent(context)
 
     var currentLanguage: String = ""
     var currentLayer: TileLayer? = null
@@ -55,6 +58,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         addButton(languageButton)
         addButton(baseMapButton)
+        addButton(switchesButton)
 
         layoutSubviews()
 
@@ -82,6 +86,16 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
             popup.popup.header.setText("SELECT A BASEMAP")
             popup.show()
         }
+
+        switchesButton.setOnClickListener {
+            popup.setPopupContent(switchesContent)
+            popup.popup.header.setText("SWITCH TO TURN 3D ON")
+            popup.show()
+        }
+
+        switchesContent.setOnClickListener({
+//             Just catches background clicks, so they wouldn't close the popup
+        })
     }
 
     override fun removeListeners() {
@@ -89,8 +103,10 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         languageButton.setOnClickListener(null)
         baseMapButton.setOnClickListener(null)
-    }
+        switchesButton.setOnClickListener(null)
 
+        switchesContent.setOnClickListener(null)
+    }
 
     fun updateMapLanguage(language: String) {
 
@@ -150,8 +166,12 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         if (source == StylePopupContent.CartoRasterSource) {
             languageButton.disable()
+            switchesContent.buildingsSwitch.disable()
+            switchesContent.textsSwitch.disable()
         } else {
             languageButton.enable()
+            switchesContent.buildingsSwitch.enable()
+            switchesContent.textsSwitch.enable()
         }
 
         map.layers.clear()
@@ -159,10 +179,44 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         updateMapLanguage(currentLanguage)
 
+        switchesContent.buildingsSwitch.uncheck()
+        switchesContent.textsSwitch.uncheck()
+
         if (currentLayer is VectorTileLayer) {
             map.layers.add(vectorLayer)
             (currentLayer as VectorTileLayer).vectorTileEventListener = clickListener
         }
+    }
+
+    fun updateBuildings(isChecked: Boolean) {
+
+        var value = "1"
+
+        if (isChecked) {
+            value = "2"
+        }
+
+        updateStyle("buildings", value)
+
+        popup.hide()
+    }
+
+    fun updateTexts(isChecked: Boolean) {
+
+        var value = "0"
+
+        if (isChecked) {
+            value = "1"
+        }
+
+        updateStyle("texts3d", value)
+
+        popup.hide()
+    }
+
+    private fun updateStyle(key: String, value: String) {
+        val decoder = (currentLayer as? VectorTileLayer)?.tileDecoder as? MBVectorTileDecoder
+        decoder?.setStyleParameter(key, value)
     }
 
 }
