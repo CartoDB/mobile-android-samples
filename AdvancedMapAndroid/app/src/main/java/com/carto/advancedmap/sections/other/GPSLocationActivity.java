@@ -7,10 +7,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.carto.advancedmap.sections.basemap.BaseMapsView;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.utils.Colors;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
@@ -23,9 +25,9 @@ import com.carto.vectorelements.Polygon;
 import com.carto.core.MapPosVector;
 
 public class GPSLocationActivity extends MapBaseActivity {
-	
-	private LocationManager locationManager;
-	private LocationListener locationListener;
+
+    private LocationManager locationManager;
+    private LocationListener locationListener;
 
     LocalVectorDataSource vectorDataSource;
 
@@ -61,19 +63,16 @@ public class GPSLocationActivity extends MapBaseActivity {
                 } else {
                     finish();
                 }
-                return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
 
     void onPermissionGranted() {
 
+        Color appleBlue = Colors.toCartoColor(Colors.LIGHT_TRANSPARENT_APPLE_BLUE);
         // style for GPS My Location circle
         PolygonStyleBuilder polygonStyleBuilder = new PolygonStyleBuilder();
-        polygonStyleBuilder.setColor(new Color(0xAAFF0000));
+        polygonStyleBuilder.setColor(appleBlue);
         PolygonStyle gpsStyle = polygonStyleBuilder.buildStyle();
 
         MapPosVector gpsCirclePoses = new MapPosVector();
@@ -86,23 +85,28 @@ public class GPSLocationActivity extends MapBaseActivity {
             @Override
             public void onLocationChanged(Location location) {
                 Log.debug("GPS onLocationChanged " + location);
-                if (locationCircle != null) {
-                    locationCircle.setPoses(createLocationCircle(location, contentView.projection));
-                    locationCircle.setVisible(true);
-                    MapPos position = contentView.projection.fromWgs84(new MapPos(location.getLongitude(), location.getLatitude()));
-                    contentView.mapView.setFocusPos(position, 0.5f);
-                    contentView.mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
-                }
+
+                locationCircle.setPoses(createLocationCircle(location, contentView.projection));
+                locationCircle.setVisible(true);
+
+                MapPos position = new MapPos(location.getLongitude(), location.getLatitude());
+                position = contentView.projection.fromWgs84(position);
+
+                contentView.mapView.setFocusPos(position, 0.5f);
+                contentView.mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
             }
 
             @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {}
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+            }
 
             @Override
-            public void onProviderEnabled(String s) {}
+            public void onProviderEnabled(String s) {
+            }
 
             @Override
-            public void onProviderDisabled(String s) {}
+            public void onProviderDisabled(String s) {
+            }
 
             /**
              * Calculates points for location circle, useful for "My Location" feature
@@ -140,17 +144,23 @@ public class GPSLocationActivity extends MapBaseActivity {
 
         // user has maybe disabled location services / GPS
         if (locationManager.getProviders(true).size() == 0) {
-            Toast.makeText(this, "Cannot get location, no location providers enabled. Check device settings", Toast.LENGTH_LONG).show();
+            alert("Cannot get location, no location providers enabled. Check device settings");
         }
 
         // use all enabled device providers with same parameters
         for (String provider : locationManager.getProviders(true)) {
-            Log.debug("adding location provider " + provider);
+
+            int fine = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+            int coarse = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+
+            if (fine != PackageManager.PERMISSION_GRANTED && coarse != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+
             locationManager.requestLocationUpdates(provider, 1000, 50, locationListener);
         }
 
         vectorDataSource.add(locationCircle);
-
     }
     
     @Override
