@@ -27,6 +27,9 @@ class StyleChoiceActivity : BaseActivity() {
 
         contentView?.languageContent?.addItems(Languages.list)
         contentView?.baseMapContent?.highlightDefault()
+
+        contentView!!.switchesContent.textsSwitch.check()
+        contentView!!.switchesContent.buildingsSwitch.uncheck()
     }
 
     override fun onResume() {

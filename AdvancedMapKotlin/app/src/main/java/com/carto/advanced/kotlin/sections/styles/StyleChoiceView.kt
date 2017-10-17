@@ -167,13 +167,9 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         if (source == StylePopupContent.CartoRasterSource) {
             languageButton.disable()
             switchesButton.disable()
-            switchesContent.buildingsSwitch.disable()
-            switchesContent.textsSwitch.disable()
         } else {
             languageButton.enable()
             switchesButton.enable()
-            switchesContent.buildingsSwitch.enable()
-            switchesContent.textsSwitch.enable()
         }
 
         map.layers.clear()
@@ -182,7 +178,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         updateMapLanguage(currentLanguage)
 
         switchesContent.buildingsSwitch.uncheck()
-        switchesContent.textsSwitch.uncheck()
+        switchesContent.textsSwitch.check()
 
         if (currentLayer is VectorTileLayer) {
             map.layers.add(vectorLayer)

@@ -22,8 +22,6 @@ class SwitchWithLabel(context: Context) : BaseView(context) {
         addView(label)
 
         addView(switch)
-
-        uncheck()
     }
 
     override fun layoutSubviews() {
@@ -47,6 +45,10 @@ class SwitchWithLabel(context: Context) : BaseView(context) {
 
     fun uncheck() {
         switch.isChecked = false
+    }
+
+    fun check() {
+        switch.isChecked = true
     }
 
     fun enable() {
