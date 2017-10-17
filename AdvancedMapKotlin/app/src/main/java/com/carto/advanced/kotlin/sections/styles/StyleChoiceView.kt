@@ -166,10 +166,12 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         if (source == StylePopupContent.CartoRasterSource) {
             languageButton.disable()
+            switchesButton.disable()
             switchesContent.buildingsSwitch.disable()
             switchesContent.textsSwitch.disable()
         } else {
             languageButton.enable()
+            switchesButton.enable()
             switchesContent.buildingsSwitch.enable()
             switchesContent.textsSwitch.enable()
         }
