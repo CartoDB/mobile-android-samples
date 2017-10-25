@@ -14,11 +14,11 @@
         android:label="Advanced Map"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="${HOCKEYAPP_APP_ID}" />
 
         <activity android:name=".main.MainActivity" />
-
         <activity android:name=".sections.styles.StyleChoiceActivity" />
         <activity android:name=".sections.editing.EditingActivity" />
         <activity android:name=".sections.gpslocation.GPSLocationActivity" />
@@ -30,15 +30,16 @@
         <activity android:name=".sections.clustering.ClusteringActivity" />
         <activity android:name=".sections.geocoding.GeocodingActivity" />
         <activity android:name=".sections.reversegeocoding.ReverseGeocodingActivity" />
-        <activity android:name=".main.SplashActivity"
+        <activity
+            android:name=".main.SplashActivity"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".sections.buildingfloors.BuildingFloorsActivity"></activity>
     </application>
 
 </manifest>

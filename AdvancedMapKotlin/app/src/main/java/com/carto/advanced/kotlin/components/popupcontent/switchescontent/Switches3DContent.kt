@@ -6,7 +6,7 @@ import android.content.Context
 /**
  * Created by aareundo on 17/10/2017.
  */
-class SwitchesContent(context: Context) : BaseView(context) {
+class Switches3DContent(context: Context) : BaseView(context) {
 
     val buildingsSwitch = SwitchWithLabel(context)
     val textsSwitch = SwitchWithLabel(context)

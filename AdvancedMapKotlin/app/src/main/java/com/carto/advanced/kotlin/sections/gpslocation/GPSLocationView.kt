@@ -109,7 +109,7 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
             accuracyMarker?.style = builder.buildStyle()
             accuracyMarker?.geometry = PolygonGeometry(points)
         }
-
+        
         if (userMarker == null) {
             @Suppress("NAME_SHADOWING")
             val builder = PointStyleBuilder()

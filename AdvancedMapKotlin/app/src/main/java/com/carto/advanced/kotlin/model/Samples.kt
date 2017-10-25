@@ -1,6 +1,7 @@
 package com.carto.advanced.kotlin.model
 
 import com.carto.advanced.kotlin.R
+import com.carto.advanced.kotlin.sections.buildingfloors.BuildingFloorsActivity
 import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
@@ -52,7 +53,11 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_reverse_geocoding, "REVERSE GEOCODING",
                         "Click on an area on the map to get information about it", ReverseGeocodingActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_building_floors, "BUILDING FLOORS",
+                        "Show or hide different floors of a building", BuildingFloorsActivity::class.java
                 )
+
         )
     }
 }

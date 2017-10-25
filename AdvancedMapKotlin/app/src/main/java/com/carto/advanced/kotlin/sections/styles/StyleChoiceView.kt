@@ -5,18 +5,16 @@ import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguagePopupContent
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
-import com.carto.advanced.kotlin.components.popupcontent.switchescontent.SwitchesContent
+import com.carto.advanced.kotlin.components.popupcontent.switchescontent.Switches3DContent
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
 import com.carto.datasources.CartoOnlineTileDataSource
-import com.carto.datasources.HTTPTileDataSource
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.*
 import com.carto.styles.CompiledStyleSet
 import com.carto.utils.AssetUtils
 import com.carto.utils.ZippedAssetPackage
 import com.carto.vectortiles.MBVectorTileDecoder
-import java.util.*
 
 /**
  * Created by aareundo on 03/07/2017.
@@ -37,7 +35,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
     var languageContent = LanguagePopupContent(context)
     var baseMapContent = StylePopupContent(context)
-    var switchesContent = SwitchesContent(context)
+    var switchesContent = Switches3DContent(context)
 
     var currentLanguage: String = ""
     var currentLayer: TileLayer? = null
