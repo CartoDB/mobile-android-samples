@@ -1,6 +1,10 @@
 package com.carto.advanced.kotlin.components.popupcontent.switchescontent
 
 import android.content.Context
+import android.view.Gravity
+import android.widget.SeekBar
+import android.widget.TextView
+import com.carto.advanced.kotlin.sections.base.utils.setFrame
 import com.carto.advanced.kotlin.sections.base.views.BaseView
 
 /**
@@ -10,15 +14,15 @@ class SwitchesFloorContent(context: Context, val count: Int) : BaseView(context)
 
     val list = mutableListOf<SwitchWithLabel>()
 
+    val slider = SeekBar(context)
+    val label = TextView(context)
+
     init {
 
-        for (i in 0..count) {
-            val switch = SwitchWithLabel(context)
-            switch.label.text = "Floor " + i.toString()
-            switch.id = i
-            list.add(switch)
-            addView(switch)
-        }
+        addView(slider)
+
+        label.gravity = Gravity.CENTER_HORIZONTAL
+        addView(label)
     }
 
     override fun layoutSubviews() {
@@ -26,15 +30,19 @@ class SwitchesFloorContent(context: Context, val count: Int) : BaseView(context)
 
         val padding = (5 * getDensity()).toInt()
 
-        val x = padding
+        var x = padding
         var y = padding
-        val w = frame.width - 2 * padding
-        val h = list[0].switch.height
+        var w = frame.width - 2 * padding
+        var h = (30 * getDensity()).toInt()
+        slider.setFrame(x, y, w, h)
 
-        for (i in 0..count) {
-            val switch = list[i]
-            switch.setFrame(x, y, w, h)
-            y += h + padding
-        }
+        y += h + padding
+
+        label.setFrame(x, y, w, h)
+    }
+
+    fun setProgress(progress: Int) {
+        label.text = progress.toString()
+        slider.progress = progress
     }
 }

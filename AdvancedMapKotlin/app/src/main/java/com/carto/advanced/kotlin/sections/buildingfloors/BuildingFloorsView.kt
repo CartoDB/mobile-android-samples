@@ -60,6 +60,8 @@ class BuildingFloorsView(context: Context) : MapBaseView(context) {
             model.scale = 20.0f
             source?.add(model)
         }
+
+        switchesContent.slider.max = floorCount
     }
 
     override fun addListeners() {
@@ -67,7 +69,7 @@ class BuildingFloorsView(context: Context) : MapBaseView(context) {
 
         switchesButton.setOnClickListener {
             popup.setPopupContent(switchesContent)
-            popup.popup.header.setText("SWITCH TO SHOW OR HIDE FLOORS")
+            popup.popup.header.setText("SLIDE TO SHOW OR HIDE FLOORS")
             popup.show()
         }
 
@@ -86,5 +88,18 @@ class BuildingFloorsView(context: Context) : MapBaseView(context) {
 
     fun showFloor(i: Int, checked: Boolean) {
         source?.all!![i].isVisible = checked
+    }
+
+    fun showFloors(count: Int) {
+
+        val elementCount = source?.all!!.size()
+
+        for (i in 0 until elementCount) {
+            source?.all!![i.toInt()].isVisible = false
+        }
+
+        for (i in 0 until count + 1) {
+            source?.all!![i].isVisible = true
+        }
     }
 }
