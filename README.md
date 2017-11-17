@@ -44,5 +44,4 @@
 
 ## Other Samples
 
-* Xamarin (iOS, Android and Windows Phone samples in C#): https://github.com/CartoDB/mobile-dotnet-samples
-* XCode (iOS samples in Objective-C and Swift): https://github.com/CartoDB/mobile-ios-samples
+* Android (Java and Kotlin), iPhone (Objective-C and Swift) and others: https://github.com/CartoDB/mobile-sdk-samples
