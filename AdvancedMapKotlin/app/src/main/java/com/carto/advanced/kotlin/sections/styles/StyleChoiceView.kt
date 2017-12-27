@@ -130,29 +130,6 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
                 currentLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER)
             }
 
-        } else if (source == StylePopupContent.MapzenSource) {
-
-            val asset = AssetUtils.loadAsset("styles_mapzen.zip")
-
-            val assetPackage = ZippedAssetPackage(asset)
-
-            var name = ""
-
-            if (selection == StylePopupContent.Bright) {
-                name = "style"
-            } else if (selection == StylePopupContent.Positron) {
-                name = "positron"
-            } else if (selection == StylePopupContent.DarkMatter) {
-                name = "positron_dark"
-            }
-
-            val styleSet = CompiledStyleSet(assetPackage, name)
-
-            val datasource = CartoOnlineTileDataSource(source)
-            val decoder = MBVectorTileDecoder(styleSet)
-
-            currentLayer = VectorTileLayer(datasource, decoder)
-
         } else if (source == StylePopupContent.CartoRasterSource) {
 
             if (selection == StylePopupContent.HereSatelliteDaySource) {
