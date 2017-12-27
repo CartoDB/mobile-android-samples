@@ -12,7 +12,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
 
     companion object {
         @JvmStatic val CartoVectorSource = "carto.streets"
-        @JvmStatic val MapzenSource = "mapzen.osm"
         @JvmStatic val CartoRasterSource = "carto.osm"
 
         @JvmStatic val Bright = "BRIGHT"
@@ -27,11 +26,10 @@ class StylePopupContent(context: Context) : BaseView(context) {
     private val container = BaseScrollView(context)
 
     private val cartoVector = StylePopupContentSection(context)
-    private val mapzen = StylePopupContentSection(context)
     private val cartoRaster = StylePopupContentSection(context)
 
     fun getItems() : MutableList<StylePopupContentSection> {
-        return mutableListOf(cartoVector, mapzen, cartoRaster)
+        return mutableListOf(cartoVector, cartoRaster)
     }
 
     init {
@@ -45,14 +43,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
         cartoVector.addItem(DarkMatter, R.drawable.style_image_nutiteq_darkmatter)
 
         container.addView(cartoVector)
-
-        mapzen.source = MapzenSource
-        mapzen.header.text = "MAPZEN VECTOR"
-        mapzen.addItem(Bright, R.drawable.style_image_mapzen_bright)
-        mapzen.addItem(Positron, R.drawable.style_image_mapzen_positron)
-        mapzen.addItem(DarkMatter, R.drawable.style_image_mapzen_darkmatter)
-
-        container.addView(mapzen)
 
         cartoRaster.source = CartoRasterSource
         cartoRaster.header.text = "HERE RASTER"
@@ -73,11 +63,6 @@ class StylePopupContent(context: Context) : BaseView(context) {
         var h = cartoVector.getCalculatedHeight()
 
         cartoVector.setFrame(x, y, w, h)
-
-        y += h + headerPadding
-        h = mapzen.getCalculatedHeight()
-
-        mapzen.setFrame(x, y, w, h)
 
         y += h + headerPadding
         h = cartoRaster.getCalculatedHeight() + headerPadding

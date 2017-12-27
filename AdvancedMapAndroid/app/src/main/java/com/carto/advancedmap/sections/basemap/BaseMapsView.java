@@ -88,32 +88,6 @@ public class BaseMapsView extends MapBaseView
             } else {
                 currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DARKMATTER);
             }
-
-        } else if (source.equals(StylePopupContent.getMapzenSource())) {
-
-            // Mapzen styles are all bundled in one .zip file.
-            // Selection contains both the style name and file name (cf. Sections.cs in Shared)
-            String fileName = "styles_mapzen.zip";
-            String styleName = "";
-
-            if (selection.equals(StylePopupContent.getBright())) {
-                styleName = "style";
-            } else if (selection.equals(StylePopupContent.getPositron())) {
-                styleName = "positron";
-            } else if (selection.equals(StylePopupContent.getDarkMatter())) {
-                styleName = "positron_dark";
-            }
-            // Create a style set from the file and style
-            BinaryData styleAsset = AssetUtils.loadAsset(fileName);
-            ZippedAssetPackage assetPackage = new ZippedAssetPackage(styleAsset);
-            CompiledStyleSet styleSet = new CompiledStyleSet(assetPackage, styleName);
-
-            // Create datasource and style decoder
-            CartoOnlineTileDataSource ds = new CartoOnlineTileDataSource(currentOSM);
-            MBVectorTileDecoder decoder = new MBVectorTileDecoder(styleSet);
-
-            currentLayer = new VectorTileLayer(ds, decoder);
-
         } else if (source.equals(StylePopupContent.getCartoRasterSource())) {
 
             if (selection.equals(StylePopupContent.getHereSatelliteDaySource())) {
