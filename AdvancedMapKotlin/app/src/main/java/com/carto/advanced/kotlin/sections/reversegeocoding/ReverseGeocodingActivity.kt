@@ -82,7 +82,7 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
             }
         }
 
-        if (contentView?.hasLocalPackages()!!) {
+        if (contentView!!.hasLocalPackages()) {
             contentView?.showLocalPackages()
         }
 

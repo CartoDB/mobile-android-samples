@@ -89,12 +89,6 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
             }
         }
 
-        if (contentView?.hasLocalPackages()!!) {
-            contentView?.showLocalPackages()
-            (contentView as? GeocodingView)!!.showSearchBar()
-        } else {
-            (contentView as? GeocodingView)!!.showBannerInsteadOfSearchBar()
-        }
     }
 
     override fun onPause() {
@@ -179,9 +173,25 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
 
     override fun setOnlineMode() {
         service = PeliasOnlineGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
+        updateUIBasedOnModeAndAvailablePackages(true)
     }
 
     override fun setOfflineMode() {
         service = PackageManagerGeocodingService(contentView?.manager)
+        updateUIBasedOnModeAndAvailablePackages(false)
+    }
+
+    private fun updateUIBasedOnModeAndAvailablePackages(isOnline: Boolean) {
+
+        if (isOnline) {
+            (contentView as? GeocodingView)!!.showSearchBar()
+        } else {
+            if (contentView?.hasLocalPackages()!!) {
+                contentView?.showLocalPackages()
+                (contentView as? GeocodingView)!!.showSearchBar()
+            } else {
+                (contentView as? GeocodingView)!!.showBannerInsteadOfSearchBar()
+            }
+        }
     }
 }
