@@ -81,16 +81,6 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
                 (contentView as ReverseGeocodingView).showResult(result, title, description, goToPosition)
             }
         }
-
-        if (contentView!!.hasLocalPackages()) {
-            contentView?.showLocalPackages()
-        }
-
-        if (contentView!!.hasLocalPackages()) {
-            contentView?.topBanner?.alert("Click on a location to find out more about")
-        } else {
-            contentView?.topBanner?.alert("Click the globe icon to download a geocoding package")
-        }
     }
 
     override fun onPause() {
@@ -101,9 +91,26 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
 
     override fun setOnlineMode() {
         service = PeliasOnlineReverseGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
+        updateUIBasedOnModeAndPackages(true)
     }
 
     override fun setOfflineMode() {
         service = PackageManagerReverseGeocodingService(contentView?.manager)
+        updateUIBasedOnModeAndPackages(false)
+    }
+
+    private fun updateUIBasedOnModeAndPackages(isOnline: Boolean) {
+
+        if (!isOnline) {
+            if (contentView!!.hasLocalPackages()) {
+                contentView?.showLocalPackages()
+            }
+        }
+
+        if (contentView!!.hasLocalPackages() || isOnline) {
+            contentView?.topBanner?.alert("Click on a location to find out more about")
+        } else {
+            contentView?.topBanner?.alert("Click the globe icon to download a geocoding package")
+        }
     }
 }
