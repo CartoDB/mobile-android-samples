@@ -2,10 +2,11 @@ package com.carto.cartomap.sections.mapsapi;
 
 import android.os.Bundle;
 
-import com.carto.cartomap.sections.BaseMapActivity;
+import com.carto.cartomap.sections.MapBaseActivity;
 import com.carto.cartomap.util.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.StringVariantMap;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.geometry.Feature;
 import com.carto.geometry.Geometry;
@@ -16,12 +17,12 @@ import com.carto.geometry.PolygonGeometry;
 import com.carto.graphics.Color;
 import com.carto.layers.Layer;
 import com.carto.layers.LayerVector;
-import com.carto.layers.TileLayer;
 import com.carto.layers.VectorLayer;
 import com.carto.layers.VectorTileEventListener;
 import com.carto.layers.VectorTileLayer;
 import com.carto.projections.Projection;
 import com.carto.services.CartoMapsService;
+import com.carto.styles.BalloonPopupStyle;
 import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.GeometryCollectionStyleBuilder;
 import com.carto.styles.LineStyleBuilder;
@@ -41,12 +42,12 @@ import java.io.IOException;
  */
 
 @ActivityData(name = "Named Map", description = "CARTO data as Vector Tiles from a named map")
-public class NamedMapActivity extends BaseMapActivity {
+public class NamedMapActivity extends MapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // BaseMapActivity creates and sets mapView
+        // MapBaseActivity creates and sets mapView
         super.onCreate(savedInstanceState);
 
         final CartoMapsService service = new CartoMapsService();
@@ -172,10 +173,22 @@ public class NamedMapActivity extends BaseMapActivity {
             // Set a higher placement priority so it would always be visible
             builder.setPlacementPriority(10);
 
-            String message = feature.getProperties().toString();
+            Variant properties = feature.getProperties();
 
-            BalloonPopup popup = new BalloonPopup(clickInfo.getClickPos(), builder.buildStyle(), "Click", message);
+            MapPos position = clickInfo.getClickPos();
+            BalloonPopupStyle style = builder.buildStyle();
+            String title = properties.getObjectElement("display_name").getString();
+            String description = properties.getObjectElement("description").getString();
 
+            if (description.equals("null")) {
+                description = "";
+            }
+
+            if (title.equals("null")) {
+                title = "No information";
+            }
+
+            BalloonPopup popup = new BalloonPopup(position, style, title, description);
             source.add(popup);
 
             return true;

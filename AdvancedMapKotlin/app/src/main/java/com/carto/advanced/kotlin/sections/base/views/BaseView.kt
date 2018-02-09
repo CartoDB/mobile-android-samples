@@ -52,7 +52,7 @@ open class BaseView(context: android.content.Context) : android.widget.RelativeL
     fun setCornerRadius(radius: Float) {
 
         if (isJellybeanOrHigher()) {
-            (background as android.graphics.drawable.GradientDrawable).cornerRadius = radius
+            (background as android.graphics.drawable.GradientDrawable).setCornerRadius(radius)
         }
     }
 

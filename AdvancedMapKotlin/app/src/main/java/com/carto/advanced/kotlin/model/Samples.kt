@@ -1,15 +1,16 @@
 package com.carto.advanced.kotlin.model
 
 import com.carto.advanced.kotlin.R
-import com.carto.advanced.kotlin.sections.citydownload.CityDownloadActivity
+import com.carto.advanced.kotlin.sections.buildingfloors.BuildingFloorsActivity
 import com.carto.advanced.kotlin.sections.clustering.ClusteringActivity
 import com.carto.advanced.kotlin.sections.editing.EditingActivity
 import com.carto.advanced.kotlin.sections.geocoding.GeocodingActivity
 import com.carto.advanced.kotlin.sections.gpslocation.GPSLocationActivity
 import com.carto.advanced.kotlin.sections.groundoverlay.GroundOverlayActivity
+import com.carto.advanced.kotlin.sections.offlinerouting.OfflineRoutingActivity
 import com.carto.advanced.kotlin.sections.packagedownload.PackageDownloadActivity
 import com.carto.advanced.kotlin.sections.reversegeocoding.ReverseGeocodingActivity
-import com.carto.advanced.kotlin.sections.routedownload.RouteDownloadActivity
+import com.carto.advanced.kotlin.sections.routesearch.RouteSearchActivity
 import com.carto.advanced.kotlin.sections.styles.StyleChoiceActivity
 import com.carto.advanced.kotlin.sections.vectorelement.VectorElementActivity
 
@@ -20,17 +21,17 @@ class Samples {
 
     companion object {
         val list: MutableList<Sample> = mutableListOf(
-                Sample(R.drawable.icon_sample_styles, "STYLES",
+                Sample(R.drawable.icon_sample_styles, "BASEMAP STYLES",
                         "Various samples of different CARTO Base Maps", StyleChoiceActivity::class.java
                 ),
-                Sample(R.drawable.icon_sample_route_download, "ROUTE DOWNLOAD",
-                        "Route download via bounding box for offline use", RouteDownloadActivity::class.java
+                Sample(R.drawable.icon_sample_route_search, "SEARCH API",
+                        "Search POIs along a route", RouteSearchActivity::class.java
                 ),
-                Sample(R.drawable.icon_sample_city_download, "CITY DOWNLOAD",
-                        "City download via bounding box for offline use", CityDownloadActivity::class.java
-                ),
-                Sample(R.drawable.icon_sample_package_download, "PACKAGE DOWNLOAD",
+                Sample(R.drawable.icon_sample_package_download, "OFFLINE MAP",
                         "Download existing packages for offline use", PackageDownloadActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_offline_routing, "OFFLINE ROUTING",
+                        "Download existing routing packages for offline use", OfflineRoutingActivity::class.java
                 ),
                 Sample(R.drawable.icon_sample_vector_objects, "VECTOR ELEMENTS",
                         "Different popups, polygons and a NMLModel", VectorElementActivity::class.java
@@ -52,7 +53,11 @@ class Samples {
                 ),
                 Sample(R.drawable.icon_sample_reverse_geocoding, "REVERSE GEOCODING",
                         "Click on an area on the map to get information about it", ReverseGeocodingActivity::class.java
+                ),
+                Sample(R.drawable.icon_sample_building_floors, "BUILDING FLOORS",
+                        "Show or hide different floors of a building", BuildingFloorsActivity::class.java
                 )
+
         )
     }
 }

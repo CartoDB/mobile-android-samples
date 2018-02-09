@@ -9,7 +9,7 @@ import com.carto.cartomap.util.ActivityData;
  */
 
 @ActivityData(name = "Countries Viz", description = "Vis displaying countries in different colors using UTFGrid")
-public class CountriesVisMapActivity extends VisJsonBaseMapActivity {
+public class CountriesVisMapActivity extends VisJsonMapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

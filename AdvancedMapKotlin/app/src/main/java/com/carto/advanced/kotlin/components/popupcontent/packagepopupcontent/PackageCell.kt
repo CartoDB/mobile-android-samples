@@ -35,10 +35,10 @@ class PackageCell(context: Context) : BaseView(context) {
 
     val progressIndicator = BaseView(context)
 
-    init {
+    val titleSize = 13.0f
+    val titleColor = Colors.navy
 
-        val titleSize = 13.0f
-        val titleColor = Colors.navy
+    init {
 
         textLabel.textSize = titleSize
         textLabel.setTextColor(titleColor)
@@ -61,7 +61,7 @@ class PackageCell(context: Context) : BaseView(context) {
         statusIndicator.typeface = Typeface.DEFAULT_BOLD
 
         val drawable = GradientDrawable()
-        drawable.cornerRadius = 3 * getDensity()
+        drawable.setCornerRadius(3 * getDensity())
         drawable.setStroke(1, Colors.appleBlue)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             statusIndicator.background = drawable
@@ -144,6 +144,13 @@ class PackageCell(context: Context) : BaseView(context) {
             // It's a package group. These are displayed with a single label
             textLabel.text = item.name?.toUpperCase()
             forwardIcon.visibility = View.VISIBLE
+
+            if (item.isCustomRegionFolder) {
+                textLabel.setTextColor(Colors.appleBlue)
+            } else {
+                textLabel.setTextColor(titleColor)
+            }
+
             return
         }
 

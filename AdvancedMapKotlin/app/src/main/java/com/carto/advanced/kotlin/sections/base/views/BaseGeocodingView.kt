@@ -1,6 +1,8 @@
 package com.carto.advanced.kotlin.sections.base.views
 
 import com.carto.advanced.kotlin.utils.toList
+import com.carto.styles.AnimationStyleBuilder
+import com.carto.styles.AnimationType
 
 /**
  * Created by aareundo on 20/07/2017.
@@ -9,6 +11,8 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
     companion object {
         val SOURCE = "geocoding:carto.streets"
+        val MAPZEN_API_KEY = "mapzen-e2gmwsC"
+        val MAPBOX_TOKEN = "pk.eyJ1IjoiamFha2wiLCJhIjoiR3FYNFJrRSJ9.n8PoOPy9tvnULFJ8h67pIA"
     }
 
     val source = com.carto.datasources.LocalVectorDataSource(projection)
@@ -17,18 +21,21 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
         val layer = com.carto.layers.VectorLayer(source)
         map.layers.add(layer)
-
-        removeSwitch()
     }
 
     fun showResult(result: com.carto.geocoding.GeocodingResult, title: String, description: String, goToPosition: Boolean) {
 
         source.clear()
 
+        val animationBuilder = AnimationStyleBuilder()
+        animationBuilder.relativeSpeed = 2.0f
+        animationBuilder.fadeAnimationType = AnimationType.ANIMATION_TYPE_SMOOTHSTEP
+
         val builder = com.carto.styles.BalloonPopupStyleBuilder()
         builder.leftMargins = com.carto.styles.BalloonPopupMargins(0, 0, 0, 0)
         builder.titleMargins = com.carto.styles.BalloonPopupMargins(6, 3, 6, 3)
         builder.cornerRadius = 5
+        builder.animationStyle = animationBuilder.buildStyle()
 
         // Make sure this label is shown on top of all other labels
         builder.placementPriority = 10
@@ -89,33 +96,5 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
         source.add(popup)
     }
 
-    fun showLocalPackages() {
-        var text = "You have downloaded "
 
-        val packages = getLocalPackages()
-        val total = packages.size
-        var counter = 0
-
-        for (item in packages) {
-            val split = item.name.split("/")
-            val shortName = split[split.size - 1]
-
-            text += shortName
-            counter++
-
-            if (counter < total) {
-                text += ", "
-            }
-        }
-
-        progressLabel.complete(text)
-    }
-
-    fun hasLocalPackages(): Boolean {
-        return getLocalPackages().size > 0
-    }
-
-    fun getLocalPackages(): MutableList<com.carto.packagemanager.PackageInfo> {
-        return manager!!.localPackages.toList()
-    }
 }

@@ -1,11 +1,14 @@
 package com.carto.advanced.kotlin.sections.gpslocation
 
 import android.content.Context
+import android.graphics.Color
 import android.location.Location
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.RotationResetButton
+import com.carto.advanced.kotlin.components.ScaleBar
 import com.carto.advanced.kotlin.components.SwitchButton
 import com.carto.advanced.kotlin.model.Texts
+import com.carto.advanced.kotlin.sections.base.utils.CGRect
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
 import com.carto.advanced.kotlin.sections.base.utils.toCartoColor
 import com.carto.advanced.kotlin.utils.Colors
@@ -33,6 +36,8 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
     var rotationResetButton = RotationResetButton(context)
 
+    val scaleBar = ScaleBar(context)
+
     init {
 
         title = Texts.gpsLocationInfoHeader
@@ -48,6 +53,9 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
         addView(rotationResetButton)
 
+        scaleBar.map = map
+        addView(scaleBar)
+
         layoutSubviews()
     }
 
@@ -56,12 +64,20 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
 
         val padding: Int = (10 * getDensity()).toInt()
 
-        val w = buttonSize - padding
-        val h = w
-        val x: Int = frame.width - (w + padding)
-        val y = padding
+        var w = buttonSize - padding
+        var h = w
+        var x: Int = frame.width - (w + padding)
+        var y = padding
 
         rotationResetButton.setFrame(x, y, w, h)
+
+        val scaleBarPadding = 2 * padding
+
+        w = frame.width / 5
+        h = (20 * getDensity()).toInt()
+        x = frame.width - (w + scaleBarPadding)
+        y = frame.height - (h + scaleBarPadding)
+        scaleBar.setFrame(x, y, w, h)
     }
 
     var userMarker: Point? = null
@@ -93,7 +109,7 @@ class GPSLocationView(context: Context) : MapBaseView(context) {
             accuracyMarker?.style = builder.buildStyle()
             accuracyMarker?.geometry = PolygonGeometry(points)
         }
-
+        
         if (userMarker == null) {
             @Suppress("NAME_SHADOWING")
             val builder = PointStyleBuilder()

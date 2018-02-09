@@ -1,15 +1,17 @@
 package com.carto.advancedmap.utils;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 
 import com.carto.advancedmap.R;
-import com.carto.advancedmap.sections.routing.BaseRoutingActivity;
-import com.carto.advancedmap.shared.activities.BaseActivity;
+import com.carto.advancedmap.baseclasses.activities.BaseActivity;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.baseclasses.activities.PackageManagerBaseActivity;
+import com.carto.advancedmap.sections.routing.RouteMapEventListener;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapRange;
+import com.carto.core.Variant;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Bitmap;
 import com.carto.layers.VectorLayer;
@@ -25,11 +27,17 @@ import com.carto.styles.BalloonPopupStyleBuilder;
 import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
+import com.carto.styles.StringCartoCSSStyleSetMap;
 import com.carto.ui.MapView;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
+
+import java.nio.charset.Charset;
+
+import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_LEFT;
+import static com.carto.routing.RoutingAction.ROUTING_ACTION_TURN_RIGHT;
 
 /**
  * Created by aareundo on 11/04/2017.
@@ -42,13 +50,23 @@ public class RouteCalculator {
     private MarkerStyle instructionUp;
     private MarkerStyle instructionLeft;
     private MarkerStyle instructionRight;
+
     private LocalVectorDataSource routeDataSource;
     private LocalVectorDataSource routeStartStopDataSource;
-    private BalloonPopupStyleBuilder balloonPopupStyleBuilder;
+
+    private VectorLayer routeLayer;
 
     BaseActivity context;
     MapView mapView;
     RoutingService service;
+
+    public LocalVectorDataSource getRouteSource() {
+        return routeDataSource;
+    }
+
+    public VectorLayer getRouteLayer() {
+        return routeLayer;
+    }
 
     public RouteCalculator(BaseActivity context, MapView mapView, RoutingService service) {
 
@@ -59,7 +77,7 @@ public class RouteCalculator {
         Projection baseProjection = mapView.getOptions().getBaseProjection();
 
         routeDataSource = new LocalVectorDataSource(baseProjection);
-        VectorLayer routeLayer = new VectorLayer(routeDataSource);
+        routeLayer = new VectorLayer(routeDataSource);
         mapView.getLayers().add(routeLayer);
 
         // Define layer and datasource for route start and stop markers
@@ -107,20 +125,14 @@ public class RouteCalculator {
         markerStyleBuilder.setBitmap(createBitmap(R.drawable.direction_upthenright));
 
         instructionRight = markerStyleBuilder.buildStyle();
-
-        // Style for instruction balloons
-        balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-        balloonPopupStyleBuilder.setTitleMargins(new BalloonPopupMargins(4, 4, 4, 4));
     }
 
     public void showRoute(final MapPos startPos, final MapPos stopPos) {
 
         AsyncTask<Void, Void, RoutingResult> task = new AsyncTask<Void, Void, RoutingResult>() {
 
-            long timeStart;
-
             protected RoutingResult doInBackground(Void... v) {
-                timeStart = System.currentTimeMillis();
+
                 RoutingResult result = getResult(startPos, stopPos);
 
                 return result;
@@ -129,16 +141,15 @@ public class RouteCalculator {
             protected void onPostExecute(RoutingResult result) {
 
                 if (result == null) {
-                    context.alert("Routing failed");
+                    alert("Routing failed");
                     return;
                 }
 
-                String routeText =
-                        "The route is " + (int) (result.getTotalDistance() / 100) / 10f
-                                + "km (" + secondsToHours((int) result.getTotalTime())
-                                + ") calculation: " + (System.currentTimeMillis() - timeStart) + " ms";
+                float distance = (int)(result.getTotalDistance() / 100) / 10f;
+                String time = secondsToHours((int) result.getTotalTime());
+                String text = "Your route is " + distance + "km (" + time + ")";
 
-                context.alert(routeText);
+                alert(text);
 
                 routeDataSource.clear();
 
@@ -159,7 +170,7 @@ public class RouteCalculator {
                         first = false;
                     } else {
                         MapPos position = result.getPoints().get(instruction.getPointIndex());
-                        createRoutePoint(position, instruction.getAction(), routeDataSource);
+                        createRoutePoint(position, instruction, routeDataSource);
                     }
 
                 }
@@ -167,6 +178,15 @@ public class RouteCalculator {
         };
 
         task.execute();
+    }
+
+    void alert(String text) {
+
+        if (MapBaseActivity.class.isAssignableFrom(context.getClass())) {
+            ((MapBaseActivity)context).contentView.banner.alert(text);
+        } else if(PackageManagerBaseActivity.class.isAssignableFrom(context.getClass())) {
+            ((PackageManagerBaseActivity)context).contentView.banner.alert(text);
+        }
     }
 
     public RoutingResult getResult(MapPos start, MapPos stop) {
@@ -185,63 +205,23 @@ public class RouteCalculator {
         }
     }
 
-    protected void createRoutePoint(MapPos pos, RoutingAction action, LocalVectorDataSource ds) {
+    public static final String DESCRIPTION = "";
+
+    protected void createRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource ds) {
 
         MarkerStyle style = instructionUp;
-        String str = "";
+        RoutingAction action = instruction.getAction();
 
-        switch (action) {
-            case ROUTING_ACTION_HEAD_ON:
-                str = "head on";
-                break;
-            case ROUTING_ACTION_FINISH:
-                str = "finish";
-                break;
-            case ROUTING_ACTION_TURN_LEFT:
-                style = instructionLeft;
-                str = "turn left";
-                break;
-            case ROUTING_ACTION_TURN_RIGHT:
-                style = instructionRight;
-                str = "turn right";
-                break;
-            case ROUTING_ACTION_UTURN:
-                str = "u turn";
-                break;
-            case ROUTING_ACTION_NO_TURN:
-            case ROUTING_ACTION_GO_STRAIGHT:
-                // Do nothing
-                break;
-            case ROUTING_ACTION_REACH_VIA_LOCATION:
-                style = instructionUp;
-                str = "stopover";
-                break;
-            case ROUTING_ACTION_ENTER_AGAINST_ALLOWED_DIRECTION:
-                str = "enter against allowed direction";
-                break;
-            case ROUTING_ACTION_LEAVE_AGAINST_ALLOWED_DIRECTION:
-                break;
-            case ROUTING_ACTION_ENTER_ROUNDABOUT:
-                str = "enter roundabout";
-                break;
-            case ROUTING_ACTION_STAY_ON_ROUNDABOUT:
-                str = "stay on roundabout";
-                break;
-            case ROUTING_ACTION_LEAVE_ROUNDABOUT:
-                str = "leave roundabout";
-                break;
-            case ROUTING_ACTION_START_AT_END_OF_STREET:
-                str = "start at end of street";
-                break;
+        if (action == ROUTING_ACTION_TURN_LEFT) {
+            style = instructionLeft;
+        } else if (action == ROUTING_ACTION_TURN_RIGHT) {
+            style = instructionRight;
         }
 
-        if (!str.equals("")){
-            Marker marker = new Marker(pos, style);
-            BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.buildStyle(),
-                    str, "");
-            ds.add(popup2);
-            ds.add(marker);
-        }
+        Marker marker = new Marker(pos, style);
+        marker.setMetaDataElement(DESCRIPTION, new Variant(instruction.toString()));
+
+        ds.add(marker);
     }
 
     protected Line createPolyline(RoutingResult result) {

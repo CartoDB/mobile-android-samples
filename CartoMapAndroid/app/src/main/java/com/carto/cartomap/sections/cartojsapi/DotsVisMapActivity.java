@@ -8,7 +8,7 @@ import com.carto.cartomap.util.ActivityData;
  * Created by aareundo on 13/10/16.
  */
 @ActivityData(name = "Dots Viz", description = "Vis showing dots on the map using UTFGrid")
-public class DotsVisMapActivity extends VisJsonBaseMapActivity {
+public class DotsVisMapActivity extends VisJsonMapBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

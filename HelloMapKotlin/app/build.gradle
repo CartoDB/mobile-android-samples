@@ -29,11 +29,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    compile 'com.carto:carto-mobile-sdk:4.0.1@aar'
+    compile 'com.carto:carto-mobile-sdk:4.1.0@aar'
 
     // Coroutine listeners for Anko Layouts
     compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
-}
-repositories {
-    mavenCentral()
 }

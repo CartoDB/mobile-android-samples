@@ -1,5 +1,6 @@
 package com.carto.advanced.kotlin.components
 
+import android.app.Activity
 import android.content.Context
 import com.carto.advanced.kotlin.R
 
@@ -9,6 +10,8 @@ import com.carto.advanced.kotlin.R
 class RotationResetButton(context: Context) : PopupButton(context, R.drawable.icon_compass) {
 
     fun rotate(angle: Float) {
-        imageView.rotation = angle
+        (context as Activity).runOnUiThread {
+            imageView.rotation = angle
+        }
     }
 }

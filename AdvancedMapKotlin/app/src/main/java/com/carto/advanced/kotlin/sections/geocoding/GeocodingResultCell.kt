@@ -38,7 +38,9 @@ class GeocodingResultCell(context: Context) : BaseView(context) {
     }
 
     fun update(item: GeocodingResult) {
+
         label.text = item.getPrettyAddress().toUpperCase()
+
         if (item.address.name != "") {
             type.text = "Point of Interest"
         } else if (item.address.houseNumber != "") {

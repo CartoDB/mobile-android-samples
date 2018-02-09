@@ -2,11 +2,11 @@ package com.carto.advanced.kotlin.sections.base.views
 
 import com.carto.advanced.kotlin.R
 import com.carto.layers.CartoBaseMapStyle
-
+import android.content.Context
 /**
  * Created by aareundo on 03/07/2017.
  */
-open class DownloadBaseView(context: android.content.Context) : MapBaseView(context) {
+open class DownloadBaseView(context: Context, withBaseLayer: Boolean = true) : MapBaseView(context) {
 
     val progressLabel = com.carto.advanced.kotlin.components.ProgressLabel(context)
 
@@ -23,7 +23,9 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
 
         addButton(switchButton)
 
-        setOnlineMode()
+        if (withBaseLayer) {
+            setOnlineMap()
+        }
     }
 
     override fun layoutSubviews() {
@@ -41,7 +43,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         removeButton(switchButton)
     }
 
-    fun setOnlineMode() {
+    fun setOnlineMap() {
 
         if (onlineLayer == null) {
             onlineLayer = addBaseLayer(com.carto.layers.CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
@@ -54,7 +56,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         map.layers?.insert(0, onlineLayer)
     }
 
-    fun setOfflineMode(manager: com.carto.packagemanager.CartoPackageManager) {
+    fun setOfflineMap(manager: com.carto.packagemanager.CartoPackageManager) {
         map.layers?.remove(onlineLayer)
 
         if (offlineLayer == null) {
@@ -65,7 +67,7 @@ open class DownloadBaseView(context: android.content.Context) : MapBaseView(cont
         map.layers?.insert(0, offlineLayer)
     }
 
-    fun setOfflineMode() {
-        setOfflineMode(manager!!)
+    fun setOfflineMap() {
+        setOfflineMap(manager!!)
     }
 }

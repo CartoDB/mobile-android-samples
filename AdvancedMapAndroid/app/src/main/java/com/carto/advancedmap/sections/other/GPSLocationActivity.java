@@ -7,30 +7,32 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.utils.Colors;
+import com.carto.advancedmap.utils.Utils;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 import com.carto.graphics.Color;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
+import com.carto.styles.LineStyleBuilder;
+import com.carto.styles.PointStyleBuilder;
 import com.carto.styles.PolygonStyle;
 import com.carto.styles.PolygonStyleBuilder;
 import com.carto.utils.Log;
+import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.core.MapPosVector;
 
-@ActivityData(name = "GPS Location", description = "Shows user GPS location on the map")
 public class GPSLocationActivity extends MapBaseActivity {
-	
-	private LocationManager locationManager;
-	private LocationListener locationListener;
 
-    Projection proj;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+
     LocalVectorDataSource vectorDataSource;
 
     @Override
@@ -40,16 +42,16 @@ public class GPSLocationActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
-
-        proj = super.baseProjection;
+        contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         // Initialize an local vector data source where to put my location circle
-        vectorDataSource = new LocalVectorDataSource(proj);
+        vectorDataSource = new LocalVectorDataSource(contentView.projection);
+
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
+
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer);
+        contentView.mapView.getLayers().add(vectorLayer);
 
         if (isMarshmallow()) {
             requestPermission(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -67,95 +69,83 @@ public class GPSLocationActivity extends MapBaseActivity {
                 } else {
                     finish();
                 }
-                return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
 
     void onPermissionGranted() {
 
-        // style for GPS My Location circle
-        PolygonStyleBuilder polygonStyleBuilder = new PolygonStyleBuilder();
-        polygonStyleBuilder.setColor(new Color(0xAAFF0000));
-        PolygonStyle gpsStyle = polygonStyleBuilder.buildStyle();
+        Color lightAppleBlue = Colors.toCartoColor(Colors.LIGHT_TRANSPARENT_APPLE_BLUE);
+        Color darkAppleBlue = Colors.toCartoColor(Colors.DARK_TRANSPARENT_APPLE_BLUE);
 
-        MapPosVector gpsCirclePoses = new MapPosVector();
-        final Polygon locationCircle = new Polygon(gpsCirclePoses, gpsStyle);
-        // initially empty and invisible
-        locationCircle.setVisible(false);
+        // Style for GPS My Location circle
+        PolygonStyleBuilder polygonBuilder = new PolygonStyleBuilder();
+        polygonBuilder.setColor(lightAppleBlue);
+
+        // Add a nice darker border to our accuracy marker
+        LineStyleBuilder borderBuilder = new LineStyleBuilder();
+        borderBuilder.setColor(darkAppleBlue);
+        borderBuilder.setWidth(1);
+        polygonBuilder.setLineStyle(borderBuilder.buildStyle());
+
+        final Polygon accuracyMarker = new Polygon(new MapPosVector(), polygonBuilder.buildStyle());
+
+        PointStyleBuilder pointBuilder = new PointStyleBuilder();
+        pointBuilder.setColor(darkAppleBlue);
+        final Point userMarker = new Point(new MapPos(), pointBuilder.buildStyle());
+
+        // Initially empty and invisible
+        accuracyMarker.setVisible(false);
+        userMarker.setVisible(false);
 
         locationListener = new LocationListener() {
 
             @Override
             public void onLocationChanged(Location location) {
-                Log.debug("GPS onLocationChanged " + location);
-                if (locationCircle != null) {
-                    locationCircle.setPoses(createLocationCircle(location, proj));
-                    locationCircle.setVisible(true);
-                    mapView.setFocusPos(proj.fromWgs84(new MapPos(location.getLongitude(), location.getLatitude())), 0.5f);
-                    mapView.setZoom(14, 1.0f); // zoom 2, duration 0 seconds (no animation)
-                }
+
+                accuracyMarker.setPoses(Utils.createLocationCircle(location, contentView.projection));
+                accuracyMarker.setVisible(true);
+
+                MapPos position = new MapPos(location.getLongitude(), location.getLatitude());
+                position = contentView.projection.fromWgs84(position);
+
+                userMarker.setPos(position);
+                userMarker.setVisible(true);
+
+                contentView.mapView.setFocusPos(position, 0.0f);
+                contentView.mapView.setZoom(15, 0.0f);
             }
 
             @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {}
-
+            public void onStatusChanged(String s, int i, Bundle bundle) { }
             @Override
-            public void onProviderEnabled(String s) {}
-
+            public void onProviderEnabled(String s) { }
             @Override
-            public void onProviderDisabled(String s) {}
-
-            /**
-             * Calculates points for location circle, useful for "My Location" feature
-             *
-             * @param location from Android Location API
-             * @param proj     map projection, usually EPSG3857
-             * @return MapPosVector to construct Polygon object, and add it to DataSource and Layer
-             */
-            private MapPosVector createLocationCircle(Location location, Projection proj) {
-
-                // number of points of circle
-                int N = 50;
-                int EARTH_RADIUS = 6378137;
-
-                float radius = location.getAccuracy();
-                double centerLat = location.getLatitude();
-                double centerLon = location.getLongitude();
-
-                MapPosVector points = new MapPosVector();
-
-                for (int i = 0; i <= N; i++) {
-                    double angle = Math.PI * 2 * (i % N) / N;
-                    double dx = radius * Math.cos(angle);
-                    double dy = radius * Math.sin(angle);
-                    double lat = centerLat + (180 / Math.PI) * (dy / EARTH_RADIUS);
-                    double lon = centerLon + (180 / Math.PI) * (dx / EARTH_RADIUS) / Math.cos(centerLat * Math.PI / 180);
-                    points.add(proj.fromWgs84(new MapPos(lon, lat)));
-                }
-
-                return points;
-            }
+            public void onProviderDisabled(String s) { }
         };
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        // user has maybe disabled location services / GPS
+        // User has maybe disabled location services / GPS
         if (locationManager.getProviders(true).size() == 0) {
-            Toast.makeText(this, "Cannot get location, no location providers enabled. Check device settings", Toast.LENGTH_LONG).show();
+            alert("Cannot get location, no location providers enabled. Check device settings");
         }
 
-        // use all enabled device providers with same parameters
+        // Use all enabled device providers with same parameters
         for (String provider : locationManager.getProviders(true)) {
-            Log.debug("adding location provider " + provider);
+
+            int fine = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+            int coarse = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+
+            if (fine != PackageManager.PERMISSION_GRANTED && coarse != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+
             locationManager.requestLocationUpdates(provider, 1000, 50, locationListener);
         }
 
-        vectorDataSource.add(locationCircle);
-
+        vectorDataSource.add(accuracyMarker);
+        vectorDataSource.add(userMarker);
     }
     
     @Override

@@ -4,8 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
@@ -44,10 +43,7 @@ import com.carto.vectorelements.Polygon3D;
 import com.carto.vectorelements.Text;
 import com.carto.vectorelements.VectorElement;
 
-@ActivityData(name = "Overlays", description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")
 public class OverlaysActivity extends MapBaseActivity {
-
-    Projection projection;
 
     VectorElementListener listener;
 
@@ -57,18 +53,16 @@ public class OverlaysActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
-
-        this.projection = baseProjection;
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Initialize an local vector data source
-        LocalVectorDataSource source = new LocalVectorDataSource(projection);
+        LocalVectorDataSource source = new LocalVectorDataSource(contentView.projection);
 
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer = new VectorLayer(source);
 
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer);
+        contentView.mapView.getLayers().add(vectorLayer);
 
         // Set visible zoom range for the vector layer
         vectorLayer.setVisibleZoomRange(new MapRange(10, 24));
@@ -93,16 +87,17 @@ public class OverlaysActivity extends MapBaseActivity {
         add3DPolygon(source);
 
         // Animate map to Tallinn where the objects are
-        mapView.setFocusPos(projection.fromWgs84(new MapPos(24.662893, 59.419365)), 1);
-        mapView.setZoom(12, 1);
+        MapPos tallinn = contentView.projection.fromWgs84(new MapPos(24.662893, 59.419365));
+        contentView.mapView.setFocusPos(tallinn, 1);
+        contentView.mapView.setZoom(12, 1);
 
         // Add maplistener to detect click on model
 
         listener = new VectorElementListener(source);
 
-        for (int i = 0; i < mapView.getLayers().count(); i++)
+        for (int i = 0; i < contentView.mapView.getLayers().count(); i++)
         {
-            Layer layer = mapView.getLayers().get(i);
+            Layer layer = contentView.mapView.getLayers().get(i);
 
             if (layer instanceof VectorLayer)
             {
@@ -141,9 +136,9 @@ public class OverlaysActivity extends MapBaseActivity {
         // Drawing order withing a layer is currently undefined
         // Using multiple layers is the only way to guarantee
         // that point, line and polygon elements are drawn in a specific order
-        LocalVectorDataSource source2 = new LocalVectorDataSource(projection);
+        LocalVectorDataSource source2 = new LocalVectorDataSource(contentView.projection);
         VectorLayer vectorLayer2 = new VectorLayer(source2);
-        mapView.getLayers().add(vectorLayer2);
+        contentView.mapView.getLayers().add(vectorLayer2);
         vectorLayer2.setVisibleZoomRange(new MapRange(10, 24));
 
         // Create line style, and line poses
@@ -153,11 +148,11 @@ public class OverlaysActivity extends MapBaseActivity {
 
         MapPosVector linePoses = new MapPosVector();
 
-        linePoses.add(projection.fromWgs84(new MapPos(24.645565, 59.422074)));
-        linePoses.add(projection.fromWgs84(new MapPos(24.643076, 59.420502)));
-        linePoses.add(projection.fromWgs84(new MapPos(24.645351, 59.419149)));
-        linePoses.add(projection.fromWgs84(new MapPos(24.648956, 59.420393)));
-        linePoses.add(projection.fromWgs84(new MapPos(24.650887, 59.422707)));
+        linePoses.add(contentView.projection.fromWgs84(new MapPos(24.645565, 59.422074)));
+        linePoses.add(contentView.projection.fromWgs84(new MapPos(24.643076, 59.420502)));
+        linePoses.add(contentView.projection.fromWgs84(new MapPos(24.645351, 59.419149)));
+        linePoses.add(contentView.projection.fromWgs84(new MapPos(24.648956, 59.420393)));
+        linePoses.add(contentView.projection.fromWgs84(new MapPos(24.650887, 59.422707)));
 
         // Add first line
         Line line1 = new Line(linePoses, lineStyleBuilder.buildStyle());
@@ -186,7 +181,7 @@ public class OverlaysActivity extends MapBaseActivity {
         builder.setScaleWithDPI(false);
 
         // Add text
-        MapPos position = projection.fromWgs84(new MapPos(24.653302, 59.422269));
+        MapPos position = contentView.projection.fromWgs84(new MapPos(24.653302, 59.422269));
         Text popup = new Text(position, builder.buildStyle(), "Face camera text");
 
         popup.setMetaDataElement("ClickText", new Variant("Text nr 1"));
@@ -198,7 +193,7 @@ public class OverlaysActivity extends MapBaseActivity {
         TextStyleBuilder builder = new TextStyleBuilder();
         builder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_FACE_CAMERA_GROUND);
 
-        MapPos position = projection.fromWgs84(new MapPos(24.633216, 59.426869));
+        MapPos position = contentView.projection.fromWgs84(new MapPos(24.633216, 59.426869));
         Text popup = new Text(position, builder.buildStyle(), "Face camera ground text");
         popup.setMetaDataElement("ClickText", new Variant("Text nr 2"));
 
@@ -211,7 +206,7 @@ public class OverlaysActivity extends MapBaseActivity {
         builder.setFontSize(22);
         builder.setOrientationMode(BillboardOrientation.BILLBOARD_ORIENTATION_GROUND);
 
-        MapPos position = projection.fromWgs84(new MapPos(24.646457, 59.420839));
+        MapPos position = contentView.projection.fromWgs84(new MapPos(24.646457, 59.420839));
         Text popup = new Text(position, builder.buildStyle(), "Ground text");
         popup.setMetaDataElement("ClickText", new Variant("Text nr 3"));
 
@@ -233,7 +228,7 @@ public class OverlaysActivity extends MapBaseActivity {
         builder.setRightMargins(new BalloonPopupMargins(2, 6, 12, 6));
         builder.setPlacementPriority(1);
 
-        MapPos position = projection.fromWgs84(new MapPos(24.655662, 59.425521));
+        MapPos position = contentView.projection.fromWgs84(new MapPos(24.655662, 59.425521));
         BalloonPopup popup1 = new BalloonPopup(position, builder.buildStyle(), "Popup with pos", "Images, round");
 
         popup1.setMetaDataElement("ClickText", new Variant("Popup nr 1"));
@@ -283,7 +278,7 @@ public class OverlaysActivity extends MapBaseActivity {
         builder.setDescriptionWrap(false);
         builder.setPlacementPriority(1);
 
-        MapPos position = projection.fromWgs84(new MapPos(24.658662, 59.432521));
+        MapPos position = contentView.projection.fromWgs84(new MapPos(24.658662, 59.432521));
         String title = "This title will be wrapped if there's not enough space on the screen.";
         String description = "ActivityData is set to be truncated with three dots, unless the screen is really really big.";
 
@@ -306,28 +301,28 @@ public class OverlaysActivity extends MapBaseActivity {
         polygonBuilder.setLineStyle(lineBuilder.buildStyle());
 
         MapPosVector polygonPoses = new MapPosVector();
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.650930, 59.421659)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.657453, 59.416354)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.661187, 59.414607)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.667667, 59.418123)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.665736, 59.421703)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.661444, 59.421245)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.660199, 59.420677)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.656552, 59.420175)));
-        polygonPoses.add(projection.fromWgs84(new MapPos(24.654010, 59.421472)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.650930, 59.421659)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.657453, 59.416354)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.661187, 59.414607)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.667667, 59.418123)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.665736, 59.421703)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.661444, 59.421245)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.660199, 59.420677)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.656552, 59.420175)));
+        polygonPoses.add(contentView.projection.fromWgs84(new MapPos(24.654010, 59.421472)));
 
         // Create 2 polygon holes
         MapPosVector holePoses1 = new MapPosVector();
-        holePoses1.add(projection.fromWgs84(new MapPos(24.658409, 59.420522)));
-        holePoses1.add(projection.fromWgs84(new MapPos(24.662207, 59.418896)));
-        holePoses1.add(projection.fromWgs84(new MapPos(24.662207, 59.417411)));
-        holePoses1.add(projection.fromWgs84(new MapPos(24.659524, 59.417171)));
-        holePoses1.add(projection.fromWgs84(new MapPos(24.657615, 59.419834)));
+        holePoses1.add(contentView.projection.fromWgs84(new MapPos(24.658409, 59.420522)));
+        holePoses1.add(contentView.projection.fromWgs84(new MapPos(24.662207, 59.418896)));
+        holePoses1.add(contentView.projection.fromWgs84(new MapPos(24.662207, 59.417411)));
+        holePoses1.add(contentView.projection.fromWgs84(new MapPos(24.659524, 59.417171)));
+        holePoses1.add(contentView.projection.fromWgs84(new MapPos(24.657615, 59.419834)));
 
         MapPosVector holePoses2 = new MapPosVector();
-        holePoses2.add(projection.fromWgs84(new MapPos(24.665640, 59.421243)));
-        holePoses2.add(projection.fromWgs84(new MapPos(24.668923, 59.419463)));
-        holePoses2.add(projection.fromWgs84(new MapPos(24.662893, 59.419365)));
+        holePoses2.add(contentView.projection.fromWgs84(new MapPos(24.665640, 59.421243)));
+        holePoses2.add(contentView.projection.fromWgs84(new MapPos(24.668923, 59.419463)));
+        holePoses2.add(contentView.projection.fromWgs84(new MapPos(24.662893, 59.419365)));
 
         MapPosVectorVector polygonHoles = new MapPosVectorVector();
         polygonHoles.add(holePoses1);
@@ -343,7 +338,7 @@ public class OverlaysActivity extends MapBaseActivity {
         // Add a single 3D model to the vector layer
         String modelName = "milktruck.nml";
 
-        MapPos modelPos = baseProjection.fromWgs84(new MapPos(24.646469, 59.423939));
+        MapPos modelPos = contentView.projection.fromWgs84(new MapPos(24.646469, 59.423939));
         NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
 
         model.setScale(20);
@@ -359,18 +354,18 @@ public class OverlaysActivity extends MapBaseActivity {
         polygon3DStyleBuilder.setColor(new Color(0xFF3333FF));
 
         MapPosVector polygon3DPoses = new MapPosVector();
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.635930, 59.416659)));
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.642453, 59.411354)));
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.646187, 59.409607)));
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.652667, 59.413123)));
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.650736, 59.416703)));
-        polygon3DPoses.add(baseProjection.fromWgs84(new MapPos(24.646444, 59.416245)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.635930, 59.416659)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.642453, 59.411354)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.646187, 59.409607)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.652667, 59.413123)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.650736, 59.416703)));
+        polygon3DPoses.add(contentView.projection.fromWgs84(new MapPos(24.646444, 59.416245)));
 
         // Create 3d polygon holes poses
         MapPosVector holePositions = new MapPosVector();
-        holePositions.add(baseProjection.fromWgs84(new MapPos(24.643409, 59.411922)));
-        holePositions.add(baseProjection.fromWgs84(new MapPos(24.651207, 59.412896)));
-        holePositions.add(baseProjection.fromWgs84(new MapPos(24.643207, 59.414411)));
+        holePositions.add(contentView.projection.fromWgs84(new MapPos(24.643409, 59.411922)));
+        holePositions.add(contentView.projection.fromWgs84(new MapPos(24.651207, 59.412896)));
+        holePositions.add(contentView.projection.fromWgs84(new MapPos(24.643207, 59.414411)));
         MapPosVectorVector holes = new MapPosVectorVector();
         holes.add(holePositions);
 
@@ -394,7 +389,7 @@ public class OverlaysActivity extends MapBaseActivity {
         MarkerStyle style = builder.buildStyle();
 
         // Create and return marker
-        return new Marker(projection.fromWgs84(position), style);
+        return new Marker(contentView.projection.fromWgs84(position), style);
     }
 
     Point getPoint(MapPos position, int color) {
@@ -403,7 +398,7 @@ public class OverlaysActivity extends MapBaseActivity {
         pointStyleBuilder.setColor(new Color(color));
         pointStyleBuilder.setSize(16);
 
-        return new Point(projection.fromWgs84(position), pointStyleBuilder.buildStyle());
+        return new Point(contentView.projection.fromWgs84(position), pointStyleBuilder.buildStyle());
     }
 
     /**************

@@ -2,8 +2,8 @@ package com.carto.advancedmap.sections.vectorobjects;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.datasources.LocalVectorDataSource;
@@ -31,7 +31,6 @@ import com.carto.vectorelements.Point;
 import com.carto.vectorelements.Polygon;
 import com.carto.vectorelements.VectorElement;
 
-@ActivityData(name = "Vector Object Editing", description = "Shows usage of an editable vector layer")
 public class VectorObjectEditingActivity extends MapBaseActivity {
 
     LocalVectorDataSource source;
@@ -43,12 +42,12 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
-        source = new LocalVectorDataSource(mapView.getOptions().getBaseProjection());
+        source = new LocalVectorDataSource(contentView.projection);
 
         editLayer = new EditableVectorLayer(source);
-        mapView.getLayers().add(editLayer);
+        contentView.mapView.getLayers().add(editLayer);
 
         addPoint(new MapPos(-5000000, -900000));
 
@@ -69,7 +68,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         editLayer.setVectorElementEventListener(new VectorElementSelectEventListener(editLayer));
 
         // Add a map event listener to deselect element (on map click)
-        mapView.setMapEventListener(new VectorElementDeselectEventListener(editLayer));
+        contentView.mapView.setMapEventListener(new VectorElementDeselectEventListener(editLayer));
 
         // Add the vector element edit event listener
         editLayer.setVectorEditEventListener(new BasicEditEventListener(source));
@@ -82,7 +81,7 @@ public class VectorObjectEditingActivity extends MapBaseActivity {
         editLayer.setVectorElementEventListener(null);
 
         // Add a map event listener to deselect element (on map click)
-        mapView.setMapEventListener(null);
+        contentView.mapView.setMapEventListener(null);
 
         // Add the vector element edit event listener
         editLayer.setVectorEditEventListener(null);

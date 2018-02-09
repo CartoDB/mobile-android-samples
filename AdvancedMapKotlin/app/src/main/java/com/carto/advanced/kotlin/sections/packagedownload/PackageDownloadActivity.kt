@@ -3,15 +3,13 @@ package com.carto.advanced.kotlin.sections.packagedownload
 import android.os.Bundle
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackageCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent
-import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.advanced.kotlin.sections.base.activities.PackageDownloadBaseActivity
 import com.carto.advanced.kotlin.utils.Utils
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.packagemanager.PackageManagerListener
 import com.carto.packagemanager.PackageStatus
 
-class PackageDownloadActivity : BaseActivity() {
-
-    var contentView: PackageDownloadView? = null
+class PackageDownloadActivity : PackageDownloadBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,15 +53,6 @@ class PackageDownloadActivity : BaseActivity() {
             }
         }
 
-        contentView?.switchButton?.setOnClickListener {
-            val isChecked = contentView?.switchButton?.isOnline!!
-            if (isChecked) {
-                contentView?.setOnlineMode()
-            } else {
-                contentView?.setOfflineMode()
-            }
-        }
-
         contentView?.manager?.start()
         contentView?.manager?.startPackageListDownload()
     }
@@ -76,9 +65,14 @@ class PackageDownloadActivity : BaseActivity() {
 
         contentView?.manager?.packageManagerListener = null
 
-        contentView?.switchButton?.setOnClickListener(null)
-
         contentView?.manager?.stop(false)
     }
 
+    override fun setOnlineMode() {
+        contentView?.setOnlineMap()
+    }
+
+    override fun setOfflineMode() {
+        contentView?.setOfflineMap()
+    }
 }

@@ -2,21 +2,29 @@ package com.carto.advancedmap.sections.routing;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.utils.Sources;
-import com.carto.routing.CartoOnlineRoutingService;
+import com.carto.routing.ValhallaOnlineRoutingService;
 
 /**
  * Created by aareundo on 16/12/16.
  */
 
-@ActivityData(name = "Online Routing", description = "Online routing with Open Street Map data packages")
 public class OnlineRoutingActivity extends BaseRoutingActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setService(new CartoOnlineRoutingService(Sources.ONLINE_ROUTING + Sources.TRANSPORT_MODE_CAR));
+        ValhallaOnlineRoutingService service = new ValhallaOnlineRoutingService(Sources.API_KEY);
+
+        // Set auto by default.
+        // Other Mapzen costing models: pedestrian etc, cf.
+        // cf. https://github.com/valhalla/valhalla-docs/blob/master/api-reference.md
+        service.setProfile("auto");
+
+        setService(service);
+
+        contentView.removeButton(contentView.downloadButton);
     }
 }

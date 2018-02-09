@@ -3,8 +3,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
 import com.carto.core.MapTile;
@@ -12,7 +11,6 @@ import com.carto.datasources.HTTPTileDataSource;
 import com.carto.layers.RasterTileLayer;
 import com.carto.projections.Projection;
 
-@ActivityData(name = "WMS Map", description = "Use external WMS service for raster tile overlay")
 public class WmsMapActivity extends MapBaseActivity {
 
     @Override
@@ -25,18 +23,19 @@ public class WmsMapActivity extends MapBaseActivity {
         String url = "http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?";
         String layers = "0";
 
-        HttpWmsTileDataSource wms = new HttpWmsTileDataSource(0, 14, baseProjection, false, url, "", layers, "image/png8");
+        HttpWmsTileDataSource wms = new HttpWmsTileDataSource(0, 14, contentView.projection, false, url, "", layers, "image/png8");
         RasterTileLayer wmsLayer = new RasterTileLayer(wms);
 
         // Calculate zoom bias, basically this is needed to 'undo' automatic DPI scaling, we will display original raster with close to 1:1 pixel density
-        double zoomLevelBias = Math.log(mapView.getOptions().getDPI() / 160) / Math.log(2);
+        double zoomLevelBias = Math.log(contentView.mapView.getOptions().getDPI() / 160) / Math.log(2);
         wmsLayer.setZoomLevelBias((float) zoomLevelBias);
 
-        mapView.getLayers().add(wmsLayer);
+        contentView.mapView.getLayers().add(wmsLayer);
         
         // finally animate map to map coverage
-        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(-100, 40)), 1);
-        mapView.setZoom(5, 1);
+        MapPos position = contentView.projection.fromWgs84(new MapPos(-100, 40));
+        contentView.mapView.setFocusPos(position, 1);
+        contentView.mapView.setZoom(5, 1);
     }
 
     /**

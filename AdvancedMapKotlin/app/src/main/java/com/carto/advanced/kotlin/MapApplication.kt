@@ -26,6 +26,7 @@ class MapApplication : Application() {
         Log.setShowError(true)
         Log.setShowWarn(true)
         Log.setShowInfo(true)
+        Log.setShowDebug(true)
 
         CrashManager.register(this)
     }

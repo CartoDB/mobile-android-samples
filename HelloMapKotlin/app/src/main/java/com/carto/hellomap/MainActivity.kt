@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         mapView = MapView(this)
         setContentView(mapView)
 
-        mapView?.layers?.add(CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT))
+        mapView?.layers?.add(CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER))
 
         // Get base projection from mapView
         projection = mapView?.options?.baseProjection

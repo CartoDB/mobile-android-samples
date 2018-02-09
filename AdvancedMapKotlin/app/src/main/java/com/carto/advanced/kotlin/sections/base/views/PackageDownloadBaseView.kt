@@ -6,15 +6,17 @@ import android.view.View
 import com.carto.advanced.kotlin.R
 import com.carto.advanced.kotlin.components.PopupButton
 import com.carto.advanced.kotlin.components.popupcontent.packagepopupcontent.PackagePopupContent
+import com.carto.advanced.kotlin.model.Cities
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Package
+import com.carto.advanced.kotlin.utils.toList
 import com.carto.packagemanager.PackageStatus
 import org.jetbrains.anko.doAsync
 
 /**
  * Created by aareundo on 12/07/2017.
  */
-open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context) {
+open class PackageDownloadBaseView(context: Context, withBaseLayer: Boolean = true) : DownloadBaseView(context, withBaseLayer) {
 
     var countryButton: PopupButton? = null
 
@@ -160,6 +162,19 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         val vector = manager?.serverPackages
         val count = vector!!.size().toInt()
 
+        if (folder == Package.CUSTOM_REGION_FOLDER_NAME + "/") {
+            val custom = getCustomRegionPackages()
+            for (item in custom) {
+                list.add(item)
+            }
+            return  list
+        }
+
+        // Map package download screen's first folder features custom region packages (cities)
+        if (folder.isEmpty()) {
+            list.add(getCustomRegionFolder())
+        }
+
         for (i in 0..count - 1) {
             val info = vector.get(i)
             val name = info?.name
@@ -208,6 +223,27 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         }
 
         return  list
+    }
+
+    fun getCustomRegionFolder(): Package {
+        val item = Package()
+        item.name = Package.CUSTOM_REGION_FOLDER_NAME
+        item.id = "NONE"
+        return item
+    }
+
+    fun getCustomRegionPackages(): MutableList<Package> {
+        val items = mutableListOf<Package>()
+
+        for (city in Cities.list) {
+            val item = Package()
+            item.id = city.bbox.toString()
+            item.name = city.name
+            item.status = manager?.getLocalPackageStatus(item.id, -1)
+            items.add(item)
+        }
+
+        return items
     }
 
     /*
@@ -291,5 +327,36 @@ open class PackageDownloadBaseView(context: Context) : DownloadBaseView(context)
         }
 
         return packages
+    }
+
+
+    fun showLocalPackages() {
+        var text = "You have downloaded "
+
+        val packages = getLocalPackages()
+        val total = packages.size
+        var counter = 0
+
+        for (item in packages) {
+            val split = item.name.split("/")
+            val shortName = split[split.size - 1]
+
+            text += shortName
+            counter++
+
+            if (counter < total) {
+                text += ", "
+            }
+        }
+
+        progressLabel.complete(text)
+    }
+
+    fun hasLocalPackages(): Boolean {
+        return getLocalPackages().size > 0
+    }
+
+    fun getLocalPackages(): MutableList<com.carto.packagemanager.PackageInfo> {
+        return manager!!.localPackages.toList()
     }
 }

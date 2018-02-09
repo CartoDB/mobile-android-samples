@@ -9,15 +9,17 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_180"
         android:label="Carto.Java"
         android:supportsRtl="true"
-        android:name="com.carto.cartomap.MapApplication">
-
-        <activity android:name="com.carto.cartomap.list.LauncherListActivity">
+        android:theme="@style/Theme.AppCompat">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,26 +27,23 @@
             </intent-filter>
         </activity>
 
-        <!--Section 1-->
-        <activity android:name="com.carto.cartomap.sections.cartojsapi.CountriesVisMapActivity" />
-        <activity android:name="com.carto.cartomap.sections.cartojsapi.DotsVisMapActivity" />
-        <activity android:name="com.carto.cartomap.sections.cartojsapi.FontsVisMapActivity" />
+        <!-- Section 1 -->
+        <activity android:name=".sections.cartojsapi.CountriesVisMapActivity" />
+        <activity android:name=".sections.cartojsapi.DotsVisMapActivity" />
 
-        <!--Section 2-->
-        <activity android:name="com.carto.cartomap.sections.importapi.TilePackagerActivity"/>
+        <!-- Section 2 -->
+        <activity android:name=".sections.importapi.TilePackagerActivity" />
 
-        <!--Section 3-->
-        <activity android:name="com.carto.cartomap.sections.mapsapi.AnonymousVectorTableActivity" />
-        <activity android:name="com.carto.cartomap.sections.mapsapi.NamedMapActivity" />
-        <activity android:name="com.carto.cartomap.sections.mapsapi.AnonymousRasterTableActivity" />
+        <!-- Section 3 -->
+        <activity android:name=".sections.mapsapi.AnonymousVectorTableActivity" />
+        <activity android:name=".sections.mapsapi.NamedMapActivity" />
+        <activity android:name=".sections.mapsapi.AnonymousRasterTableActivity" />
 
-        <!--Section 4-->
-        <activity android:name="com.carto.cartomap.sections.sqlapi.SQLServiceActivity"/>
+        <!-- Section 4 -->
+        <activity android:name=".sections.sqlapi.SQLServiceActivity" />
 
-        <!--Section 5-->
-        <activity
-            android:name="com.carto.cartomap.sections.torqueapi.TorqueShipActivity" />
-
+        <!-- Section 5 -->
+        <activity android:name=".sections.torqueapi.TorqueShipActivity" />
     </application>
 
 </manifest>

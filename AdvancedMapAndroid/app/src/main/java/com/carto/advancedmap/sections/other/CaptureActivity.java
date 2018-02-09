@@ -6,21 +6,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.core.MapRange;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
-import com.carto.projections.Projection;
 import com.carto.renderers.RendererCaptureListener;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -31,7 +27,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@ActivityData(name = "Screencapture", description = "Capture rendered mapView as a Bitmap")
 public class CaptureActivity extends MapBaseActivity {
 
 	RenderListener listener;
@@ -43,17 +38,17 @@ public class CaptureActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
 		// Add default base layer
-		addBaseLayer(BaseMapsView.DEFAULT_STYLE);
+		contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
 		// Add a pin marker to map
 		// 1. Initialize a local vector data source
-		LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);
+		LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(contentView.projection);
 
 		// Initialize a vector layer with the previous data source
 		VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
 
 		// Add the previous vector layer to the map
-		mapView.getLayers().add(vectorLayer1);
+		contentView.mapView.getLayers().add(vectorLayer1);
 
 		// Set visible zoom range for the vector layer
 		vectorLayer1.setVisibleZoomRange(new MapRange(0, 18));
@@ -68,13 +63,13 @@ public class CaptureActivity extends MapBaseActivity {
 		MarkerStyle sharedMarkerStyle = markerStyleBuilder.buildStyle();
 
 		// Add marker
-		MapPos berlin = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(13.38933, 52.51704));
+		MapPos berlin = contentView.projection.fromWgs84(new MapPos(13.38933, 52.51704));
 		Marker marker1 = new Marker(berlin, sharedMarkerStyle);
 		vectorDataSource1.add(marker1);
 
 		// Animate map to the marker
-		mapView.setFocusPos(berlin, 1);
-		mapView.setZoom(12, 1);
+		contentView.mapView.setFocusPos(berlin, 1);
+		contentView.mapView.setZoom(12, 1);
 	}
 
 	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -99,8 +94,8 @@ public class CaptureActivity extends MapBaseActivity {
 
 	public void onPermissionGranted() {
 
-		if (!mapView.getFocusPos().equals(pos)) {
-			pos = mapView.getFocusPos();
+		if (!contentView.mapView.getFocusPos().equals(pos)) {
+			pos = contentView.mapView.getFocusPos();
 			Bitmap bmp = com.carto.utils.BitmapUtils.createAndroidBitmapFromBitmap(bitmap);
 
 			num++;
@@ -148,13 +143,13 @@ public class CaptureActivity extends MapBaseActivity {
 		super.onResume();
 
 		listener = new RenderListener();
-		mapView.getMapRenderer().captureRendering(listener, true);
+		contentView.mapView.getMapRenderer().captureRendering(listener, true);
 	}
 
 	@Override
 	public void onPause() {
 
-		mapView.getMapRenderer().setMapRendererListener(null);
+		contentView.mapView.getMapRenderer().setMapRendererListener(null);
 		listener = null;
 
 		super.onPause();
@@ -162,7 +157,7 @@ public class CaptureActivity extends MapBaseActivity {
 
 	com.carto.graphics.Bitmap bitmap;
 
-	private class RenderListener extends RendererCaptureListener {
+	public class RenderListener extends RendererCaptureListener {
 
 		@Override
 		public void onMapRendered(com.carto.graphics.Bitmap bitmap) {

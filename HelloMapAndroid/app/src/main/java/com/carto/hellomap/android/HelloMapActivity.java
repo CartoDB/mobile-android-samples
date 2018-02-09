@@ -37,7 +37,7 @@ public class HelloMapActivity extends Activity {
         mapView = (MapView) this.findViewById(R.id.map_view);
 
         // Add base map
-        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_DEFAULT);
+        CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
         mapView.getLayers().add(baseLayer);
 
         // Set default location and zoom

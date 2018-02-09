@@ -28,12 +28,8 @@ import org.jetbrains.anko.displayMetrics
 class Routing(val context: Context, val mapView: MapView) {
 
     companion object {
-
-        val OFFLINE_ROUTING_SOURCE = "carto.streets"
-        val ONLINE_ROUTING_SOURCE = "nutiteq.osm"
-
         val ROUTING_TAG = "routing:"
-        val TRANSPORT_MODE = ".car"
+        val OFFLINE_ROUTING_SOURCE = "carto.streets"
     }
 
     var service: RoutingService? = null
@@ -41,6 +37,7 @@ class Routing(val context: Context, val mapView: MapView) {
     var startMarker: Marker? = null
     var stopMarker: Marker? = null
 
+    var showTurns: Boolean = true
     var instructionUp: MarkerStyle? = null
     var instructionLeft: MarkerStyle? = null
     var instructionRight: MarkerStyle? = null
@@ -116,7 +113,9 @@ class Routing(val context: Context, val mapView: MapView) {
             val index = instruction.pointIndex
             val position = result.points[index]
 
-            createRoutPoint(position, instruction, routeDataSource)
+            if (showTurns) {
+                createRoutePoint(position, instruction, routeDataSource)
+            }
             vector.add(position)
         }
 
@@ -153,7 +152,7 @@ class Routing(val context: Context, val mapView: MapView) {
         return result
     }
 
-    fun createRoutPoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
+    fun createRoutePoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
         val action = instruction.action
 
         var style = instructionUp

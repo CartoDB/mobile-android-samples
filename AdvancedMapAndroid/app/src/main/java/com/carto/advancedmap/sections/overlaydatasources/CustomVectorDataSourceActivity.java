@@ -2,8 +2,7 @@ package com.carto.advancedmap.sections.overlaydatasources;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.core.MapBounds;
 import com.carto.core.MapPos;
 import com.carto.datasources.VectorDataSource;
@@ -18,7 +17,6 @@ import com.carto.styles.PointStyleBuilder;
 import com.carto.vectorelements.Point;
 import com.carto.vectorelements.VectorElementVector;
 
-@ActivityData(name = "Custom Vector Data Source", description = "Customized vector data source")
 public class CustomVectorDataSourceActivity extends MapBaseActivity {
 
     public static final int NUM_POINTS = 1000;
@@ -28,18 +26,18 @@ public class CustomVectorDataSourceActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
+        contentView.addBaseLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_POSITRON);
 
         // Create custom vector data source
-        VectorDataSource customDataSource = new MyVectorDataSource(mapView.getOptions().getBaseProjection(), NUM_POINTS);
+        VectorDataSource customDataSource = new MyVectorDataSource(contentView.projection, NUM_POINTS);
 
         // Create overlay vector layer
         VectorLayer overlayLayer = new VectorLayer(customDataSource);
-        mapView.getLayers().add(overlayLayer);
+        contentView.mapView.getLayers().add(overlayLayer);
 
         // finally animate map to a nice place
-        mapView.setFocusPos(baseProjection.fromWgs84(new MapPos(0, 0)), 0);
-        mapView.setZoom(3, 1);
+        contentView.mapView.setFocusPos(contentView.projection.fromWgs84(new MapPos(0, 0)), 0);
+        contentView.mapView.setZoom(3, 1);
     }
 
     /**

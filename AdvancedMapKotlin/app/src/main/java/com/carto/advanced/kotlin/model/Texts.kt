@@ -25,7 +25,7 @@ class Texts {
         val routeDownloadInfoHeader = "ROUTE DOWNLOAD"
 
         val routeDownloadInfoContainer =
-                "CARTOMobileSDK 4.1.0 uses Valhalla routing. With that, we have the option to " +
+                "CARTOMobileSDK 4.1.0 includes optional Valhalla routing. With that, we have the option to " +
                         "download a specific bounding box... and that is exactly what this example does.\n\n" +
                         "It first downloads the map package, then saves it to a specified folder, " +
                         "then downloads the routing package separately. " +
@@ -37,18 +37,17 @@ class Texts {
                         "Oh, and downloaded areas stay forever. You're gonna have to uninstall the app to get rid " +
                         "of the bounding boxes. So be careful, don't fill your phone with bounding boxes!\n\n"
 
-        val cityDownloadInfoHeader = "CITY DOWNLOAD"
+        val routeSearchInfoHeader = "ROUTE SEARCH"
 
-        val cityDownloadInfoContainer =
-                "This example lets you download specific languages. Cities are also based on bounding boxes, " +
-                        "we used http://bboxfinder.com to cut out the bounding boxes of specific languages.\n\n" +
-                        "Simply click on the item you wish to download, a progress bar will appear " +
-                        "and your're free to browse the map as you wish. " +
-                        "You will be zoomed in to the location when the download is completed.\n\n" +
-                        "If you wish to see more languages on this list, simply contact CARTO or, if you're " +
-                        "the technical kind, find this app on github.com and make a pull request."
+        val routeSearchInfoContainer =
+                "CARTOMobileSDK 4.1.0 supports searching from various sources. " +
+                        "This sample combines online routing with online searching from vector tiles. \n\n" +
+                        "To see this in action, just click on two different points. The sample will first " +
+                        "calculate the fastest route between the points and then uses search APIs to find " +
+                        "all attractions along the route within 500 meters. These Points of Interests are then " +
+                        "shown as clickable red dots.\n\n"
 
-        val packageDownloadInfoHeader = "PACKAGE DOWNLOAD"
+        val packageDownloadInfoHeader = "OFFLINE MAP"
 
         val packageDownloadInfoContainer =
                 "This example lets you download pre-defined packages. The packages are mostly " +
@@ -124,6 +123,15 @@ class Texts {
                         "All you have to do is download the correct package (current sample features Estonia) and you're good to go\n\n" +
                         "I don't really know what to say here any more. Geocoding is rather self-explanatory. " +
                         "It's an awesome feature, though, that's worth a mention!"
+
+        val offlineRoutingInfoHeader = "COUNTRY ROUTE DOWNLOAD"
+
+        val offlineRoutingInfoContainer =
+        "This example lets you download pre-defined packages. The packages are mostly country-based, but some larger countries, " +
+                "like The United States, Russia and Germany, are municipality (or oblast etc.) based.\n\n" +
+        "Simply choose a package, press download and it will start, the progress will be displayed in the list and on the map.\n\n" +
+        "Our SDK also offers the option to pause, resume he download and, when you have it, the option to delete the package.\n\n" +
+        "The packages are defined by CARTO's Mobile team and are readily available in our mobile SDK's API."
     }
 
 }

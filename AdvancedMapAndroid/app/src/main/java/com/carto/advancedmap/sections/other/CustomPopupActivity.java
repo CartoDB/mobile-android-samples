@@ -14,13 +14,11 @@ import android.text.TextPaint;
 import android.util.Log;
 
 import com.carto.advancedmap.MapApplication;
-import com.carto.advancedmap.sections.basemap.views.BaseMapsView;
-import com.carto.advancedmap.shared.activities.MapBaseActivity;
-import com.carto.advancedmap.list.ActivityData;
+import com.carto.advancedmap.sections.basemap.BaseMapsView;
+import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.VectorLayer;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -33,7 +31,6 @@ import com.carto.vectorelements.CustomPopup;
 import com.carto.vectorelements.CustomPopupHandler;
 import com.carto.vectorelements.Marker;
 
-@ActivityData(name = "Custom Popup", description = "Create custom popups")
 public class CustomPopupActivity extends MapBaseActivity {
 
     @Override
@@ -42,16 +39,16 @@ public class CustomPopupActivity extends MapBaseActivity {
         super.onCreate(savedInstanceState);
 
         // Add default base layer
-        addBaseLayer(BaseMapsView.DEFAULT_STYLE);
+        contentView.addBaseLayer(BaseMapsView.DEFAULT_STYLE);
 
         // Initialize a local vector data source
-        LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(baseProjection);
+        LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(contentView.projection);
 
         // Initialize a vector layer with the previous data source
         VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
 
         // Add the previous vector layer to the map
-        mapView.getLayers().add(vectorLayer1);
+        contentView.mapView.getLayers().add(vectorLayer1);
         
         // Create marker style
         Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
@@ -63,7 +60,7 @@ public class CustomPopupActivity extends MapBaseActivity {
         MarkerStyle markerStyle = markerStyleBuilder.buildStyle();
         
         // Add marker
-        MapPos markerPos = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(13.38933, 52.51704)); // Berlin
+        MapPos markerPos = contentView.projection.fromWgs84(new MapPos(13.38933, 52.51704)); // Berlin
         Marker marker1 = new Marker(markerPos, markerStyle);
         vectorDataSource1.add(marker1);
         
@@ -79,8 +76,8 @@ public class CustomPopupActivity extends MapBaseActivity {
         vectorDataSource1.add(popup1);
         
         // Animate map to the marker
-        mapView.setFocusPos(markerPos, 1);
-        mapView.setZoom(12, 1);
+        contentView.mapView.setFocusPos(markerPos, 1);
+        contentView.mapView.setZoom(12, 1);
     }
 
     /**

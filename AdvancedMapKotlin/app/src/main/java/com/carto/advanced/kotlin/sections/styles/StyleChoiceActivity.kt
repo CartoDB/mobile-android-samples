@@ -1,11 +1,14 @@
 package com.carto.advanced.kotlin.sections.styles
 
 import android.os.Bundle
+import android.widget.CompoundButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguageCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
 import com.carto.advanced.kotlin.model.Languages
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
+import com.carto.layers.VectorTileLayer
+import com.carto.ui.MapView
 
 /**
  * Created by aareundo on 30/06/2017.
@@ -13,6 +16,8 @@ import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 class StyleChoiceActivity : BaseActivity() {
 
     var contentView: StyleChoiceView? = null
+
+    val mapView: MapView get() = contentView!!.map
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +27,9 @@ class StyleChoiceActivity : BaseActivity() {
 
         contentView?.languageContent?.addItems(Languages.list)
         contentView?.baseMapContent?.highlightDefault()
+
+        contentView!!.switchesContent.textsSwitch.check()
+        contentView!!.switchesContent.buildingsSwitch.uncheck()
     }
 
     override fun onResume() {
@@ -54,6 +62,16 @@ class StyleChoiceActivity : BaseActivity() {
                 contentView?.updateMapLanguage(cell.item!!.value)
             }
         }
+
+        var switch = contentView!!.switchesContent.buildingsSwitch.switch
+        switch.setOnCheckedChangeListener({ _, b ->
+            contentView!!.updateBuildings(b)
+        })
+
+        switch = contentView!!.switchesContent.textsSwitch.switch
+        switch.setOnCheckedChangeListener({ _, b ->
+            contentView!!.updateTexts(b)
+        })
     }
 
     override fun onPause() {
@@ -69,5 +87,12 @@ class StyleChoiceActivity : BaseActivity() {
         }
 
         contentView?.languageContent?.list?.onItemClickListener = null
+
+        contentView!!.switchesContent.buildingsSwitch.switch.setOnCheckedChangeListener(null)
+        contentView!!.switchesContent.textsSwitch.switch.setOnCheckedChangeListener(null)
+
+        if (contentView?.currentLayer is VectorTileLayer) {
+            (contentView?.currentLayer as VectorTileLayer).vectorTileEventListener = null
+        }
     }
 }
