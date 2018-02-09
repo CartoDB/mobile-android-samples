@@ -89,7 +89,7 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY);
+        routing?.service = CartoOnlineRoutingService("nutiteq.osm.car")
     }
 
     override fun setOfflineMode() {

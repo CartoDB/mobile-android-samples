@@ -17,25 +17,7 @@ class Texts {
                         " to display information on top of your base map: great for colorful visualizations.\n \n" +
                         "Darkmatter is dark, heavy, like the night, it's for when you're feeling extra frisky," +
                         " when you want to walk on the wild side or... " +
-                        "just for visualizations that work better with a dark background. \n \n" +
-                        "Mapzen and CARTO are similar in that way, " +
-                        "the difference lies in the fact that CARTO's base maps use raster tiles, " +
-                        "and mapzen's styles come from a different source."
-
-        val routeDownloadInfoHeader = "ROUTE DOWNLOAD"
-
-        val routeDownloadInfoContainer =
-                "CARTOMobileSDK 4.1.0 includes optional Valhalla routing. With that, we have the option to " +
-                        "download a specific bounding box... and that is exactly what this example does.\n\n" +
-                        "It first downloads the map package, then saves it to a specified folder, " +
-                        "then downloads the routing package separately. " +
-                        "Fun fact: routing packages are often even larger than map packages.\n\n" +
-                        "Long-click anywhere on the map, that's the start position " +
-                        "– now click again to set the stop position. When you're done, the route is calculated.\n\n" +
-                        "Now you have the option to download that bounding box. After you download a route," +
-                        " a transparent visualization of the downloaded area appears on your map.\n\n" +
-                        "Oh, and downloaded areas stay forever. You're gonna have to uninstall the app to get rid " +
-                        "of the bounding boxes. So be careful, don't fill your phone with bounding boxes!\n\n"
+                        "just for visualizations that work better with a dark background."
 
         val routeSearchInfoHeader = "ROUTE SEARCH"
 

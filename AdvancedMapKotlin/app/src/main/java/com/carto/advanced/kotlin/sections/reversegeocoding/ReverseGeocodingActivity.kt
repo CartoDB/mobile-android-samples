@@ -90,7 +90,7 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        service = PeliasOnlineReverseGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
+        service = MapBoxOnlineReverseGeocodingService(BaseGeocodingView.MAPBOX_TOKEN)
         updateUIBasedOnModeAndPackages(true)
     }
 
