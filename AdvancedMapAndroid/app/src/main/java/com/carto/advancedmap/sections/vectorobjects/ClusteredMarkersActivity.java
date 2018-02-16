@@ -63,7 +63,9 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
             public void run() {
 
                 // Create a basic style, as the ClusterElementBuilder will set the real style
-                MarkerStyle style = new MarkerStyleBuilder().buildStyle();
+                MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
+                markerStyleBuilder.setSize(14.0f);
+                MarkerStyle style = markerStyleBuilder.buildStyle();
 
                 // Read GeoJSON, parse it using SDK GeoJSON parser
                 GeoJSONGeometryReader reader = new GeoJSONGeometryReader();
