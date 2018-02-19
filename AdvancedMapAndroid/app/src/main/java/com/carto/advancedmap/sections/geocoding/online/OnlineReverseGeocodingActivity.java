@@ -2,9 +2,9 @@ package com.carto.advancedmap.sections.geocoding.online;
 
 import android.os.Bundle;
 
-import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
 import com.carto.advancedmap.utils.Sources;
+import com.carto.core.MapPos;
 import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
 
 /**
@@ -25,5 +25,10 @@ public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity
         service = new PeliasOnlineReverseGeocodingService(Sources.API_KEY);
 
         contentView.removeButton(contentView.downloadButton);
+
+        // Zoom in to Washington
+        MapPos pos = contentView.projection.fromWgs84(new MapPos(-77.004590, 38.888702));
+        contentView.mapView.setFocusPos(pos, 0);
+        contentView.mapView.setZoom(16.0f, 0);
     }
 }
