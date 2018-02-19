@@ -15,6 +15,7 @@ import com.carto.geometry.PointGeometry
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.packagemanager.CartoPackageManager
+import com.carto.routing.CartoOnlineRoutingService
 import com.carto.routing.PackageManagerValhallaRoutingService
 import com.carto.routing.ValhallaOnlineRoutingService
 import com.carto.search.SearchRequest
@@ -41,7 +42,7 @@ class RouteSearchActivity : BaseActivity() {
 
         objectListener = VectorObjectClickListener((contentView as RouteSearchView).overlaySource)
 
-        routing?.service = ValhallaOnlineRoutingService(BaseGeocodingView.MAPZEN_API_KEY)
+        routing?.service = CartoOnlineRoutingService("nutiteq.osm.car")
     }
 
     override fun onResume() {

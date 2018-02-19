@@ -50,7 +50,7 @@ public class Samples {
             new Sample(
                     R.drawable.background_routing_online,
                     "Online Routing",
-                    "Online routing using Mapzen service",
+                    "Online routing using MapBox service",
                     OnlineRoutingActivity.class
             ),
             new Sample(

@@ -11,7 +11,6 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
     companion object {
         val SOURCE = "geocoding:carto.streets"
-        val MAPZEN_API_KEY = "mapzen-e2gmwsC"
         val MAPBOX_TOKEN = "pk.eyJ1IjoiamFha2wiLCJhIjoiR3FYNFJrRSJ9.n8PoOPy9tvnULFJ8h67pIA"
     }
 
