@@ -30,6 +30,7 @@ open class MapBaseView(context: Context) : BaseView(context) {
 
     init {
         map.options.isZoomGestures = true
+        map.options.isRestrictedPanning = true
 
         projection = map.options.baseProjection
 
