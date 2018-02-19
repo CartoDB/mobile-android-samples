@@ -172,7 +172,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOnlineMode() {
-        service = PeliasOnlineGeocodingService(BaseGeocodingView.MAPZEN_API_KEY)
+        service = MapBoxOnlineGeocodingService(BaseGeocodingView.MAPBOX_TOKEN)
         updateUIBasedOnModeAndAvailablePackages(true)
     }
 

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.carto.advancedmap.sections.geocoding.base.ReverseGeocodingBaseActivity;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.core.MapPos;
-import com.carto.geocoding.PeliasOnlineReverseGeocodingService;
+import com.carto.geocoding.MapBoxOnlineReverseGeocodingService;
 
 /**
  * Created by aareundo on 21/08/2017.
@@ -22,7 +22,7 @@ public class OnlineReverseGeocodingActivity extends ReverseGeocodingBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        service = new PeliasOnlineReverseGeocodingService(Sources.API_KEY);
+        service = new MapBoxOnlineReverseGeocodingService(Sources.MAPBOX_TOKEN);
 
         contentView.removeButton(contentView.downloadButton);
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.utils.Sources;
+import com.carto.routing.CartoOnlineRoutingService;
 import com.carto.routing.ValhallaOnlineRoutingService;
 
 /**
@@ -16,12 +17,7 @@ public class OnlineRoutingActivity extends BaseRoutingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ValhallaOnlineRoutingService service = new ValhallaOnlineRoutingService(Sources.API_KEY);
-
-        // Set auto by default.
-        // Other Mapzen costing models: pedestrian etc, cf.
-        // cf. https://github.com/valhalla/valhalla-docs/blob/master/api-reference.md
-        service.setProfile("auto");
+        CartoOnlineRoutingService service = new CartoOnlineRoutingService("nutiteq.osm.car");
 
         setService(service);
 
