@@ -49,8 +49,6 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         // Set specific focus, zoom, tilt and rotation for an optimal initial view
         map.setFocusPos(washingtonDC, 0.0f)
         map.setZoom(14.5f, 0.0f)
-        map.setTilt(20.0f, 0.0f)
-        map.rotate(-30.0f, 0.0f)
 
         /*
          * Milktruck NML Model
@@ -165,6 +163,26 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         val customPopup = CustomPopup(popupMarker, popupStyleBuilder.buildStyle(), handler)
         customPopup.setAnchorPoint(-1f, 0f)
         source?.add(customPopup)
+
+        /*
+         * Text with border and line break
+         */
+        // TODO: Uncomment when SDK v4.2.0 is released
+//        position = projection!!.fromWgs84(MapPos(longitude - 0.01, latitude + 0.01))
+//
+//        val textBuilder = TextStyleBuilder()
+//        textBuilder.isBreakLines = true
+//        textBuilder.borderColor = Colors.green.toCartoColor()
+//        textBuilder.textMargins = TextMargins(5, 5, 5, 5)
+//        textBuilder.color = Color.BLACK.toCartoColor()
+//        textBuilder.fontSize = 12.0f
+//        textBuilder.backgroundColor = Color.WHITE.toCartoColor()
+//        textBuilder.borderWidth = 2.0f
+//        textBuilder.isHideIfOverlapped = false
+//
+//        val text = "Look at me\nI'm broken in three lines\nand have a green border"
+//        val textElement = Text(position, textBuilder.buildStyle(), text)
+//        source!!.add(textElement)
 
         layoutSubviews()
     }
