@@ -113,9 +113,11 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         }
 
         currentLanguage = language
-
-        val decoder = (currentLayer as? VectorTileLayer)?.tileDecoder as? MBVectorTileDecoder
-        decoder?.setStyleParameter("lang", currentLanguage)
+        
+        if (currentLayer is CartoOnlineVectorTileLayer) {
+            (currentLayer as CartoOnlineVectorTileLayer).language = language
+            (currentLayer as CartoOnlineVectorTileLayer).fallbackLanguage = ""
+        }
     }
 
     fun updateBaseLayer(selection: String, source: String) {
