@@ -45,7 +45,8 @@ class Routing(val context: Context, val mapView: MapView) {
     var projection = mapView.options.baseProjection
 
     var routeDataSource = LocalVectorDataSource(projection)
-    var routeStartStopDataSource = LocalVectorDataSource(projection)
+    var routeInstructionSource = LocalVectorDataSource(projection)
+    private var routeStartStopDataSource = LocalVectorDataSource(projection)
 
     init {
 
@@ -56,9 +57,13 @@ class Routing(val context: Context, val mapView: MapView) {
         val upLeft = Utils.resourceToBitmap(context.resources, R.drawable.direction_upthenleft)
         val upRight = Utils.resourceToBitmap(context.resources, R.drawable.direction_upthenright)
 
-        // Define layer and datasource for route line and instructions
+        // Define layer and datasource for route line
         val routeLayer = VectorLayer(routeDataSource)
         mapView.layers.add(routeLayer)
+
+        // Define layer and datasource for route instructions
+        val routeMarkerLayer = VectorLayer(routeInstructionSource)
+        mapView.layers.add(routeMarkerLayer)
 
         // Define layer and datasource for route start and stop markers
         val vectorLayer = VectorLayer(routeStartStopDataSource)
@@ -91,6 +96,8 @@ class Routing(val context: Context, val mapView: MapView) {
 
         builder.bitmap = upRight
         instructionRight = builder.buildStyle()
+
+        routeLayer.opacity = 0.5f
     }
 
     /*
@@ -99,6 +106,8 @@ class Routing(val context: Context, val mapView: MapView) {
     fun show(result: RoutingResult, lineColor: Color, complete: (route: Route) -> Unit) {
 
         routeDataSource.clear()
+        routeInstructionSource.clear()
+
         startMarker?.isVisible = true
 
         val line = createPolyLine(result, lineColor)
@@ -114,7 +123,7 @@ class Routing(val context: Context, val mapView: MapView) {
             val position = result.points[index]
 
             if (showTurns) {
-                createRoutePoint(position, instruction, routeDataSource)
+                createRoutePoint(position, instruction, routeInstructionSource)
             }
             vector.add(position)
         }
@@ -152,7 +161,7 @@ class Routing(val context: Context, val mapView: MapView) {
         return result
     }
 
-    fun createRoutePoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
+    private fun createRoutePoint(position: MapPos, instruction: RoutingInstruction, source: LocalVectorDataSource) {
         val action = instruction.action
 
         var style = instructionUp
@@ -167,10 +176,10 @@ class Routing(val context: Context, val mapView: MapView) {
         source.add(marker)
     }
 
-    fun createPolyLine(result: RoutingResult, color: Color): Line {
+    private fun createPolyLine(result: RoutingResult, color: Color): Line {
         val builder = LineStyleBuilder()
         builder.color = color
-        builder.width = 7.0f
+        builder.width = 10.0f
 
         return  Line(result.points, builder.buildStyle())
     }
