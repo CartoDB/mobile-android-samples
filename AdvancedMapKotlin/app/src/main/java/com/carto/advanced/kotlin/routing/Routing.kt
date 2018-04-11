@@ -62,8 +62,8 @@ class Routing(val context: Context, val mapView: MapView) {
         mapView.layers.add(routeLayer)
 
         // Define layer and datasource for route instructions
-        val routeMarkerLayer = VectorLayer(routeInstructionSource)
-        mapView.layers.add(routeMarkerLayer)
+        val routeInstructionLayer = VectorLayer(routeInstructionSource)
+        mapView.layers.add(routeInstructionLayer)
 
         // Define layer and datasource for route start and stop markers
         val vectorLayer = VectorLayer(routeStartStopDataSource)

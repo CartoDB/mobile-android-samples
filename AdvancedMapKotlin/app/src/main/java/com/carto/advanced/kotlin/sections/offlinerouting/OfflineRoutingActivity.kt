@@ -107,7 +107,7 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
                 return@doAsync
             }
 
-            val color = com.carto.graphics.Color(14, 122, 254, 150)
+            val color = com.carto.graphics.Color(14, 122, 254, 255)
             routing!!.show(result, color, { })
 
             runOnUiThread {
