@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
 <title>
 
-  GeocodingResult
+  TomTomOnlineReverseGeocodingService
 
 
 | CARTO Mobile SDK
@@ -194,7 +194,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingRequest.html">GeocodingRequest</a></li>
-          <li class="selected api apilevel-"><a href="../../../com/carto/geocoding/GeocodingResult.html">GeocodingResult</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingResult.html">GeocodingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingResultVector.html">GeocodingResultVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingService.html">GeocodingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/MapBoxOnlineGeocodingService.html">MapBoxOnlineGeocodingService</a></li>
@@ -208,7 +208,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/ReverseGeocodingRequest.html">ReverseGeocodingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/ReverseGeocodingService.html">ReverseGeocodingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/TomTomOnlineGeocodingService.html">TomTomOnlineGeocodingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html">TomTomOnlineReverseGeocodingService</a></li>
+          <li class="selected api apilevel-"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html">TomTomOnlineReverseGeocodingService</a></li>
       </ul>
     </li>
               
@@ -251,6 +251,13 @@
 <div id="api-info-block">
 
 
+
+  
+   
+  
+  
+  
+  
 
   
    
@@ -307,12 +314,16 @@ Summary:
      
     
     class
-<h1>GeocodingResult</h1>
+<h1>TomTomOnlineReverseGeocodingService</h1>
 
 
 
   
-    extends Object<br/>
+  
+  
+
+  
+    extends <a href="../../../com/carto/geocoding/ReverseGeocodingService.html">ReverseGeocodingService</a><br/>
   
   
   
@@ -332,7 +343,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -340,7 +351,17 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.carto.geocoding.GeocodingResult</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../com/carto/geocoding/ReverseGeocodingService.html">com.carto.geocoding.ReverseGeocodingService</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.carto.geocoding.TomTomOnlineReverseGeocodingService</td>
     </tr>
     
 
@@ -356,7 +377,12 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>A geocoding result object describing address, features (geometry) and rank of the result.
+<p>An online reverse geocoding service that uses TomTom geocoder.<br>
+ As the class connects to an external (non-CARTO) service, this class is provided "as-is",   <br>
+ future changes from the service provider may not be compatible with the implementation.<br>
+ Be sure to read the Terms and Conditions of TomTom to see if the<br>
+ service is available for your application.<br>
+ Note: this class is experimental and may change or even be removed in future SDK versions.
 </p>
 
 
@@ -423,9 +449,9 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#GeocodingResult(com.carto.projections.Projection, com.carto.core.Address, float, com.carto.geometry.FeatureCollection)">GeocodingResult</a></span>(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/core/Address.html">Address</a> address, float rank, <a href="../../../com/carto/geometry/FeatureCollection.html">FeatureCollection</a> featureCollection)
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#TomTomOnlineReverseGeocodingService(java.lang.String)">TomTomOnlineReverseGeocodingService</a></span>(String apiKey)
         
-        <div class="jd-descrdiv">Constructs a GeocodingResult from a projection, address, rank and feature collection.</div>
+        <div class="jd-descrdiv">Constructs a new instance of the TomTomOnlineReverseGeocodingService given API key.</div>
   
   </td></tr>
 
@@ -447,6 +473,24 @@ Summary:
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
+            
+            
+            
+            
+            <a href="../../../com/carto/geocoding/GeocodingResultVector.html">GeocodingResultVector</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#calculateAddresses(com.carto.geocoding.ReverseGeocodingRequest)">calculateAddresses</a></span>(<a href="../../../com/carto/geocoding/ReverseGeocodingRequest.html">ReverseGeocodingRequest</a> request)
+        
+        <div class="jd-descrdiv">Calculates matching addresses from the specified reverse geocoding request.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
             synchronized
             
             
@@ -454,26 +498,8 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#delete()">delete</a></span>()
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#delete()">delete</a></span>()
         
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#equals(java.lang.Object)">equals</a></span>(Object obj)
-        
-        <div class="jd-descrdiv">Checks if this object is equal to the specified object.</div>
-  
   </td></tr>
 
 
@@ -485,84 +511,12 @@ Summary:
             
             
             
-            <a href="../../../com/carto/core/Address.html">Address</a>
+            String
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#getAddress()">getAddress</a></span>()
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#getCustomServiceURL()">getCustomServiceURL</a></span>()
         
-        <div class="jd-descrdiv">Returns the address of the result.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../com/carto/geometry/FeatureCollection.html">FeatureCollection</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#getFeatureCollection()">getFeatureCollection</a></span>()
-        
-        <div class="jd-descrdiv">Returns the feature collection of the result.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../com/carto/projections/Projection.html">Projection</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#getProjection()">getProjection</a></span>()
-        
-        <div class="jd-descrdiv">Returns the projection of the geometry in the result.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            float
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#getRank()">getRank</a></span>()
-        
-        <div class="jd-descrdiv">Returns the rank of the result.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#hashCode()">hashCode</a></span>()
-        
-        <div class="jd-descrdiv">Returns the hash value of this object.</div>
+        <div class="jd-descrdiv">Returns the custom backend service URL.</div>
   
   </td></tr>
 
@@ -578,9 +532,45 @@ Summary:
             String
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/geocoding/GeocodingResult.html#toString()">toString</a></span>()
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#getLanguage()">getLanguage</a></span>()
         
-        <div class="jd-descrdiv">Creates a string representation of this result object, useful for logging.</div>
+        <div class="jd-descrdiv">Returns the language of the expected results.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#setCustomServiceURL(java.lang.String)">setCustomServiceURL</a></span>(String serviceURL)
+        
+        <div class="jd-descrdiv">Sets the custom backend service URL.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html#setLanguage(java.lang.String)">setLanguage</a></span>(String lang)
+        
+        <div class="jd-descrdiv">Sets the language of the expected results.</div>
   
   </td></tr>
 
@@ -598,6 +588,66 @@ Summary:
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.carto.geocoding.ReverseGeocodingService" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.carto.geocoding.ReverseGeocodingService-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../com/carto/geocoding/ReverseGeocodingService.html">com.carto.geocoding.ReverseGeocodingService</a>
+
+<div id="inherited-methods-com.carto.geocoding.ReverseGeocodingService">
+  <div id="inherited-methods-com.carto.geocoding.ReverseGeocodingService-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.carto.geocoding.ReverseGeocodingService-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/geocoding/GeocodingResultVector.html">GeocodingResultVector</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/ReverseGeocodingService.html#calculateAddresses(com.carto.geocoding.ReverseGeocodingRequest)">calculateAddresses</a></span>(<a href="../../../com/carto/geocoding/ReverseGeocodingRequest.html">ReverseGeocodingRequest</a> request)
+        
+        <div class="jd-descrdiv">Calculates matching addresses from the specified reverse geocoding request.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/ReverseGeocodingService.html#delete()">delete</a></span>()
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -803,7 +853,7 @@ From class
 
 
 
-<a id="GeocodingResult(com.carto.projections.Projection, com.carto.core.Address, float, com.carto.geometry.FeatureCollection)"></a>
+<a id="TomTomOnlineReverseGeocodingService(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -815,8 +865,8 @@ From class
          
         
       </span>
-      <span class="sympad">GeocodingResult</span>
-      <span class="normal">(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/core/Address.html">Address</a> address, float rank, <a href="../../../com/carto/geometry/FeatureCollection.html">FeatureCollection</a> featureCollection)</span>
+      <span class="sympad">TomTomOnlineReverseGeocodingService</span>
+      <span class="normal">(String apiKey)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -828,25 +878,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Constructs a GeocodingResult from a projection, address, rank and feature collection.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Constructs a new instance of the TomTomOnlineReverseGeocodingService given API key.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>projection</th>
-          <td>The projection used for the geometry of the result.<br></td>
-        </tr>
-        <tr>
-          <th>address</th>
-          <td>The address of the result.<br></td>
-        </tr>
-        <tr>
-          <th>rank</th>
-          <td>The relative ranking of the result (in range 0..1).<br></td>
-        </tr>
-        <tr>
-          <th>featureCollection</th>
-          <td>The geometry (features) associated with the result.
+          <th>apiKey</th>
+          <td>The API key to use (registered with TomTom).
 </td>
         </tr>
       </table>
@@ -869,6 +907,59 @@ From class
 
 <h2>Public Methods</h2>
 
+
+
+<a id="calculateAddresses(com.carto.geocoding.ReverseGeocodingRequest)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/geocoding/GeocodingResultVector.html">GeocodingResultVector</a>
+      </span>
+      <span class="sympad">calculateAddresses</span>
+      <span class="normal">(<a href="../../../com/carto/geocoding/ReverseGeocodingRequest.html">ReverseGeocodingRequest</a> request)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Calculates matching addresses from the specified reverse geocoding request.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>request</th>
+          <td>The reverse geocoding request to use.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The list of matching geocoding results, sorted by descending ranks.<br></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>IOException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
 
 
 <a id="delete()"></a>
@@ -902,233 +993,7 @@ From class
 </div>
 
 
-<a id="equals(java.lang.Object)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">equals</span>
-      <span class="normal">(Object obj)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Checks if this object is equal to the specified object.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>obj</th>
-          <td>The reference object.</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True when objects are equal, false otherwise.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getAddress()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../com/carto/core/Address.html">Address</a>
-      </span>
-      <span class="sympad">getAddress</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the address of the result.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The address of the result.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getFeatureCollection()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../com/carto/geometry/FeatureCollection.html">FeatureCollection</a>
-      </span>
-      <span class="sympad">getFeatureCollection</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the feature collection of the result.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The feature collection of the result.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getProjection()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../com/carto/projections/Projection.html">Projection</a>
-      </span>
-      <span class="sympad">getProjection</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the projection of the geometry in the result.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The projection of the geometry in the result.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getRank()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        float
-      </span>
-      <span class="sympad">getRank</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the rank of the result.<br>
- The rank is a normalized number between 0 and 1, 1 meaning a perfect match.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The rank of the result.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="hashCode()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">hashCode</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the hash value of this object.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The hash value of this object.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="toString()"></a>
+<a id="getCustomServiceURL()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1140,7 +1005,7 @@ From class
          
         String
       </span>
-      <span class="sympad">toString</span>
+      <span class="sympad">getCustomServiceURL</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1153,11 +1018,130 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Creates a string representation of this result object, useful for logging.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the custom backend service URL.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The string representation of this result object.
+      <ul class="nolist"><li>The custom backend service URL. If this is not defined, an empty string is returned.
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getLanguage()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getLanguage</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the language of the expected results.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The language of the expected results. As IETF code or empty string.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setCustomServiceURL(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setCustomServiceURL</span>
+      <span class="normal">(String serviceURL)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the custom backend service URL. <br>
+ The custom URL should contain tags "{query}" and "{access_token}" that will be substituted by the SDK.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>serviceURL</th>
+          <td>The custom backend service URL to use. If this is empty, then the default service is used.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setLanguage(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setLanguage</span>
+      <span class="normal">(String lang)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the language of the expected results.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>lang</th>
+          <td>The language to use as IETF code. Empty string can be used for default language.
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>

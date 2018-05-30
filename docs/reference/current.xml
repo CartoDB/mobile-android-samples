@@ -6198,6 +6198,17 @@
  visibility="public"
 >
 </method>
+<method name="getLanguage"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="isAutocomplete"
  return="boolean"
  abstract="false"
@@ -6235,6 +6246,19 @@
 <parameter name="serviceURL" type="java.lang.String">
 </parameter>
 </method>
+<method name="setLanguage"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="lang" type="java.lang.String">
+</parameter>
+</method>
 </class>
 <class name="PeliasOnlineReverseGeocodingService"
  extends="com.carto.geocoding.ReverseGeocodingService"
@@ -6265,6 +6289,17 @@
  visibility="public"
 >
 </method>
+<method name="getLanguage"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6276,6 +6311,19 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
+</parameter>
+</method>
+<method name="setLanguage"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6390,6 +6438,164 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+</class>
+<class name="TomTomOnlineGeocodingService"
+ extends="com.carto.geocoding.GeocodingService"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TomTomOnlineGeocodingService"
+ type="com.carto.geocoding.TomTomOnlineGeocodingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="apiKey" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getCustomServiceURL"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLanguage"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAutocomplete"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAutocomplete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="autocomplete" type="boolean">
+</parameter>
+</method>
+<method name="setCustomServiceURL"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceURL" type="java.lang.String">
+</parameter>
+</method>
+<method name="setLanguage"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="lang" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="TomTomOnlineReverseGeocodingService"
+ extends="com.carto.geocoding.ReverseGeocodingService"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TomTomOnlineReverseGeocodingService"
+ type="com.carto.geocoding.TomTomOnlineReverseGeocodingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="apiKey" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getCustomServiceURL"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLanguage"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setCustomServiceURL"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceURL" type="java.lang.String">
+</parameter>
+</method>
+<method name="setLanguage"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="lang" type="java.lang.String">
+</parameter>
 </method>
 </class>
 </package>
@@ -9729,6 +9935,17 @@
  visibility="public"
 >
 </method>
+<method name="getOpacity"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getUpdatePriority"
  return="int"
  abstract="false"
@@ -9795,6 +10012,19 @@
  visibility="public"
 >
 <parameter name="delay" type="int">
+</parameter>
+</method>
+<method name="setOpacity"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="opacity" type="float">
 </parameter>
 </method>
 <method name="setUpdatePriority"
@@ -14402,6 +14632,17 @@
  visibility="public"
 >
 </method>
+<method name="getAPIKey"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getAPITemplate"
  return="java.lang.String"
  abstract="false"
@@ -14500,6 +14741,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setAPIKey"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="apiKey" type="java.lang.String">
+</parameter>
 </method>
 <method name="setAPITemplate"
  return="void"
@@ -14646,6 +14900,17 @@
  visibility="public"
 >
 </method>
+<method name="getAPIKey"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getAPITemplate"
  return="java.lang.String"
  abstract="false"
@@ -14699,6 +14964,19 @@
 </parameter>
 <exception name="IOException" type="java.io.IOException">
 </exception>
+</method>
+<method name="setAPIKey"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="apiKey" type="java.lang.String">
+</parameter>
 </method>
 <method name="setAPITemplate"
  return="void"
@@ -18415,6 +18693,122 @@
 </parameter>
 </method>
 </class>
+<class name="TextMargins"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TextMargins"
+ type="com.carto.styles.TextMargins"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="cPtr" type="long">
+</parameter>
+<parameter name="cMemoryOwn" type="boolean">
+</parameter>
+</constructor>
+<constructor name="TextMargins"
+ type="com.carto.styles.TextMargins"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="left" type="int">
+</parameter>
+<parameter name="top" type="int">
+</parameter>
+<parameter name="right" type="int">
+</parameter>
+<parameter name="bottom" type="int">
+</parameter>
+</constructor>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBottom"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="obj" type="com.carto.styles.TextMargins">
+</parameter>
+</method>
+<method name="getLeft"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getRight"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTop"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="swigGetRawPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="TextStyle"
  extends="com.carto.styles.LabelStyle"
  abstract="false"
@@ -18423,6 +18817,39 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<method name="getBackgroundColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBorderColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBorderWidth"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getFontColor"
  return="com.carto.graphics.Color"
  abstract="false"
@@ -18489,6 +18916,28 @@
  visibility="public"
 >
 </method>
+<method name="getTextMargins"
+ return="com.carto.styles.TextMargins"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isBreakLines"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 </class>
 <class name="TextStyleBuilder"
  extends="com.carto.styles.LabelStyleBuilder"
@@ -18506,6 +18955,39 @@
  visibility="public"
 >
 </constructor>
+<method name="getBackgroundColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBorderColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBorderWidth"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getFontName"
  return="java.lang.String"
  abstract="false"
@@ -18560,6 +19042,80 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="getTextMargins"
+ return="com.carto.styles.TextMargins"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isBreakLines"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setBackgroundColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="backgroundColor" type="com.carto.graphics.Color">
+</parameter>
+</method>
+<method name="setBorderColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="borderColor" type="com.carto.graphics.Color">
+</parameter>
+</method>
+<method name="setBorderWidth"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="borderWidth" type="float">
+</parameter>
+</method>
+<method name="setBreakLines"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
 </method>
 <method name="setFontName"
  return="void"
@@ -18624,6 +19180,19 @@
  visibility="public"
 >
 <parameter name="field" type="java.lang.String">
+</parameter>
+</method>
+<method name="setTextMargins"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textMargins" type="com.carto.styles.TextMargins">
 </parameter>
 </method>
 </class>
@@ -18804,15 +19373,13 @@
 </method>
 </class>
 <class name="MapView"
- extends="android.opengl.GLSurfaceView"
+ extends="GLSurfaceView"
  abstract="false"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<implements name="android.opengl.GLSurfaceView.Renderer">
-</implements>
 <constructor name="MapView"
  type="com.carto.ui.MapView"
  static="false"
@@ -18820,7 +19387,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="context" type="android.content.Context">
+<parameter name="context" type="Context">
 </parameter>
 </constructor>
 <constructor name="MapView"
@@ -18830,9 +19397,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="context" type="android.content.Context">
+<parameter name="context" type="Context">
 </parameter>
-<parameter name="attrs" type="android.util.AttributeSet">
+<parameter name="attrs" type="AttributeSet">
 </parameter>
 </constructor>
 <method name="cancelAllTasks"
@@ -19032,7 +19599,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+<parameter name="gl" type="GL10">
 </parameter>
 </method>
 <method name="onSurfaceChanged"
@@ -19045,7 +19612,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+<parameter name="gl" type="GL10">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
@@ -19062,9 +19629,22 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+<parameter name="gl" type="GL10">
 </parameter>
-<parameter name="config" type="javax.microedition.khronos.egl.EGLConfig">
+<parameter name="config" type="EGLConfig">
+</parameter>
+</method>
+<method name="onTouchEvent"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="event" type="MotionEvent">
 </parameter>
 </method>
 <method name="pan"
@@ -19094,7 +19674,7 @@
 >
 <parameter name="licenseKey" type="java.lang.String">
 </parameter>
-<parameter name="context" type="android.content.Context">
+<parameter name="context" type="Context">
 </parameter>
 </method>
 <method name="rotate"

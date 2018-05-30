@@ -207,6 +207,8 @@
           <li class="selected api apilevel-"><a href="../../../com/carto/geocoding/PeliasOnlineReverseGeocodingService.html">PeliasOnlineReverseGeocodingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/ReverseGeocodingRequest.html">ReverseGeocodingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/ReverseGeocodingService.html">ReverseGeocodingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geocoding/TomTomOnlineGeocodingService.html">TomTomOnlineGeocodingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geocoding/TomTomOnlineReverseGeocodingService.html">TomTomOnlineReverseGeocodingService</a></li>
       </ul>
     </li>
               
@@ -527,12 +529,48 @@ Summary:
             
             
             
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/PeliasOnlineReverseGeocodingService.html#getLanguage()">getLanguage</a></span>()
+        
+        <div class="jd-descrdiv">Returns the language of the expected results.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/geocoding/PeliasOnlineReverseGeocodingService.html#setCustomServiceURL(java.lang.String)">setCustomServiceURL</a></span>(String serviceURL)
         
         <div class="jd-descrdiv">Sets the custom backend service URL.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geocoding/PeliasOnlineReverseGeocodingService.html#setLanguage(java.lang.String)">setLanguage</a></span>(String lang)
+        
+        <div class="jd-descrdiv">Sets the language of the expected results.</div>
   
   </td></tr>
 
@@ -991,6 +1029,42 @@ From class
 </div>
 
 
+<a id="getLanguage()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getLanguage</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the language of the expected results.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The language of the expected results. As BCP47 code or empty string.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setCustomServiceURL(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1024,6 +1098,47 @@ From class
         <tr>
           <th>serviceURL</th>
           <td>The custom backend service URL to use. If this is empty, then the default service is used.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setLanguage(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setLanguage</span>
+      <span class="normal">(String lang)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the language of the expected results.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>lang</th>
+          <td>The language to use as BCP47 code. Empty string can be used for default language.
 </td>
         </tr>
       </table>
