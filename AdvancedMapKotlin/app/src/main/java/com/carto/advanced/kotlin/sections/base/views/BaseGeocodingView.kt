@@ -11,7 +11,7 @@ open class BaseGeocodingView(context: android.content.Context) : PackageDownload
 
     companion object {
         val SOURCE = "geocoding:carto.streets"
-        val MAPBOX_TOKEN = "pk.eyJ1IjoiamFha2wiLCJhIjoiR3FYNFJrRSJ9.n8PoOPy9tvnULFJ8h67pIA"
+        val MAPBOX_TOKEN = "pk.eyJ1IjoiY2FydG8tYml6LW9wcyIsImEiOiJjamRwcTM4bWcxczFuMzNwMDVqNHVjazd5In0.JG4cW0I1jcLxPdKrYQCTNA"
     }
 
     val source = com.carto.datasources.LocalVectorDataSource(projection)

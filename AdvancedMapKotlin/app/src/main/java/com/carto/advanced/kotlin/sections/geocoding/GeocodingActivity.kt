@@ -136,7 +136,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
             if (service is PackageManagerGeocodingService) {
                 (service as PackageManagerGeocodingService).isAutocomplete = autocomplete
             } else {
-                (service as PeliasOnlineGeocodingService).isAutocomplete = autocomplete
+                (service as MapBoxOnlineGeocodingService).isAutocomplete = autocomplete
             }
 
             results = service!!.calculateAddresses(request)

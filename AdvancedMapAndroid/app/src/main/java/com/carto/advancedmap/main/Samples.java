@@ -50,7 +50,7 @@ public class Samples {
             new Sample(
                     R.drawable.background_routing_online,
                     "Online Routing",
-                    "Online routing using MapBox service",
+                    "Online routing using Mapbox service",
                     OnlineRoutingActivity.class
             ),
             new Sample(
@@ -62,13 +62,13 @@ public class Samples {
             new Sample(
                     R.drawable.background_online_reverse_geocoding,
                     "Online Rev-Geocoding",
-                    "Online reverse geocoding with Pelias geocoder",
+                    "Online reverse geocoding with Mapbox geocoder",
                     OnlineReverseGeocodingActivity.class
             ),
             new Sample(
                     R.drawable.background_online_geocoding,
                     "Online Geocoding",
-                    "Online geocoding via Pelias geocoder with autocomplete",
+                    "Online geocoding via Mapbox geocoder with autocomplete",
                     OnlineGeocodingActivity.class
             ),
             new Sample(

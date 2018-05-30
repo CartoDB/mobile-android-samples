@@ -21,6 +21,7 @@ import com.carto.geocoding.GeocodingRequest;
 import com.carto.geocoding.GeocodingResult;
 import com.carto.geocoding.GeocodingResultVector;
 import com.carto.geocoding.GeocodingService;
+import com.carto.geocoding.MapBoxOnlineGeocodingService;
 import com.carto.geocoding.PackageManagerGeocodingService;
 import com.carto.geocoding.PeliasOnlineGeocodingService;
 import com.carto.ui.MapClickInfo;
@@ -193,7 +194,7 @@ public class GeocodingBaseActivity extends BaseGeocodingActivity {
                 if (service instanceof PackageManagerGeocodingService) {
                     ((PackageManagerGeocodingService)service).setAutocomplete(autocomplete);
                 } else {
-                    ((PeliasOnlineGeocodingService)service).setAutocomplete(autocomplete);
+                    ((MapBoxOnlineGeocodingService)service).setAutocomplete(autocomplete);
                 }
 
                 try {
