@@ -30,8 +30,7 @@ public class BoundingBox
         return new MapPos((maxLon + minLon) / 2, (maxLat + minLat) / 2);
     }
 
-    public String toString()
-    {
-        return String.format(Locale.US, "bbox(" + minLon + "," + minLat + "," + maxLon + "," + maxLat + ")", null);
+    public String toString() {
+        return "bbox(" + minLon + "," + minLat + "," + maxLon + "," + maxLat + ")";
     }
 }

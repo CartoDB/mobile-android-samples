@@ -29,7 +29,7 @@ class Routing(val context: Context, val mapView: MapView) {
 
     companion object {
         val ROUTING_TAG = "routing:"
-        val OFFLINE_ROUTING_SOURCE = "carto.streets"
+        val OFFLINE_ROUTING_SOURCE = "nutiteq.osm.car"
     }
 
     var service: RoutingService? = null

@@ -6,7 +6,7 @@ import com.carto.advancedmap.baseclasses.views.PackageManagerBaseView;
 
 import com.carto.advancedmap.utils.Sources;
 import com.carto.layers.CartoBaseMapStyle;
-import com.carto.routing.PackageManagerValhallaRoutingService;
+import com.carto.routing.PackageManagerRoutingService;
 
 /**
  * Created by aareundo on 16/12/16.
@@ -19,8 +19,8 @@ public class OfflineRoutingActivity extends BaseRoutingActivity {
 
         super.onCreate(savedInstanceState);
 
-        PackageManagerValhallaRoutingService service =
-                new PackageManagerValhallaRoutingService(contentView.manager);
+        PackageManagerRoutingService service =
+                new PackageManagerRoutingService(contentView.manager);
         setService(service);
     }
     

@@ -16,8 +16,7 @@ import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.routing.CartoOnlineRoutingService
-import com.carto.routing.PackageManagerValhallaRoutingService
-import com.carto.routing.ValhallaOnlineRoutingService
+import com.carto.routing.PackageManagerRoutingService
 import com.carto.search.SearchRequest
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo

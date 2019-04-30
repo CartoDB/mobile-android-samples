@@ -8,9 +8,8 @@ public class Sources {
 
     public static final String CARTO_VECTOR = "carto.streets";
 
-    public static final String OFFLINE_ROUTING = CARTO_VECTOR;
-
     public static final String ROUTING_TAG = "routing:";
+    public static final String OFFLINE_ROUTING = "nutiteq.osm.car";
 
     public static final String GEOCODING_TAG = "geocoding:";
     public static final String OFFLINE_GEOCODING = CARTO_VECTOR;

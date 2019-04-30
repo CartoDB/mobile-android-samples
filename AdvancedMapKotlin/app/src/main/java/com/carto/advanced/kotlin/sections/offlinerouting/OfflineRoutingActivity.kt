@@ -8,9 +8,7 @@ import com.carto.advanced.kotlin.utils.Utils
 import com.carto.core.MapPos
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.routing.CartoOnlineRoutingService
-import com.carto.routing.PackageManagerValhallaRoutingService
-import com.carto.routing.ValhallaOfflineRoutingService
-import com.carto.routing.ValhallaOnlineRoutingService
+import com.carto.routing.PackageManagerRoutingService
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
@@ -93,7 +91,7 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
     }
 
     override fun setOfflineMode() {
-        routing?.service = PackageManagerValhallaRoutingService(contentView!!.manager)
+        routing?.service = PackageManagerRoutingService(contentView!!.manager)
     }
 
     fun showRoute(start: MapPos, stop: MapPos) {

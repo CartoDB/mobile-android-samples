@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.carto.advancedmap.main.ActivityData;
 import com.carto.advancedmap.utils.Sources;
 import com.carto.routing.CartoOnlineRoutingService;
-import com.carto.routing.ValhallaOnlineRoutingService;
 
 /**
  * Created by aareundo on 16/12/16.
