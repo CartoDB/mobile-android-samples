@@ -28,8 +28,6 @@
         </activity>
 
         <!-- Section 1 -->
-        <activity android:name=".sections.cartojsapi.CountriesVisMapActivity" />
-        <activity android:name=".sections.cartojsapi.DotsVisMapActivity" />
 
         <!-- Section 2 -->
         <activity android:name=".sections.importapi.TilePackagerActivity" />
