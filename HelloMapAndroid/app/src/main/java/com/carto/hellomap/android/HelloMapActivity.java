@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.carto.components.RenderProjectionMode;
 import com.carto.core.MapPos;
 import com.carto.datasources.LocalVectorDataSource;
 
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.VectorLayer;
+import com.carto.projections.EPSG4326;
 import com.carto.projections.Projection;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
@@ -34,7 +36,14 @@ public class HelloMapActivity extends Activity {
 
         // Set view from layout resource
         setContentView(R.layout.activity_hello_map);
+        setTitle("Hello Map");
         mapView = (MapView) this.findViewById(R.id.map_view);
+
+        // Set map view options
+        Projection proj = new EPSG4326();
+        mapView.getOptions().setBaseProjection(proj);
+        mapView.getOptions().setRenderProjectionMode(RenderProjectionMode.RENDER_PROJECTION_MODE_SPHERICAL);
+        mapView.getOptions().setZoomGestures(true);
 
         // Add base map
         CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
@@ -43,75 +52,65 @@ public class HelloMapActivity extends Activity {
         // Set default location and zoom
         MapPos berlin = mapView.getOptions().getBaseProjection().fromWgs84(new MapPos(13.38933, 52.51704));
         mapView.setFocusPos(berlin, 0);
-        mapView.setZoom(10, 0);
+        mapView.setZoom(2, 0);
+        mapView.setZoom(4, 2);
 
-        Marker marker = addMarkerToPosition(berlin);
-
-        mapView.setMapEventListener(new MyMapEventListener(marker));
-
-        setTitle("Hello Map");
-    }
-
-    private Marker addMarkerToPosition(MapPos position)
-    {
-        // Create a new layer and add it to the map
-        Projection projection = mapView.getOptions().getBaseProjection();
-        LocalVectorDataSource datasource = new LocalVectorDataSource(projection);
-        VectorLayer layer = new VectorLayer(datasource);
+        // Create data source and layer for makrers
+        LocalVectorDataSource dataSource = new LocalVectorDataSource(proj);
+        VectorLayer layer = new VectorLayer(dataSource);
         mapView.getLayers().add(layer);
 
         // Build Marker style
-        MarkerStyleBuilder builder = new MarkerStyleBuilder();
-        builder.setSize(20);
-
-        // CARTO has its own Color class. Do not mix up with android.graphics.Color
-        builder.setColor(new com.carto.graphics.Color(Color.WHITE));
-
-        MarkerStyle style = builder.buildStyle();
+        MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
+        styleBuilder.setSize(20);
+        styleBuilder.setColor(new com.carto.graphics.Color(Color.WHITE));
+        MarkerStyle style = styleBuilder.buildStyle();
 
         // Create the actual Marker and add it to the data source
-        Marker marker = new Marker(position, style);
-        datasource.add(marker);
+        Marker marker = new Marker(berlin, style);
+        dataSource.add(marker);
 
-        return marker;
+        // Set map event listener to receive click events
+        mapView.setMapEventListener(new MyMapEventListener(dataSource));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Disconnect map event listener to avoid leaks
+        mapView.setMapEventListener(null);
     }
 
     /*********************
         MAP CLICK LISTENER
     **********************/
-    private class MyMapEventListener extends MapEventListener {
+    private static class MyMapEventListener extends MapEventListener {
 
         private int[] colors = { Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN };
 
-        private Marker marker;
+        private LocalVectorDataSource dataSource;
 
         private Random random;
 
-        public MyMapEventListener(Marker marker) {
-            this.marker = marker;
-            random = new Random();
+        public MyMapEventListener(LocalVectorDataSource dataSource) {
+            this.dataSource = dataSource;
+            this.random = new Random();
         }
 
         @Override
         public void onMapClicked(MapClickInfo mapClickInfo) {
             super.onMapClicked(mapClickInfo);
 
-            MarkerStyleBuilder builder = new MarkerStyleBuilder();
+            // Build new marker style with random size and color
+            MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
+            styleBuilder.setSize(random.nextInt(30) + 15);
+            styleBuilder.setColor(new com.carto.graphics.Color(colors[random.nextInt(colors.length)]));
+            MarkerStyle style = styleBuilder.buildStyle();
 
-            // Set random size (within reasonable limits)
-            int size = getRandomInt(15, 50);
-            builder.setSize(size);
-
-            // Set random color from our list
-            int color = colors[getRandomInt(0, colors.length)];
-            builder.setColor(new com.carto.graphics.Color(color));
-
-            // Set a new style to the marker
-            marker.setStyle(builder.buildStyle());
-        }
-
-        private int getRandomInt(int min, int max) {
-            return random.nextInt(max - min) + min;
+            // Create a new marker with the defined style at the clicked position
+            Marker marker = new Marker(mapClickInfo.getClickPos(), style);
+            dataSource.add(marker);
         }
     }
 }
