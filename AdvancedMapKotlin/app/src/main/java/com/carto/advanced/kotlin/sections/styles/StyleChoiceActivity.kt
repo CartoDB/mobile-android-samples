@@ -1,11 +1,12 @@
 package com.carto.advanced.kotlin.sections.styles
 
 import android.os.Bundle
-import android.widget.CompoundButton
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguageCell
+import com.carto.advanced.kotlin.components.popupcontent.mapoptioncontent.MapOptionCell
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem
 import com.carto.advanced.kotlin.model.Languages
+import com.carto.advanced.kotlin.model.MapOptions
 import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.layers.VectorTileLayer
 import com.carto.ui.MapView
@@ -27,9 +28,8 @@ class StyleChoiceActivity : BaseActivity() {
 
         contentView?.languageContent?.addItems(Languages.list)
         contentView?.baseMapContent?.highlightDefault()
+        contentView?.mapOptionContent?.addItems(MapOptions.list)
 
-        contentView!!.switchesContent.textsSwitch.check()
-        contentView!!.switchesContent.buildingsSwitch.uncheck()
     }
 
     override fun onResume() {
@@ -63,15 +63,14 @@ class StyleChoiceActivity : BaseActivity() {
             }
         }
 
-        var switch = contentView!!.switchesContent.buildingsSwitch.switch
-        switch.setOnCheckedChangeListener({ _, b ->
-            contentView!!.updateBuildings(b)
-        })
-
-        switch = contentView!!.switchesContent.textsSwitch.switch
-        switch.setOnCheckedChangeListener({ _, b ->
-            contentView!!.updateTexts(b)
-        })
+        contentView?.mapOptionContent?.list?.setOnItemClickListener { _, view, _, _ ->
+            run {
+                contentView?.popup?.hide()
+                val cell = view as MapOptionCell
+                cell.item!!.value = !cell.item!!.value
+                contentView?.updateMapOption(cell.item!!.tag, cell.item!!.value)
+            }
+        }
     }
 
     override fun onPause() {
@@ -88,8 +87,7 @@ class StyleChoiceActivity : BaseActivity() {
 
         contentView?.languageContent?.list?.onItemClickListener = null
 
-        contentView!!.switchesContent.buildingsSwitch.switch.setOnCheckedChangeListener(null)
-        contentView!!.switchesContent.textsSwitch.switch.setOnCheckedChangeListener(null)
+        contentView?.mapOptionContent?.list?.onItemClickListener = null
 
         if (contentView?.currentLayer is VectorTileLayer) {
             (contentView?.currentLayer as VectorTileLayer).vectorTileEventListener = null

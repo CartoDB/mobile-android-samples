@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.widget.ImageView
 import com.carto.core.MapPos
+import com.carto.layers.ClusterBuilderMode
 import com.carto.layers.ClusterElementBuilder
 import com.carto.styles.MarkerStyle
 import com.carto.styles.MarkerStyleBuilder
@@ -20,16 +21,14 @@ import com.carto.vectorelements.VectorElementVector
 class ClusterBuilder : ClusterElementBuilder() {
 
     var image: Bitmap? = null
-    var elements: MutableMap<Long, MarkerStyle> = mutableMapOf()
+    var elements: MutableMap<Int, MarkerStyle> = mutableMapOf()
 
-    override fun buildClusterElement(mapPos: MapPos?, elements: VectorElementVector?): VectorElement {
+    override fun getBuilderMode(): ClusterBuilderMode {
+        return ClusterBuilderMode.CLUSTER_BUILDER_MODE_ELEMENT_COUNT
+    }
 
-        val count = elements?.size()!!
-        var style = findByKey(count)
-
-        if (count <= 1.0) {
-            style = (elements.get(0) as Marker).style
-        }
+    override fun buildClusterElement(mapPos: MapPos?, elementCount: Int): VectorElement {
+        var style = findByKey(elementCount)
 
         if (style == null) {
             val canvasBitmap = image?.copy(Bitmap.Config.ARGB_8888, true)
@@ -44,23 +43,32 @@ class ClusterBuilder : ClusterElementBuilder() {
             val x: Float = (image?.width!! / 2).toFloat()
             val y: Float = (image?.height!! / 2).toFloat() - 5.0f
 
-            val text = count.toString()
+            val text = elementCount.toString()
             canvas.drawText(text, x, y, paint)
 
             val builder = MarkerStyleBuilder()
             builder.bitmap = BitmapUtils.createBitmapFromAndroidBitmap(canvasBitmap)
             builder.size = 30.0f
-            builder.placementPriority = -count.toInt()
+            builder.placementPriority = elementCount.toInt()
 
             style = builder.buildStyle()
 
-            this.elements.put(count, style)
+            this.elements.put(elementCount, style)
         }
 
         return Marker(mapPos, style)
     }
 
-    fun findByKey(count: Long): MarkerStyle? {
+    override fun buildClusterElement(mapPos: MapPos?, elements: VectorElementVector): VectorElement {
+        if (elements.size().toInt() == 1) {
+            val style = (elements.get(0) as Marker).style
+            return Marker(mapPos, style)
+        }
+
+        return buildClusterElement(mapPos, elements.size().toInt())
+    }
+
+    fun findByKey(count: Int): MarkerStyle? {
 
         if (elements.containsKey(count)) {
             return elements[count]!!

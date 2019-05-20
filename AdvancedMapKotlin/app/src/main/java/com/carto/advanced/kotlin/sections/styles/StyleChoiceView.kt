@@ -8,6 +8,8 @@ import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.Style
 import com.carto.advanced.kotlin.components.popupcontent.switchescontent.Switches3DContent
 import com.carto.advanced.kotlin.model.Texts
 import com.carto.advanced.kotlin.sections.base.views.MapBaseView
+import com.carto.advancedmap.kotlinui.mapoptioncontent.MapOptionPopupContent
+import com.carto.components.RenderProjectionMode
 import com.carto.datasources.CartoOnlineTileDataSource
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.*
@@ -31,14 +33,16 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
     var languageButton = PopupButton(context, R.drawable.icon_language)
     var baseMapButton = PopupButton(context, R.drawable.icon_basemap)
-    var switchesButton = PopupButton(context, R.drawable.icon_switches)
+    var mapOptionButton = PopupButton(context, R.drawable.icon_switches)
 
     var languageContent = LanguagePopupContent(context)
     var baseMapContent = StylePopupContent(context)
-    var switchesContent = Switches3DContent(context)
+    var mapOptionContent = MapOptionPopupContent(context)
 
     var currentLanguage: String = ""
     var currentLayer: TileLayer? = null
+    var buildings3D = false
+    var texts3D = true
 
     private val vectorSource = LocalVectorDataSource(projection)
     private val vectorLayer = VectorLayer(vectorSource)
@@ -56,7 +60,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         addButton(languageButton)
         addButton(baseMapButton)
-        addButton(switchesButton)
+        addButton(mapOptionButton)
 
         layoutSubviews()
 
@@ -85,15 +89,11 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
             popup.show()
         }
 
-        switchesButton.setOnClickListener {
-            popup.setPopupContent(switchesContent)
-            popup.popup.header.setText("SWITCH TO TURN 3D ON")
+        mapOptionButton.setOnClickListener {
+            popup.setPopupContent(mapOptionContent)
+            popup.popup.header.setText("CONFIGURE RENDERING")
             popup.show()
         }
-
-        switchesContent.setOnClickListener({
-//             Just catches background clicks, so they wouldn't close the popup
-        })
     }
 
     override fun removeListeners() {
@@ -101,17 +101,10 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         languageButton.setOnClickListener(null)
         baseMapButton.setOnClickListener(null)
-        switchesButton.setOnClickListener(null)
-
-        switchesContent.setOnClickListener(null)
+        mapOptionButton.setOnClickListener(null)
     }
 
     fun updateMapLanguage(language: String) {
-
-        if (currentLayer == null) {
-            return
-        }
-
         currentLanguage = language
         
         if (currentLayer is CartoOnlineVectorTileLayer) {
@@ -143,19 +136,16 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
 
         if (source == StylePopupContent.CartoRasterSource) {
             languageButton.disable()
-            switchesButton.disable()
         } else {
             languageButton.enable()
-            switchesButton.enable()
         }
 
         map.layers.clear()
         map.layers.add(currentLayer)
 
         updateMapLanguage(currentLanguage)
-
-        switchesContent.buildingsSwitch.uncheck()
-        switchesContent.textsSwitch.check()
+        updateMapOption("buildings3d", buildings3D)
+        updateMapOption("texts3d", texts3D)
 
         if (currentLayer is VectorTileLayer) {
             map.layers.add(vectorLayer)
@@ -163,30 +153,29 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         }
     }
 
-    fun updateBuildings(isChecked: Boolean) {
-
-        var value = "1"
-
-        if (isChecked) {
-            value = "2"
+    fun updateMapOption(option: String, value: Boolean) {
+        if (option == "globe") {
+            map.options.renderProjectionMode = if (value) RenderProjectionMode.RENDER_PROJECTION_MODE_SPHERICAL else RenderProjectionMode.RENDER_PROJECTION_MODE_PLANAR
+            return
+        }
+        if (option == "buildings3d") {
+            buildings3D = value
+        }
+        if (option == "texts3d") {
+            texts3D = value
         }
 
-        updateStyle("buildings", value)
-
-        popup.hide()
-    }
-
-    fun updateTexts(isChecked: Boolean) {
-
-        var value = "0"
-
-        if (isChecked) {
-            value = "1"
+        if (!(currentLayer is VectorTileLayer)) {
+            return
         }
 
-        updateStyle("texts3d", value)
-
-        popup.hide()
+        val decoder = (currentLayer as? VectorTileLayer)?.tileDecoder as? MBVectorTileDecoder
+        if (option == "buildings3d") {
+            decoder?.setStyleParameter("buildings", if (buildings3D) "2" else "1")
+        }
+        if (option == "texts3d") {
+            decoder?.setStyleParameter("texts3d", if (texts3D) "1" else "0")
+        }
     }
 
     private fun updateStyle(key: String, value: String) {
