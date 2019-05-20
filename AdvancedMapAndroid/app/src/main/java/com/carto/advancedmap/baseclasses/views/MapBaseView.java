@@ -35,6 +35,7 @@ public class MapBaseView extends BaseView {
         super(context);
 
         mapView = new MapView(context);
+        mapView.getOptions().setZoomGestures(true);
         addView(mapView);
 
         // Set projection

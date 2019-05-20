@@ -1,21 +1,19 @@
-package com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent
+package com.carto.advanced.kotlin.components.popupcontent.mapoptioncontent
 
 import android.content.Context
 import android.graphics.Typeface
 import android.view.Gravity
+import android.widget.CheckBox
 import android.widget.TextView
 import com.carto.advanced.kotlin.sections.base.views.BaseView
 import com.carto.advanced.kotlin.sections.base.utils.setFrame
-import com.carto.advancedmap.model.Language
+import com.carto.advancedmap.model.MapOption
 
-/**
- * Created by aareundo on 14/07/2017.
- */
-class LanguageCell(context: Context) : BaseView(context) {
+class MapOptionCell(context: Context) : BaseView(context) {
 
     val label = TextView(context)
 
-    var item: Language? = null
+    var item: MapOption? = null
 
     init {
         label.textSize = 15.0f
@@ -31,8 +29,12 @@ class LanguageCell(context: Context) : BaseView(context) {
         label.setFrame(leftPadding, 0, frame.width - leftPadding, frame.height)
     }
 
-    fun update(lang: Language) {
-        this.item = lang
-        label.text = lang.name.toUpperCase()
+    fun update(option: MapOption) {
+        this.item = option
+        if (option.value) {
+            label.text = option.name + " \u2713"
+        } else {
+            label.text = option.name
+        }
     }
 }

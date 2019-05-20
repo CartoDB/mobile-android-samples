@@ -165,7 +165,7 @@ public class ClusteredMarkersActivity extends MapBaseActivity {
                 MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
                 styleBuilder.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(canvasBitmap));
                 styleBuilder.setSize(30);
-                styleBuilder.setPlacementPriority((int)-elements.size());
+                styleBuilder.setPlacementPriority((int)elements.size());
 
                 style = styleBuilder.buildStyle();
 

@@ -5,11 +5,13 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.LanguageCell;
+import com.carto.advanced.kotlin.components.popupcontent.mapoptioncontent.MapOptionCell;
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent;
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSection;
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContentSectionItem;
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.model.Languages;
+import com.carto.advancedmap.model.MapOptions;
 import com.carto.core.MapPos;
 
 import java.util.Arrays;
@@ -34,6 +36,7 @@ public class BaseMapActivity extends MapBaseActivity {
 
         ((BaseMapsView)contentView).styleContent.highlightDefault();
         ((BaseMapsView)contentView).languageContent.addItems(Arrays.asList(Languages.LIST));
+        ((BaseMapsView)contentView).mapOptionsContent.addItems(Arrays.asList(MapOptions.LIST));
         ((BaseMapsView)contentView).updateBaseLayer(
                 StylePopupContent.getVoyager(),
                 StylePopupContent.getCartoVectorSource()
@@ -43,7 +46,6 @@ public class BaseMapActivity extends MapBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
 
         ((BaseMapsView)contentView).styleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,18 +63,26 @@ public class BaseMapActivity extends MapBaseActivity {
             }
         });
 
-        final StylePopupContent content = ((BaseMapsView)contentView).styleContent;
-        for (final StylePopupContentSection section : content.getItems()) {
+        ((BaseMapsView)contentView).mapOptionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((BaseMapsView)contentView).setMapOptionsContent();
+                contentView.popup.show();
+            }
+        });
+
+        final StylePopupContent styleContent = ((BaseMapsView)contentView).styleContent;
+        for (final StylePopupContentSection section : styleContent.getItems()) {
             for (final StylePopupContentSectionItem item : section.getList()) {
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (content.getPrevious() != null) {
-                            content.getPrevious().normalize();
+                        if (styleContent.getPrevious() != null) {
+                            styleContent.getPrevious().normalize();
                         }
 
                         item.highlight();
-                        content.setPrevious(item);
+                        styleContent.setPrevious(item);
 
                         contentView.popup.hide(200);
                         String text = (String) item.getLabel().getText();
@@ -90,6 +100,16 @@ public class BaseMapActivity extends MapBaseActivity {
                 ((BaseMapsView)contentView).updateLanguage(cell.getItem().value);
             }
         });
+
+        ((BaseMapsView)contentView).mapOptionsContent.getList().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MapOptionCell cell = (MapOptionCell)view;
+                cell.getItem().value = !cell.getItem().value;
+                contentView.popup.hide(200);
+                ((BaseMapsView)contentView).updateMapOption(cell.getItem().tag, cell.getItem().value);
+            }
+        });
     }
 
     @Override
@@ -99,6 +119,8 @@ public class BaseMapActivity extends MapBaseActivity {
         ((BaseMapsView)contentView).styleButton.setOnClickListener(null);
 
         ((BaseMapsView)contentView).languageButton.setOnClickListener(null);
+
+        ((BaseMapsView)contentView).mapOptionsButton.setOnClickListener(null);
 
         final StylePopupContent content = ((BaseMapsView)contentView).styleContent;
         for (final StylePopupContentSection section : content.getItems()) {

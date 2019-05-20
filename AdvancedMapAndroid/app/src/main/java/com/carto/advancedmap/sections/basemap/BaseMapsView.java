@@ -7,24 +7,17 @@ import com.carto.advanced.kotlin.components.popupcontent.languagepopupcontent.La
 import com.carto.advanced.kotlin.components.popupcontent.stylepopupcontent.StylePopupContent;
 import com.carto.advancedmap.R;
 import com.carto.advancedmap.baseclasses.views.MapBaseView;
-import com.carto.advancedmap.utils.Sources;
-import com.carto.core.BinaryData;
-import com.carto.datasources.CartoOnlineTileDataSource;
-import com.carto.datasources.HTTPTileDataSource;
+import com.carto.advancedmap.kotlinui.mapoptioncontent.MapOptionPopupContent;
+import com.carto.components.RenderProjectionMode;
 import com.carto.datasources.LocalVectorDataSource;
-import com.carto.datasources.TileDataSource;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineRasterTileLayer;
 import com.carto.layers.CartoOnlineVectorTileLayer;
 import com.carto.layers.Layer;
-import com.carto.layers.RasterTileLayer;
 import com.carto.layers.TileLayer;
 import com.carto.layers.VectorLayer;
 import com.carto.layers.VectorTileLayer;
 import com.carto.projections.Projection;
-import com.carto.styles.CompiledStyleSet;
-import com.carto.utils.AssetUtils;
-import com.carto.utils.ZippedAssetPackage;
 import com.carto.vectortiles.MBVectorTileDecoder;
 
 /**
@@ -37,12 +30,17 @@ public class BaseMapsView extends MapBaseView
 
     public PopupButton styleButton;
     public PopupButton languageButton;
+    public PopupButton mapOptionsButton;
 
     public StylePopupContent styleContent;
     public LanguagePopupContent languageContent;
+    public MapOptionPopupContent mapOptionsContent;
 
-    public BaseMapsView(Context context)
-    {
+    private String currentLanguage = "en";
+    private boolean buildings3D = false;
+    private boolean texts3D = true;
+
+    public BaseMapsView(Context context) {
         super(context);
 
         styleButton = new PopupButton(context, R.drawable.icon_basemap);
@@ -51,8 +49,12 @@ public class BaseMapsView extends MapBaseView
         languageButton = new PopupButton(context, R.drawable.icon_language);
         addButton(languageButton);
 
+        mapOptionsButton = new PopupButton(context, R.drawable.icon_switches);
+        addButton(mapOptionsButton);
+
         styleContent = new StylePopupContent(context);
         languageContent = new LanguagePopupContent(context);
+        mapOptionsContent = new MapOptionPopupContent(context);
 
         setMainViewFrame();
     }
@@ -65,6 +67,11 @@ public class BaseMapsView extends MapBaseView
     public void setBasemapContent() {
         popup.getPopup().getHeader().setText("SELECT A BASEMAP");
         setContent(styleContent);
+    }
+
+    public void setMapOptionsContent() {
+        popup.getPopup().getHeader().setText("CONFIGURE RENDERING");
+        setContent(mapOptionsContent);
     }
 
     String currentOSM;
@@ -107,17 +114,50 @@ public class BaseMapsView extends MapBaseView
         mapView.getLayers().clear();
         mapView.getLayers().add(currentLayer);
 
+        updateLanguage(currentLanguage);
+        updateMapOption("buildings3d", buildings3D);
+        updateMapOption("texts3d", texts3D);
+
         currentListener = initializeVectorTileListener();
     }
 
     void updateLanguage(String code) {
-        if (currentLayer == null) {
+        currentLanguage = code;
+
+        if (!(currentLayer instanceof VectorTileLayer)) {
             return;
         }
 
-        CartoOnlineVectorTileLayer current = (CartoOnlineVectorTileLayer)currentLayer;
+        VectorTileLayer current = (VectorTileLayer)currentLayer;
         MBVectorTileDecoder decoder = (MBVectorTileDecoder)current.getTileDecoder();
-        decoder.setStyleParameter("lang", code);
+        decoder.setStyleParameter("lang", currentLanguage);
+    }
+
+    void updateMapOption(String option, boolean value) {
+        if (option.equals("globe")) {
+            mapView.getOptions().setRenderProjectionMode(value ? RenderProjectionMode.RENDER_PROJECTION_MODE_SPHERICAL : RenderProjectionMode.RENDER_PROJECTION_MODE_PLANAR);
+            return;
+        }
+
+        if (option.equals("buildings3d")) {
+            buildings3D = value;
+        }
+        if (option.equals("texts3d")) {
+            texts3D = value;
+        }
+
+        if (!(currentLayer instanceof VectorTileLayer)) {
+            return;
+        }
+
+        VectorTileLayer current = (VectorTileLayer)currentLayer;
+        MBVectorTileDecoder decoder = (MBVectorTileDecoder)current.getTileDecoder();
+        if (option.equals("buildings3d")) {
+            decoder.setStyleParameter("buildings", buildings3D ? "2" : "1");
+        }
+        if (option.equals("texts3d")) {
+            decoder.setStyleParameter("texts3d", texts3D ? "1" : "0");
+        }
     }
 
     VectorTileListener initializeVectorTileListener() {
