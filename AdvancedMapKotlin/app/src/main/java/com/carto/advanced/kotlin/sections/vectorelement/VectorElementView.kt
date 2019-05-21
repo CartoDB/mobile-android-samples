@@ -100,11 +100,19 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         balloonBuilder.titleFontSize = 15
         balloonBuilder.descriptionFontSize = 12
 
+        var balloonButtonBuilder = BalloonPopupButtonStyleBuilder()
+        balloonButtonBuilder.cornerRadius = 6
+        balloonButtonBuilder.color = Colors.transparentGray.toCartoColor()
+        var balloonButtonStyle = balloonButtonBuilder.buildStyle()
+
         var position = projection?.fromWgs84(MapPos(longitude + 0.003, latitude + 0.003))
         val balloonPopup = BalloonPopup(position, balloonBuilder.buildStyle(), "Balloon popup", "Look at me, whee!")
         balloonPopup.setMetaDataElement(titleKey, Variant("Did you just click me?"))
         balloonPopup.setMetaDataElement(descriptionKey, Variant("You'd better not try that again"))
         source?.add(balloonPopup)
+
+        var button = BalloonPopupButton(balloonButtonStyle, "button")
+        balloonPopup.addButton(button)
 
         /*
          * Line
@@ -167,22 +175,23 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         /*
          * Text with border and line break
          */
-        // TODO: Uncomment when SDK v4.2.0 is released
-//        position = projection!!.fromWgs84(MapPos(longitude - 0.01, latitude + 0.01))
-//
-//        val textBuilder = TextStyleBuilder()
-//        textBuilder.isBreakLines = true
-//        textBuilder.borderColor = Colors.green.toCartoColor()
-//        textBuilder.textMargins = TextMargins(5, 5, 5, 5)
-//        textBuilder.color = Color.BLACK.toCartoColor()
-//        textBuilder.fontSize = 12.0f
-//        textBuilder.backgroundColor = Color.WHITE.toCartoColor()
-//        textBuilder.borderWidth = 2.0f
-//        textBuilder.isHideIfOverlapped = false
-//
-//        val text = "Look at me\nI'm broken in three lines\nand have a green border"
-//        val textElement = Text(position, textBuilder.buildStyle(), text)
-//        source!!.add(textElement)
+        position = projection!!.fromWgs84(MapPos(longitude - 0.01, latitude + 0.01))
+
+        val textBuilder = TextStyleBuilder()
+        textBuilder.isBreakLines = true
+        textBuilder.borderColor = Colors.green.toCartoColor()
+        textBuilder.textMargins = TextMargins(5, 5, 5, 5)
+        textBuilder.color = Color.BLACK.toCartoColor()
+        textBuilder.fontSize = 15.0f
+        textBuilder.backgroundColor = Color.WHITE.toCartoColor()
+        textBuilder.borderWidth = 2.0f
+        textBuilder.isHideIfOverlapped = false
+
+        val text = "Look at me\nI'm broken in three lines\nand have a green border"
+        val textElement = Text(position, textBuilder.buildStyle(), text)
+        textElement.setMetaDataElement(titleKey, Variant("Hi!"))
+        textElement.setMetaDataElement(descriptionKey, Variant("I'm just a plain text"))
+        source!!.add(textElement)
 
         layoutSubviews()
     }

@@ -3,6 +3,7 @@ package com.carto.advancedmap.sections.vectorobjects;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
@@ -18,6 +19,9 @@ import com.carto.layers.Layer;
 import com.carto.layers.VectorElementEventListener;
 import com.carto.layers.VectorLayer;
 import com.carto.projections.Projection;
+import com.carto.styles.AnimationStyleBuilder;
+import com.carto.styles.AnimationType;
+import com.carto.styles.BalloonPopupButtonStyleBuilder;
 import com.carto.styles.BalloonPopupMargins;
 import com.carto.styles.BalloonPopupStyle;
 import com.carto.styles.BalloonPopupStyleBuilder;
@@ -29,10 +33,13 @@ import com.carto.styles.PointStyleBuilder;
 import com.carto.styles.Polygon3DStyleBuilder;
 import com.carto.styles.PolygonStyleBuilder;
 import com.carto.styles.TextStyleBuilder;
+import com.carto.ui.BalloonPopupButtonClickInfo;
 import com.carto.ui.VectorElementClickInfo;
 import com.carto.utils.AssetUtils;
 import com.carto.utils.BitmapUtils;
 import com.carto.vectorelements.BalloonPopup;
+import com.carto.vectorelements.BalloonPopupButton;
+import com.carto.vectorelements.BalloonPopupEventListener;
 import com.carto.vectorelements.Billboard;
 import com.carto.vectorelements.Line;
 import com.carto.vectorelements.Marker;
@@ -231,6 +238,29 @@ public class OverlaysActivity extends MapBaseActivity {
         MapPos position = contentView.projection.fromWgs84(new MapPos(24.655662, 59.425521));
         BalloonPopup popup1 = new BalloonPopup(position, builder.buildStyle(), "Popup with pos", "Images, round");
 
+        // Add buttons
+        final BalloonPopupButtonStyleBuilder buttonStyleBuilder = new BalloonPopupButtonStyleBuilder();
+        buttonStyleBuilder.setButtonWidth(100);
+        BalloonPopupButton button1 = new BalloonPopupButton(buttonStyleBuilder.buildStyle(), "Button1");
+        button1.setTag(new Variant("button1"));
+        buttonStyleBuilder.setCornerRadius(10);
+        buttonStyleBuilder.setColor(new Color(0xff000000));
+        buttonStyleBuilder.setTextColor(new Color(0xff0ff0ff));
+        popup1.addButton(button1);
+        BalloonPopupButton button2 = new BalloonPopupButton(buttonStyleBuilder.buildStyle(), "Button2");
+        button2.setTag(new Variant("button2"));
+        popup1.addButton(button2);
+
+        popup1.setBalloonPopupEventListener(new BalloonPopupEventListener() {
+            @Override
+            public boolean onButtonClicked(BalloonPopupButtonClickInfo clickInfo) {
+                BalloonPopup popup = (BalloonPopup) clickInfo.getVectorElement();
+                BalloonPopupButton button = clickInfo.getButton();
+                popup.replaceButton(button, new BalloonPopupButton(buttonStyleBuilder.buildStyle(), "new button"));
+                return true;
+            }
+        });
+
         popup1.setMetaDataElement("ClickText", new Variant("Popup nr 1"));
         source.add(popup1);
     }
@@ -428,8 +458,16 @@ public class OverlaysActivity extends MapBaseActivity {
             builder.setRightMargins(new BalloonPopupMargins(6, 3, 6, 3));
             builder.setPlacementPriority(10);
 
+            AnimationStyleBuilder animBuilder = new AnimationStyleBuilder();
+            animBuilder.setPhaseInDuration(0.3f);
+            animBuilder.setSizeAnimationType(AnimationType.ANIMATION_TYPE_SPRING);
+            builder.setAnimationStyle(animBuilder.buildStyle());
+
             BalloonPopupStyle style = builder.buildStyle();
 
+            if (!element.containsMetaDataKey("ClickText")) {
+                return true;
+            }
             String title = element.getMetaDataElement("ClickText").getString();
             String description = "";
 

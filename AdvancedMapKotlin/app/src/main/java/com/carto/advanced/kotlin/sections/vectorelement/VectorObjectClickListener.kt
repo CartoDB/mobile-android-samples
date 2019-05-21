@@ -11,6 +11,7 @@ import com.carto.styles.BalloonPopupMargins
 import com.carto.styles.BalloonPopupStyleBuilder
 import com.carto.ui.VectorElementClickInfo
 import com.carto.vectorelements.BalloonPopup
+import com.carto.vectorelements.Billboard
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -56,7 +57,7 @@ class VectorObjectClickListener(val source: LocalVectorDataSource) : VectorEleme
 
         var popup: BalloonPopup?
 
-        if (element is BalloonPopup) {
+        if (element is Billboard) {
             popup = BalloonPopup(element, style, title, description)
         } else {
             popup = BalloonPopup(clickInfo.clickPos, style, title, description)
