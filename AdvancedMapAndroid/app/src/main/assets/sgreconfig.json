@@ -1,0 +1,10 @@
+{
+	"tesselationdistance": 2.5,
+	"rulelist": [
+		{ "profiles": ["foot"], "speed": 5.0, "zspeed": 1.0 },
+		{ "profiles": ["wheelchair"], "speed": 3.0, "zspeed": 1.0 },
+		{ "profiles": ["foot"], "filters": [{"type": "bridge"}], "speed": 3.0 },
+		{ "profiles": ["wheelchair"], "filters": [{"type": "bridge"}], "speed_forward": 2.0, "speed_backward": 0.0 },
+		{ "profiles": ["foot", "wheelchair"], "filters": [{"type": "elevator"}], "speed": 2.0, "zspeed": 2.0 }
+	]
+}

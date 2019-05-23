@@ -225,7 +225,6 @@ public class RouteCalculator {
     }
 
     protected Line createPolyline(RoutingResult result) {
-
         LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
         lineStyleBuilder.setColor(new com.carto.graphics.Color(Color.DKGRAY));
         lineStyleBuilder.setWidth(12);
@@ -257,8 +256,7 @@ public class RouteCalculator {
         stopMarker.setVisible(true);
     }
 
-    Bitmap createBitmap(int id)
-    {
+    Bitmap createBitmap(int id) {
         android.graphics.Bitmap bitmap = android.graphics.BitmapFactory.decodeResource(context.getResources(), id);
         return BitmapUtils.createBitmapFromAndroidBitmap(bitmap);
     }

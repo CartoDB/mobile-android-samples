@@ -32,6 +32,7 @@
         <activity android:name=".sections.offlinemap.BundledMapActivity" />
         <activity android:name=".sections.routing.OnlineRoutingActivity" />
         <activity android:name=".sections.routing.OfflineRoutingActivity" />
+        <activity android:name=".sections.routing.IndoorRoutingActivity" />
         <activity android:name=".sections.geocoding.online.OnlineReverseGeocodingActivity" />
         <activity android:name=".sections.geocoding.online.OnlineGeocodingActivity" />
         <activity android:name=".sections.geocoding.offline.OfflineReverseGeocodingActivity" />
