@@ -30,6 +30,7 @@ open class MapBaseView(context: Context) : BaseView(context) {
 
     init {
         map.options.isZoomGestures = true
+        map.options.clearColor = com.carto.graphics.Color(0, 0, 0, 255)
 
         projection = map.options.baseProjection
 

@@ -35,6 +35,7 @@ public class MapBaseView extends BaseView {
         super(context);
 
         mapView = new MapView(context);
+        mapView.getOptions().setClearColor(new com.carto.graphics.Color(0xff000000));
         mapView.getOptions().setZoomGestures(true);
         addView(mapView);
 

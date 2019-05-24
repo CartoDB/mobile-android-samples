@@ -46,6 +46,7 @@ class HelloMapActivity : AppCompatActivity() {
         mapView?.options?.baseProjection = proj
         mapView?.options?.renderProjectionMode = RenderProjectionMode.RENDER_PROJECTION_MODE_SPHERICAL
         mapView?.options?.isZoomGestures = true
+        mapView?.options?.clearColor = com.carto.graphics.Color(0, 0, 0, 255)
 
         // Tallinn coordinates as longitude/latitude
         val tallinn = MapPos(24.646469, 59.426939)

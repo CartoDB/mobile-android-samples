@@ -44,6 +44,7 @@ public class HelloMapActivity extends Activity {
         mapView.getOptions().setBaseProjection(proj);
         mapView.getOptions().setRenderProjectionMode(RenderProjectionMode.RENDER_PROJECTION_MODE_SPHERICAL);
         mapView.getOptions().setZoomGestures(true);
+        mapView.getOptions().setClearColor(new com.carto.graphics.Color(0xff000000));
 
         // Add base map
         CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER);
