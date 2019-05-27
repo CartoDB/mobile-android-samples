@@ -25,7 +25,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.carto:carto-mobile-sdk:4.1.3@aar'
+    implementation 'com.carto:carto-mobile-sdk:4.2.0@aar'
     implementation 'com.android.support:appcompat-v7:26.1.0'
 }
