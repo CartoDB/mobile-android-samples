@@ -28,6 +28,7 @@ android:
     - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
 
 before_install:
+    - echo yes | sdkmanager --licenses > /dev/null
     - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
     - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
     - adb logcat > logcat.log &
