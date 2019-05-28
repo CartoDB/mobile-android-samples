@@ -11,7 +11,6 @@ android:
     - tools
     - platform-tools
     - build-tools-26.0.2
-    - build-tools-24.0.1
     - build-tools-24.0.2
     - build-tools-22.0.1
 
@@ -30,8 +29,9 @@ android:
 before_install:
     - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
     - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
-    - echo yes | sdkmanager "build-tools;26.0.1" > /dev/null
-    - echo yes | sdkmanager --licenses > /dev/null
+    - echo yes | sdkmanager "build-tools;26.0.2" > /dev/null
+    - echo yes | sdkmanager "build-tools;24.0.2" > /dev/null
+    - echo yes | sdkmanager "build-tools;22.0.1" > /dev/null
     - adb logcat > logcat.log &
 
 # Emulator Management: Create, Start and Wait
