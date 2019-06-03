@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.carto.advancedmap.baseclasses.activities.MapBaseActivity;
 import com.carto.advancedmap.R;
+import com.carto.core.BinaryData;
 import com.carto.core.MapPos;
 import com.carto.core.MapPosVector;
 import com.carto.core.MapPosVectorVector;
@@ -29,6 +30,7 @@ import com.carto.styles.BillboardOrientation;
 import com.carto.styles.LineStyleBuilder;
 import com.carto.styles.MarkerStyle;
 import com.carto.styles.MarkerStyleBuilder;
+import com.carto.styles.NMLModelStyleBuilder;
 import com.carto.styles.PointStyleBuilder;
 import com.carto.styles.Polygon3DStyleBuilder;
 import com.carto.styles.PolygonStyleBuilder;
@@ -367,9 +369,12 @@ public class OverlaysActivity extends MapBaseActivity {
     void add3DCar(LocalVectorDataSource source) {
         // Add a single 3D model to the vector layer
         String modelName = "milktruck.nml";
+        BinaryData modelAsset = AssetUtils.loadAsset(modelName);
+        NMLModelStyleBuilder nmlModelStyleBuilder = new NMLModelStyleBuilder();
+        nmlModelStyleBuilder.setModelAsset(modelAsset);
 
         MapPos modelPos = contentView.projection.fromWgs84(new MapPos(24.646469, 59.423939));
-        NMLModel model = new NMLModel(modelPos, AssetUtils.loadAsset(modelName));
+        NMLModel model = new NMLModel(modelPos, nmlModelStyleBuilder.buildStyle());
 
         model.setScale(20);
         model.setMetaDataElement("ClickText", new Variant("Single model"));

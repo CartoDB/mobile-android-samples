@@ -53,8 +53,10 @@ class VectorElementView(context: Context) : MapBaseView(context) {
         /*
          * Milktruck NML Model
          */
-        val data = AssetUtils.loadAsset("milktruck.nml")
-        val model = NMLModel(washingtonDC, data)
+        val modelAsset = AssetUtils.loadAsset("milktruck.nml")
+        val builderNMLModel = NMLModelStyleBuilder()
+        builderNMLModel.modelAsset = modelAsset
+        val model = NMLModel(washingtonDC, builderNMLModel.buildStyle())
         model.scale = 20.0f
 
         val titleKey = VectorObjectClickListener.CLICK_TITLE
