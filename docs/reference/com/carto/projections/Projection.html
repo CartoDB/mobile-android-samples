@@ -194,6 +194,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/projections/EPSG3857.html">EPSG3857</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/projections/EPSG4326.html">EPSG4326</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/projections/Projection.html">Projection</a></li>
       </ul>
     </li>
@@ -346,7 +347,9 @@ Summary:
               >
           
             
-              <a href="../../../com/carto/projections/EPSG3857.html">EPSG3857</a>
+              <a href="../../../com/carto/projections/EPSG3857.html">EPSG3857</a>,
+            
+              <a href="../../../com/carto/projections/EPSG4326.html">EPSG4326</a>
             
           
       </div>
@@ -357,6 +360,10 @@ Summary:
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/projections/EPSG3857.html">EPSG3857</a></td>
               <td class="jd-descrcol" width="100%">EPSG:3857 is a Spherical Mercator projection coordinate system popularized by web services such as Google and later OpenStreetMap.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/projections/EPSG4326.html">EPSG4326</a></td>
+              <td class="jd-descrcol" width="100%">EPSG:4326 is a projection coordinate system that uses WGS84 coordinates (longitude/latitude).&nbsp;</td>
           </tr>
   </table>
       </div>
@@ -472,24 +479,6 @@ Summary:
             
             
             
-            double
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/projections/Projection.html#fromInternalScale(double)">fromInternalScale</a></span>(double size)
-        
-        <div class="jd-descrdiv">Converts internal size to meters at the equator.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             <a href="../../../com/carto/core/MapPos.html">MapPos</a>
         </td>
         <td class="jd-linkcol" width="100%">
@@ -501,7 +490,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -519,7 +508,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -532,24 +521,6 @@ Summary:
         <span class="sympad"><a href="../../../com/carto/projections/Projection.html#getBounds()">getBounds</a></span>()
         
         <div class="jd-descrdiv">Returns the bounds of this projection.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            double
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/projections/Projection.html#getLocalScale(com.carto.core.MapPos)">getLocalScale</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos)
-        
-        <div class="jd-descrdiv">Returns local scale for the specified position.</div>
   
   </td></tr>
 
@@ -928,51 +899,6 @@ From class
 </div>
 
 
-<a id="fromInternalScale(double)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        double
-      </span>
-      <span class="sympad">fromInternalScale</span>
-      <span class="normal">(double size)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Converts internal size to meters at the equator.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>size</th>
-          <td>The size in the internal coordinate system.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The approximate size in meters at the equator.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="fromLatLong(double, double)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1096,51 +1022,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>The bounds of this projection.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getLocalScale(com.carto.core.MapPos)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        double
-      </span>
-      <span class="sympad">getLocalScale</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns local scale for the specified position.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>pos</th>
-          <td>The position in the internal coordinate system.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The local scale for the specified position.
 </li></ul>
   </div>
 

@@ -196,7 +196,6 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,7 +203,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -457,8 +456,22 @@ Summary:
     
     <tr class=" api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTING_ACTION_GO_DOWN&nbsp;</td>
+        <td class="jd-descrcol" width="100%">Go down.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_GO_STRAIGHT&nbsp;</td>
         <td class="jd-descrcol" width="100%">Go straight.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTING_ACTION_GO_UP&nbsp;</td>
+        <td class="jd-descrcol" width="100%">Go up.&nbsp;</td>
     </tr>
     
     
@@ -529,6 +542,13 @@ Summary:
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_UTURN&nbsp;</td>
         <td class="jd-descrcol" width="100%">Do an u-turn.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTING_ACTION_WAIT&nbsp;</td>
+        <td class="jd-descrcol" width="100%">Wait.&nbsp;</td>
     </tr>
     
     
@@ -1137,6 +1157,37 @@ From interface
 
 
 
+<a id="ROUTING_ACTION_GO_DOWN"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>
+      </span>
+        ROUTING_ACTION_GO_DOWN
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Go down.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="ROUTING_ACTION_GO_STRAIGHT"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1160,6 +1211,37 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Go straight.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTING_ACTION_GO_UP"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>
+      </span>
+        ROUTING_ACTION_GO_UP
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Go up.
 </p></div>
 
     
@@ -1470,6 +1552,37 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Do an u-turn.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTING_ACTION_WAIT"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>
+      </span>
+        ROUTING_ACTION_WAIT
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Wait.
 </p></div>
 
     

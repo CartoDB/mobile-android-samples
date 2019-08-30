@@ -196,7 +196,6 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,7 +203,7 @@
           <li class="selected api apilevel-"><a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -487,6 +486,24 @@ Summary:
             
             
             
+            <a href="../../../com/carto/core/VariantVector.html">VariantVector</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#getGeometryTagFilters()">getGeometryTagFilters</a></span>()
+        
+        <div class="jd-descrdiv">Returns the geometry tag filter list of the request.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../com/carto/core/MapPosVector.html">MapPosVector</a>
         </td>
         <td class="jd-linkcol" width="100%">
@@ -498,7 +515,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -516,7 +533,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -529,6 +546,24 @@ Summary:
         <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#hashCode()">hashCode</a></span>()
         
         <div class="jd-descrdiv">Returns the hash value of this object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#setGeometryTagFilters(com.carto.core.VariantVector)">setGeometryTagFilters</a></span>(<a href="../../../com/carto/core/VariantVector.html">VariantVector</a> filters)
+        
+        <div class="jd-descrdiv">Sets the geometry tag filter list for the request.</div>
   
   </td></tr>
 
@@ -905,6 +940,42 @@ From class
 </div>
 
 
+<a id="getGeometryTagFilters()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/VariantVector.html">VariantVector</a>
+      </span>
+      <span class="sympad">getGeometryTagFilters</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the geometry tag filter list of the request.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The geometry tag filter list of the request.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getPoints()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1007,6 +1078,47 @@ From class
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>The hash value of this object.
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setGeometryTagFilters(com.carto.core.VariantVector)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setGeometryTagFilters</span>
+      <span class="normal">(<a href="../../../com/carto/core/VariantVector.html">VariantVector</a> filters)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the geometry tag filter list for the request.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>filters</th>
+          <td>The new filter list for the request.
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>

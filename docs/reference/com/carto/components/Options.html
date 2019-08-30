@@ -194,6 +194,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/components/Layers.html">Layers</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/components/LicenseManager.html">LicenseManager</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/components/LicenseManagerListener.html">LicenseManagerListener</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/components/Options.html">Options</a></li>
       </ul>
@@ -204,7 +205,7 @@
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/components/PanningMode.html">PanningMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/components/PivotMode.html">PivotMode</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/components/ProjectionMode.html">ProjectionMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a></li>
       </ul>
     </li>
               
@@ -701,12 +702,12 @@ Summary:
             
             
             
-            <a href="../../../com/carto/components/ProjectionMode.html">ProjectionMode</a>
+            <a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/components/Options.html#getProjectionMode()">getProjectionMode</a></span>()
+        <span class="sympad"><a href="../../../com/carto/components/Options.html#getRenderProjectionMode()">getRenderProjectionMode</a></span>()
         
-        <div class="jd-descrdiv">Returns the projection mode.</div>
+        <div class="jd-descrdiv">Returns the render projection mode.</div>
   
   </td></tr>
 
@@ -719,12 +720,12 @@ Summary:
             
             
             
-            <a href="../../../com/carto/graphics/Bitmap.html">Bitmap</a>
+            <a href="../../../com/carto/graphics/Color.html">Color</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/components/Options.html#getSkyBitmap()">getSkyBitmap</a></span>()
+        <span class="sympad"><a href="../../../com/carto/components/Options.html#getSkyColor()">getSkyColor</a></span>()
         
-        <div class="jd-descrdiv">Returns the sky bitmap.</div>
+        <div class="jd-descrdiv">Returns the sky color.</div>
   
   </td></tr>
 
@@ -1424,9 +1425,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/components/Options.html#setProjectionMode(com.carto.components.ProjectionMode)">setProjectionMode</a></span>(<a href="../../../com/carto/components/ProjectionMode.html">ProjectionMode</a> projectionMode)
+        <span class="sympad"><a href="../../../com/carto/components/Options.html#setRenderProjectionMode(com.carto.components.RenderProjectionMode)">setRenderProjectionMode</a></span>(<a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a> renderProjectionMode)
         
-        <div class="jd-descrdiv">Sets the projection mode.</div>
+        <div class="jd-descrdiv">Sets the render projection mode.</div>
   
   </td></tr>
 
@@ -1496,9 +1497,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/components/Options.html#setSkyBitmap(com.carto.graphics.Bitmap)">setSkyBitmap</a></span>(<a href="../../../com/carto/graphics/Bitmap.html">Bitmap</a> skyBitmap)
+        <span class="sympad"><a href="../../../com/carto/components/Options.html#setSkyColor(com.carto.graphics.Color)">setSkyColor</a></span>(<a href="../../../com/carto/graphics/Color.html">Color</a> color)
         
-        <div class="jd-descrdiv">Sets the sky bitmap.</div>
+        <div class="jd-descrdiv">Sets the sky color.</div>
   
   </td></tr>
 
@@ -2527,7 +2528,7 @@ From class
 </div>
 
 
-<a id="getProjectionMode()"></a>
+<a id="getRenderProjectionMode()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2537,9 +2538,9 @@ From class
          
          
          
-        <a href="../../../com/carto/components/ProjectionMode.html">ProjectionMode</a>
+        <a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a>
       </span>
-      <span class="sympad">getProjectionMode</span>
+      <span class="sympad">getRenderProjectionMode</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2552,10 +2553,10 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the projection mode.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the render projection mode.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The projection mode.
+      <ul class="nolist"><li>The render projection mode.
 </li></ul>
   </div>
 
@@ -2563,7 +2564,7 @@ From class
 </div>
 
 
-<a id="getSkyBitmap()"></a>
+<a id="getSkyColor()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2573,9 +2574,9 @@ From class
          
          
          
-        <a href="../../../com/carto/graphics/Bitmap.html">Bitmap</a>
+        <a href="../../../com/carto/graphics/Color.html">Color</a>
       </span>
-      <span class="sympad">getSkyBitmap</span>
+      <span class="sympad">getSkyColor</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2588,10 +2589,10 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the sky bitmap. May be null.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the sky color.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The sky bitmap.
+      <ul class="nolist"><li>The sky color.
 </li></ul>
   </div>
 
@@ -4088,7 +4089,7 @@ From class
 </div>
 
 
-<a id="setProjectionMode(com.carto.components.ProjectionMode)"></a>
+<a id="setRenderProjectionMode(com.carto.components.RenderProjectionMode)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4100,8 +4101,8 @@ From class
          
         void
       </span>
-      <span class="sympad">setProjectionMode</span>
-      <span class="normal">(<a href="../../../com/carto/components/ProjectionMode.html">ProjectionMode</a> projectionMode)</span>
+      <span class="sympad">setRenderProjectionMode</span>
+      <span class="normal">(<a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a> renderProjectionMode)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4113,13 +4114,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the projection mode. The default is ProjectionMode::PERSPECTIVE.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the render projection mode. The default is RenderProjectionMode::PLANAR.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>projectionMode</th>
-          <td>The new projection mode.
+          <th>renderProjectionMode</th>
+          <td>The new render projection mode.
 </td>
         </tr>
       </table>
@@ -4245,7 +4246,7 @@ From class
 </div>
 
 
-<a id="setSkyBitmap(com.carto.graphics.Bitmap)"></a>
+<a id="setSkyColor(com.carto.graphics.Color)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4257,8 +4258,8 @@ From class
          
         void
       </span>
-      <span class="sympad">setSkyBitmap</span>
-      <span class="normal">(<a href="../../../com/carto/graphics/Bitmap.html">Bitmap</a> skyBitmap)</span>
+      <span class="sympad">setSkyColor</span>
+      <span class="normal">(<a href="../../../com/carto/graphics/Color.html">Color</a> color)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4270,19 +4271,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the sky bitmap. The purpose of the sky bitmap is to fill out the empty space visible at low tilt angles.<br>
- The bitmap is folded horizontally into 4 equal parts making up the north, east, south and west sides of the sky.<br>
- The horizon of the sky should be vertically centered, for references look at the default sky bitmap bundled with the SDK.<br>
- If a null pointer is passed, the sky won't be drawn.<br>
- The width and height of the bitmap must be power of two (for example: 256 * 256 or 128 * 512). In the most common<br>
- use case the width of the bitmap is 4 times the height (width == 4 * height), but this is not a requirement.  <br>
- The default is "default_sky.png".<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the sky color. The purpose of the sky bitmap is to fill out the empty space visible at low tilt angles.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>skyBitmap</th>
-          <td>The new sky bitmap.
+          <th>color</th>
+          <td>The new sky color. If the color is transparent, sky is not rendered.
 </td>
         </tr>
       </table>

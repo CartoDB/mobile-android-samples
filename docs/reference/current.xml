@@ -162,6 +162,26 @@
 </parameter>
 </method>
 </class>
+<class name="LicenseManager"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="LicenseManagerListener"
  extends="java.lang.Object"
  abstract="false"
@@ -376,8 +396,8 @@
  visibility="public"
 >
 </method>
-<method name="getProjectionMode"
- return="com.carto.components.ProjectionMode"
+<method name="getRenderProjectionMode"
+ return="com.carto.components.RenderProjectionMode"
  abstract="false"
  native="false"
  synchronized="false"
@@ -387,8 +407,8 @@
  visibility="public"
 >
 </method>
-<method name="getSkyBitmap"
- return="com.carto.graphics.Bitmap"
+<method name="getSkyColor"
+ return="com.carto.graphics.Color"
  abstract="false"
  native="false"
  synchronized="false"
@@ -841,7 +861,7 @@
 <parameter name="pivotMode" type="com.carto.components.PivotMode">
 </parameter>
 </method>
-<method name="setProjectionMode"
+<method name="setRenderProjectionMode"
  return="void"
  abstract="false"
  native="false"
@@ -851,7 +871,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="projectionMode" type="com.carto.components.ProjectionMode">
+<parameter name="renderProjectionMode" type="com.carto.components.RenderProjectionMode">
 </parameter>
 </method>
 <method name="setRestrictedPanning"
@@ -893,7 +913,7 @@
 <parameter name="enabled" type="boolean">
 </parameter>
 </method>
-<method name="setSkyBitmap"
+<method name="setSkyColor"
  return="void"
  abstract="false"
  native="false"
@@ -903,7 +923,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="skyBitmap" type="com.carto.graphics.Bitmap">
+<parameter name="color" type="com.carto.graphics.Color">
 </parameter>
 </method>
 <method name="setTileDrawSize"
@@ -1177,7 +1197,7 @@
 >
 </method>
 </class>
-<class name="ProjectionMode"
+<class name="RenderProjectionMode"
  extends="java.lang.Enum"
  abstract="false"
  static="false"
@@ -1186,7 +1206,7 @@
  visibility="public"
 >
 <method name="swigToEnum"
- return="com.carto.components.ProjectionMode"
+ return="com.carto.components.RenderProjectionMode"
  abstract="false"
  native="false"
  synchronized="false"
@@ -1210,7 +1230,7 @@
 >
 </method>
 <method name="valueOf"
- return="com.carto.components.ProjectionMode"
+ return="com.carto.components.RenderProjectionMode"
  abstract="false"
  native="false"
  synchronized="false"
@@ -1223,7 +1243,7 @@
 </parameter>
 </method>
 <method name="values"
- return="com.carto.components.ProjectionMode[]"
+ return="com.carto.components.RenderProjectionMode[]"
  abstract="false"
  native="false"
  synchronized="false"
@@ -1710,6 +1730,19 @@
 </method>
 <method name="intersects"
  return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bounds" type="com.carto.core.MapBounds">
+</parameter>
+</method>
+<method name="shrinkToIntersection"
+ return="void"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2338,6 +2371,17 @@
  visibility="public"
 >
 </method>
+<method name="getMidrange"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getMin"
  return="float"
  abstract="false"
@@ -2601,21 +2645,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="getRotated2D"
- return="com.carto.core.MapVec"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="sin" type="double">
-</parameter>
-<parameter name="cos" type="double">
-</parameter>
 </method>
 <method name="getX"
  return="double"
@@ -3813,6 +3842,17 @@
  visibility="public"
 >
 </method>
+<method name="clear"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="delete"
  return="void"
  abstract="false"
@@ -3843,6 +3883,17 @@
 </constructor>
 <method name="buildVariant"
  return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clear"
+ return="void"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4319,6 +4370,91 @@
 <parameter name="zoomLevel" type="int">
 </parameter>
 </constructor>
+</class>
+<class name="GeoJSONVectorTileDataSource"
+ extends="com.carto.datasources.TileDataSource"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="GeoJSONVectorTileDataSource"
+ type="com.carto.datasources.GeoJSONVectorTileDataSource"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="minZoom" type="int">
+</parameter>
+<parameter name="maxZoom" type="int">
+</parameter>
+</constructor>
+<method name="createLayer"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</method>
+<method name="deleteLayer"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="layerIndex" type="int">
+</parameter>
+</method>
+<method name="setLayerFeatureCollection"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="layerIndex" type="int">
+</parameter>
+<parameter name="projection" type="com.carto.projections.Projection">
+</parameter>
+<parameter name="featureCollection" type="com.carto.geometry.FeatureCollection">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</method>
+<method name="setLayerGeoJSON"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="layerIndex" type="int">
+</parameter>
+<parameter name="geoJSON" type="com.carto.core.Variant">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</method>
 </class>
 <class name="HTTPTileDataSource"
  extends="com.carto.datasources.TileDataSource"
@@ -4811,6 +4947,49 @@
 >
 </method>
 </class>
+<class name="MapTilerOnlineTileDataSource"
+ extends="com.carto.datasources.TileDataSource"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MapTilerOnlineTileDataSource"
+ type="com.carto.datasources.MapTilerOnlineTileDataSource"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getCustomServiceURL"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setCustomServiceURL"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceURL" type="java.lang.String">
+</parameter>
+</method>
+</class>
 <class name="MemoryCacheTileDataSource"
  extends="com.carto.datasources.CacheTileDataSource"
  abstract="false"
@@ -4827,6 +5006,27 @@
  visibility="public"
 >
 <parameter name="dataSource" type="com.carto.datasources.TileDataSource">
+</parameter>
+</constructor>
+</class>
+<class name="MergedMBVTTileDataSource"
+ extends="com.carto.datasources.TileDataSource"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MergedMBVTTileDataSource"
+ type="com.carto.datasources.MergedMBVTTileDataSource"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="dataSource1" type="com.carto.datasources.TileDataSource">
+</parameter>
+<parameter name="dataSource2" type="com.carto.datasources.TileDataSource">
 </parameter>
 </constructor>
 </class>
@@ -4909,6 +5109,27 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
+</parameter>
+</constructor>
+</class>
+<class name="OrderedTileDataSource"
+ extends="com.carto.datasources.TileDataSource"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="OrderedTileDataSource"
+ type="com.carto.datasources.OrderedTileDataSource"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="dataSource1" type="com.carto.datasources.TileDataSource">
+</parameter>
+<parameter name="dataSource2" type="com.carto.datasources.TileDataSource">
 </parameter>
 </constructor>
 </class>
@@ -7167,21 +7388,6 @@
  visibility="public"
 >
 </method>
-<method name="simplify"
- return="com.carto.geometry.Geometry"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="geometry" type="com.carto.geometry.Geometry">
-</parameter>
-<parameter name="scale" type="float">
-</parameter>
-</method>
 </class>
 <class name="GeometryVector"
  extends="java.lang.Object"
@@ -8949,95 +9155,6 @@
 >
 </method>
 </class>
-<class name="Frustum"
- extends="java.lang.Object"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<method name="circleIntersects"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="center" type="com.carto.core.MapPos">
-</parameter>
-<parameter name="radius" type="double">
-</parameter>
-</method>
-<method name="cuboidIntersects"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="cuboid" type="com.carto.core.MapBounds">
-</parameter>
-</method>
-<method name="delete"
- return="void"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="pointInside"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="point" type="com.carto.core.MapPos">
-</parameter>
-</method>
-<method name="sphereIntersects"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="center" type="com.carto.core.MapPos">
-</parameter>
-<parameter name="radius" type="double">
-</parameter>
-</method>
-<method name="squareIntersects"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="square" type="com.carto.core.MapBounds">
-</parameter>
-</method>
-</class>
 <class name="ViewState"
  extends="java.lang.Object"
  abstract="false"
@@ -9059,17 +9176,6 @@
 </method>
 <method name="getAspectRatio"
  return="float"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getCameraPos"
- return="com.carto.core.MapPos"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9123,28 +9229,6 @@
  visibility="public"
 >
 </method>
-<method name="getFocusPos"
- return="com.carto.core.MapPos"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getFrustum"
- return="com.carto.graphics.Frustum"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getHeight"
  return="int"
  abstract="false"
@@ -9158,17 +9242,6 @@
 </method>
 <method name="getNear"
  return="float"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getProjectionMode"
- return="com.carto.components.ProjectionMode"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9235,17 +9308,6 @@
 </method>
 <method name="getUnitToPXCoef"
  return="float"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getUpVec"
- return="com.carto.core.MapVec"
  abstract="false"
  native="false"
  synchronized="false"
@@ -11448,6 +11510,17 @@
  visibility="public"
 >
 </method>
+<method name="isZBuffering"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setVectorElementEventListener"
  return="void"
  abstract="false"
@@ -11459,6 +11532,19 @@
  visibility="public"
 >
 <parameter name="eventListener" type="com.carto.layers.VectorElementEventListener">
+</parameter>
+</method>
+<method name="setZBuffering"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enabled" type="boolean">
 </parameter>
 </method>
 </class>
@@ -12893,6 +12979,23 @@
 >
 </constructor>
 </class>
+<class name="EPSG4326"
+ extends="com.carto.projections.Projection"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="EPSG4326"
+ type="com.carto.projections.EPSG4326"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+</class>
 <class name="Projection"
  extends="java.lang.Object"
  abstract="false"
@@ -12911,19 +13014,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="fromInternalScale"
- return="double"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="size" type="double">
-</parameter>
 </method>
 <method name="fromLatLong"
  return="com.carto.core.MapPos"
@@ -12963,19 +13053,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="getLocalScale"
- return="double"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="pos" type="com.carto.core.MapPos">
-</parameter>
 </method>
 <method name="getName"
  return="java.lang.String"
@@ -13076,21 +13153,6 @@
  visibility="public"
 >
 </method>
-<method name="mapToScreen"
- return="com.carto.core.ScreenPos"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="mapPos" type="com.carto.core.MapPos">
-</parameter>
-<parameter name="viewState" type="com.carto.graphics.ViewState">
-</parameter>
-</method>
 <method name="requestRedraw"
  return="void"
  abstract="false"
@@ -13101,21 +13163,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="screenToMap"
- return="com.carto.core.MapPos"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="screenPos" type="com.carto.core.ScreenPos">
-</parameter>
-<parameter name="viewState" type="com.carto.graphics.ViewState">
-</parameter>
 </method>
 <method name="setMapRendererListener"
  return="void"
@@ -13266,7 +13313,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="proj" type="com.carto.projections.Projection">
+<parameter name="projection" type="com.carto.projections.Projection">
 </parameter>
 </method>
 <method name="getViewState"
@@ -13342,64 +13389,6 @@
 <parameter name="packageManager" type="com.carto.packagemanager.PackageManager">
 </parameter>
 </constructor>
-</class>
-<class name="PackageManagerValhallaRoutingService"
- extends="com.carto.routing.RoutingService"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<constructor name="PackageManagerValhallaRoutingService"
- type="com.carto.routing.PackageManagerValhallaRoutingService"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="packageManager" type="com.carto.packagemanager.PackageManager">
-</parameter>
-</constructor>
-<method name="getProfile"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="matchRoute"
- return="com.carto.routing.RouteMatchingResult"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="request" type="com.carto.routing.RouteMatchingRequest">
-</parameter>
-<exception name="IOException" type="java.io.IOException">
-</exception>
-</method>
-<method name="setProfile"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="profile" type="java.lang.String">
-</parameter>
-</method>
 </class>
 <class name="RouteMatchingRequest"
  extends="java.lang.Object"
@@ -13661,6 +13650,17 @@
  visibility="public"
 >
 </method>
+<method name="getGeometryTag"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getPointIndex"
  return="int"
  abstract="false"
@@ -13909,6 +13909,17 @@
  visibility="public"
 >
 </method>
+<method name="getGeometryTagFilters"
+ return="com.carto.core.VariantVector"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getPoints"
  return="com.carto.core.MapPosVector"
  abstract="false"
@@ -13930,6 +13941,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setGeometryTagFilters"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="com.carto.core.VariantVector">
+</parameter>
 </method>
 </class>
 <class name="RoutingResult"
@@ -14056,7 +14080,7 @@
 >
 </method>
 </class>
-<class name="ValhallaOfflineRoutingService"
+<class name="SGREOfflineRoutingService"
  extends="com.carto.routing.RoutingService"
  abstract="false"
  static="false"
@@ -14064,14 +14088,32 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<constructor name="ValhallaOfflineRoutingService"
- type="com.carto.routing.ValhallaOfflineRoutingService"
+<constructor name="SGREOfflineRoutingService"
+ type="com.carto.routing.SGREOfflineRoutingService"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="path" type="java.lang.String">
+<parameter name="geoJSON" type="com.carto.core.Variant">
+</parameter>
+<parameter name="config" type="com.carto.core.Variant">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</constructor>
+<constructor name="SGREOfflineRoutingService"
+ type="com.carto.routing.SGREOfflineRoutingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="projection" type="com.carto.projections.Projection">
+</parameter>
+<parameter name="featureCollection" type="com.carto.geometry.FeatureCollection">
+</parameter>
+<parameter name="config" type="com.carto.core.Variant">
 </parameter>
 <exception name="IOException" type="java.io.IOException">
 </exception>
@@ -14086,21 +14128,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="matchRoute"
- return="com.carto.routing.RouteMatchingResult"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="request" type="com.carto.routing.RouteMatchingRequest">
-</parameter>
-<exception name="IOException" type="java.io.IOException">
-</exception>
 </method>
 <method name="setProfile"
  return="void"
@@ -14155,6 +14182,21 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="matchRoute"
+ return="com.carto.routing.RouteMatchingResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="request" type="com.carto.routing.RouteMatchingRequest">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
 </method>
 <method name="setCustomServiceURL"
  return="void"
@@ -15005,218 +15047,6 @@
 </parameter>
 </method>
 </class>
-<class name="CartoVisBuilder"
- extends="java.lang.Object"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<constructor name="CartoVisBuilder"
- type="com.carto.services.CartoVisBuilder"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</constructor>
-<method name="addLayer"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="layer" type="com.carto.layers.Layer">
-</parameter>
-<parameter name="attributes" type="com.carto.core.Variant">
-</parameter>
-</method>
-<method name="delete"
- return="void"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setBounds"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="mapBounds" type="com.carto.core.MapBounds">
-</parameter>
-</method>
-<method name="setCenter"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="mapPos" type="com.carto.core.MapPos">
-</parameter>
-</method>
-<method name="setDescription"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="descriptionInfo" type="com.carto.core.Variant">
-</parameter>
-</method>
-<method name="setZoom"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="zoom" type="float">
-</parameter>
-</method>
-</class>
-<class name="CartoVisLoader"
- extends="java.lang.Object"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<constructor name="CartoVisLoader"
- type="com.carto.services.CartoVisLoader"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</constructor>
-<method name="delete"
- return="void"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getVectorTileAssetPackage"
- return="com.carto.utils.AssetPackage"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isDefaultVectorLayerMode"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isStrictMode"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="loadVis"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="builder" type="com.carto.services.CartoVisBuilder">
-</parameter>
-<parameter name="visURL" type="java.lang.String">
-</parameter>
-<exception name="IOException" type="java.io.IOException">
-</exception>
-</method>
-<method name="setDefaultVectorLayerMode"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="vectorLayerMode" type="boolean">
-</parameter>
-</method>
-<method name="setStrictMode"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="strictMode" type="boolean">
-</parameter>
-</method>
-<method name="setVectorTileAssetPackage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="assetPackage" type="com.carto.utils.AssetPackage">
-</parameter>
-</method>
-</class>
 </package>
 <package name="com.carto.styles"
 >
@@ -15511,6 +15341,334 @@
 >
 </method>
 </class>
+<class name="BalloonPopupButtonStyle"
+ extends="com.carto.styles.Style"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getBackgroundColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getButtonWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCornerRadius"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStrokeColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStrokeWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextFontName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextFontSize"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextMargins"
+ return="com.carto.styles.BalloonPopupMargins"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="BalloonPopupButtonStyleBuilder"
+ extends="com.carto.styles.StyleBuilder"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BalloonPopupButtonStyleBuilder"
+ type="com.carto.styles.BalloonPopupButtonStyleBuilder"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="buildStyle"
+ return="com.carto.styles.BalloonPopupButtonStyle"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getButtonWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCornerRadius"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStrokeColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStrokeWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextFontName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextFontSize"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTextMargins"
+ return="com.carto.styles.BalloonPopupMargins"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setButtonWidth"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="buttonWidth" type="int">
+</parameter>
+</method>
+<method name="setCornerRadius"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="cornerRadius" type="int">
+</parameter>
+</method>
+<method name="setStrokeColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="strokeColor" type="com.carto.graphics.Color">
+</parameter>
+</method>
+<method name="setStrokeWidth"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="strokeWidth" type="int">
+</parameter>
+</method>
+<method name="setTextColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textColor" type="com.carto.graphics.Color">
+</parameter>
+</method>
+<method name="setTextFontName"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textFontName" type="java.lang.String">
+</parameter>
+</method>
+<method name="setTextFontSize"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textFontSize" type="int">
+</parameter>
+</method>
+<method name="setTextMargins"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textMargins" type="com.carto.styles.BalloonPopupMargins">
+</parameter>
+</method>
+</class>
 <class name="BalloonPopupMargins"
  extends="java.lang.Object"
  abstract="false"
@@ -15637,6 +15795,17 @@
 >
 <method name="getBackgroundColor"
  return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getButtonMargins"
+ return="com.carto.styles.BalloonPopupMargins"
  abstract="false"
  native="false"
  synchronized="false"
@@ -15916,6 +16085,17 @@
  visibility="public"
 >
 </constructor>
+<method name="getButtonMargins"
+ return="com.carto.styles.BalloonPopupMargins"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getCornerRadius"
  return="int"
  abstract="false"
@@ -16168,6 +16348,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setButtonMargins"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="buttonMargins" type="com.carto.styles.BalloonPopupMargins">
+</parameter>
 </method>
 <method name="setCornerRadius"
  return="void"
@@ -18132,6 +18325,67 @@
 </parameter>
 </method>
 </class>
+<class name="NMLModelStyle"
+ extends="com.carto.styles.Style"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</class>
+<class name="NMLModelStyleBuilder"
+ extends="com.carto.styles.StyleBuilder"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="NMLModelStyleBuilder"
+ type="com.carto.styles.NMLModelStyleBuilder"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="buildStyle"
+ return="com.carto.styles.NMLModelStyle"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getModelAsset"
+ return="com.carto.core.BinaryData"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setModelAsset"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="modelAsset" type="com.carto.core.BinaryData">
+</parameter>
+</method>
+</class>
 <class name="PointStyle"
  extends="com.carto.styles.Style"
  abstract="false"
@@ -19199,6 +19453,59 @@
 </package>
 <package name="com.carto.ui"
 >
+<class name="BalloonPopupButtonClickInfo"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getButton"
+ return="com.carto.vectorelements.BalloonPopupButton"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getClickType"
+ return="com.carto.ui.ClickType"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVectorElement"
+ return="com.carto.vectorelements.VectorElement"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="ClickType"
  extends="java.lang.Enum"
  abstract="false"
@@ -21037,6 +21344,73 @@
 </parameter>
 </method>
 </class>
+<class name="TileUtils"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="calculateMapTile"
+ return="com.carto.core.MapTile"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="zoom" type="int">
+</parameter>
+<parameter name="proj" type="com.carto.projections.Projection">
+</parameter>
+</method>
+<method name="calculateMapTileBounds"
+ return="com.carto.core.MapBounds"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapTile" type="com.carto.core.MapTile">
+</parameter>
+<parameter name="proj" type="com.carto.projections.Projection">
+</parameter>
+</method>
+<method name="calculateMapTileOrigin"
+ return="com.carto.core.MapPos"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapTile" type="com.carto.core.MapTile">
+</parameter>
+<parameter name="proj" type="com.carto.projections.Projection">
+</parameter>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="ZippedAssetPackage"
  extends="com.carto.utils.AssetPackage"
  abstract="false"
@@ -21138,6 +21512,41 @@
 <parameter name="desc" type="java.lang.String">
 </parameter>
 </constructor>
+<method name="addButton"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="button" type="com.carto.vectorelements.BalloonPopupButton">
+</parameter>
+</method>
+<method name="clearButtons"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBalloonPopupEventListener"
+ return="com.carto.vectorelements.BalloonPopupEventListener"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getDescription"
  return="java.lang.String"
  abstract="false"
@@ -21159,6 +21568,47 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="removeButton"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="button" type="com.carto.vectorelements.BalloonPopupButton">
+</parameter>
+</method>
+<method name="replaceButton"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="oldButton" type="com.carto.vectorelements.BalloonPopupButton">
+</parameter>
+<parameter name="newButton" type="com.carto.vectorelements.BalloonPopupButton">
+</parameter>
+</method>
+<method name="setBalloonPopupEventListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="eventListener" type="com.carto.vectorelements.BalloonPopupEventListener">
+</parameter>
 </method>
 <method name="setDescription"
  return="void"
@@ -21197,6 +21647,125 @@
  visibility="public"
 >
 <parameter name="title" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="BalloonPopupButton"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BalloonPopupButton"
+ type="com.carto.vectorelements.BalloonPopupButton"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="style" type="com.carto.styles.BalloonPopupButtonStyle">
+</parameter>
+<parameter name="text" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStyle"
+ return="com.carto.styles.BalloonPopupButtonStyle"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTag"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getText"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setTag"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="tag" type="com.carto.core.Variant">
+</parameter>
+</method>
+</class>
+<class name="BalloonPopupEventListener"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BalloonPopupEventListener"
+ type="com.carto.vectorelements.BalloonPopupEventListener"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onButtonClicked"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="clickInfo" type="com.carto.ui.BalloonPopupButtonClickInfo">
 </parameter>
 </method>
 </class>
@@ -21354,23 +21923,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="processClick"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="clickType" type="com.carto.ui.ClickType">
-</parameter>
-<parameter name="clickPos" type="com.carto.core.MapPos">
-</parameter>
-<parameter name="elementClickPos" type="com.carto.core.ScreenPos">
-</parameter>
 </method>
 </class>
 <class name="CustomPopupHandler"
@@ -21711,7 +22263,7 @@
 >
 <parameter name="geometry" type="com.carto.geometry.Geometry">
 </parameter>
-<parameter name="sourceModelData" type="com.carto.core.BinaryData">
+<parameter name="style" type="com.carto.styles.NMLModelStyle">
 </parameter>
 </constructor>
 <constructor name="NMLModel"
@@ -21719,6 +22271,30 @@
  static="false"
  final="false"
  deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="style" type="com.carto.styles.NMLModelStyle">
+</parameter>
+</constructor>
+<constructor name="NMLModel"
+ type="com.carto.vectorelements.NMLModel"
+ static="false"
+ final="false"
+ deprecated="deprecated"
+ visibility="public"
+>
+<parameter name="geometry" type="com.carto.geometry.Geometry">
+</parameter>
+<parameter name="sourceModelData" type="com.carto.core.BinaryData">
+</parameter>
+</constructor>
+<constructor name="NMLModel"
+ type="com.carto.vectorelements.NMLModel"
+ static="false"
+ final="false"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="pos" type="com.carto.core.MapPos">
@@ -21750,6 +22326,17 @@
 </method>
 <method name="getScale"
  return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getStyle"
+ return="com.carto.styles.NMLModelStyle"
  abstract="false"
  native="false"
  synchronized="false"
@@ -21811,6 +22398,19 @@
  visibility="public"
 >
 <parameter name="scale" type="float">
+</parameter>
+</method>
+<method name="setStyle"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="style" type="com.carto.styles.NMLModelStyle">
 </parameter>
 </method>
 </class>
@@ -22261,6 +22861,23 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="processClick"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="clickType" type="com.carto.ui.ClickType">
+</parameter>
+<parameter name="clickPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="elementClickPos" type="com.carto.core.ScreenPos">
+</parameter>
 </method>
 <method name="setAnchorPoint"
  return="void"
@@ -23036,6 +23653,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<method name="addFallbackFont"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="fontData" type="com.carto.core.BinaryData">
+</parameter>
+</method>
 <method name="delete"
  return="void"
  abstract="false"

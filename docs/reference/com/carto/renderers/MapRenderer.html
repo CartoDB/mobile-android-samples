@@ -514,48 +514,12 @@ Summary:
             
             
             
-            <a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/renderers/MapRenderer.html#mapToScreen(com.carto.core.MapPos, com.carto.graphics.ViewState)">mapToScreen</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> mapPos, <a href="../../../com/carto/graphics/ViewState.html">ViewState</a> viewState)
-        
-        <div class="jd-descrdiv">Calculates the screen position corresponding to a map position, using the specified view state.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/renderers/MapRenderer.html#requestRedraw()">requestRedraw</a></span>()
         
         <div class="jd-descrdiv">Requests the renderer to refresh the view.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../com/carto/core/MapPos.html">MapPos</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/renderers/MapRenderer.html#screenToMap(com.carto.core.ScreenPos, com.carto.graphics.ViewState)">screenToMap</a></span>(<a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a> screenPos, <a href="../../../com/carto/graphics/ViewState.html">ViewState</a> viewState)
-        
-        <div class="jd-descrdiv">Calculates the map position corresponding to a screen position, using the specified view state.</div>
   
   </td></tr>
 
@@ -1033,55 +997,6 @@ From class
 </div>
 
 
-<a id="mapToScreen(com.carto.core.MapPos, com.carto.graphics.ViewState)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a>
-      </span>
-      <span class="sympad">mapToScreen</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> mapPos, <a href="../../../com/carto/graphics/ViewState.html">ViewState</a> viewState)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Calculates the screen position corresponding to a map position, using the specified view state.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>mapPos</th>
-          <td>The map position in base projection coordinate system.<br></td>
-        </tr>
-        <tr>
-          <th>viewState</th>
-          <td>The view state to use.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The calculated screen position.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="requestRedraw()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1111,55 +1026,6 @@ From class
  Note that there is normally no need to do this manually,<br>
  SDK automatically redraws the view when needed.
 </p></div>
-
-    </div>
-</div>
-
-
-<a id="screenToMap(com.carto.core.ScreenPos, com.carto.graphics.ViewState)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../com/carto/core/MapPos.html">MapPos</a>
-      </span>
-      <span class="sympad">screenToMap</span>
-      <span class="normal">(<a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a> screenPos, <a href="../../../com/carto/graphics/ViewState.html">ViewState</a> viewState)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Calculates the map position corresponding to a screen position, using the specified view state.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>screenPos</th>
-          <td>The screen position.<br></td>
-        </tr>
-        <tr>
-          <th>viewState</th>
-          <td>The view state to use.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The calculated map position in base projection coordinate system.
-</li></ul>
-  </div>
 
     </div>
 </div>

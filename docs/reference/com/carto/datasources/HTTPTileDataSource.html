@@ -198,13 +198,17 @@
           <li class="api apilevel-"><a href="../../../com/carto/datasources/CacheTileDataSource.html">CacheTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/CartoOnlineTileDataSource.html">CartoOnlineTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/CombinedTileDataSource.html">CombinedTileDataSource</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/datasources/GeoJSONVectorTileDataSource.html">GeoJSONVectorTileDataSource</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/datasources/HTTPTileDataSource.html">HTTPTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/LocalVectorDataSource.html">LocalVectorDataSource</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/datasources/MapTilerOnlineTileDataSource.html">MapTilerOnlineTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/MBTilesTileDataSource.html">MBTilesTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/MemoryCacheTileDataSource.html">MemoryCacheTileDataSource</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/datasources/MergedMBVTTileDataSource.html">MergedMBVTTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/NMLModelLODTreeDataSource.html">NMLModelLODTreeDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/OfflineNMLModelLODTreeDataSource.html">OfflineNMLModelLODTreeDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/OnlineNMLModelLODTreeDataSource.html">OnlineNMLModelLODTreeDataSource</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/datasources/OrderedTileDataSource.html">OrderedTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/PackageManagerTileDataSource.html">PackageManagerTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/PersistentCacheTileDataSource.html">PersistentCacheTileDataSource</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/datasources/TileDataSource.html">TileDataSource</a></li>
@@ -388,8 +392,8 @@ Summary:
  The requests are generated using a template scheme, where tags in the baseURL string are replaced with actual values.<br>
  The following tags are supported: s, z, zoom, x, y, xflipped, yflipped, quadkey, frame.<br>
  <br>
- For example, if baseURL = "http://tile.openstreetmap.org/{zoom}/{x}/{y}.png" and the requested tile has zoom = 2,<br>
- x = 1 and y = 3, then the tile will be loaded from the following URL: "http://tile.openstreetmap.org/2/1/3.png".
+ For example, if baseURL = "https://tile.openstreetmap.org/{zoom}/{x}/{y}.png" and the requested tile has zoom = 2,<br>
+ x = 1 and y = 3, then the tile will be loaded from the following URL: "https://tile.openstreetmap.org/2/1/3.png".
 </p>
 
 
@@ -1097,7 +1101,7 @@ From class
         </tr>
         <tr>
           <th>baseURL</th>
-          <td>The base URL containing tags (for example, "http://tile.openstreetmap.org/{zoom}/{x}/{y}.png").
+          <td>The base URL containing tags (for example, "https://tile.openstreetmap.org/{zoom}/{x}/{y}.png").
 </td>
         </tr>
       </table>
@@ -1411,7 +1415,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>baseURL</th>
-          <td>The base URL containing tags (for example, "http://tile.openstreetmap.org/{zoom}/{x}/{y}.png").
+          <td>The base URL containing tags (for example, "https://tile.openstreetmap.org/{zoom}/{x}/{y}.png").
 </td>
         </tr>
       </table>

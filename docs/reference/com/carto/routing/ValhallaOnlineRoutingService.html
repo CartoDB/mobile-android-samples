@@ -196,7 +196,6 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,7 +203,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -379,7 +378,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>An online routing service that uses MapZen Valhalla routing service.<br>
+<p>An online routing service that uses MapBox Valhalla routing service.<br>
  As the class connects to an external (non-CARTO) service, this class is provided "as-is",   <br>
  future changes from the service provider may not be compatible with the implementation.<br>
  Be sure to read the Terms and Conditions of your Valhalla service provider to see if the<br>
@@ -549,6 +548,24 @@ Summary:
             
             
             
+            <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html#matchRoute(com.carto.routing.RouteMatchingRequest)">matchRoute</a></span>(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)
+        
+        <div class="jd-descrdiv">Matches specified points to the points on road network.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
@@ -560,7 +577,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -886,7 +903,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>apiKey</th>
-          <td>The API key to use registered with Mapzen.
+          <td>The API key (access token) to use registered with MapBox.
 </td>
         </tr>
       </table>
@@ -1059,8 +1076,66 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>Returns the current routing profile.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The current routing profile. Can be either "auto", "auto_shorter", "bicycle", "bus", "hov", "pedestrian" or "multimodal". The default is "pedestrian".
+      <ul class="nolist"><li>The current routing profile. Can be either "auto", "auto_shorter", "bicycle", "bus", "hov", "pedestrian", "wheelchair" or "multimodal". The default is "pedestrian".
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="matchRoute(com.carto.routing.RouteMatchingRequest)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
+      </span>
+      <span class="sympad">matchRoute</span>
+      <span class="normal">(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Matches specified points to the points on road network.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>request</th>
+          <td>The matching request.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The matching result or null if route matching failed.<br></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>Exception</td>
+            <td>If IO error occured during the route matching.
+</td>
+        </tr>  
+        <tr>
+            <th>IOException</td>
+            <td></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1140,7 +1215,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>profile</th>
-          <td>The new profile. Can be either "auto", "auto_shorter", "bicycle", "bus", "hov", "pedestrian" or "multimodal".
+          <td>The new profile. Can be either "auto", "auto_shorter", "bicycle", "bus", "hov", "pedestrian", "wheelchair" or "multimodal".
 </td>
         </tr>
       </table>

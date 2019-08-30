@@ -198,13 +198,17 @@
         <li class="api apilevel-"><a href="../../../com/carto/datasources/CacheTileDataSource.html">CacheTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/CartoOnlineTileDataSource.html">CartoOnlineTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/CombinedTileDataSource.html">CombinedTileDataSource</a></li>
+        <li class="api apilevel-"><a href="../../../com/carto/datasources/GeoJSONVectorTileDataSource.html">GeoJSONVectorTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/HTTPTileDataSource.html">HTTPTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/LocalVectorDataSource.html">LocalVectorDataSource</a></li>
+        <li class="api apilevel-"><a href="../../../com/carto/datasources/MapTilerOnlineTileDataSource.html">MapTilerOnlineTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/MBTilesTileDataSource.html">MBTilesTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/MemoryCacheTileDataSource.html">MemoryCacheTileDataSource</a></li>
+        <li class="api apilevel-"><a href="../../../com/carto/datasources/MergedMBVTTileDataSource.html">MergedMBVTTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/NMLModelLODTreeDataSource.html">NMLModelLODTreeDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/OfflineNMLModelLODTreeDataSource.html">OfflineNMLModelLODTreeDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/OnlineNMLModelLODTreeDataSource.html">OnlineNMLModelLODTreeDataSource</a></li>
+        <li class="api apilevel-"><a href="../../../com/carto/datasources/OrderedTileDataSource.html">OrderedTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/PackageManagerTileDataSource.html">PackageManagerTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/PersistentCacheTileDataSource.html">PersistentCacheTileDataSource</a></li>
         <li class="api apilevel-"><a href="../../../com/carto/datasources/TileDataSource.html">TileDataSource</a></li>
@@ -310,12 +314,20 @@
  based on zoom level.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/datasources/GeoJSONVectorTileDataSource.html">GeoJSONVectorTileDataSource</a></td>
+              <td class="jd-descrcol" width="100%">A tile data source that builds vector tiles from GeoJSON inputs.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/HTTPTileDataSource.html">HTTPTileDataSource</a></td>
               <td class="jd-descrcol" width="100%">A tile data source that loads tiles using a HTTP connection.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/LocalVectorDataSource.html">LocalVectorDataSource</a></td>
               <td class="jd-descrcol" width="100%">A modifiable vector data source that keeps all the elements in the local memory.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/datasources/MapTilerOnlineTileDataSource.html">MapTilerOnlineTileDataSource</a></td>
+              <td class="jd-descrcol" width="100%">An online tile data source that connects to MapTiler Cloud tile server.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/MBTilesTileDataSource.html">MBTilesTileDataSource</a></td>
@@ -327,16 +339,24 @@
  and caches them in memory.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/datasources/MergedMBVTTileDataSource.html">MergedMBVTTileDataSource</a></td>
+              <td class="jd-descrcol" width="100%">A tile data source that merges two MBVT/protobuf data sources into one.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/NMLModelLODTreeDataSource.html">NMLModelLODTreeDataSource</a></td>
               <td class="jd-descrcol" width="100%">An abstract base class for NML model LOD tree data sources.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/OfflineNMLModelLODTreeDataSource.html">OfflineNMLModelLODTreeDataSource</a></td>
               <td class="jd-descrcol" width="100%">A sqlite database based data source for NML model LOD trees.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/OnlineNMLModelLODTreeDataSource.html">OnlineNMLModelLODTreeDataSource</a></td>
               <td class="jd-descrcol" width="100%">Online NML LOD Tree data source.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/datasources/OrderedTileDataSource.html">OrderedTileDataSource</a></td>
+              <td class="jd-descrcol" width="100%">A tile data source that combines two data sources (usually offline and online).&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/datasources/PackageManagerTileDataSource.html">PackageManagerTileDataSource</a></td>
