@@ -10,9 +10,11 @@ import com.carto.advancedmap.baseclasses.views.MapBaseView;
 import com.carto.advancedmap.kotlinui.mapoptioncontent.MapOptionPopupContent;
 import com.carto.components.RenderProjectionMode;
 import com.carto.datasources.LocalVectorDataSource;
+import com.carto.layers.CartoBaseMapPOIRenderMode;
 import com.carto.layers.CartoBaseMapStyle;
 import com.carto.layers.CartoOnlineRasterTileLayer;
 import com.carto.layers.CartoOnlineVectorTileLayer;
+import com.carto.layers.CartoVectorTileLayer;
 import com.carto.layers.Layer;
 import com.carto.layers.TileLayer;
 import com.carto.layers.VectorLayer;
@@ -39,6 +41,7 @@ public class BaseMapsView extends MapBaseView
     private String currentLanguage = "en";
     private boolean buildings3D = false;
     private boolean texts3D = true;
+    private boolean pois = false;
 
     public BaseMapsView(Context context) {
         super(context);
@@ -117,6 +120,7 @@ public class BaseMapsView extends MapBaseView
         updateLanguage(currentLanguage);
         updateMapOption("buildings3d", buildings3D);
         updateMapOption("texts3d", texts3D);
+        updateMapOption("pois", pois);
 
         currentListener = initializeVectorTileListener();
     }
@@ -145,6 +149,9 @@ public class BaseMapsView extends MapBaseView
         if (option.equals("texts3d")) {
             texts3D = value;
         }
+        if (option.equals("pois")) {
+            pois = value;
+        }
 
         if (!(currentLayer instanceof VectorTileLayer)) {
             return;
@@ -157,6 +164,10 @@ public class BaseMapsView extends MapBaseView
         }
         if (option.equals("texts3d")) {
             decoder.setStyleParameter("texts3d", texts3D ? "1" : "0");
+        }
+        if (option.equals("pois") && currentLayer instanceof CartoVectorTileLayer) {
+            CartoVectorTileLayer cartoLayer = (CartoVectorTileLayer)currentLayer;
+            cartoLayer.setPOIRenderMode(pois ? CartoBaseMapPOIRenderMode.CARTO_BASEMAP_POI_RENDER_MODE_FULL : CartoBaseMapPOIRenderMode.CARTO_BASEMAP_POI_RENDER_MODE_NONE);
         }
     }
 

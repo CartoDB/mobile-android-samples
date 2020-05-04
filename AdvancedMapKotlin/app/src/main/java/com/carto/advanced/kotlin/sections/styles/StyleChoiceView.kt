@@ -27,7 +27,6 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         // Content descriptions for auto tests
         val LANGUAGE_BUTTON_DESCRIPTION = "language_button"
         val BASEMAP_BUTTON_DESCRIPTION = "basemap_button"
-
         val STYLE_POSITRON_DESCRIPTION = "style_positron"
     }
 
@@ -43,6 +42,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
     var currentLayer: TileLayer? = null
     var buildings3D = false
     var texts3D = true
+    var pois = false
 
     private val vectorSource = LocalVectorDataSource(projection)
     private val vectorLayer = VectorLayer(vectorSource)
@@ -146,6 +146,7 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         updateMapLanguage(currentLanguage)
         updateMapOption("buildings3d", buildings3D)
         updateMapOption("texts3d", texts3D)
+        updateMapOption("pois", pois)
 
         if (currentLayer is VectorTileLayer) {
             map.layers.add(vectorLayer)
@@ -164,6 +165,9 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         if (option == "texts3d") {
             texts3D = value
         }
+        if (option == "pois") {
+            pois = value
+        }
 
         if (!(currentLayer is VectorTileLayer)) {
             return
@@ -175,6 +179,10 @@ class StyleChoiceView(context: Context) : MapBaseView(context) {
         }
         if (option == "texts3d") {
             decoder?.setStyleParameter("texts3d", if (texts3D) "1" else "0")
+        }
+        if (option == "pois" && currentLayer is CartoVectorTileLayer) {
+            val cartoLayer = currentLayer as? CartoVectorTileLayer
+            cartoLayer?.poiRenderMode = if (pois) CartoBaseMapPOIRenderMode.CARTO_BASEMAP_POI_RENDER_MODE_FULL else CartoBaseMapPOIRenderMode.CARTO_BASEMAP_POI_RENDER_MODE_NONE
         }
     }
 

@@ -9,7 +9,8 @@ class MapOptions {
         val list: MutableList<MapOption> = mutableListOf(
                 MapOption("Globe view", "globe", false),
                 MapOption("3D buildings", "buildings3d", false),
-                MapOption("3D texts", "texts3d", true)
+                MapOption("3D texts", "texts3d", true),
+                MapOption("POIs", "pois", false)
         )
     }
 }

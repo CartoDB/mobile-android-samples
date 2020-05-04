@@ -85,8 +85,9 @@ public class TorqueShipActivity extends Activity implements TorqueHistogramInter
                 LayerVector layers = null;
                 try {
                     layers = service.buildNamedMap(mapname, new StringVariantMap());
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
+                    return;
                 }
 
                 // NB! This update priority only works for the map tpl_a108ee2b_6699_43bc_aa71_3b0bc962acf9
