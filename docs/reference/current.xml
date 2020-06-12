@@ -5661,6 +5661,19 @@
  visibility="public"
 >
 </method>
+<method name="getCustomParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
 <method name="getLocation"
  return="com.carto.core.MapPos"
  abstract="false"
@@ -5704,6 +5717,21 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setCustomParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
 </method>
 <method name="setLocation"
  return="void"
@@ -6007,26 +6035,7 @@
  visibility="public"
 >
 </method>
-</class>
-<class name="MapBoxOnlineGeocodingService"
- extends="com.carto.geocoding.GeocodingService"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<constructor name="MapBoxOnlineGeocodingService"
- type="com.carto.geocoding.MapBoxOnlineGeocodingService"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="accessToken" type="java.lang.String">
-</parameter>
-</constructor>
-<method name="getCustomServiceURL"
+<method name="getLanguage"
  return="java.lang.String"
  abstract="false"
  native="false"
@@ -6037,8 +6046,8 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
+<method name="getMaxResults"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6072,19 +6081,6 @@
 <parameter name="autocomplete" type="boolean">
 </parameter>
 </method>
-<method name="setCustomServiceURL"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
 <method name="setLanguage"
  return="void"
  abstract="false"
@@ -6096,6 +6092,62 @@
  visibility="public"
 >
 <parameter name="lang" type="java.lang.String">
+</parameter>
+</method>
+<method name="setMaxResults"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="maxResults" type="int">
+</parameter>
+</method>
+</class>
+<class name="MapBoxOnlineGeocodingService"
+ extends="com.carto.geocoding.GeocodingService"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MapBoxOnlineGeocodingService"
+ type="com.carto.geocoding.MapBoxOnlineGeocodingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="accessToken" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getCustomServiceURL"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setCustomServiceURL"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceURL" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6128,17 +6180,6 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6150,19 +6191,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6186,54 +6214,6 @@
 <exception name="IOException" type="java.io.IOException">
 </exception>
 </constructor>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isAutocomplete"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setAutocomplete"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="autocomplete" type="boolean">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
-</parameter>
-</method>
 </class>
 <class name="OSMOfflineReverseGeocodingService"
  extends="com.carto.geocoding.ReverseGeocodingService"
@@ -6255,30 +6235,6 @@
 <exception name="IOException" type="java.io.IOException">
 </exception>
 </constructor>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
-</parameter>
-</method>
 </class>
 <class name="PackageManagerGeocodingService"
  extends="com.carto.geocoding.GeocodingService"
@@ -6298,54 +6254,6 @@
 <parameter name="packageManager" type="com.carto.packagemanager.PackageManager">
 </parameter>
 </constructor>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isAutocomplete"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setAutocomplete"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="autocomplete" type="boolean">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
-</parameter>
-</method>
 </class>
 <class name="PackageManagerReverseGeocodingService"
  extends="com.carto.geocoding.ReverseGeocodingService"
@@ -6365,30 +6273,6 @@
 <parameter name="packageManager" type="com.carto.packagemanager.PackageManager">
 </parameter>
 </constructor>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
-</parameter>
-</method>
 </class>
 <class name="PeliasOnlineGeocodingService"
  extends="com.carto.geocoding.GeocodingService"
@@ -6419,41 +6303,6 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isAutocomplete"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setAutocomplete"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="autocomplete" type="boolean">
-</parameter>
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6465,19 +6314,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6510,17 +6346,6 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6532,19 +6357,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6579,6 +6391,19 @@
  visibility="public"
 >
 </method>
+<method name="getCustomParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
 <method name="getLocation"
  return="com.carto.core.MapPos"
  abstract="false"
@@ -6611,6 +6436,21 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setCustomParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
 </method>
 <method name="setSearchRadius"
  return="void"
@@ -6660,6 +6500,30 @@
  visibility="public"
 >
 </method>
+<method name="getLanguage"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setLanguage"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="lang" type="java.lang.String">
+</parameter>
+</method>
 </class>
 <class name="TomTomOnlineGeocodingService"
  extends="com.carto.geocoding.GeocodingService"
@@ -6690,41 +6554,6 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="isAutocomplete"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setAutocomplete"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="autocomplete" type="boolean">
-</parameter>
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6736,19 +6565,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6781,17 +6597,6 @@
  visibility="public"
 >
 </method>
-<method name="getLanguage"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -6803,19 +6608,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setLanguage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="lang" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -6893,6 +6685,97 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+</class>
+<class name="FeatureBuilder"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="FeatureBuilder"
+ type="com.carto.geometry.FeatureBuilder"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="buildFeature"
+ return="com.carto.geometry.Feature"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getGeometry"
+ return="com.carto.geometry.Geometry"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPropertyValue"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+</method>
+<method name="setGeometry"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="geometry" type="com.carto.geometry.Geometry">
+</parameter>
+</method>
+<method name="setPropertyValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
 </method>
 </class>
 <class name="FeatureCollection"
@@ -8371,6 +8254,106 @@
 >
 </method>
 </class>
+<class name="VectorTileFeatureBuilder"
+ extends="com.carto.geometry.FeatureBuilder"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="VectorTileFeatureBuilder"
+ type="com.carto.geometry.VectorTileFeatureBuilder"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="buildVectorTileFeature"
+ return="com.carto.geometry.VectorTileFeature"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getId"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLayerName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapTile"
+ return="com.carto.core.MapTile"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setId"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="setLayerName"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="layerName" type="java.lang.String">
+</parameter>
+</method>
+<method name="setMapTile"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapTile" type="com.carto.core.MapTile">
+</parameter>
+</method>
+</class>
 <class name="VectorTileFeatureCollection"
  extends="com.carto.geometry.FeatureCollection"
  abstract="false"
@@ -8838,7 +8821,7 @@
  visibility="public"
 >
 </method>
-<method name="compressToPng"
+<method name="compressToPNG"
  return="com.carto.core.BinaryData"
  abstract="false"
  native="false"
@@ -8846,6 +8829,17 @@
  static="false"
  final="false"
  deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="compressToPng"
+ return="com.carto.core.BinaryData"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="deprecated"
  visibility="public"
 >
 </method>
@@ -9365,6 +9359,120 @@
 </package>
 <package name="com.carto.layers"
 >
+<class name="CartoBaseMapBuildingRenderMode"
+ extends="java.lang.Enum"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="swigToEnum"
+ return="com.carto.layers.CartoBaseMapBuildingRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="swigValue" type="int">
+</parameter>
+</method>
+<method name="swigValue"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueOf"
+ return="com.carto.layers.CartoBaseMapBuildingRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="values"
+ return="com.carto.layers.CartoBaseMapBuildingRenderMode[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="CartoBaseMapPOIRenderMode"
+ extends="java.lang.Enum"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="swigToEnum"
+ return="com.carto.layers.CartoBaseMapPOIRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="swigValue" type="int">
+</parameter>
+</method>
+<method name="swigValue"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueOf"
+ return="com.carto.layers.CartoBaseMapPOIRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="values"
+ return="com.carto.layers.CartoBaseMapPOIRenderMode[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="CartoBaseMapStyle"
  extends="java.lang.Enum"
  abstract="false"
@@ -9617,6 +9725,17 @@
 <parameter name="styleName" type="java.lang.String">
 </parameter>
 </method>
+<method name="getBuildingRenderMode"
+ return="com.carto.layers.CartoBaseMapBuildingRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getFallbackLanguage"
  return="java.lang.String"
  abstract="false"
@@ -9638,6 +9757,30 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="getPOIRenderMode"
+ return="com.carto.layers.CartoBaseMapPOIRenderMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setBuildingRenderMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="renderMode" type="com.carto.layers.CartoBaseMapBuildingRenderMode">
+</parameter>
 </method>
 <method name="setFallbackLanguage"
  return="void"
@@ -9663,6 +9806,19 @@
  visibility="public"
 >
 <parameter name="lang" type="java.lang.String">
+</parameter>
+</method>
+<method name="setPOIRenderMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="renderMode" type="com.carto.layers.CartoBaseMapPOIRenderMode">
 </parameter>
 </method>
 </class>
@@ -9978,6 +10134,73 @@
 </parameter>
 </method>
 </class>
+<class name="HillshadeRasterTileLayer"
+ extends="com.carto.layers.RasterTileLayer"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="HillshadeRasterTileLayer"
+ type="com.carto.layers.HillshadeRasterTileLayer"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="dataSource" type="com.carto.datasources.TileDataSource">
+</parameter>
+</constructor>
+<method name="getContrast"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getHeightScale"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setContrast"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contrast" type="float">
+</parameter>
+</method>
+<method name="setHeightScale"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="heightScale" type="float">
+</parameter>
+</method>
+</class>
 <class name="Layer"
  extends="java.lang.Object"
  abstract="false"
@@ -9986,6 +10209,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<method name="containsMetaDataKey"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+</method>
 <method name="delete"
  return="void"
  abstract="false"
@@ -9996,6 +10232,30 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="getMetaData"
+ return="com.carto.core.StringVariantMap"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMetaDataElement"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
 </method>
 <method name="getOpacity"
  return="float"
@@ -10074,6 +10334,34 @@
  visibility="public"
 >
 <parameter name="delay" type="int">
+</parameter>
+</method>
+<method name="setMetaData"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="metaData" type="com.carto.core.StringVariantMap">
+</parameter>
+</method>
+<method name="setMetaDataElement"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+<parameter name="element" type="com.carto.core.Variant">
 </parameter>
 </method>
 <method name="setOpacity"
@@ -10515,6 +10803,63 @@
 </parameter>
 </method>
 </class>
+<class name="RasterTileFilterMode"
+ extends="java.lang.Enum"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="swigToEnum"
+ return="com.carto.layers.RasterTileFilterMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="swigValue" type="int">
+</parameter>
+</method>
+<method name="swigValue"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueOf"
+ return="com.carto.layers.RasterTileFilterMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="values"
+ return="com.carto.layers.RasterTileFilterMode[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="RasterTileLayer"
  extends="com.carto.layers.TileLayer"
  abstract="false"
@@ -10555,6 +10900,17 @@
  visibility="public"
 >
 </method>
+<method name="getTileFilterMode"
+ return="com.carto.layers.RasterTileFilterMode"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setRasterTileEventListener"
  return="void"
  abstract="false"
@@ -10579,6 +10935,19 @@
  visibility="public"
 >
 <parameter name="capacityInBytes" type="long">
+</parameter>
+</method>
+<method name="setTileFilterMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filterMode" type="com.carto.layers.RasterTileFilterMode">
 </parameter>
 </method>
 </class>
@@ -11620,6 +11989,17 @@
  visibility="public"
 >
 </method>
+<method name="getClickRadius"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getLabelRenderOrder"
  return="com.carto.layers.VectorTileRenderOrder"
  abstract="false"
@@ -11675,6 +12055,19 @@
  visibility="public"
 >
 <parameter name="renderOrder" type="com.carto.layers.VectorTileRenderOrder">
+</parameter>
+</method>
+<method name="setClickRadius"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="radius" type="float">
 </parameter>
 </method>
 <method name="setLabelRenderOrder"
@@ -13390,6 +13783,593 @@
 </parameter>
 </constructor>
 </class>
+<class name="PackageManagerValhallaRoutingService"
+ extends="com.carto.routing.RoutingService"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PackageManagerValhallaRoutingService"
+ type="com.carto.routing.PackageManagerValhallaRoutingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="packageManager" type="com.carto.packagemanager.PackageManager">
+</parameter>
+</constructor>
+<method name="getConfigurationParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
+<method name="setConfigurationParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
+</method>
+</class>
+<class name="RouteMatchingEdge"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RouteMatchingEdge"
+ type="com.carto.routing.RouteMatchingEdge"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="RouteMatchingEdge"
+ type="com.carto.routing.RouteMatchingEdge"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="attributes" type="com.carto.core.StringVariantMap">
+</parameter>
+</constructor>
+<method name="containsAttribute"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAttribute"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="RouteMatchingEdgeVector"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RouteMatchingEdgeVector"
+ type="com.carto.routing.RouteMatchingEdgeVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="cPtr" type="long">
+</parameter>
+<parameter name="cMemoryOwn" type="boolean">
+</parameter>
+</constructor>
+<constructor name="RouteMatchingEdgeVector"
+ type="com.carto.routing.RouteMatchingEdgeVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="RouteMatchingEdgeVector"
+ type="com.carto.routing.RouteMatchingEdgeVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="n" type="long">
+</parameter>
+</constructor>
+<method name="add"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="x" type="com.carto.routing.RouteMatchingEdge">
+</parameter>
+</method>
+<method name="capacity"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clear"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="get"
+ return="com.carto.routing.RouteMatchingEdge"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="i" type="int">
+</parameter>
+</method>
+<method name="getCPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="obj" type="com.carto.routing.RouteMatchingEdgeVector">
+</parameter>
+</method>
+<method name="isEmpty"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="reserve"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="n" type="long">
+</parameter>
+</method>
+<method name="set"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="i" type="int">
+</parameter>
+<parameter name="val" type="com.carto.routing.RouteMatchingEdge">
+</parameter>
+</method>
+<method name="size"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="swigGetRawPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="RouteMatchingPoint"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RouteMatchingPoint"
+ type="com.carto.routing.RouteMatchingPoint"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="RouteMatchingPoint"
+ type="com.carto.routing.RouteMatchingPoint"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="type" type="com.carto.routing.RouteMatchingPointType">
+</parameter>
+<parameter name="edgeIndex" type="int">
+</parameter>
+</constructor>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getEdgeIndex"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPos"
+ return="com.carto.core.MapPos"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getType"
+ return="com.carto.routing.RouteMatchingPointType"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="RouteMatchingPointType"
+ extends="java.lang.Enum"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="swigToEnum"
+ return="com.carto.routing.RouteMatchingPointType"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="swigValue" type="int">
+</parameter>
+</method>
+<method name="swigValue"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueOf"
+ return="com.carto.routing.RouteMatchingPointType"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="values"
+ return="com.carto.routing.RouteMatchingPointType[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="RouteMatchingPointVector"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RouteMatchingPointVector"
+ type="com.carto.routing.RouteMatchingPointVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="cPtr" type="long">
+</parameter>
+<parameter name="cMemoryOwn" type="boolean">
+</parameter>
+</constructor>
+<constructor name="RouteMatchingPointVector"
+ type="com.carto.routing.RouteMatchingPointVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="RouteMatchingPointVector"
+ type="com.carto.routing.RouteMatchingPointVector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="n" type="long">
+</parameter>
+</constructor>
+<method name="add"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="x" type="com.carto.routing.RouteMatchingPoint">
+</parameter>
+</method>
+<method name="capacity"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clear"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="get"
+ return="com.carto.routing.RouteMatchingPoint"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="i" type="int">
+</parameter>
+</method>
+<method name="getCPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="obj" type="com.carto.routing.RouteMatchingPointVector">
+</parameter>
+</method>
+<method name="isEmpty"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="reserve"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="n" type="long">
+</parameter>
+</method>
+<method name="set"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="i" type="int">
+</parameter>
+<parameter name="val" type="com.carto.routing.RouteMatchingPoint">
+</parameter>
+</method>
+<method name="size"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="swigGetRawPtr"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="RouteMatchingRequest"
  extends="java.lang.Object"
  abstract="false"
@@ -13434,6 +14414,34 @@
  visibility="public"
 >
 </method>
+<method name="getCustomParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
+<method name="getPointParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
 <method name="getPoints"
  return="com.carto.core.MapPosVector"
  abstract="false"
@@ -13456,6 +14464,38 @@
  visibility="public"
 >
 </method>
+<method name="setCustomParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
+</method>
+<method name="setPointParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
+</method>
 </class>
 <class name="RouteMatchingResult"
  extends="java.lang.Object"
@@ -13474,7 +14514,9 @@
 >
 <parameter name="projection" type="com.carto.projections.Projection">
 </parameter>
-<parameter name="points" type="com.carto.core.MapPosVector">
+<parameter name="matchingPoints" type="com.carto.routing.RouteMatchingPointVector">
+</parameter>
+<parameter name="matchingEdges" type="com.carto.routing.RouteMatchingEdgeVector">
 </parameter>
 </constructor>
 <method name="delete"
@@ -13482,6 +14524,28 @@
  abstract="false"
  native="false"
  synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMatchingEdges"
+ return="com.carto.routing.RouteMatchingEdgeVector"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMatchingPoints"
+ return="com.carto.routing.RouteMatchingPointVector"
+ abstract="false"
+ native="false"
+ synchronized="false"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13909,8 +14973,8 @@
  visibility="public"
 >
 </method>
-<method name="getGeometryTagFilters"
- return="com.carto.core.VariantVector"
+<method name="getCustomParameter"
+ return="com.carto.core.Variant"
  abstract="false"
  native="false"
  synchronized="false"
@@ -13919,6 +14983,34 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
+<method name="getGeometryTagFilters"
+ return="com.carto.core.VariantVector"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPointParameter"
+ return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+<parameter name="param" type="java.lang.String">
+</parameter>
 </method>
 <method name="getPoints"
  return="com.carto.core.MapPosVector"
@@ -13942,7 +15034,7 @@
  visibility="public"
 >
 </method>
-<method name="setGeometryTagFilters"
+<method name="setCustomParameter"
  return="void"
  abstract="false"
  native="false"
@@ -13952,7 +15044,39 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
+</parameter>
+</method>
+<method name="setGeometryTagFilters"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="deprecated"
+ visibility="public"
+>
 <parameter name="filters" type="com.carto.core.VariantVector">
+</parameter>
+</method>
+<method name="setPointParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
 </parameter>
 </method>
 </class>
@@ -14079,6 +15203,45 @@
  visibility="public"
 >
 </method>
+<method name="getProfile"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="matchRoute"
+ return="com.carto.routing.RouteMatchingResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="request" type="com.carto.routing.RouteMatchingRequest">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</method>
+<method name="setProfile"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="profile" type="java.lang.String">
+</parameter>
+</method>
 </class>
 <class name="SGREOfflineRoutingService"
  extends="com.carto.routing.RoutingService"
@@ -14118,8 +15281,29 @@
 <exception name="IOException" type="java.io.IOException">
 </exception>
 </constructor>
-<method name="getProfile"
- return="java.lang.String"
+</class>
+<class name="ValhallaOfflineRoutingService"
+ extends="com.carto.routing.RoutingService"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ValhallaOfflineRoutingService"
+ type="com.carto.routing.ValhallaOfflineRoutingService"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="path" type="java.lang.String">
+</parameter>
+<exception name="IOException" type="java.io.IOException">
+</exception>
+</constructor>
+<method name="getConfigurationParameter"
+ return="com.carto.core.Variant"
  abstract="false"
  native="false"
  synchronized="false"
@@ -14128,8 +15312,10 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="param" type="java.lang.String">
+</parameter>
 </method>
-<method name="setProfile"
+<method name="setConfigurationParameter"
  return="void"
  abstract="false"
  native="false"
@@ -14139,7 +15325,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="profile" type="java.lang.String">
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="com.carto.core.Variant">
 </parameter>
 </method>
 </class>
@@ -14172,32 +15360,6 @@
  visibility="public"
 >
 </method>
-<method name="getProfile"
- return="java.lang.String"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="matchRoute"
- return="com.carto.routing.RouteMatchingResult"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="request" type="com.carto.routing.RouteMatchingRequest">
-</parameter>
-<exception name="IOException" type="java.io.IOException">
-</exception>
-</method>
 <method name="setCustomServiceURL"
  return="void"
  abstract="false"
@@ -14209,19 +15371,6 @@
  visibility="public"
 >
 <parameter name="serviceURL" type="java.lang.String">
-</parameter>
-</method>
-<method name="setProfile"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="profile" type="java.lang.String">
 </parameter>
 </method>
 </class>
@@ -14283,6 +15432,17 @@
  visibility="public"
 >
 </method>
+<method name="getMaxResults"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getProjection"
  return="com.carto.projections.Projection"
  abstract="false"
@@ -14293,6 +15453,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setMaxResults"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="maxResults" type="int">
+</parameter>
 </method>
 </class>
 <class name="SearchRequest"
@@ -14496,6 +15669,30 @@
  visibility="public"
 >
 </method>
+<method name="getMaxResults"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setMaxResults"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="maxResults" type="int">
+</parameter>
+</method>
 </class>
 <class name="VectorTileSearchService"
  extends="java.lang.Object"
@@ -14552,6 +15749,17 @@
  visibility="public"
 >
 </method>
+<method name="getMaxResults"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getMaxZoom"
  return="int"
  abstract="false"
@@ -14584,6 +15792,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setMaxResults"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="maxResults" type="int">
+</parameter>
 </method>
 <method name="setMaxZoom"
  return="void"
@@ -19680,13 +20901,15 @@
 </method>
 </class>
 <class name="MapView"
- extends="GLSurfaceView"
+ extends="android.opengl.GLSurfaceView"
  abstract="false"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
+<implements name="android.opengl.GLSurfaceView.Renderer">
+</implements>
 <constructor name="MapView"
  type="com.carto.ui.MapView"
  static="false"
@@ -19694,7 +20917,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="context" type="Context">
+<parameter name="context" type="android.content.Context">
 </parameter>
 </constructor>
 <constructor name="MapView"
@@ -19704,9 +20927,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="context" type="Context">
+<parameter name="context" type="android.content.Context">
 </parameter>
-<parameter name="attrs" type="AttributeSet">
+<parameter name="attrs" type="android.util.AttributeSet">
 </parameter>
 </constructor>
 <method name="cancelAllTasks"
@@ -19906,7 +21129,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="GL10">
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
 </parameter>
 </method>
 <method name="onSurfaceChanged"
@@ -19919,7 +21142,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="GL10">
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
@@ -19936,22 +21159,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="gl" type="GL10">
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
 </parameter>
-<parameter name="config" type="EGLConfig">
-</parameter>
-</method>
-<method name="onTouchEvent"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="event" type="MotionEvent">
+<parameter name="config" type="javax.microedition.khronos.egl.EGLConfig">
 </parameter>
 </method>
 <method name="pan"
@@ -19981,7 +21191,7 @@
 >
 <parameter name="licenseKey" type="java.lang.String">
 </parameter>
-<parameter name="context" type="Context">
+<parameter name="context" type="android.content.Context">
 </parameter>
 </method>
 <method name="rotate"

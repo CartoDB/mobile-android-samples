@@ -200,6 +200,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusteredVectorLayer.html">ClusteredVectorLayer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterElementBuilder.html">ClusterElementBuilder</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/EditableVectorLayer.html">EditableVectorLayer</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/HillshadeRasterTileLayer.html">HillshadeRasterTileLayer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/Layer.html">Layer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/LayerVector.html">LayerVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/NMLModelLODTreeEventListener.html">NMLModelLODTreeEventListener</a></li>
@@ -222,8 +223,11 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapStyle.html">CartoBaseMapStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterBuilderMode.html">ClusterBuilderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/RasterTileFilterMode.html">RasterTileFilterMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/TileSubstitutionPolicy.html">TileSubstitutionPolicy</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragPointStyle.html">VectorElementDragPointStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragResult.html">VectorElementDragResult</a></li>
@@ -639,6 +643,24 @@ From class
             
             
             
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#getClickRadius()">getClickRadius</a></span>()
+        
+        <div class="jd-descrdiv">Returns the click radius of vector tile features.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../com/carto/layers/VectorTileRenderOrder.html">VectorTileRenderOrder</a>
         </td>
         <td class="jd-linkcol" width="100%">
@@ -650,7 +672,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -668,7 +690,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -686,7 +708,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -704,7 +726,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -717,6 +739,24 @@ From class
         <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#setBuildingRenderOrder(com.carto.layers.VectorTileRenderOrder)">setBuildingRenderOrder</a></span>(<a href="../../../com/carto/layers/VectorTileRenderOrder.html">VectorTileRenderOrder</a> renderOrder)
         
         <div class="jd-descrdiv">Sets the current display order of the buildings.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#setClickRadius(float)">setClickRadius</a></span>(float radius)
+        
+        <div class="jd-descrdiv">Sets the click radius of vector tile features.</div>
   
   </td></tr>
 
@@ -1315,6 +1355,24 @@ From class
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#containsMetaDataKey(java.lang.String)">containsMetaDataKey</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns true if the specified key exists in the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
             synchronized
             
             
@@ -1328,7 +1386,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1346,7 +1404,43 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaData()">getMetaData</a></span>()
+        
+        <div class="jd-descrdiv">Returns a copy of the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaDataElement(java.lang.String)">getMetaDataElement</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns a layer meta data element corresponding to the key.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1364,7 +1458,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1382,7 +1476,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1400,7 +1494,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1418,7 +1512,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1436,7 +1530,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1454,7 +1548,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1472,7 +1566,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1490,7 +1584,43 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaData(com.carto.core.StringVariantMap)">setMetaData</a></span>(<a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a> metaData)
+        
+        <div class="jd-descrdiv">Sets a new meta data map for the layer.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaDataElement(java.lang.String, com.carto.core.Variant)">setMetaDataElement</a></span>(String key, <a href="../../../com/carto/core/Variant.html">Variant</a> element)
+        
+        <div class="jd-descrdiv">Adds a new key-value pair to the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1508,7 +1638,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1526,7 +1656,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1544,7 +1674,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1562,7 +1692,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1580,7 +1710,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             

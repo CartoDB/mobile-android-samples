@@ -196,6 +196,11 @@
           <li class="selected api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdge.html">RouteMatchingEdge</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPoint.html">RouteMatchingPoint</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,6 +209,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -211,6 +217,7 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a></li>
       </ul>
     </li>
@@ -478,7 +485,7 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html#calculateRoute(com.carto.routing.RoutingRequest)">calculateRoute</a></span>(<a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a> request)
         
-        <div class="jd-descrdiv">Calculates routing result (path) based on routing result.</div>
+        <div class="jd-descrdiv">Calculates routing result (path) based on routing request.</div>
   
   </td></tr>
 
@@ -496,6 +503,60 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html#delete()">delete</a></span>()
         
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html#getProfile()">getProfile</a></span>()
+        
+        <div class="jd-descrdiv">Returns the current routing profile.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html#matchRoute(com.carto.routing.RouteMatchingRequest)">matchRoute</a></span>(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)
+        
+        <div class="jd-descrdiv">Matches specified points to the points on the road network.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html#setProfile(java.lang.String)">setProfile</a></span>(String profile)
+        
+        <div class="jd-descrdiv">Sets the current routing profile.</div>
+  
   </td></tr>
 
 
@@ -546,7 +607,7 @@ From class
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/RoutingService.html#calculateRoute(com.carto.routing.RoutingRequest)">calculateRoute</a></span>(<a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a> request)
         
-        <div class="jd-descrdiv">Calculates routing result (path) based on routing result.</div>
+        <div class="jd-descrdiv">Calculates routing result (path) based on routing request.</div>
   
   </td></tr>
 
@@ -564,6 +625,60 @@ From class
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/RoutingService.html#delete()">delete</a></span>()
         
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingService.html#getProfile()">getProfile</a></span>()
+        
+        <div class="jd-descrdiv">Returns the current routing profile.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingService.html#matchRoute(com.carto.routing.RouteMatchingRequest)">matchRoute</a></span>(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)
+        
+        <div class="jd-descrdiv">Matches specified points to the points on the road network.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingService.html#setProfile(java.lang.String)">setProfile</a></span>(String profile)
+        
+        <div class="jd-descrdiv">Sets the current routing profile.</div>
+  
   </td></tr>
 
 
@@ -858,7 +973,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Calculates routing result (path) based on routing result.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Calculates routing result (path) based on routing request.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -912,6 +1027,136 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getProfile()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getProfile</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the current routing profile.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The current routing profile.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="matchRoute(com.carto.routing.RouteMatchingRequest)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
+      </span>
+      <span class="sympad">matchRoute</span>
+      <span class="normal">(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Matches specified points to the points on the road network.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>request</th>
+          <td>The matching request defining points.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The matching result or null if route matching failed.<br></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>IOException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setProfile(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setProfile</span>
+      <span class="normal">(String profile)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the current routing profile.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>profile</th>
+          <td>The new routing profile. Routing profiles are dependent on specific routing service.
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

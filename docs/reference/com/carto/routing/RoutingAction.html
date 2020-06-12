@@ -196,6 +196,11 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdge.html">RouteMatchingEdge</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPoint.html">RouteMatchingPoint</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,6 +209,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -211,6 +217,7 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a></li>
       </ul>
     </li>
@@ -442,50 +449,64 @@ Summary:
     
     <tr class=" api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTING_ACTION_ENTER_FERRY&nbsp;</td>
+        <td class="jd-descrcol" width="100%">Enter ferry.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_ENTER_ROUNDABOUT&nbsp;</td>
         <td class="jd-descrcol" width="100%">Enter roundabout.&nbsp;</td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_FINISH&nbsp;</td>
         <td class="jd-descrcol" width="100%">Finish the route.&nbsp;</td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_GO_DOWN&nbsp;</td>
         <td class="jd-descrcol" width="100%">Go down.&nbsp;</td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_GO_STRAIGHT&nbsp;</td>
         <td class="jd-descrcol" width="100%">Go straight.&nbsp;</td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_GO_UP&nbsp;</td>
         <td class="jd-descrcol" width="100%">Go up.&nbsp;</td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_HEAD_ON&nbsp;</td>
         <td class="jd-descrcol" width="100%">Head on, start the route.&nbsp;</td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
         <td class="jd-linkcol">ROUTING_ACTION_LEAVE_AGAINST_ALLOWED_DIRECTION&nbsp;</td>
         <td class="jd-descrcol" width="100%">Leave the street while moving aginst the allowed direction.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTING_ACTION_LEAVE_FERRY&nbsp;</td>
+        <td class="jd-descrcol" width="100%">Leave ferry.&nbsp;</td>
     </tr>
     
     
@@ -1086,7 +1107,38 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Enter street while moving against the allowed direction.
+  <div class="jd-tagdata jd-tagdescr"><p>Enter street while moving against the allowed direction. Only used by OSRM.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTING_ACTION_ENTER_FERRY"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>
+      </span>
+        ROUTING_ACTION_ENTER_FERRY
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Enter ferry. Only used by Valhalla.
 </p></div>
 
     
@@ -1117,7 +1169,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Enter roundabout.
+  <div class="jd-tagdata jd-tagdescr"><p>Enter roundabout. Used by Valhalla and OSRM.
 </p></div>
 
     
@@ -1179,7 +1231,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Go down.
+  <div class="jd-tagdata jd-tagdescr"><p>Go down. Only used by SGRE.
 </p></div>
 
     
@@ -1241,7 +1293,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Go up.
+  <div class="jd-tagdata jd-tagdescr"><p>Go up. Only used by the SGRE.
 </p></div>
 
     
@@ -1303,7 +1355,38 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Leave the street while moving aginst the allowed direction.
+  <div class="jd-tagdata jd-tagdescr"><p>Leave the street while moving aginst the allowed direction. Only used by OSRM.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTING_ACTION_LEAVE_FERRY"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a>
+      </span>
+        ROUTING_ACTION_LEAVE_FERRY
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Leave ferry. Only used by Valhalla.
 </p></div>
 
     
@@ -1334,7 +1417,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Leave roundabout.
+  <div class="jd-tagdata jd-tagdescr"><p>Leave roundabout. Used by Valhalla and OSRM.
 </p></div>
 
     
@@ -1427,7 +1510,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Start at the end of the street.
+  <div class="jd-tagdata jd-tagdescr"><p>Start at the end of the street. Currently used only by OSRM.
 </p></div>
 
     
@@ -1458,7 +1541,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Continue along the roundabout.
+  <div class="jd-tagdata jd-tagdescr"><p>Continue along the roundabout. Only used by OSRM.
 </p></div>
 
     
@@ -1582,7 +1665,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Wait.
+  <div class="jd-tagdata jd-tagdescr"><p>Wait. Only used by SGRE.
 </p></div>
 
     

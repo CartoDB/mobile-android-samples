@@ -196,6 +196,11 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdge.html">RouteMatchingEdge</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPoint.html">RouteMatchingPoint</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,6 +209,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -211,6 +217,7 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a></li>
       </ul>
     </li>
@@ -486,12 +493,51 @@ Summary:
             
             
             
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#getCustomParameter(java.lang.String)">getCustomParameter</a></span>(String param)
+        
+        <div class="jd-descrdiv">Returns the custom parameter value of the request.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../com/carto/core/VariantVector.html">VariantVector</a>
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#getGeometryTagFilters()">getGeometryTagFilters</a></span>()
         
-        <div class="jd-descrdiv">Returns the geometry tag filter list of the request.</div>
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      No replacement.</em></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#getPointParameter(int, java.lang.String)">getPointParameter</a></span>(int index, String param)
+        
+        <div class="jd-descrdiv">Returns the parameter value for the given routing point.</div>
   
   </td></tr>
 
@@ -561,9 +607,48 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#setCustomParameter(java.lang.String, com.carto.core.Variant)">setCustomParameter</a></span>(String param, <a href="../../../com/carto/core/Variant.html">Variant</a> value)
+        
+        <div class="jd-descrdiv">Sets a custom parameter value for the the request.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#setGeometryTagFilters(com.carto.core.VariantVector)">setGeometryTagFilters</a></span>(<a href="../../../com/carto/core/VariantVector.html">VariantVector</a> filters)
         
-        <div class="jd-descrdiv">Sets the geometry tag filter list for the request.</div>
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      No replacement.</em></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RoutingRequest.html#setPointParameter(int, java.lang.String, com.carto.core.Variant)">setPointParameter</a></span>(int index, String param, <a href="../../../com/carto/core/Variant.html">Variant</a> value)
+        
+        <div class="jd-descrdiv">Sets the parameter value for the given routing point.</div>
   
   </td></tr>
 
@@ -940,6 +1025,51 @@ From class
 </div>
 
 
+<a id="getCustomParameter(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/Variant.html">Variant</a>
+      </span>
+      <span class="sympad">getCustomParameter</span>
+      <span class="normal">(String param)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the custom parameter value of the request.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter to return.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The value of the parameter. If the parameter does not exist, empty variant is returned.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getGeometryTagFilters()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -964,11 +1094,64 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the geometry tag filter list of the request.<br></p></div>
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> No replacement.
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the geometry tag filter list of the request.<br>
+ This method is now deprecated, getPointParameter method should be used instead.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The geometry tag filter list of the request.
+      <ul class="nolist"><li>The geometry tag filter list of the request.<br></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getPointParameter(int, java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/Variant.html">Variant</a>
+      </span>
+      <span class="sympad">getPointParameter</span>
+      <span class="normal">(int index, String param)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the parameter value for the given routing point.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>index</th>
+          <td>The routing point index.<br></td>
+        </tr>
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The value of the specified parameter of the given routing point. If the parameter does not exist, empty variant is returned.
 </li></ul>
   </div>
 
@@ -1084,6 +1267,51 @@ From class
 </div>
 
 
+<a id="setCustomParameter(java.lang.String, com.carto.core.Variant)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setCustomParameter</span>
+      <span class="normal">(String param, <a href="../../../com/carto/core/Variant.html">Variant</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets a custom parameter value for the the request.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter. For example, "trace_options.search_radius".<br></td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>The new value for the parameter.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setGeometryTagFilters(com.carto.core.VariantVector)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1108,14 +1336,69 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the geometry tag filter list for the request.<br></p></div>
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> No replacement.
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the geometry tag filter list for the request.<br>
+ This method is now deprecated, setPointParameter method should be used instead.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>filters</th>
-          <td>The new filter list for the request.
+          <td>The new filter list for the request.<br></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setPointParameter(int, java.lang.String, com.carto.core.Variant)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPointParameter</span>
+      <span class="normal">(int index, String param, <a href="../../../com/carto/core/Variant.html">Variant</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the parameter value for the given routing point.<br>
+ This is currently supported by Valhalla routing engine and can be used to specify initial or final heading, for example.<br>
+ In addition to Valhalla, SGRE routing engine supports 'geometry_tag_filter' parameter for specifying how to filter matching edges.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>index</th>
+          <td>The routing point index.<br></td>
+        </tr>
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter to set.<br></td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>The new value for the parameter of the given routing point.
 </td>
         </tr>
       </table>

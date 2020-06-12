@@ -200,6 +200,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusteredVectorLayer.html">ClusteredVectorLayer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterElementBuilder.html">ClusterElementBuilder</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/EditableVectorLayer.html">EditableVectorLayer</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/HillshadeRasterTileLayer.html">HillshadeRasterTileLayer</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/layers/Layer.html">Layer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/LayerVector.html">LayerVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/NMLModelLODTreeEventListener.html">NMLModelLODTreeEventListener</a></li>
@@ -222,8 +223,11 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapStyle.html">CartoBaseMapStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterBuilderMode.html">ClusterBuilderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/RasterTileFilterMode.html">RasterTileFilterMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/TileSubstitutionPolicy.html">TileSubstitutionPolicy</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragPointStyle.html">VectorElementDragPointStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragResult.html">VectorElementDragResult</a></li>
@@ -440,6 +444,8 @@ Summary:
             
               <a href="../../../com/carto/layers/EditableVectorLayer.html">EditableVectorLayer</a>,
             
+              <a href="../../../com/carto/layers/HillshadeRasterTileLayer.html">HillshadeRasterTileLayer</a>,
+            
               <a href="../../../com/carto/layers/RasterTileLayer.html">RasterTileLayer</a>,
             
               <a href="../../../com/carto/layers/TorqueTileLayer.html">TorqueTileLayer</a>,
@@ -477,14 +483,18 @@ Summary:
               <td class="jd-descrcol" width="100%">A vector layer that supports editing its contents.&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../com/carto/layers/HillshadeRasterTileLayer.html">HillshadeRasterTileLayer</a></td>
+              <td class="jd-descrcol" width="100%">A tile layer that displays an overlay hillshading.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/layers/RasterTileLayer.html">RasterTileLayer</a></td>
               <td class="jd-descrcol" width="100%">A tile layer where each tile is a bitmap.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/layers/TorqueTileLayer.html">TorqueTileLayer</a></td>
               <td class="jd-descrcol" width="100%">A vector tile layer for rendering time-based animated point clouds.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../com/carto/layers/VectorTileLayer.html">VectorTileLayer</a></td>
               <td class="jd-descrcol" width="100%">A tile layer where each tile is a bitmap.&nbsp;</td>
           </tr>
@@ -562,6 +572,24 @@ Summary:
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#containsMetaDataKey(java.lang.String)">containsMetaDataKey</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns true if the specified key exists in the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
             synchronized
             
             
@@ -575,7 +603,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -593,7 +621,43 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaData()">getMetaData</a></span>()
+        
+        <div class="jd-descrdiv">Returns a copy of the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaDataElement(java.lang.String)">getMetaDataElement</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns a layer meta data element corresponding to the key.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -611,7 +675,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -629,7 +693,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -647,7 +711,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -665,7 +729,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -683,7 +747,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -701,7 +765,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -719,7 +783,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -737,7 +801,43 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaData(com.carto.core.StringVariantMap)">setMetaData</a></span>(<a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a> metaData)
+        
+        <div class="jd-descrdiv">Sets a new meta data map for the layer.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaDataElement(java.lang.String, com.carto.core.Variant)">setMetaDataElement</a></span>(String key, <a href="../../../com/carto/core/Variant.html">Variant</a> element)
+        
+        <div class="jd-descrdiv">Adds a new key-value pair to the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -755,7 +855,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -773,7 +873,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -791,7 +891,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -809,7 +909,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -827,7 +927,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1070,6 +1170,51 @@ From class
 
 
 
+<a id="containsMetaDataKey(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">containsMetaDataKey</span>
+      <span class="normal">(String key)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns true if the specified key exists in the layer meta data map.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>key</th>
+          <td>The key to check.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if the meta data element exists.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="delete()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1139,6 +1284,87 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>True when objects are equal, false otherwise.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getMetaData()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a>
+      </span>
+      <span class="sympad">getMetaData</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns a copy of the layer meta data map. The changes you make to this map are NOT reflected in the actual meta data of the layer.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>A copy of the layer meta data map.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getMetaDataElement(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/Variant.html">Variant</a>
+      </span>
+      <span class="sympad">getMetaDataElement</span>
+      <span class="normal">(String key)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns a layer meta data element corresponding to the key. If no value is found null variant is returned.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>key</th>
+          <td>The key to use.<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The value corresponding to the key from the meta data map. If the key does not exist, empty variant is returned.
 </li></ul>
   </div>
 
@@ -1429,6 +1655,93 @@ From class
         <tr>
           <th>delay</th>
           <td>The new culling delay in milliseconds.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setMetaData(com.carto.core.StringVariantMap)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMetaData</span>
+      <span class="normal">(<a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a> metaData)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets a new meta data map for the layer. Old meta data values will be lost.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>metaData</th>
+          <td>The new meta data map for this layer.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setMetaDataElement(java.lang.String, com.carto.core.Variant)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMetaDataElement</span>
+      <span class="normal">(String key, <a href="../../../com/carto/core/Variant.html">Variant</a> element)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Adds a new key-value pair to the layer meta data map. If the key already exists in the map,<br>
+ it's value will be replaced by the new value.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>key</th>
+          <td>The new key.<br></td>
+        </tr>
+        <tr>
+          <th>element</th>
+          <td>The new value.
 </td>
         </tr>
       </table>

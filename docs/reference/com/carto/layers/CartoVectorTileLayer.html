@@ -200,6 +200,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusteredVectorLayer.html">ClusteredVectorLayer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterElementBuilder.html">ClusterElementBuilder</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/EditableVectorLayer.html">EditableVectorLayer</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/HillshadeRasterTileLayer.html">HillshadeRasterTileLayer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/Layer.html">Layer</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/LayerVector.html">LayerVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/NMLModelLODTreeEventListener.html">NMLModelLODTreeEventListener</a></li>
@@ -222,8 +223,11 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/CartoBaseMapStyle.html">CartoBaseMapStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/ClusterBuilderMode.html">ClusterBuilderMode</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/layers/RasterTileFilterMode.html">RasterTileFilterMode</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/TileSubstitutionPolicy.html">TileSubstitutionPolicy</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragPointStyle.html">VectorElementDragPointStyle</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/layers/VectorElementDragResult.html">VectorElementDragResult</a></li>
@@ -680,6 +684,24 @@ Summary:
             
             
             
+            <a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/CartoVectorTileLayer.html#getBuildingRenderMode()">getBuildingRenderMode</a></span>()
+        
+        <div class="jd-descrdiv">Returns the current render mode for buildings.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             String
         </td>
         <td class="jd-linkcol" width="100%">
@@ -691,7 +713,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -709,7 +731,43 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/CartoVectorTileLayer.html#getPOIRenderMode()">getPOIRenderMode</a></span>()
+        
+        <div class="jd-descrdiv">Returns the current render mode for Point-Of-Interest icons.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/CartoVectorTileLayer.html#setBuildingRenderMode(com.carto.layers.CartoBaseMapBuildingRenderMode)">setBuildingRenderMode</a></span>(<a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a> renderMode)
+        
+        <div class="jd-descrdiv">Sets the current render mode for buildings.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -727,7 +785,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -740,6 +798,24 @@ Summary:
         <span class="sympad"><a href="../../../com/carto/layers/CartoVectorTileLayer.html#setLanguage(java.lang.String)">setLanguage</a></span>(String lang)
         
         <div class="jd-descrdiv">Sets the current map language.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/CartoVectorTileLayer.html#setPOIRenderMode(com.carto.layers.CartoBaseMapPOIRenderMode)">setPOIRenderMode</a></span>(<a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a> renderMode)
+        
+        <div class="jd-descrdiv">Sets the current render mode for Point-Of-Interest icons.</div>
   
   </td></tr>
 
@@ -820,6 +896,24 @@ From class
             
             
             
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#getClickRadius()">getClickRadius</a></span>()
+        
+        <div class="jd-descrdiv">Returns the click radius of vector tile features.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../com/carto/layers/VectorTileRenderOrder.html">VectorTileRenderOrder</a>
         </td>
         <td class="jd-linkcol" width="100%">
@@ -831,7 +925,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -849,7 +943,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -867,7 +961,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -885,7 +979,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -898,6 +992,24 @@ From class
         <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#setBuildingRenderOrder(com.carto.layers.VectorTileRenderOrder)">setBuildingRenderOrder</a></span>(<a href="../../../com/carto/layers/VectorTileRenderOrder.html">VectorTileRenderOrder</a> renderOrder)
         
         <div class="jd-descrdiv">Sets the current display order of the buildings.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/VectorTileLayer.html#setClickRadius(float)">setClickRadius</a></span>(float radius)
+        
+        <div class="jd-descrdiv">Sets the click radius of vector tile features.</div>
   
   </td></tr>
 
@@ -1496,6 +1608,24 @@ From class
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#containsMetaDataKey(java.lang.String)">containsMetaDataKey</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns true if the specified key exists in the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
             synchronized
             
             
@@ -1509,7 +1639,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1527,7 +1657,43 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaData()">getMetaData</a></span>()
+        
+        <div class="jd-descrdiv">Returns a copy of the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#getMetaDataElement(java.lang.String)">getMetaDataElement</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns a layer meta data element corresponding to the key.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1545,7 +1711,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1563,7 +1729,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1581,7 +1747,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1599,7 +1765,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1617,7 +1783,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1635,7 +1801,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1653,7 +1819,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1671,7 +1837,43 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaData(com.carto.core.StringVariantMap)">setMetaData</a></span>(<a href="../../../com/carto/core/StringVariantMap.html">StringVariantMap</a> metaData)
+        
+        <div class="jd-descrdiv">Sets a new meta data map for the layer.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/layers/Layer.html#setMetaDataElement(java.lang.String, com.carto.core.Variant)">setMetaDataElement</a></span>(String key, <a href="../../../com/carto/core/Variant.html">Variant</a> element)
+        
+        <div class="jd-descrdiv">Adds a new key-value pair to the layer meta data map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1689,7 +1891,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1707,7 +1909,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1725,7 +1927,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1743,7 +1945,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1761,7 +1963,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2314,6 +2516,42 @@ From class
 </div>
 
 
+<a id="getBuildingRenderMode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a>
+      </span>
+      <span class="sympad">getBuildingRenderMode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the current render mode for buildings.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The current render mode for buildings.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getFallbackLanguage()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2380,6 +2618,83 @@ From class
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>The current language. If the returned string is empty, then 'local' languages are used.
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getPOIRenderMode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a>
+      </span>
+      <span class="sympad">getPOIRenderMode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the current render mode for Point-Of-Interest icons.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The current render mode for for Point-Of-Interest icons.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setBuildingRenderMode(com.carto.layers.CartoBaseMapBuildingRenderMode)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setBuildingRenderMode</span>
+      <span class="normal">(<a href="../../../com/carto/layers/CartoBaseMapBuildingRenderMode.html">CartoBaseMapBuildingRenderMode</a> renderMode)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the current render mode for buildings.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>renderMode</th>
+          <td>The new render mode for buildings.
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2459,6 +2774,47 @@ From class
         <tr>
           <th>lang</th>
           <td>The new language to use. The default is local language (empty string).
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setPOIRenderMode(com.carto.layers.CartoBaseMapPOIRenderMode)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPOIRenderMode</span>
+      <span class="normal">(<a href="../../../com/carto/layers/CartoBaseMapPOIRenderMode.html">CartoBaseMapPOIRenderMode</a> renderMode)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the current render mode for Point-Of-Interest icons.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>renderMode</th>
+          <td>The new render mode for Point-Of-Interest icons.
 </td>
         </tr>
       </table>

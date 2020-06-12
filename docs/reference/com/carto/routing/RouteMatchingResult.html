@@ -196,6 +196,11 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdge.html">RouteMatchingEdge</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPoint.html">RouteMatchingPoint</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
@@ -204,6 +209,7 @@
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
@@ -211,6 +217,7 @@
               
     <li><h2>Enums</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a></li>
       </ul>
     </li>
@@ -424,7 +431,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingResult.html#RouteMatchingResult(com.carto.projections.Projection, com.carto.core.MapPosVector)">RouteMatchingResult</a></span>(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/core/MapPosVector.html">MapPosVector</a> points)
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingResult.html#RouteMatchingResult(com.carto.projections.Projection, com.carto.routing.RouteMatchingPointVector, com.carto.routing.RouteMatchingEdgeVector)">RouteMatchingResult</a></span>(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a> matchingPoints, <a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a> matchingEdges)
         
         <div class="jd-descrdiv">Constructs a new RouteMatchingResult instance from projection and matched points.</div>
   
@@ -474,6 +481,42 @@ Summary:
         <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingResult.html#equals(java.lang.Object)">equals</a></span>(Object obj)
         
         <div class="jd-descrdiv">Checks if this object is equal to the specified object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingResult.html#getMatchingEdges()">getMatchingEdges</a></span>()
+        
+        <div class="jd-descrdiv">Returns the list with details of the matched edges.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingResult.html#getMatchingPoints()">getMatchingPoints</a></span>()
+        
+        <div class="jd-descrdiv">Returns the list with details of the matched points.</div>
   
   </td></tr>
 
@@ -768,7 +811,7 @@ From class
 
 
 
-<a id="RouteMatchingResult(com.carto.projections.Projection, com.carto.core.MapPosVector)"></a>
+<a id="RouteMatchingResult(com.carto.projections.Projection, com.carto.routing.RouteMatchingPointVector, com.carto.routing.RouteMatchingEdgeVector)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -781,7 +824,7 @@ From class
         
       </span>
       <span class="sympad">RouteMatchingResult</span>
-      <span class="normal">(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/core/MapPosVector.html">MapPosVector</a> points)</span>
+      <span class="normal">(<a href="../../../com/carto/projections/Projection.html">Projection</a> projection, <a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a> matchingPoints, <a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a> matchingEdges)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -802,8 +845,12 @@ From class
           <td>The projection of the routing result (same as the request).<br></td>
         </tr>
         <tr>
-          <th>points</th>
-          <td>The points corresponding to the requested points snapped to road network.
+          <th>matchingPoints</th>
+          <td>The matched points corresponding to the requested points snapped to road network.<br></td>
+        </tr>
+        <tr>
+          <th>matchingEdges</th>
+          <td>The matched edges that are referenced through matching points.
 </td>
         </tr>
       </table>
@@ -897,6 +944,78 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>True when objects are equal, false otherwise.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getMatchingEdges()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a>
+      </span>
+      <span class="sympad">getMatchingEdges</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the list with details of the matched edges.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The list with details of the matched edges.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getMatchingPoints()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a>
+      </span>
+      <span class="sympad">getMatchingPoints</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the list with details of the matched points.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The list with details of the matched points.
 </li></ul>
   </div>
 
