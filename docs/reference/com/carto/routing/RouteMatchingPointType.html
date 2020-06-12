@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
 <title>
 
-  Frustum
+  RouteMatchingPointType
 
 
 | CARTO Mobile SDK
@@ -156,7 +156,7 @@
   <a href="../../../com/carto/geocoding/package-summary.html">com.carto.geocoding</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/geometry/package-summary.html">com.carto.geometry</a></li>
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../com/carto/graphics/package-summary.html">com.carto.graphics</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/layers/package-summary.html">com.carto.layers</a></li>
@@ -168,7 +168,7 @@
   <a href="../../../com/carto/renderers/package-summary.html">com.carto.renderers</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/renderers/components/package-summary.html">com.carto.renderers.components</a></li>
-    <li class="api apilevel-">
+    <li class="selected api apilevel-">
   <a href="../../../com/carto/routing/package-summary.html">com.carto.routing</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/search/package-summary.html">com.carto.search</a></li>
@@ -193,17 +193,32 @@
               
     <li><h2>Classes</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../com/carto/graphics/Bitmap.html">Bitmap</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/graphics/Color.html">Color</a></li>
-          <li class="selected api apilevel-"><a href="../../../com/carto/graphics/Frustum.html">Frustum</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/graphics/ViewState.html">ViewState</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/CartoOnlineRoutingService.html">CartoOnlineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/OSRMOfflineRoutingService.html">OSRMOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerRoutingService.html">PackageManagerRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/PackageManagerValhallaRoutingService.html">PackageManagerValhallaRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdge.html">RouteMatchingEdge</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingEdgeVector.html">RouteMatchingEdgeVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPoint.html">RouteMatchingPoint</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointVector.html">RouteMatchingPointVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstruction.html">RoutingInstruction</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingInstructionVector.html">RoutingInstructionVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingRequest.html">RoutingRequest</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingResult.html">RoutingResult</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingService.html">RoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html">SGREOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOfflineRoutingService.html">ValhallaOfflineRoutingService</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/ValhallaOnlineRoutingService.html">ValhallaOnlineRoutingService</a></li>
       </ul>
     </li>
               
               
     <li><h2>Enums</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../com/carto/graphics/ColorFormat.html">ColorFormat</a></li>
+          <li class="selected api apilevel-"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/routing/RoutingAction.html">RoutingAction</a></li>
       </ul>
     </li>
               
@@ -252,6 +267,25 @@
   
   
 
+  
+   
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
 
 <div class="sum-details-links">
 
@@ -261,6 +295,8 @@ Summary:
 
 
 
+  <a href="#enumconstants">Enums</a>
+  
 
 
 
@@ -268,7 +304,8 @@ Summary:
 
 
 
-  <a href="#pubmethods">Methods</a>
+
+  &#124; <a href="#pubmethods">Methods</a>
   
 
 
@@ -294,15 +331,19 @@ Summary:
 <div id="jd-header">
     public
      
-     
+    final 
     
-    class
-<h1>Frustum</h1>
+    enum
+<h1>RouteMatchingPointType</h1>
 
 
 
   
-    extends Object<br/>
+  
+  
+
+  
+    extends Enum&lt;E&nbsp;extends&nbsp;Enum&lt;E&gt;&gt;<br/>
   
   
   
@@ -322,7 +363,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -330,7 +371,17 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.carto.graphics.Frustum</td>
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Enum&lt;E&nbsp;extends&nbsp;java.lang.Enum&lt;E&gt;&gt;</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.carto.routing.RouteMatchingPointType</td>
     </tr>
     
 
@@ -346,7 +397,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>A 3D frustum defined by 6 clipping planes.
+<p>Route matching point type.
 </p>
 
 
@@ -385,6 +436,34 @@ Summary:
 
 
 
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="enumconstants" class="jd-sumtable"><tr><th colspan="12">Enum Values</th></tr>
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTE_MATCHING_POINT_INTERPOLATED&nbsp;</td>
+        <td class="jd-descrcol" width="100%">The point was interpolated.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTE_MATCHING_POINT_MATCHED&nbsp;</td>
+        <td class="jd-descrcol" width="100%">The point was matched.&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-descrcol"><a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>&nbsp;</td>
+        <td class="jd-linkcol">ROUTE_MATCHING_POINT_UNMATCHED&nbsp;</td>
+        <td class="jd-descrcol" width="100%">The point was unmatched.&nbsp;</td>
+    </tr>
+    
+    
+</table>
+
+
 
 
 
@@ -412,48 +491,12 @@ Summary:
             
             
             
+            static
             
-            
-            boolean
+            <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#circleIntersects(com.carto.core.MapPos, double)">circleIntersects</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> center, double radius)
-        
-        <div class="jd-descrdiv">Tests if a circle on the z = 0 plane inersects with the frustum.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#cuboidIntersects(com.carto.core.MapBounds)">cuboidIntersects</a></span>(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> cuboid)
-        
-        <div class="jd-descrdiv">Tests if an axis aligned cuboid inersects with the frustum.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            synchronized
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#delete()">delete</a></span>()
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingPointType.html#swigToEnum(int)">swigToEnum</a></span>(int swigValue)
         
   </td></tr>
 
@@ -463,52 +506,14 @@ Summary:
         <td class="jd-typecol">
             
             
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#equals(java.lang.Object)">equals</a></span>(Object obj)
-        
-        <div class="jd-descrdiv">Checks if this object is equal to the specified object.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
+            final
             
             
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#hashCode()">hashCode</a></span>()
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingPointType.html#swigValue()">swigValue</a></span>()
         
-        <div class="jd-descrdiv">Returns the hash value of this object.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#pointInside(com.carto.core.MapPos)">pointInside</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> point)
-        
-        <div class="jd-descrdiv">Tests if a point is inside with the frustum.</div>
-  
   </td></tr>
 
 
@@ -518,15 +523,13 @@ Summary:
             
             
             
+            static
             
-            
-            boolean
+            <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#sphereIntersects(com.carto.core.MapPos, double)">sphereIntersects</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> center, double radius)
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingPointType.html#valueOf(java.lang.String)">valueOf</a></span>(String name)
         
-        <div class="jd-descrdiv">Tests if a sphere inersects with the frustum.</div>
-  
   </td></tr>
 
 
@@ -535,16 +538,14 @@ Summary:
         <td class="jd-typecol">
             
             
+            final
+            static
             
-            
-            
-            boolean
+            <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType[]</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/graphics/Frustum.html#squareIntersects(com.carto.core.MapBounds)">squareIntersects</a></span>(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> square)
+        <span class="sympad"><a href="../../../com/carto/routing/RouteMatchingPointType.html#values()">values</a></span>()
         
-        <div class="jd-descrdiv">Tests if an axis aligned square on the z = 0 plane inersects with the frustum.</div>
-  
   </td></tr>
 
 
@@ -561,6 +562,176 @@ Summary:
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Enum" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Enum-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Enum
+
+<div id="inherited-methods-java.lang.Enum">
+  <div id="inherited-methods-java.lang.Enum-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Enum-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">compareTo</span>(E arg0)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">compareTo</span>(Object arg0)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">equals</span>(Object arg0)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            Class&lt;E&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">getDeclaringClass</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">hashCode</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">name</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">ordinal</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">toString</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            static
+            &lt;T&nbsp;extends&nbsp;Enum&lt;T&gt;&gt;
+            T
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">valueOf</span>(Class&lt;T&gt; arg0, String arg1)
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -732,6 +903,50 @@ From class
 </td></tr>
 
 
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Comparable" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Comparable-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  java.lang.Comparable
+
+<div id="inherited-methods-java.lang.Comparable">
+  <div id="inherited-methods-java.lang.Comparable-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Comparable-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">compareTo</span>(T arg0)
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
 </table>
 
 
@@ -750,6 +965,106 @@ From class
 
 
 <!-- Enum Values -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2>Enum Values</h2>
+
+
+
+
+<a id="ROUTE_MATCHING_POINT_INTERPOLATED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
+      </span>
+        ROUTE_MATCHING_POINT_INTERPOLATED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The point was interpolated.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTE_MATCHING_POINT_MATCHED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
+      </span>
+        ROUTE_MATCHING_POINT_MATCHED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The point was matched.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="ROUTE_MATCHING_POINT_UNMATCHED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
+      </span>
+        ROUTE_MATCHING_POINT_UNMATCHED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The point was unmatched.
+</p></div>
+
+    
+    </div>
+</div>
+
+
 
 
 <!-- Constants -->
@@ -774,20 +1089,20 @@ From class
 
 
 
-<a id="circleIntersects(com.carto.core.MapPos, double)"></a>
+<a id="swigToEnum(int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         public 
+        static 
          
          
          
-         
-        boolean
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
       </span>
-      <span class="sympad">circleIntersects</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> center, double radius)</span>
+      <span class="sympad">swigToEnum</span>
+      <span class="normal">(int swigValue)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -799,88 +1114,25 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Tests if a circle on the z = 0 plane inersects with the frustum.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>center</th>
-          <td>The center position of the circle.<br></td>
-        </tr>
-        <tr>
-          <th>radius</th>
-          <td>The radius of the circle.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True if the circle intersects with the frustum.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
 
 
-<a id="cuboidIntersects(com.carto.core.MapBounds)"></a>
+<a id="swigValue()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         public 
          
+        final 
          
          
-         
-        boolean
+        int
       </span>
-      <span class="sympad">cuboidIntersects</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> cuboid)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Tests if an axis aligned cuboid inersects with the frustum.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>cuboid</th>
-          <td>The axis aligned cuboid.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True if the cuboid intersects with the frustum.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="delete()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-        synchronized 
-        void
-      </span>
-      <span class="sympad">delete</span>
+      <span class="sympad">swigValue</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -899,20 +1151,20 @@ From class
 </div>
 
 
-<a id="equals(java.lang.Object)"></a>
+<a id="valueOf(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         public 
+        static 
          
          
          
-         
-        boolean
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType</a>
       </span>
-      <span class="sympad">equals</span>
-      <span class="normal">(Object obj)</span>
+      <span class="sympad">valueOf</span>
+      <span class="normal">(String name)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -924,39 +1176,25 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Checks if this object is equal to the specified object.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>obj</th>
-          <td>The reference object.</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True when objects are equal, false otherwise.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
 
 
-<a id="hashCode()"></a>
+<a id="values()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         public 
+        static 
+        final 
          
          
-         
-         
-        int
+        <a href="../../../com/carto/routing/RouteMatchingPointType.html">RouteMatchingPointType[]</a>
       </span>
-      <span class="sympad">hashCode</span>
+      <span class="sympad">values</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -969,151 +1207,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the hash value of this object.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The hash value of this object.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="pointInside(com.carto.core.MapPos)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">pointInside</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> point)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Tests if a point is inside with the frustum.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>point</th>
-          <td>The point to be tested.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True if the point lies within the frustum.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="sphereIntersects(com.carto.core.MapPos, double)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">sphereIntersects</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> center, double radius)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Tests if a sphere inersects with the frustum.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>center</th>
-          <td>The center position of the sphere.<br></td>
-        </tr>
-        <tr>
-          <th>radius</th>
-          <td>The radius of the sphere.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True if the sphere intersects with the frustum.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="squareIntersects(com.carto.core.MapBounds)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">squareIntersects</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> square)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Tests if an axis aligned square on the z = 0 plane inersects with the frustum.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>square</th>
-          <td>The axis aligned square.<br></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>True if the square intersects with the frustum.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

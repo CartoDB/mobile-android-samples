@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
 <title>
 
-  CartoVisBuilder
+  VectorTileFeatureBuilder
 
 
 | CARTO Mobile SDK
@@ -154,7 +154,7 @@
   <a href="../../../com/carto/datasources/components/package-summary.html">com.carto.datasources.components</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/geocoding/package-summary.html">com.carto.geocoding</a></li>
-    <li class="api apilevel-">
+    <li class="selected api apilevel-">
   <a href="../../../com/carto/geometry/package-summary.html">com.carto.geometry</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/graphics/package-summary.html">com.carto.graphics</a></li>
@@ -172,7 +172,7 @@
   <a href="../../../com/carto/routing/package-summary.html">com.carto.routing</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/search/package-summary.html">com.carto.search</a></li>
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../com/carto/services/package-summary.html">com.carto.services</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/styles/package-summary.html">com.carto.styles</a></li>
@@ -193,10 +193,34 @@
               
     <li><h2>Classes</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../com/carto/services/CartoMapsService.html">CartoMapsService</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/services/CartoSQLService.html">CartoSQLService</a></li>
-          <li class="selected api apilevel-"><a href="../../../com/carto/services/CartoVisBuilder.html">CartoVisBuilder</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/services/CartoVisLoader.html">CartoVisLoader</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/DouglasPeuckerGeometrySimplifier.html">DouglasPeuckerGeometrySimplifier</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/Feature.html">Feature</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/FeatureBuilder.html">FeatureBuilder</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/FeatureCollection.html">FeatureCollection</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/FeatureVector.html">FeatureVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/GeoJSONGeometryReader.html">GeoJSONGeometryReader</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/GeoJSONGeometryWriter.html">GeoJSONGeometryWriter</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/Geometry.html">Geometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/GeometrySimplifier.html">GeometrySimplifier</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/GeometryVector.html">GeometryVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/LineGeometry.html">LineGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/LineGeometryVector.html">LineGeometryVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/MultiGeometry.html">MultiGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/MultiLineGeometry.html">MultiLineGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/MultiPointGeometry.html">MultiPointGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/MultiPolygonGeometry.html">MultiPolygonGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/PointGeometry.html">PointGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/PointGeometryVector.html">PointGeometryVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/PolygonGeometry.html">PolygonGeometry</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/PolygonGeometryVector.html">PolygonGeometryVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/VectorTileFeature.html">VectorTileFeature</a></li>
+          <li class="selected api apilevel-"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html">VectorTileFeatureBuilder</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/VectorTileFeatureCollection.html">VectorTileFeatureCollection</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/VectorTileFeatureVector.html">VectorTileFeatureVector</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/WKBGeometryReader.html">WKBGeometryReader</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/WKBGeometryWriter.html">WKBGeometryWriter</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/WKTGeometryReader.html">WKTGeometryReader</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/geometry/WKTGeometryWriter.html">WKTGeometryWriter</a></li>
       </ul>
     </li>
               
@@ -239,6 +263,13 @@
 <div id="api-info-block">
 
 
+
+  
+   
+  
+  
+  
+  
 
   
    
@@ -295,12 +326,16 @@ Summary:
      
     
     class
-<h1>CartoVisBuilder</h1>
+<h1>VectorTileFeatureBuilder</h1>
 
 
 
   
-    extends Object<br/>
+  
+  
+
+  
+    extends <a href="../../../com/carto/geometry/FeatureBuilder.html">FeatureBuilder</a><br/>
   
   
   
@@ -320,7 +355,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -328,7 +363,17 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.carto.services.CartoVisBuilder</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../com/carto/geometry/FeatureBuilder.html">com.carto.geometry.FeatureBuilder</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.carto.geometry.VectorTileFeatureBuilder</td>
     </tr>
     
 
@@ -344,10 +389,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>A callback interface for handling VisJSON directives.<br>
- The callback can be used to change the default VisJSON behaviour<br>
- by ignoring or modifying configured layers or map center position,<br>
- for example.
+<p>A vector tile feature consisting of id, layer, geometry and properties.
 </p>
 
 
@@ -414,8 +456,10 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#CartoVisBuilder()">CartoVisBuilder</a></span>()
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#VectorTileFeatureBuilder()">VectorTileFeatureBuilder</a></span>()
         
+        <div class="jd-descrdiv">Constructs a VectorTileFeatureBuilder with empty state.</div>
+  
   </td></tr>
 
 
@@ -440,12 +484,12 @@ Summary:
             
             
             
-            void
+            <a href="../../../com/carto/geometry/VectorTileFeature.html">VectorTileFeature</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#addLayer(com.carto.layers.Layer, com.carto.core.Variant)">addLayer</a></span>(<a href="../../../com/carto/layers/Layer.html">Layer</a> layer, <a href="../../../com/carto/core/Variant.html">Variant</a> attributes)
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#buildVectorTileFeature()">buildVectorTileFeature</a></span>()
         
-        <div class="jd-descrdiv">Called when a layer should be added to the map.</div>
+        <div class="jd-descrdiv">Builds a new vector tile feature from the state.</div>
   
   </td></tr>
 
@@ -461,7 +505,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#delete()">delete</a></span>()
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#delete()">delete</a></span>()
         
   </td></tr>
 
@@ -474,12 +518,84 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#setBounds(com.carto.core.MapBounds)">setBounds</a></span>(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> mapBounds)
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#equals(java.lang.Object)">equals</a></span>(Object obj)
         
-        <div class="jd-descrdiv">Called when the map should use the specified bounds.</div>
+        <div class="jd-descrdiv">Checks if this object is equal to the specified object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#getId()">getId</a></span>()
+        
+        <div class="jd-descrdiv">Returns the id of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#getLayerName()">getLayerName</a></span>()
+        
+        <div class="jd-descrdiv">Returns the layer name of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/MapTile.html">MapTile</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#getMapTile()">getMapTile</a></span>()
+        
+        <div class="jd-descrdiv">Returns the map tile of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#hashCode()">hashCode</a></span>()
+        
+        <div class="jd-descrdiv">Returns the hash value of this object.</div>
   
   </td></tr>
 
@@ -495,9 +611,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#setCenter(com.carto.core.MapPos)">setCenter</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> mapPos)
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#setId(long)">setId</a></span>(long id)
         
-        <div class="jd-descrdiv">Called when the map should be centered at given position.</div>
+        <div class="jd-descrdiv">Sets the id of the builder.</div>
   
   </td></tr>
 
@@ -513,9 +629,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#setDescription(com.carto.core.Variant)">setDescription</a></span>(<a href="../../../com/carto/core/Variant.html">Variant</a> descriptionInfo)
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#setLayerName(java.lang.String)">setLayerName</a></span>(String layerName)
         
-        <div class="jd-descrdiv">Called when the map should be augmented with decription info.</div>
+        <div class="jd-descrdiv">Sets the layer name of the builder.</div>
   
   </td></tr>
 
@@ -531,9 +647,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/services/CartoVisBuilder.html#setZoom(float)">setZoom</a></span>(float zoom)
+        <span class="sympad"><a href="../../../com/carto/geometry/VectorTileFeatureBuilder.html#setMapTile(com.carto.core.MapTile)">setMapTile</a></span>(<a href="../../../com/carto/core/MapTile.html">MapTile</a> mapTile)
         
-        <div class="jd-descrdiv">Called when the map should be zoomed to the specified level.</div>
+        <div class="jd-descrdiv">Sets the map tile of the builder.</div>
   
   </td></tr>
 
@@ -551,6 +667,174 @@ Summary:
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.carto.geometry.FeatureBuilder" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.carto.geometry.FeatureBuilder-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../com/carto/geometry/FeatureBuilder.html">com.carto.geometry.FeatureBuilder</a>
+
+<div id="inherited-methods-com.carto.geometry.FeatureBuilder">
+  <div id="inherited-methods-com.carto.geometry.FeatureBuilder-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.carto.geometry.FeatureBuilder-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/geometry/Feature.html">Feature</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#buildFeature()">buildFeature</a></span>()
+        
+        <div class="jd-descrdiv">Builds a new feature from the state.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#delete()">delete</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#equals(java.lang.Object)">equals</a></span>(Object obj)
+        
+        <div class="jd-descrdiv">Checks if this object is equal to the specified object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/geometry/Geometry.html">Geometry</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#getGeometry()">getGeometry</a></span>()
+        
+        <div class="jd-descrdiv">Returns the geometry of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/Variant.html">Variant</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#getPropertyValue(java.lang.String)">getPropertyValue</a></span>(String key)
+        
+        <div class="jd-descrdiv">Returns a specified property value of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#hashCode()">hashCode</a></span>()
+        
+        <div class="jd-descrdiv">Returns the hash value of this object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#setGeometry(com.carto.geometry.Geometry)">setGeometry</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry)
+        
+        <div class="jd-descrdiv">Sets the geometry of the builder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/geometry/FeatureBuilder.html#setPropertyValue(java.lang.String, com.carto.core.Variant)">setPropertyValue</a></span>(String key, <a href="../../../com/carto/core/Variant.html">Variant</a> value)
+        
+        <div class="jd-descrdiv">Sets an individual property value of the builder.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -756,7 +1040,7 @@ From class
 
 
 
-<a id="CartoVisBuilder()"></a>
+<a id="VectorTileFeatureBuilder()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -768,7 +1052,7 @@ From class
          
         
       </span>
-      <span class="sympad">CartoVisBuilder</span>
+      <span class="sympad">VectorTileFeatureBuilder</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -781,7 +1065,8 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Constructs a VectorTileFeatureBuilder with empty state.
+</p></div>
 
     </div>
 </div>
@@ -802,7 +1087,7 @@ From class
 
 
 
-<a id="addLayer(com.carto.layers.Layer, com.carto.core.Variant)"></a>
+<a id="buildVectorTileFeature()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -812,10 +1097,10 @@ From class
          
          
          
-        void
+        <a href="../../../com/carto/geometry/VectorTileFeature.html">VectorTileFeature</a>
       </span>
-      <span class="sympad">addLayer</span>
-      <span class="normal">(<a href="../../../com/carto/layers/Layer.html">Layer</a> layer, <a href="../../../com/carto/core/Variant.html">Variant</a> attributes)</span>
+      <span class="sympad">buildVectorTileFeature</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -827,20 +1112,11 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Called when a layer should be added to the map.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Builds a new vector tile feature from the state.<br></p></div>
   <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>layer</th>
-          <td>The layer to be added. <br></td>
-        </tr>
-        <tr>
-          <th>attributes</th>
-          <td>The additional layer attributes. For example, info window and layer legend are part of the attributes.
-</td>
-        </tr>
-      </table>
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>A new vector tile feature based on the builder state. Can be null if the geometry is not specified.
+</li></ul>
   </div>
 
     </div>
@@ -878,7 +1154,7 @@ From class
 </div>
 
 
-<a id="setBounds(com.carto.core.MapBounds)"></a>
+<a id="equals(java.lang.Object)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -888,10 +1164,10 @@ From class
          
          
          
-        void
+        boolean
       </span>
-      <span class="sympad">setBounds</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> mapBounds)</span>
+      <span class="sympad">equals</span>
+      <span class="normal">(Object obj)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -903,13 +1179,202 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Called when the map should use the specified bounds.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Checks if this object is equal to the specified object.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>mapBounds</th>
-          <td>The map bounds in WGS84 coordinates.
+          <th>obj</th>
+          <td>The reference object.</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True when objects are equal, false otherwise.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getId()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the id of the builder.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The id of the builder.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getLayerName()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getLayerName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the layer name of the builder.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The layer name of the builder.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getMapTile()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../com/carto/core/MapTile.html">MapTile</a>
+      </span>
+      <span class="sympad">getMapTile</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the map tile of the builder.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The map tile of the builder.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="hashCode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">hashCode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the hash value of this object.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The hash value of this object.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setId(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setId</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the id of the builder.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>id</th>
+          <td>The id of the builder.
 </td>
         </tr>
       </table>
@@ -919,7 +1384,7 @@ From class
 </div>
 
 
-<a id="setCenter(com.carto.core.MapPos)"></a>
+<a id="setLayerName(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -931,8 +1396,8 @@ From class
          
         void
       </span>
-      <span class="sympad">setCenter</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> mapPos)</span>
+      <span class="sympad">setLayerName</span>
+      <span class="normal">(String layerName)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -944,13 +1409,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Called when the map should be centered at given position.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the layer name of the builder.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>mapPos</th>
-          <td>The center position in WGS84 coordinates (longitude-latitude).
+          <th>layerName</th>
+          <td>The layer name of the builder.
 </td>
         </tr>
       </table>
@@ -960,7 +1425,7 @@ From class
 </div>
 
 
-<a id="setDescription(com.carto.core.Variant)"></a>
+<a id="setMapTile(com.carto.core.MapTile)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -972,8 +1437,8 @@ From class
          
         void
       </span>
-      <span class="sympad">setDescription</span>
-      <span class="normal">(<a href="../../../com/carto/core/Variant.html">Variant</a> descriptionInfo)</span>
+      <span class="sympad">setMapTile</span>
+      <span class="normal">(<a href="../../../com/carto/core/MapTile.html">MapTile</a> mapTile)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -985,56 +1450,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Called when the map should be augmented with decription info.<br>
- The description info does not have a formal structure and is<br>
- basically a JSON value encoded as a Variant.<br></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the map tile of the builder.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>descriptionInfo</th>
-          <td>The description variant.
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="setZoom(float)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setZoom</span>
-      <span class="normal">(float zoom)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Called when the map should be zoomed to the specified level.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>zoom</th>
-          <td>The zoom level.
+          <th>mapTile</th>
+          <td>The map tile of the builder.
 </td>
         </tr>
       </table>
