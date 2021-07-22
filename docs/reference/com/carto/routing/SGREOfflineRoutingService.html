@@ -551,12 +551,48 @@ Summary:
             
             
             
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html#getRoutingParameter(java.lang.String)">getRoutingParameter</a></span>(String param)
+        
+        <div class="jd-descrdiv">Returns the value of specified routing parameter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../com/carto/routing/RouteMatchingResult.html">RouteMatchingResult</a>
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html#matchRoute(com.carto.routing.RouteMatchingRequest)">matchRoute</a></span>(<a href="../../../com/carto/routing/RouteMatchingRequest.html">RouteMatchingRequest</a> request)
         
         <div class="jd-descrdiv">Matches specified points to the points on the road network.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html#setProfile(java.lang.String)">setProfile</a></span>(String profile)
+        
+        <div class="jd-descrdiv">Sets the current routing profile.</div>
   
   </td></tr>
 
@@ -572,9 +608,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html#setProfile(java.lang.String)">setProfile</a></span>(String profile)
+        <span class="sympad"><a href="../../../com/carto/routing/SGREOfflineRoutingService.html#setRoutingParameter(java.lang.String, float)">setRoutingParameter</a></span>(String param, float value)
         
-        <div class="jd-descrdiv">Sets the current routing profile.</div>
+        <div class="jd-descrdiv">Sets the value of specified routing parameter.</div>
   
   </td></tr>
 
@@ -1166,6 +1202,51 @@ From class
 </div>
 
 
+<a id="getRoutingParameter(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        float
+      </span>
+      <span class="sympad">getRoutingParameter</span>
+      <span class="normal">(String param)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the value of specified routing parameter.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter. For example "$speed".<br></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The value of the parameter. If the parameter does not exist, NaN is returned.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="matchRoute(com.carto.routing.RouteMatchingRequest)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1251,6 +1332,51 @@ From class
         <tr>
           <th>profile</th>
           <td>The new routing profile. Routing profiles are dependent on specific routing service.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setRoutingParameter(java.lang.String, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRoutingParameter</span>
+      <span class="normal">(String param, float value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of specified routing parameter.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>param</th>
+          <td>The name of the parameter. For example "$speed".<br></td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>The new value of the parameter.
 </td>
         </tr>
       </table>

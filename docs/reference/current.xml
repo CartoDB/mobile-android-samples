@@ -162,26 +162,6 @@
 </parameter>
 </method>
 </class>
-<class name="LicenseManager"
- extends="java.lang.Object"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<method name="delete"
- return="void"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-</class>
 <class name="LicenseManagerListener"
  extends="java.lang.Object"
  abstract="false"
@@ -1262,7 +1242,7 @@
  abstract="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <constructor name="Address"
@@ -5630,6 +5610,51 @@
 </package>
 <package name="com.carto.geocoding"
 >
+<class name="GeocodingAddress"
+ extends="com.carto.core.Address"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="GeocodingAddress"
+ type="com.carto.geocoding.GeocodingAddress"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="GeocodingAddress"
+ type="com.carto.geocoding.GeocodingAddress"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="country" type="java.lang.String">
+</parameter>
+<parameter name="region" type="java.lang.String">
+</parameter>
+<parameter name="county" type="java.lang.String">
+</parameter>
+<parameter name="locality" type="java.lang.String">
+</parameter>
+<parameter name="neighbourhood" type="java.lang.String">
+</parameter>
+<parameter name="street" type="java.lang.String">
+</parameter>
+<parameter name="postcode" type="java.lang.String">
+</parameter>
+<parameter name="houseNumber" type="java.lang.String">
+</parameter>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<parameter name="categories" type="com.carto.core.StringVector">
+</parameter>
+</constructor>
+</class>
 <class name="GeocodingRequest"
  extends="java.lang.Object"
  abstract="false"
@@ -5777,7 +5802,7 @@
 >
 <parameter name="projection" type="com.carto.projections.Projection">
 </parameter>
-<parameter name="address" type="com.carto.core.Address">
+<parameter name="address" type="com.carto.geocoding.GeocodingAddress">
 </parameter>
 <parameter name="rank" type="float">
 </parameter>
@@ -5796,7 +5821,7 @@
 >
 </method>
 <method name="getAddress"
- return="com.carto.core.Address"
+ return="com.carto.geocoding.GeocodingAddress"
  abstract="false"
  native="false"
  synchronized="false"
@@ -8832,17 +8857,6 @@
  visibility="public"
 >
 </method>
-<method name="compressToPng"
- return="com.carto.core.BinaryData"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="deprecated"
- visibility="public"
->
-</method>
 <method name="createFromCompressed"
  return="com.carto.graphics.Bitmap"
  abstract="false"
@@ -10174,6 +10188,28 @@
  visibility="public"
 >
 </method>
+<method name="getHighlightColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getShadowColor"
+ return="com.carto.graphics.Color"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setContrast"
  return="void"
  abstract="false"
@@ -10198,6 +10234,32 @@
  visibility="public"
 >
 <parameter name="heightScale" type="float">
+</parameter>
+</method>
+<method name="setHighlightColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="color" type="com.carto.graphics.Color">
+</parameter>
+</method>
+<method name="setShadowColor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="color" type="com.carto.graphics.Color">
 </parameter>
 </method>
 </class>
@@ -10900,6 +10962,17 @@
  visibility="public"
 >
 </method>
+<method name="getTileBlendingSpeed"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getTileFilterMode"
  return="com.carto.layers.RasterTileFilterMode"
  abstract="false"
@@ -10937,6 +11010,19 @@
 <parameter name="capacityInBytes" type="long">
 </parameter>
 </method>
+<method name="setTileBlendingSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="speed" type="float">
+</parameter>
+</method>
 <method name="setTileFilterMode"
  return="void"
  abstract="false"
@@ -10956,7 +11042,7 @@
  abstract="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <constructor name="SolidLayer"
@@ -12000,8 +12086,30 @@
  visibility="public"
 >
 </method>
+<method name="getLabelBlendingSpeed"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getLabelRenderOrder"
  return="com.carto.layers.VectorTileRenderOrder"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLayerBlendingSpeed"
+ return="float"
  abstract="false"
  native="false"
  synchronized="false"
@@ -12070,6 +12178,19 @@
 <parameter name="radius" type="float">
 </parameter>
 </method>
+<method name="setLabelBlendingSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="speed" type="float">
+</parameter>
+</method>
 <method name="setLabelRenderOrder"
  return="void"
  abstract="false"
@@ -12081,6 +12202,19 @@
  visibility="public"
 >
 <parameter name="renderOrder" type="com.carto.layers.VectorTileRenderOrder">
+</parameter>
+</method>
+<method name="setLayerBlendingSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="speed" type="float">
 </parameter>
 </method>
 <method name="setTileCacheCapacity"
@@ -13620,6 +13754,21 @@
  visibility="public"
 >
 </method>
+<method name="onSurfaceChanged"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
 </class>
 <class name="RendererCaptureListener"
  extends="java.lang.Object"
@@ -13729,7 +13878,7 @@
  abstract="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <constructor name="CartoOnlineRoutingService"
@@ -14661,6 +14810,8 @@
 </parameter>
 <parameter name="streetName" type="java.lang.String">
 </parameter>
+<parameter name="instruction" type="java.lang.String">
+</parameter>
 <parameter name="turnAngle" type="float">
 </parameter>
 <parameter name="azimuth" type="float">
@@ -14668,6 +14819,8 @@
 <parameter name="distance" type="double">
 </parameter>
 <parameter name="time" type="double">
+</parameter>
+<parameter name="geometryTag" type="com.carto.core.Variant">
 </parameter>
 </constructor>
 <method name="delete"
@@ -14716,6 +14869,17 @@
 </method>
 <method name="getGeometryTag"
  return="com.carto.core.Variant"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getInstruction"
+ return="java.lang.String"
  abstract="false"
  native="false"
  synchronized="false"
@@ -14986,17 +15150,6 @@
 <parameter name="param" type="java.lang.String">
 </parameter>
 </method>
-<method name="getGeometryTagFilters"
- return="com.carto.core.VariantVector"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="deprecated"
- visibility="public"
->
-</method>
 <method name="getPointParameter"
  return="com.carto.core.Variant"
  abstract="false"
@@ -15047,19 +15200,6 @@
 <parameter name="param" type="java.lang.String">
 </parameter>
 <parameter name="value" type="com.carto.core.Variant">
-</parameter>
-</method>
-<method name="setGeometryTagFilters"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="deprecated"
- visibility="public"
->
-<parameter name="filters" type="com.carto.core.VariantVector">
 </parameter>
 </method>
 <method name="setPointParameter"
@@ -15281,6 +15421,34 @@
 <exception name="IOException" type="java.io.IOException">
 </exception>
 </constructor>
+<method name="getRoutingParameter"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+</method>
+<method name="setRoutingParameter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="param" type="java.lang.String">
+</parameter>
+<parameter name="value" type="float">
+</parameter>
+</method>
 </class>
 <class name="ValhallaOfflineRoutingService"
  extends="com.carto.routing.RoutingService"
@@ -19547,16 +19715,49 @@
 </method>
 </class>
 <class name="NMLModelStyle"
- extends="com.carto.styles.Style"
+ extends="com.carto.styles.BillboardStyle"
  abstract="false"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
+<method name="getModelAsset"
+ return="com.carto.core.BinaryData"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getOrientationMode"
+ return="com.carto.styles.BillboardOrientation"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getScalingMode"
+ return="com.carto.styles.BillboardScaling"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 </class>
 <class name="NMLModelStyleBuilder"
- extends="com.carto.styles.StyleBuilder"
+ extends="com.carto.styles.BillboardStyleBuilder"
  abstract="false"
  static="false"
  final="false"
@@ -19593,6 +19794,28 @@
  visibility="public"
 >
 </method>
+<method name="getOrientationMode"
+ return="com.carto.styles.BillboardOrientation"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getScalingMode"
+ return="com.carto.styles.BillboardScaling"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setModelAsset"
  return="void"
  abstract="false"
@@ -19604,6 +19827,32 @@
  visibility="public"
 >
 <parameter name="modelAsset" type="com.carto.core.BinaryData">
+</parameter>
+</method>
+<method name="setOrientationMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="orientationMode" type="com.carto.styles.BillboardOrientation">
+</parameter>
+</method>
+<method name="setScalingMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="scalingMode" type="com.carto.styles.BillboardScaling">
 </parameter>
 </method>
 </class>
@@ -20784,6 +21033,460 @@
 >
 </method>
 </class>
+<class name="GLTextureView"
+ extends="TextureView"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="GLTextureView"
+ type="com.carto.ui.GLTextureView"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+</constructor>
+<constructor name="GLTextureView"
+ type="com.carto.ui.GLTextureView"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+<parameter name="attrs" type="android.util.AttributeSet">
+</parameter>
+</constructor>
+<method name="addSurfaceTextureListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="SurfaceTextureListener">
+</parameter>
+</method>
+<method name="getDebugFlags"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPreserveEGLContextOnPause"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getRenderMode"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onLayoutChange"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="v" type="android.view.View">
+</parameter>
+<parameter name="left" type="int">
+</parameter>
+<parameter name="top" type="int">
+</parameter>
+<parameter name="right" type="int">
+</parameter>
+<parameter name="bottom" type="int">
+</parameter>
+<parameter name="oldLeft" type="int">
+</parameter>
+<parameter name="oldTop" type="int">
+</parameter>
+<parameter name="oldRight" type="int">
+</parameter>
+<parameter name="oldBottom" type="int">
+</parameter>
+</method>
+<method name="onPause"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onResume"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onSurfaceTextureAvailable"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="surface" type="SurfaceTexture">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
+<method name="onSurfaceTextureDestroyed"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="surface" type="SurfaceTexture">
+</parameter>
+</method>
+<method name="onSurfaceTextureSizeChanged"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="surface" type="SurfaceTexture">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
+<method name="onSurfaceTextureUpdated"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="surface" type="SurfaceTexture">
+</parameter>
+</method>
+<method name="queueEvent"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="r" type="java.lang.Runnable">
+</parameter>
+</method>
+<method name="requestRender"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDebugFlags"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="debugFlags" type="int">
+</parameter>
+</method>
+<method name="setEGLConfigChooser"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="configChooser" type="android.opengl.GLSurfaceView.EGLConfigChooser">
+</parameter>
+</method>
+<method name="setEGLConfigChooser"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="needDepth" type="boolean">
+</parameter>
+</method>
+<method name="setEGLConfigChooser"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="redSize" type="int">
+</parameter>
+<parameter name="greenSize" type="int">
+</parameter>
+<parameter name="blueSize" type="int">
+</parameter>
+<parameter name="alphaSize" type="int">
+</parameter>
+<parameter name="depthSize" type="int">
+</parameter>
+<parameter name="stencilSize" type="int">
+</parameter>
+</method>
+<method name="setEGLContextClientVersion"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="version" type="int">
+</parameter>
+</method>
+<method name="setEGLContextFactory"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="factory" type="android.opengl.GLSurfaceView.EGLContextFactory">
+</parameter>
+</method>
+<method name="setEGLWindowSurfaceFactory"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="factory" type="android.opengl.GLSurfaceView.EGLWindowSurfaceFactory">
+</parameter>
+</method>
+<method name="setGLWrapper"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glWrapper" type="android.opengl.GLSurfaceView.GLWrapper">
+</parameter>
+</method>
+<method name="setPreserveEGLContextOnPause"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="preserveOnPause" type="boolean">
+</parameter>
+</method>
+<method name="setRenderMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="renderMode" type="int">
+</parameter>
+</method>
+<method name="setRenderer"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="renderer" type="android.opengl.GLSurfaceView.Renderer">
+</parameter>
+</method>
+<method name="surfaceChanged"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="texture" type="SurfaceTexture">
+</parameter>
+<parameter name="format" type="int">
+</parameter>
+<parameter name="w" type="int">
+</parameter>
+<parameter name="h" type="int">
+</parameter>
+</method>
+<method name="surfaceCreated"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="texture" type="SurfaceTexture">
+</parameter>
+</method>
+<method name="surfaceDestroyed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="texture" type="SurfaceTexture">
+</parameter>
+</method>
+<field name="DEBUG_CHECK_GL_ERROR"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEBUG_LOG_GL_CALLS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RENDERMODE_CONTINUOUSLY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RENDERMODE_WHEN_DIRTY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
 <class name="MapClickInfo"
  extends="java.lang.Object"
  abstract="false"
@@ -20877,6 +21580,19 @@
  visibility="public"
 >
 </method>
+<method name="onMapInteraction"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapInteractionInfo" type="com.carto.ui.MapInteractionInfo">
+</parameter>
+</method>
 <method name="onMapMoved"
  return="void"
  abstract="false"
@@ -20900,6 +21616,70 @@
 >
 </method>
 </class>
+<class name="MapInteractionInfo"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isPanAction"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isRotateAction"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isTiltAction"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isZoomAction"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="MapView"
  extends="android.opengl.GLSurfaceView"
  abstract="false"
@@ -20909,6 +21689,8 @@
  visibility="public"
 >
 <implements name="android.opengl.GLSurfaceView.Renderer">
+</implements>
+<implements name="com.carto.ui.MapViewInterface">
 </implements>
 <constructor name="MapView"
  type="com.carto.ui.MapView"
@@ -21394,6 +22176,404 @@
 </parameter>
 </method>
 </class>
+<interface name="MapViewInterface"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="cancelAllTasks"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clearAllCaches"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clearPreloadingCaches"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getFocusPos"
+ return="com.carto.core.MapPos"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLayers"
+ return="com.carto.components.Layers"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapEventListener"
+ return="com.carto.ui.MapEventListener"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapRenderer"
+ return="com.carto.renderers.MapRenderer"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapRotation"
+ return="float"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getOptions"
+ return="com.carto.components.Options"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTilt"
+ return="float"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getZoom"
+ return="float"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="mapToScreen"
+ return="com.carto.core.ScreenPos"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapPos" type="com.carto.core.MapPos">
+</parameter>
+</method>
+<method name="moveToFitBounds"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapBounds" type="com.carto.core.MapBounds">
+</parameter>
+<parameter name="screenBounds" type="com.carto.core.ScreenBounds">
+</parameter>
+<parameter name="integerZoom" type="boolean">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="moveToFitBounds"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapBounds" type="com.carto.core.MapBounds">
+</parameter>
+<parameter name="screenBounds" type="com.carto.core.ScreenBounds">
+</parameter>
+<parameter name="integerZoom" type="boolean">
+</parameter>
+<parameter name="resetRotation" type="boolean">
+</parameter>
+<parameter name="resetTilt" type="boolean">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="pan"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaPos" type="com.carto.core.MapVec">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="rotate"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaAngle" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="rotate"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaAngle" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="screenToMap"
+ return="com.carto.core.MapPos"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="screenPos" type="com.carto.core.ScreenPos">
+</parameter>
+</method>
+<method name="setFocusPos"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setMapEventListener"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapEventListener" type="com.carto.ui.MapEventListener">
+</parameter>
+</method>
+<method name="setMapRotation"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="angle" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setMapRotation"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="angle" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setTilt"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="tilt" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setZoom"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="zoom" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setZoom"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="zoom" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="tilt"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaTilt" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="zoom"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaZoom" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="zoom"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaZoom" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+</interface>
 <class name="NMLModelLODTreeClickInfo"
  extends="java.lang.Object"
  abstract="false"
@@ -21697,6 +22877,515 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+</class>
+<class name="TextureMapView"
+ extends="com.carto.ui.GLTextureView"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="android.opengl.GLSurfaceView.Renderer">
+</implements>
+<implements name="com.carto.ui.MapViewInterface">
+</implements>
+<constructor name="TextureMapView"
+ type="com.carto.ui.TextureMapView"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+</constructor>
+<constructor name="TextureMapView"
+ type="com.carto.ui.TextureMapView"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+<parameter name="attrs" type="android.util.AttributeSet">
+</parameter>
+</constructor>
+<method name="cancelAllTasks"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clearAllCaches"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="clearPreloadingCaches"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="delete"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getFocusPos"
+ return="com.carto.core.MapPos"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLayers"
+ return="com.carto.components.Layers"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapEventListener"
+ return="com.carto.ui.MapEventListener"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapRenderer"
+ return="com.carto.renderers.MapRenderer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMapRotation"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getOptions"
+ return="com.carto.components.Options"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTilt"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getZoom"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="mapToScreen"
+ return="com.carto.core.ScreenPos"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapPos" type="com.carto.core.MapPos">
+</parameter>
+</method>
+<method name="moveToFitBounds"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapBounds" type="com.carto.core.MapBounds">
+</parameter>
+<parameter name="screenBounds" type="com.carto.core.ScreenBounds">
+</parameter>
+<parameter name="integerZoom" type="boolean">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="moveToFitBounds"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapBounds" type="com.carto.core.MapBounds">
+</parameter>
+<parameter name="screenBounds" type="com.carto.core.ScreenBounds">
+</parameter>
+<parameter name="integerZoom" type="boolean">
+</parameter>
+<parameter name="resetRotation" type="boolean">
+</parameter>
+<parameter name="resetTilt" type="boolean">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="onDrawFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+</parameter>
+</method>
+<method name="onSurfaceChanged"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
+<method name="onSurfaceCreated"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="gl" type="javax.microedition.khronos.opengles.GL10">
+</parameter>
+<parameter name="config" type="javax.microedition.khronos.egl.EGLConfig">
+</parameter>
+</method>
+<method name="onTouchEvent"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="event" type="android.view.MotionEvent">
+</parameter>
+</method>
+<method name="pan"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaPos" type="com.carto.core.MapVec">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="registerLicense"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="licenseKey" type="java.lang.String">
+</parameter>
+<parameter name="context" type="android.content.Context">
+</parameter>
+</method>
+<method name="rotate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaAngle" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="rotate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaAngle" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="screenToMap"
+ return="com.carto.core.MapPos"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="screenPos" type="com.carto.core.ScreenPos">
+</parameter>
+</method>
+<method name="setFocusPos"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setMapEventListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mapEventListener" type="com.carto.ui.MapEventListener">
+</parameter>
+</method>
+<method name="setMapRotation"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="angle" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setMapRotation"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="angle" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setTilt"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="tilt" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setZoom"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="zoom" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="setZoom"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="zoom" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="tilt"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaTilt" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="zoom"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaZoom" type="float">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
+</method>
+<method name="zoom"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="deltaZoom" type="float">
+</parameter>
+<parameter name="targetPos" type="com.carto.core.MapPos">
+</parameter>
+<parameter name="durationSeconds" type="float">
+</parameter>
 </method>
 </class>
 <class name="UTFGridClickInfo"
@@ -22231,6 +23920,17 @@
 <parameter name="filePath" type="java.lang.String">
 </parameter>
 </method>
+</class>
+<class name="DontObfuscate"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
 </class>
 <class name="Log"
  extends="java.lang.Object"
@@ -23457,7 +25157,7 @@
 </method>
 </class>
 <class name="NMLModel"
- extends="com.carto.vectorelements.VectorElement"
+ extends="com.carto.vectorelements.Billboard"
  abstract="false"
  static="false"
  final="false"
@@ -23471,6 +25171,18 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="baseBillboard" type="com.carto.vectorelements.Billboard">
+</parameter>
+<parameter name="style" type="com.carto.styles.NMLModelStyle">
+</parameter>
+</constructor>
+<constructor name="NMLModel"
+ type="com.carto.vectorelements.NMLModel"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 <parameter name="geometry" type="com.carto.geometry.Geometry">
 </parameter>
 <parameter name="style" type="com.carto.styles.NMLModelStyle">
@@ -23486,30 +25198,6 @@
 <parameter name="pos" type="com.carto.core.MapPos">
 </parameter>
 <parameter name="style" type="com.carto.styles.NMLModelStyle">
-</parameter>
-</constructor>
-<constructor name="NMLModel"
- type="com.carto.vectorelements.NMLModel"
- static="false"
- final="false"
- deprecated="deprecated"
- visibility="public"
->
-<parameter name="geometry" type="com.carto.geometry.Geometry">
-</parameter>
-<parameter name="sourceModelData" type="com.carto.core.BinaryData">
-</parameter>
-</constructor>
-<constructor name="NMLModel"
- type="com.carto.vectorelements.NMLModel"
- static="false"
- final="false"
- deprecated="deprecated"
- visibility="public"
->
-<parameter name="pos" type="com.carto.core.MapPos">
-</parameter>
-<parameter name="sourceModelData" type="com.carto.core.BinaryData">
 </parameter>
 </constructor>
 <method name="getRotationAngle"
@@ -23519,7 +25207,7 @@
  synchronized="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 </method>
@@ -23556,32 +25244,6 @@
  visibility="public"
 >
 </method>
-<method name="setGeometry"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="geometry" type="com.carto.geometry.Geometry">
-</parameter>
-</method>
-<method name="setPos"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="pos" type="com.carto.core.MapPos">
-</parameter>
-</method>
 <method name="setRotation"
  return="void"
  abstract="false"
@@ -23595,6 +25257,32 @@
 <parameter name="axis" type="com.carto.core.MapVec">
 </parameter>
 <parameter name="angle" type="float">
+</parameter>
+</method>
+<method name="setRotationAngle"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="deprecated"
+ visibility="public"
+>
+<parameter name="angle" type="float">
+</parameter>
+</method>
+<method name="setRotationAxis"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="axis" type="com.carto.core.MapVec">
 </parameter>
 </method>
 <method name="setScale"
@@ -24795,6 +26483,17 @@
 <parameter name="styleSet" type="com.carto.styles.CartoCSSStyleSet">
 </parameter>
 </constructor>
+<method name="getAnimationDuration"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getFrameCount"
  return="int"
  abstract="false"
@@ -24827,19 +26526,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-</method>
-<method name="setResolution"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="resolution" type="int">
-</parameter>
 </method>
 <method name="setStyleSet"
  return="void"

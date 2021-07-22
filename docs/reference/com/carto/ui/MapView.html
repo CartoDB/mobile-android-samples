@@ -190,17 +190,25 @@
           <div id="classes-nav">
             <ul>
               
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/MapViewInterface.html">MapViewInterface</a></li>
+      </ul>
+    </li>
               
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/ui/BalloonPopupButtonClickInfo.html">BalloonPopupButtonClickInfo</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/GLTextureView.html">GLTextureView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/MapClickInfo.html">MapClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/MapEventListener.html">MapEventListener</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/MapInteractionInfo.html">MapInteractionInfo</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/ui/MapView.html">MapView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/NMLModelLODTreeClickInfo.html">NMLModelLODTreeClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/PopupClickInfo.html">PopupClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/PopupDrawInfo.html">PopupDrawInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/RasterTileClickInfo.html">RasterTileClickInfo</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/TextureMapView.html">TextureMapView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/UTFGridClickInfo.html">UTFGridClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/VectorElementClickInfo.html">VectorElementClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/VectorElementDragInfo.html">VectorElementDragInfo</a></li>
@@ -275,6 +283,13 @@
   
   
    
+  
+  
+  
+
+  
+   
+  
   
   
   
@@ -399,6 +414,8 @@ Summary:
       implements 
       
         GLSurfaceView.Renderer 
+      
+        <a href="../../../com/carto/ui/MapViewInterface.html">MapViewInterface</a> 
       
   
   
@@ -774,6 +791,8 @@ android.view.View
   </div>
 </div>
 </td></tr>
+
+
 
 
 
@@ -6143,6 +6162,536 @@ From interface
         <td class="jd-linkcol" width="100%">
         <span class="sympad">sendAccessibilityEventUnchecked</span>(AccessibilityEvent arg0)
         
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.carto.ui.MapViewInterface" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.carto.ui.MapViewInterface-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  <a href="../../../com/carto/ui/MapViewInterface.html">com.carto.ui.MapViewInterface</a>
+
+<div id="inherited-methods-com.carto.ui.MapViewInterface">
+  <div id="inherited-methods-com.carto.ui.MapViewInterface-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.carto.ui.MapViewInterface-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#cancelAllTasks()">cancelAllTasks</a></span>()
+        
+        <div class="jd-descrdiv">Cancels all qued tasks such as tile and vector data fetches.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#clearAllCaches()">clearAllCaches</a></span>()
+        
+        <div class="jd-descrdiv">Releases memory occupied by all caches.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#clearPreloadingCaches()">clearPreloadingCaches</a></span>()
+        
+        <div class="jd-descrdiv">Releases the memory occupied by the preloading area.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/core/MapPos.html">MapPos</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getFocusPos()">getFocusPos</a></span>()
+        
+        <div class="jd-descrdiv">Returns the position that the camera is currently looking at.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/components/Layers.html">Layers</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getLayers()">getLayers</a></span>()
+        
+        <div class="jd-descrdiv">Returns the Layers object, that can be used for adding and removing map layers.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/ui/MapEventListener.html">MapEventListener</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getMapEventListener()">getMapEventListener</a></span>()
+        
+        <div class="jd-descrdiv">Returns the map event listener.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/renderers/MapRenderer.html">MapRenderer</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getMapRenderer()">getMapRenderer</a></span>()
+        
+        <div class="jd-descrdiv">Returns the MapRenderer object, that can be used for controlling rendering related options.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getMapRotation()">getMapRotation</a></span>()
+        
+        <div class="jd-descrdiv">Returns the map rotation in degrees.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/components/Options.html">Options</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getOptions()">getOptions</a></span>()
+        
+        <div class="jd-descrdiv">Returns the Options object, that can be used for modifying various map options.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getTilt()">getTilt</a></span>()
+        
+        <div class="jd-descrdiv">Returns the tilt angle in degrees.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#getZoom()">getZoom</a></span>()
+        
+        <div class="jd-descrdiv">Returns the zoom level.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#mapToScreen(com.carto.core.MapPos)">mapToScreen</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> mapPos)
+        
+        <div class="jd-descrdiv">Calculates the screen position corresponding to a map position, using the current view parameters.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#moveToFitBounds(com.carto.core.MapBounds, com.carto.core.ScreenBounds, boolean, float)">moveToFitBounds</a></span>(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> mapBounds, <a href="../../../com/carto/core/ScreenBounds.html">ScreenBounds</a> screenBounds, boolean integerZoom, float durationSeconds)
+        
+        <div class="jd-descrdiv">Animate the view parameters (focus position, tilt, rotation, zoom) so that the specified bounding box becomes fully visible.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#moveToFitBounds(com.carto.core.MapBounds, com.carto.core.ScreenBounds, boolean, boolean, boolean, float)">moveToFitBounds</a></span>(<a href="../../../com/carto/core/MapBounds.html">MapBounds</a> mapBounds, <a href="../../../com/carto/core/ScreenBounds.html">ScreenBounds</a> screenBounds, boolean integerZoom, boolean resetRotation, boolean resetTilt, float durationSeconds)
+        
+        <div class="jd-descrdiv">Animate the view parameters (focus position, tilt, rotation, zoom) so that the specified bounding box becomes fully visible.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#pan(com.carto.core.MapVec, float)">pan</a></span>(<a href="../../../com/carto/core/MapVec.html">MapVec</a> deltaPos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Pans the view relative to the current focus position.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#rotate(float, float)">rotate</a></span>(float deltaAngle, float durationSeconds)
+        
+        <div class="jd-descrdiv">Rotates the view relative to the current rotation value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#rotate(float, com.carto.core.MapPos, float)">rotate</a></span>(float deltaAngle, <a href="../../../com/carto/core/MapPos.html">MapPos</a> targetPos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Rotates the view relative to the current rotation value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../com/carto/core/MapPos.html">MapPos</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#screenToMap(com.carto.core.ScreenPos)">screenToMap</a></span>(<a href="../../../com/carto/core/ScreenPos.html">ScreenPos</a> screenPos)
+        
+        <div class="jd-descrdiv">Calculates the map position corresponding to a screen position, using the current view parameters.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setFocusPos(com.carto.core.MapPos, float)">setFocusPos</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute focus position.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setMapEventListener(com.carto.ui.MapEventListener)">setMapEventListener</a></span>(<a href="../../../com/carto/ui/MapEventListener.html">MapEventListener</a> mapEventListener)
+        
+        <div class="jd-descrdiv">Sets the map event listener.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setMapRotation(float, com.carto.core.MapPos, float)">setMapRotation</a></span>(float angle, <a href="../../../com/carto/core/MapPos.html">MapPos</a> targetPos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute rotation value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setMapRotation(float, float)">setMapRotation</a></span>(float angle, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute rotation value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setTilt(float, float)">setTilt</a></span>(float tilt, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute tilt value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setZoom(float, float)">setZoom</a></span>(float zoom, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute zoom value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#setZoom(float, com.carto.core.MapPos, float)">setZoom</a></span>(float zoom, <a href="../../../com/carto/core/MapPos.html">MapPos</a> targetPos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Sets the new absolute zoom value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#tilt(float, float)">tilt</a></span>(float deltaTilt, float durationSeconds)
+        
+        <div class="jd-descrdiv">Tilts the view relative to the current tilt value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#zoom(float, com.carto.core.MapPos, float)">zoom</a></span>(float deltaZoom, <a href="../../../com/carto/core/MapPos.html">MapPos</a> targetPos, float durationSeconds)
+        
+        <div class="jd-descrdiv">Zooms the view relative to the current zoom value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapViewInterface.html#zoom(float, float)">zoom</a></span>(float deltaZoom, float durationSeconds)
+        
+        <div class="jd-descrdiv">Zooms the view relative to the current zoom value.</div>
+  
   </td></tr>
 
 

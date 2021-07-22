@@ -193,6 +193,7 @@
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingAddress.html">GeocodingAddress</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingRequest.html">GeocodingRequest</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingResult.html">GeocodingResult</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/geocoding/GeocodingResultVector.html">GeocodingResultVector</a></li>
@@ -380,6 +381,7 @@ Summary:
 <p>An online geocoding service that uses TomTom geocoder.<br>
  As the class connects to an external (non-CARTO) service, this class is provided "as-is",<br>
  future changes from the service provider may not be compatible with the implementation.<br>
+ Geocoding and reverse geocoding perform network requests and must be executed in non-UI background thread.<br>
  Be sure to read the Terms and Conditions of TomTom to see if the<br>
  service is available for your application.<br>
  Note: this class is experimental and may change or even be removed in future SDK versions.

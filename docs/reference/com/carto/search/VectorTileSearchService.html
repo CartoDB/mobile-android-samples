@@ -344,7 +344,8 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>A search service for finding features from the specified vector tile data source.
+<p>A search service for finding features from the specified vector tile data source.<br>
+ Depending on the datasource, searching may perform network requests and must be executed in non-UI background thread.
 </p>
 
 
@@ -944,7 +945,8 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Searches for the features specified by search request from the vector tiles bound to the service.<br>
- The zoom level range used for searching is specified using minZoom/maxZoom attributes of the search service.<br></p></div>
+ The zoom level range used for searching is specified using minZoom/maxZoom attributes of the search service.<br>
+ Depending on the data source, this method may perform slow IO operations and may need to be run in background thread.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

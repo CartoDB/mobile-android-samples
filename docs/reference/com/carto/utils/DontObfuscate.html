@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
 <title>
 
-  LicenseManager
+  DontObfuscate
 
 
 | CARTO Mobile SDK
@@ -144,7 +144,7 @@
               </div>
               <ul>
                 
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../com/carto/components/package-summary.html">com.carto.components</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/core/package-summary.html">com.carto.core</a></li>
@@ -178,7 +178,7 @@
   <a href="../../../com/carto/styles/package-summary.html">com.carto.styles</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/ui/package-summary.html">com.carto.ui</a></li>
-    <li class="api apilevel-">
+    <li class="selected api apilevel-">
   <a href="../../../com/carto/utils/package-summary.html">com.carto.utils</a></li>
     <li class="api apilevel-">
   <a href="../../../com/carto/vectorelements/package-summary.html">com.carto.vectorelements</a></li>
@@ -193,21 +193,22 @@
               
     <li><h2>Classes</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../com/carto/components/Layers.html">Layers</a></li>
-          <li class="selected api apilevel-"><a href="../../../com/carto/components/LicenseManager.html">LicenseManager</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/components/LicenseManagerListener.html">LicenseManagerListener</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/components/Options.html">Options</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/AssetPackage.html">AssetPackage</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/AssetUtils.html">AssetUtils</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/BitmapUtils.html">BitmapUtils</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/Log.html">Log</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/LogEventListener.html">LogEventListener</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/TileUtils.html">TileUtils</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/utils/ZippedAssetPackage.html">ZippedAssetPackage</a></li>
       </ul>
     </li>
               
-              
-    <li><h2>Enums</h2>
+    <li><h2>Annotations</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../com/carto/components/PanningMode.html">PanningMode</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/components/PivotMode.html">PivotMode</a></li>
-          <li class="api apilevel-"><a href="../../../com/carto/components/RenderProjectionMode.html">RenderProjectionMode</a></li>
+          <li class="selected api apilevel-"><a href="../../../com/carto/utils/DontObfuscate.html">DontObfuscate</a></li>
       </ul>
     </li>
+              
               
               
             </ul><br/>
@@ -270,12 +271,9 @@ Summary:
 
 
 
-  <a href="#pubmethods">Methods</a>
-  
 
 
-
-  &#124; <a href="#inhmethods">Inherited Methods</a>
+  <a href="#inhmethods">Inherited Methods</a>
 
 &#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
 
@@ -297,19 +295,18 @@ Summary:
     public
      
      
-    
-    class
-<h1>LicenseManager</h1>
+    abstract
+    @interface
+<h1>DontObfuscate</h1>
 
 
 
   
-    extends Object<br/>
   
-  
-  
-
-  
+      implements 
+      
+        Annotation 
+      
   
   
 
@@ -324,15 +321,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-         	
-        <td colspan="1" class="jd-inheritance-class-cell">com.carto.components.LicenseManager</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.carto.utils.DontObfuscate</td>
     </tr>
     
 
@@ -348,7 +337,12 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>An internal class for managing SDK licenses and services.
+<p>Annotation to notify that class name and its members should be kept intact and not obfuscated.
+ It is needed as reflection is used when accessing SDK Java classes from native SDK code.
+ If you are using ProGuard, then add the following rules to your 'proguard-rules.pro' file:
+ -keep class com.carto.utils.DontObfuscate
+ -keep enum com.carto.**
+ -keep @com.carto.utils.DontObfuscate class ** { *; }
 </p>
 
 
@@ -403,31 +397,6 @@ Summary:
 
 
 
-<!-- ========== METHOD SUMMARY =========== -->
-<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
-
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            synchronized
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/components/LicenseManager.html#delete()">delete</a></span>()
-        
-  </td></tr>
-
-
-
-</table>
-
-
 
 
 
@@ -441,19 +410,19 @@ Summary:
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-java.lang.Object-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.annotation.Annotation" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.annotation.Annotation-trigger"
           src="../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
-From class
+From interface
 
-  java.lang.Object
+  java.lang.annotation.Annotation
 
-<div id="inherited-methods-java.lang.Object">
-  <div id="inherited-methods-java.lang.Object-list"
+<div id="inherited-methods-java.lang.annotation.Annotation">
+  <div id="inherited-methods-java.lang.annotation.Annotation-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+  <div id="inherited-methods-java.lang.annotation.Annotation-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -461,7 +430,23 @@ From class
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
+            abstract
             
+            
+            
+            
+            Class&lt;?&nbsp;extends&nbsp;Annotation&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">annotationType</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
             
             
             
@@ -475,25 +460,9 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            Class&lt;?&gt;
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">getClass</span>()
-        
-  </td></tr>
-
-
-	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
-            
+            abstract
             
             
             
@@ -509,39 +478,7 @@ From class
 	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">notify</span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">notifyAll</span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
+            abstract
             
             
             
@@ -550,54 +487,6 @@ From class
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad">toString</span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">wait</span>(long arg0, int arg1)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">wait</span>(long arg0)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            final
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad">wait</span>()
         
   </td></tr>
 
@@ -645,42 +534,6 @@ From class
 
 <!-- ========= METHOD DETAIL ======== -->
 <!-- Public methdos -->
-
-<h2>Public Methods</h2>
-
-
-
-<a id="delete()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-        synchronized 
-        void
-      </span>
-      <span class="sympad">delete</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 
 
 

@@ -190,17 +190,25 @@
           <div id="classes-nav">
             <ul>
               
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/MapViewInterface.html">MapViewInterface</a></li>
+      </ul>
+    </li>
               
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../com/carto/ui/BalloonPopupButtonClickInfo.html">BalloonPopupButtonClickInfo</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/GLTextureView.html">GLTextureView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/MapClickInfo.html">MapClickInfo</a></li>
           <li class="selected api apilevel-"><a href="../../../com/carto/ui/MapEventListener.html">MapEventListener</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/MapInteractionInfo.html">MapInteractionInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/MapView.html">MapView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/NMLModelLODTreeClickInfo.html">NMLModelLODTreeClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/PopupClickInfo.html">PopupClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/PopupDrawInfo.html">PopupDrawInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/RasterTileClickInfo.html">RasterTileClickInfo</a></li>
+          <li class="api apilevel-"><a href="../../../com/carto/ui/TextureMapView.html">TextureMapView</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/UTFGridClickInfo.html">UTFGridClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/VectorElementClickInfo.html">VectorElementClickInfo</a></li>
           <li class="api apilevel-"><a href="../../../com/carto/ui/VectorElementDragInfo.html">VectorElementDragInfo</a></li>
@@ -507,6 +515,24 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/ui/MapEventListener.html#onMapInteraction(com.carto.ui.MapInteractionInfo)">onMapInteraction</a></span>(<a href="../../../com/carto/ui/MapInteractionInfo.html">MapInteractionInfo</a> mapInteractionInfo)
+        
+        <div class="jd-descrdiv">Listener method that gets called when user has interacted with the map.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/ui/MapEventListener.html#onMapMoved()">onMapMoved</a></span>()
         
         <div class="jd-descrdiv">Listener method that gets called when the map is panned, rotated, tilted or zoomed.</div>
@@ -515,7 +541,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -906,6 +932,48 @@ From class
 </div>
 
 
+<a id="onMapInteraction(com.carto.ui.MapInteractionInfo)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">onMapInteraction</span>
+      <span class="normal">(<a href="../../../com/carto/ui/MapInteractionInfo.html">MapInteractionInfo</a> mapInteractionInfo)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called when user has interacted with the map. The callback<br>
+ includes info about interaction type (panning, zooming, etc).<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>mapInteractionInfo</th>
+          <td>A container that provides information about the interaction.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="onMapMoved()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -932,6 +1000,10 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called when the map is panned, rotated, tilted or zoomed.<br>
+ The callback is used for both UI events and map changes resulting from API calls.<br>
+ It is recommended to use onMapInteraction callback instead of onMapMoved, if possible.<br>
+ Doing any calls to update MapView state from this method is potentially dangerous and may<br>
+ result in deadlocks or crashes.<br>
  The thread this method is called from may vary.
 </p></div>
 

@@ -268,6 +268,13 @@
   
   
 
+  
+   
+  
+  
+  
+  
+
 
 <div class="sum-details-links">
 
@@ -325,7 +332,11 @@ Summary:
   
 
   
-    extends <a href="../../../com/carto/vectorelements/VectorElement.html">VectorElement</a><br/>
+  
+  
+
+  
+    extends <a href="../../../com/carto/vectorelements/Billboard.html">Billboard</a><br/>
   
   
   
@@ -345,7 +356,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="4" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -353,11 +364,23 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../com/carto/vectorelements/VectorElement.html">com.carto.vectorelements.VectorElement</a></td>
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../com/carto/vectorelements/VectorElement.html">com.carto.vectorelements.VectorElement</a></td>
     </tr>
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../com/carto/vectorelements/Billboard.html">com.carto.vectorelements.Billboard</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;</td>
         
@@ -449,9 +472,9 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.geometry.Geometry, com.carto.styles.NMLModelStyle)">NMLModel</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.vectorelements.Billboard, com.carto.styles.NMLModelStyle)">NMLModel</a></span>(<a href="../../../com/carto/vectorelements/Billboard.html">Billboard</a> baseBillboard, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)
         
-        <div class="jd-descrdiv">Constructs a NMLModel object from a geometry object and a source model.</div>
+        <div class="jd-descrdiv">Constructs a NMLModel object with the specified style and attaches it to a billboard element.</div>
   
   </td></tr>
 
@@ -467,9 +490,9 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.core.MapPos, com.carto.styles.NMLModelStyle)">NMLModel</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.geometry.Geometry, com.carto.styles.NMLModelStyle)">NMLModel</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)
         
-        <div class="jd-descrdiv">Constructs a NMLModel object from a map position and a source model.</div>
+        <div class="jd-descrdiv">Constructs a NMLModel object from a geometry object and a source model.</div>
   
   </td></tr>
 
@@ -485,33 +508,9 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.geometry.Geometry, com.carto.core.BinaryData)">NMLModel</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry, <a href="../../../com/carto/core/BinaryData.html">BinaryData</a> sourceModelData)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.core.MapPos, com.carto.styles.NMLModelStyle)">NMLModel</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)
         
-        <div class="jd-descrdiv">
-      <em>
-  This constructor is deprecated.
-      No replacement.</em></div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#NMLModel(com.carto.core.MapPos, com.carto.core.BinaryData)">NMLModel</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos, <a href="../../../com/carto/core/BinaryData.html">BinaryData</a> sourceModelData)
-        
-        <div class="jd-descrdiv">
-      <em>
-  This constructor is deprecated.
-      No replacement.</em></div>
+        <div class="jd-descrdiv">Constructs a NMLModel object from a map position and a source model.</div>
   
   </td></tr>
 
@@ -558,7 +557,10 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#getRotationAngle()">getRotationAngle</a></span>()
         
-        <div class="jd-descrdiv">Returns the rotation angle of this model.</div>
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      No replacement.</em></div>
   
   </td></tr>
 
@@ -628,9 +630,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setGeometry(com.carto.geometry.Geometry)">setGeometry</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setRotation(com.carto.core.MapVec, float)">setRotation</a></span>(<a href="../../../com/carto/core/MapVec.html">MapVec</a> axis, float angle)
         
-        <div class="jd-descrdiv">Sets the location for this model.</div>
+        <div class="jd-descrdiv">Sets the rotation of this model using an axis and an angle.</div>
   
   </td></tr>
 
@@ -646,9 +648,12 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setPos(com.carto.core.MapPos)">setPos</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setRotationAngle(float)">setRotationAngle</a></span>(float angle)
         
-        <div class="jd-descrdiv">Sets the location for this model.</div>
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      No replacement.</em></div>
   
   </td></tr>
 
@@ -664,9 +669,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setRotation(com.carto.core.MapVec, float)">setRotation</a></span>(<a href="../../../com/carto/core/MapVec.html">MapVec</a> axis, float angle)
+        <span class="sympad"><a href="../../../com/carto/vectorelements/NMLModel.html#setRotationAxis(com.carto.core.MapVec)">setRotationAxis</a></span>(<a href="../../../com/carto/core/MapVec.html">MapVec</a> axis)
         
-        <div class="jd-descrdiv">Sets the rotation of this model using an axis and an angle.</div>
+        <div class="jd-descrdiv">Sets the rotation axis of this model.</div>
   
   </td></tr>
 
@@ -720,6 +725,210 @@ Summary:
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.carto.vectorelements.Billboard" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.carto.vectorelements.Billboard-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../com/carto/vectorelements/Billboard.html">com.carto.vectorelements.Billboard</a>
+
+<div id="inherited-methods-com.carto.vectorelements.Billboard">
+  <div id="inherited-methods-com.carto.vectorelements.Billboard-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.carto.vectorelements.Billboard-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#delete()">delete</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/vectorelements/Billboard.html">Billboard</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#getBaseBillboard()">getBaseBillboard</a></span>()
+        
+        <div class="jd-descrdiv">Returns the base billboard this billboard is attached to.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/core/MapBounds.html">MapBounds</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#getBounds()">getBounds</a></span>()
+        
+        <div class="jd-descrdiv">Returns the bounds of this billboard or the base billboard, if there is one.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/geometry/Geometry.html">Geometry</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#getGeometry()">getGeometry</a></span>()
+        
+        <div class="jd-descrdiv">Returns the geometry object that defines the location of this billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../com/carto/geometry/Geometry.html">Geometry</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#getRootGeometry()">getRootGeometry</a></span>()
+        
+        <div class="jd-descrdiv">Returns the location of the root billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#getRotation()">getRotation</a></span>()
+        
+        <div class="jd-descrdiv">Returns the rotation angle of this billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#setBaseBillboard(com.carto.vectorelements.Billboard)">setBaseBillboard</a></span>(<a href="../../../com/carto/vectorelements/Billboard.html">Billboard</a> baseBillboard)
+        
+        <div class="jd-descrdiv">Attaches this billboard to another billboard, so it will always be drawn relative to the base billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#setGeometry(com.carto.geometry.Geometry)">setGeometry</a></span>(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry)
+        
+        <div class="jd-descrdiv">Sets the location for this billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#setPos(com.carto.core.MapPos)">setPos</a></span>(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos)
+        
+        <div class="jd-descrdiv">Sets the location for this billboard.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/vectorelements/Billboard.html#setRotation(float)">setRotation</a></span>(float rotation)
+        
+        <div class="jd-descrdiv">Sets the rotation angle of this billboard.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -1219,6 +1428,51 @@ From class
 
 
 
+<a id="NMLModel(com.carto.vectorelements.Billboard, com.carto.styles.NMLModelStyle)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">NMLModel</span>
+      <span class="normal">(<a href="../../../com/carto/vectorelements/Billboard.html">Billboard</a> baseBillboard, <a href="../../../com/carto/styles/NMLModelStyle.html">NMLModelStyle</a> style)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Constructs a NMLModel object with the specified style and attaches it to a billboard element.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>baseBillboard</th>
+          <td>The billboard this model will be attached to.<br></td>
+        </tr>
+        <tr>
+          <th>style</th>
+          <td>The style for this model.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="NMLModel(com.carto.geometry.Geometry, com.carto.styles.NMLModelStyle)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1254,7 +1508,7 @@ From class
         </tr>
         <tr>
           <th>style</th>
-          <td>The style to used for this model.
+          <td>The style for this model.
 </td>
         </tr>
       </table>
@@ -1299,104 +1553,8 @@ From class
         </tr>
         <tr>
           <th>style</th>
-          <td>The style to used for this model.
+          <td>The style for this model.
 </td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="NMLModel(com.carto.geometry.Geometry, com.carto.core.BinaryData)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        
-      </span>
-      <span class="sympad">NMLModel</span>
-      <span class="normal">(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry, <a href="../../../com/carto/core/BinaryData.html">BinaryData</a> sourceModelData)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This constructor is deprecated.</strong><br/> No replacement.
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p>Constructs a NMLModel object from a geometry object and serialized model data.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>geometry</th>
-          <td>The geometry object that defines the location of this model.<br></td>
-        </tr>
-        <tr>
-          <th>sourceModelData</th>
-          <td>Serialized data for 3D model.<br></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="NMLModel(com.carto.core.MapPos, com.carto.core.BinaryData)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        
-      </span>
-      <span class="sympad">NMLModel</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos, <a href="../../../com/carto/core/BinaryData.html">BinaryData</a> sourceModelData)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This constructor is deprecated.</strong><br/> No replacement.
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p>Constructs a NMLModel object from a map position and serialized model data.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>pos</th>
-          <td>The map position that defines the location of this model.<br></td>
-        </tr>
-        <tr>
-          <th>sourceModelData</th>
-          <td>Serialized data for 3D model.<br></td>
         </tr>
       </table>
   </div>
@@ -1475,12 +1633,15 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Returns the rotation angle of this model.<br></p></div>
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> No replacement.
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the rotation angle of this model. This is deprecated. Use getRotation instead.<br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The rotation angle of this model in degrees.
-</li></ul>
+      <ul class="nolist"><li>The rotation angle of this model in degrees.<br></li></ul>
   </div>
 
     </div>
@@ -1595,88 +1756,6 @@ From class
 </div>
 
 
-<a id="setGeometry(com.carto.geometry.Geometry)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setGeometry</span>
-      <span class="normal">(<a href="../../../com/carto/geometry/Geometry.html">Geometry</a> geometry)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the location for this model.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>geometry</th>
-          <td>The new geometry object that defines the location of this model.
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="setPos(com.carto.core.MapPos)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setPos</span>
-      <span class="normal">(<a href="../../../com/carto/core/MapPos.html">MapPos</a> pos)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the location for this model.<br></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>pos</th>
-          <td>The new map position that defines the location of this model.
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="setRotation(com.carto.core.MapVec, float)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1713,6 +1792,91 @@ From class
         <tr>
           <th>angle</th>
           <td>The rotation angle in degrees.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setRotationAngle(float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRotationAngle</span>
+      <span class="normal">(float angle)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> No replacement.
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the rotation angle of this model. This is deprecated. Use setRotation instead.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>angle</th>
+          <td>The new rotation angle in degrees.<br></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setRotationAxis(com.carto.core.MapVec)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRotationAxis</span>
+      <span class="normal">(<a href="../../../com/carto/core/MapVec.html">MapVec</a> axis)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the rotation axis of this model.<br></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>axis</th>
+          <td>The new axis of rotation.
 </td>
         </tr>
       </table>

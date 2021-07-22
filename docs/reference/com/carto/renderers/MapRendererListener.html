@@ -457,7 +457,7 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/renderers/MapRendererListener.html#onAfterDrawFrame()">onAfterDrawFrame</a></span>()
         
-        <div class="jd-descrdiv">Listener method that gets called at the end of the rendering process.</div>
+        <div class="jd-descrdiv">Listener method that gets called at the end of the rendering frame.</div>
   
   </td></tr>
 
@@ -475,7 +475,25 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../com/carto/renderers/MapRendererListener.html#onBeforeDrawFrame()">onBeforeDrawFrame</a></span>()
         
-        <div class="jd-descrdiv">Listener method that gets called at the start of the rendering process.</div>
+        <div class="jd-descrdiv">Listener method that gets called at the start of the rendering frame.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../com/carto/renderers/MapRendererListener.html#onSurfaceChanged(int, int)">onSurfaceChanged</a></span>(int width, int height)
+        
+        <div class="jd-descrdiv">Listener method that gets called when the rendering surface initialized and its size is updated.</div>
   
   </td></tr>
 
@@ -800,7 +818,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called at the end of the rendering process.<br>
+  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called at the end of the rendering frame.<br>
  This method is called from GL renderer thread, not from main thread.
 </p></div>
 
@@ -833,9 +851,44 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called at the start of the rendering process.<br>
+  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called at the start of the rendering frame.<br>
  The method can be used to synchronize vector elements with renderer state, for example<br>
  to force marker to be always at the center of the screen (focus point).<br>
+ This method is called from GL renderer thread, not from main thread.
+</p></div>
+
+    </div>
+</div>
+
+
+<a id="onSurfaceChanged(int, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">onSurfaceChanged</span>
+      <span class="normal">(int width, int height)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Listener method that gets called when the rendering surface initialized and its size is updated.<br>
+ The method can be used to check when it is safe to call methods that depend on view size,<br>
+ like moveToFitBounds, screenToMap, mapToScreen.<br>
  This method is called from GL renderer thread, not from main thread.
 </p></div>
 
