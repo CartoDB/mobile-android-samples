@@ -12,7 +12,6 @@ import com.carto.routing.PackageManagerRoutingService
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
-import org.jetbrains.anko.doAsync
 
 /**
  * Created by aareundo on 18/08/2017.
@@ -95,14 +94,14 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
     }
 
     fun showRoute(start: MapPos, stop: MapPos) {
-        doAsync {
+        val thread = Thread(Runnable {
             val result = routing!!.getResult(start, stop)
 
             if (result == null) {
                 runOnUiThread {
                     contentView?.progressLabel?.complete("Routing failed. Please try again")
                 }
-                return@doAsync
+                return@Runnable
             }
 
             val color = com.carto.graphics.Color(14, 122, 254, 255)
@@ -112,6 +111,7 @@ class OfflineRoutingActivity : PackageDownloadBaseActivity() {
                 contentView?.progressLabel?.complete(routing?.getMessage(result)!!)
             }
 
-        }
+        })
+        thread.start()
     }
 }

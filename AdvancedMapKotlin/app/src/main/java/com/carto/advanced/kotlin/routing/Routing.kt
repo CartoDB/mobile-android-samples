@@ -18,7 +18,6 @@ import com.carto.ui.MapView
 import com.carto.vectorelements.Line
 import com.carto.vectorelements.Marker
 import com.carto.vectorelements.Polygon
-import org.jetbrains.anko.displayMetrics
 
 /**
  * Convenience class to move routing logic outside of the activity
@@ -75,7 +74,7 @@ class Routing(val context: Context, val mapView: MapView) {
         val builder = MarkerStyleBuilder()
         builder.bitmap = start
         builder.isHideIfOverlapped = false
-        builder.size = 5 * context.displayMetrics.density
+        builder.size = 5 * context.resources.displayMetrics.density
 
         val defaultPosition = MapPos(0.0, 0.0)
 

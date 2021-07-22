@@ -19,8 +19,15 @@ import com.carto.ui.MapClickInfo;
 import com.carto.ui.MapEventListener;
 import com.carto.ui.MapView;
 import com.carto.vectorelements.Marker;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
+
+import javax.net.ssl.SSLContext;
 
 public class HelloMapActivity extends Activity {
 
@@ -28,9 +35,26 @@ public class HelloMapActivity extends Activity {
 
     private MapView mapView;
 
+    private void fixSSLConnectionOnOlderAndroidDevices() {
+        // Older Android versions (4.x) have issues accepting TLSv1.2 secure connections that SDK requires.
+        // This snippet installs a workaround for such devices.
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+            SSLContext sslContext;
+            sslContext = SSLContext.getInstance("TLSv1.2");
+            sslContext.init(null, null, null);
+            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException
+                | NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        fixSSLConnectionOnOlderAndroidDevices();
 
         MapView.registerLicense(LICENSE, getApplicationContext());
 

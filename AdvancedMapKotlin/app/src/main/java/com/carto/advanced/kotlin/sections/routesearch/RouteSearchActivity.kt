@@ -21,7 +21,6 @@ import com.carto.search.SearchRequest
 import com.carto.ui.ClickType
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
-import org.jetbrains.anko.doAsync
 
 class RouteSearchActivity : BaseActivity() {
 
@@ -94,14 +93,14 @@ class RouteSearchActivity : BaseActivity() {
     }
 
     fun showRoute(start: MapPos, stop: MapPos) {
-        doAsync {
+        val thread = Thread(Runnable {
             val routingResult = routing!!.getResult(start, stop)
 
             if (routingResult == null) {
                 runOnUiThread {
                     contentView?.showBanner("Routing failed. Please try again")
                 }
-                return@doAsync
+                return@Runnable
             }
 
             val color = com.carto.graphics.Color(14, 122, 254, 150)
@@ -121,14 +120,16 @@ class RouteSearchActivity : BaseActivity() {
                     val item = collection.getFeature(i)!!
 
                     if (item.geometry is LineGeometry) {
-                        doAsync {
+                        val subThread = Thread(Runnable {
                             showAttractions(item.geometry)
-                        }
+                        })
+                        subThread.start()
                     }
                 }
             }
 
-        }
+        })
+        thread.start()
     }
 
     fun showAttractions(geometry: Geometry) {

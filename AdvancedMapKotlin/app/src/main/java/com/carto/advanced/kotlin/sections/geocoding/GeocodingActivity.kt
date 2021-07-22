@@ -12,7 +12,6 @@ import com.carto.geocoding.*
 import com.carto.packagemanager.CartoPackageManager
 import com.carto.ui.MapClickInfo
 import com.carto.ui.MapEventListener
-import org.jetbrains.anko.doAsync
 
 /**
  * Created by aareundo on 11/07/2017.
@@ -122,11 +121,11 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
 
         searchQueueSize += 1
 
-        doAsync {
+        val thread = Thread(Runnable {
             if (searchQueueSize - 1 > 0) {
                 // Cancel the request if we have additional pending requests queued
                 print("Geocoding: request pending, skipping current")
-                return@doAsync
+                return@Runnable
             }
 
             searchQueueSize -= 1
@@ -160,7 +159,8 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
                 }
 
             }
-        }
+        })
+        thread.start()
     }
 
     fun showResult(result: GeocodingResult) {

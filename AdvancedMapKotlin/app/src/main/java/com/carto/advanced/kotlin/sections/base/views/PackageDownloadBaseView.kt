@@ -11,7 +11,6 @@ import com.carto.advanced.kotlin.sections.base.activities.BaseActivity
 import com.carto.advanced.kotlin.utils.Package
 import com.carto.advanced.kotlin.utils.toList
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.doAsync
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -71,33 +70,28 @@ open class PackageDownloadBaseView(context: Context, withBaseLayer: Boolean = tr
     fun onPackageClick(item: Package) {
 
         if (item.isGroup()) {
-            doAsync {
-                folder = folder + item.name + "/"
-                val packages = getPackages()
+            folder = folder + item.name + "/"
+            val packages = getPackages()
 
-                (context as BaseActivity).runOnUiThread {
-                    packageContent?.addPackages(packages)
-                    popup.popup.header.backButton.visibility = View.VISIBLE
-                }
+            (context as BaseActivity).runOnUiThread {
+                packageContent?.addPackages(packages)
+                popup.popup.header.backButton.visibility = View.VISIBLE
             }
 
         } else {
+            val action = item.getActionText()
+            enqueue(item)
 
-            doAsync {
-                val action = item.getActionText()
-                enqueue(item)
-
-                if (action == Package.ACTION_DOWNLOAD) {
-                    manager?.startPackageDownload(item.id)
-                } else if (action == Package.ACTION_PAUSE) {
-                    manager?.setPackagePriority(item.id, -1)
-                } else if (action == Package.ACTION_RESUME) {
-                    manager?.setPackagePriority(item.id, 0)
-                } else if (action == Package.ACTION_CANCEL) {
-                    manager?.cancelPackageTasks(item.id)
-                } else if (action == Package.ACTION_REMOVE) {
-                    manager?.startPackageRemove(item.id)
-                }
+            if (action == Package.ACTION_DOWNLOAD) {
+                manager?.startPackageDownload(item.id)
+            } else if (action == Package.ACTION_PAUSE) {
+                manager?.setPackagePriority(item.id, -1)
+            } else if (action == Package.ACTION_RESUME) {
+                manager?.setPackagePriority(item.id, 0)
+            } else if (action == Package.ACTION_CANCEL) {
+                manager?.cancelPackageTasks(item.id)
+            } else if (action == Package.ACTION_REMOVE) {
+                manager?.startPackageRemove(item.id)
             }
 
             getActivity().runOnUiThread {
@@ -253,27 +247,23 @@ open class PackageDownloadBaseView(context: Context, withBaseLayer: Boolean = tr
     var downloadQueue = mutableListOf<Package>()
 
     fun getCurrentDownload(complete: (item: Package?) -> Unit) {
-        doAsync {
-            if (downloadQueue.size > 0) {
-                val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
-                if (downloading.size == 1) {
-                    complete(downloading[0])
-                    return@doAsync
-                }
+        if (downloadQueue.size > 0) {
+            val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
+            if (downloading.size == 1) {
+                complete(downloading[0])
             }
-
-            downloadQueue = getAllPackages().filter({ item: Package -> item.isDownloading() || item.isQueued() }) as MutableList<Package>
-
-            if (downloadQueue.size > 0) {
-                val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
-                if (downloading.size == 1) {
-                    complete(downloading[0])
-                    return@doAsync
-                }
-            }
-
-            complete(null)
         }
+
+        downloadQueue = getAllPackages().filter({ item: Package -> item.isDownloading() || item.isQueued() }) as MutableList<Package>
+
+        if (downloadQueue.size > 0) {
+            val downloading = downloadQueue.filter({ item: Package -> item.isDownloading() })
+            if (downloading.size == 1) {
+                complete(downloading[0])
+            }
+        }
+
+        complete(null)
     }
 
     fun enqueue(item: Package) {

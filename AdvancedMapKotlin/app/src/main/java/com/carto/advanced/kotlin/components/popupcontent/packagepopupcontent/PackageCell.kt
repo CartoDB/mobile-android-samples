@@ -17,7 +17,6 @@ import com.carto.advanced.kotlin.utils.Colors
 import com.carto.advanced.kotlin.utils.Package
 import com.carto.packagemanager.PackageAction
 import com.carto.packagemanager.PackageStatus
-import org.jetbrains.anko.displayMetrics
 
 /**
  * Created by aareundo on 12/07/2017.
@@ -167,7 +166,7 @@ class PackageCell(context: Context) : BaseView(context) {
 
         var width = 0
         if (action == Package.ACTION_DOWNLOAD) {
-            width = (1.2 * context.displayMetrics.density).toInt()
+            width = (1.2 * context.resources.displayMetrics.density).toInt()
         }
 
         (statusIndicator.background as GradientDrawable).setStroke(width, Colors.appleBlue)
@@ -200,7 +199,7 @@ class PackageCell(context: Context) : BaseView(context) {
 
         val width = ((frame.width - 2 * leftPadding) * progress / 100).toInt()
         val height = (1.5 * context.resources.displayMetrics.density).toInt()
-        val y = frame.height - (5 * context.displayMetrics.density).toInt()
+        val y = frame.height - (5 * context.resources.displayMetrics.density).toInt()
         val x = leftPadding
 
         progressIndicator.setFrame(x, y, width, height)

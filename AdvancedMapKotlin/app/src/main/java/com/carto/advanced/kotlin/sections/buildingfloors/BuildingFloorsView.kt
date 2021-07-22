@@ -11,6 +11,7 @@ import com.carto.datasources.LocalVectorDataSource
 import com.carto.layers.CartoBaseMapStyle
 import com.carto.layers.CartoOnlineVectorTileLayer
 import com.carto.layers.VectorLayer
+import com.carto.styles.NMLModelStyleBuilder
 import com.carto.utils.AssetUtils
 import com.carto.vectorelements.NMLModel
 
@@ -55,8 +56,10 @@ class BuildingFloorsView(context: Context) : MapBaseView(context) {
         layoutSubviews()
 
         for (i in 0..floorCount) {
-            val data = AssetUtils.loadAsset("3dwf-f$i.nml")
-            val model = NMLModel(washingtonDC, data)
+            val modelAsset = AssetUtils.loadAsset("3dwf-f$i.nml")
+            val modelStyleBuilder = NMLModelStyleBuilder()
+            modelStyleBuilder.modelAsset = modelAsset
+            val model = NMLModel(washingtonDC, modelStyleBuilder.buildStyle())
             model.scale = 20.0f
             source?.add(model)
         }

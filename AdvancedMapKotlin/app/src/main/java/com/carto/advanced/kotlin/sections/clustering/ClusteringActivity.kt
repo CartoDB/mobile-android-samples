@@ -10,7 +10,6 @@ import com.carto.styles.MarkerStyleBuilder
 import com.carto.utils.BitmapUtils
 import com.carto.vectorelements.Marker
 import com.carto.vectorelements.VectorElementVector
-import org.jetbrains.anko.doAsync
 
 class ClusteringActivity : BaseActivity() {
 
@@ -28,7 +27,7 @@ class ClusteringActivity : BaseActivity() {
         contentView?.initializeClusterLayer(cBuilder)
 
         // Kotlin Anko library: https://github.com/Kotlin/anko
-        doAsync {
+        val thread = Thread(Runnable {
 
             alert("Reading .geojson from assets")
             val json = getJsonFromAssets()
@@ -61,7 +60,8 @@ class ClusteringActivity : BaseActivity() {
             runOnUiThread {
                 contentView?.addClusters(elements)
             }
-        }
+        })
+        thread.start()
     }
 
     override fun onResume() {
