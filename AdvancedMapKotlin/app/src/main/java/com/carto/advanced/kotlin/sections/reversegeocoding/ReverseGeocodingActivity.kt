@@ -25,7 +25,7 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
         val folder = Utils.createDirectory(this, "geocodingpackages")
         contentView?.manager = CartoPackageManager(BaseGeocodingView.SOURCE, folder)
 
-        service = PackageManagerReverseGeocodingService(contentView?.manager)
+        service = MapBoxOnlineReverseGeocodingService(BaseGeocodingView.MAPBOX_TOKEN)
     }
 
     override fun onResume() {
@@ -41,7 +41,17 @@ class ReverseGeocodingActivity : PackageDownloadBaseActivity() {
                 val meters = 125.0f
                 request.searchRadius = meters
 
-                val results = service?.calculateAddresses(request)
+                var results : GeocodingResultVector? = null
+                try {
+                    results = service?.calculateAddresses(request)
+                }
+                catch (exception: Exception) {
+                    runOnUiThread {
+                        contentView?.progressLabel?.complete("Reverse geocoding failed. Please try again")
+                    }
+                    return
+                }
+
                 // Scan the results list. If we found relatively close point-based match,
                 // use this instead of the first result.
                 // In case of POIs within buildings, this allows us to hightlight POI instead of the building

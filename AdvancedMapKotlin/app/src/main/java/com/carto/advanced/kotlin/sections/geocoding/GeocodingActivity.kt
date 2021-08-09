@@ -138,7 +138,17 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
                 (service as MapBoxOnlineGeocodingService).isAutocomplete = autocomplete
             }
 
-            results = service!!.calculateAddresses(request)
+            try {
+                results = service!!.calculateAddresses(request)
+            }
+            catch (exception: Exception) {
+                runOnUiThread {
+                    contentView?.progressLabel?.complete("Geocoding failed. Please try again")
+                }
+
+                results = GeocodingResultVector()
+                return@Runnable
+            }
             val count = results!!.size()
 
             runOnUiThread {
