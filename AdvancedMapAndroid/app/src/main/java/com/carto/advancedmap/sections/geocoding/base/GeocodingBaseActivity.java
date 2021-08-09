@@ -200,6 +200,12 @@ public class GeocodingBaseActivity extends BaseGeocodingActivity {
                 try {
                     results = service.calculateAddresses(request);
                 } catch (IOException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            contentView.banner.alert("Geocoding failed with exception");
+                        }
+                    });
                     e.printStackTrace();
                     return;
                 }

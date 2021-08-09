@@ -40,6 +40,12 @@ public class ReverseGeocodingBaseActivity extends BaseGeocodingActivity {
                 try {
                     results = service.calculateAddresses(request);
                 } catch (IOException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            contentView.banner.alert("Reverse geocoding failed with exception");
+                        }
+                    });
                     e.printStackTrace();
                     return;
                 }
