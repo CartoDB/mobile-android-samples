@@ -83,7 +83,7 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
 
         (contentView as? GeocodingView)!!.resultTable.setOnItemClickListener { _, _, position, _ ->
             run {
-                showResult(results!!.get(position)!!)
+                showResult(addresses!!.get(position)!!)
                 onEditingEnded(false)
             }
         }
@@ -113,23 +113,19 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
         (contentView as? GeocodingView)!!.clearInput()
     }
 
-    var searchQueueSize: Int = 0
+    var searchRequestId = 0;
+    var displayRequestId = 0;
     var addresses = mutableListOf<GeocodingResult>()
-    var results: GeocodingResultVector? = null
 
     fun geocode(text: String, autocomplete: Boolean) {
-
-        searchQueueSize += 1
+        var currentRequestIdInitial = 0;
+        synchronized(this) {
+            searchRequestId += 1
+            currentRequestIdInitial = searchRequestId
+        }
+        val currentRequestId = currentRequestIdInitial
 
         val thread = Thread(Runnable {
-            if (searchQueueSize - 1 > 0) {
-                // Cancel the request if we have additional pending requests queued
-                print("Geocoding: request pending, skipping current")
-                return@Runnable
-            }
-
-            searchQueueSize -= 1
-
             val request = GeocodingRequest(contentView?.projection, text)
 
             if (service is PackageManagerGeocodingService) {
@@ -138,17 +134,23 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
                 (service as MapBoxOnlineGeocodingService).isAutocomplete = autocomplete
             }
 
+            var resultsInitial: GeocodingResultVector? = null
             try {
-                results = service!!.calculateAddresses(request)
+                resultsInitial = service!!.calculateAddresses(request)
             }
-            catch (exception: Exception) {
-                runOnUiThread {
-                    contentView?.progressLabel?.complete("Geocoding failed. Please try again")
-                }
-
-                results = GeocodingResultVector()
+            catch (e: Exception) {
+                e.printStackTrace()
                 return@Runnable
             }
+
+            synchronized(this@GeocodingActivity) {
+                if (displayRequestId > currentRequestId) {
+                    return@Runnable  // a newer request has already finished
+                }
+                displayRequestId = currentRequestId
+            }
+
+            val results = resultsInitial
             val count = results!!.size()
 
             runOnUiThread {
@@ -167,7 +169,6 @@ class GeocodingActivity : PackageDownloadBaseActivity() {
                 } else if (count > 0) {
                     showResult(results?.get(0)!!)
                 }
-
             }
         })
         thread.start()

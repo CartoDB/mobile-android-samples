@@ -172,23 +172,21 @@ public class GeocodingBaseActivity extends BaseGeocodingActivity {
         clearInput();
     }
 
-    int searchQueueSize = 0;
+    int searchRequestId = 0;
+    int displayRequestId = 0;
     List<GeocodingResult> addresses = new ArrayList<>();
-    GeocodingResultVector results;
 
     public void geocode(final String text, final boolean autocomplete) {
-
-        searchQueueSize += 1;
+        int currentRequestIdInitial = 0;
+        synchronized (this) {
+            searchRequestId += 1;
+            currentRequestIdInitial = searchRequestId;
+        }
+        final int currentRequestId = currentRequestIdInitial;
 
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (searchQueueSize - 1 > 0) {
-                    return;
-                }
-
-                searchQueueSize -= 1;
-
                 GeocodingRequest request = new GeocodingRequest(contentView.projection, text);
 
                 if (service instanceof PackageManagerGeocodingService) {
@@ -197,21 +195,23 @@ public class GeocodingBaseActivity extends BaseGeocodingActivity {
                     ((MapBoxOnlineGeocodingService)service).setAutocomplete(autocomplete);
                 }
 
+                GeocodingResultVector resultsInitial = null;
                 try {
-                    results = service.calculateAddresses(request);
-                } catch (IOException e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            contentView.banner.alert("Geocoding failed with exception");
-                        }
-                    });
+                    resultsInitial = service.calculateAddresses(request);
+                } catch (Exception e) {
                     e.printStackTrace();
                     return;
                 }
 
+                synchronized (GeocodingBaseActivity.this) {
+                    if (displayRequestId > currentRequestId) {
+                        return; // a newer request has already finished
+                    }
+                    displayRequestId = currentRequestId;
+                }
+
+                final GeocodingResultVector results = resultsInitial;
                 final int count = (int)results.size();
-                final GeocodingResultVector finalResults = results;
 
                 runOnUiThread(new Runnable() {
                     @Override
