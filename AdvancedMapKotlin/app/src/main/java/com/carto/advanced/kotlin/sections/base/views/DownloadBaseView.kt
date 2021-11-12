@@ -3,6 +3,8 @@ package com.carto.advanced.kotlin.sections.base.views
 import com.carto.advanced.kotlin.R
 import com.carto.layers.CartoBaseMapStyle
 import android.content.Context
+import com.carto.layers.CartoOnlineVectorTileLayer
+
 /**
  * Created by aareundo on 03/07/2017.
  */
@@ -46,7 +48,10 @@ open class DownloadBaseView(context: Context, withBaseLayer: Boolean = true) : M
     fun setOnlineMap() {
 
         if (onlineLayer == null) {
-            onlineLayer = addBaseLayer(com.carto.layers.CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
+            onlineLayer = CartoOnlineVectorTileLayer(CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
+            onlineLayer!!.isPreloading = true
+        } else {
+            map.layers?.remove(onlineLayer)
         }
 
         if (offlineLayer != null) {
@@ -57,11 +62,15 @@ open class DownloadBaseView(context: Context, withBaseLayer: Boolean = true) : M
     }
 
     fun setOfflineMap(manager: com.carto.packagemanager.CartoPackageManager) {
-        map.layers?.remove(onlineLayer)
-
         if (offlineLayer == null) {
             offlineLayer = com.carto.layers.CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CARTO_BASEMAP_STYLE_VOYAGER)
             offlineLayer!!.isPreloading = true
+        } else {
+            map.layers?.remove(offlineLayer)
+        }
+
+        if (onlineLayer != null) {
+            map.layers?.remove(onlineLayer)
         }
 
         map.layers?.insert(0, offlineLayer)
